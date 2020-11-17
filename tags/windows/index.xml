@@ -4,7 +4,14 @@
         <link>http://example.org/tags/windows/</link>
         <description>Windows - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 24 Sep 2020 23:07:12 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/windows/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 28 Sep 2020 15:41:22 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/windows/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux용 Windows Subsystem(WSL1, WSL2)</title>
+    <link>http://example.org/wsl/</link>
+    <pubDate>Mon, 28 Sep 2020 15:41:22 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>http://example.org/wsl/</guid>
+    <description><![CDATA[<p>Windows Subsystem for Linux, 약칭 WSL을 설치하고 이용하는 법을 알아봅니다. 이 글은 WSL1과 WSL2을 둘 다 다룹니다.</p>]]></description>
+</item><item>
     <title>Windows 실행([WIN]&#43;[R]) 명령어 정리</title>
     <link>http://example.org/windowrun/</link>
     <pubDate>Thu, 24 Sep 2020 23:07:12 &#43;0900</pubDate>
