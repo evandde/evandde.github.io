@@ -109,7 +109,7 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 
 {{< admonition info >}}
 
-MS Store에서 설치 시, 설치되는 경로는 `%LocalAppData%\Packages\[PackageName]` 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 [이 글]({{< ref "" >}})을 참고하세요. 
+MS Store에서 설치 시, 설치되는 경로는 `%LocalAppData%\Packages\[PackageName]` 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 [이 글]({{< ref "wsl-otherloc" >}})을 참고하세요. 
 
 {{< /admonition >}}
 
@@ -167,7 +167,7 @@ wsl --set-default-version 2
 
 {{< admonition info >}}
 
-MS Store에서 설치 시, 설치되는 경로는 `%LocalAppData%\Packages\[PackageName]` 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 [이 글]({{< ref "" >}})을 참고하세요. 
+MS Store에서 설치 시, 설치되는 경로는 `%LocalAppData%\Packages\[PackageName]` 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 [이 글]({{< ref "wsl-otherloc" >}})을 참고하세요. 
 
 {{< /admonition >}}
 

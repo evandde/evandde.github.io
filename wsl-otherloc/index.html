@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>WSL을 다른 경로에 설치하는 법 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="WSL을 다른 경로에 설치하는 법" />
+<meta property="og:description" content="MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 %LocalAppData%\Packages\[PackageName] 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/wsl-otherloc/" />
+<meta property="article:published_time" content="2020-10-08T14:09:10+09:00" />
+<meta property="article:modified_time" content="2020-10-08T14:09:10+09:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="WSL을 다른 경로에 설치하는 법"/>
+<meta name="twitter:description" content="MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 %LocalAppData%\Packages\[PackageName] 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다."/>
+<meta name="application-name" content="EvaNote">
+<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/wsl-otherloc/" /><link rel="prev" href="http://example.org/wsl/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "WSL을 다른 경로에 설치하는 법",
+        "inLanguage": "ko-kr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/wsl-otherloc\/"
+        },"genre": "posts","keywords": "HowTo, Windows, WSL, Linux, Install","wordcount":  776 ,
+        "url": "http:\/\/example.org\/wsl-otherloc\/","datePublished": "2020-10-08T14:09:10+09:00","dateModified": "2020-10-08T14:09:10+09:00","publisher": {
+            "@type": "Organization",
+            "name": "Evan Kim"},"author": {
+                "@type": "Person",
+                "name": "Evan Kim"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/courses/"> Courses </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        취소
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/courses/" title="">Courses</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">목차</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">WSL을 다른 경로에 설치하는 법</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>Windows</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-08">2020-10-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 776&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 2분&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>목차</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#배포판-다운로드">배포판 다운로드</a></li>
+    <li><a href="#다운받은-appx파일의-압축-해제">다운받은 Appx파일의 압축 해제</a></li>
+    <li><a href="#배포판-실행하여-설치-마무리">배포판 실행하여 설치 마무리</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 <code>%LocalAppData%\Packages\[PackageName]</code> 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다.</p>
+<div class="details admonition success open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-check-circle fa-fw"></i>Success<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">여기서는 WSL 설치를 위한 <strong>Windows 기능 켜기</strong> 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 <a href="http://example.org/wsl/" target="_blank" rel="noopener noreffer">이 글</a>을 참고하세요.</div>
+        </div>
+    </div>
+<hr>
+<h2 id="tldr">TL;DR</h2>
+<ol>
+<li>
+<p><a href="https://docs.microsoft.com/ko-kr/windows/wsl/install-manual?irgwc=1&amp;OCID=AID2000142_aff_7593_1243925&amp;tduid=%28ir__tmctq6trigkfrhgekk0sohzx0m2xjpbvc3r3s12c00%29%287593%29%281243925%29%28je6NUbpObpQ-EBkcl.71_gDZ2KcRFsI7Jw%29%28%29&amp;irclickid=_tmctq6trigkfrhgekk0sohzx0m2xjpbvc3r3s12c00#downloading-distros?ranMID=24542&amp;ranEAID=je6NUbpObpQ&amp;ranSiteID=je6NUbpObpQ-EBkcl.71_gDZ2KcRFsI7Jw&amp;epi=je6NUbpObpQ-EBkcl.71_gDZ2KcRFsI7Jw" target="_blank" rel="noopener noreffer">이 페이지</a>에서 원하는 배포판을 다운로드</p>
+</li>
+<li>
+<p>다음 명령어로 파일확장자 변경</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Rename-Item</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">appx</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">zip</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>다음 명령어로 압축 해제</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Extract-Archive</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">zip</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>압축 해제 후 생성된 폴더에 들어가서 배포판 실행</p>
+</li>
+</ol>
+<hr>
+<h2 id="배포판-다운로드">배포판 다운로드</h2>
+<p><a href="https://docs.microsoft.com/ko-kr/windows/wsl/install-manual?irgwc=1&amp;OCID=AID2000142_aff_7593_1243925&amp;tduid=%28ir__tmctq6trigkfrhgekk0sohzx0m2xjpbvc3r3s12c00%29%287593%29%281243925%29%28je6NUbpObpQ-EBkcl.71_gDZ2KcRFsI7Jw%29%28%29&amp;irclickid=_tmctq6trigkfrhgekk0sohzx0m2xjpbvc3r3s12c00#downloading-distros?ranMID=24542&amp;ranEAID=je6NUbpObpQ&amp;ranSiteID=je6NUbpObpQ-EBkcl.71_gDZ2KcRFsI7Jw&amp;epi=je6NUbpObpQ-EBkcl.71_gDZ2KcRFsI7Jw" target="_blank" rel="noopener noreffer">이 페이지</a>를 방문하여, 설치하고자 하는 배포판을 다운받습니다.</p>
+<p>원래 MS Store를 사용할 수 없을 때 이용하라고 만들어져 있는 페이지입니다만, 이 페이지를 이용하면 <code>.appx</code> 형식의 파일을 받을 수 있습니다.</p>
+<p>WSL을 설치하고자 하는 경로에, 다운받은 <code>.appx</code>파일을 옮겨둡니다.</p>
+<hr>
+<h2 id="다운받은-appx파일의-압축-해제">다운받은 Appx파일의 압축 해제</h2>
+<p>아래 그림과 같이 <code>.appx</code> 파일을 옮겨둔 폴더에서 <b>파일-Windows PowerShell 열기(<u>R</u>)-Windows PowerShell 열기(<u>R</u>)</b>를 통해 PowerShell을 실행합니다. (PowerShell을 실행하여 해당 경로로 들어오셔도 됩니다.)</p>
+<a class="lightgallery" href="/wsl-otherloc/open_powershell.png" title="/wsl-otherloc/open_powershell.png" data-thumbnail="/wsl-otherloc/open_powershell.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="open_powershell.png"
+            data-srcset="/wsl-otherloc/open_powershell.png, open_powershell.png 1.5x, /wsl-otherloc/open_powershell.png 2x"
+            data-sizes="auto"
+            alt="/wsl-otherloc/open_powershell.png" width="100%" />
+    </a>
+<p>이어서 <code>Rename-Item</code> 명령어를 통해 확장자를 zip파일로 바꾸고, <code>Expand-Archive</code> 명령어를 통해 압축을 풀 것입니다. 예를들어 Ubuntu 20.04 배포판을 받았다면, <code>Ubuntu_2004.2020.424.0_x64.appx</code> 파일이 다운받아질 것입니다(작성일 기준). 그렇다면 다음과 같이 명령어를 입력하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">## 받은 appx 파일을 Ubuntu2004.zip으로 이름 변경</span>
+<span class="nb">Rename-Item</span> <span class="n">Ubuntu_2004</span><span class="p">.</span><span class="n">2020</span><span class="p">.</span><span class="n">424</span><span class="p">.</span><span class="n">0_x64</span><span class="p">.</span><span class="n">appx</span> <span class="n">Ubuntu2004</span><span class="p">.</span><span class="n">zip</span>
+<span class="c">## zip 파일의 압축을 해제</span>
+<span class="n">Extract-Archive</span> <span class="n">Ubuntu2004</span><span class="p">.</span><span class="n">zip</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="배포판-실행하여-설치-마무리">배포판 실행하여 설치 마무리</h2>
+<p>압축을 해제하면 압축파일과 동일한 폴더가 생성됩니다. 그 폴더 안에 배포판의 실행파일이 있을 것입니다.</p>
+<p>최초 실행 시에는 이 파일로 실행하셔야 합니다. 그러면 MS Store에서 설치하는 경우와 동일하게 자동으로 설치과정이 마무리되고 계정생성과정이 진행될 것입니다.</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Info<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">이렇게 최초 실행 후 설치가 마무리된 뒤에는 MS Store로 설치한 WSL과 동일한 방법으로 사용/관리 할 수 있습니다.</div>
+        </div>
+    </div>
+<a class="lightgallery" href="/wsl-otherloc/wsl_firstrun.png" title="/wsl-otherloc/wsl_firstrun.png" data-thumbnail="/wsl-otherloc/wsl_firstrun.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="wsl_firstrun.png"
+            data-srcset="/wsl-otherloc/wsl_firstrun.png, wsl_firstrun.png 1.5x, /wsl-otherloc/wsl_firstrun.png 2x"
+            data-sizes="auto"
+            alt="/wsl-otherloc/wsl_firstrun.png" width="100%" />
+    </a></div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>2020-10-08에 수정</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/wsl-otherloc/index.md" target="_blank">Markdown으로 보기</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="http://example.org/wsl-otherloc/" data-title="WSL을 다른 경로에 설치하는 법" data-hashtags="HowTo,Windows,WSL,Linux,Install"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/wsl-otherloc/" data-title="WSL을 다른 경로에 설치하는 법" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="http://example.org/wsl-otherloc/" data-title="WSL을 다른 경로에 설치하는 법"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="http://example.org/wsl-otherloc/" data-title="WSL을 다른 경로에 설치하는 법" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="http://example.org/wsl-otherloc/" data-title="WSL을 다른 경로에 설치하는 법"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="http://example.org/wsl-otherloc/" data-title="WSL을 다른 경로에 설치하는 법" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/howto/">HowTo</a>,&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/wsl/">WSL</a>,&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/install/">Install</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
+        </section>
+    </div>
+
+    
+    <div class="post-nav">
+        </div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-JZ0NBG8ZWZ');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+</html>
