@@ -2,10 +2,11 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+                <loc>http://example.org/vscode-cpp/</loc><lastmod>2020-11-12T16:40:31&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
                 <loc>http://example.org/vscode/</loc><lastmod>2020-11-12T11:22:31&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
                 <loc>http://example.org/remove-activity-history/</loc><lastmod>2020-11-12T11:01:34&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
                 <loc>http://example.org/remove-recent-items/</loc><lastmod>2020-11-12T09:54:54&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-                <loc>http://example.org/about/</loc><lastmod>2020-11-10T20:10:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+                <loc>http://example.org/about/</loc><lastmod>2020-11-10T20:10:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
                 <loc>http://example.org/geant4-install-linux/</loc><lastmod>2020-11-01T16:17:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
                 <loc>http://example.org/cannot-open-libqt5core/</loc><lastmod>2020-10-28T13:00:27&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
                 <loc>http://example.org/wsl2-x/</loc><lastmod>2020-10-27T15:21:57&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>

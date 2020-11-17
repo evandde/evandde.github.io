@@ -4,9 +4,16 @@
         <link>http://example.org/</link>
         <description>EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 11:22:31 &#43;0900</lastBuildDate>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 16:40:31 &#43;0900</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Visual Studio Code에서 C, C&#43;&#43; 환경 설정하기</title>
+    <link>http://example.org/vscode-cpp/</link>
+    <pubDate>Thu, 12 Nov 2020 16:40:31 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>http://example.org/vscode-cpp/</guid>
+    <description><![CDATA[<p>VSCode에서 C 언어 및 C++ 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Visual Studio Code 소개, 설치, 기본 세팅</title>
     <link>http://example.org/vscode/</link>
     <pubDate>Thu, 12 Nov 2020 11:22:31 &#43;0900</pubDate>
@@ -70,13 +77,5 @@
     <author>작성자</author>
     <guid>http://example.org/nvcuda-not-found/</guid>
     <description><![CDATA[<p>TensorFlow 설치 후 이용 시, nvcuda.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>사용자 폴더의 위치를 변경하는 방법사용자 폴더의 위치를 변경하는 방법</title>
-    <link>http://example.org/userdir-change/</link>
-    <pubDate>Tue, 13 Oct 2020 16:24:20 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>http://example.org/userdir-change/</guid>
-    <description><![CDATA[<p>Windows를 설치하면, <code>C:\Users\사용자이름</code> 폴더에 <strong>다운로드, 사진, 문서, 동영상</strong> 등의 폴더가 있는 것을 확인할 수 있습니다. 이러한 폴더를 <strong>사용자 폴더</strong> 라고 합니다. 
-이 글에서는 사용자 폴더의 위치를 변경하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
