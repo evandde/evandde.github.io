@@ -4,9 +4,16 @@
         <link>http://example.org/</link>
         <description>EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 16:40:31 &#43;0900</lastBuildDate>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Visual Studio Code에서 CMake 환경 설정하기</title>
+    <link>http://example.org/vscode-cmake/</link>
+    <pubDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>http://example.org/vscode-cmake/</guid>
+    <description><![CDATA[<p>VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Visual Studio Code에서 C, C&#43;&#43; 환경 설정하기</title>
     <link>http://example.org/vscode-cpp/</link>
     <pubDate>Thu, 12 Nov 2020 16:40:31 &#43;0900</pubDate>
@@ -70,12 +77,5 @@
     <author>작성자</author>
     <guid>http://example.org/cudart64-not-found/</guid>
     <description><![CDATA[<p>TensorFlow 설치 후 이용 시, cudart64_xxx.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>nvcuda.dll not found 에러 해결</title>
-    <link>http://example.org/nvcuda-not-found/</link>
-    <pubDate>Thu, 22 Oct 2020 16:22:11 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>http://example.org/nvcuda-not-found/</guid>
-    <description><![CDATA[<p>TensorFlow 설치 후 이용 시, nvcuda.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
