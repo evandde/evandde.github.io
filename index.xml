@@ -4,9 +4,17 @@
         <link>http://example.org/</link>
         <description>EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Wed, 28 Oct 2020 13:00:27 &#43;0900</lastBuildDate>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Sun, 01 Nov 2020 16:17:56 &#43;0900</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Linux에서 Geant4 설치하기</title>
+    <link>http://example.org/geant4-install-linux/</link>
+    <pubDate>Sun, 01 Nov 2020 16:17:56 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>http://example.org/geant4-install-linux/</guid>
+    <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
+이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.6 patch 02 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>WSL에서 libQt5 관련 &#34;No such file or directory&#34; 에러 해결</title>
     <link>http://example.org/cannot-open-libqt5core/</link>
     <pubDate>Wed, 28 Oct 2020 13:00:27 &#43;0900</pubDate>
@@ -70,12 +78,5 @@
     <author>작성자</author>
     <guid>http://example.org/powershell-encoding/</guid>
     <description><![CDATA[<p>PowerShell에서 git log나 git diff 출력 시 인코딩 문제로 인해 글자가 깨져 나오는 경우가 있습니다. 이 문제를 해결하는 방법을 알아봅니다.</p>]]></description>
-</item><item>
-    <title>Windows 실행([WIN]&#43;[R]) 명령어 정리</title>
-    <link>http://example.org/windowrun/</link>
-    <pubDate>Thu, 24 Sep 2020 23:07:12 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>http://example.org/windowrun/</guid>
-    <description><![CDATA[<p>이 글에서는 <b>시작-실행</b> 혹은 단축키 <b>[WIN]+[R]</b>을 통해 띄울 수 있는 실행 창에서 사용 가능한 다양한 명령어를 정리해 봅니다.</p>]]></description>
 </item></channel>
 </rss>
