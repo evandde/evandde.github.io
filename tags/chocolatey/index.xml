@@ -1,12 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>EvaNote</title>
-        <link>http://example.org/</link>
-        <description>EvaNote</description>
+        <title>Chocolatey - 태그 - EvaNote</title>
+        <link>http://example.org/tags/chocolatey/</link>
+        <description>Chocolatey - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 24 Sep 2020 07:05:42 &#43;0900</lastBuildDate>
-            <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 24 Sep 2020 07:05:42 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/chocolatey/" rel="self" type="application/rss+xml" /><item>
     <title>Windows용 패키지 관리자 Chocolatey(choco) 설치 및 이용하기</title>
     <link>http://example.org/chocolatey/</link>
     <pubDate>Thu, 24 Sep 2020 07:05:42 &#43;0900</pubDate>
