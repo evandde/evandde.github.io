@@ -5,29 +5,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>nvcuda.dll not found 에러 해결 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="nvcuda.dll not found 에러 해결" />
-<meta property="og:description" content="TensorFlow 설치 후 이용 시, nvcuda.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다." />
+        <title>cudart64_xxx.dll not found 에러 해결 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="cudart64_xxx.dll not found 에러 해결" />
+<meta property="og:description" content="TensorFlow 설치 후 이용 시, cudart64_xxx.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/nvcuda-not-found/" />
+<meta property="og:url" content="http://example.org/cudart64-not-found/" />
 <meta property="article:published_time" content="2020-10-22T16:22:11+09:00" />
 <meta property="article:modified_time" content="2020-10-22T16:22:11+09:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="nvcuda.dll not found 에러 해결"/>
-<meta name="twitter:description" content="TensorFlow 설치 후 이용 시, nvcuda.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다."/>
+<meta name="twitter:title" content="cudart64_xxx.dll not found 에러 해결"/>
+<meta name="twitter:description" content="TensorFlow 설치 후 이용 시, cudart64_xxx.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다."/>
 <meta name="application-name" content="EvaNote">
 <meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/nvcuda-not-found/" /><link rel="prev" href="http://example.org/userdir-change/" /><link rel="next" href="http://example.org/cudart64-not-found/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/cudart64-not-found/" /><link rel="prev" href="http://example.org/nvcuda-not-found/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "nvcuda.dll not found 에러 해결",
+        "headline": "cudart64_xxx.dll not found 에러 해결",
         "inLanguage": "ko-kr",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/example.org\/nvcuda-not-found\/"
-        },"genre": "posts","keywords": "BugFix, TensorFlow, tf, cuDNN, nvcuda, dll, not found","wordcount":  505 ,
-        "url": "http:\/\/example.org\/nvcuda-not-found\/","datePublished": "2020-10-22T16:22:11+09:00","dateModified": "2020-10-22T16:22:11+09:00","publisher": {
+            "@id": "http:\/\/example.org\/cudart64-not-found\/"
+        },"genre": "posts","keywords": "BugFix, TensorFlow, tf, CUDA, cudart64, dll, not found","wordcount":  438 ,
+        "url": "http:\/\/example.org\/cudart64-not-found\/","datePublished": "2020-10-22T16:22:11+09:00","dateModified": "2020-10-22T16:22:11+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
                 "@type": "Person",
@@ -115,10 +115,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">목차</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">nvcuda.dll not found 에러 해결</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">cudart64_xxx.dll not found 에러 해결</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/tensorflow/"><i class="far fa-folder fa-fw"></i>TensorFlow</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-22">2020-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 505&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 2분&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-22">2020-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 438&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 1분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>목차</span>
@@ -132,77 +132,61 @@
     <li><a href="#해결방법">해결방법</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>TensorFlow 설치 후 이용 시, nvcuda.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.</p>
+            </div><div class="content" id="content"><p>TensorFlow 설치 후 이용 시, cudart64_xxx.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.</p>
 <h2 id="tldr">TL;DR</h2>
-<p><b><a href="https://developer.nvidia.com/cudnn">https://developer.nvidia.com/cudnn</a>에서 CUDA 버전에 맞는 것을 다운받고, 압축을 풀어서 CUDA가 설치된 폴더에 넣습니다.</b></p>
-<a class="lightgallery" href="/nvcuda-not-found/copypaste.png" title="/nvcuda-not-found/copypaste.png" data-thumbnail="/nvcuda-not-found/copypaste.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="copypaste.png"
-            data-srcset="/nvcuda-not-found/copypaste.png, copypaste.png 1.5x, /nvcuda-not-found/copypaste.png 2x"
-            data-sizes="auto"
-            alt="/nvcuda-not-found/copypaste.png" />
-    </a>
-<p>단, NVIDIA 회원가입, Developer 정보 입력, cuDNN 이용목적 등의 설문조사 참여가 필요합니다.</p>
+<p><b><a href="https://developer.nvidia.com/cuda-toolkit-archive">https://developer.nvidia.com/cuda-toolkit-archive</a>에서 맞는 버전을 다운받아 설치합니다.</b></p>
+<ul>
+<li>예: cudart64_101.dll -&gt; CUDA Toolkit 10.1 update 2 설치</li>
+</ul>
 <hr>
 <h2 id="버그-설명">버그 설명</h2>
-<p>TensorFlow 2를 설치한 뒤 이용하려 할 때, nvcuda.dll을 찾지 못하는 에러가 발생하는 경우가 있습니다.</p>
-<a class="lightgallery" href="/nvcuda-not-found/error.png" title="/nvcuda-not-found/error.png" data-thumbnail="/nvcuda-not-found/error.png">
+<p>TensorFlow 2를 설치한 뒤 이용하려 할 때, cudart64_xxx.dll을 찾지 못하는 에러가 발생하는 경우가 있습니다.</p>
+<a class="lightgallery" href="/cudart64-not-found/error.png" title="/cudart64-not-found/error.png" data-thumbnail="/cudart64-not-found/error.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
             data-src="error.png"
-            data-srcset="/nvcuda-not-found/error.png, error.png 1.5x, /nvcuda-not-found/error.png 2x"
+            data-srcset="/cudart64-not-found/error.png, error.png 1.5x, /cudart64-not-found/error.png 2x"
             data-sizes="auto"
-            alt="/nvcuda-not-found/error.png" />
+            alt="/cudart64-not-found/error.png" />
     </a>
 <hr>
 <h2 id="왜-발생하는가">왜 발생하는가?</h2>
 <p>TensorFlow 2로 오면서, GPU 사용이 기본이 되었습니다. 이에 따라, 관련 하드웨어 및 소프트웨어 요구사항이 존재합니다.</p>
 <p>자세한 사항은 <a href="https://www.tensorflow.org/install/gpu" target="_blank" rel="noopener noreffer">tensorflow 설치가이드</a>에서 확인할 수 있습니다.</p>
-<a class="lightgallery" href="/nvcuda-not-found/hw_req.png" title="/nvcuda-not-found/hw_req.png" data-thumbnail="/nvcuda-not-found/hw_req.png">
+<a class="lightgallery" href="/cudart64-not-found/hw_req.png" title="/cudart64-not-found/hw_req.png" data-thumbnail="/cudart64-not-found/hw_req.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
             data-src="hw_req.png"
-            data-srcset="/nvcuda-not-found/hw_req.png, hw_req.png 1.5x, /nvcuda-not-found/hw_req.png 2x"
+            data-srcset="/cudart64-not-found/hw_req.png, hw_req.png 1.5x, /cudart64-not-found/hw_req.png 2x"
             data-sizes="auto"
-            alt="/nvcuda-not-found/hw_req.png" />
+            alt="/cudart64-not-found/hw_req.png" />
     </a>
-<a class="lightgallery" href="/nvcuda-not-found/sw_req.png" title="/nvcuda-not-found/sw_req.png" data-thumbnail="/nvcuda-not-found/sw_req.png">
+<a class="lightgallery" href="/cudart64-not-found/sw_req.png" title="/cudart64-not-found/sw_req.png" data-thumbnail="/cudart64-not-found/sw_req.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
             data-src="sw_req.png"
-            data-srcset="/nvcuda-not-found/sw_req.png, sw_req.png 1.5x, /nvcuda-not-found/sw_req.png 2x"
+            data-srcset="/cudart64-not-found/sw_req.png, sw_req.png 1.5x, /cudart64-not-found/sw_req.png 2x"
             data-sizes="auto"
-            alt="/nvcuda-not-found/sw_req.png" />
+            alt="/cudart64-not-found/sw_req.png" />
     </a>
 <hr>
 <h2 id="해결방법">해결방법</h2>
-<p>NVIDIA 홈페이지의 cuDNN 다운로드 페이지에서 맞는 버전을 다운받아 설치합니다.</p>
-<p>단, cuDNN은 NVIDIA에의 회원가입 및 개발자가입이 요구됩니다. 그리고 cuDNN을 어떤 목적으로 사용할 것인지에 대한 설문조사도 있습니다.</p>
-<p>2020년 10월 기준 TensorFlow 2에서 요구하는 버전은 cuDNN SDK 7.6이고, CUDA 10.1 버전을 지원하므로, 이에 맞추어 받으시면 됩니다.</p>
-<a class="lightgallery" href="/nvcuda-not-found/version_select.png" title="/nvcuda-not-found/version_select.png" data-thumbnail="/nvcuda-not-found/version_select.png">
+<p>NVIDIA 홈페이지의 CUDA Toolkit 다운로드 페이지에서 맞는 버전을 다운받아 설치합니다.</p>
+<p>최신 버전을 요구하지 않는 경우가 있으므로, <a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener noreffer">이 곳</a>에서 해당하는 버전을 찾아 설치하시면 됩니다.</p>
+<p><code>cudart64_xxx.dll</code>에서 xxx 부분이 버전에 해당합니다.</p>
+<p>예를 들어, 2020년 10월 기준 TensorFlow 2에서 요구하는 버전은 <code>cudart64_101.dll</code>로, 10.1 버전을 받으시면 됩니다.</p>
+<p>아래 그림과 같이 뜨면 성공입니다.</p>
+<a class="lightgallery" href="/cudart64-not-found/solved.png" title="/cudart64-not-found/solved.png" data-thumbnail="/cudart64-not-found/solved.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
-            data-src="version_select.png"
-            data-srcset="/nvcuda-not-found/version_select.png, version_select.png 1.5x, /nvcuda-not-found/version_select.png 2x"
+            data-src="solved.png"
+            data-srcset="/cudart64-not-found/solved.png, solved.png 1.5x, /cudart64-not-found/solved.png 2x"
             data-sizes="auto"
-            alt="/nvcuda-not-found/version_select.png" />
-    </a>
-<p>해당 링크에서 압축파일이 받아지는데, 이를 풀면 <code>cuda</code> 폴더가 나옵니다.</p>
-<p>이 안의 내용물을, CUDA를 설치한 폴더 안에 그대로 붙여넣으시면 됩니다. (일반적으로는 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vXX.X</code>)</p>
-<a class="lightgallery" href="/nvcuda-not-found/copypaste.png" title="/nvcuda-not-found/copypaste.png" data-thumbnail="/nvcuda-not-found/copypaste.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="copypaste.png"
-            data-srcset="/nvcuda-not-found/copypaste.png, copypaste.png 1.5x, /nvcuda-not-found/copypaste.png 2x"
-            data-sizes="auto"
-            alt="/nvcuda-not-found/copypaste.png" />
+            alt="/cudart64-not-found/solved.png" />
     </a></div>
 
 <div class="post-footer" id="post-footer">
@@ -215,16 +199,16 @@
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/nvcuda-not-found/index.md" target="_blank">Markdown으로 보기</a>
+                            <a class="link-to-markdown" href="/cudart64-not-found/index.md" target="_blank">Markdown으로 보기</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="http://example.org/nvcuda-not-found/" data-title="nvcuda.dll not found 에러 해결" data-hashtags="BugFix,TensorFlow,tf,cuDNN,nvcuda,dll,not found"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/nvcuda-not-found/" data-title="nvcuda.dll not found 에러 해결" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="http://example.org/nvcuda-not-found/" data-title="nvcuda.dll not found 에러 해결"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="http://example.org/nvcuda-not-found/" data-title="nvcuda.dll not found 에러 해결" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="http://example.org/nvcuda-not-found/" data-title="nvcuda.dll not found 에러 해결"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="http://example.org/nvcuda-not-found/" data-title="nvcuda.dll not found 에러 해결" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="http://example.org/cudart64-not-found/" data-title="cudart64_xxx.dll not found 에러 해결" data-hashtags="BugFix,TensorFlow,tf,CUDA,cudart64,dll,not found"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/cudart64-not-found/" data-title="cudart64_xxx.dll not found 에러 해결" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="http://example.org/cudart64-not-found/" data-title="cudart64_xxx.dll not found 에러 해결"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="http://example.org/cudart64-not-found/" data-title="cudart64_xxx.dll not found 에러 해결" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="http://example.org/cudart64-not-found/" data-title="cudart64_xxx.dll not found 에러 해결"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="http://example.org/cudart64-not-found/" data-title="cudart64_xxx.dll not found 에러 해결" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/bugfix/">BugFix</a>,&nbsp;<a href="/tags/tensorflow/">TensorFlow</a>,&nbsp;<a href="/tags/tf/">tf</a>,&nbsp;<a href="/tags/cudnn/">cuDNN</a>,&nbsp;<a href="/tags/nvcuda/">nvcuda</a>,&nbsp;<a href="/tags/dll/">dll</a>,&nbsp;<a href="/tags/not-found/">not found</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/bugfix/">BugFix</a>,&nbsp;<a href="/tags/tensorflow/">TensorFlow</a>,&nbsp;<a href="/tags/tf/">tf</a>,&nbsp;<a href="/tags/cuda/">CUDA</a>,&nbsp;<a href="/tags/cudart64/">cudart64</a>,&nbsp;<a href="/tags/dll/">dll</a>,&nbsp;<a href="/tags/not-found/">not found</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
         </section>
