@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Qt5 - 태그 - EvaNote</title>
+        <link>http://example.org/tags/qt5/</link>
+        <description>Qt5 - 태그 - EvaNote</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Wed, 28 Oct 2020 13:00:27 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/qt5/" rel="self" type="application/rss+xml" /><item>
+    <title>WSL에서 libQt5 관련 &#34;No such file or directory&#34; 에러 해결</title>
+    <link>http://example.org/cannot-open-libqt5core/</link>
+    <pubDate>Wed, 28 Oct 2020 13:00:27 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>http://example.org/cannot-open-libqt5core/</guid>
+    <description><![CDATA[<p>WSL로 설치된 Debian계열 리눅스에서 Qt5 기반 프로그램 실행 시, libQt5*.so 파일과 관련하여 발생하는 cannot access 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
+</item></channel>
+</rss>
