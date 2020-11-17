@@ -5,29 +5,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>WSL1에서 X window를 세팅하는 법 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="WSL1에서 X window를 세팅하는 법" />
-<meta property="og:description" content="이 글에서는 WSL1을 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다." />
+        <title>WSL2에서 X window를 세팅하는 법 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="WSL2에서 X window를 세팅하는 법" />
+<meta property="og:description" content="이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/wsl1-x/" />
-<meta property="article:published_time" content="2020-10-27T15:09:37+09:00" />
-<meta property="article:modified_time" content="2020-10-27T15:09:37+09:00" />
+<meta property="og:url" content="http://example.org/wsl2-x/" />
+<meta property="article:published_time" content="2020-10-27T15:21:57+09:00" />
+<meta property="article:modified_time" content="2020-10-27T15:21:57+09:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="WSL1에서 X window를 세팅하는 법"/>
-<meta name="twitter:description" content="이 글에서는 WSL1을 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다."/>
+<meta name="twitter:title" content="WSL2에서 X window를 세팅하는 법"/>
+<meta name="twitter:description" content="이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다."/>
 <meta name="application-name" content="EvaNote">
 <meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/wsl1-x/" /><link rel="prev" href="http://example.org/cudart64-not-found/" /><link rel="next" href="http://example.org/wsl2-x/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/wsl2-x/" /><link rel="prev" href="http://example.org/wsl1-x/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "WSL1에서 X window를 세팅하는 법",
+        "headline": "WSL2에서 X window를 세팅하는 법",
         "inLanguage": "ko-kr",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/example.org\/wsl1-x\/"
-        },"genre": "posts","keywords": "HowTo, Windows, WSL, WSL1, X server, X window, Xming","wordcount":  1405 ,
-        "url": "http:\/\/example.org\/wsl1-x\/","datePublished": "2020-10-27T15:09:37+09:00","dateModified": "2020-10-27T15:09:37+09:00","publisher": {
+            "@id": "http:\/\/example.org\/wsl2-x\/"
+        },"genre": "posts","keywords": "HowTo, Windows, WSL, WSL2, X server, X window, Xming","wordcount":  2594 ,
+        "url": "http:\/\/example.org\/wsl2-x\/","datePublished": "2020-10-27T15:21:57+09:00","dateModified": "2020-10-27T15:21:57+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
                 "@type": "Person",
@@ -115,10 +115,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">목차</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">WSL1에서 X window를 세팅하는 법</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">WSL2에서 X window를 세팅하는 법</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>Windows</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-27">2020-10-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1405&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 3분&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-27">2020-10-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2594&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>목차</span>
@@ -129,20 +129,27 @@
     <li><a href="#tldr">TL;DR</a></li>
     <li><a href="#x-window-x-server란">X window, X server란</a></li>
     <li><a href="#xming-설치">Xming 설치</a></li>
-    <li><a href="#wsl1과-xming-연동">WSL1과 Xming 연동</a></li>
+    <li><a href="#wsl2와-x-server-연동의-어려움">WSL2와 X server 연동의 어려움</a></li>
+    <li><a href="#wsl2와-xming-연동">WSL2와 Xming 연동</a>
+      <ul>
+        <li><a href="#xming에서-외부-ip로부터의-요청을-허용하도록-설정">Xming에서 외부 IP로부터의 요청을 허용하도록 설정</a></li>
+        <li><a href="#windows-방화벽에서-xming으로-들어가는-요청-허용">Windows 방화벽에서 Xming으로 들어가는 요청 허용</a></li>
+        <li><a href="#windows의-ip-주소-획득-및-display-환경변수로-지정">Windows의 IP 주소 획득 및 DISPLAY 환경변수로 지정</a></li>
+      </ul>
+    </li>
     <li><a href="#gui-연동-확인을-위한-테스트">GUI 연동 확인을 위한 테스트</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>이 글에서는 WSL1을 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>
+            </div><div class="content" id="content"><p>이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>
 <div class="details admonition success open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-check-circle fa-fw"></i>Success<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">여기서는 <b>WSL1</b> 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 <a href="http://example.org/wsl/" target="_blank" rel="noopener noreffer">이 글</a>을 참고하세요.</div>
+            <div class="admonition-content">여기서는 <b>WSL2</b> 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 <a href="http://example.org/wsl/" target="_blank" rel="noopener noreffer">이 글</a>을 참고하세요.</div>
         </div>
     </div>
-<p>WSL을 설치하더라도, GUI 기반의 프로그램을 실행하려면 X window에 관한 추가적인 설정이 필요합니다. 이 글에서는 <strong>WSL1</strong>에서 X window 사용을 위한 세팅 방법을 다룹니다.</p>
+<p>WSL을 설치하더라도, GUI 기반의 프로그램을 실행하려면 X window에 관한 추가적인 설정이 필요합니다. 이 글에서는 <strong>WSL2</strong>에서 X window 사용을 위한 세팅 방법을 다룹니다.</p>
 <hr>
 <h2 id="tldr">TL;DR</h2>
 <ol>
@@ -153,13 +160,44 @@
 <p>Xming 설치 (다음만 누르며 설치해도 괜찮음)</p>
 </li>
 <li>
-<p>WSL1에서 다음 명령어 입력</p>
+<p>Xming 단축아이콘을 만들고, <b>속성-대상</b> 항목의 맨 끝에 한 칸을 띄고 <code>-ac</code>를 이어서 적음
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">지우고 적는 것이 아니라, 맨 끝에 추가하는 것임에 주의하세요.</div>
+        </div>
+    </div>
+<a class="lightgallery" href="/wsl2-x/xming_option_ac.png" title="/wsl2-x/xming_option_ac.png" data-thumbnail="/wsl2-x/xming_option_ac.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="xming_option_ac.png"
+            data-srcset="/wsl2-x/xming_option_ac.png, xming_option_ac.png 1.5x, /wsl2-x/xming_option_ac.png 2x"
+            data-sizes="auto"
+            alt="/wsl2-x/xming_option_ac.png" width="50%" />
+    </a></p>
+</li>
+<li>
+<p>Windows PowerShell을 <b>관리자 권한</b>으로 실행한 뒤, 다음 명령어 입력</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;export DISPLAY=localhost:0&#34;</span> &gt;&gt; ~/.bashrc
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-NetFirewallRule</span> <span class="n">-DisplayName</span> <span class="s2">&#34;Xming X Server&#34;</span> <span class="n">-Enabled</span> <span class="n">True</span> <span class="n">-Profile</span> <span class="n">Any</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>WSL2에서 다음 명령어 입력</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk &#39;</span><span class="s2">&#34;&#39;&#34;</span><span class="s1">&#39;{print $2}&#39;</span><span class="s2">&#34;&#39;&#34;</span><span class="s1">&#39;):0&#39;</span> &gt;&gt; ~/.bashrc
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -173,54 +211,144 @@
 <h2 id="xming-설치">Xming 설치</h2>
 <p>이 글에서는 Xming이라는 프로그램을 이용할 것입니다.</p>
 <p><a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener noreffer">Xming 공식 홈페이지</a>에 들어가셔서 <u>Xming 설치파일을 받아오시기 바랍니다</u>. (버전이 높은 것은 Xming 측에 돈을 기부하고 계정을 받아야 사용가능하니, 그 밑에 있는 낮은 버전을 받으시면 됩니다.)</p>
-<a class="lightgallery" href="/wsl1-x/xming_download.png" title="/wsl1-x/xming_download.png" data-thumbnail="/wsl1-x/xming_download.png">
+<a class="lightgallery" href="/wsl2-x/xming_download.png" title="/wsl2-x/xming_download.png" data-thumbnail="/wsl2-x/xming_download.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
             data-src="xming_download.png"
-            data-srcset="/wsl1-x/xming_download.png, xming_download.png 1.5x, /wsl1-x/xming_download.png 2x"
+            data-srcset="/wsl2-x/xming_download.png, xming_download.png 1.5x, /wsl2-x/xming_download.png 2x"
             data-sizes="auto"
-            alt="/wsl1-x/xming_download.png" width="100%" />
+            alt="/wsl2-x/xming_download.png" width="100%" />
     </a>
 <p>설치는 그냥 다음 버튼만 누르며 하셔도 됩니다만, 나중의 편의를 위해 <strong>단축아이콘 하나만 만들어두도록 합니다</strong>. 아래 그림에 보이는 내용이 떴을 때 <strong>Create a desktop icon for Xming에 체크</strong>해주시면 됩니다.</p>
-<a class="lightgallery" href="/wsl1-x/xming_install.png" title="/wsl1-x/xming_install.png" data-thumbnail="/wsl1-x/xming_install.png">
+<a class="lightgallery" href="/wsl2-x/xming_install.png" title="/wsl2-x/xming_install.png" data-thumbnail="/wsl2-x/xming_install.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
             data-src="xming_install.png"
-            data-srcset="/wsl1-x/xming_install.png, xming_install.png 1.5x, /wsl1-x/xming_install.png 2x"
+            data-srcset="/wsl2-x/xming_install.png, xming_install.png 1.5x, /wsl2-x/xming_install.png 2x"
             data-sizes="auto"
-            alt="/wsl1-x/xming_install.png" width="70%" />
+            alt="/wsl2-x/xming_install.png" width="70%" />
     </a>
 <p>Xming이 켜져 있는지의 여부는, 작업표시줄 오른쪽의 트레이아이콘을 확인하시면 알 수 있습니다. 트레이아이콘 중 X모양의 아이콘이 있다면 켜져있는 것입니다. 종료하고자 할 때에는, <strong>트레이아이콘을 우클릭</strong>하고 <strong>Exit</strong>를 눌러주시면 됩니다.</p>
-<a class="lightgallery" href="/wsl1-x/xming_running.png" title="/wsl1-x/xming_running.png" data-thumbnail="/wsl1-x/xming_running.png">
+<a class="lightgallery" href="/wsl2-x/xming_running.png" title="/wsl2-x/xming_running.png" data-thumbnail="/wsl2-x/xming_running.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
             data-src="xming_running.png"
-            data-srcset="/wsl1-x/xming_running.png, xming_running.png 1.5x, /wsl1-x/xming_running.png 2x"
+            data-srcset="/wsl2-x/xming_running.png, xming_running.png 1.5x, /wsl2-x/xming_running.png 2x"
             data-sizes="auto"
-            alt="/wsl1-x/xming_running.png" width="50%" />
+            alt="/wsl2-x/xming_running.png" width="50%" />
     </a>
 <hr>
-<h2 id="wsl1과-xming-연동">WSL1과 Xming 연동</h2>
-<p>WSL1은 고민할 것이 별로 없습니다. WSL1은 Windows와 네트워크 상 주소가 동일하기 때문입니다. 클라이언트에서 X window 요청이 들어오면, 그대로 자기자신(localhost)에게 켜져 있는 Windows용 X server에 던져주면 끝입니다.</p>
-<p>명령어 상으로는 다음과 같이 적어주면 됩니다.</p>
+<h2 id="wsl2와-x-server-연동의-어려움">WSL2와 X server 연동의 어려움</h2>
+<p>WSL2에서 X server를 연동하는 경우는 WSL1에서와 사뭇 다릅니다.</p>
+<p>WSL1이 Windows와 동일한 네트워크를 사용했던 것과 달리, WSL2는 Windows 10 내에서 <u>별도의 WSL2 전용 네트워크를 사용</u>하고 있기 때문입니다.</p>
+<p>즉, WSL2와 Windows 10의 주소가 다르기 때문에, <strong>WSL2에서 자기자신(localhost)에 X 요청을 보내게 되면 Window로 그 요청이 도달하지 못하는 것</strong>이지요.</p>
+<p>우리는 이 문제를 해결하기 위해 다음의 과정을 거쳐야 합니다.</p>
+<ol>
+<li>Windows에서 실행한 X server 프로그램(Xming)에서 외부 IP로부터 들어오는 요청을 허용하도록 설정</li>
+<li>Windows 방화벽에서 WSL2의 요청을 허용하도록 설정</li>
+<li>WSL2에서 Windows의 주소를 획득하고, 이를 <code>DISPLAY</code> 환경변수로 지정</li>
+</ol>
+<hr>
+<h2 id="wsl2와-xming-연동">WSL2와 Xming 연동</h2>
+<h3 id="xming에서-외부-ip로부터의-요청을-허용하도록-설정">Xming에서 외부 IP로부터의 요청을 허용하도록 설정</h3>
+<p>Xming은 기본적으로 자기자신(localhost)으로부터 들어온 요청만을 받아들이고, 외부 IP로부터의 요청은 받지 않도록 설정되어 있습니다. 그래서 Xming에서 설정을 바꿔주지 않으면, 아무리 WSL2에서 요청을 보내도 Xming이 받지 않는 것이지요.</p>
+<p>이 부분을 허용하도록 설정하기 위해서는 Xming을 켤때 <strong>-ac</strong> 옵션을 넣어주면 됩니다.</p>
+<ol>
+<li>
+<p><strong>-ac</strong> 옵션을 넣어 실행하기 위한 <strong>Xming 단축아이콘 생성</strong> (설치 시 바탕화면에 생성하였다면 이것을 이용해도 괜찮음)</p>
+</li>
+<li>
+<p>단축아이콘에서 <strong>우클릭 - 속성</strong></p>
+</li>
+<li>
+<p><strong>바로 가기</strong> 탭 선택</p>
+</li>
+<li>
+<p><strong>대상</strong> 항목의 <strong>맨 끝에 한 칸을 띄어쓴 뒤 -ac를 이어서 적음</strong> 
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">지우고 적는 것이 아니라, 맨 끝에 추가하는 것임에 주의하세요.</div>
+        </div>
+    </div>
+<a class="lightgallery" href="/wsl2-x/xming_option_ac.png" title="/wsl2-x/xming_option_ac.png" data-thumbnail="/wsl2-x/xming_option_ac.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="xming_option_ac.png"
+            data-srcset="/wsl2-x/xming_option_ac.png, xming_option_ac.png 1.5x, /wsl2-x/xming_option_ac.png 2x"
+            data-sizes="auto"
+            alt="/wsl2-x/xming_option_ac.png" width="50%" />
+    </a></p>
+</li>
+<li>
+<p><strong>확인</strong></p>
+</li>
+</ol>
+<p>이제 이 단축아이콘으로 Xming을 실행하게 되면, Xming이 -ac 옵션이 적용된 채로 켜지게 됩니다. 혹시 <strong>현재 Xming이 켜져있다면 종료</strong>하시고, <strong>방금 설정한 단축아이콘으로 다시 실행</strong>해주세요.</p>
+<hr>
+<h3 id="windows-방화벽에서-xming으로-들어가는-요청-허용">Windows 방화벽에서 Xming으로 들어가는 요청 허용</h3>
+<p>WSL2에서 보내는 요청이 Xming에 도달하기 전에 <strong>Windows 방화벽이 차단해버리는 경우</strong>를 막기 위해, 다음의 작업을 통해 방화벽에서 Xming X Server로 들어가는 요청을 허용하도록 설정하시기 바랍니다.</p>
+<ol>
+<li>
+<p>[WIN]+[R]을 눌러 실행 창 띄우기</p>
+</li>
+<li>
+<p><strong>powershell</strong>을 입력한 뒤, [CTRL]+[SHIFT]+[ENTER]를 눌러서 PowerShell을 <strong>관리자 권한</strong>으로 실행</p>
+</li>
+<li>
+<p>다음 명령어 입력</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span>localhost:0
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-NetFirewallRule</span> <span class="n">-DisplayName</span> <span class="s2">&#34;Xming X Server&#34;</span> <span class="n">-Enabled</span> <span class="n">True</span> <span class="n">-Profile</span> <span class="n">Any</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>다만, 이렇게 정의한 환경변수는 터미널이 종료되는 순간 사라집니다. 일반적으로는 매번 터미널이 켜질 때마다 저 명령줄이 자동으로 실행되도록 하기 위해, <code>~/.bashrc</code> 파일에 위의 내용을 적어두는 방식으로 활용합니다.</p>
+</div></li>
+</ol>
+<hr>
+<h3 id="windows의-ip-주소-획득-및-display-환경변수로-지정">Windows의 IP 주소 획득 및 DISPLAY 환경변수로 지정</h3>
+<p>WSL2에서 Windows의 IP 주소를 보는 것은 다음 명령어를 통해 가능합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;export DISPLAY=localhost:0&#34;</span> &gt;&gt; ~/.bashrc
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/resolv.conf
+</code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="/wsl2-x/wsl2_winIP.png" title="/wsl2-x/wsl2_winIP.png" data-thumbnail="/wsl2-x/wsl2_winIP.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="wsl2_winIP.png"
+            data-srcset="/wsl2-x/wsl2_winIP.png, wsl2_winIP.png 1.5x, /wsl2-x/wsl2_winIP.png 2x"
+            data-sizes="auto"
+            alt="/wsl2-x/wsl2_winIP.png" />
+    </a>
+<p>값을 확인했다면 이걸 이용해서 DISPLAY 환경변수의 값을 설정해주면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span>위에서_확인한_IP:0
+</code></pre></td></tr></table>
+</div>
+</div><p>이 작업 역시, 터미널을 종료하면 설정한 정보가 날아가버립니다. 때문에, <b>Windows의 IP 값을 받아다가 <code>DISPLAY</code> 변수를 정의하는 작업</b>을 한 문장으로 작성하여 <code>~/.bashrc</code>에 적어두는 방식을 사용합니다. 이 작업을 위해서는 <code>|</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>, <code>grep</code><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>, <code>awk</code><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>등 생소할 수도 있는 명령어가 사용됩니다만, 그대로 따라서 한 번만 실행시키시면 WSL2에서 작업할 내용은 끝나게 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk &#39;</span><span class="s2">&#34;&#39;&#34;</span><span class="s1">&#39;{print $2}&#39;</span><span class="s2">&#34;&#39;&#34;</span><span class="s1">&#39;):0&#39;</span> &gt;&gt; ~/.bashrc
 </code></pre></td></tr></table>
 </div>
 </div><hr>
@@ -243,20 +371,29 @@ sudo apt install x11-apps -y
 xclock
 </code></pre></td></tr></table>
 </div>
-</div><a class="lightgallery" href="/wsl1-x/xwindow_test_xclock.png" title="/wsl1-x/xwindow_test_xclock.png" data-thumbnail="/wsl1-x/xwindow_test_xclock.png">
+</div><a class="lightgallery" href="/wsl2-x/xwindow_test_xclock.png" title="/wsl2-x/xwindow_test_xclock.png" data-thumbnail="/wsl2-x/xwindow_test_xclock.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
             data-src="xwindow_test_xclock.png"
-            data-srcset="/wsl1-x/xwindow_test_xclock.png, xwindow_test_xclock.png 1.5x, /wsl1-x/xwindow_test_xclock.png 2x"
+            data-srcset="/wsl2-x/xwindow_test_xclock.png, xwindow_test_xclock.png 1.5x, /wsl2-x/xwindow_test_xclock.png 2x"
             data-sizes="auto"
-            alt="/wsl1-x/xwindow_test_xclock.png" width="100%" />
+            alt="/wsl2-x/xwindow_test_xclock.png" width="100%" />
     </a>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
 <p><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank" rel="noopener noreffer">PuTTY</a>는 무료 터미널 에뮬레이터로, 대개 서버용으로 활용되는 리눅스 운영체제 기반 컴퓨터에 원격접속하는 용도로 활용됩니다. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><code>|</code>는 <strong>pipe</strong>라고 부르며, <code>|</code>의 앞에 있는 명령어의 실행 결과를 <code>|</code>의 뒤에 있는 명령어 실행의 입력인자로 활용하는 기호입니다. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><code>grep</code>은 텍스트 검색에 관한 명령어입니다. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><code>awk</code>는 텍스트 형태의 데이터를 행과 단어 별로 처리하여 출력하는 데에 사용되는 명령어입니다. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section></div>
@@ -271,16 +408,16 @@ xclock
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/wsl1-x/index.md" target="_blank">Markdown으로 보기</a>
+                            <a class="link-to-markdown" href="/wsl2-x/index.md" target="_blank">Markdown으로 보기</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="http://example.org/wsl1-x/" data-title="WSL1에서 X window를 세팅하는 법" data-hashtags="HowTo,Windows,WSL,WSL1,X server,X window,Xming"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/wsl1-x/" data-title="WSL1에서 X window를 세팅하는 법" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="http://example.org/wsl1-x/" data-title="WSL1에서 X window를 세팅하는 법"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="http://example.org/wsl1-x/" data-title="WSL1에서 X window를 세팅하는 법" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="http://example.org/wsl1-x/" data-title="WSL1에서 X window를 세팅하는 법"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="http://example.org/wsl1-x/" data-title="WSL1에서 X window를 세팅하는 법" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="http://example.org/wsl2-x/" data-title="WSL2에서 X window를 세팅하는 법" data-hashtags="HowTo,Windows,WSL,WSL2,X server,X window,Xming"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="http://example.org/wsl2-x/" data-title="WSL2에서 X window를 세팅하는 법" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="http://example.org/wsl2-x/" data-title="WSL2에서 X window를 세팅하는 법"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="http://example.org/wsl2-x/" data-title="WSL2에서 X window를 세팅하는 법" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="http://example.org/wsl2-x/" data-title="WSL2에서 X window를 세팅하는 법"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="http://example.org/wsl2-x/" data-title="WSL2에서 X window를 세팅하는 법" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/howto/">HowTo</a>,&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/wsl/">WSL</a>,&nbsp;<a href="/tags/wsl1/">WSL1</a>,&nbsp;<a href="/tags/x-server/">X server</a>,&nbsp;<a href="/tags/x-window/">X window</a>,&nbsp;<a href="/tags/xming/">Xming</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/howto/">HowTo</a>,&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/wsl/">WSL</a>,&nbsp;<a href="/tags/wsl2/">WSL2</a>,&nbsp;<a href="/tags/x-server/">X server</a>,&nbsp;<a href="/tags/x-window/">X window</a>,&nbsp;<a href="/tags/xming/">Xming</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
         </section>

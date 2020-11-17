@@ -4,7 +4,14 @@
         <link>http://example.org/tags/wsl/</link>
         <description>WSL - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 27 Oct 2020 15:09:37 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/wsl/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 27 Oct 2020 15:21:57 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/wsl/" rel="self" type="application/rss+xml" /><item>
+    <title>WSL2에서 X window를 세팅하는 법</title>
+    <link>http://example.org/wsl2-x/</link>
+    <pubDate>Tue, 27 Oct 2020 15:21:57 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>http://example.org/wsl2-x/</guid>
+    <description><![CDATA[<p>이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>]]></description>
+</item><item>
     <title>WSL1에서 X window를 세팅하는 법</title>
     <link>http://example.org/wsl1-x/</link>
     <pubDate>Tue, 27 Oct 2020 15:09:37 &#43;0900</pubDate>
