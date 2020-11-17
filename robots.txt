@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://evandde.github.io/sitemap.xml
