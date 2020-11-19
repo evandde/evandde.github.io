@@ -1,29 +1,29 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>VSCode - 카테고리 - EvaNote</title>
-        <link>http://example.org/categories/vscode/</link>
+        <link>https://evandde.github.io/categories/vscode/</link>
         <description>VSCode - 카테고리 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</lastBuildDate><atom:link href="http://example.org/categories/vscode/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/vscode/" rel="self" type="application/rss+xml" /><item>
     <title>Visual Studio Code에서 CMake 환경 설정하기</title>
-    <link>http://example.org/vscode-cmake/</link>
+    <link>https://evandde.github.io/vscode-cmake/</link>
     <pubDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/vscode-cmake/</guid>
+    <guid>https://evandde.github.io/vscode-cmake/</guid>
     <description><![CDATA[<p>VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Visual Studio Code에서 C, C&#43;&#43; 환경 설정하기</title>
-    <link>http://example.org/vscode-cpp/</link>
+    <link>https://evandde.github.io/vscode-cpp/</link>
     <pubDate>Thu, 12 Nov 2020 16:40:31 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/vscode-cpp/</guid>
+    <guid>https://evandde.github.io/vscode-cpp/</guid>
     <description><![CDATA[<p>VSCode에서 C 언어 및 C++ 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Visual Studio Code 소개, 설치, 기본 세팅</title>
-    <link>http://example.org/vscode/</link>
+    <link>https://evandde.github.io/vscode/</link>
     <pubDate>Thu, 12 Nov 2020 11:22:31 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/vscode/</guid>
+    <guid>https://evandde.github.io/vscode/</guid>
     <description><![CDATA[<p>요즘 개발자 사이에서 인기있는 코딩 툴. <strong>Visual Studio Code</strong>에 대해 살펴보고, 설치 및 기본 세팅 방법까지 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

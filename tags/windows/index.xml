@@ -1,72 +1,72 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Windows - 태그 - EvaNote</title>
-        <link>http://example.org/tags/windows/</link>
+        <link>https://evandde.github.io/tags/windows/</link>
         <description>Windows - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/windows/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/windows/" rel="self" type="application/rss+xml" /><item>
     <title>타임라인에서 활동 기록 뜨지 않게 하는 법</title>
-    <link>http://example.org/remove-activity-history/</link>
+    <link>https://evandde.github.io/remove-activity-history/</link>
     <pubDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/remove-activity-history/</guid>
+    <guid>https://evandde.github.io/remove-activity-history/</guid>
     <description><![CDATA[<p>이 글에서는 [WIN]+[TAB]키를 눌러 데스크톱 목록을 볼 때, 아래쪽에 타임라인이라는 이름으로 나타나는 활동 기록이 뜨지 않도록 없애는 방법을 알아보고자 합니다.</p>]]></description>
 </item><item>
     <title>작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법</title>
-    <link>http://example.org/remove-recent-items/</link>
+    <link>https://evandde.github.io/remove-recent-items/</link>
     <pubDate>Thu, 12 Nov 2020 09:54:54 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/remove-recent-items/</guid>
+    <guid>https://evandde.github.io/remove-recent-items/</guid>
     <description><![CDATA[<p>작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 <strong>최근 항목</strong>에 대한 기록을 없애는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>WSL2에서 X window를 세팅하는 법</title>
-    <link>http://example.org/wsl2-x/</link>
+    <link>https://evandde.github.io/wsl2-x/</link>
     <pubDate>Tue, 27 Oct 2020 15:21:57 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl2-x/</guid>
+    <guid>https://evandde.github.io/wsl2-x/</guid>
     <description><![CDATA[<p>이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>]]></description>
 </item><item>
     <title>WSL1에서 X window를 세팅하는 법</title>
-    <link>http://example.org/wsl1-x/</link>
+    <link>https://evandde.github.io/wsl1-x/</link>
     <pubDate>Tue, 27 Oct 2020 15:09:37 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl1-x/</guid>
+    <guid>https://evandde.github.io/wsl1-x/</guid>
     <description><![CDATA[<p>이 글에서는 WSL1을 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>]]></description>
 </item><item>
     <title>사용자 폴더의 위치를 변경하는 방법사용자 폴더의 위치를 변경하는 방법</title>
-    <link>http://example.org/userdir-change/</link>
+    <link>https://evandde.github.io/userdir-change/</link>
     <pubDate>Tue, 13 Oct 2020 16:24:20 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/userdir-change/</guid>
+    <guid>https://evandde.github.io/userdir-change/</guid>
     <description><![CDATA[<p>Windows를 설치하면, <code>C:\Users\사용자이름</code> 폴더에 <strong>다운로드, 사진, 문서, 동영상</strong> 등의 폴더가 있는 것을 확인할 수 있습니다. 이러한 폴더를 <strong>사용자 폴더</strong> 라고 합니다. 
 이 글에서는 사용자 폴더의 위치를 변경하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>WSL을 다른 경로에 설치하는 법</title>
-    <link>http://example.org/wsl-otherloc/</link>
+    <link>https://evandde.github.io/wsl-otherloc/</link>
     <pubDate>Thu, 08 Oct 2020 14:09:10 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl-otherloc/</guid>
+    <guid>https://evandde.github.io/wsl-otherloc/</guid>
     <description><![CDATA[<p>MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 <code>%LocalAppData%\Packages\[PackageName]</code> 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Linux용 Windows Subsystem(WSL1, WSL2)</title>
-    <link>http://example.org/wsl/</link>
+    <link>https://evandde.github.io/wsl/</link>
     <pubDate>Mon, 28 Sep 2020 15:41:22 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl/</guid>
+    <guid>https://evandde.github.io/wsl/</guid>
     <description><![CDATA[<p>Windows Subsystem for Linux, 약칭 WSL을 설치하고 이용하는 법을 알아봅니다. 이 글은 WSL1과 WSL2을 둘 다 다룹니다.</p>]]></description>
 </item><item>
     <title>Windows 실행([WIN]&#43;[R]) 명령어 정리</title>
-    <link>http://example.org/windowrun/</link>
+    <link>https://evandde.github.io/windowrun/</link>
     <pubDate>Thu, 24 Sep 2020 23:07:12 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/windowrun/</guid>
+    <guid>https://evandde.github.io/windowrun/</guid>
     <description><![CDATA[<p>이 글에서는 <b>시작-실행</b> 혹은 단축키 <b>[WIN]+[R]</b>을 통해 띄울 수 있는 실행 창에서 사용 가능한 다양한 명령어를 정리해 봅니다.</p>]]></description>
 </item><item>
     <title>Windows용 패키지 관리자 Chocolatey(choco) 설치 및 이용하기</title>
-    <link>http://example.org/chocolatey/</link>
+    <link>https://evandde.github.io/chocolatey/</link>
     <pubDate>Thu, 24 Sep 2020 07:05:42 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/chocolatey/</guid>
+    <guid>https://evandde.github.io/chocolatey/</guid>
     <description><![CDATA[<p>이 글에서는 Windows용 패키지 관리자인 Chocolatey(약칭: choco)를 설치하고 이용하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

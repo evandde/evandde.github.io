@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>activity history - 태그 - EvaNote</title>
-        <link>http://example.org/tags/activity-history/</link>
+        <link>https://evandde.github.io/tags/activity-history/</link>
         <description>activity history - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/activity-history/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/activity-history/" rel="self" type="application/rss+xml" /><item>
     <title>타임라인에서 활동 기록 뜨지 않게 하는 법</title>
-    <link>http://example.org/remove-activity-history/</link>
+    <link>https://evandde.github.io/remove-activity-history/</link>
     <pubDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/remove-activity-history/</guid>
+    <guid>https://evandde.github.io/remove-activity-history/</guid>
     <description><![CDATA[<p>이 글에서는 [WIN]+[TAB]키를 눌러 데스크톱 목록을 볼 때, 아래쪽에 타임라인이라는 이름으로 나타나는 활동 기록이 뜨지 않도록 없애는 방법을 알아보고자 합니다.</p>]]></description>
 </item></channel>
 </rss>

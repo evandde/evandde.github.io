@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Git - 태그 - EvaNote</title>
-        <link>http://example.org/tags/git/</link>
+        <link>https://evandde.github.io/tags/git/</link>
         <description>Git - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 25 Sep 2020 08:55:52 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/git/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 25 Sep 2020 08:55:52 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/git/" rel="self" type="application/rss+xml" /><item>
     <title>PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결</title>
-    <link>http://example.org/powershell-encoding/</link>
+    <link>https://evandde.github.io/powershell-encoding/</link>
     <pubDate>Fri, 25 Sep 2020 08:55:52 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/powershell-encoding/</guid>
+    <guid>https://evandde.github.io/powershell-encoding/</guid>
     <description><![CDATA[<p>PowerShell에서 git log나 git diff 출력 시 인코딩 문제로 인해 글자가 깨져 나오는 경우가 있습니다. 이 문제를 해결하는 방법을 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

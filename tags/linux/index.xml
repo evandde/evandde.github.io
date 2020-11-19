@@ -1,30 +1,30 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Linux - 태그 - EvaNote</title>
-        <link>http://example.org/tags/linux/</link>
+        <link>https://evandde.github.io/tags/linux/</link>
         <description>Linux - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Sun, 01 Nov 2020 16:17:56 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/linux/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Sun, 01 Nov 2020 16:17:56 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
     <title>Linux에서 Geant4 설치하기</title>
-    <link>http://example.org/geant4-install-linux/</link>
+    <link>https://evandde.github.io/geant4-install-linux/</link>
     <pubDate>Sun, 01 Nov 2020 16:17:56 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/geant4-install-linux/</guid>
+    <guid>https://evandde.github.io/geant4-install-linux/</guid>
     <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
 이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.6 patch 02 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>WSL을 다른 경로에 설치하는 법</title>
-    <link>http://example.org/wsl-otherloc/</link>
+    <link>https://evandde.github.io/wsl-otherloc/</link>
     <pubDate>Thu, 08 Oct 2020 14:09:10 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl-otherloc/</guid>
+    <guid>https://evandde.github.io/wsl-otherloc/</guid>
     <description><![CDATA[<p>MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 <code>%LocalAppData%\Packages\[PackageName]</code> 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Linux용 Windows Subsystem(WSL1, WSL2)</title>
-    <link>http://example.org/wsl/</link>
+    <link>https://evandde.github.io/wsl/</link>
     <pubDate>Mon, 28 Sep 2020 15:41:22 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl/</guid>
+    <guid>https://evandde.github.io/wsl/</guid>
     <description><![CDATA[<p>Windows Subsystem for Linux, 약칭 WSL을 설치하고 이용하는 법을 알아봅니다. 이 글은 WSL1과 WSL2을 둘 다 다룹니다.</p>]]></description>
 </item></channel>
 </rss>

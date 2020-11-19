@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>WSL2 - 태그 - EvaNote</title>
-        <link>http://example.org/tags/wsl2/</link>
+        <link>https://evandde.github.io/tags/wsl2/</link>
         <description>WSL2 - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 27 Oct 2020 15:21:57 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/wsl2/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 27 Oct 2020 15:21:57 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/wsl2/" rel="self" type="application/rss+xml" /><item>
     <title>WSL2에서 X window를 세팅하는 법</title>
-    <link>http://example.org/wsl2-x/</link>
+    <link>https://evandde.github.io/wsl2-x/</link>
     <pubDate>Tue, 27 Oct 2020 15:21:57 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl2-x/</guid>
+    <guid>https://evandde.github.io/wsl2-x/</guid>
     <description><![CDATA[<p>이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

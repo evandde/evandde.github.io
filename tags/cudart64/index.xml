@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>cudart64 - 태그 - EvaNote</title>
-        <link>http://example.org/tags/cudart64/</link>
+        <link>https://evandde.github.io/tags/cudart64/</link>
         <description>cudart64 - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 22 Oct 2020 16:22:11 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/cudart64/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 22 Oct 2020 16:22:11 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/cudart64/" rel="self" type="application/rss+xml" /><item>
     <title>cudart64_xxx.dll not found 에러 해결</title>
-    <link>http://example.org/cudart64-not-found/</link>
+    <link>https://evandde.github.io/cudart64-not-found/</link>
     <pubDate>Thu, 22 Oct 2020 16:22:11 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/cudart64-not-found/</guid>
+    <guid>https://evandde.github.io/cudart64-not-found/</guid>
     <description><![CDATA[<p>TensorFlow 설치 후 이용 시, cudart64_xxx.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

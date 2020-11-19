@@ -1,79 +1,79 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>모든 글 - EvaNote</title>
-        <link>http://example.org/posts/</link>
+        <link>https://evandde.github.io/posts/</link>
         <description>모든 글 | EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Visual Studio Code에서 CMake 환경 설정하기</title>
-    <link>http://example.org/vscode-cmake/</link>
+    <link>https://evandde.github.io/vscode-cmake/</link>
     <pubDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/vscode-cmake/</guid>
+    <guid>https://evandde.github.io/vscode-cmake/</guid>
     <description><![CDATA[<p>VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Visual Studio Code에서 C, C&#43;&#43; 환경 설정하기</title>
-    <link>http://example.org/vscode-cpp/</link>
+    <link>https://evandde.github.io/vscode-cpp/</link>
     <pubDate>Thu, 12 Nov 2020 16:40:31 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/vscode-cpp/</guid>
+    <guid>https://evandde.github.io/vscode-cpp/</guid>
     <description><![CDATA[<p>VSCode에서 C 언어 및 C++ 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Visual Studio Code 소개, 설치, 기본 세팅</title>
-    <link>http://example.org/vscode/</link>
+    <link>https://evandde.github.io/vscode/</link>
     <pubDate>Thu, 12 Nov 2020 11:22:31 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/vscode/</guid>
+    <guid>https://evandde.github.io/vscode/</guid>
     <description><![CDATA[<p>요즘 개발자 사이에서 인기있는 코딩 툴. <strong>Visual Studio Code</strong>에 대해 살펴보고, 설치 및 기본 세팅 방법까지 알아봅니다.</p>]]></description>
 </item><item>
     <title>타임라인에서 활동 기록 뜨지 않게 하는 법</title>
-    <link>http://example.org/remove-activity-history/</link>
+    <link>https://evandde.github.io/remove-activity-history/</link>
     <pubDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/remove-activity-history/</guid>
+    <guid>https://evandde.github.io/remove-activity-history/</guid>
     <description><![CDATA[<p>이 글에서는 [WIN]+[TAB]키를 눌러 데스크톱 목록을 볼 때, 아래쪽에 타임라인이라는 이름으로 나타나는 활동 기록이 뜨지 않도록 없애는 방법을 알아보고자 합니다.</p>]]></description>
 </item><item>
     <title>작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법</title>
-    <link>http://example.org/remove-recent-items/</link>
+    <link>https://evandde.github.io/remove-recent-items/</link>
     <pubDate>Thu, 12 Nov 2020 09:54:54 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/remove-recent-items/</guid>
+    <guid>https://evandde.github.io/remove-recent-items/</guid>
     <description><![CDATA[<p>작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 <strong>최근 항목</strong>에 대한 기록을 없애는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Linux에서 Geant4 설치하기</title>
-    <link>http://example.org/geant4-install-linux/</link>
+    <link>https://evandde.github.io/geant4-install-linux/</link>
     <pubDate>Sun, 01 Nov 2020 16:17:56 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/geant4-install-linux/</guid>
+    <guid>https://evandde.github.io/geant4-install-linux/</guid>
     <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
 이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.6 patch 02 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>WSL에서 libQt5 관련 &#34;No such file or directory&#34; 에러 해결</title>
-    <link>http://example.org/cannot-open-libqt5core/</link>
+    <link>https://evandde.github.io/cannot-open-libqt5core/</link>
     <pubDate>Wed, 28 Oct 2020 13:00:27 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/cannot-open-libqt5core/</guid>
+    <guid>https://evandde.github.io/cannot-open-libqt5core/</guid>
     <description><![CDATA[<p>WSL로 설치된 Debian계열 리눅스에서 Qt5 기반 프로그램 실행 시, libQt5*.so 파일과 관련하여 발생하는 cannot access 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>WSL2에서 X window를 세팅하는 법</title>
-    <link>http://example.org/wsl2-x/</link>
+    <link>https://evandde.github.io/wsl2-x/</link>
     <pubDate>Tue, 27 Oct 2020 15:21:57 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl2-x/</guid>
+    <guid>https://evandde.github.io/wsl2-x/</guid>
     <description><![CDATA[<p>이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>]]></description>
 </item><item>
     <title>WSL1에서 X window를 세팅하는 법</title>
-    <link>http://example.org/wsl1-x/</link>
+    <link>https://evandde.github.io/wsl1-x/</link>
     <pubDate>Tue, 27 Oct 2020 15:09:37 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/wsl1-x/</guid>
+    <guid>https://evandde.github.io/wsl1-x/</guid>
     <description><![CDATA[<p>이 글에서는 WSL1을 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>]]></description>
 </item><item>
     <title>cudart64_xxx.dll not found 에러 해결</title>
-    <link>http://example.org/cudart64-not-found/</link>
+    <link>https://evandde.github.io/cudart64-not-found/</link>
     <pubDate>Thu, 22 Oct 2020 16:22:11 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/cudart64-not-found/</guid>
+    <guid>https://evandde.github.io/cudart64-not-found/</guid>
     <description><![CDATA[<p>TensorFlow 설치 후 이용 시, cudart64_xxx.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

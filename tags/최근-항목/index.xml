@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>최근 항목 - 태그 - EvaNote</title>
-        <link>http://example.org/tags/%EC%B5%9C%EA%B7%BC-%ED%95%AD%EB%AA%A9/</link>
+        <link>https://evandde.github.io/tags/%EC%B5%9C%EA%B7%BC-%ED%95%AD%EB%AA%A9/</link>
         <description>최근 항목 - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 09:54:54 &#43;0900</lastBuildDate><atom:link href="http://example.org/tags/%EC%B5%9C%EA%B7%BC-%ED%95%AD%EB%AA%A9/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 09:54:54 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/%EC%B5%9C%EA%B7%BC-%ED%95%AD%EB%AA%A9/" rel="self" type="application/rss+xml" /><item>
     <title>작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법</title>
-    <link>http://example.org/remove-recent-items/</link>
+    <link>https://evandde.github.io/remove-recent-items/</link>
     <pubDate>Thu, 12 Nov 2020 09:54:54 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>http://example.org/remove-recent-items/</guid>
+    <guid>https://evandde.github.io/remove-recent-items/</guid>
     <description><![CDATA[<p>작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 <strong>최근 항목</strong>에 대한 기록을 없애는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
