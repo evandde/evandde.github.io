@@ -32,7 +32,7 @@ MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 
 3. 다음 명령어로 압축 해제
 
    ```powershell
-   Extract-Archive XXXX.zip
+   Expand-Archive XXXX.zip
    ```
 
 4. 압축 해제 후 생성된 폴더에 들어가서 배포판 실행
@@ -69,7 +69,7 @@ WSL을 설치하고자 하는 경로에, 다운받은 `.appx`파일을 옮겨둡
 ## 받은 appx 파일을 Ubuntu2004.zip으로 이름 변경
 Rename-Item Ubuntu_2004.2020.424.0_x64.appx Ubuntu2004.zip
 ## zip 파일의 압축을 해제
-Extract-Archive Ubuntu2004.zip
+Expand-Archive Ubuntu2004.zip
 ```
 
 
