@@ -13,11 +13,10 @@
     <description><![CDATA[<p>VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Geant4 설치하기(10.6.p02, Ubuntu 2004 LTS)</title>
-    <link>https://evandde.github.io/geant4-install-linux/</link>
+    <link>https://evandde.github.io/g4install-106p2-ubt2004/</link>
     <pubDate>Sun, 01 Nov 2020 16:17:56 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>https://evandde.github.io/geant4-install-linux/</guid>
-    <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
-이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.6 patch 02 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
+    <guid>https://evandde.github.io/g4install-106p2-ubt2004/</guid>
+    <description><![CDATA[<p>이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.6 patch 02 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

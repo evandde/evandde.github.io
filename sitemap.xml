@@ -2,11 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://evandde.github.io/categories/</loc><lastmod>2020-11-25T10:42:23&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/</loc><lastmod>2020-11-25T10:42:23&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/howto/</loc><lastmod>2020-11-25T10:42:23&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/posts/</loc><lastmod>2020-11-25T10:42:23&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/</loc><lastmod>2020-11-25T10:42:23&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/categories/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/geant4/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/categories/geant4/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/geant4-install-linux/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/howto/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/install/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/linux/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/posts/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/</loc><lastmod>2021-02-15T12:45:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/vscode-wsl/</loc><lastmod>2020-11-25T10:42:23&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/vscode/</loc><lastmod>2020-11-25T10:42:23&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/categories/vscode/</loc><lastmod>2020-11-25T10:42:23&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -18,7 +23,6 @@
             <loc>https://evandde.github.io/tags/cpp/</loc><lastmod>2020-11-13T10:04:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/vscode-cmake/</loc><lastmod>2020-11-13T10:04:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/vscode-cpp/</loc><lastmod>2020-11-12T16:40:31&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/install/</loc><lastmod>2020-11-12T11:22:31&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/visual-studio-code/</loc><lastmod>2020-11-12T11:22:31&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/vscode/</loc><lastmod>2020-11-12T11:22:31&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/vsc/</loc><lastmod>2020-11-12T11:22:31&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -33,10 +37,7 @@
             <loc>https://evandde.github.io/remove-recent-items/</loc><lastmod>2020-11-12T09:54:54&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/%EC%B5%9C%EA%B7%BC-%ED%95%AD%EB%AA%A9/</loc><lastmod>2020-11-12T09:54:54&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/about/</loc><lastmod>2020-11-10T20:10:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/geant4/</loc><lastmod>2020-11-01T16:17:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/categories/geant4/</loc><lastmod>2020-11-01T16:17:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/geant4-install-linux/</loc><lastmod>2020-11-01T16:17:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/linux/</loc><lastmod>2020-11-01T16:17:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/g4install-106p2-ubt2004/</loc><lastmod>2020-11-01T16:17:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/ubuntu/</loc><lastmod>2020-11-01T16:17:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/bugfix/</loc><lastmod>2020-10-28T13:00:27&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/debian/</loc><lastmod>2020-10-28T13:00:27&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
