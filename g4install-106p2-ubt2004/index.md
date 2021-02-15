@@ -65,7 +65,7 @@
    sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.06.p02.tar.gz
    ```
 
-3. 2에서 다운받은 압축파일을 압축해제 후 디렉토리명을 `source`로 변경
+3. 2에서 다운받은 압축파일을 압축해제
 
    ```bash
    sudo tar -xf geant4.10.06.p02.tar.gz
