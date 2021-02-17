@@ -21,21 +21,25 @@ WSL을 설치하더라도, GUI 기반의 프로그램을 실행하려면 X windo
 
 ## TL;DR
 
-1. [Xming 공식 홈페이지](http://www.straightrunning.com/XmingNotes/)에서 Xming 다운로드
-2. Xming 설치 (다음만 누르며 설치해도 괜찮음)
-3. Xming 단축아이콘을 만들고, <b>속성-대상</b> 항목의 맨 끝에 한 칸을 띄고 `-ac`를 이어서 적음
-{{< admonition warning >}}
-지우고 적는 것이 아니라, 맨 끝에 추가하는 것임에 주의하세요.
-{{< /admonition >}}
-{{< image src="xming_option_ac.png" width=50% >}}
+1. [Xming 공식 홈페이지](http://www.straightrunning.com/XmingNotes/)에서 Xming 다운로드 <i>(2021년 2월 17일 기준, 공식 홈페이지 접속이 안되네요. 구글에서 찾아서 다운받으세요.)</i>
 
-4. Windows PowerShell을 <b>관리자 권한</b>으로 실행한 뒤, 다음 명령어 입력
+2. Xming 설치 (다음만 누르며 설치해도 괜찮음)
+
+3. Xming을 한 번 실행한 뒤 종료. (방화벽에 Xming 허용 규칙을 추가하기 위함)
+
+4. Xming 단축아이콘을 만들고, <b>속성-대상</b> 항목의 맨 끝에 한 칸을 띄고 `-ac`를 이어서 적음
+  {{< admonition warning >}}
+  지우고 적는 것이 아니라, 맨 끝에 추가하는 것임에 주의하세요.
+  {{< /admonition >}}
+  {{< image src="xming_option_ac.png" width=50% >}}
+
+5. Windows PowerShell을 <b>관리자 권한</b>으로 실행한 뒤, 다음 명령어 입력 (에러가 뜬다면 본문 참고)
 
    ```powershell
    Set-NetFirewallRule -DisplayName "Xming X Server" -Enabled True -Profile Any
    ```
 
-5. WSL2에서 다음 명령어 입력
+6. WSL2에서 다음 명령어 입력
 
    ```bash
    echo 'export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '"'"'{print $2}'"'"'):0' >> ~/.bashrc
@@ -66,6 +70,8 @@ WSL을 설치하더라도, GUI 기반의 프로그램을 실행하려면 X windo
 이 글에서는 Xming이라는 프로그램을 이용할 것입니다.
 
 [Xming 공식 홈페이지](http://www.straightrunning.com/XmingNotes/)에 들어가셔서 <u>Xming 설치파일을 받아오시기 바랍니다</u>. (버전이 높은 것은 Xming 측에 돈을 기부하고 계정을 받아야 사용가능하니, 그 밑에 있는 낮은 버전을 받으시면 됩니다.)
+
+<i>(2021년 2월 17일 기준, 공식 홈페이지 접속이 안되네요. 구글에서 찾아서 다운받으세요.)</i>
 
 {{< image src="xming_download.png" width=100% >}}
 
@@ -134,6 +140,12 @@ Xming은 기본적으로 자기자신(localhost)으로부터 들어온 요청만
 
 WSL2에서 보내는 요청이 Xming에 도달하기 전에 **Windows 방화벽이 차단해버리는 경우**를 막기 위해, 다음의 작업을 통해 방화벽에서 Xming X Server로 들어가는 요청을 허용하도록 설정하시기 바랍니다.
 
+{{< admonition warning >}}
+
+이 작업을 수행하기 전에 반드시 한 번은 Xming을 실행한 적이 있어야 합니다. 최초실행 시 뜨는 경고창을 통해 방화벽에 Xming 허용 규칙을 추가하게 되기 때문입니다.
+
+{{< /admonition >}}
+
 1. [WIN]+[R]을 눌러 실행 창 띄우기
 
 2. **powershell**을 입력한 뒤, [CTRL]+[SHIFT]+[ENTER]를 눌러서 PowerShell을 **관리자 권한**으로 실행
@@ -142,6 +154,16 @@ WSL2에서 보내는 요청이 Xming에 도달하기 전에 **Windows 방화벽�
 
    ```powershell
    Set-NetFirewallRule -DisplayName "Xming X Server" -Enabled True -Profile Any
+   ```
+   
+   이 명령어를 입력할 때 다음과 같은 에러가 뜬다면, Xming을 실행한 적이 없기 때문입니다.
+   
+   {{< image src="firewall_error.png" width=100% >}}
+   
+   혹시 Xming을 실행한 적이 있음에도 이런 에러가 뜬다면, 다음 명령어를 입력하세요. (앞의 Set이 New로 바뀝니다)
+   
+   ```powershell
+   New-NetFirewallRule -DisplayName "Xming X Server" -Enabled True -Profile Any
    ```
 
 

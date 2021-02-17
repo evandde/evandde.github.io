@@ -26,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/wsl2-x\/"
-        },"genre": "posts","keywords": "HowTo, Windows, WSL, WSL2, X server, X window, Xming","wordcount":  2594 ,
+        },"genre": "posts","keywords": "HowTo, Windows, WSL, WSL2, X server, X window, Xming","wordcount":  2899 ,
         "url": "https:\/\/evandde.github.io\/wsl2-x\/","datePublished": "2020-10-27T15:21:57+09:00","dateModified": "2020-10-27T15:21:57+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">WSL2에서 X window를 세팅하는 법</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>Windows</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-27">2020-10-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2594&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-27">2020-10-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2899&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -154,10 +154,13 @@
 <h2 id="tldr">TL;DR</h2>
 <ol>
 <li>
-<p><a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener noreffer">Xming 공식 홈페이지</a>에서 Xming 다운로드</p>
+<p><a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener noreffer">Xming 공식 홈페이지</a>에서 Xming 다운로드 <i>(2021년 2월 17일 기준, 공식 홈페이지 접속이 안되네요. 구글에서 찾아서 다운받으세요.)</i></p>
 </li>
 <li>
 <p>Xming 설치 (다음만 누르며 설치해도 괜찮음)</p>
+</li>
+<li>
+<p>Xming을 한 번 실행한 뒤 종료. (방화벽에 Xming 허용 규칙을 추가하기 위함)</p>
 </li>
 <li>
 <p>Xming 단축아이콘을 만들고, <b>속성-대상</b> 항목의 맨 끝에 한 칸을 띄고 <code>-ac</code>를 이어서 적음
@@ -180,7 +183,7 @@
     </a></p>
 </li>
 <li>
-<p>Windows PowerShell을 <b>관리자 권한</b>으로 실행한 뒤, 다음 명령어 입력</p>
+<p>Windows PowerShell을 <b>관리자 권한</b>으로 실행한 뒤, 다음 명령어 입력 (에러가 뜬다면 본문 참고)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -211,6 +214,7 @@
 <h2 id="xming-설치">Xming 설치</h2>
 <p>이 글에서는 Xming이라는 프로그램을 이용할 것입니다.</p>
 <p><a href="http://www.straightrunning.com/XmingNotes/" target="_blank" rel="noopener noreffer">Xming 공식 홈페이지</a>에 들어가셔서 <u>Xming 설치파일을 받아오시기 바랍니다</u>. (버전이 높은 것은 Xming 측에 돈을 기부하고 계정을 받아야 사용가능하니, 그 밑에 있는 낮은 버전을 받으시면 됩니다.)</p>
+<p><i>(2021년 2월 17일 기준, 공식 홈페이지 접속이 안되네요. 구글에서 찾아서 다운받으세요.)</i></p>
 <a class="lightgallery" href="/wsl2-x/xming_download.png" title="/wsl2-x/xming_download.png" data-thumbnail="/wsl2-x/xming_download.png">
         <img
             class="lazyload"
@@ -294,6 +298,14 @@
 <hr>
 <h3 id="windows-방화벽에서-xming으로-들어가는-요청-허용">Windows 방화벽에서 Xming으로 들어가는 요청 허용</h3>
 <p>WSL2에서 보내는 요청이 Xming에 도달하기 전에 <strong>Windows 방화벽이 차단해버리는 경우</strong>를 막기 위해, 다음의 작업을 통해 방화벽에서 Xming X Server로 들어가는 요청을 허용하도록 설정하시기 바랍니다.</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">이 작업을 수행하기 전에 반드시 한 번은 Xming을 실행한 적이 있어야 합니다. 최초실행 시 뜨는 경고창을 통해 방화벽에 Xming 허용 규칙을 추가하게 되기 때문입니다.</div>
+        </div>
+    </div>
 <ol>
 <li>
 <p>[WIN]+[R]을 눌러 실행 창 띄우기</p>
@@ -309,6 +321,25 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-NetFirewallRule</span> <span class="n">-DisplayName</span> <span class="s2">&#34;Xming X Server&#34;</span> <span class="n">-Enabled</span> <span class="n">True</span> <span class="n">-Profile</span> <span class="n">Any</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>이 명령어를 입력할 때 다음과 같은 에러가 뜬다면, Xming을 실행한 적이 없기 때문입니다.</p>
+<a class="lightgallery" href="/wsl2-x/firewall_error.png" title="/wsl2-x/firewall_error.png" data-thumbnail="/wsl2-x/firewall_error.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="firewall_error.png"
+            data-srcset="/wsl2-x/firewall_error.png, firewall_error.png 1.5x, /wsl2-x/firewall_error.png 2x"
+            data-sizes="auto"
+            alt="/wsl2-x/firewall_error.png" width="100%" />
+    </a>
+<p>혹시 Xming을 실행한 적이 있음에도 이런 에러가 뜬다면, 다음 명령어를 입력하세요. (앞의 Set이 New로 바뀝니다)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-NetFirewallRule</span> <span class="n">-DisplayName</span> <span class="s2">&#34;Xming X Server&#34;</span> <span class="n">-Enabled</span> <span class="n">True</span> <span class="n">-Profile</span> <span class="n">Any</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
