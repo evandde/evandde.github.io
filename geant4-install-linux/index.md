@@ -25,6 +25,15 @@ Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기
 - CLHep 내장 라이브러리 사용
 - Cross-section Data 설치 중 자동 다운로드
 
+<b>[10.7 patch-01 설치가이드]({{< ref "g4install-107p1-ubt2004" >}})</b>
+
+- cmake/ccmake 이용
+- multi-threading 기능 활성화
+- 외부 라이브러리 Qt5 (그래픽/UI 라이브러리) 연동
+- 외부 라이브러리 OpenGL (그래픽) 연동
+- 외부 라이브러리 CLHep 연동
+- Cross-section Data 직접 다운받아 준비
+
 
 
 ---
