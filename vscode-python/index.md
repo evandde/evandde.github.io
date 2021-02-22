@@ -81,7 +81,7 @@ VSCode를 켜고 extension 탭으로 간 뒤 "**python**"를 검색하세요. �
 
 Explorer 탭으로 이동하여 적당한 경로에 <b>main.py</b>라는 새 파일을 만들어주고 다음과 같이 작성하도록 하겠습니다.
 
-```cpp
+```python
 print("Hello, World!")
 ```
 
