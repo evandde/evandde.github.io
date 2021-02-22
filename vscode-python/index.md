@@ -17,19 +17,19 @@ VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가�
 
 ## 컴파일러/디버거 설치
 
-VSCode는 Python3 언어용 컴파일러를 자체적으로 내장하고있지 않습니다. 때문에 Python3 언어를 VSCode에서 사용하려면, 컴파일러를 직접 설치하고 이를 연동해주는 작업이 필요합니다.
+VSCode는 Python3 언어용 인터프리터를 자체적으로 내장하고있지 않습니다. 때문에 Python3 언어를 VSCode에서 사용하려면, 인터프리터를 직접 설치하고 이를 연동해주는 작업이 필요합니다.
 
 {{< admonition warning >}}
 
-Extension을 설치한다고 해서 컴파일러가 설치되는 것은 아닙니다.
+Extension을 설치한다고 해서 인터프리터가 설치되는 것은 아닙니다.
 
 {{< /admonition >}}
 
 ### Windows를 이용하는 경우
 
-Windows는 기본적으로 Python3 언어용 컴파일러나 디버거를 제공하지 않습니다. 따라서, 우리가 직접 설치해주어야 합니다.
+Windows는 기본적으로 Python3 언어용 인터프리터를 제공하지 않습니다. 따라서, 우리가 직접 설치해주어야 합니다.
 
-Python3는 chocolatey를 통해 쉽게 설치할 수 있습니다.
+이는 chocolatey를 통해 쉽게 설치할 수 있습니다.
 
 {{< admonition info >}}
 
