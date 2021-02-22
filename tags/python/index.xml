@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Python - 태그 - EvaNote</title>
+        <link>https://evandde.github.io/tags/python/</link>
+        <description>Python - 태그 - EvaNote</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 22 Feb 2021 11:33:18 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/python/" rel="self" type="application/rss+xml" /><item>
+    <title>Visual Studio Code에서 Python3 환경 설정하기</title>
+    <link>https://evandde.github.io/vscode-python/</link>
+    <pubDate>Mon, 22 Feb 2021 11:33:18 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/vscode-python/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item></channel>
+</rss>

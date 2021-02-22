@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/categories/vscode/</link>
         <description>VSCode - 카테고리 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Wed, 25 Nov 2020 10:42:23 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/vscode/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 22 Feb 2021 11:33:18 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/vscode/" rel="self" type="application/rss+xml" /><item>
+    <title>Visual Studio Code에서 Python3 환경 설정하기</title>
+    <link>https://evandde.github.io/vscode-python/</link>
+    <pubDate>Mon, 22 Feb 2021 11:33:18 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/vscode-python/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Visual Studio Code와 Windows Subsystem for Linux 연동하기</title>
     <link>https://evandde.github.io/vscode-wsl/</link>
     <pubDate>Wed, 25 Nov 2020 10:42:23 &#43;0900</pubDate>

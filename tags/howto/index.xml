@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/howto/</link>
         <description>HowTo - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 15 Feb 2021 13:17:56 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/howto/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 22 Feb 2021 11:33:18 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/howto/" rel="self" type="application/rss+xml" /><item>
+    <title>Visual Studio Code에서 Python3 환경 설정하기</title>
+    <link>https://evandde.github.io/vscode-python/</link>
+    <pubDate>Mon, 22 Feb 2021 11:33:18 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/vscode-python/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 설치하기(10.7.p01, Ubuntu 2004 LTS)</title>
     <link>https://evandde.github.io/g4install-107p1-ubt2004/</link>
     <pubDate>Mon, 15 Feb 2021 13:17:56 &#43;0900</pubDate>
@@ -68,12 +75,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/g4install-106p2-ubt2004/</guid>
     <description><![CDATA[<p>이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.6 patch 02 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>WSL2에서 X window를 세팅하는 법</title>
-    <link>https://evandde.github.io/wsl2-x/</link>
-    <pubDate>Tue, 27 Oct 2020 15:21:57 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/wsl2-x/</guid>
-    <description><![CDATA[<p>이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
