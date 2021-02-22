@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>venv - 태그 - EvaNote</title>
+        <link>https://evandde.github.io/tags/venv/</link>
+        <description>venv - 태그 - EvaNote</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 22 Feb 2021 12:50:01 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/venv/" rel="self" type="application/rss+xml" /><item>
+    <title>Visual Studio Code에서 Python3의 venv 사용하기</title>
+    <link>https://evandde.github.io/vscode-python-venv/</link>
+    <pubDate>Mon, 22 Feb 2021 12:50:01 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/vscode-python-venv/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3의 기능 중 가상환경을 설정하는 venv를 사용하는 방법에 대해 알아봅니다.</p>]]></description>
+</item></channel>
+</rss>
