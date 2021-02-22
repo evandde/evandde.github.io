@@ -112,3 +112,15 @@ print("Hello, World!")
 {{< image src="debug5.png" width=100% >}}
 
 
+
+---
+
+### 추천 extension
+
+VSCode에서 python을 사용할 경우, import한 패키지의 내장함수에 대해 자동완성이 잘 이루어지지 않는 경우가 많습니다. 개인적으로는 이 때문에 한동안 VSCode에서 python을 사용하는 것이 꺼려졌습니다.
+
+이런 문제를 해결하기 위해 **Pylance**라는 extension을 강력히 추천드립니다.
+
+{{< image src="pylance.png" width=100% >}}
+
+
