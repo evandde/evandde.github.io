@@ -334,18 +334,19 @@ Geant4 10.7 버전은 CLHep 2.4.4.0 버전을 요구합니다만, Geant4 버전�
    sudo make -j `grep -c processor /proc/cpuinfo` && sudo make install
    ```
    
+
 {{< admonition tip >}}
-   
+
 `make` 명령어는 `-j <쓰레드 수>` 옵션을 주면, 여러 쓰레드를 동시에 이용하여 좀 더 빨리 설치됩니다.
-   
+
 {{< /admonition >}}
-   
+
 {{< admonition warning >}}
-   
+
 `make` 명령어에서 `-j` 옵션을 주고 돌릴 때, 메모리가 부족한데 쓰레드 수가 너무 과하게 잡히면 `cc1plus` 관련 에러가 발생할 수 있습니다. `-j` 옵션에 적절한 숫자는 <b>자신의 쓰레드 수 * 1.2</b> 입니다. 여기서는 사용자 컴퓨터의 쓰레드 수를 가져오는 명령어인 `grep -c processor /proc/cpuinfo`를 이용하여 자동으로 숫자가 입력되게 하였습니다.
-   
+
 {{< /admonition >}}
-   
+
 `make` 명령을 수행하면 퍼센트가 올라가며 컴파일이 수행될 것입니다. 이는 CPU 성능에 따라 수십 초 ~ 수 분 가량 소요될 수 있으니 잠시 휴식을 취하시면 됩니다.
 
 
@@ -555,7 +556,7 @@ sudo make -j `grep -c processor /proc/cpuinfo` && sudo make install
 
 `make` 명령을 수행하면 퍼센트가 올라가며 컴파일이 수행될 것입니다. 이는 CPU 성능에 따라 수 분 ~ 수십 분 가량 소요될 수 있으니 푹 쉬고 오세요.
 
-{{< image src="geant4_make_07.png" width=100% >}}
+{{< image src="geant4_make.png" width=100% >}}
 
 
 
