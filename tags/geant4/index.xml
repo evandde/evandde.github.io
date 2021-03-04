@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/geant4/</link>
         <description>Geant4 - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 15 Feb 2021 13:17:56 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/geant4/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/geant4/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 설치 무작정 따라하기(초보자용)</title>
+    <link>https://evandde.github.io/g4install-107p1-win10wslbasic/</link>
+    <pubDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4install-107p1-win10wslbasic/</guid>
+    <description><![CDATA[<p>이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, <b>Windows 10을 사용하는 개인 컴퓨터 환경</b>에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. <b>(인터넷 연결 필요)</b></p>]]></description>
+</item><item>
     <title>Geant4 설치하기(10.7.p01, Ubuntu 2004 LTS)</title>
     <link>https://evandde.github.io/g4install-107p1-ubt2004/</link>
     <pubDate>Mon, 15 Feb 2021 13:17:56 &#43;0900</pubDate>

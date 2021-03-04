@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/howto/</link>
         <description>HowTo - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 22 Feb 2021 12:50:01 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/howto/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/howto/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 설치 무작정 따라하기(초보자용)</title>
+    <link>https://evandde.github.io/g4install-107p1-win10wslbasic/</link>
+    <pubDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4install-107p1-win10wslbasic/</guid>
+    <description><![CDATA[<p>이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, <b>Windows 10을 사용하는 개인 컴퓨터 환경</b>에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. <b>(인터넷 연결 필요)</b></p>]]></description>
+</item><item>
     <title>Visual Studio Code에서 Python3의 venv 사용하기</title>
     <link>https://evandde.github.io/vscode-python-venv/</link>
     <pubDate>Mon, 22 Feb 2021 12:50:01 &#43;0900</pubDate>
@@ -68,12 +75,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/remove-activity-history/</guid>
     <description><![CDATA[<p>이 글에서는 [WIN]+[TAB]키를 눌러 데스크톱 목록을 볼 때, 아래쪽에 타임라인이라는 이름으로 나타나는 활동 기록이 뜨지 않도록 없애는 방법을 알아보고자 합니다.</p>]]></description>
-</item><item>
-    <title>작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법</title>
-    <link>https://evandde.github.io/remove-recent-items/</link>
-    <pubDate>Thu, 12 Nov 2020 09:54:54 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/remove-recent-items/</guid>
-    <description><![CDATA[<p>작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 <strong>최근 항목</strong>에 대한 기록을 없애는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
