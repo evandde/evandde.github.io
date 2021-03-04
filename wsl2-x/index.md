@@ -21,17 +21,17 @@ WSL을 설치하더라도, GUI 기반의 프로그램을 실행하려면 X windo
 
 ## TL;DR
 
-1. [Xming 공식 홈페이지](http://www.straightrunning.com/XmingNotes/)에서 Xming 다운로드 <i>(2021년 2월 17일 기준, 공식 홈페이지 접속이 안되네요. 구글에서 찾아서 다운받으세요.)</i>
+1. [Xming 공식 홈페이지](http://www.straightrunning.com/XmingNotes/)에서 Xming 다운로드
 
 2. Xming 설치 (다음만 누르며 설치해도 괜찮음)
 
 3. Xming을 한 번 실행한 뒤 종료. (방화벽에 Xming 허용 규칙을 추가하기 위함)
 
 4. Xming 단축아이콘을 만들고, <b>속성-대상</b> 항목의 맨 끝에 한 칸을 띄고 `-ac`를 이어서 적음
-  {{< admonition warning >}}
-  지우고 적는 것이 아니라, 맨 끝에 추가하는 것임에 주의하세요.
-  {{< /admonition >}}
-  {{< image src="xming_option_ac.png" width=50% >}}
+    {{< admonition warning >}}
+    지우고 적는 것이 아니라, 맨 끝에 추가하는 것임에 주의하세요.
+    {{< /admonition >}}
+    {{< image src="xming_option_ac.png" width=50% >}}
 
 5. Windows PowerShell을 <b>관리자 권한</b>으로 실행한 뒤, 다음 명령어 입력 (에러가 뜬다면 본문 참고)
 
