@@ -1,4 +1,4 @@
-# FFXIV의 PvP 기술 (Paladin)
+# FFXIV의 PvP 기술 - Paladin (Ver. 5.45)
 
 
 이 글에서는 Paladin(나이트)의 PvP 기술에 대해 알아봅니다.

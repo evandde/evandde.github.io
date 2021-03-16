@@ -1,7 +1,7 @@
 # Final Fantasy XIV의 PvP 관련 자료 모음
 
 
-Final Fantasy XIV(FFXIV) 의 PvP 관련 자료를 정리한 글입니다. FFXIV Global Server(<b>Ver. 5.45</b>)을 기준으로 작성합니다.
+Final Fantasy XIV(FFXIV) 의 PvP 관련 자료를 정리한 글입니다. FFXIV Global Server을 기준으로 작성합니다.
 
 <!--more-->
 
