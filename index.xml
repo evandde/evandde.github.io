@@ -4,9 +4,16 @@
         <link>https://evandde.github.io/</link>
         <description>EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 16 Mar 2021 11:22:42 &#43;0900</lastBuildDate>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 16 Mar 2021 12:03:07 &#43;0900</lastBuildDate>
             <atom:link href="https://evandde.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>FFXIV의 PvP 기술 (Paladin)</title>
+    <link>https://evandde.github.io/ffxiv-pvp-pldaction/</link>
+    <pubDate>Tue, 16 Mar 2021 12:03:07 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/ffxiv-pvp-pldaction/</guid>
+    <description><![CDATA[<p>이 글에서는 Paladin(나이트)의 PvP 기술에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>FFXIV에서 PvP 컨텐츠 개방하기</title>
     <link>https://evandde.github.io/ffxiv-pvp-unlock/</link>
     <pubDate>Tue, 16 Mar 2021 11:22:42 &#43;0900</pubDate>
@@ -70,12 +77,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/vscode-wsl/</guid>
     <description><![CDATA[<p>VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>Visual Studio Code에서 CMake 환경 설정하기</title>
-    <link>https://evandde.github.io/vscode-cmake/</link>
-    <pubDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/vscode-cmake/</guid>
-    <description><![CDATA[<p>VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

@@ -15,7 +15,7 @@ Final Fantasy XIV(FFXIV) 의 PvP 관련 자료를 정리한 글입니다. FFXIV 
 
 Tank Overall (탱커 전반)
 
-Paladin
+[Paladin]({{< ref "ffxiv-pvp-pldaction" >}})
 
 Warrior
 
