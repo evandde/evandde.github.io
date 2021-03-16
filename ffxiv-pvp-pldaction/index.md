@@ -23,9 +23,9 @@
 
 {{< image src="TotalEclipse.png" width=5% >}}{{< image src="Prominence.png" width=5% >}} Total Eclipse -> Prominence
 
-적 한 명 당 **1400 Potency / 2 GCD** (600+800)
+적 한 명당 **1400 Potency / 2 GCD** (600+800)
 
-적 한 명 당 총 MP 회복량 250 (Prominence)
+적 한 명당 총 MP 회복량 250 (Prominence)
 
 총 Oath Gauge 충전량 10 (5+5)
 
@@ -47,7 +47,7 @@
 
 돌진 후 광역이 필요한 경우, **부채꼴 범위**로 운용
 
-{{< image src="GlorySlash.png" width=5% >}}Glory Slash: 적 한 명 당 **1200 Potency**, 적 한 명 당 MP 250 회복, Oath Gauge 5 충전
+{{< image src="GlorySlash.png" width=5% >}}Glory Slash: 적 한 명당 **1200 Potency**, 적 한 명당 MP 250 회복, Oath Gauge 5 충전
 
 ### Shield Lob
 
@@ -69,9 +69,7 @@ Oath Gauge 충전량 5
 
 {{<admonition warning>}}
 
-{{< image src="Requiescat.png" width=5% >}}Requiescat은 근거리 대상에게만 사용 가능<br>
-
-{{< image src="Requiescat.png" width=5% >}}Requiescat은 6초 지속이므로, 중간에 다른 GCD 기술을 섞지 않도록 주의
+{{< image src="Requiescat.png" width=5% >}}Requiescat은 <b>근접한 적</b>에게만 사용 가능<br>
 
 {{</admonition>}}
 
@@ -79,7 +77,7 @@ Oath Gauge 충전량 5
 
 {{< image src="Requiescat.png" width=5% >}}{{< image src="HolyCircle.png" width=5% >}}{{< image src="HolyCircle.png" width=5% >}}{{< image src="HolyCircle.png" width=5% >}} Requiescat-> Holy Circle×3
 
-{{< image src="HolyCircle.png" width=5% >}}Holy Circle: 적 한 명 당 **1000 Potency**
+{{< image src="HolyCircle.png" width=5% >}}Holy Circle: 적 한 명당 **1000 Potency**
 
 ### Confiteor: 원거리 AoE 버스트 + 데미지/힐 감소 디버프
 
