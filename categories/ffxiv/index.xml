@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>FFXIV - 카테고리 - EvaNote</title>
+        <link>https://evandde.github.io/categories/ffxiv/</link>
+        <description>FFXIV - 카테고리 - EvaNote</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 16 Mar 2021 10:34:48 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/ffxiv/" rel="self" type="application/rss+xml" /><item>
+    <title>Final Fantasy XIV의 PvP 관련 자료 모음</title>
+    <link>https://evandde.github.io/ffxiv-pvp-overall/</link>
+    <pubDate>Tue, 16 Mar 2021 10:34:48 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/ffxiv-pvp-overall/</guid>
+    <description><![CDATA[<p>Final Fantasy XIV(FFXIV) 의 PvP 관련 자료를 정리한 글입니다. FFXIV Global Server(<b>Ver. 5.45</b>)을 기준으로 작성합니다.</p>]]></description>
+</item></channel>
+</rss>
