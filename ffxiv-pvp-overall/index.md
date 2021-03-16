@@ -79,7 +79,7 @@ Red Mage
 
 ## Contents (컨텐츠)
 
-PvP 컨텐츠 개방
+[PvP 컨텐츠 개방]({{< ref "ffxiv-pvp-unlock" >}})
 
 ### Wolves' Den
 
