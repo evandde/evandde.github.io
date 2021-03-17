@@ -29,9 +29,9 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 부가 퀘스트 — [Fire in the Forge](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/b8f5286c6eb/), 반복 퀘스트 — [Resistance Is (Not) Futile](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/4bd506e3dcb/)
 
-- 재료: {{< image src="ThavnairianScalepowder.png" width=3% >}}**Thavnairian Scalepowder × 4**
+- 재료: {{< image src="ThavnairianScalepowder.png" width=5% >}}**Thavnairian Scalepowder × 4**
 
-  {{< image src="ThavnairianScalepowder.png" width=3% >}}Thavnairian Scalepowder × 1 당 {{< image src="Poetics.png" width=3% >}}Poetics × 250 로 교환
+  {{< image src="ThavnairianScalepowder.png" width=5% >}}Thavnairian Scalepowder × 1 당 {{< image src="Poetics.png" width=5% >}}Poetics × 250 로 교환
 
   Idyllshire (X: 5.8 Y: 5.2) - Hismena (혹은 대도시 교환처 이용 가능)
 
@@ -43,25 +43,25 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 재료: 
 
-  {{< image src="TorturedMemoryOfTheDying.png" width=3% >}}**Tortured Memory of the Dying × 20**
+  {{< image src="TorturedMemoryOfTheDying.png" width=5% >}}**Tortured Memory of the Dying × 20**
 
-  {{< image src="SorrowfulMemoryOfTheDying.png" width=3% >}}**Sorrowful Memory of the Dying × 20**
+  {{< image src="SorrowfulMemoryOfTheDying.png" width=5% >}}**Sorrowful Memory of the Dying × 20**
 
-  {{< image src="HarrowingMemoryOfTheDying.png" width=3% >}}**Harrowing Memory of the Dying × 20**
+  {{< image src="HarrowingMemoryOfTheDying.png" width=5% >}}**Harrowing Memory of the Dying × 20**
 
-  - {{< image src="TorturedMemoryOfTheDying.png" width=3% >}}Tortured Memory of the Dying
+  - {{< image src="TorturedMemoryOfTheDying.png" width=5% >}}Tortured Memory of the Dying
 
     **Coerthas Western Highlands** 혹은 **The Sea of Clouds** 지역의 **Fate**에서 **확정 드랍**
 
     **Bozjan Southern Front의 첫 번째 구역** (Southern Entrenchment)의 **Skirmish**나 **몬스터**가 **랜덤 드랍**
 
-  - {{< image src="SorrowfulMemoryOfTheDying.png" width=3% >}}Sorrowful Memory of the Dying
+  - {{< image src="SorrowfulMemoryOfTheDying.png" width=5% >}}Sorrowful Memory of the Dying
 
     **The Dravanian Forelands** 혹은 **The Churning Mists** 지역의 **Fate**에서 **확정 드랍**
 
     **Bozjan Southern Front의 두 번째 구역** (Old Bozja)의 **Skirmish**나 **몬스터**가 **랜덤 드랍**
 
-  - {{< image src="HarrowingMemoryOfTheDying.png" width=3% >}}Harrowing Memory of the Dying
+  - {{< image src="HarrowingMemoryOfTheDying.png" width=5% >}}Harrowing Memory of the Dying
 
     **The Dravanian Hinterlands** 혹은 **Azys Lla** 지역의 **Fate**에서 **확정 드랍**
 
@@ -73,7 +73,7 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 반복 퀘스트 — [The Will to Resist](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/f267d4d0aac/)
 
-- 재료: {{< image src="BitterMemoryOfTheDying.png" width=3% >}}**Bitter Memory of the Dying × 6**
+- 재료: {{< image src="BitterMemoryOfTheDying.png" width=5% >}}**Bitter Memory of the Dying × 6**
 
   **60레벨 던전(조율)** 클리어 시 **확정 드랍**
 
@@ -92,7 +92,7 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 반복 퀘스트 — [Change of Arms](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/39fc3e4a86a/)
 
-- 재료: {{< image src="LoathsomeMemoryOfTheDying.png" width=3% >}}**Loathsome Memory of the Dying × 15**
+- 재료: {{< image src="LoathsomeMemoryOfTheDying.png" width=5% >}}**Loathsome Memory of the Dying × 15**
 
   **Crystal Tower Alliance Raid(조율)** (A Realm Reborn 24인 레이드 시리즈) 클리어 시 **확정 드랍**
 
@@ -110,17 +110,17 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 재료: 
 
-  {{< image src="HauntingMemoryOfTheDying.png" width=3% >}}**Haunting Memory of the Dying × 18**
+  {{< image src="HauntingMemoryOfTheDying.png" width=5% >}}**Haunting Memory of the Dying × 18**
 
-  {{< image src="VexatiousMemoryOfTheDying.png" width=3% >}}**Vexatious Memory of the Dying × 18**
+  {{< image src="VexatiousMemoryOfTheDying.png" width=5% >}}**Vexatious Memory of the Dying × 18**
 
-  - {{< image src="HauntingMemoryOfTheDying.png" width=3% >}}Haunting Memory of the Dying
+  - {{< image src="HauntingMemoryOfTheDying.png" width=5% >}}Haunting Memory of the Dying
 
     **Dun Scaith Alliance Raid(조율)** (Heavensward 24인 레이드 시리즈) 클리어 시 **확정 드랍**
 
     **Gyr Abania** 지역 **Fate**에서 **랜덤 드랍**
 
-  - {{< image src="VexatiousMemoryOfTheDying.png" width=3% >}}Vexatious Memory of the Dying
+  - {{< image src="VexatiousMemoryOfTheDying.png" width=5% >}}Vexatious Memory of the Dying
 
     **Return to Ivalice Alliance Raid(조율)** (Stormblood 24인 레이드 시리즈) 클리어 시 **확정 드랍**
 
@@ -130,7 +130,7 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 반복 퀘스트 — [A New Path of Resistance](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/f49e076d1e1/)
 
-- 재료: {{< image src="TimewornArtifact.png" width=3% >}}**Timeworn Artifact × 15**
+- 재료: {{< image src="TimewornArtifact.png" width=5% >}}**Timeworn Artifact × 15**
 
   **Delubrum Reginae** 클리어 시 **확정 드랍**
 
@@ -138,9 +138,9 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 5단계 무기는 마테리아 슬롯 없음. 대신 **1167의 보조 스탯을 자유 분배** 가능 (스탯 당 510이 최대)
 
-  - {{< image src="AetherialSealant.png" width=3% >}}**Aetherial Sealant × 4**를 가진 상태로 Allagan Node에게 말을 걸어 재분배 가능
+  - {{< image src="AetherialSealant.png" width=5% >}}**Aetherial Sealant × 4**를 가진 상태로 Allagan Node에게 말을 걸어 재분배 가능
 
-    {{< image src="AetherialSealant.png" width=3% >}}Aetherial Sealant × 1 당 {{< image src="Poetics.png" width=3% >}}Poetics × 100 로 교환
+    {{< image src="AetherialSealant.png" width=5% >}}Aetherial Sealant × 1 당 {{< image src="Poetics.png" width=5% >}}Poetics × 100 로 교환
 
     Idyllshire (X: 5.8 Y: 5.2) - Hismena, Mor Dhona (X: 22.7 Y: 6.7) - Auriana
 
