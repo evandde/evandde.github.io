@@ -9,7 +9,7 @@
 
 ## 공격 기술
 
-### Fast Blade Combo: 단일 대상 근접 기본 콤보
+### Royal Authority Combo: 단일 대상 근접 기본 콤보
 
 {{< image src="FastBlade.png" width=5% >}}{{< image src="RiotBlade.png" width=5% >}}{{< image src="RoyalAuthority.png" width=5% >}} Fast Blade -> Riot Blade -> Royal Authority
 
@@ -19,7 +19,7 @@
 
 총 Oath Gauge 충전량 15 (5+5+5)
 
-### Total Eclipse Combo: 원형 범위 기본 콤보
+### Prominence Combo: 원형 범위 기본 콤보
 
 {{< image src="TotalEclipse.png" width=5% >}}{{< image src="Prominence.png" width=5% >}} Total Eclipse -> Prominence
 
