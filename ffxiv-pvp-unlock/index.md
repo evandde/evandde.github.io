@@ -65,7 +65,7 @@ PvP 컨텐츠를 개방하기 위해서는 다음의 두 가지 조건이 충족
 
 ## Rival Wings 개방
 
-다음 부가퀘스트를 통해 Rival Wings 관련 컨탠츠를 개방할 수 있습니다.
+다음 부가퀘스트를 통해 Rival Wings 관련 컨텐츠를 개방할 수 있습니다.
 
 퀘스트 수령 위치가 Wolves' Den Pier이므로, **A Pup No Longer** 퀘스트를 먼저 클리어하여 Wolves' Den을 개방하셔야 합니다.
 
