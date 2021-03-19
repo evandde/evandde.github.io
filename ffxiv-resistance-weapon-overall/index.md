@@ -25,7 +25,7 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
   - Kugane (X: 12.2 Y: 12.3)
   - NPC: **Keiten**
 
-### 1단계 (iLv 485)
+### 1단계 (ilvl 485)
 
 - 부가 퀘스트 — [Fire in the Forge](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/b8f5286c6eb/), 반복 퀘스트 — [Resistance Is (Not) Futile](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/4bd506e3dcb/)
 
@@ -37,7 +37,7 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 1단계 무기 룩
 
-### 2단계 (iLv 500)
+### 2단계 (ilvl 500)
 
 - 반복 퀘스트 — [For Want of a Memory](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/9673c789ba9/)
 
@@ -69,7 +69,7 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 2단계 무기 룩
 
-### 3단계 (iLv 500 + 빛남)
+### 3단계 (ilvl 500 + 빛남)
 
 - 반복 퀘스트 — [The Will to Resist](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/f267d4d0aac/)
 
@@ -83,7 +83,7 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
 - 3단계 무기 룩
 
-### 4단계 (iLv 510)
+### 4단계 (ilvl 510)
 
 - Bozjan Southern Front 내에서 퀘스트라인 진행하여, **부가 퀘스트 — [Fit for a Queen](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/248f168eb15/)까지 완료해야 이후 진행 가능**.
 
@@ -126,7 +126,7 @@ Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인
 
     **The Far East** 지역 **Fate**에서 **랜덤 드랍**
 
-### 5단계 (iLv 515 + 빛남 + 스탯부여)
+### 5단계 (ilvl 515 + 빛남 + 스탯부여)
 
 - 반복 퀘스트 — [A New Path of Resistance](https://na.finalfantasyxiv.com/lodestone/playguide/db/quest/f49e076d1e1/)
 
