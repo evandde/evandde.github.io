@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/posts/</link>
         <description>모든 글 | EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 19 Mar 2021 10:44:19 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 19 Mar 2021 11:46:07 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>FFXIV의 PvP 기술 - Warrior (Ver. 5.45)</title>
+    <link>https://evandde.github.io/ffxiv-pvp-waraction/</link>
+    <pubDate>Fri, 19 Mar 2021 11:46:07 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/ffxiv-pvp-waraction/</guid>
+    <description><![CDATA[<p>이 글에서는 Warrior(전사)의 PvP 기술에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>FFXIV의 PvP 기술 시스템 전반에 대한 요약</title>
     <link>https://evandde.github.io/ffxiv-pvp-actions/</link>
     <pubDate>Fri, 19 Mar 2021 10:44:19 &#43;0900</pubDate>
@@ -67,12 +74,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/vscode-python/</guid>
     <description><![CDATA[<p>VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>Geant4 설치하기(10.7.p01, Ubuntu 2004 LTS)</title>
-    <link>https://evandde.github.io/g4install-107p1-ubt2004/</link>
-    <pubDate>Mon, 15 Feb 2021 13:17:56 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/g4install-107p1-ubt2004/</guid>
-    <description><![CDATA[<p>이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.7 patch 01 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
