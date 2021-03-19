@@ -11,9 +11,11 @@ Final Fantasy XIV(FFXIV) 의 PvP 관련 자료를 정리한 글입니다. FFXIV 
 
 ## Job & Actions (직업과 기술)
 
-### Tank
+[FFXIV의 PvP 기술 시스템 전반에 대한 요약]({{< ref "ffxiv-pvp-actions" >}})
 
-Tank Overall (탱커 전반)
+---
+
+### Tank
 
 [Paladin]({{< ref "ffxiv-pvp-pldaction" >}})
 
@@ -27,8 +29,6 @@ Gunbreaker
 
 ### Healer
 
-Healer Overall (힐러 전반)
-
 White Mage
 
 Scholar
@@ -38,8 +38,6 @@ Astrologian
 ---
 
 ### Melee
-
-Melee Overall (근접 딜러 전반)
 
 Monk
 
@@ -53,8 +51,6 @@ Samurai
 
 ### Ranged
 
-Ranged Overall (원거리 딜러 전반)
-
 Bard
 
 Machinist
@@ -64,8 +60,6 @@ Dancer
 ---
 
 ### Caster
-
-Caster Overall (캐스터 전반)
 
 Black Mage
 

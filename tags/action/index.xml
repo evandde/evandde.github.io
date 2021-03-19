@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Action - 태그 - EvaNote</title>
+        <link>https://evandde.github.io/tags/action/</link>
+        <description>Action - 태그 - EvaNote</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 19 Mar 2021 10:44:19 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/action/" rel="self" type="application/rss+xml" /><item>
+    <title>FFXIV의 PvP 기술 시스템 전반에 대한 요약</title>
+    <link>https://evandde.github.io/ffxiv-pvp-actions/</link>
+    <pubDate>Fri, 19 Mar 2021 10:44:19 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/ffxiv-pvp-actions/</guid>
+    <description><![CDATA[<p>이 글에서는 FFXIV에서 PvP 기술 시스템에 대해 전반적으로 살펴봅니다.</p>]]></description>
+</item></channel>
+</rss>
