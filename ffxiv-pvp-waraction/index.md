@@ -180,6 +180,6 @@ Beast Gauge 충전량 10
 
 ## Reference
 
-[공식 홈페이지 Paladin PvP Actions](https://na.finalfantasyxiv.com/jobguide/paladin/#pvp)
+[공식 홈페이지 Warrior PvP Actions](https://na.finalfantasyxiv.com/jobguide/warrior/#pvp)
 
 [PvPaissa](https://pvpaissa.com)
