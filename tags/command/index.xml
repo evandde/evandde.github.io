@@ -10,7 +10,7 @@
     <pubDate>Mon, 05 Apr 2021 15:20:37 &#43;0900</pubDate>
     <author>작성자</author>
     <guid>https://evandde.github.io/geant4-uicommand-alias/</guid>
-    <description><![CDATA[<p>Geant4에서 매크로파일 이용 시, 자주 반복되는 문구를 간단하게 줄여주는 명령어. &ldquo;/control/alias&quot;에 대해 알아봅니다.</p>]]></description>
+    <description><![CDATA[<p>Geant4 UI command 중, 자주 반복되는 문구를 간단하게 줄여주는 명령어. &ldquo;/control/alias&quot;에 대해 알아봅니다.</p>]]></description>
 </item><item>
     <title>Geant4의 UI Command 기초 이론</title>
     <link>https://evandde.github.io/geant4-uicommand-basic/</link>

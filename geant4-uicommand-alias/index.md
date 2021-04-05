@@ -1,7 +1,7 @@
 # Geant4 UI command - /control/alias
 
 
-Geant4에서 매크로파일 이용 시, 자주 반복되는 문구를 간단하게 줄여주는 명령어. "/control/alias"에 대해 알아봅니다.
+Geant4 UI command 중, 자주 반복되는 문구를 간단하게 줄여주는 명령어. "/control/alias"에 대해 알아봅니다.
 
 <!--more-->
 
