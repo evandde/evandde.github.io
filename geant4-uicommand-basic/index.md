@@ -48,6 +48,17 @@ UI Command는 다음의 세 가지로 구성됩니다.
 
 {{< /admonition >}}
 
+{{< admonition note >}}
+
+UI command에 따라, 일부 parameter의 기본값이 제공되어 생략 가능한 경우도 있습니다. 만약 앞의 값을 생략하고 뒤의 값만 입력하고 싶은 경우, 생략할 값에 `!`를 적으면 됩니다.
+
+```bash
+# 처음 값을 생략하여 기본값을 사용하고, 두번째 값만 직접 입력
+/directory/command ! second
+```
+
+{{< /admonition >}}
+
 ### 주석
 
 각 줄마다, `#` 표시 이후는 주석처리됩니다.
