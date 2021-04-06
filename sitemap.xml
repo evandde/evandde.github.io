@@ -2,17 +2,24 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://evandde.github.io/categories/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/bugfix/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/categories/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/posts/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/pyqt5/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/categories/python/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/qt-platform-plugin/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/qt.qpa.plugin/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/python-cannotfind-qtplatform/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/qt_qpa_platform_plugin_path/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/command/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://evandde.github.io/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/foreach/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/geant4/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/categories/geant4/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/geant4-uicommand-loop/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/howto/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/loop/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://evandde.github.io/posts/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://evandde.github.io/tags/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/ui/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/alias/</loc><lastmod>2021-04-05T15:20:37&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/geant4-uicommand-alias/</loc><lastmod>2021-04-05T15:20:37&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -38,11 +45,11 @@
             <loc>https://evandde.github.io/tags/resistance-weapons/</loc><lastmod>2021-03-17T12:36:14&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://evandde.github.io/tags/shadowbringers/</loc><lastmod>2021-03-17T12:36:14&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://evandde.github.io/tags/shb/</loc><lastmod>2021-03-17T12:36:14&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/ffxiv-pvp-pldaction/</loc><lastmod>2021-03-16T12:03:07&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/tags/paladin/</loc><lastmod>2021-03-16T12:03:07&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/tags/%EB%82%98%EC%9D%B4%ED%8A%B8/</loc><lastmod>2021-03-16T12:03:07&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/ffxiv-pvp-unlock/</loc><lastmod>2021-03-16T11:22:42&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/ffxiv-pvp-overall/</loc><lastmod>2021-03-16T10:34:48&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://evandde.github.io/ffxiv-pvp-pldaction/</loc><lastmod>2021-03-16T12:03:07&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://evandde.github.io/tags/paladin/</loc><lastmod>2021-03-16T12:03:07&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://evandde.github.io/tags/%EB%82%98%EC%9D%B4%ED%8A%B8/</loc><lastmod>2021-03-16T12:03:07&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://evandde.github.io/ffxiv-pvp-unlock/</loc><lastmod>2021-03-16T11:22:42&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://evandde.github.io/ffxiv-pvp-overall/</loc><lastmod>2021-03-16T10:34:48&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://evandde.github.io/tags/hardware/</loc><lastmod>2021-03-16T09:28:22&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://evandde.github.io/tags/linux/</loc><lastmod>2021-03-16T09:28:22&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://evandde.github.io/categories/linux/</loc><lastmod>2021-03-16T09:28:22&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
@@ -87,7 +94,6 @@
             <loc>https://evandde.github.io/tags/%EC%B5%9C%EA%B7%BC-%ED%95%AD%EB%AA%A9/</loc><lastmod>2020-11-12T09:54:54&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/about/</loc><lastmod>2020-11-10T20:10:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/g4install-106p2-ubt2004/</loc><lastmod>2020-11-01T16:17:56&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/bugfix/</loc><lastmod>2020-10-28T13:00:27&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/debian/</loc><lastmod>2020-10-28T13:00:27&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/libqt5core.so.5/</loc><lastmod>2020-10-28T13:00:27&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/library/</loc><lastmod>2020-10-28T13:00:27&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

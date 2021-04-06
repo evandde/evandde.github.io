@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/posts/</link>
         <description>모든 글 | EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 05 Apr 2021 17:13:04 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 06 Apr 2021 15:39:13 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>qt.qpa.plugin 오류 해결</title>
+    <link>https://evandde.github.io/python-cannotfind-qtplatform/</link>
+    <pubDate>Tue, 06 Apr 2021 15:39:13 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/python-cannotfind-qtplatform/</guid>
+    <description><![CDATA[<p>Python에서 PyQt5 라이브러리를 연동하여 GUI 프로그래밍을 할 때 발생한 &ldquo;<b>qt.qpa.plugin: Could not find the Qt platform plugin &ldquo;windows&rdquo; in &ldquo;&rdquo;.</b>&rdquo; 과 같은 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 UI command - 반복문</title>
     <link>https://evandde.github.io/geant4-uicommand-loop/</link>
     <pubDate>Mon, 05 Apr 2021 17:13:04 &#43;0900</pubDate>
@@ -67,12 +74,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/ffxiv-pvp-overall/</guid>
     <description><![CDATA[<p>Final Fantasy XIV(FFXIV) 의 PvP 관련 자료를 정리한 글입니다. FFXIV Global Server을 기준으로 작성합니다.</p>]]></description>
-</item><item>
-    <title>리눅스 운영체제에서 하드웨어/시스템 정보 모니터링 명령어 모음</title>
-    <link>https://evandde.github.io/linux-sysinfo/</link>
-    <pubDate>Tue, 16 Mar 2021 09:28:22 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/linux-sysinfo/</guid>
-    <description><![CDATA[<p>리눅스 운영체제에서 하드웨어 및 시스템의 정보나 현재 상태를 살펴보는 데에 사용되는 명령어를 정리하였습니다.</p>]]></description>
 </item></channel>
 </rss>
