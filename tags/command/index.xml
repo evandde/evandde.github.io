@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/command/</link>
         <description>Command - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 05 Apr 2021 15:20:37 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/command/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 05 Apr 2021 17:13:04 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/command/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 UI command - 반복문</title>
+    <link>https://evandde.github.io/geant4-uicommand-loop/</link>
+    <pubDate>Mon, 05 Apr 2021 17:13:04 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/geant4-uicommand-loop/</guid>
+    <description><![CDATA[<p>Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 UI command - /control/alias</title>
     <link>https://evandde.github.io/geant4-uicommand-alias/</link>
     <pubDate>Mon, 05 Apr 2021 15:20:37 &#43;0900</pubDate>

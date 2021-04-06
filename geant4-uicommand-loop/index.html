@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Geant4 UI command - 반복문 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 UI command - 반복문" />
+<meta property="og:description" content="Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://evandde.github.io/geant4-uicommand-loop/" />
+<meta property="article:published_time" content="2021-04-05T17:13:04+09:00" />
+<meta property="article:modified_time" content="2021-04-05T17:13:04+09:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geant4 UI command - 반복문"/>
+<meta name="twitter:description" content="Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다."/>
+<meta name="application-name" content="EvaNote">
+<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/geant4-uicommand-loop/" /><link rel="prev" href="https://evandde.github.io/geant4-uicommand-alias/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Geant4 UI command - 반복문",
+        "inLanguage": "ko-kr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/evandde.github.io\/geant4-uicommand-loop\/"
+        },"genre": "posts","keywords": "HowTo, Geant4, UI, Command, loop, foreach","wordcount":  1068 ,
+        "url": "https:\/\/evandde.github.io\/geant4-uicommand-loop\/","datePublished": "2021-04-05T17:13:04+09:00","dateModified": "2021-04-05T17:13:04+09:00","publisher": {
+            "@type": "Organization",
+            "name": "Evan Kim"},"author": {
+                "@type": "Person",
+                "name": "Evan Kim"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        취소
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">목차</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 UI command - 반복문</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-05">2021-04-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1068&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 3분&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>목차</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#controlloop">/control/loop</a>
+      <ul>
+        <li><a href="#사용법">사용법</a></li>
+        <li><a href="#사용예시">사용예시</a></li>
+      </ul>
+    </li>
+    <li><a href="#controlforeach">/control/foreach</a>
+      <ul>
+        <li><a href="#사용법-1">사용법</a></li>
+        <li><a href="#사용예시-1">사용예시</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다.</p>
+<h2 id="개요">개요</h2>
+<p>Geant4에서 built-in UI command로 제공하는 반복문은 두 가지입니다.</p>
+<ul>
+<li>/control/loop</li>
+<li>/control/foreach</li>
+</ul>
+<p>이 반복문의 중요한 특징은 &ldquo;<strong>다른 매크로파일을 반복적으로 실행시킨다</strong>&ldquo;는 점입니다.</p>
+<p>각각의 용법과 함께 좀 더 자세히 살펴보겠습니다.</p>
+<hr>
+<h2 id="controlloop">/control/loop</h2>
+<p><code>/control/loop</code> 반복문은 대개의 프로그래밍 언어가 제공하는 for문과 유사합니다.</p>
+<p><strong>시작</strong>, <strong>끝</strong>, <strong>간격</strong>을 입력하여 <strong>카운터를 증감</strong>시키며 <strong>다른 매크로파일을 실행</strong>시켜줍니다.</p>
+<h3 id="사용법">사용법</h3>
+<p><code>/control/loop 매크로파일명 카운터변수명 시작값 끝값 간격</code>의 형태로 입력합니다.</p>
+<p>이 때, <code>매크로파일명</code>과 <code>카운터변수명</code>은 문자열(string)로 인식하고, <code>시작값</code>, <code>끝값</code>, <code>간격</code>은 실수형(double)으로 인식합니다.</p>
+<p>이렇게 입력하면, <code>매크로파일</code>에서 <code>카운터변수</code>를 <code>시작</code>~<code>끝</code>값으로 aliasing 시켜줍니다. 즉, <code>매크로파일</code> 내에서는 <code>{카운터변수}</code>와 같이 입력하면 되는 것이죠.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><code>간격</code> 값은 생략 가능합니다. 생략할 경우 기본값으로 <strong>1</strong>이 사용됩니다.</div>
+        </div>
+    </div>
+<h3 id="사용예시">사용예시</h3>
+<p>다음과 같은 매크로를 만들어봅시다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/gun/energy 10. MeV
+/run/beamOn <span class="m">10000</span>
+
+/gun/energy 12. MeV
+/run/beamOn <span class="m">10000</span>
+
+/gun/energy 14. MeV
+/run/beamOn <span class="m">10000</span>
+
+/gun/energy 16. MeV
+/run/beamOn <span class="m">10000</span>
+
+/gun/energy 18. MeV
+/run/beamOn <span class="m">10000</span>
+
+/gun/energy 20. MeV
+/run/beamOn <span class="m">10000</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>여기서 에너지 값이 10~20으로 2씩 바뀌고 있을 뿐, 나머지는 반복됩니다.</p>
+<p>이 경우 다음과 같이 두 개의 파일로 나누어 작성하면 동일하게 동작합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 주 매크로파일의 내용</span>
+/control/loop myRun.mac ene 10. 20. 2.
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># myRun.mac의 내용</span>
+/gun/energy <span class="o">{</span>ene<span class="o">}</span> MeV
+/run/beamOn <span class="m">10000</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="controlforeach">/control/foreach</h2>
+<p><code>/control/foreach</code> 반복문은 대개의 프로그래밍 언어가 제공하는 range-based for문과 유사합니다.</p>
+<p><strong>카운터</strong>를 <strong>제시된 목록의 각 값</strong>으로 바꾸어가며 <strong>다른 매크로파일을 반복적으로 실행</strong>합니다.</p>
+<h3 id="사용법-1">사용법</h3>
+<p><code>/control/foreach 매크로파일명 카운터변수명 &quot;반복할값목록&quot;</code>의 형태로 입력합니다.</p>
+<p>여기서 <code>&quot;반복할값목록&quot;</code>을 <font color=red>입력할 때 주의점</font>이 두 가지 있습니다.</p>
+<ul>
+<li>목록 전체를 반드시 &ldquo;&quot;(double-quote)로 감쌀 것</li>
+<li>목록의 각 값은 띄어쓰기로 구분할 것</li>
+</ul>
+<p>이렇게 입력하면, <code>매크로파일</code>에서 <code>카운터변수</code>를 <code>&quot;반복할값목록&quot;</code>에 적힌 각각의 값으로 aliasing 시켜줍니다. 즉, <code>매크로파일</code> 내에서는 <code>{카운터변수}</code>와 같이 입력하면 되는 것이죠.</p>
+<h3 id="사용예시-1">사용예시</h3>
+<p>다음과 같은 매크로를 만들어 봅시다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/gun/particle p
+/run/beamOn <span class="m">10000</span>
+
+/gun/particle e-
+/run/beamOn <span class="m">10000</span>
+
+/gun/particle e+
+/run/beamOn <span class="m">10000</span>
+
+/gun/particle gamma
+/run/beamOn <span class="m">10000</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>여기서는 입자가 p, e-, e+, gamma로 바뀌고 있을 뿐, 나머지는 반복됩니다.</p>
+<p>이 경우 다음과 같이 두 개의 파일로 나누어 작성하면 동일하게 동작합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 주 매크로파일의 내용</span>
+/control/foreach myRun.mac pname <span class="s2">&#34;p e- e+ gamma&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># myRun.mac의 내용</span>
+/gun/particle <span class="o">{</span>pname<span class="o">}</span>
+/run/beamOn <span class="m">10000</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>2021-04-05에 수정</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/geant4-uicommand-loop/index.md" target="_blank">Markdown으로 보기</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/geant4-uicommand-loop/" data-title="Geant4 UI command - 반복문" data-hashtags="HowTo,Geant4,UI,Command,loop,foreach"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/geant4-uicommand-loop/" data-title="Geant4 UI command - 반복문" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/geant4-uicommand-loop/" data-title="Geant4 UI command - 반복문"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/geant4-uicommand-loop/" data-title="Geant4 UI command - 반복문" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/geant4-uicommand-loop/" data-title="Geant4 UI command - 반복문"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/geant4-uicommand-loop/" data-title="Geant4 UI command - 반복문" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/howto/">HowTo</a>,&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/ui/">UI</a>,&nbsp;<a href="/tags/command/">Command</a>,&nbsp;<a href="/tags/loop/">loop</a>,&nbsp;<a href="/tags/foreach/">foreach</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
+        </section>
+    </div>
+
+    
+    <div class="post-nav">
+        </div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":30},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-JZ0NBG8ZWZ');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+</html>
