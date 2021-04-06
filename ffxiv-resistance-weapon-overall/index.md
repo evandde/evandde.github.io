@@ -1,4 +1,4 @@
-# Final Fantasy XIV의 Resistance Weapons 관련 자료 모음
+# Final Fantasy XIV의 Resistance Weapons 관련 자료 모음 (WIP)
 
 
 Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인 Resistance Weapons에 관한 모든 자료를 정리한 네비게이션 문서입니다. FFXIV Global Server을 기준으로 작성합니다.

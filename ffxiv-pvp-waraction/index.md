@@ -1,4 +1,4 @@
-# FFXIV의 PvP 기술 - Warrior (Ver. 5.45)
+# FFXIV의 PvP 기술 - Warrior (Ver. 5.45) (WIP)
 
 
 이 글에서는 Warrior(전사)의 PvP 기술에 대해 알아봅니다.
