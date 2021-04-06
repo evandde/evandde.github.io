@@ -9,7 +9,7 @@ Python에서 PyQt5 라이브러리를 연동하여 GUI 프로그래밍을 할 �
 
 {{< admonition warning >}}
 
-이 글에서는 `pip install pyqt5` 등의 과정을 통해 pyqt5는 이미 설치한 상태라고 가정합니다.
+이 글에서는 `pip install pyqt5 pyqt5-tools` 등의 과정을 통해 pyqt5는 이미 설치한 상태라고 가정합니다.
 
 {{< /admonition >}}
 
