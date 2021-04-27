@@ -35,46 +35,47 @@
     <guid>https://evandde.github.io/geant4-uicommand-basic/</guid>
     <description><![CDATA[<p>Geant4는 UI command라는 개념을 통해 C++ 언어로 하드코딩 하지 않고도 시뮬레이션 전반을 핸들링하거나 모니터링할 수 있도록 합니다. 이 글에서는 Geant4의 UI Command 사용에 대한 기초 이론을 다룹니다.</p>]]></description>
 </item><item>
-    <title>FFXIV의 PvP 기술 - Warrior (Ver. 5.45) (WIP)</title>
-    <link>https://evandde.github.io/ffxiv-pvp-waraction/</link>
-    <pubDate>Fri, 19 Mar 2021 11:46:07 &#43;0900</pubDate>
+    <title>리눅스 운영체제에서 하드웨어/시스템 정보 모니터링 명령어 모음</title>
+    <link>https://evandde.github.io/linux-sysinfo/</link>
+    <pubDate>Tue, 16 Mar 2021 09:28:22 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>https://evandde.github.io/ffxiv-pvp-waraction/</guid>
-    <description><![CDATA[<p>이 글에서는 Warrior(전사)의 PvP 기술에 대해 알아봅니다.</p>]]></description>
+    <guid>https://evandde.github.io/linux-sysinfo/</guid>
+    <description><![CDATA[<p>리눅스 운영체제에서 하드웨어 및 시스템의 정보나 현재 상태를 살펴보는 데에 사용되는 명령어를 정리하였습니다.</p>]]></description>
 </item><item>
-    <title>FFXIV의 PvP 기술 시스템 전반에 대한 요약 (WIP)</title>
-    <link>https://evandde.github.io/ffxiv-pvp-actions/</link>
-    <pubDate>Fri, 19 Mar 2021 10:44:19 &#43;0900</pubDate>
+    <title>Geant4 설치 무작정 따라하기(초보자용)</title>
+    <link>https://evandde.github.io/g4install-107p1-win10wslbasic/</link>
+    <pubDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>https://evandde.github.io/ffxiv-pvp-actions/</guid>
-    <description><![CDATA[<p>이 글에서는 FFXIV에서 PvP 기술 시스템에 대해 전반적으로 살펴봅니다.</p>]]></description>
+    <guid>https://evandde.github.io/g4install-107p1-win10wslbasic/</guid>
+    <description><![CDATA[<p>이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, <b>Windows 10을 사용하는 개인 컴퓨터 환경</b>에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. <b>(인터넷 연결 필요)</b></p>]]></description>
 </item><item>
-    <title>Final Fantasy XIV의 Resistance Weapons 관련 자료 모음 (WIP)</title>
-    <link>https://evandde.github.io/ffxiv-resistance-weapon-overall/</link>
-    <pubDate>Wed, 17 Mar 2021 12:36:14 &#43;0900</pubDate>
+    <title>Visual Studio Code에서 Python3의 venv 사용하기</title>
+    <link>https://evandde.github.io/vscode-python-venv/</link>
+    <pubDate>Mon, 22 Feb 2021 12:50:01 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>https://evandde.github.io/ffxiv-resistance-weapon-overall/</guid>
-    <description><![CDATA[<p>Final Fantasy XIV(FFXIV) 의 Shadowbringers의  전투직용 성장형 무기인 Resistance Weapons에 관한 모든 자료를 정리한 네비게이션 문서입니다. FFXIV Global Server을 기준으로 작성합니다.</p>]]></description>
+    <guid>https://evandde.github.io/vscode-python-venv/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3의 기능 중 가상환경을 설정하는 venv를 사용하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
-    <title>FFXIV의 PvP 기술 - Paladin (Ver. 5.45)</title>
-    <link>https://evandde.github.io/ffxiv-pvp-pldaction/</link>
-    <pubDate>Tue, 16 Mar 2021 12:03:07 &#43;0900</pubDate>
+    <title>Visual Studio Code에서 Python3 환경 설정하기</title>
+    <link>https://evandde.github.io/vscode-python/</link>
+    <pubDate>Mon, 22 Feb 2021 11:33:18 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>https://evandde.github.io/ffxiv-pvp-pldaction/</guid>
-    <description><![CDATA[<p>이 글에서는 Paladin(나이트)의 PvP 기술에 대해 알아봅니다.</p>]]></description>
+    <guid>https://evandde.github.io/vscode-python/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
-    <title>FFXIV에서 PvP 컨텐츠 개방하기</title>
-    <link>https://evandde.github.io/ffxiv-pvp-unlock/</link>
-    <pubDate>Tue, 16 Mar 2021 11:22:42 &#43;0900</pubDate>
+    <title>Geant4 설치하기(10.7.p01, Ubuntu 2004 LTS)</title>
+    <link>https://evandde.github.io/g4install-107p1-ubt2004/</link>
+    <pubDate>Mon, 15 Feb 2021 13:17:56 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>https://evandde.github.io/ffxiv-pvp-unlock/</guid>
-    <description><![CDATA[<p>이 글에서는 FFXIV에서 PvP 컨텐츠를 개방하는 방법에 대해 설명합니다.</p>]]></description>
+    <guid>https://evandde.github.io/g4install-107p1-ubt2004/</guid>
+    <description><![CDATA[<p>이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.7 patch 01 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
-    <title>Final Fantasy XIV의 PvP 관련 자료 모음 (WIP)</title>
-    <link>https://evandde.github.io/ffxiv-pvp-overall/</link>
-    <pubDate>Tue, 16 Mar 2021 10:34:48 &#43;0900</pubDate>
+    <title>Geant4 설치가이드 모음 (Linux)</title>
+    <link>https://evandde.github.io/geant4-install-linux/</link>
+    <pubDate>Mon, 15 Feb 2021 12:45:56 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>https://evandde.github.io/ffxiv-pvp-overall/</guid>
-    <description><![CDATA[<p>Final Fantasy XIV(FFXIV) 의 PvP 관련 자료를 정리한 글입니다. FFXIV Global Server을 기준으로 작성합니다.</p>]]></description>
+    <guid>https://evandde.github.io/geant4-install-linux/</guid>
+    <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
+이 글에서는 Geant4 설치에 관한 다양한 정보와, 설치가이드 링크를 제공합니다.</p>]]></description>
 </item></channel>
 </rss>
