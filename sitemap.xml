@@ -2,27 +2,30 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://evandde.github.io/tags/bugfix/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/categories/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/posts/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/tags/pyqt5/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/categories/python/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/tags/qt-platform-plugin/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/tags/qt.qpa.plugin/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/python-cannotfind-qtplatform/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/tags/qt_qpa_platform_plugin_path/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/tags/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://evandde.github.io/tags/command/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/tags/foreach/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/tags/geant4/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/categories/geant4/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/geant4-uicommand-loop/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/tags/howto/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/tags/loop/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/tags/ui/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/tags/alias/</loc><lastmod>2021-04-05T15:20:37&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://evandde.github.io/geant4-uicommand-alias/</loc><lastmod>2021-04-05T15:20:37&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://evandde.github.io/categories/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/geant4/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/categories/geant4/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/g4-noqasked-000-opening/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/posts/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/series/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/</loc><lastmod>2021-06-06T17:05:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/bugfix/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/pyqt5/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/categories/python/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/qt-platform-plugin/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/qt.qpa.plugin/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/python-cannotfind-qtplatform/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/qt_qpa_platform_plugin_path/</loc><lastmod>2021-04-06T15:39:13&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/command/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/foreach/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/geant4-uicommand-loop/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/howto/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/loop/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/ui/</loc><lastmod>2021-04-05T17:13:04&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/tags/alias/</loc><lastmod>2021-04-05T15:20:37&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://evandde.github.io/geant4-uicommand-alias/</loc><lastmod>2021-04-05T15:20:37&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/geant4-uicommand-basic/</loc><lastmod>2021-03-22T11:06:31&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/hardware/</loc><lastmod>2021-03-16T09:28:22&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/linux/</loc><lastmod>2021-03-16T09:28:22&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -31,7 +34,6 @@
             <loc>https://evandde.github.io/linux-sysinfo/</loc><lastmod>2021-03-16T09:28:22&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/g4install-107p1-win10wslbasic/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/series/geant4-install/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/series/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/ubuntu/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/windows/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/wsl/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

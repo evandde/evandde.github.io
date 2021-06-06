@@ -4,7 +4,15 @@
         <link>https://evandde.github.io/categories/geant4/</link>
         <description>Geant4 - 카테고리 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 05 Apr 2021 17:13:04 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/geant4/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Sun, 06 Jun 2021 17:05:44 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/geant4/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 시리즈를 시작하며</title>
+    <link>https://evandde.github.io/g4-noqasked-000-opening/</link>
+    <pubDate>Sun, 06 Jun 2021 17:05:44 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-000-opening/</guid>
+    <description><![CDATA[<p>Geant4가 뭔지도 모르겠는데&hellip; Geant4를 사용은 해야하는 상황에 처한 여러분!</p>
+<p>묻지도 따지지도 않고 따라만 하면 일단 Geant4를 사용할 수 있게 해드립니다.</p>]]></description>
+</item><item>
     <title>Geant4 UI command - 반복문</title>
     <link>https://evandde.github.io/geant4-uicommand-loop/</link>
     <pubDate>Mon, 05 Apr 2021 17:13:04 &#43;0900</pubDate>

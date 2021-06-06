@@ -4,9 +4,17 @@
         <link>https://evandde.github.io/</link>
         <description>EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 06 Apr 2021 15:39:13 &#43;0900</lastBuildDate>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Sun, 06 Jun 2021 17:05:44 &#43;0900</lastBuildDate>
             <atom:link href="https://evandde.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Geant4 무작정 따라하기 시리즈를 시작하며</title>
+    <link>https://evandde.github.io/g4-noqasked-000-opening/</link>
+    <pubDate>Sun, 06 Jun 2021 17:05:44 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-000-opening/</guid>
+    <description><![CDATA[<p>Geant4가 뭔지도 모르겠는데&hellip; Geant4를 사용은 해야하는 상황에 처한 여러분!</p>
+<p>묻지도 따지지도 않고 따라만 하면 일단 Geant4를 사용할 수 있게 해드립니다.</p>]]></description>
+</item><item>
     <title>qt.qpa.plugin 오류 해결</title>
     <link>https://evandde.github.io/python-cannotfind-qtplatform/</link>
     <pubDate>Tue, 06 Apr 2021 15:39:13 &#43;0900</pubDate>
@@ -69,13 +77,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/g4install-107p1-ubt2004/</guid>
     <description><![CDATA[<p>이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.7 patch 01 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>Geant4 설치가이드 모음 (Linux)</title>
-    <link>https://evandde.github.io/geant4-install-linux/</link>
-    <pubDate>Mon, 15 Feb 2021 12:45:56 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/geant4-install-linux/</guid>
-    <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
-이 글에서는 Geant4 설치에 관한 다양한 정보와, 설치가이드 링크를 제공합니다.</p>]]></description>
 </item></channel>
 </rss>
