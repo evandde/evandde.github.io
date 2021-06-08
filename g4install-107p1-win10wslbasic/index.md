@@ -229,6 +229,7 @@
 
    ```bash
    echo "source /opt/geant4/10.7.p01/bin/geant4.sh" >> ~/.bashrc
+   source ~/.bashrc
    ```
 
 
