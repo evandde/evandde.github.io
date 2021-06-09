@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기" />
+<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 첫번째. 기본 틀이 이미 짜여져있는 템플릿 코드를 다운받아서 실행해봅시다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-001-clonetest/" />
+<meta property="article:published_time" content="2021-06-09T22:03:29+09:00" />
+<meta property="article:modified_time" content="2021-06-09T22:03:29+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기"/>
+<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 첫번째. 기본 틀이 이미 짜여져있는 템플릿 코드를 다운받아서 실행해봅시다."/>
+<meta name="application-name" content="EvaNote">
+<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-001-clonetest/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-000-opening/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기",
+        "inLanguage": "ko-kr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/evandde.github.io\/g4-noqasked-001-clonetest\/"
+        },"genre": "posts","keywords": "Geant4, Template, git","wordcount":  2214 ,
+        "url": "https:\/\/evandde.github.io\/g4-noqasked-001-clonetest\/","datePublished": "2021-06-09T22:03:29+09:00","dateModified": "2021-06-09T22:03:29+09:00","publisher": {
+            "@type": "Organization",
+            "name": "Evan Kim"},"author": {
+                "@type": "Person",
+                "name": "Evan Kim"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        취소
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">목차</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-09">2021-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2214&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 5분&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>목차</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#템플릿-코드">템플릿 코드</a></li>
+    <li><a href="#템플릿-코드-다운받기">템플릿 코드 다운받기</a></li>
+    <li><a href="#실행해보기">실행해보기</a></li>
+    <li><a href="#보충-설명">보충 설명</a>
+      <ul>
+        <li><a href="#빌드cmake-make">빌드(cmake, make)</a></li>
+        <li><a href="#실행ui모드-실행-batch모드-실행">실행(UI모드 실행, batch모드 실행)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 첫번째. 기본 틀이 이미 짜여져있는 템플릿 코드를 다운받아서 실행해봅시다.</p>
+<h2 id="템플릿-코드">템플릿 코드</h2>
+<p>Geant4 코드 작성을 여러번 하다 보면 시뮬레이션의 내용이 다소 바뀌더라도, 기본적인 틀에 해당하는 부분은 크게 달라지지 않는다는 사실을 깨닫게 됩니다. 그래서 저는 <strong>미리 짜두었던 기본 틀을 복사해와서 실제 시뮬레이션의 요구사항에 맞추어 세부적인 부분만 조정</strong>하는 식으로 작업을 수행함으로써 작업시간을 단축시키곤 합니다. PPT나 워드 프로세싱등에서 사용되는 샘플 문서인 템플릿(Template)과 유사한 용도이기에, 이 <strong>기본 틀</strong>을 저는 <strong>템플릿 코드</strong>라고 부릅니다.</p>
+<p>이 시리즈에서는 여러분에게 제가 직접 만든 템플릿 코드를 제공해드리려 합니다. 이 템플릿 코드는 Geant4 공식 예제 중 기본 예제 수준의 시뮬레이션을 작성하기에 적합하도록 하되, 불필요한 부분을 최소화하여 작성했습니다. 여러분은 이 시리즈를 통해, 제가 제공해드린 템플릿 코드에 여러분이 원하는 구조물, 선원항, 데이터기록방식을 정의하게 될 것이고, 이를 통해 여러분만의 Geant4 시뮬레이션 코드를 만들어 결과를 얻어볼 수 있을 것입니다.</p>
+<hr>
+<h2 id="템플릿-코드-다운받기">템플릿 코드 다운받기</h2>
+<p>다음 세 가지 방법 중 본인에게 편한 방법을 통해 다운받으시기 바랍니다.</p>
+<ol>
+<li>
+<p>템플릿 코드는 <a href="https://github.com/evandde/g4_minimal/archive/refs/heads/master.zip" target="_blank" rel="noopener noreffer">이 링크</a>를 통해 다운받을 수 있습니다. <code>g4_minimal-master.zip</code> 파일이 다운받아질 것입니다. 압축을 풀어 사용하시면 됩니다.</p>
+</li>
+<li>
+<p>혹은, 리눅스 환경에서 <code>wget</code>명령어를 통해 다음과 같이 진행하셔도 됩니다. (Linux에서는 <code>unzip</code> 명령어로 zip 형식의 압축을 풀 수 있습니다)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget https://github.com/evandde/g4_minimal/archive/refs/heads/master.zip
+unzip master.zip
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>또는, 여러분이 <code>git</code>을 사용하실 줄 안다면, 다음의 명령어를 통해 repository 자체를 클론해가셔도 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/evandde/g4_minimal
+</code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">git을 사용할 줄 아신다면, 3번 방법을 추천합니다. 이 후 본 시리즈에서 만들어 나갈 단계별 정답 코드를 해당 repository의 example 브랜치에 지난 commit들의 형태로 제공하고 있습니다.</div>
+        </div>
+    </div>
+</li>
+</ol>
+<hr>
+<h2 id="실행해보기">실행해보기</h2>
+<p>압축을 풀고 해당 디렉토리 안에 들어가면 다음과 같은 파일들이 있을 것입니다.</p>
+<a class="lightgallery" href="/g4-noqasked-001-clonetest/01_firstview.png" title="/g4-noqasked-001-clonetest/01_firstview.png" data-thumbnail="/g4-noqasked-001-clonetest/01_firstview.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="01_firstview.png"
+            data-srcset="/g4-noqasked-001-clonetest/01_firstview.png, 01_firstview.png 1.5x, /g4-noqasked-001-clonetest/01_firstview.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-001-clonetest/01_firstview.png" width="80%" />
+    </a>
+<p>먼저, 컴파일 결과를 담을 build 디렉토리를 생성해준 뒤, build 디렉토리로 들어갑니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">mkdir build
+<span class="nb">cd</span> build
+</code></pre></td></tr></table>
+</div>
+</div><p>이어서, <code>cmake</code>와 <code>make</code>를 통해 컴파일을 수행합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cmake ..
+make
+</code></pre></td></tr></table>
+</div>
+</div><p>퍼센트가 쭉 올라가서 100%까지 진행된 뒤에 다음과 같은 파일들이 만들어짐을 확인하시면 됩니다.</p>
+<a class="lightgallery" href="/g4-noqasked-001-clonetest/02_make.png" title="/g4-noqasked-001-clonetest/02_make.png" data-thumbnail="/g4-noqasked-001-clonetest/02_make.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="02_make.png"
+            data-srcset="/g4-noqasked-001-clonetest/02_make.png, 02_make.png 1.5x, /g4-noqasked-001-clonetest/02_make.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-001-clonetest/02_make.png" width="100%" />
+    </a>
+<p><strong>이제 다음 명령어를 입력하여 실행이 되는지 확인합니다.</strong> 아래 그림과 같이 문구가 주르륵 올라간 뒤에 <font color='red'>Good bye :) 인사를 받아내었다면 성공</font>입니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./g4_minimal run.mac
+</code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="/g4-noqasked-001-clonetest/03_batchrun.png" title="/g4-noqasked-001-clonetest/03_batchrun.png" data-thumbnail="/g4-noqasked-001-clonetest/03_batchrun.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="03_batchrun.png"
+            data-srcset="/g4-noqasked-001-clonetest/03_batchrun.png, 03_batchrun.png 1.5x, /g4-noqasked-001-clonetest/03_batchrun.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-001-clonetest/03_batchrun.png" width="100%" />
+    </a>
+<p><strong>그래픽을 사용할 수 있는 환경</strong>이라면, 다음 명령어로도 실행해봅니다. Qt 라이브러리를 연동하여 설치하셨다면, 아래 그림과 같이 마우스로 조작가능한 3D 화면을 볼 수 있습니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Qt가 아닌 다른 그래픽 라이브러리를 연동하셨다면, UI창의 모습이 다소 다를 수도 있습니다.</div>
+        </div>
+    </div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./g4_minimal
+</code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="/g4-noqasked-001-clonetest/04_uirun.png" title="/g4-noqasked-001-clonetest/04_uirun.png" data-thumbnail="/g4-noqasked-001-clonetest/04_uirun.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="04_uirun.png"
+            data-srcset="/g4-noqasked-001-clonetest/04_uirun.png, 04_uirun.png 1.5x, /g4-noqasked-001-clonetest/04_uirun.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-001-clonetest/04_uirun.png" width="100%" />
+    </a>
+<p>이 모든 화면을 확인하셨다면 이번 글의 목표는 달성한 것입니다.</p>
+<hr>
+<h2 id="보충-설명">보충 설명</h2>
+<h3 id="빌드cmake-make">빌드(cmake, make)</h3>
+<p>실행해보기에서 입력한 <code>cmake</code>와 <code>make</code> 명령어는 C++ 언어로 작성된 코드를 빌드하기 위해 수행한 작업입니다.</p>
+<p>최근의 Geant4는 CMake를 활용하는 방식을 채용하고 있으므로, 해당 프로젝트의 디렉토리 안에 CMakeLists.txt 파일이 제대로 구비되어 있어야 합니다. Geant4 공식 홈페이지에서 사용자를 위한 CMakeLists.txt의 작성법을 제공하고 있습니다(<a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/GettingStarted/makeFile.html#" target="_blank" rel="noopener noreffer">링크</a>). 대부분의 경우 CMakeLists.txt 파일을 수정할 일은 없으므로, 여기서는 이에 대한 설명을 생략하겠습니다.</p>
+<p><code>cmake</code> 명령어를 입력하면, <code>make</code>를 수행하기 위해 필요한 Makefile이 생성됩니다. 이어서 <code>make </code> 명령어를 입력하여 빌드를 수행하면 <strong>g4_minimal</strong>이라는 실행파일이 만들어집니다.</p>
+<p>빌드에 대한 보다 자세한 내용은 컴파일, 링크, 빌드, make, cmake와 같은 키워드로 학습하시면 도움이 될 것입니다. 이 시리즈에서는 더 자세히 다루지 않겠습니다.</p>
+<h3 id="실행ui모드-실행-batch모드-실행">실행(UI모드 실행, batch모드 실행)</h3>
+<p>Geant4는 프로그램을 실행하는 방식으로 다음의 두 가지를 제공합니다.</p>
+<ul>
+<li>
+<p>UI모드 실행</p>
+<p>프로그램이 실행된 뒤 IDLE상태로 대기. 사용자가 명령어를 입력하면 이에 따라 명령어가 실행되는 구조.</p>
+<p>그래픽 관련 라이브러리를 연동하여 Geant4를 설치한 경우, 지오메트리 및 입자 수송을 그래픽 형태로 보거나 저장할 수도 있음.</p>
+<p>일반적으로 실제 시뮬레이션을 수행하여 결과를 얻기 전에, 지오메트리/선원항/데이터기록 등을 테스트하고 확인하는 목적으로 이용함.</p>
+</li>
+<li>
+<p>batch모드 실행</p>
+<p>시뮬레이션을 수행하는 데에 필요한 명령어를, 프로그램을 실행하는 시점에 일괄적으로(batch) 함께 입력해주어 바로 시뮬레이션을 수행하는 구조.</p>
+<p>일반적으로 충분한 수의 초기입자를 발생시켜 실제 시뮬레이션을 수행하고 이에 대한 결과를 얻는 목적으로 이용함.</p>
+</li>
+</ul>
+<p>main함수를 어떻게 작성하느냐에 따라 위의 두 실행방식을 자유롭게 선택할 수 있습니다.</p>
+<p>다만, Geant4 기반으로 작성한 대부분의 코드에서 <strong>다음의 방식을 따르도록 main함수를 작성</strong>하는 것이 일반적인 관습입니다.</p>
+<ul>
+<li>
+<p><strong>실행파일명만 입력</strong>하여 실행한 경우에는 <strong>UI모드</strong>로 실행</p>
+<p>예를 들어, 위에서 <code>./g4_minimal</code> 만 입력하여 실행한 경우에는 UI창이 뜨는 것을 확인할 수 있음.</p>
+</li>
+<li>
+<p><strong>실행파일명 뒤에 <code>.mac</code> 형식의 파일을 함께 입력</strong>하여 실행한 경우에는, 해당 <code>.mac</code> 파일의 내용을 일괄적으로 입력하여 <strong>batch모드</strong>로 실행</p>
+<p>예를 들어, 위에서 <code>./g4_minimal run.mac</code>을 입력하여 실행한 경우에는 <code>run.mac</code>파일의 내용이 일괄적으로 입력되어 시뮬레이션이 batch모드로 수행되고, 최종적으로 Good bye :)가 출력되며 시뮬레이션이 종료되는 것을 확인할 수 있음.</p>
+</li>
+</ul>
+<p>※ main함수를 어떻게 작성하였는지에 대한 설명은 이 시리즈에서 다루지 않습니다.</p>
+<p>※  <code>.mac</code> 파일에 어떤 내용을 작성하는지에 대해서는 이 시리즈에서 추후에 다루도록 하겠습니다.</p>
+<hr>
+<p>고생하셨습니다.</p>
+<p>다음 글에서는 <strong>지오메트리</strong>를 정의하는 방법에 대해 알아보겠습니다.</p>
+<hr></div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>2021-06-09에 수정</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/g4-noqasked-001-clonetest/index.md" target="_blank">Markdown으로 보기</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-001-clonetest/" data-title="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기" data-hashtags="Geant4,Template,git"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-001-clonetest/" data-title="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-001-clonetest/" data-title="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-001-clonetest/" data-title="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-001-clonetest/" data-title="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-001-clonetest/" data-title="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/template/">Template</a>,&nbsp;<a href="/tags/git/">git</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
+        </section>
+    </div>
+
+    
+    <div class="post-nav">
+        
+            
+
+            
+
+            
+        
+            
+                
+            
+
+            
+
+            
+        <a href="/g4-noqasked-000-opening/" class="prev" rel="prev" title="Geant4 무작정 따라하기 시리즈를 시작하며"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 시리즈를 시작하며</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-JZ0NBG8ZWZ');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+</html>
