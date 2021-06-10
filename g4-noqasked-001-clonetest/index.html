@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-001-clonetest\/"
-        },"genre": "posts","keywords": "Geant4, Template, git","wordcount":  2214 ,
+        },"genre": "posts","keywords": "Geant4, Template, git","wordcount":  2198 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-001-clonetest\/","datePublished": "2021-06-09T22:03:29+09:00","dateModified": "2021-06-09T22:03:29+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-09">2021-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2214&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-09">2021-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2198&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 5분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -136,6 +136,7 @@
         <li><a href="#실행ui모드-실행-batch모드-실행">실행(UI모드 실행, batch모드 실행)</a></li>
       </ul>
     </li>
+    <li><a href="#더보기">더보기</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 첫번째. 기본 틀이 이미 짜여져있는 템플릿 코드를 다운받아서 실행해봅시다.</p>
@@ -277,7 +278,6 @@ make
 <p>실행해보기에서 입력한 <code>cmake</code>와 <code>make</code> 명령어는 C++ 언어로 작성된 코드를 빌드하기 위해 수행한 작업입니다.</p>
 <p>최근의 Geant4는 CMake를 활용하는 방식을 채용하고 있으므로, 해당 프로젝트의 디렉토리 안에 CMakeLists.txt 파일이 제대로 구비되어 있어야 합니다. Geant4 공식 홈페이지에서 사용자를 위한 CMakeLists.txt의 작성법을 제공하고 있습니다(<a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/GettingStarted/makeFile.html#" target="_blank" rel="noopener noreffer">링크</a>). 대부분의 경우 CMakeLists.txt 파일을 수정할 일은 없으므로, 여기서는 이에 대한 설명을 생략하겠습니다.</p>
 <p><code>cmake</code> 명령어를 입력하면, <code>make</code>를 수행하기 위해 필요한 Makefile이 생성됩니다. 이어서 <code>make </code> 명령어를 입력하여 빌드를 수행하면 <strong>g4_minimal</strong>이라는 실행파일이 만들어집니다.</p>
-<p>빌드에 대한 보다 자세한 내용은 컴파일, 링크, 빌드, make, cmake와 같은 키워드로 학습하시면 도움이 될 것입니다. 이 시리즈에서는 더 자세히 다루지 않겠습니다.</p>
 <h3 id="실행ui모드-실행-batch모드-실행">실행(UI모드 실행, batch모드 실행)</h3>
 <p>Geant4는 프로그램을 실행하는 방식으로 다음의 두 가지를 제공합니다.</p>
 <ul>
@@ -305,11 +305,28 @@ make
 <p>예를 들어, 위에서 <code>./g4_minimal run.mac</code>을 입력하여 실행한 경우에는 <code>run.mac</code>파일의 내용이 일괄적으로 입력되어 시뮬레이션이 batch모드로 수행되고, 최종적으로 Good bye :)가 출력되며 시뮬레이션이 종료되는 것을 확인할 수 있음.</p>
 </li>
 </ul>
-<p>※ main함수를 어떻게 작성하였는지에 대한 설명은 이 시리즈에서 다루지 않습니다.</p>
 <p>※  <code>.mac</code> 파일에 어떤 내용을 작성하는지에 대해서는 이 시리즈에서 추후에 다루도록 하겠습니다.</p>
 <hr>
 <p>고생하셨습니다.</p>
 <p>다음 글에서는 <strong>지오메트리</strong>를 정의하는 방법에 대해 알아보겠습니다.</p>
+<hr>
+<h2 id="더보기">더보기</h2>
+<ul>
+<li>빌드 관련
+<ul>
+<li>컴파일, 링크, 빌드란? (WIP)</li>
+<li>make 살펴보기 (WIP)</li>
+<li>cmake 살펴보기 (WIP)</li>
+<li>Geant4 어플리케이션에서의 CMakeLists.txt 파일 살펴보기 (WIP)</li>
+</ul>
+</li>
+<li>Geant4 코드의 main함수 관련
+<ul>
+<li>Geant4 어플리케이션에서의 main 함수 정의하기 (WIP)</li>
+<li>Geant4 클래스 뜯어보기 - G4RunManagerFactory, G4RunManager (WIP)</li>
+</ul>
+</li>
+</ul>
 <hr></div>
 
 <div class="post-footer" id="post-footer">
