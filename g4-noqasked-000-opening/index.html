@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-000-opening\/"
-        },"genre": "posts","keywords": "Geant4","wordcount":  1357 ,
+        },"genre": "posts","keywords": "Geant4","wordcount":  1609 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-000-opening\/","datePublished": "2021-06-06T17:05:44+09:00","dateModified": "2021-06-06T17:05:44+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -120,8 +120,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 시리즈를 시작하며</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-06">2021-06-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1357&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 3분&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-06">2021-06-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1609&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 4분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>목차</span>
@@ -172,8 +172,8 @@
 <p>2014년부터는 한양대학교 방사선신기술연구소에서 매 해마다 주최하는 Geant4 초급자 교육과정의 강사로서 일부 강의를 맡아 진행하고 있습니다. 비록 제가 개발자나 CS전공자는 아니지만, Geant4를 10년가량 사용해온 연구자로서의 저의 경험이 이 프로그램을 필요로 하는 다른 연구자분들께 도움이 되면 좋겠습니다.</p>
 <hr>
 <h2 id="geant4-무작정-따라하기-시리즈의-목표">Geant4 무작정 따라하기 시리즈의 목표</h2>
-<p>이 시리즈에서는 Geant4가 어떻게 구동되고, 최적화를 하려면 어떻게 해야하고&hellip; 이런 것을 깊게 다루지는 않으려 합니다.</p>
-<p>당장 프로젝트를 수행해야 하는데 어찌되었든 Geant4라는 툴킷을 사용을 해야하는 상황에 처한 분, 우선 뭐라도 돌아가게끔 해서 간단하게라도 결과를 얻어내고 싶은 분에게 적합한 글이 될 것입니다.</p>
+<p>이 시리즈에서는 Geant4가 어떻게 구동되고, 최적화를 하려면 어떻게 해야하고&hellip; 이런 것을 깊게 다루지는 않으려 합니다. 당장 프로젝트를 수행해야 하는데 어찌되었든 Geant4라는 툴킷을 사용을 해야하는 상황에 처한 분, 우선 뭐라도 돌아가게끔 해서 간단하게라도 결과를 얻어내고 싶은 분에게 적합한 글이 될 것입니다.</p>
+<p>Geant4는 몬테칼로 시뮬레이션용 툴킷으로, 프레임워크<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>처럼 이용하는 경우가 많습니다. 그래서 Geant4를 처음 이용하는 단계에서는, Geant4의 모든 내용을 다 이해하는 것보다 <font color='red'><b>내가 원하는 작업을 위해 필요한 내용을 어디에 어떻게 작성해야 하는지 숙지</b></font>하는 편이 효율적입니다. 이 시리즈에서는 이 부분에 초점을 맞추어 진행할 것입니다.</p>
 <p>여러분이 준비해야할 것은 다음과 같습니다.</p>
 <ul>
 <li>
@@ -215,7 +215,16 @@
 </li>
 </ul>
 </li>
-</ul></div>
+</ul>
+<hr>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>어떤 문제해결에 적합한 코드를 재사용 가능하게끔 제공해둔 것. 단, 일반적으로 프레임워크의 코드 자체가 주가 되고, 사용자는 프레임워크의 규약과 형식에 맞추어 본인이 원하는 세부사항을 이 프레임워크에 끼워넣는 식으로 사용하게 됨. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section></div>
 
 <div class="post-footer" id="post-footer">
     <div class="post-info">
