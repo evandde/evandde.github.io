@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/geant4/</link>
         <description>Geant4 - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Wed, 09 Jun 2021 22:03:29 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/geant4/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 10 Jun 2021 09:52:13 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/geant4/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 2. 지오메트리 정의하기 (이론)</title>
+    <link>https://evandde.github.io/g4-noqasked-002-detcon/</link>
+    <pubDate>Thu, 10 Jun 2021 09:52:13 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-002-detcon/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기</title>
     <link>https://evandde.github.io/g4-noqasked-001-clonetest/</link>
     <pubDate>Wed, 09 Jun 2021 22:03:29 &#43;0900</pubDate>
