@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기" />
+<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 세번째. 다양한 모양의 지오메트리를 만들기 위해 Solid에 대해 살펴봅시다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-003-solid/" />
+<meta property="article:published_time" content="2021-06-11T19:27:03+09:00" />
+<meta property="article:modified_time" content="2021-06-11T19:27:03+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기"/>
+<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 세번째. 다양한 모양의 지오메트리를 만들기 위해 Solid에 대해 살펴봅시다."/>
+<meta name="application-name" content="EvaNote">
+<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-003-solid/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-002-detcon/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기",
+        "inLanguage": "ko-kr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/evandde.github.io\/g4-noqasked-003-solid\/"
+        },"genre": "posts","keywords": "Geant4, Solid, Geometry, G4VSolid, G4Box, G4Tubs, G4Cons, G4Sphere, G4Orbs","wordcount":  2864 ,
+        "url": "https:\/\/evandde.github.io\/g4-noqasked-003-solid\/","datePublished": "2021-06-11T19:27:03+09:00","dateModified": "2021-06-11T19:27:03+09:00","publisher": {
+            "@type": "Organization",
+            "name": "Evan Kim"},"author": {
+                "@type": "Person",
+                "name": "Evan Kim"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        취소
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">목차</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-11">2021-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2864&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>목차</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#geant4에서의-단위">Geant4에서의 단위</a></li>
+    <li><a href="#solid의-여러가지-종류">Solid의 여러가지 종류</a>
+      <ul>
+        <li><a href="#g4box직육면체">G4Box(직육면체)</a></li>
+        <li><a href="#g4tubs원기둥">G4Tubs(원기둥)</a></li>
+        <li><a href="#g4orb구">G4Orb(구)</a></li>
+      </ul>
+    </li>
+    <li><a href="#정리">정리</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 세번째. 다양한 모양의 지오메트리를 만들기 위해 Solid에 대해 살펴봅시다.</p>
+<p>Geant4에서는 다양한 종류의 Solid(형태)를 제공하고 있습니다. 이번 글에서는 다양한 Solid들을 사용해보도록 하겠습니다.</p>
+<hr>
+<h2 id="geant4에서의-단위">Geant4에서의 단위</h2>
+<p>Solid를 알아보기에 앞서, 단위라는 개념부터 살펴보려 합니다. Solid를 만들 때 크기를 입력하려면 길이에 대한 단위가 필수적으로 요구되기 때문입니다.</p>
+<p>Geant4에서는 각종 물리량에 대한 단위를 제공하고 있으며, 이를 사용하기 위해서는 <b>&ldquo;G4SystemOfUnits.hh&rdquo;</b> 헤더가 필요합니다. 현재 작업 중인 DetectorConsturction.cc 파일에는 제가 이미 이 헤더를 추가해 놓았으므로, 바로 사용할 수 있습니다.</p>
+<p>사용은 실제 물리량을 기술할 때와 동일한 방식으로 사용하면 됩니다만, 곱하기를 명시해주어야 한다는 점만 주의하면 됩니다.</p>
+<p>예를 들어, <b>10 cm 라는 길이를 Geant4 코드 작성에서 기술하고자 할 때에는 다음과 같이 입력</b>합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="mf">10.</span> <span class="o">*</span> <span class="n">cm</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>길이 단위 이외에도, 질량, 밀도, 온도, 기압, 흡수선량 등 다양한 물리량에 대한 단위를 제공하고 있으므로, 필요에 따라 활용해보시기 바랍니다.</p>
+<hr>
+<h2 id="solid의-여러가지-종류">Solid의 여러가지 종류</h2>
+<p>Solid는 간단히 말해 <strong>입체도형</strong>입니다. 입체도형에는 직육면체, 원기둥, 구, 원뿔 등 다양한 모양이 있지요. Geant4에서도 Solid라는 개념 아래에 <strong>하위 개념</strong>으로서 G4Box(직육면체), GTubs(원기둥), G4Sphere(구), G4Cons(원뿔) 등을 만들어, 다양한 모양을 정의할 수 있게 하였습니다.</p>
+<p>우리는 <strong>Geant4에서 어떤 입체도형을 제공하는지 파악</strong>하고, <strong>각각의 입체도형을 정의하는 방법을 학습</strong>한 뒤, 그대로 사용하기만 하면 됩니다.</p>
+<p>Geant4에서 제공하고 있는 Solid의 모든 종류는 <a href="https://geant4.kek.jp/Reference/" target="_blank" rel="noopener noreffer">Geant4 Doxygen</a>에서 G4VSolid 클래스의 레퍼런스 페이지(<a href="https://geant4.kek.jp/Reference/10.07.p01/classG4VSolid.html" target="_blank" rel="noopener noreffer">10.7.p01 버전</a>)에 들어가면 상속받은 클래스 목록(<em>Inheritance diagram for G4VSolid</em>) 부분을 통해 확인할 수 있습니다. 그 종류가 너무나도 많기 때문에, 이 글에서는 다음 세 가지 클래스의 생성자만 살펴보겠습니다.</p>
+<ul>
+<li>G4Box</li>
+<li>G4Tubs</li>
+<li>G4Orb</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">생성자가 뭔지 모르겠다면, 일단은 그냥 어떤 개념을 가진 대상을 만들 때 사용하는 함수라고 생각하세요. 여기서는 직육면체를 만드는 함수라고 생각하시면 됩니다.</div>
+        </div>
+    </div>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Geant4에서 Solid를 만들 때에는, 맨 처음 인자로 그 Solid의 &ldquo;이름&quot;을 지어주게 되어있습니다. 이름을 짓는 데에 어떠한 규약이 있는 것은 아니므로, 자유롭게 지으시면 됩니다. 다만, 되도록이면 다른 Solid와 이름이 겹치지 않도록 고유의 이름을 주시는 것을 권장합니다.</div>
+        </div>
+    </div>
+<h3 id="g4box직육면체">G4Box(직육면체)</h3>
+<p>G4Box는 직육면체 모양을 정의하는 데에 사용하는 클래스입니다. 클래스의 생성자는 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">G4Box</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pX</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pY</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pZ</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>pName: 정의할 직육면체의 이름. 자유롭게 적으면 됨</li>
+<li>pX: X축 방향으로의 모서리 길이의 <font color='red'><b>절반</b></font></li>
+<li>pY: Y축 방향으로의 모서리 길이의 <font color='red'><b>절반</b></font></li>
+<li>pZ: Z축 방향으로의 모서리 길이의 <font color='red'><b>절반</b></font></li>
+</ul>
+<p>간단히 말해, 직육면체를 정의하기 위해 필요한 것은, 이름과 가로, 세로, 높이라고 볼 수 있습니다. 다만, 가로, 세로, 높이의 경우에는 그 <strong>길이의 절반</strong>을 입력해야 한다는 점에 주의하세요.</p>
+<p>예를 들어, X축 방향으로 10 cm, Y축 방향으로 5 cm, Z축 방향으로 20 cm 크기를 가진 직육면체 형태의 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">,</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">cm</span><span class="p">,</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>다만, 이렇게 적으면 실제 직육면체 크기와 코드에 써있는 값이 서로 달라 헷갈리는 경우가 있어, 저는 개인적으로 다음과 같이 실제 길이에 0.5를 곱하는 형태로 적는 것을 선호합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="mf">20.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>각 변의 길이를 변수화한다면 다음과 같이 좀 더 알아보기 쉽게 적을 수 있겠지요.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">phantomXLength</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">phantomYLength</span> <span class="o">=</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">phantomZLength</span> <span class="o">=</span> <span class="mf">20.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomXLength</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomYLength</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomZLength</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>지난 글에서 작성한 코드 부분 중, Solid에 해당하는 내용을 위 코드로 바꿔준 모습입니다.</p>
+<a class="lightgallery" href="/g4-noqasked-003-solid/01_g4box.png" title="/g4-noqasked-003-solid/01_g4box.png" data-thumbnail="/g4-noqasked-003-solid/01_g4box.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="01_g4box.png"
+            data-srcset="/g4-noqasked-003-solid/01_g4box.png, 01_g4box.png 1.5x, /g4-noqasked-003-solid/01_g4box.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-003-solid/01_g4box.png" width="100%" />
+    </a>
+<p>이 상태로 실행해보면, 물팬텀의 크기가 바뀐 것을 확인할 수 있습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-003-solid/02_g4boxrun.png" title="/g4-noqasked-003-solid/02_g4boxrun.png" data-thumbnail="/g4-noqasked-003-solid/02_g4boxrun.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="02_g4boxrun.png"
+            data-srcset="/g4-noqasked-003-solid/02_g4boxrun.png, 02_g4boxrun.png 1.5x, /g4-noqasked-003-solid/02_g4boxrun.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-003-solid/02_g4boxrun.png" width="100%" />
+    </a>
+<h3 id="g4tubs원기둥">G4Tubs(원기둥)</h3>
+<p>G4Tubs는 원기둥 모양을 정의하는 데에 사용하는 클래스입니다. 가운데가 빈 두루마리 휴지같은 모양도 표현할 수 있습니다. 클래스의 생성자는 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">G4Tubs</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pRMin</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pRMax</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pDz</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pSPhi</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pDPhi</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>pName: 정의할 원기둥의 이름. 자유롭게 적으면 됨</p>
+</li>
+<li>
+<p>pRMin: 내반경. 속이 꽉찬 원기둥이라면 0을 적고, 가운데가 빈 원기둥이라면 내부 원의 <font color='red'><b>반지름</b></font>을 적음</p>
+</li>
+<li>
+<p>pRMax: 외반경. 외부 원의 <font color='red'><b>반지름</b></font>을 적음</p>
+</li>
+<li>
+<p>pDz: 원기둥 높이의 <font color='red'><b>절반</b></font></p>
+</li>
+<li>
+<p>pSPhi: 시작 중심각. 케이크 조각처럼 부채꼴 기둥을 표현하고자 하는 경우에, 시작할 각도를 0~360도 사이에서 지정할 수 있음. 일반적인 원기둥의 경우 0을 적음</p>
+</li>
+<li>
+<p>pDPhi: 중심각의 변화량. 케이크 조각처럼 부채꼴 기둥을 표현하고자 하는 경우에, 중심각의 변화량을 0~360도 사이에서 지정할 수 있음. 일반적인 원기둥의 경우 360도(360. * deg)를 적음</p>
+</li>
+</ul>
+<p>일반적인 원기둥 뿐만 아니라, 원기둥 껍질 혹은 부채꼴 기둥 및 부채꼴 기둥 껍질모양까지 만들 수 있습니다.</p>
+<p>예를 들어, 반지름이 5 cm이고, 높이가 10 cm인 속이 꽉 찬 원기둥 형태의 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Tubs</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">,</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">360.</span> <span class="o">*</span> <span class="n">deg</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>저는 G4Box의 경우와 유사하게, 반경대신 직경을 써서 코드 작성시의 일관성을 유지하는 것을 좋아합니다. 일반적으로 다음과 같이 작성하는 편이지요.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">phantomDiameter</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">phantomHeight</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Tubs</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomDiameter</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomHeight</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">360.</span> <span class="o">*</span> <span class="n">deg</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>아까 수정하였던 Solid에 해당하는 내용을 G4Tubs의 예시인 위 코드로 바꿔준 모습입니다. <font color='red'>G4Tubs의 헤더(G4Tubs.hh)는 제가 제공해드렸던 템플릿 코드의 DetectorConstruction에 기본으로 포함되어있지 않으므로, 꼭 직접 넣어주셔야 합니다.</font></p>
+<a class="lightgallery" href="/g4-noqasked-003-solid/03_g4tubs.png" title="/g4-noqasked-003-solid/03_g4tubs.png" data-thumbnail="/g4-noqasked-003-solid/03_g4tubs.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="03_g4tubs.png"
+            data-srcset="/g4-noqasked-003-solid/03_g4tubs.png, 03_g4tubs.png 1.5x, /g4-noqasked-003-solid/03_g4tubs.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-003-solid/03_g4tubs.png" width="100%" />
+    </a>
+<p>실행해보면, 물팬텀의 모양이 바뀐 것을 확인할 수 있습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-003-solid/04_g4tubsrun.png" title="/g4-noqasked-003-solid/04_g4tubsrun.png" data-thumbnail="/g4-noqasked-003-solid/04_g4tubsrun.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="04_g4tubsrun.png"
+            data-srcset="/g4-noqasked-003-solid/04_g4tubsrun.png, 04_g4tubsrun.png 1.5x, /g4-noqasked-003-solid/04_g4tubsrun.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-003-solid/04_g4tubsrun.png" width="100%" />
+    </a>
+<h3 id="g4orb구">G4Orb(구)</h3>
+<p>G4Orb는 구 모양을 정의하는 데에 사용하는 클래스입니다. 클래스의 생성자는 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">G4Orb</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pRmax</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>pName: 정의할 구의 이름. 자유롭게 적으면 됨</li>
+<li>pRmax: 구의 반지름</li>
+</ul>
+<p>G4Orb는 속이 꽉 찬 구만 만들 수 있습니다. 단순히 구의 반지름만 적어주면 끝이죠.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">G4Tubs처럼 구 껍질이나 각도에 따라 잘린 구를 만들기 위해서는 G4Sphere라는 Solid를 이용하시면 됩니다.</div>
+        </div>
+    </div>
+<p>예를 들어, 반지름이 5 cm인 구형 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Orb</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>저는 여기서도 직경을 이용하는 편입니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">phantomDiameter</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Orb</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomDiameter</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>아까 수정하였던 Solid에 해당하는 내용을 G4Orb의 예시인 위 코드로 바꿔준 모습입니다. 이 경우에도 반드시 <font color='red'>G4Orb의 헤더(G4Orb.hh)를 직접 넣어주시기 바랍니다.</font></p>
+<a class="lightgallery" href="/g4-noqasked-003-solid/05_g4orb.png" title="/g4-noqasked-003-solid/05_g4orb.png" data-thumbnail="/g4-noqasked-003-solid/05_g4orb.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="05_g4orb.png"
+            data-srcset="/g4-noqasked-003-solid/05_g4orb.png, 05_g4orb.png 1.5x, /g4-noqasked-003-solid/05_g4orb.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-003-solid/05_g4orb.png" width="100%" />
+    </a>
+<p>실행하면, 구형의 물팬텀을 확인할 수 있습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-003-solid/06_g4orbrun.png" title="/g4-noqasked-003-solid/06_g4orbrun.png" data-thumbnail="/g4-noqasked-003-solid/06_g4orbrun.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="06_g4orbrun.png"
+            data-srcset="/g4-noqasked-003-solid/06_g4orbrun.png, 06_g4orbrun.png 1.5x, /g4-noqasked-003-solid/06_g4orbrun.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-003-solid/06_g4orbrun.png" width="100%" />
+    </a>
+<hr>
+<h2 id="정리">정리</h2>
+<p>Geant4는 이 외에도 정말 많은 Solid 종류를 제공하고 있습니다. 대부분의 경우, 각 클래스의 <strong>헤더파일</strong>을 열어보면 어떤 모양을 어떤 변수로 표현하는지 주석으로 설명되어 있습니다.</p>
+<p>이 글에서 소개한 단순한 모양 이외에도, 두 개의 Solid를 이용하여 합집합/차집합/교집합에 해당하는 새로운 Solid를 정의하는 클래스 (G4UnionSolid, G4SubtractionSolid, G4IntersectionSolid)나, 다각형 면으로 구성된 지오메트리를 표현하기 위한 Solid 클래스 (G4TesellatedSolid) 등 다양한 클래스를 제공하고 있으니 필요에 따라 참고하시기 바랍니다.</p>
+<hr>
+<p>고생하셨습니다.</p>
+<p>다음 글에서는, <strong>물질</strong>을 정의하는 방법에 대해 좀 더 자세히 살펴보도록 하겠습니다.</p></div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>2021-06-11에 수정</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/g4-noqasked-003-solid/index.md" target="_blank">Markdown으로 보기</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-003-solid/" data-title="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기" data-hashtags="Geant4,Solid,Geometry,G4VSolid,G4Box,G4Tubs,G4Cons,G4Sphere,G4Orbs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-003-solid/" data-title="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-003-solid/" data-title="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-003-solid/" data-title="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-003-solid/" data-title="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-003-solid/" data-title="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/solid/">Solid</a>,&nbsp;<a href="/tags/geometry/">Geometry</a>,&nbsp;<a href="/tags/g4vsolid/">G4VSolid</a>,&nbsp;<a href="/tags/g4box/">G4Box</a>,&nbsp;<a href="/tags/g4tubs/">G4Tubs</a>,&nbsp;<a href="/tags/g4cons/">G4Cons</a>,&nbsp;<a href="/tags/g4sphere/">G4Sphere</a>,&nbsp;<a href="/tags/g4orbs/">G4Orbs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
+        </section>
+    </div>
+
+    
+    <div class="post-nav">
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+                
+            
+
+            
+
+            
+        <a href="/g4-noqasked-002-detcon/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-JZ0NBG8ZWZ');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+</html>
