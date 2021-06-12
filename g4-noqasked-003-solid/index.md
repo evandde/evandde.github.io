@@ -21,7 +21,7 @@ Geant4에서는 각종 물리량에 대한 단위를 제공하고 있으며, 이
 
 예를 들어, <b>10 cm 라는 길이를 Geant4 코드 작성에서 기술하고자 할 때에는 다음과 같이 입력</b>합니다.
 
-```c++
+```cpp
 10. * cm
 ```
 
@@ -59,7 +59,7 @@ Geant4에서 Solid를 만들 때에는, 맨 처음 인자로 그 Solid의 "이�
 
 G4Box는 직육면체 모양을 정의하는 데에 사용하는 클래스입니다. 클래스의 생성자는 다음과 같습니다.
 
-```c++
+```cpp
 G4Box (const G4String &pName, G4double pX, G4double pY, G4double pZ)
 ```
 
@@ -72,19 +72,19 @@ G4Box (const G4String &pName, G4double pX, G4double pY, G4double pZ)
 
 예를 들어, X축 방향으로 10 cm, Y축 방향으로 5 cm, Z축 방향으로 20 cm 크기를 가진 직육면체 형태의 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.
 
-```c++
+```cpp
 auto phantomSol = new G4Box("phantom", 5. * cm, 2.5 * cm, 10. * cm);
 ```
 
 다만, 이렇게 적으면 실제 직육면체 크기와 코드에 써있는 값이 서로 달라 헷갈리는 경우가 있어, 저는 개인적으로 다음과 같이 실제 길이에 0.5를 곱하는 형태로 적는 것을 선호합니다.
 
-```c++
+```cpp
 auto phantomSol = new G4Box("phantom", .5 * 10. * cm, .5 * 5. * cm, .5 * 20. * cm);
 ```
 
 각 변의 길이를 변수화한다면 다음과 같이 좀 더 알아보기 쉽게 적을 수 있겠지요.
 
-```c++
+```cpp
 auto phantomXLength = 10. * cm;
 auto phantomYLength = 5. * cm;
 auto phantomZLength = 20. * cm;
@@ -103,7 +103,7 @@ auto phantomSol = new G4Box("phantom", .5 * phantomXLength, .5 * phantomYLength,
 
 G4Tubs는 원기둥 모양을 정의하는 데에 사용하는 클래스입니다. 가운데가 빈 두루마리 휴지같은 모양도 표현할 수 있습니다. 클래스의 생성자는 다음과 같습니다.
 
-```c++
+```cpp
 G4Tubs (const G4String &pName, G4double pRMin, G4double pRMax, G4double pDz, G4double pSPhi, G4double pDPhi)
 ```
 
@@ -119,13 +119,13 @@ G4Tubs (const G4String &pName, G4double pRMin, G4double pRMax, G4double pDz, G4d
 
 예를 들어, 반지름이 5 cm이고, 높이가 10 cm인 속이 꽉 찬 원기둥 형태의 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.
 
-```c++
+```cpp
 auto phantomSol = new G4Tubs("phantom", 0., 5. * cm, 5. * cm, 0., 360. * deg);
 ```
 
 저는 G4Box의 경우와 유사하게, 반경대신 직경을 써서 코드 작성시의 일관성을 유지하는 것을 좋아합니다. 일반적으로 다음과 같이 작성하는 편이지요.
 
-```c++
+```cpp
 auto phantomDiameter = 10. * cm;
 auto phantomHeight = 10. * cm;
 auto phantomSol = new G4Tubs("phantom", 0., .5 * phantomDiameter, .5 * phantomHeight, 0., 360. * deg);
@@ -143,7 +143,7 @@ auto phantomSol = new G4Tubs("phantom", 0., .5 * phantomDiameter, .5 * phantomHe
 
 G4Orb는 구 모양을 정의하는 데에 사용하는 클래스입니다. 클래스의 생성자는 다음과 같습니다.
 
-```c++
+```cpp
 G4Orb (const G4String &pName, G4double pRmax)
 ```
 
@@ -160,13 +160,13 @@ G4Tubs처럼 구 껍질이나 각도에 따라 잘린 구를 만들기 위해서
 
 예를 들어, 반지름이 5 cm인 구형 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.
 
-```c++
+```cpp
 auto phantomSol = new G4Orb("phantom", 5. * cm);
 ```
 
 저는 여기서도 직경을 이용하는 편입니다.
 
-```c++
+```cpp
 auto phantomDiameter = 10. * cm;
 auto phantomSol = new G4Orb("phantom", .5 * phantomDiameter);
 ```
