@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-002-detcon\/"
-        },"genre": "posts","keywords": "Geant4, DetectorConstruction, Geometry, Material, Solid, LogicalVolume, PhysicalVolume","wordcount":  1905 ,
+        },"genre": "posts","keywords": "Geant4, DetectorConstruction, Geometry, Material, Solid, LogicalVolume, PhysicalVolume","wordcount":  1945 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-002-detcon\/","datePublished": "2021-06-10T09:52:13+09:00","dateModified": "2021-06-10T09:52:13+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-10">2021-06-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1905&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-10">2021-06-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1945&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 4분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -136,7 +136,7 @@
     <li><a href="#실전">실전</a>
       <ul>
         <li><a href="#물-정의하기">&ldquo;물&rdquo; 정의하기</a></li>
-        <li><a href="#물이-담긴-박스-위치시키기">물이 담긴 박스 위치시키기</a></li>
+        <li><a href="#물이-담긴-팬텀-위치시키기">물이 담긴 팬텀 위치시키기</a></li>
         <li><a href="#실행해보기">실행해보기</a></li>
       </ul>
     </li>
@@ -186,11 +186,11 @@
             alt="/g4-noqasked-002-detcon/01_detcon.png" width="100%" />
     </a>
 <p>여기서 18번째 줄부터 나오는 <b>G4VPhysicalVolume *DetectorConstruction::Construct() 함수 안</b>에 지오메트리에 대한 내용을 적으면 됩니다.</p>
-<p>다음과 같이 정의되는 물이 담긴 박스를 만들어보겠습니다.</p>
+<p>다음과 같이 정의되는 물이 담긴 팬텀<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>를 만들어보겠습니다.</p>
 <ul>
 <li>Solid: 가로, 세로, 높이가 5 cm인 정육면체</li>
 <li>Logical Volume: 매질을 물로 채움</li>
-<li>Physical Volume: 박스의 중심이 (0, 0, 10 cm)가 되게끔 위치시킴</li>
+<li>Physical Volume: 팬텀의 중심이 (0, 0, 10 cm)가 되게끔 위치시킴</li>
 </ul>
 <h3 id="물-정의하기">&ldquo;물&rdquo; 정의하기</h3>
 <p>일단 물이라는 물질을 가져와야 합니다. 자세한 설명은 나중에 하기로 하고, 아래 그림에서 표시된 위치에 다음 한 줄을 적어넣습니다.</p>
@@ -206,15 +206,15 @@
             alt="/g4-noqasked-002-detcon/02_material.png" width="100%" />
     </a>
 <p>이 한 줄을 통해, <strong>matWater</strong> 라는 변수는 &ldquo;물&quot;이라는 물질로 정의되었습니다.</p>
-<h3 id="물이-담긴-박스-위치시키기">물이 담긴 박스 위치시키기</h3>
+<h3 id="물이-담긴-팬텀-위치시키기">물이 담긴 팬텀 위치시키기</h3>
 <p>이제 solid, logical volume, physical volume을 정의해봅시다.</p>
 <p>아래 그림에서 표시된 위치에 다음 내용을 적어 넣습니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Water box
-</span><span class="c1"></span><span class="k">auto</span> <span class="n">boxSize</span> <span class="o">=</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
-<span class="k">auto</span> <span class="n">boxPos</span> <span class="o">=</span> <span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="o">*</span><span class="n">cm</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">boxSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;Box&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">boxSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">boxSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">boxSize</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">boxLog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4LogicalVolume</span><span class="p">(</span><span class="n">boxSol</span><span class="p">,</span> <span class="n">matWater</span><span class="p">,</span> <span class="s">&#34;Box&#34;</span><span class="p">);</span>
-<span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">boxPos</span><span class="p">,</span> <span class="n">boxLog</span><span class="p">,</span> <span class="s">&#34;Box&#34;</span><span class="p">,</span> <span class="n">worldLog</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Water phantom
+</span><span class="c1"></span><span class="k">auto</span> <span class="n">phantomSize</span> <span class="o">=</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">phantomPos</span> <span class="o">=</span> <span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="o">*</span><span class="n">cm</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">phantomLog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4LogicalVolume</span><span class="p">(</span><span class="n">phantomSol</span><span class="p">,</span> <span class="n">matWater</span><span class="p">,</span> <span class="s">&#34;phantom&#34;</span><span class="p">);</span>
+<span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">phantomPos</span><span class="p">,</span> <span class="n">phantomLog</span><span class="p">,</span> <span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="n">worldLog</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </code></pre></div>
 <a class="lightgallery" href="/g4-noqasked-002-detcon/03_waterbox.png" title="/g4-noqasked-002-detcon/03_waterbox.png" data-thumbnail="/g4-noqasked-002-detcon/03_waterbox.png">
         <img
@@ -230,11 +230,11 @@
             <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">boxSize, boxPos와 같은 변수의 경우에는, 사실 따로 변수로 만들지 않고 직접 solid나 physical volume에 값을 적어도 됩니다. 하지만 재사용성 및 가독성을 고려하여 변수로 만들어 사용하였습니다.</div>
+            <div class="admonition-content">phantomSize, phantomPos와 같은 변수의 경우에는, 사실 따로 변수로 만들지 않고 직접 solid나 physical volume에 값을 적어도 됩니다. 하지만 재사용성 및 가독성을 고려하여 변수로 만들어 사용하였습니다.</div>
         </div>
     </div>
 <h3 id="실행해보기">실행해보기</h3>
-<p>이제 작성한 코드를 저장하고 빌드를 한 뒤 UI모드로 실행하면, 물박스가 추가된 것을 확인할 수 있습니다.</p>
+<p>이제 작성한 코드를 저장하고 빌드를 한 뒤 UI모드로 실행하면, 물 팬텀이 추가된 것을 확인할 수 있습니다.</p>
 <p>지난 글에서 만들어뒀던 build 디렉토리에 들어간 뒤, make 명령어만 입력하면 빌드가 수행됩니다.</p>
 <p>이어서, <b>./g4_minimal</b> 이라고 입력하여 실행하면 UI모드로 실행할 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
@@ -261,7 +261,7 @@ make
     </a>
 <p>왼쪽의 탭에서 <strong>Scene tree</strong>를 클릭하면, 화면에 나타나는 지오메트리의 트리구조를 볼 수 있습니다.</p>
 <p>이 중, <strong>Touchables</strong> 하위에 있는 것이 여러분이 만든 지오메트리 목록입니다.</p>
-<p>지금 저희가 만들었던 물박스는 <strong>Box</strong>라는 이름으로 표시되고 있으며, 왼쪽의 체크박스를 누르면 오른쪽 그림에서 조그마한 박스가 나타났다 사라졌다 하는 것을 확인할 수 있을 것입니다.</p>
+<p>지금 저희가 만들었던 물 팬텀은 <strong>phantom</strong>이라는 이름으로 표시되고 있으며, 왼쪽의 체크박스를 누르면 오른쪽 그림에서 조그마한 직육면체가 나타났다 사라졌다 하는 것을 확인할 수 있을 것입니다.</p>
 <hr>
 <h2 id="최종-파일-다운받는-법">최종 파일 다운받는 법</h2>
 <p>이번 글에서 작성한 코드는 <a href="https://github.com/evandde/g4_minimal/archive/ecef9c37af224cd65b866557f825508a71043e11.zip" target="_blank" rel="noopener noreffer">이 링크</a>를 통해 다운받을 수 있습니다.</p>
@@ -279,7 +279,16 @@ make
             alt="/g4-noqasked-002-detcon/05_newcode.png" width="100%" />
     </a>
 <p>위 코드에서 어떤 코드가 무슨 역할을 하고 있는지만 기억하시면 됩니다.</p>
-<p>세부적인 설명은 다음 글에서 하도록 하겠습니다.</p></div>
+<p>세부적인 설명은 다음 글에서 하도록 하겠습니다.</p>
+<hr>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>의료영상 혹은 방사선 조사 등의 특수한 목적을 위해 제작된 구조물 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section></div>
 
 <div class="post-footer" id="post-footer">
     <div class="post-info">

@@ -92,11 +92,11 @@ Geant4 코드 작성 시, 지오메트리에 대한 내용을 적는 곳은 정�
 
 여기서 18번째 줄부터 나오는 <b>G4VPhysicalVolume *DetectorConstruction::Construct() 함수 안</b>에 지오메트리에 대한 내용을 적으면 됩니다.
 
-다음과 같이 정의되는 물이 담긴 박스를 만들어보겠습니다.
+다음과 같이 정의되는 물이 담긴 팬텀[^1]를 만들어보겠습니다.
 
 - Solid: 가로, 세로, 높이가 5 cm인 정육면체
 - Logical Volume: 매질을 물로 채움
-- Physical Volume: 박스의 중심이 (0, 0, 10 cm)가 되게끔 위치시킴
+- Physical Volume: 팬텀의 중심이 (0, 0, 10 cm)가 되게끔 위치시킴
 
 ### "물" 정의하기
 
@@ -110,32 +110,32 @@ auto matWater = nist->FindOrBuildMaterial("G4_WATER");
 
 이 한 줄을 통해, **matWater** 라는 변수는 "물"이라는 물질로 정의되었습니다.
 
-### 물이 담긴 박스 위치시키기
+### 물이 담긴 팬텀 위치시키기
 
 이제 solid, logical volume, physical volume을 정의해봅시다.
 
 아래 그림에서 표시된 위치에 다음 내용을 적어 넣습니다.
 
 {{< highlight cpp "linenos=false" >}}
-// Water box
-auto boxSize = 5. * cm;
-auto boxPos = G4ThreeVector(0., 0., 10.*cm);
-auto boxSol = new G4Box("Box", .5 * boxSize, .5 * boxSize, .5 * boxSize);
-auto boxLog = new G4LogicalVolume(boxSol, matWater, "Box");
-new G4PVPlacement(nullptr, boxPos, boxLog, "Box", worldLog, false, 0);
+// Water phantom
+auto phantomSize = 5. * cm;
+auto phantomPos = G4ThreeVector(0., 0., 10.*cm);
+auto phantomSol = new G4Box("phantom", .5 * phantomSize, .5 * phantomSize, .5 * phantomSize);
+auto phantomLog = new G4LogicalVolume(phantomSol, matWater, "phantom");
+new G4PVPlacement(nullptr, phantomPos, phantomLog, "phantom", worldLog, false, 0);
 {{< /highlight >}}
 
 {{< image src="03_waterbox.png" width=100% >}}
 
 {{< admonition tip >}}
 
-boxSize, boxPos와 같은 변수의 경우에는, 사실 따로 변수로 만들지 않고 직접 solid나 physical volume에 값을 적어도 됩니다. 하지만 재사용성 및 가독성을 고려하여 변수로 만들어 사용하였습니다.
+phantomSize, phantomPos와 같은 변수의 경우에는, 사실 따로 변수로 만들지 않고 직접 solid나 physical volume에 값을 적어도 됩니다. 하지만 재사용성 및 가독성을 고려하여 변수로 만들어 사용하였습니다.
 
 {{< /admonition >}}
 
 ### 실행해보기
 
-이제 작성한 코드를 저장하고 빌드를 한 뒤 UI모드로 실행하면, 물박스가 추가된 것을 확인할 수 있습니다.
+이제 작성한 코드를 저장하고 빌드를 한 뒤 UI모드로 실행하면, 물 팬텀이 추가된 것을 확인할 수 있습니다.
 
 지난 글에서 만들어뒀던 build 디렉토리에 들어간 뒤, make 명령어만 입력하면 빌드가 수행됩니다.
 
@@ -155,7 +155,7 @@ make
 
 이 중, **Touchables** 하위에 있는 것이 여러분이 만든 지오메트리 목록입니다.
 
-지금 저희가 만들었던 물박스는 **Box**라는 이름으로 표시되고 있으며, 왼쪽의 체크박스를 누르면 오른쪽 그림에서 조그마한 박스가 나타났다 사라졌다 하는 것을 확인할 수 있을 것입니다.
+지금 저희가 만들었던 물 팬텀은 **phantom**이라는 이름으로 표시되고 있으며, 왼쪽의 체크박스를 누르면 오른쪽 그림에서 조그마한 직육면체가 나타났다 사라졌다 하는 것을 확인할 수 있을 것입니다.
 
 ---
 
@@ -176,3 +176,7 @@ make
 위 코드에서 어떤 코드가 무슨 역할을 하고 있는지만 기억하시면 됩니다.
 
 세부적인 설명은 다음 글에서 하도록 하겠습니다.
+
+---
+
+[^1]: 의료영상 혹은 방사선 조사 등의 특수한 목적을 위해 제작된 구조물
