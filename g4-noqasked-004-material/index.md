@@ -142,7 +142,7 @@ auto matWater = nist->ConstructNewMaterial("Water", elWater, nbWater, 1. * g / c
 
 물질들을 합쳐 놓은 혼합물을 정의하는 일이 필요할 수도 있을 것입니다. 이런 경우에는 G4Material 클래스의 생성자와, G4Material 클래스의 AddMaterial() 함수를 이용하면 됩니다. 각각의 원형은 다음과 같습니다.
 
-```
+```cpp
 G4Material (const G4String &name, G4double density, G4int nComponents, G4State state=kStateUndefined, G4double temp=NTP_Temperature, G4double pressure=CLHEP::STP_Pressure)
 ```
 
