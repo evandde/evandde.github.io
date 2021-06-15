@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/categories/geant4/</link>
         <description>Geant4 - 카테고리 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 11 Jun 2021 19:27:03 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/geant4/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 15 Jun 2021 09:26:01 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/geant4/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 4. 물질 정의하기</title>
+    <link>https://evandde.github.io/g4-noqasked-004-material/</link>
+    <pubDate>Tue, 15 Jun 2021 09:26:01 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-004-material/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</title>
     <link>https://evandde.github.io/g4-noqasked-003-solid/</link>
     <pubDate>Fri, 11 Jun 2021 19:27:03 &#43;0900</pubDate>
@@ -68,13 +75,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/g4install-107p1-ubt2004/</guid>
     <description><![CDATA[<p>이 글에서는 Linux계열 운영체제 중 하나인 <strong>Ubuntu 20.04 LTS</strong>에서 <strong>Geant4 10.7 patch 01 버전</strong>을 설치하는 방법에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>Geant4 설치가이드 모음 (Linux)</title>
-    <link>https://evandde.github.io/geant4-install-linux/</link>
-    <pubDate>Mon, 15 Feb 2021 12:45:56 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/geant4-install-linux/</guid>
-    <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
-이 글에서는 Geant4 설치에 관한 다양한 정보와, 설치가이드 링크를 제공합니다.</p>]]></description>
 </item></channel>
 </rss>

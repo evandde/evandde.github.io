@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/posts/</link>
         <description>모든 글 | EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 11 Jun 2021 19:27:03 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 15 Jun 2021 09:26:01 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 4. 물질 정의하기</title>
+    <link>https://evandde.github.io/g4-noqasked-004-material/</link>
+    <pubDate>Tue, 15 Jun 2021 09:26:01 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-004-material/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</title>
     <link>https://evandde.github.io/g4-noqasked-003-solid/</link>
     <pubDate>Fri, 11 Jun 2021 19:27:03 &#43;0900</pubDate>
@@ -68,12 +75,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/linux-sysinfo/</guid>
     <description><![CDATA[<p>리눅스 운영체제에서 하드웨어 및 시스템의 정보나 현재 상태를 살펴보는 데에 사용되는 명령어를 정리하였습니다.</p>]]></description>
-</item><item>
-    <title>Geant4 설치 무작정 따라하기(초보자용)</title>
-    <link>https://evandde.github.io/g4install-107p1-win10wslbasic/</link>
-    <pubDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/g4install-107p1-win10wslbasic/</guid>
-    <description><![CDATA[<p>이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, <b>Windows 10을 사용하는 개인 컴퓨터 환경</b>에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. <b>(인터넷 연결 필요)</b></p>]]></description>
 </item></channel>
 </rss>
