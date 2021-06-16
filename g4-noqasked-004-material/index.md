@@ -33,11 +33,11 @@ Geant4가 제공하는 material database의 목록은 [이 링크](https://geant
 
 - [Simple Materials (Elements)](https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#simple-materials-elements)
 
-  이 항목은 단일 원소로 구성된 물질의 목록입니다. 표에서 제시하는 물질 정보를 확인하고 이용하세요.
+  단일 원소로 구성된 물질의 목록
 
 - [NIST Compounds](https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#nist-compounds)
 
-  이 항목은 화합물의 목록입니다. 표의 형태는 두가지입니다. 각각을 읽는 법은 다음과 같습니다.
+  화합물의 목록. 표의 형태는 두가지로, 각각을 읽는 법은 다음과 같음
 
   - 조성비가 실수로 표시된 경우: 질량비
 
@@ -53,7 +53,7 @@ Geant4가 제공하는 material database의 목록은 [이 링크](https://geant
 
 - [Bio-Chemical Materials](https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#bio-chemical-materials)
 
-  특정 분야에서 주로 사용되는 물질들의 목록입니다. 읽는 법은 동일합니다.
+  특정 분야에서 주로 사용되는 물질들의 목록. 읽는 법은 동일
 
 이 중 대표적으로 많이 쓰이는 물질을 몇 개 소개하자면 다음과 같습니다.
 
@@ -73,9 +73,9 @@ Geant4가 제공하는 material database의 목록은 [이 링크](https://geant
 G4Material *FindOrBuildMaterial (const G4String &name, G4bool isotopes=true, G4bool warning=false)
 ```
 
-- name: Geant4 Material Database에서 가져올 물질의 이름입니다. 위 링크에서 확인한 물질의 이름을 **대소문자까지 맞추어 정확하게 입력**하셔야 합니다.
-- *isotopes: **입력하지 않아도 되는 인자**입니다. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수입니다.*
-- *warning: **입력하지 않아도 되는 인자**입니다. 물질 정의 작업이 정상적으로 이루어지지 않은 경우 경고문구를 띄울지 여부를 정의하는 인자입니다. 기본값은 false입니다.*
+- name: Geant4 Material Database에서 가져올 물질의 이름. 위 링크에서 확인한 물질의 이름을 **대소문자까지 맞추어 정확하게 입력**해야 함
+- *isotopes: **입력하지 않아도 되는 인자**. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임*
+- *warning: **입력하지 않아도 되는 인자**. 물질 정의 작업이 정상적으로 이루어지지 않은 경우 경고문구를 띄울지 여부를 정의하는 인자. 기본값은 false*
 
 예를 들어 NIST Compounds 목록에 있는 G4_AIR (공기)를 정의하고자 하는 경우에는 다음과 같이 입력합니다.
 
@@ -103,14 +103,14 @@ G4Material *ConstructNewMaterial (const G4String &name, const std::vector< G4Str
 
 <b>조성비를 <font color = 'red'>개수비</font>로서 입력하고자 할 때 사용합니다.</b>
 
-- name: 물질의 이름입니다. 자유롭게 적으면 됩니다.
-- elm: 원소기호의 목록을 적은 G4String형 벡터입니다. 화합물의 구성원소를 적으면 됩니다.
-- nbAtoms: 원소별 조성비를 개수비형태로 적은 G4int형 벡터입니다. 화합물의 구성원소별 조성비를 적으면 됩니다.
-- dens: 물질의 밀도입니다.
-- *isotopes: **입력하지 않아도 되는 인자**입니다. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수입니다.*
-- *state: **입력하지 않아도 되는 인자**입니다. 물질의 상을 특정하고 싶을 때 사용합니다. 기본값은 kStateSolid(고체형)입니다.*
-- *temp: **입력하지 않아도 되는 인자**입니다. 물질의 온도를 특정하고 싶을 때 사용합니다. 기본값은 NTP_Temperature(약 293.15 K) 입니다.*
-- *pressure: **입력하지 않아도 되는 인자**입니다. 물질의 압력을 특정하고 싶을 때 사용합니다. 기본값은 CLHEP::STP_Pressure(1 atm) 입니다.*
+- name: 물질의 이름. 자유롭게 적으면 됨
+- elm: 원소기호의 목록을 적은 G4String형 벡터. 화합물의 구성원소를 순서대로 적음
+- nbAtoms: 원소별 조성비를 **개수비**형태로 적은 G4int형 벡터. 화합물의 구성원소별 조성비를 순서대로 적음
+- dens: 물질의 밀도
+- *isotopes: **입력하지 않아도 되는 인자**. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임*
+- *state: **입력하지 않아도 되는 인자**. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateSolid(고체형)*
+- *temp: **입력하지 않아도 되는 인자**. 물질의 온도를 특정하고 싶을 때 사용. 기본값은 NTP_Temperature(약 293.15 K)*
+- *pressure: **입력하지 않아도 되는 인자**. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)*
 
 ```cpp
 G4Material *ConstructNewMaterial (const G4String &name, const std::vector< G4String > &elm, const std::vector< G4double > &weight, G4double dens, G4bool isotopes=true, G4State state=kStateSolid, G4double temp=NTP_Temperature, G4double pressure=CLHEP::STP_Pressure)
@@ -118,14 +118,14 @@ G4Material *ConstructNewMaterial (const G4String &name, const std::vector< G4Str
 
 <b>조성비를 <font color = 'red'>질량비</font>로서 입력하고자 할 때 사용합니다.</b>
 
-- name: 물질의 이름입니다. 자유롭게 적으면 됩니다.
-- elm: 원소기호의 목록을 적은 G4String형 벡터입니다. 화합물의 구성원소를 적으면 됩니다.
-- weight: 원소별 조성비를 질량비형태로 적은 G4double형 벡터입니다. 화합물의 구성원소별 조성비를 적으면 됩니다.
-- dens: 물질의 밀도입니다.
-- *isotopes: **입력하지 않아도 되는 인자**입니다. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수입니다.*
-- *state: **입력하지 않아도 되는 인자**입니다. 물질의 상을 특정하고 싶을 때 사용합니다. 기본값은 kStateSolid(고체형)입니다.*
-- *temp: **입력하지 않아도 되는 인자**입니다. 물질의 온도를 특정하고 싶을 때 사용합니다. 기본값은 NTP_Temperature(약 293.15 K) 입니다.*
-- *pressure: **입력하지 않아도 되는 인자**입니다. 물질의 압력을 특정하고 싶을 때 사용합니다. 기본값은 CLHEP::STP_Pressure(1 atm) 입니다.*
+- name: 물질의 이름. 자유롭게 적으면 됨
+- elm: 원소기호의 목록을 적은 G4String형 벡터. 화합물의 구성원소를 순서대로 적음
+- weight: 원소별 조성비를 **질량비**형태로 적은 G4double형 벡터. 화합물의 구성원소별 조성비를 순서대로 적음
+- dens: 물질의 밀도
+- *isotopes: **입력하지 않아도 되는 인자**. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임*
+- *state: **입력하지 않아도 되는 인자**. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateSolid(고체형)*
+- *temp: **입력하지 않아도 되는 인자**. 물질의 온도를 특정하고 싶을 때 사용합 기본값은 NTP_Temperature(약 293.15 K)*
+- *pressure: **입력하지 않아도 되는 인자**. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)*
 
 이 함수를 이용할 때 주의할 점은, **원소기호를 적은 벡터의 원소 순서대로 조성비를 적어주어야 한다는 것**입니다.
 
@@ -148,19 +148,19 @@ G4Material (const G4String &name, G4double density, G4int nComponents, G4State s
 
 **G4Material의 생성자 중, 원소/물질의 조성비를 바탕으로 정의하는 데에 사용하는 생성자**
 
-- name: 물질의 이름입니다. 자유롭게 적으면 됩니다.
-- density: 물질의 밀도입니다.
-- nComponents: 이 물질을 구성하는 원소/물질 종류의 수입니다.
-- *state: **입력하지 않아도 되는 인자**입니다. 물질의 상을 특정하고 싶을 때 사용합니다. 기본값은 kStateUndefined(고체 혹은 기체형)입니다.*
-- *temp: **입력하지 않아도 되는 인자**입니다. 물질의 온도를 특정하고 싶을 때 사용합니다. 기본값은 NTP_Temperature(약 293.15 K) 입니다.*
-- *pressure: **입력하지 않아도 되는 인자**입니다. 물질의 압력을 특정하고 싶을 때 사용합니다. 기본값은 CLHEP::STP_Pressure(1 atm) 입니다.*
+- name: 물질의 이름. 자유롭게 적으면 됨
+- density: 물질의 밀도
+- nComponents: 이 물질을 구성하는 원소/물질 종류의 수
+- *state: **입력하지 않아도 되는 인자**. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateUndefined(고체 혹은 기체형)*
+- *temp: **입력하지 않아도 되는 인자**. 물질의 온도를 특정하고 싶을 때 사용. 기본값은 NTP_Temperature(약 293.15 K)*
+- *pressure: **입력하지 않아도 되는 인자**. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)*
 
 ```cpp
 void AddMaterial (G4Material *material, G4double fraction)
 ```
 
-- material: 구성요소가 될 물질입니다.
-- fraction: 해당 물질의 조성비입니다. 질량비로 입력해야 합니다.
+- material: 구성요소가 될 물질에 해당하는 G4Material 객체의 포인터
+- fraction: 해당 물질의 조성비. **질량비**로 입력
 
 예를 들어 20% 농도의 소금물을 정의한다면 다음과 같이 입력하면 됩니다. (소금질량 : 물질량 = 20 : 80, NTP에서 1.137 gcc로 알려져 있음)
 
@@ -186,13 +186,13 @@ Solid와 물질이 있으면, 손쉽게 Logical Volume을 정의할 수 있습�
 G4LogicalVolume (G4VSolid *pSolid, G4Material *pMaterial, const G4String &name, G4FieldManager *pFieldMgr=nullptr, G4VSensitiveDetector *pSDetector=nullptr, G4UserLimits *pULimits=nullptr, G4bool optimise=true)
 ```
 
-- pSolid: G4VSolid 객체의 포인터입니다. 앞서 정의한 Solid를 넣으면 됩니다.
-- pMaterial: G4Material 객체의 포인터입니다. 앞서 정의한 Material을 넣으면 됩니다.
-- name: Logical Volume의 이름입니다. 자유롭게 적으시면 됩니다. 다만, 다른 Logical Volume과 겹치지 않게끔 고유의 이름을 권장합니다. Solid의 이름과는 동일해도 상관없습니다.
-- *pFieldMgr: **입력하지 않아도 되는 인자**입니다. 전기장/자기장 등에 대한 설정을 위해 사용됩니다.*
-- *pSDetector: **입력하지 않아도 되는 인자**입니다. 스코어링용 SD에 대한 설정을 위해 사용됩니다.*
-- *pULimits: **입력하지 않아도 되는 인자**입니다. 입자 트래킹에서의 제한치 등에 대한 설정을 위해 사용됩니다.*
-- *optimise: **입력하지 않아도 되는 인자**입니다. 최적화에 대한 설정을 위해 사용됩니다.*
+- pSolid: G4VSolid 객체의 포인터. 앞서 정의한 Solid를 넣음
+- pMaterial: G4Material 객체의 포인터. 앞서 정의한 Material을 넣음
+- name: Logical Volume의 이름. 자유롭게 적으면 됨. 다만, 다른 Logical Volume과 겹치지 않게끔 고유의 이름을 권장. Solid의 이름과는 동일해도 상관없음
+- *pFieldMgr: **입력하지 않아도 되는 인자**. 전기장/자기장 등에 대한 설정을 위해 사용*
+- *pSDetector: **입력하지 않아도 되는 인자**. 스코어링용 SD에 대한 설정을 위해 사용*
+- *pULimits: **입력하지 않아도 되는 인자**. 입자 트래킹에서의 제한치 등에 대한 설정을 위해 사용*
+- *optimise: **입력하지 않아도 되는 인자**. 최적화에 대한 설정을 위해 사용*
 
 대부분의 경우, **맨 위의 3가지 인자만 입력**하여 사용하시면 됩니다.
 

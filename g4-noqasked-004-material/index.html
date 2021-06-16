@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-004-material\/"
-        },"genre": "posts","keywords": "Geant4, G4Material, G4LogicalVolume, G4Element, NIST, G4Isotope","wordcount":  3358 ,
+        },"genre": "posts","keywords": "Geant4, G4Material, G4LogicalVolume, G4Element, NIST, G4Isotope","wordcount":  3073 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-004-material\/","datePublished": "2021-06-15T09:26:01+09:00","dateModified": "2021-06-15T09:26:01+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 4. 물질 정의하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-15">2021-06-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3358&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-15">2021-06-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3073&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 7분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -155,11 +155,11 @@
 <ul>
 <li>
 <p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#simple-materials-elements" target="_blank" rel="noopener noreffer">Simple Materials (Elements)</a></p>
-<p>이 항목은 단일 원소로 구성된 물질의 목록입니다. 표에서 제시하는 물질 정보를 확인하고 이용하세요.</p>
+<p>단일 원소로 구성된 물질의 목록</p>
 </li>
 <li>
 <p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#nist-compounds" target="_blank" rel="noopener noreffer">NIST Compounds</a></p>
-<p>이 항목은 화합물의 목록입니다. 표의 형태는 두가지입니다. 각각을 읽는 법은 다음과 같습니다.</p>
+<p>화합물의 목록. 표의 형태는 두가지로, 각각을 읽는 법은 다음과 같음</p>
 <ul>
 <li>
 <p>조성비가 실수로 표시된 경우: 질량비</p>
@@ -195,7 +195,7 @@
 </li>
 <li>
 <p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#bio-chemical-materials" target="_blank" rel="noopener noreffer">Bio-Chemical Materials</a></p>
-<p>특정 분야에서 주로 사용되는 물질들의 목록입니다. 읽는 법은 동일합니다.</p>
+<p>특정 분야에서 주로 사용되는 물질들의 목록. 읽는 법은 동일</p>
 </li>
 </ul>
 <p>이 중 대표적으로 많이 쓰이는 물질을 몇 개 소개하자면 다음과 같습니다.</p>
@@ -218,9 +218,9 @@
 </code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>name: Geant4 Material Database에서 가져올 물질의 이름입니다. 위 링크에서 확인한 물질의 이름을 <strong>대소문자까지 맞추어 정확하게 입력</strong>하셔야 합니다.</li>
-<li><em>isotopes: <strong>입력하지 않아도 되는 인자</strong>입니다. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수입니다.</em></li>
-<li><em>warning: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질 정의 작업이 정상적으로 이루어지지 않은 경우 경고문구를 띄울지 여부를 정의하는 인자입니다. 기본값은 false입니다.</em></li>
+<li>name: Geant4 Material Database에서 가져올 물질의 이름. 위 링크에서 확인한 물질의 이름을 <strong>대소문자까지 맞추어 정확하게 입력</strong>해야 함</li>
+<li><em>isotopes: <strong>입력하지 않아도 되는 인자</strong>. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임</em></li>
+<li><em>warning: <strong>입력하지 않아도 되는 인자</strong>. 물질 정의 작업이 정상적으로 이루어지지 않은 경우 경고문구를 띄울지 여부를 정의하는 인자. 기본값은 false</em></li>
 </ul>
 <p>예를 들어 NIST Compounds 목록에 있는 G4_AIR (공기)를 정의하고자 하는 경우에는 다음과 같이 입력합니다.</p>
 <div class="highlight"><div class="chroma">
@@ -257,14 +257,14 @@
 </div>
 </div><p><b>조성비를 <font color = 'red'>개수비</font>로서 입력하고자 할 때 사용합니다.</b></p>
 <ul>
-<li>name: 물질의 이름입니다. 자유롭게 적으면 됩니다.</li>
-<li>elm: 원소기호의 목록을 적은 G4String형 벡터입니다. 화합물의 구성원소를 적으면 됩니다.</li>
-<li>nbAtoms: 원소별 조성비를 개수비형태로 적은 G4int형 벡터입니다. 화합물의 구성원소별 조성비를 적으면 됩니다.</li>
-<li>dens: 물질의 밀도입니다.</li>
-<li><em>isotopes: <strong>입력하지 않아도 되는 인자</strong>입니다. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수입니다.</em></li>
-<li><em>state: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 상을 특정하고 싶을 때 사용합니다. 기본값은 kStateSolid(고체형)입니다.</em></li>
-<li><em>temp: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 온도를 특정하고 싶을 때 사용합니다. 기본값은 NTP_Temperature(약 293.15 K) 입니다.</em></li>
-<li><em>pressure: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 압력을 특정하고 싶을 때 사용합니다. 기본값은 CLHEP::STP_Pressure(1 atm) 입니다.</em></li>
+<li>name: 물질의 이름. 자유롭게 적으면 됨</li>
+<li>elm: 원소기호의 목록을 적은 G4String형 벡터. 화합물의 구성원소를 순서대로 적음</li>
+<li>nbAtoms: 원소별 조성비를 <strong>개수비</strong>형태로 적은 G4int형 벡터. 화합물의 구성원소별 조성비를 순서대로 적음</li>
+<li>dens: 물질의 밀도</li>
+<li><em>isotopes: <strong>입력하지 않아도 되는 인자</strong>. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임</em></li>
+<li><em>state: <strong>입력하지 않아도 되는 인자</strong>. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateSolid(고체형)</em></li>
+<li><em>temp: <strong>입력하지 않아도 되는 인자</strong>. 물질의 온도를 특정하고 싶을 때 사용. 기본값은 NTP_Temperature(약 293.15 K)</em></li>
+<li><em>pressure: <strong>입력하지 않아도 되는 인자</strong>. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)</em></li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -276,14 +276,14 @@
 </div>
 </div><p><b>조성비를 <font color = 'red'>질량비</font>로서 입력하고자 할 때 사용합니다.</b></p>
 <ul>
-<li>name: 물질의 이름입니다. 자유롭게 적으면 됩니다.</li>
-<li>elm: 원소기호의 목록을 적은 G4String형 벡터입니다. 화합물의 구성원소를 적으면 됩니다.</li>
-<li>weight: 원소별 조성비를 질량비형태로 적은 G4double형 벡터입니다. 화합물의 구성원소별 조성비를 적으면 됩니다.</li>
-<li>dens: 물질의 밀도입니다.</li>
-<li><em>isotopes: <strong>입력하지 않아도 되는 인자</strong>입니다. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수입니다.</em></li>
-<li><em>state: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 상을 특정하고 싶을 때 사용합니다. 기본값은 kStateSolid(고체형)입니다.</em></li>
-<li><em>temp: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 온도를 특정하고 싶을 때 사용합니다. 기본값은 NTP_Temperature(약 293.15 K) 입니다.</em></li>
-<li><em>pressure: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 압력을 특정하고 싶을 때 사용합니다. 기본값은 CLHEP::STP_Pressure(1 atm) 입니다.</em></li>
+<li>name: 물질의 이름. 자유롭게 적으면 됨</li>
+<li>elm: 원소기호의 목록을 적은 G4String형 벡터. 화합물의 구성원소를 순서대로 적음</li>
+<li>weight: 원소별 조성비를 <strong>질량비</strong>형태로 적은 G4double형 벡터. 화합물의 구성원소별 조성비를 순서대로 적음</li>
+<li>dens: 물질의 밀도</li>
+<li><em>isotopes: <strong>입력하지 않아도 되는 인자</strong>. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임</em></li>
+<li><em>state: <strong>입력하지 않아도 되는 인자</strong>. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateSolid(고체형)</em></li>
+<li><em>temp: <strong>입력하지 않아도 되는 인자</strong>. 물질의 온도를 특정하고 싶을 때 사용합 기본값은 NTP_Temperature(약 293.15 K)</em></li>
+<li><em>pressure: <strong>입력하지 않아도 되는 인자</strong>. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)</em></li>
 </ul>
 <p>이 함수를 이용할 때 주의할 점은, <strong>원소기호를 적은 벡터의 원소 순서대로 조성비를 적어주어야 한다는 것</strong>입니다.</p>
 <p>예를 들어 물(H2O)을 이 함수를 사용하여 정의하려면 다음과 같이 입력하면 됩니다.</p>
@@ -313,12 +313,12 @@
 </div>
 </div><p><strong>G4Material의 생성자 중, 원소/물질의 조성비를 바탕으로 정의하는 데에 사용하는 생성자</strong></p>
 <ul>
-<li>name: 물질의 이름입니다. 자유롭게 적으면 됩니다.</li>
-<li>density: 물질의 밀도입니다.</li>
-<li>nComponents: 이 물질을 구성하는 원소/물질 종류의 수입니다.</li>
-<li><em>state: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 상을 특정하고 싶을 때 사용합니다. 기본값은 kStateUndefined(고체 혹은 기체형)입니다.</em></li>
-<li><em>temp: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 온도를 특정하고 싶을 때 사용합니다. 기본값은 NTP_Temperature(약 293.15 K) 입니다.</em></li>
-<li><em>pressure: <strong>입력하지 않아도 되는 인자</strong>입니다. 물질의 압력을 특정하고 싶을 때 사용합니다. 기본값은 CLHEP::STP_Pressure(1 atm) 입니다.</em></li>
+<li>name: 물질의 이름. 자유롭게 적으면 됨</li>
+<li>density: 물질의 밀도</li>
+<li>nComponents: 이 물질을 구성하는 원소/물질 종류의 수</li>
+<li><em>state: <strong>입력하지 않아도 되는 인자</strong>. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateUndefined(고체 혹은 기체형)</em></li>
+<li><em>temp: <strong>입력하지 않아도 되는 인자</strong>. 물질의 온도를 특정하고 싶을 때 사용. 기본값은 NTP_Temperature(약 293.15 K)</em></li>
+<li><em>pressure: <strong>입력하지 않아도 되는 인자</strong>. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)</em></li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -329,8 +329,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>material: 구성요소가 될 물질입니다.</li>
-<li>fraction: 해당 물질의 조성비입니다. 질량비로 입력해야 합니다.</li>
+<li>material: 구성요소가 될 물질에 해당하는 G4Material 객체의 포인터</li>
+<li>fraction: 해당 물질의 조성비. <strong>질량비</strong>로 입력</li>
 </ul>
 <p>예를 들어 20% 농도의 소금물을 정의한다면 다음과 같이 입력하면 됩니다. (소금질량 : 물질량 = 20 : 80, NTP에서 1.137 gcc로 알려져 있음)</p>
 <div class="highlight"><div class="chroma">
@@ -369,13 +369,13 @@
 </code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>pSolid: G4VSolid 객체의 포인터입니다. 앞서 정의한 Solid를 넣으면 됩니다.</li>
-<li>pMaterial: G4Material 객체의 포인터입니다. 앞서 정의한 Material을 넣으면 됩니다.</li>
-<li>name: Logical Volume의 이름입니다. 자유롭게 적으시면 됩니다. 다만, 다른 Logical Volume과 겹치지 않게끔 고유의 이름을 권장합니다. Solid의 이름과는 동일해도 상관없습니다.</li>
-<li><em>pFieldMgr: <strong>입력하지 않아도 되는 인자</strong>입니다. 전기장/자기장 등에 대한 설정을 위해 사용됩니다.</em></li>
-<li><em>pSDetector: <strong>입력하지 않아도 되는 인자</strong>입니다. 스코어링용 SD에 대한 설정을 위해 사용됩니다.</em></li>
-<li><em>pULimits: <strong>입력하지 않아도 되는 인자</strong>입니다. 입자 트래킹에서의 제한치 등에 대한 설정을 위해 사용됩니다.</em></li>
-<li><em>optimise: <strong>입력하지 않아도 되는 인자</strong>입니다. 최적화에 대한 설정을 위해 사용됩니다.</em></li>
+<li>pSolid: G4VSolid 객체의 포인터. 앞서 정의한 Solid를 넣음</li>
+<li>pMaterial: G4Material 객체의 포인터. 앞서 정의한 Material을 넣음</li>
+<li>name: Logical Volume의 이름. 자유롭게 적으면 됨. 다만, 다른 Logical Volume과 겹치지 않게끔 고유의 이름을 권장. Solid의 이름과는 동일해도 상관없음</li>
+<li><em>pFieldMgr: <strong>입력하지 않아도 되는 인자</strong>. 전기장/자기장 등에 대한 설정을 위해 사용</em></li>
+<li><em>pSDetector: <strong>입력하지 않아도 되는 인자</strong>. 스코어링용 SD에 대한 설정을 위해 사용</em></li>
+<li><em>pULimits: <strong>입력하지 않아도 되는 인자</strong>. 입자 트래킹에서의 제한치 등에 대한 설정을 위해 사용</em></li>
+<li><em>optimise: <strong>입력하지 않아도 되는 인자</strong>. 최적화에 대한 설정을 위해 사용</em></li>
 </ul>
 <p>대부분의 경우, <strong>맨 위의 3가지 인자만 입력</strong>하여 사용하시면 됩니다.</p>
 <p>앞서 water phantom을 정의하기 위해 작성한 코드를 살펴보겠습니다.</p>
