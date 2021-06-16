@@ -184,7 +184,7 @@ void AddMaterial (G4Material *material,
 - material: 구성요소가 될 물질에 해당하는 G4Material 객체의 포인터
 - fraction: 해당 물질의 조성비. **질량비**로 입력
 
-예를 들어 20% 농도의 소금물을 정의한다면 다음과 같이 입력하면 됩니다. (소금질량 : 물질량 = 20 : 80, NTP에서 1.137 gcc로 알려져 있음)
+예를 들어 20% 농도의 소금물을 정의한다면 다음과 같이 입력하면 됩니다. (소금질량 : 물질량 = 20 : 80, NTP에서 1.147 gcc로 알려져 있음)
 
 ```cpp
 auto nist = G4NistManager::Instance();
