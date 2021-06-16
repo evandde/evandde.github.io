@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-003-solid\/"
-        },"genre": "posts","keywords": "Geant4, Solid, Geometry, G4VSolid, G4Box, G4Tubs, G4Cons, G4Sphere, G4Orbs","wordcount":  2876 ,
+        },"genre": "posts","keywords": "Geant4, Solid, Geometry, G4VSolid, G4Box, G4Tubs, G4Cons, G4Sphere, G4Orbs","wordcount":  2966 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-003-solid\/","datePublished": "2021-06-11T19:27:03+09:00","dateModified": "2021-06-11T19:27:03+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -35,7 +35,7 @@
                 "name": "Evan Kim"
             },"description": ""
     }
-    </script></head>
+    </script><script data-ad-client="ca-pub-3621798796175855" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script></head>
     <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-11">2021-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2876&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-11">2021-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2966&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -275,13 +275,21 @@
 <p>pDz: 원기둥 높이의 <font color='red'><b>절반</b></font></p>
 </li>
 <li>
-<p>pSPhi: 시작 중심각. 케이크 조각처럼 부채꼴 기둥을 표현하고자 하는 경우에, 시작할 각도를 0~360도 사이에서 지정할 수 있음. 일반적인 원기둥의 경우 0을 적음</p>
+<p>pSPhi: 시작 중심각. 케이크 조각처럼 부채꼴 기둥을 표현하고자 하는 경우에, 시작할 각도를 0°~360° 사이에서 지정할 수 있음. 일반적인 원기둥의 경우 0을 적음. (0°: +x축, 90°: +y축)</p>
 </li>
 <li>
-<p>pDPhi: 중심각의 변화량. 케이크 조각처럼 부채꼴 기둥을 표현하고자 하는 경우에, 중심각의 변화량을 0~360도 사이에서 지정할 수 있음. 일반적인 원기둥의 경우 360도(360. * deg)를 적음</p>
+<p>pDPhi: 중심각의 변화량. 케이크 조각처럼 부채꼴 기둥을 표현하고자 하는 경우에, 중심각의 변화량을 0°~360° 사이에서 지정할 수 있음. 일반적인 원기둥의 경우 360°(360. * deg)를 적음</p>
 </li>
 </ul>
 <p>일반적인 원기둥 뿐만 아니라, 원기둥 껍질 혹은 부채꼴 기둥 및 부채꼴 기둥 껍질모양까지 만들 수 있습니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">G4Tubs 클래스는 무조건 Z축을 중심축으로 한 형태로만 만들어집니다. 다른 축을 중심축으로 하고 싶다면, Physical Volume을 설정할 때 회전을 시키는 방법밖에 없습니다.</div>
+        </div>
+    </div>
 <p>예를 들어, 반지름이 5 cm이고, 높이가 10 cm인 속이 꽉 찬 원기둥 형태의 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
