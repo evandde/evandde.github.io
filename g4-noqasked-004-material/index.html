@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-004-material\/"
-        },"genre": "posts","keywords": "Geant4, G4Material, G4LogicalVolume, G4Element, NIST, G4Isotope","wordcount":  3073 ,
+        },"genre": "posts","keywords": "Geant4, G4Material, G4LogicalVolume, G4Element, NIST, G4Isotope","wordcount":  3101 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-004-material\/","datePublished": "2021-06-15T09:26:01+09:00","dateModified": "2021-06-15T09:26:01+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 4. 물질 정의하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-15">2021-06-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3073&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-15">2021-06-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3101&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 7분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -212,9 +212,13 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">FindOrBuildMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> <span class="n">G4bool</span> <span class="n">warning</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">FindOrBuildMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+                                 <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> 
+                                 <span class="n">G4bool</span> <span class="n">warning</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -250,9 +254,23 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4String</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">elm</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4int</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">nbAtoms</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">dens</span><span class="p">,</span> <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateSolid</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+                                  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4String</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">elm</span><span class="p">,</span> 
+                                  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4int</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">nbAtoms</span><span class="p">,</span> 
+                                  <span class="n">G4double</span> <span class="n">dens</span><span class="p">,</span> 
+                                  <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> 
+                                  <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateSolid</span><span class="p">,</span> 
+                                  <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> 
+                                  <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><b>조성비를 <font color = 'red'>개수비</font>로서 입력하고자 할 때 사용합니다.</b></p>
@@ -269,9 +287,23 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4String</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">elm</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4double</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">weight</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">dens</span><span class="p">,</span> <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateSolid</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+                                  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4String</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">elm</span><span class="p">,</span> 
+                                  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4double</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">weight</span><span class="p">,</span> 
+                                  <span class="n">G4double</span> <span class="n">dens</span><span class="p">,</span> 
+                                  <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> 
+                                  <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateSolid</span><span class="p">,</span> 
+                                  <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> 
+                                  <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><b>조성비를 <font color = 'red'>질량비</font>로서 입력하고자 할 때 사용합니다.</b></p>
@@ -306,9 +338,19 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">density</span><span class="p">,</span> <span class="n">G4int</span> <span class="n">nComponents</span><span class="p">,</span> <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateUndefined</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+            <span class="n">G4double</span> <span class="n">density</span><span class="p">,</span> 
+            <span class="n">G4int</span> <span class="n">nComponents</span><span class="p">,</span> 
+            <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateUndefined</span><span class="p">,</span> 
+            <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> 
+            <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>G4Material의 생성자 중, 원소/물질의 조성비를 바탕으로 정의하는 데에 사용하는 생성자</strong></p>
@@ -323,9 +365,11 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">AddMaterial</span> <span class="p">(</span><span class="n">G4Material</span> <span class="o">*</span><span class="n">material</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">fraction</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">AddMaterial</span> <span class="p">(</span><span class="n">G4Material</span> <span class="o">*</span><span class="n">material</span><span class="p">,</span> 
+                  <span class="n">G4double</span> <span class="n">fraction</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -363,9 +407,21 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4LogicalVolume</span> <span class="p">(</span><span class="n">G4VSolid</span> <span class="o">*</span><span class="n">pSolid</span><span class="p">,</span> <span class="n">G4Material</span> <span class="o">*</span><span class="n">pMaterial</span><span class="p">,</span> <span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="n">G4FieldManager</span> <span class="o">*</span><span class="n">pFieldMgr</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">G4VSensitiveDetector</span> <span class="o">*</span><span class="n">pSDetector</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">G4UserLimits</span> <span class="o">*</span><span class="n">pULimits</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">G4bool</span> <span class="n">optimise</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4LogicalVolume</span> <span class="p">(</span><span class="n">G4VSolid</span> <span class="o">*</span><span class="n">pSolid</span><span class="p">,</span> 
+                 <span class="n">G4Material</span> <span class="o">*</span><span class="n">pMaterial</span><span class="p">,</span> 
+                 <span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+                 <span class="n">G4FieldManager</span> <span class="o">*</span><span class="n">pFieldMgr</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> 
+                 <span class="n">G4VSensitiveDetector</span> <span class="o">*</span><span class="n">pSDetector</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> 
+                 <span class="n">G4UserLimits</span> <span class="o">*</span><span class="n">pULimits</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> 
+                 <span class="n">G4bool</span> <span class="n">optimise</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>

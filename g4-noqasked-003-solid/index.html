@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-003-solid\/"
-        },"genre": "posts","keywords": "Geant4, Solid, Geometry, G4VSolid, G4Box, G4Tubs, G4Cons, G4Sphere, G4Orbs","wordcount":  2966 ,
+        },"genre": "posts","keywords": "Geant4, Solid, Geometry, G4VSolid, G4Box, G4Tubs, G4Cons, G4Sphere, G4Orbs","wordcount":  2975 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-003-solid\/","datePublished": "2021-06-11T19:27:03+09:00","dateModified": "2021-06-11T19:27:03+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-11">2021-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2966&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-11">2021-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2975&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -186,9 +186,15 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Box</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pX</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pY</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pZ</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Box</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> 
+       <span class="n">G4double</span> <span class="n">pX</span><span class="p">,</span> 
+       <span class="n">G4double</span> <span class="n">pY</span><span class="p">,</span> 
+       <span class="n">G4double</span> <span class="n">pZ</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -256,9 +262,19 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Tubs</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pRMin</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pRMax</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pDz</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pSPhi</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pDPhi</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Tubs</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> 
+        <span class="n">G4double</span> <span class="n">pRMin</span><span class="p">,</span> 
+        <span class="n">G4double</span> <span class="n">pRMax</span><span class="p">,</span> 
+        <span class="n">G4double</span> <span class="n">pDz</span><span class="p">,</span> 
+        <span class="n">G4double</span> <span class="n">pSPhi</span><span class="p">,</span> 
+        <span class="n">G4double</span> <span class="n">pDPhi</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -337,9 +353,11 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Orb</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">pRmax</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Orb</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> 
+       <span class="n">G4double</span> <span class="n">pRmax</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>

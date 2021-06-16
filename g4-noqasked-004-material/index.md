@@ -70,7 +70,9 @@ Geant4가 제공하는 material database의 목록은 [이 링크](https://geant
 여러분이 원하는 물질을 위 목록에서 찾으셨다면, **G4NistManager**클래스의 **FindOrBuildMaterial() 함수**를 이용해 해당 물질을 정의할 수 있습니다. 이 함수의 원형은 다음과 같습니다.
 
 ```cpp
-G4Material *FindOrBuildMaterial (const G4String &name, G4bool isotopes=true, G4bool warning=false)
+G4Material *FindOrBuildMaterial (const G4String &name, 
+                                 G4bool isotopes=true, 
+                                 G4bool warning=false)
 ```
 
 - name: Geant4 Material Database에서 가져올 물질의 이름. 위 링크에서 확인한 물질의 이름을 **대소문자까지 맞추어 정확하게 입력**해야 함
@@ -98,7 +100,14 @@ auto matWater = nist->FindOrBuildMaterial("G4_WATER");
 원하는 물질이 Geant4 물질 DB에 없을 수도 있습니다. 이런 경우, 여러분이 NIST DB의 원소를 조합하여 새로운 화합물을 정의할 수 있습니다. 이는 G4NistManager 클래스의 **ConstructNewMaterial() 함수**를 이용하면 됩니다. 함수의 원형은 다음의 두 가지 입니다.
 
 ```cpp
-G4Material *ConstructNewMaterial (const G4String &name, const std::vector< G4String > &elm, const std::vector< G4int > &nbAtoms, G4double dens, G4bool isotopes=true, G4State state=kStateSolid, G4double temp=NTP_Temperature, G4double pressure=CLHEP::STP_Pressure)
+G4Material *ConstructNewMaterial (const G4String &name, 
+                                  const std::vector< G4String > &elm, 
+                                  const std::vector< G4int > &nbAtoms, 
+                                  G4double dens, 
+                                  G4bool isotopes=true, 
+                                  G4State state=kStateSolid, 
+                                  G4double temp=NTP_Temperature, 
+                                  G4double pressure=CLHEP::STP_Pressure)
 ```
 
 <b>조성비를 <font color = 'red'>개수비</font>로서 입력하고자 할 때 사용합니다.</b>
@@ -113,7 +122,14 @@ G4Material *ConstructNewMaterial (const G4String &name, const std::vector< G4Str
 - *pressure: **입력하지 않아도 되는 인자**. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)*
 
 ```cpp
-G4Material *ConstructNewMaterial (const G4String &name, const std::vector< G4String > &elm, const std::vector< G4double > &weight, G4double dens, G4bool isotopes=true, G4State state=kStateSolid, G4double temp=NTP_Temperature, G4double pressure=CLHEP::STP_Pressure)
+G4Material *ConstructNewMaterial (const G4String &name, 
+                                  const std::vector< G4String > &elm, 
+                                  const std::vector< G4double > &weight, 
+                                  G4double dens, 
+                                  G4bool isotopes=true, 
+                                  G4State state=kStateSolid, 
+                                  G4double temp=NTP_Temperature, 
+                                  G4double pressure=CLHEP::STP_Pressure)
 ```
 
 <b>조성비를 <font color = 'red'>질량비</font>로서 입력하고자 할 때 사용합니다.</b>
@@ -143,7 +159,12 @@ auto matWater = nist->ConstructNewMaterial("Water", elWater, nbWater, 1. * g / c
 물질들을 합쳐 놓은 혼합물을 정의하는 일이 필요할 수도 있을 것입니다. 이런 경우에는 G4Material 클래스의 생성자와, G4Material 클래스의 AddMaterial() 함수를 이용하면 됩니다. 각각의 원형은 다음과 같습니다.
 
 ```cpp
-G4Material (const G4String &name, G4double density, G4int nComponents, G4State state=kStateUndefined, G4double temp=NTP_Temperature, G4double pressure=CLHEP::STP_Pressure)
+G4Material (const G4String &name, 
+            G4double density, 
+            G4int nComponents, 
+            G4State state=kStateUndefined, 
+            G4double temp=NTP_Temperature, 
+            G4double pressure=CLHEP::STP_Pressure)
 ```
 
 **G4Material의 생성자 중, 원소/물질의 조성비를 바탕으로 정의하는 데에 사용하는 생성자**
@@ -156,7 +177,8 @@ G4Material (const G4String &name, G4double density, G4int nComponents, G4State s
 - *pressure: **입력하지 않아도 되는 인자**. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)*
 
 ```cpp
-void AddMaterial (G4Material *material, G4double fraction)
+void AddMaterial (G4Material *material, 
+                  G4double fraction)
 ```
 
 - material: 구성요소가 될 물질에 해당하는 G4Material 객체의 포인터
@@ -183,7 +205,13 @@ matNaClSolution->AddMaterial(matWater, 0.8);
 Solid와 물질이 있으면, 손쉽게 Logical Volume을 정의할 수 있습니다. LogicalVolume은 **G4LogicalVolume** 클래스가 담당하며, 생성자는 다음과 같습니다.
 
 ```cpp
-G4LogicalVolume (G4VSolid *pSolid, G4Material *pMaterial, const G4String &name, G4FieldManager *pFieldMgr=nullptr, G4VSensitiveDetector *pSDetector=nullptr, G4UserLimits *pULimits=nullptr, G4bool optimise=true)
+G4LogicalVolume (G4VSolid *pSolid, 
+                 G4Material *pMaterial, 
+                 const G4String &name, 
+                 G4FieldManager *pFieldMgr=nullptr, 
+                 G4VSensitiveDetector *pSDetector=nullptr, 
+                 G4UserLimits *pULimits=nullptr, 
+                 G4bool optimise=true)
 ```
 
 - pSolid: G4VSolid 객체의 포인터. 앞서 정의한 Solid를 넣음

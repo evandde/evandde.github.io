@@ -60,7 +60,10 @@ Geant4에서 Solid를 만들 때에는, 맨 처음 인자로 그 Solid의 "이�
 G4Box는 직육면체 모양을 정의하는 데에 사용하는 클래스입니다. 클래스의 생성자는 다음과 같습니다.
 
 ```cpp
-G4Box (const G4String &pName, G4double pX, G4double pY, G4double pZ)
+G4Box (const G4String &pName, 
+       G4double pX, 
+       G4double pY, 
+       G4double pZ)
 ```
 
 - pName: 정의할 직육면체의 이름. 자유롭게 적으면 됨
@@ -104,7 +107,12 @@ auto phantomSol = new G4Box("phantom", .5 * phantomXLength, .5 * phantomYLength,
 G4Tubs는 원기둥 모양을 정의하는 데에 사용하는 클래스입니다. 가운데가 빈 두루마리 휴지같은 모양도 표현할 수 있습니다. 클래스의 생성자는 다음과 같습니다.
 
 ```cpp
-G4Tubs (const G4String &pName, G4double pRMin, G4double pRMax, G4double pDz, G4double pSPhi, G4double pDPhi)
+G4Tubs (const G4String &pName, 
+        G4double pRMin, 
+        G4double pRMax, 
+        G4double pDz, 
+        G4double pSPhi, 
+        G4double pDPhi)
 ```
 
 - pName: 정의할 원기둥의 이름. 자유롭게 적으면 됨
@@ -150,7 +158,8 @@ auto phantomSol = new G4Tubs("phantom", 0., .5 * phantomDiameter, .5 * phantomHe
 G4Orb는 구 모양을 정의하는 데에 사용하는 클래스입니다. 클래스의 생성자는 다음과 같습니다.
 
 ```cpp
-G4Orb (const G4String &pName, G4double pRmax)
+G4Orb (const G4String &pName, 
+       G4double pRmax)
 ```
 
 - pName: 정의할 구의 이름. 자유롭게 적으면 됨
