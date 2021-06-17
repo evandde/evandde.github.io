@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/physicalvolume/</link>
         <description>PhysicalVolume - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 10 Jun 2021 09:52:13 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/physicalvolume/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 17 Jun 2021 19:23:49 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/physicalvolume/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</title>
+    <link>https://evandde.github.io/g4-noqasked-006-phyvol/</link>
+    <pubDate>Thu, 17 Jun 2021 19:23:49 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-006-phyvol/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</title>
     <link>https://evandde.github.io/g4-noqasked-002-detcon/</link>
     <pubDate>Thu, 10 Jun 2021 09:52:13 &#43;0900</pubDate>
