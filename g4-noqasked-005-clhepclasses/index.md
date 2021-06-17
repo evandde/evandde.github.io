@@ -211,7 +211,7 @@ Transform3D operator* (const Transform3D &b) const
 
 선형변환에 추가로 또 다른 선형변환을 가하여 새로운 선형변환을 얻는 연산입니다.
 
-예를 들어, X축으로 3 cm 이동시키고, Z축으로 2 cm 이동시킨 뒤, X축방향을 기준으로 30° 회전하는 변환을 수행하는 선형변환을 만들고 싶다면 다음과 같이 작성하면 됩니다.
+예를 들어, X축으로 3 cm 이동시키고, Z축으로 2 cm 이동시킨 뒤, X축을 기준으로 30° 회전하는 변환을 수행하는 선형변환을 만들고 싶다면 다음과 같이 작성하면 됩니다.
 
 ```cpp
 auto tr1 = G4TranslateX3D(3. * cm); // Translate 3 cm along X-axis 
