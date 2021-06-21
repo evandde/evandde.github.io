@@ -26,13 +26,6 @@
     <guid>https://evandde.github.io/g4-noqasked-005-clhepclasses/</guid>
     <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 다섯번째. 위치와 회전을 표현하는 데에 사용하는 클래스에 대해 살펴봅니다.</p>]]></description>
 </item><item>
-    <title>Geant4 무작정 따라하기 - 5. 지오메트리 배치하기</title>
-    <link>https://evandde.github.io/g4-noqasked-005-physvol/</link>
-    <pubDate>Wed, 16 Jun 2021 13:31:54 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/g4-noqasked-005-physvol/</guid>
-    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 다섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 위치시키는 방법을 알아봅니다.</p>]]></description>
-</item><item>
     <title>Geant4 무작정 따라하기 - 4. 물질 정의하기</title>
     <link>https://evandde.github.io/g4-noqasked-004-material/</link>
     <pubDate>Tue, 15 Jun 2021 09:26:01 &#43;0900</pubDate>
@@ -75,5 +68,12 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/geant4-uicommand-loop/</guid>
     <description><![CDATA[<p>Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다.</p>]]></description>
+</item><item>
+    <title>Geant4 UI command - /control/alias</title>
+    <link>https://evandde.github.io/geant4-uicommand-alias/</link>
+    <pubDate>Mon, 05 Apr 2021 15:20:37 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/geant4-uicommand-alias/</guid>
+    <description><![CDATA[<p>Geant4 UI command 중, 자주 반복되는 문구를 간단하게 줄여주는 명령어. &ldquo;/control/alias&quot;에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
