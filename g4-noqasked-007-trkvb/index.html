@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-007-trkvb\/"
-        },"genre": "posts","keywords": "Geant4, Verbose, Tracking, run.mac, macro","wordcount":  4442 ,
+        },"genre": "posts","keywords": "Geant4, Verbose, Tracking, run.mac, macro","wordcount":  4449 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-007-trkvb\/","datePublished": "2021-06-18T10:00:26+09:00","dateModified": "2021-06-18T10:00:26+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 7. Tracking Verbose</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-18">2021-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 4442&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-18">2021-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 4449&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 9분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -328,14 +328,14 @@
             <div class="admonition-content">여러분이 앞서 배치한 지오메트리에 따라, Tracking Verbose의 내용이 약간 다를수도 있습니다.</div>
         </div>
     </div>
-<a class="lightgallery" href="/g4-noqasked-007-trkvb/05_vb12.png" title="/g4-noqasked-007-trkvb/05_vb12.png" data-thumbnail="/g4-noqasked-007-trkvb/05_vb12.png">
+<a class="lightgallery" href="/g4-noqasked-007-trkvb/05_vb1.png" title="/g4-noqasked-007-trkvb/05_vb1.png" data-thumbnail="/g4-noqasked-007-trkvb/05_vb1.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
-            data-src="05_vb12.png"
-            data-srcset="/g4-noqasked-007-trkvb/05_vb12.png, 05_vb12.png 1.5x, /g4-noqasked-007-trkvb/05_vb12.png 2x"
+            data-src="05_vb1.png"
+            data-srcset="/g4-noqasked-007-trkvb/05_vb1.png, 05_vb1.png 1.5x, /g4-noqasked-007-trkvb/05_vb1.png 2x"
             data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/05_vb12.png" width="100%" />
+            alt="/g4-noqasked-007-trkvb/05_vb1.png" width="100%" />
     </a>
 <p>이 그림에서 보이는 것이 입자를 Tracking한 기록 3개 분량입니다. 빨간색 테두리로 표시한만큼이 입자 하나의 생성부터 소멸까지의 기록입니다.</p>
 <p>각 기록마다 맨 위에는 Tracking한 <strong>입자의 정보</strong>가 간단하게 적혀 있습니다. (주황색 테두리로 표시한 부분)</p>
@@ -369,17 +369,8 @@
 <blockquote>
 <p>2: Addition to Level=1, info of secondary particles.</p>
 </blockquote>
-<p>Tracking Verbose를 2로 설정하였을 때의 출력은 다음 그림과 같습니다.</p>
-<a class="lightgallery" href="/g4-noqasked-007-trkvb/05_vb12.png" title="/g4-noqasked-007-trkvb/05_vb12.png" data-thumbnail="/g4-noqasked-007-trkvb/05_vb12.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="05_vb12.png"
-            data-srcset="/g4-noqasked-007-trkvb/05_vb12.png, 05_vb12.png 1.5x, /g4-noqasked-007-trkvb/05_vb12.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/05_vb12.png" width="100%" />
-    </a>
-<p>수준 1일 때와 아무런 차이가 없죠? 지금은 입자가 아무런 반응을 하지 않는 geantino라서 그렇습니다.</p>
+<p>Tracking Verbose를 2로 설정하면, 1일 때의 출력에 추가적으로 이차입자의 정보가 표시됩니다.</p>
+<p>현재 초기입자가 geantino라서 아무런 반응이 일어나지 않아 차이를 확인할 수 없을 것입니다.</p>
 <p>예시를 보여드리기 위해 제가 임의로 gamma를 수송할 때의 결과를 가져와 보았습니다.</p>
 <a class="lightgallery" href="/g4-noqasked-007-trkvb/06_vb2.png" title="/g4-noqasked-007-trkvb/06_vb2.png" data-thumbnail="/g4-noqasked-007-trkvb/06_vb2.png">
         <img

@@ -171,7 +171,7 @@ Tracking Verbose를 1로 설정하였을 때의 출력은 다음 그림과 같�
 
 {{< /admonition >}}
 
-{{< image src="05_vb12.png" width=100% >}}
+{{< image src="05_vb1.png" width=100% >}}
 
 이 그림에서 보이는 것이 입자를 Tracking한 기록 3개 분량입니다. 빨간색 테두리로 표시한만큼이 입자 하나의 생성부터 소멸까지의 기록입니다.
 
@@ -206,11 +206,9 @@ Tracking Verbose를 1로 설정하였을 때의 출력은 다음 그림과 같�
 
 > 2: Addition to Level=1, info of secondary particles.
 
-Tracking Verbose를 2로 설정하였을 때의 출력은 다음 그림과 같습니다.
+Tracking Verbose를 2로 설정하면, 1일 때의 출력에 추가적으로 이차입자의 정보가 표시됩니다.
 
-{{< image src="05_vb12.png" width=100% >}}
-
-수준 1일 때와 아무런 차이가 없죠? 지금은 입자가 아무런 반응을 하지 않는 geantino라서 그렇습니다.
+현재 초기입자가 geantino라서 아무런 반응이 일어나지 않아 차이를 확인할 수 없을 것입니다.
 
 예시를 보여드리기 위해 제가 임의로 gamma를 수송할 때의 결과를 가져와 보았습니다.
 
