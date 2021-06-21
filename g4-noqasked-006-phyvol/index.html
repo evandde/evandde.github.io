@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-006-phyvol\/"
-        },"genre": "posts","keywords": "Geant4, PhysicalVolume, G4PVPlacement, G4VPhysicalVolume","wordcount":  5456 ,
+        },"genre": "posts","keywords": "Geant4, PhysicalVolume, G4PVPlacement, G4VPhysicalVolume","wordcount":  5166 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-006-phyvol\/","datePublished": "2021-06-17T19:23:49+09:00","dateModified": "2021-06-17T19:23:49+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -48,7 +48,7 @@
         data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
         data-sizes="auto"
         alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-3" class="typeit"></span></a>
+        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -79,7 +79,7 @@
         data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
         data-sizes="auto"
         alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-4" class="typeit"></span></a>
+        title="/images/logo.png" /><span id="id-3" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-17">2021-06-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 5456&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-17">2021-06-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 5166&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 11분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -184,24 +184,8 @@
 <p>B가 World를 기준으로 어디에 위치하였는지를 판단하려면, Mother Volume이 World가 될 때까지 자신의 위치에 Mother Volume의 위치를 순차적으로 더해나가면 됩니다. A에서의 B의 위치는 (2, 1)이고, World에서의 A의 위치가 (4, 4)이므로, 이를 더하면 World에서의 B의 위치가 (6, 5)임을 알 수 있는 것이지요.</p>
 <h3 id="copy-number">Copy Number</h3>
 <p>Copy Number란 Geant4에서 지오메트리를 구분하는 데에 사용되는 번호입니다. 상황에 따라 Replica Number라고 부르기도 합니다. Geant4 시뮬레이션 시 모든 지오메트리는 예외없이 Copy Number를 가지고 있습니다.</p>
-<p>지오메트리를 서로 구분하는 데에 사용한다고 했습니다만, 중복되는 번호를 부여한다고 해서 문제가 생기는 것은 아닙니다. 사실 <strong>대부분의 지오메트리에 대해서는 그냥 아무 생각없이 0으로 설정하여 사용</strong>해도 괜찮습니다. Copy Number에 관심을 가져야하는 경우는 대표적으로 다음의 두 경우입니다.</p>
-<ul>
-<li>동일한(혹은 유사한) 지오메트리가 여러 개 존재하는 경우</li>
-<li>그 지오메트리에서 발생한 정보를 기록하고자 하는 경우 (스코어링)</li>
-</ul>
-<p>처음의 경우는 다음과 같은 케이스입니다.</p>
-<div class="mermaid" id="id-2"></div>
-<p>이와 같은 경우, 5개의 동일한 직육면체가 10 cm씩 이동하며 배치되어야 합니다. 이런 경우에 각 지오메트리의 Copy Number를 0, 1, 2, 3, 4로 보고, 각각의 위치를 ([Copy Number] * 10 cm, 0, 0)으로 간단하게 생각할 수 있을 것입니다. 이렇게 Copy Number를 일종의 매개변수처럼 사용하여 여러 개의 지오메트리를 쉽게 배치하는 데에 사용하는 경우가 있습니다.</p>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">위 내용은 G4PVParameterised 클래스를 개념적으로 설명한 것입니다. 자세한 사용법은 이 시리즈에서 다루지 않습니다</div>
-        </div>
-    </div>
-<p>두 번째 경우는 이 시리즈의 뒤쪽에서 다루게 될 <strong>스코어링</strong> 파트에서 보다 자세히 다룰 예정이므로 여기서는 간단하게만 설명하겠습니다.</p>
-<p>예를 들어 어떤 지오메트리의 흡수선량을 계산하고자 Geant4 시뮬레이션을 돌린다고 가정해봅시다. 그런데 흡수선량의 평가가 필요한 지오메트리가 여러개라면 각각의 흡수선량을 따로따로 기록하고 관리해야 할 것입니다. 이 때 <strong>흡수선량이라는 값</strong>을 따로따로 보관하기 위한 <font color='red'><b>사물함 번호</b></font>에 해당하는 것이 바로 <font color='red'><b>Copy Number</b></font>입니다. 우선은 이 정도로만 설명해두고, 자세한 사항은 나중에 다루도록 하지요.</p>
+<p>지오메트리를 서로 구분하는 데에 사용한다고 했습니다만, 중복되는 번호를 부여한다고 해서 문제가 생기는 것은 아닙니다. 사실 <strong>대부분의 지오메트리에 대해서는 그냥 아무 생각없이 0으로 설정하여 사용</strong>해도 괜찮습니다. Copy Number에 관심을 가져야 하는 경우는 여러가지 있지만, 이 시리즈에서는 <strong>스코어링 관점</strong>에서만 간단하게 설명을 하도록 하겠습니다.</p>
+<p>예를 들어 어떤 지오메트리의 흡수선량을 계산하고자 Geant4 시뮬레이션을 돌린다고 가정해봅시다. 그런데 흡수선량의 평가가 필요한 지오메트리가 여러 개라면 각각의 흡수선량을 따로따로 기록하고 관리해야 할 것입니다. 이 때 <strong>흡수선량이라는 값</strong>을 따로따로 보관하기 위한 <font color='red'><b>사물함 번호</b></font>에 해당하는 것이 바로 <font color='red'><b>Copy Number</b></font>입니다. 우선은 이 정도로만 설명해두고, 나중에 스코어링 파트에서 자세히 다루도록 하지요.</p>
 <h3 id="배치할-때의-주의사항">배치할 때의 주의사항</h3>
 <p>지오메트리를 배치할 때 반드시 지켜야하는 주의사항이 있습니다.</p>
 <ul>
@@ -683,7 +667,7 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
                 <i class="fas fa-comment fa-fw"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"\r\ngraph TD\r\nWorld --- A --- B\r\nWorld --- C\r","id-2":"\r\ngraph LR\r\nA --\u003e B --\u003e C \u0026 D \u0026 E \u0026 F \u0026 G\r\nA[직육면체]\r\nB[물이 담긴 직육면체]\r\nC[\"(0, 0, 0)\"에 위치한 물이 담긴 직육면체]\r\nD[\"(10, 0, 0)\"에 위치한 물이 담긴 직육면체]\r\nE[\"(20, 0, 0)\"에 위치한 물이 담긴 직육면체]\r\nF[\"(30, 0, 0)\"에 위치한 물이 담긴 직육면체]\r\nG[\"(40, 0, 0)\"에 위치한 물이 담긴 직육면체]\r","id-3":"EvaNote","id-4":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-3":["id-3"],"id-4":["id-4"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"\r\ngraph TD\r\nWorld --- A --- B\r\nWorld --- C\r","id-2":"EvaNote","id-3":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-2":["id-2"],"id-3":["id-3"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
             window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', 'G-JZ0NBG8ZWZ');
         </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
