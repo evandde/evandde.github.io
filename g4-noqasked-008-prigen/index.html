@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Geant4 무작정 따라하기 - 8. 선원항 정의하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 8. 선원항 정의하기" />
+<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-008-prigen/" />
+<meta property="article:published_time" content="2021-06-20T21:56:43+09:00" />
+<meta property="article:modified_time" content="2021-06-20T21:56:43+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geant4 무작정 따라하기 - 8. 선원항 정의하기"/>
+<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다."/>
+<meta name="application-name" content="EvaNote">
+<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-008-prigen/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-007-trkvb/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Geant4 무작정 따라하기 - 8. 선원항 정의하기",
+        "inLanguage": "ko-kr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/evandde.github.io\/g4-noqasked-008-prigen\/"
+        },"genre": "posts","keywords": "Geant4, Event, Run, PrimaryGeneratorAction, ParticleGun, Random","wordcount":  3885 ,
+        "url": "https:\/\/evandde.github.io\/g4-noqasked-008-prigen\/","datePublished": "2021-06-20T21:56:43+09:00","dateModified": "2021-06-20T21:56:43+09:00","publisher": {
+            "@type": "Organization",
+            "name": "Evan Kim"},"author": {
+                "@type": "Person",
+                "name": "Evan Kim"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        취소
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">목차</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 8. 선원항 정의하기</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-20">2021-06-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3885&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 8분&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>목차</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#event--run">Event &amp; Run</a>
+      <ul>
+        <li><a href="#event">Event</a></li>
+        <li><a href="#run">Run</a></li>
+        <li><a href="#run을-실행하는-법">Run을 실행하는 법</a></li>
+      </ul>
+    </li>
+    <li><a href="#코드-작성-위치">코드 작성 위치</a></li>
+    <li><a href="#g4particlegun">G4ParticleGun</a>
+      <ul>
+        <li><a href="#입자의-종류">입자의 종류</a></li>
+        <li><a href="#입자의-운동에너지">입자의 운동에너지</a></li>
+        <li><a href="#입자의-위치">입자의 위치</a></li>
+        <li><a href="#입자의-운동방향">입자의 운동방향</a></li>
+      </ul>
+    </li>
+    <li><a href="#ui로-확인해보기">UI로 확인해보기</a></li>
+    <li><a href="#정리">정리</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다.</p>
+<h2 id="event--run">Event &amp; Run</h2>
+<h3 id="event">Event</h3>
+<p>입자 수송해석을 위한 몬테칼로 시뮬레이션이라 하면 일반적으로 <strong>방사선원이나 발생장치로부터 입자가 발생되는 시점부터 그 입자로 인해 야기된 여러 반응들을 모니터링하는 일련의 과정</strong>을 <font color='red'><b>반복적으로 시행</b></font>하는 것을 의미하지요.</p>
+<p>이렇게 반복적으로 시행되는 <strong>일련의 과정 1회</strong>를 Geant4에서는 <strong>Event</strong>라고 합니다. 다시 말해 <strong>Event</strong>란, 초기 입자(Primary particle)가 발생하여 이로부터 파생되는 이차 입자들(Secondary particles)까지의 수송 과정을 의미하는 것입니다.</p>
+<h3 id="run">Run</h3>
+<p>몬테칼로 시뮬레이션에서 &ldquo;<strong>시뮬레이션을 한 회 수행한다</strong>&ldquo;는 표현은 일반적으로 <strong>한 세트의 반복시행작업을 전부 끝냈음</strong>을 의미할 것입니다.</p>
+<p>Geant4에서는 <strong>시뮬레이션 한 회</strong>를 <strong>Run</strong>이라고 합니다. 즉, 여러 개의 Event를 반복하는 싸이클을 한데 묶어 Run이라고 부르는 것이지요.</p>
+<h3 id="run을-실행하는-법">Run을 실행하는 법</h3>
+<p>앞서 글에서 살펴봤던 <code>run.mac</code>파일을 보시면, 마지막 줄에 <code>/run/beamOn 100</code>이라는 내용이 있습니다. 이 줄이 바로 Run을 실행하는 명령줄입니다. <code>/run/beamOn</code>은 Geant4 프로그램이 입자 수송을 시작하도록 하는 명령어로, 뒤에 정수 인자를 받아 이 <strong>정수 값만큼 Event를 반복시행</strong>하여 <strong>하나의 Run을 구성</strong>하도록 합니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">필요에 따라, 이 줄을 여러 회 입력하여 여러 개의 Run이 순차적으로 실행되게끔 할 수도 있습니다.</div>
+        </div>
+    </div>
+<hr>
+<h2 id="코드-작성-위치">코드 작성 위치</h2>
+<p>지오메트리를 정의할 때와 마찬가지로, Geant4 코드 작성 시 초기 입자에 대한 내용을 적는 곳도 정해져 있습니다.</p>
+<p>G4VUserPrimaryGeneratorAction 클래스를 상속받아 만드는 UserClass에 적어야 하며, 이 중에서도 void GeneratePrimaries(G4Event*) 함수가 매 Event마다 초기 입자를 발생시키는 역할을 담당합니다.</p>
+<p>제가 제공해드린 템플릿 코드의 <strong>src 디렉토리</strong> 내부에 <b>PrimaryGeneratorAction.cc</b>라는 파일이 있을 것입니다. 이 파일을 열면 다음과 같은 코드가 나옵니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/01_prigen.png" title="/g4-noqasked-008-prigen/01_prigen.png" data-thumbnail="/g4-noqasked-008-prigen/01_prigen.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="01_prigen.png"
+            data-srcset="/g4-noqasked-008-prigen/01_prigen.png, 01_prigen.png 1.5x, /g4-noqasked-008-prigen/01_prigen.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/01_prigen.png" width="100%" />
+    </a>
+<p>여기서 16번째 줄부터 나오는 <b>void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)</b> 함수 안에 초기 입자에 대한 내용을 적으면 됩니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>엄밀히 말하면, Event마다 바뀌는 설정값은 이 함수 안에 적고, 바뀌지 않는 설정값은 생성자에 적는 것이 연산효율측면에서 이득이 있습니다.</p>
+<p>다만, 이 시리즈에서는 설명과 이해의 용이성을 위해 그냥 GeneratePrimaries 함수 안에 모두 작성하도록 하겠습니다.</p>
+</div>
+        </div>
+    </div>
+<p>GeneratePrimaries 함수 안에는 다음과 같은 줄이 이미 작성되어 있습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>여기서 fPrimary 변수는 <strong>초기 입자에 대한 설정을 담당</strong>하는 클래스인 <strong>G4ParticleGun</strong> 클래스 객체의 포인터입니다.</p>
+<p>이 클래스는 <strong>GeneratePrimaryVertex라는 함수</strong>를 갖고 있습니다. 이 함수는 &ldquo;<strong>초기 입자를 발생시켜서 Event를 한 회 수행하라</strong>&ldquo;는 기능을 가진 함수입니다. 즉 위의 코드 한 줄에 의해 <strong>초기 입자가 발생</strong>되는 것이지요.</p>
+<p>우리가 할 일은, &ldquo;<b>초기 입자를 발생시키기 <font color='red'>전</font>에 초기 입자의 특성을 설정</b>&ldquo;하는 것입니다. 그래서, 우리가 쓸 내용은 전부 <code>fPrimary-&gt;GeneratePrimaryVertex(anEvent);</code> 줄보다 <font color='red'><b>위쪽에 위치</b></font>해야 합니다.</p>
+<hr>
+<h2 id="g4particlegun">G4ParticleGun</h2>
+<p>fPrimary 변수는 G4ParticleGun 클래스 객체의 포인터라고 하였습니다. 이 클래스에서 초기 입자의 특성을 설정하기 위해 제공하는 함수 중 대표적으로 몇 가지를 알아봅시다.</p>
+<h3 id="입자의-종류">입자의 종류</h3>
+<p>입자의 종류를 설정하기 위한 함수로, SetParticleDefinition이라는 함수를 제공합니다. 원형은 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleDefinition</span><span class="p">(</span><span class="n">G4ParticleDefinition</span><span class="o">*</span> <span class="n">aParticleDefinition</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>G4ParticleDefinition이라는 클래스가 생소하실텐데요, Geant4에서 입자에 대한 정의를 담당하는 클래스라고만 해두고 넘어가겠습니다.</p>
+<p>Geant4가 기본적으로 지원하는 입자의 모든 종류는 <a href="https://geant4.kek.jp/Reference/" target="_blank" rel="noopener noreffer">Geant4 Doxygen</a>에서 G4ParticleDefinition 클래스의 레퍼런스 페이지(<a href="https://geant4.kek.jp/Reference/10.07.p01/classG4ParticleDefinition.html" target="_blank" rel="noopener noreffer">10.7.p01 버전</a>)에 들어가면 상속받은 클래스 목록(<em>Inheritance diagram for G4VSolid</em>)에서 확인할 수 있습니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">모든 입자를 초기 입자로 사용할 수 있는 것은 아닙니다. 일부 입자는 초기 입자로 설정하는 것이 불가능한 경우도 있습니다.</div>
+        </div>
+    </div>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>사실, Geant4 프로그램에서 사용 가능한 입자는 그 프로그램에서 어떤 PhysicsLists를 사용하느냐에 따라 좌우됩니다. 하지만 이 시리즈에서는 PhysicsLists를 아예 다루지 않을 예정이므로, 그냥 넘어가도록 하겠습니다.</p>
+<p>참고로 <code>g4_minimal</code> 템플릿 코드는 QBBC 물리모델을 사용하고 있습니다.</p>
+</div>
+        </div>
+    </div>
+<p>여기서는 대표적으로 몇 가지 입자만 언급하도록 하겠습니다.</p>
+<ul>
+<li>
+<p>Geantino, Charged Geantino</p>
+<p>각각 G4Geantino 클래스, G4ChargedGeantino 클래스를 통해 이용할 수 있습니다.</p>
+<p>Geantino란 Geant4에서 정의한 가상의 입자로, 질량/스핀/parity가 0이며 어떠한 반응도 일으키지 않는 중성 입자입니다.</p>
+<p>Charged Geantino는 Geantino와 기본적인 특성은 동일하나, 전하만 +1인 입자입니다.</p>
+<p>이 두 가지 입자는 시뮬레이션의 검증단계에서 주로 활용됩니다.</p>
+</li>
+<li>
+<p>Gamma</p>
+<p>G4Gamma 클래스를 통해 이용할 수 있습니다. 일반적으로 알려진 광자(Photon)에 해당합니다.</p>
+</li>
+<li>
+<p>Electron, Positron</p>
+<p>각각 G4Electron 클래스, G4Positron 클래스를 통해 이용할 수 있습니다. 일반적으로 알려진 전자(Electron)와 양전자(Positron)에 해당합니다.</p>
+</li>
+<li>
+<p>Proton</p>
+<p>G4Proton 클래스를 통해 이용 가능합니다. 일반적으로 알려진 양성자(Proton)에 해당합니다.</p>
+</li>
+<li>
+<p>Neutron</p>
+<p>G4Neutron 클래스를 통해 이용 가능합니다. 일반적으로 알려진 중성자(Neutron)에 해당합니다.</p>
+</li>
+<li>
+<p>Muon, Antimuon</p>
+<p>각각 G4MuonMinus 클래스, G4MuonPlus 클래스를 통해 이용 가능합니다. 일반적으로 알려진 뮤온(Muon)과 반뮤온(Antimuon)에 해당합니다.</p>
+</li>
+</ul>
+<p>모든 입자 클래스들은 <strong>각 입자의 ParticleDefinition 클래스 객체의 포인터를 반환하는 static 함수</strong>인 <b>Definition() 함수를 제공</b>합니다. 즉, 어느 입자를 사용하든 <code>클래스명::Definition()</code>이라고 입력하여 그 입자의 ParticleDefinition을 가져올 수 있습니다. 예를 들어 G4Gamma 클래스라면, <code>G4Gamma::Definition()</code>과 같이 말이죠.</p>
+<p>여러가지 입자를 알아보았으니, 이들을 초기 입자로 설정하는 방법을 살펴봅시다. 다음의 두 단계를 거치면 됩니다.</p>
+<ol>
+<li>해당 입자의 클래스 헤더를 포함시킴</li>
+<li>SetParticleDefinition 함수를 이용하여 해당 입자를 초기 입자로 설정</li>
+</ol>
+<p>앞서 말씀드린 것처럼, SetParticleDefinition 함수는 <code>fPrimary-&gt;GeneratePrimaryVertex(anEvent);</code> 줄보다 <font color='red'><b>위쪽에 위치</b></font>하도록 작성해야 한다는 점에 주의하세요.</p>
+<p>예를 들어 Gamma를 초기 입자로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="hl"><span class="cp">#include</span> <span class="cpf">&#34;G4Gamma.hh&#34; // Include header for G4Gamma class</span><span class="cp">
+</span></span><span class="cp"></span><span class="c1">// ...    
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="hl">    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticle</span><span class="p">(</span><span class="n">G4Gamma</span><span class="o">::</span><span class="n">Definition</span><span class="p">());</span> <span class="c1">// Set primary as gamma    
+</span></span><span class="c1"></span>
+    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>실제 코드는 다음과 같습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/02_setparticledefinition.png" title="/g4-noqasked-008-prigen/02_setparticledefinition.png" data-thumbnail="/g4-noqasked-008-prigen/02_setparticledefinition.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="02_setparticledefinition.png"
+            data-srcset="/g4-noqasked-008-prigen/02_setparticledefinition.png, 02_setparticledefinition.png 1.5x, /g4-noqasked-008-prigen/02_setparticledefinition.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/02_setparticledefinition.png" width="100%" />
+    </a>
+<p>이렇게 변경한 뒤, Tracking Verbose를 1레벨로 하여 출력해보면 다음과 같이 초기 입자가 바뀐 것을 확인할 수 있습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/03_setparticledefinitionrslt.png" title="/g4-noqasked-008-prigen/03_setparticledefinitionrslt.png" data-thumbnail="/g4-noqasked-008-prigen/03_setparticledefinitionrslt.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="03_setparticledefinitionrslt.png"
+            data-srcset="/g4-noqasked-008-prigen/03_setparticledefinitionrslt.png, 03_setparticledefinitionrslt.png 1.5x, /g4-noqasked-008-prigen/03_setparticledefinitionrslt.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/03_setparticledefinitionrslt.png" width="100%" />
+    </a>
+<h3 id="입자의-운동에너지">입자의 운동에너지</h3>
+<p>입자의 운동에너지를 설정하기 위한 함수로, SetParticleEnergy라는 함수를 제공합니다. 원형은 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleEnergy</span><span class="p">(</span><span class="n">G4double</span> <span class="n">aKineticEnergy</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>입력 인자는 간단하게 G4double형입니다. 다만, 에너지에 대한 <strong>단위를 입력</strong>할 필요가 있으므로, <strong>G4SystemOfUnits 헤더를 포함</strong>시켜줘야 한다는 점에 주의하세요.</p>
+<p>예를 들어 초기 입자의 운동에너지를 0.662 MeV로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="hl"><span class="cp">#include</span> <span class="cpf">&#34;G4SystemOfUnits.hh&#34; // Include header for unit system</span><span class="cp">
+</span></span><span class="cp"></span><span class="c1">// ...    
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...
+</span><span class="hl"><span class="c1"></span>    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticleEnergy</span><span class="p">(</span><span class="mf">0.662</span> <span class="o">*</span> <span class="n">MeV</span><span class="p">);</span>
+</span>
+    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>실제 코드는 다음과 같습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/04_setparticleenergy.png" title="/g4-noqasked-008-prigen/04_setparticleenergy.png" data-thumbnail="/g4-noqasked-008-prigen/04_setparticleenergy.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="04_setparticleenergy.png"
+            data-srcset="/g4-noqasked-008-prigen/04_setparticleenergy.png, 04_setparticleenergy.png 1.5x, /g4-noqasked-008-prigen/04_setparticleenergy.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/04_setparticleenergy.png" width="100%" />
+    </a>
+<p>이렇게 변경한 뒤, Tracking Verbose를 1레벨로 하여 출력해보면 다음과 같이 초기 입자의 운동에너지가 바뀐 것을 확인할 수 있습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/05_setparticleenergyrslt.png" title="/g4-noqasked-008-prigen/05_setparticleenergyrslt.png" data-thumbnail="/g4-noqasked-008-prigen/05_setparticleenergyrslt.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="05_setparticleenergyrslt.png"
+            data-srcset="/g4-noqasked-008-prigen/05_setparticleenergyrslt.png, 05_setparticleenergyrslt.png 1.5x, /g4-noqasked-008-prigen/05_setparticleenergyrslt.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/05_setparticleenergyrslt.png" width="100%" />
+    </a>
+<h3 id="입자의-위치">입자의 위치</h3>
+<p>입자의 위치를 설정하기 위한 함수로, SetParticlePosition이라는 함수를 제공합니다. 원형은 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticlePosition</span><span class="p">(</span><span class="n">G4ThreeVector</span> <span class="n">aPosition</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>입력 인자는 G4ThreeVector 객체입니다.</p>
+<p>예를 들어 초기 입자의 위치를 (0, 0, 0)으로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...
+</span><span class="hl"><span class="c1"></span>    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticlePosition</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">());</span>
+</span>
+    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>실제 코드는 다음과 같습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/06_setparticleposition.png" title="/g4-noqasked-008-prigen/06_setparticleposition.png" data-thumbnail="/g4-noqasked-008-prigen/06_setparticleposition.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="06_setparticleposition.png"
+            data-srcset="/g4-noqasked-008-prigen/06_setparticleposition.png, 06_setparticleposition.png 1.5x, /g4-noqasked-008-prigen/06_setparticleposition.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/06_setparticleposition.png" width="100%" />
+    </a>
+<p>이 부분은 원래 기본 값이 (0, 0, 0)이어서 바뀌지 않습니다만, 원하는 값으로 변경해보시면 Tracking Verbose에서 차이를 확인할 수 있을 것입니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/07_setparticlepositionrslt.png" title="/g4-noqasked-008-prigen/07_setparticlepositionrslt.png" data-thumbnail="/g4-noqasked-008-prigen/07_setparticlepositionrslt.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="07_setparticlepositionrslt.png"
+            data-srcset="/g4-noqasked-008-prigen/07_setparticlepositionrslt.png, 07_setparticlepositionrslt.png 1.5x, /g4-noqasked-008-prigen/07_setparticlepositionrslt.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/07_setparticlepositionrslt.png" width="100%" />
+    </a>
+<h3 id="입자의-운동방향">입자의 운동방향</h3>
+<p>입자의 운동방향을 설정하기 위한 함수로, SetParticleMomentumDirection이라는 함수를 제공합니다. 원형은 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleMomentumDirection</span><span class="p">(</span><span class="n">G4ParticleMomentum</span> <span class="n">aMomDirection</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>입력 인자는 G4ParticleMomentum라고 적혀있습니다만, 이는 사실 <strong>G4ThreeVector의 다른 이름</strong>일 뿐입니다. 위치 때와 동일하게 G4ThreeVector 객체를 넣으시면 됩니다.</p>
+<p>예를 들어 초기 입자의 운동방향을 +Z축인 (0, 0, 1)으로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
+</span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...
+</span><span class="hl"><span class="c1"></span>    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticleMomentumDirection</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">));</span>
+</span>
+    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>실제 코드는 다음과 같습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/08_setparticlemomentumdirection.png" title="/g4-noqasked-008-prigen/08_setparticlemomentumdirection.png" data-thumbnail="/g4-noqasked-008-prigen/08_setparticlemomentumdirection.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="08_setparticlemomentumdirection.png"
+            data-srcset="/g4-noqasked-008-prigen/08_setparticlemomentumdirection.png, 08_setparticlemomentumdirection.png 1.5x, /g4-noqasked-008-prigen/08_setparticlemomentumdirection.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/08_setparticlemomentumdirection.png" width="100%" />
+    </a>
+<p>이렇게 변경한 뒤, Tracking Verbose를 1레벨로 하여 출력해보면 다음과 같이 초기 입자의 진행 방향이 바뀐 것을 확인할 수 있습니다. 제가 보여드리는 예제 코드의 경우 +Z축 방향에 앞서 정의했던 phantom이 있다보니, 감마선이 이 지오메트리와 충돌하여 여러 반응이 일어나는 모습까지 확인이 되네요.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/09_setparticlemomentumdirectionrslt.png" title="/g4-noqasked-008-prigen/09_setparticlemomentumdirectionrslt.png" data-thumbnail="/g4-noqasked-008-prigen/09_setparticlemomentumdirectionrslt.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="09_setparticlemomentumdirectionrslt.png"
+            data-srcset="/g4-noqasked-008-prigen/09_setparticlemomentumdirectionrslt.png, 09_setparticlemomentumdirectionrslt.png 1.5x, /g4-noqasked-008-prigen/09_setparticlemomentumdirectionrslt.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/09_setparticlemomentumdirectionrslt.png" width="100%" />
+    </a>
+<hr>
+<h2 id="ui로-확인해보기">UI로 확인해보기</h2>
+<p>지금까지 변경한 내용을 UI로 실행하면 그래픽으로 살펴볼 수도 있습니다. build 디렉토리에서 <code>./g4_minimal</code>을 입력하여 실행해서 UI창을 띄워봅니다. 다음 그림과 같이 Geometry가 보일 것입니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/10_UI.png" title="/g4-noqasked-008-prigen/10_UI.png" data-thumbnail="/g4-noqasked-008-prigen/10_UI.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="10_UI.png"
+            data-srcset="/g4-noqasked-008-prigen/10_UI.png, 10_UI.png 1.5x, /g4-noqasked-008-prigen/10_UI.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/10_UI.png" width="100%" />
+    </a>
+<p>여기서, 그림 하단에 빨간색으로 표시해 둔 <strong>Session</strong> 입력창에 <code>/run/beamOn 100</code>이라고 입력한 뒤 [Enter]를 누르면 UI 상에서 <b>Event 100개 묶음의 Run 한 번을 실행</b>시킬 수 있습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/11_UIrun.png" title="/g4-noqasked-008-prigen/11_UIrun.png" data-thumbnail="/g4-noqasked-008-prigen/11_UIrun.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="11_UIrun.png"
+            data-srcset="/g4-noqasked-008-prigen/11_UIrun.png, 11_UIrun.png 1.5x, /g4-noqasked-008-prigen/11_UIrun.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/11_UIrun.png" width="100%" />
+    </a>
+<p>좀 확대해보시면 다음과 같은 모습을 확인할 수 있습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-008-prigen/12_UIrunzoom.png" title="/g4-noqasked-008-prigen/12_UIrunzoom.png" data-thumbnail="/g4-noqasked-008-prigen/12_UIrunzoom.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="12_UIrunzoom.png"
+            data-srcset="/g4-noqasked-008-prigen/12_UIrunzoom.png, 12_UIrunzoom.png 1.5x, /g4-noqasked-008-prigen/12_UIrunzoom.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-008-prigen/12_UIrunzoom.png" width="100%" />
+    </a>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">그래픽에서 보이는 선이나 점의 색상은 <code>vis.mac</code> 등에서 설정한 값에 따라 달라질 수 있습니다.</div>
+        </div>
+    </div>
+<p>기본적으로는 다음과 같이 해석하시면 됩니다.</p>
+<ul>
+<li>노란점: 입자를 수송하던 중, Track이 기록된 분절점의 위치</li>
+<li>초록선: Charge가 중성인 입자의 궤적(이 예시에서는 Gamma 입자에 해당함)</li>
+<li>빨간선: Charge가 음성(-)인 입자의 궤적(이 예시에서는 Electron 입자에 해당함)</li>
+<li>파란선: Charge가 양성(+)인 입자의 궤적(이 예시에서는 나타나지 않음)</li>
+</ul>
+<hr>
+<h2 id="정리">정리</h2>
+<p>이번 글에서는 초기 입자의 정보를 설정하고 확인하는 방법에 대해 살펴보았습니다. 그러나 이런식으로 입력하면, <strong>항상 동일한 조건의 초기 입자만 발생</strong>될 것입니다.</p>
+<p>다음 글에서는 G4RandomTools 헤더를 활용하여, Event 마다 초기 입자의 위치나 방향을 변경하며 발생시키는 방법에 대해 알아보겠습니다.</p></div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>2021-06-20에 수정</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/g4-noqasked-008-prigen/index.md" target="_blank">Markdown으로 보기</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-hashtags="Geant4,Event,Run,PrimaryGeneratorAction,ParticleGun,Random"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/event/">Event</a>,&nbsp;<a href="/tags/run/">Run</a>,&nbsp;<a href="/tags/primarygeneratoraction/">PrimaryGeneratorAction</a>,&nbsp;<a href="/tags/particlegun/">ParticleGun</a>,&nbsp;<a href="/tags/random/">Random</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
+        </section>
+    </div>
+
+    
+    <div class="post-nav">
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+                
+            
+
+            
+
+            
+        <a href="/g4-noqasked-007-trkvb/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 7. Tracking Verbose"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 7. Tracking Verbose</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-JZ0NBG8ZWZ');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+</html>

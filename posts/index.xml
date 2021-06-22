@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/posts/</link>
         <description>모든 글 | EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 18 Jun 2021 10:00:26 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Sun, 20 Jun 2021 21:56:43 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 8. 선원항 정의하기</title>
+    <link>https://evandde.github.io/g4-noqasked-008-prigen/</link>
+    <pubDate>Sun, 20 Jun 2021 21:56:43 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-008-prigen/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 - 7. Tracking Verbose</title>
     <link>https://evandde.github.io/g4-noqasked-007-trkvb/</link>
     <pubDate>Fri, 18 Jun 2021 10:00:26 &#43;0900</pubDate>
@@ -68,12 +75,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/python-cannotfind-qtplatform/</guid>
     <description><![CDATA[<p>Python에서 PyQt5 라이브러리를 연동하여 GUI 프로그래밍을 할 때 발생한 &ldquo;<b>qt.qpa.plugin: Could not find the Qt platform plugin &ldquo;windows&rdquo; in &ldquo;&rdquo;.</b>&rdquo; 과 같은 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>Geant4 UI command - 반복문</title>
-    <link>https://evandde.github.io/geant4-uicommand-loop/</link>
-    <pubDate>Mon, 05 Apr 2021 17:13:04 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/geant4-uicommand-loop/</guid>
-    <description><![CDATA[<p>Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

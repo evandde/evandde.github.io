@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/categories/geant4/</link>
         <description>Geant4 - 카테고리 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 18 Jun 2021 10:00:26 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/geant4/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Sun, 20 Jun 2021 21:56:43 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/categories/geant4/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 8. 선원항 정의하기</title>
+    <link>https://evandde.github.io/g4-noqasked-008-prigen/</link>
+    <pubDate>Sun, 20 Jun 2021 21:56:43 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-008-prigen/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 - 7. Tracking Verbose</title>
     <link>https://evandde.github.io/g4-noqasked-007-trkvb/</link>
     <pubDate>Fri, 18 Jun 2021 10:00:26 &#43;0900</pubDate>
@@ -68,12 +75,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/geant4-uicommand-loop/</guid>
     <description><![CDATA[<p>Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다.</p>]]></description>
-</item><item>
-    <title>Geant4 UI command - /control/alias</title>
-    <link>https://evandde.github.io/geant4-uicommand-alias/</link>
-    <pubDate>Mon, 05 Apr 2021 15:20:37 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/geant4-uicommand-alias/</guid>
-    <description><![CDATA[<p>Geant4 UI command 중, 자주 반복되는 문구를 간단하게 줄여주는 명령어. &ldquo;/control/alias&quot;에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
