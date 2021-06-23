@@ -151,7 +151,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 
 실제 코드는 다음과 같습니다.
 
-{{< image src="02_setparticledefinition.png" width=100% >}}
+{{< image src="02_setparticledefinition.png" width=70% >}}
 
 이렇게 변경한 뒤, Tracking Verbose를 1레벨로 하여 출력해보면 다음과 같이 초기 입자가 바뀐 것을 확인할 수 있습니다.
 
@@ -185,7 +185,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 
 실제 코드는 다음과 같습니다.
 
-{{< image src="04_setparticleenergy.png" width=100% >}}
+{{< image src="04_setparticleenergy.png" width=70% >}}
 
 이렇게 변경한 뒤, Tracking Verbose를 1레벨로 하여 출력해보면 다음과 같이 초기 입자의 운동에너지가 바뀐 것을 확인할 수 있습니다.
 
@@ -218,7 +218,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 
 실제 코드는 다음과 같습니다.
 
-{{< image src="06_setparticleposition.png" width=100% >}}
+{{< image src="06_setparticleposition.png" width=70% >}}
 
 이 부분은 원래 기본 값이 (0, 0, 0)이어서 바뀌지 않습니다만, 원하는 값으로 변경해보시면 Tracking Verbose에서 차이를 확인할 수 있을 것입니다.
 
@@ -250,7 +250,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 
 실제 코드는 다음과 같습니다.
 
-{{< image src="08_setparticlemomentumdirection.png" width=100% >}}
+{{< image src="08_setparticlemomentumdirection.png" width=70% >}}
 
 이렇게 변경한 뒤, Tracking Verbose를 1레벨로 하여 출력해보면 다음과 같이 초기 입자의 진행 방향이 바뀐 것을 확인할 수 있습니다. 제가 보여드리는 예제 코드의 경우 +Z축 방향에 앞서 정의했던 phantom이 있다보니, 감마선이 이 지오메트리와 충돌하여 여러 반응이 일어나는 모습까지 확인이 되네요.
 
