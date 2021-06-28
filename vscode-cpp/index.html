@@ -26,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/vscode-cpp\/"
-        },"genre": "posts","keywords": "HowTo, VSCode, C, CPP, C\u002b\u002b","wordcount":  1360 ,
+        },"genre": "posts","keywords": "HowTo, VSCode, C, CPP, C\u002b\u002b","wordcount":  1484 ,
         "url": "https:\/\/evandde.github.io\/vscode-cpp\/","datePublished": "2020-11-12T16:40:31+09:00","dateModified": "2020-11-12T16:40:31+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -117,7 +117,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Visual Studio Code에서 C, C&#43;&#43; 환경 설정하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/vscode/"><i class="far fa-folder fa-fw"></i>VSCode</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-12">2020-11-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1360&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-12">2020-11-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1484&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 3분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -182,7 +182,26 @@
 <pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">install</span> <span class="n">mingw</span> <span class="n">-y</span>
 </code></pre></td></tr></table>
 </div>
-</div><a class="lightgallery" href="/vscode-cpp/mingw.png" title="/vscode-cpp/mingw.png" data-thumbnail="/vscode-cpp/mingw.png">
+</div><div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw"></i>Failure<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><b> 2021년 6월 28일 수정</b></p>
+<p>2021년 1월 12일에 chocolatey repo에 등록된 mingw-w64 10.2.0 버전에서 gdb.exe가 누락된 사항이 발견되었습니다.</p>
+<p>현 시점에서는 Chocolatey로 MinGW를 설치 시 다음과 같이 입력하여 이전 버전인 8.1.0 버전으로 설치하시기를 권장합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">install</span> <span class="n">mingw</span> <span class="n">-y</span> <span class="p">-</span><span class="n">-version</span><span class="p">=</span><span class="n">8</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<a class="lightgallery" href="/vscode-cpp/mingw.png" title="/vscode-cpp/mingw.png" data-thumbnail="/vscode-cpp/mingw.png">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"

@@ -40,6 +40,20 @@ Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 �
 choco install mingw -y
 ```
 
+{{< admonition failure >}}
+
+<b> 2021년 6월 28일 수정</b>
+
+2021년 1월 12일에 chocolatey repo에 등록된 mingw-w64 10.2.0 버전에서 gdb.exe가 누락된 사항이 발견되었습니다.
+
+현 시점에서는 Chocolatey로 MinGW를 설치 시 다음과 같이 입력하여 이전 버전인 8.1.0 버전으로 설치하시기를 권장합니다.
+
+```powershell
+choco install mingw -y --version=8.1.0
+```
+
+{{< /admonition >}}
+
 {{< image src="mingw.png" width=100% >}}
 
 다음 명령어를 통해 설치가 잘 되었는지 확인해보세요.
