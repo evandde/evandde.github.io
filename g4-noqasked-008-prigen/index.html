@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Geant4 무작정 따라하기 - 8. 선원항 정의하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 8. 선원항 정의하기" />
-<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다." />
+<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 여덟번째. Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://evandde.github.io/g4-noqasked-008-prigen/" />
 <meta property="article:published_time" content="2021-06-20T21:56:43+09:00" />
@@ -14,7 +14,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 무작정 따라하기 - 8. 선원항 정의하기"/>
-<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다."/>
+<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 여덟번째. Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다."/>
 <meta name="application-name" content="EvaNote">
 <meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-008-prigen\/"
-        },"genre": "posts","keywords": "Geant4, Event, Run, PrimaryGeneratorAction, ParticleGun, Random","wordcount":  3329 ,
+        },"genre": "posts","keywords": "Geant4, PrimaryGeneratorAction, ParticleGun","wordcount":  3311 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-008-prigen\/","datePublished": "2021-06-20T21:56:43+09:00","dateModified": "2021-06-20T21:56:43+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 8. 선원항 정의하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-20">2021-06-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3329&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-20">2021-06-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3311&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 7분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -140,7 +140,7 @@
     <li><a href="#정리">정리</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다.</p>
+            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 여덟번째. Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다.</p>
 <hr>
 <h2 id="코드-작성-위치">코드 작성 위치</h2>
 <p>지오메트리를 정의할 때와 마찬가지로, Geant4 코드 작성 시 초기 입자에 대한 내용을 적는 곳도 정해져 있습니다.</p>
@@ -467,13 +467,13 @@
                             <a class="link-to-markdown" href="/g4-noqasked-008-prigen/index.md" target="_blank">Markdown으로 보기</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-hashtags="Geant4,Event,Run,PrimaryGeneratorAction,ParticleGun,Random"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-hashtags="Geant4,PrimaryGeneratorAction,ParticleGun"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-008-prigen/" data-title="Geant4 무작정 따라하기 - 8. 선원항 정의하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/event/">Event</a>,&nbsp;<a href="/tags/run/">Run</a>,&nbsp;<a href="/tags/primarygeneratoraction/">PrimaryGeneratorAction</a>,&nbsp;<a href="/tags/particlegun/">ParticleGun</a>,&nbsp;<a href="/tags/random/">Random</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/primarygeneratoraction/">PrimaryGeneratorAction</a>,&nbsp;<a href="/tags/particlegun/">ParticleGun</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
         </section>
