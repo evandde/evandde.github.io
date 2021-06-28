@@ -11,5 +11,12 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/g4-noqasked-008-prigen/</guid>
     <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
+    <title>Geant4 무작정 따라하기 - 7. Tracking Verbose</title>
+    <link>https://evandde.github.io/g4-noqasked-007-trkvb/</link>
+    <pubDate>Fri, 18 Jun 2021 10:00:26 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-007-trkvb/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>

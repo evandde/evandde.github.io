@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-008-prigen\/"
-        },"genre": "posts","keywords": "Geant4, Event, Run, PrimaryGeneratorAction, ParticleGun, Random","wordcount":  3885 ,
+        },"genre": "posts","keywords": "Geant4, Event, Run, PrimaryGeneratorAction, ParticleGun, Random","wordcount":  3329 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-008-prigen\/","datePublished": "2021-06-20T21:56:43+09:00","dateModified": "2021-06-20T21:56:43+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,8 +118,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 8. 선원항 정의하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-20">2021-06-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3885&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 8분&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-20">2021-06-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3329&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 7분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>목차</span>
@@ -127,13 +127,6 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#event--run">Event &amp; Run</a>
-      <ul>
-        <li><a href="#event">Event</a></li>
-        <li><a href="#run">Run</a></li>
-        <li><a href="#run을-실행하는-법">Run을 실행하는 법</a></li>
-      </ul>
-    </li>
     <li><a href="#코드-작성-위치">코드 작성 위치</a></li>
     <li><a href="#g4particlegun">G4ParticleGun</a>
       <ul>
@@ -148,23 +141,6 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 여덟번째. Event와 Run의 개념을 이해하고, Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다.</p>
-<h2 id="event--run">Event &amp; Run</h2>
-<h3 id="event">Event</h3>
-<p>입자 수송해석을 위한 몬테칼로 시뮬레이션이라 하면 일반적으로 <strong>방사선원이나 발생장치로부터 입자가 발생되는 시점부터 그 입자로 인해 야기된 여러 반응들을 모니터링하는 일련의 과정</strong>을 <font color='red'><b>반복적으로 시행</b></font>하는 것을 의미하지요.</p>
-<p>이렇게 반복적으로 시행되는 <strong>일련의 과정 1회</strong>를 Geant4에서는 <strong>Event</strong>라고 합니다. 다시 말해 <strong>Event</strong>란, 초기 입자(Primary particle)가 발생하여 이로부터 파생되는 이차 입자들(Secondary particles)까지의 수송 과정을 의미하는 것입니다.</p>
-<h3 id="run">Run</h3>
-<p>몬테칼로 시뮬레이션에서 &ldquo;<strong>시뮬레이션을 한 회 수행한다</strong>&ldquo;는 표현은 일반적으로 <strong>한 세트의 반복시행작업을 전부 끝냈음</strong>을 의미할 것입니다.</p>
-<p>Geant4에서는 <strong>시뮬레이션 한 회</strong>를 <strong>Run</strong>이라고 합니다. 즉, 여러 개의 Event를 반복하는 싸이클을 한데 묶어 Run이라고 부르는 것이지요.</p>
-<h3 id="run을-실행하는-법">Run을 실행하는 법</h3>
-<p>앞서 글에서 살펴봤던 <code>run.mac</code>파일을 보시면, 마지막 줄에 <code>/run/beamOn 100</code>이라는 내용이 있습니다. 이 줄이 바로 Run을 실행하는 명령줄입니다. <code>/run/beamOn</code>은 Geant4 프로그램이 입자 수송을 시작하도록 하는 명령어로, 뒤에 정수 인자를 받아 이 <strong>정수 값만큼 Event를 반복시행</strong>하여 <strong>하나의 Run을 구성</strong>하도록 합니다.</p>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">필요에 따라, 이 줄을 여러 회 입력하여 여러 개의 Run이 순차적으로 실행되게끔 할 수도 있습니다.</div>
-        </div>
-    </div>
 <hr>
 <h2 id="코드-작성-위치">코드 작성 위치</h2>
 <p>지오메트리를 정의할 때와 마찬가지로, Geant4 코드 작성 시 초기 입자에 대한 내용을 적는 곳도 정해져 있습니다.</p>

@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-007-trkvb\/"
-        },"genre": "posts","keywords": "Geant4, Verbose, Tracking, run.mac, macro","wordcount":  4449 ,
+        },"genre": "posts","keywords": "Geant4, Verbose, Tracking, Event, Run, run.mac, macro","wordcount":  5057 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-007-trkvb\/","datePublished": "2021-06-18T10:00:26+09:00","dateModified": "2021-06-18T10:00:26+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,8 +118,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 7. Tracking Verbose</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-18">2021-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 4449&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 9분&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-18">2021-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 5057&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 11분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>목차</span>
@@ -127,6 +127,12 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#event--run">Event &amp; Run</a>
+      <ul>
+        <li><a href="#event">Event</a></li>
+        <li><a href="#run">Run</a></li>
+      </ul>
+    </li>
     <li><a href="#tracking">Tracking</a>
       <ul>
         <li><a href="#track">Track</a></li>
@@ -149,6 +155,16 @@
 </nav></div>
             </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다.</p>
 <p>선원항을 정의하고 나면 시뮬레이션 상에서 실제로 내가 정의한대로 초기 입자가 발생되고 있는지 확인을 할 필요가 있을 것입니다. 그래서 선원항을 정의하는 방법을 배우기 전에, Tracking Verbose를 먼저 다루게 되었습니다.</p>
+<p>관련된 Geant4의 용어부터 간단하게 설명한 뒤, Tracking Verbose의 모습을 살펴보겠습니다.</p>
+<hr>
+<h2 id="event--run">Event &amp; Run</h2>
+<h3 id="event">Event</h3>
+<p>입자 수송해석을 위한 몬테칼로 시뮬레이션이라 하면 일반적으로 <strong>방사선원이나 발생장치로부터 입자가 발생되는 시점부터 그 입자로 인해 야기된 여러 반응들을 모니터링하는 일련의 과정</strong>을 <font color='red'><b>반복적으로 시행</b></font>하는 것을 의미하지요.</p>
+<p>이렇게 반복적으로 시행되는 <strong>일련의 과정 1회</strong>를 Geant4에서는 <strong>Event</strong>라고 합니다. 다시 말해 <strong>Event</strong>란, 초기 입자(Primary particle)가 발생하여 이로부터 파생되는 이차 입자들(Secondary particles)까지의 수송 과정을 의미하는 것입니다.</p>
+<h3 id="run">Run</h3>
+<p>몬테칼로 시뮬레이션에서 &ldquo;<strong>시뮬레이션을 한 회 수행한다</strong>&ldquo;는 표현은 일반적으로 <strong>한 세트의 반복시행작업을 전부 끝냈음</strong>을 의미할 것입니다.</p>
+<p>Geant4에서는 <strong>시뮬레이션 한 회</strong>를 <strong>Run</strong>이라고 합니다. 즉, 여러 개의 Event를 반복하는 싸이클을 한데 묶어 Run이라고 부르는 것이지요.</p>
+<hr>
 <h2 id="tracking">Tracking</h2>
 <p>Geant4의 가장 핵심적인 기능은 <strong>입자의 수송을 모사하는 것</strong>입니다. Geant4가 <strong>입자를 수송하면서 그 입자의 상태를 추적하는 것</strong>을 <strong>Tracking</strong>이라고 합니다.</p>
 <p>다만 Geant4는 입자의 수송을 &ldquo;<strong>모사</strong>&ldquo;하는 프로그램이기 때문에, 실제 세상에서 입자가 거동하는 것과는 다소 차이가 있습니다. 대표적으로 다음 두 가지 관점에서의 차이를 살펴봅시다.</p>
@@ -210,8 +226,8 @@
 <p>이 시리즈에서는 Tracking Verbose 한 가지만 알아볼 것입니다. Tracking Verbose는 말그대로 Geant4가 Tracking을 하며 얻은 정보를 출력(Verbose)하는 기능입니다. 출력 수준은 <strong>-1부터 5까지 조정</strong>할 수 있으며, 수준이 높아질수록 더욱 상세한 정보가 출력됩니다.</p>
 <h3 id="tracking-verbose-설정하기">Tracking Verbose 설정하기</h3>
 <p>일단 Tracking Verbose를 설정하는 방법부터 알아봅시다.</p>
-<p>이전에 Geant4 프로그램을 실행하는 방식 중 <a href="https://evandde.github.io/g4-noqasked-001-clonetest/#실행ui모드-실행-batch모드-실행" rel="">batch모드 실행</a>에 대해 언급한 적이 있습니다. <code>./g4_minimal run.mac</code>과 같이 입력하여 실행하면, <code>run.mac</code>파일의 내용이 일괄적으로 입력되어 시뮬레이션이 수행된다고 했었지요.</p>
-<p>Tracking Verbose는 이 <code>run.mac</code>파일을 이용하면 쉽게 설정할 수 있습니다.</p>
+<p>이전에 Geant4 프로그램을 실행하는 방식 중 <a href="https://evandde.github.io/g4-noqasked-001-clonetest/#실행ui모드-실행-batch모드-실행" rel="">batch모드 실행</a>에 대해 언급한 적이 있습니다. <code>./g4_minimal run.mac</code>과 같이 입력하여 실행하면, <code>run.mac</code>파일의 내용이 일괄적으로 입력되어 시뮬레이션이 수행된다고 했었지요. 여기서 <code>run.mac</code>과 같은 파일을 <b>매크로파일(macro file)</b>이라고 부릅니다.</p>
+<p>Tracking Verbose는 이러한 매크로파일을 이용하면 쉽게 설정할 수 있습니다.</p>
 <p>현재 <code>run.mac</code> 파일을 열어보면 다음과 같이 작성되어 있을 것입니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -244,10 +260,19 @@
             <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">mac 파일에서 <code>#</code> 이후는 주석으로 처리됩니다.</div>
+            <div class="admonition-content">매크로파일에서 <code>#</code> 이후는 주석으로 처리됩니다.</div>
         </div>
     </div>
 <p>주석 이후 위에서부터 4개 줄에 전부 verbose가 적혀있지요. 이 모두가 각 사항에 대한 출력 수준을 설정하는 부분입니다. 여기서는 <code>/tracking/verbose 1</code>이라고 적힌 부분만 조절하며 살펴볼 것입니다. 적혀있는 숫자 <code>1</code>은 <strong>출력 수준을 1로 설정</strong>하겠다는 뜻입니다.</p>
+<p>마지막 줄에는 <code>/run/beamOn 100</code>이라는 내용이 있는데요, 이 줄이 바로 Run을 실행하는 명령줄입니다. <code>/run/beamOn</code>은 Geant4 프로그램이 입자 수송을 시작하도록 하는 명령어로, 뒤에 정수 인자를 받아 이 <strong>정수 값만큼 Event를 반복시행</strong>하여 <strong>하나의 Run을 구성</strong>하도록 합니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">필요에 따라, <code>/run/beamOn</code> 줄을 여러 회 입력하여 여러 개의 Run이 순차적으로 실행되게끔 할 수도 있습니다.</div>
+        </div>
+    </div>
 <h3 id="tracking-verbose-확인하기">Tracking Verbose 확인하기</h3>
 <p>지금 상태인 출력 수준 1에서 출력이 제대로 되는지부터 확인해보겠습니다. <code>build</code> 디렉토리에서 다음 명령어를 입력하여 Geant4 프로그램을 batch 모드로 실행합니다.</p>
 <div class="highlight"><div class="chroma">
@@ -433,13 +458,13 @@
                             <a class="link-to-markdown" href="/g4-noqasked-007-trkvb/index.md" target="_blank">Markdown으로 보기</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-hashtags="Geant4,Verbose,Tracking,run.mac,macro"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-hashtags="Geant4,Verbose,Tracking,Event,Run,run.mac,macro"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/verbose/">Verbose</a>,&nbsp;<a href="/tags/tracking/">Tracking</a>,&nbsp;<a href="/tags/run.mac/">run.mac</a>,&nbsp;<a href="/tags/macro/">macro</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/verbose/">Verbose</a>,&nbsp;<a href="/tags/tracking/">Tracking</a>,&nbsp;<a href="/tags/event/">Event</a>,&nbsp;<a href="/tags/run/">Run</a>,&nbsp;<a href="/tags/run.mac/">run.mac</a>,&nbsp;<a href="/tags/macro/">macro</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
         </section>
