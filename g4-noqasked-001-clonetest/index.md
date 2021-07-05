@@ -21,13 +21,13 @@ Geant4 코드 작성을 여러번 하다 보면 시뮬레이션의 내용이 다
 
 다음 세 가지 방법 중 본인에게 편한 방법을 통해 다운받으시기 바랍니다.
 
-1. 템플릿 코드는 [이 링크](https://github.com/evandde/g4_minimal/archive/refs/heads/master.zip)를 통해 다운받을 수 있습니다. `g4_minimal-master.zip` 파일이 다운받아질 것입니다. 압축을 풀어 사용하시면 됩니다.
+1. 템플릿 코드는 [이 링크](https://github.com/evandde/g4_minimal/archive/refs/heads/main.zip)를 통해 다운받을 수 있습니다. `g4_minimal-main.zip` 파일이 다운받아질 것입니다. 압축을 풀어 사용하시면 됩니다.
 
 2. 혹은, 리눅스 환경에서 `wget`명령어를 통해 다음과 같이 진행하셔도 됩니다. (Linux에서는 `unzip` 명령어로 zip 형식의 압축을 풀 수 있습니다)
 
    ```bash
-   wget https://github.com/evandde/g4_minimal/archive/refs/heads/master.zip
-   unzip master.zip
+   wget https://github.com/evandde/g4_minimal/archive/refs/heads/main.zip
+   unzip main.zip
    ```
 
    
