@@ -26,7 +26,7 @@
     <guid>https://evandde.github.io/linux-sysinfo/</guid>
     <description><![CDATA[<p>리눅스 운영체제에서 하드웨어 및 시스템의 정보나 현재 상태를 살펴보는 데에 사용되는 명령어를 정리하였습니다.</p>]]></description>
 </item><item>
-    <title>Geant4 설치 무작정 따라하기(초보자용)</title>
+    <title>Geant4 WSL에 설치 무작정 따라하기(초보자용)</title>
     <link>https://evandde.github.io/g4install-107p1-win10wslbasic/</link>
     <pubDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</pubDate>
     <author>작성자</author>
