@@ -1,4 +1,4 @@
-# Geant4 설치가이드 모음 (Linux)
+# Geant4 설치가이드 모음
 
 
 Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
@@ -41,6 +41,15 @@ Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기
 - multi-threading 기능 활성화
 - 외부 라이브러리 Qt5 (그래픽/UI 라이브러리) 연동
 - 외부 라이브러리 OpenGL (그래픽) 연동
+- CLHep 내장 라이브러리 사용
+- Cross-section Data 설치 중 자동 다운로드
+
+<b>[Windows 10에서 10.7 patch-02 설치하기(초보자용)]({{< ref "g4install-107p2-win10basic" >}})</b>
+
+- Windows 10 환경에서 Windows용 Geant4 설치
+- Microsoft Visual C++ (MSVC) 빌드 도구 사용
+- multi-threading 기능 활성화
+- 외부 라이브러리 Qt5 (그래픽/UI 라이브러리) 연동
 - CLHep 내장 라이브러리 사용
 - Cross-section Data 설치 중 자동 다운로드
 
@@ -196,6 +205,5 @@ CMake는 Curses (UNIX 한정)나 Qt (UNIX 혹은 Windows) 기반의 터미널/GU
 {{< /admonition >}}
 
 이외에도 정말 많은 옵션이 있습니다. 각 옵션마다 요구사항도 있으므로 주의해서 살펴보시기 바랍니다.
-
 
 

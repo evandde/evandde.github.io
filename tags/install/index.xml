@@ -5,11 +5,11 @@
         <description>Install - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
             <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 15 Feb 2021 12:45:56 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/install/" rel="self" type="application/rss+xml" /><item>
-    <title>Geant4 설치가이드 모음 (Linux)</title>
-    <link>https://evandde.github.io/geant4-install-linux/</link>
+    <title>Geant4 설치가이드 모음</title>
+    <link>https://evandde.github.io/geant4-install/</link>
     <pubDate>Mon, 15 Feb 2021 12:45:56 &#43;0900</pubDate>
     <author>작성자</author>
-    <guid>https://evandde.github.io/geant4-install-linux/</guid>
+    <guid>https://evandde.github.io/geant4-install/</guid>
     <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
 이 글에서는 Geant4 설치에 관한 다양한 정보와, 설치가이드 링크를 제공합니다.</p>]]></description>
 </item><item>
