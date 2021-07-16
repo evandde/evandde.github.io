@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Geant4 Windows 10에 설치 무작정 따라하기(초보자용) - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)" />
+<meta property="og:description" content="이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, Windows 10을 사용하는 개인 컴퓨터 환경에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. (인터넷 연결 필요)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://evandde.github.io/g4install-107p2-win10basic/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-15T21:41:51+09:00" />
+<meta property="article:modified_time" content="2021-07-15T21:41:51+09:00" />
+<meta property="og:see_also" content="https://evandde.github.io/g4install-107p1-win10wslbasic/" /><meta property="og:see_also" content="https://evandde.github.io/g4install-107p1-ubt2004/" /><meta property="og:see_also" content="https://evandde.github.io/geant4-install-linux/" /><meta property="og:see_also" content="https://evandde.github.io/g4install-106p2-ubt2004/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)"/>
+<meta name="twitter:description" content="이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, Windows 10을 사용하는 개인 컴퓨터 환경에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. (인터넷 연결 필요)"/>
+<meta name="application-name" content="EvaNote">
+<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4install-107p2-win10basic/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-008-prigen/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Geant4 Windows 10에 설치 무작정 따라하기(초보자용)",
+        "inLanguage": "ko-kr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/evandde.github.io\/g4install-107p2-win10basic\/"
+        },"genre": "posts","keywords": "HowTo, Windows, Geant4, MSVC, Visual Studio","wordcount":  4197 ,
+        "url": "https:\/\/evandde.github.io\/g4install-107p2-win10basic\/","datePublished": "2021-07-15T21:41:51+09:00","dateModified": "2021-07-15T21:41:51+09:00","publisher": {
+            "@type": "Organization",
+            "name": "Evan Kim"},"author": {
+                "@type": "Person",
+                "name": "Evan Kim"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        취소
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">목차</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 Windows 10에 설치 무작정 따라하기(초보자용)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-install/"><i class="fas fa-book fa-fw"></i>Geant4-Install</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-15">2021-07-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 4197&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 9분&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>목차</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#작업-흐름-요약">작업 흐름 요약</a></li>
+    <li><a href="#vs2019-빌드-도구-설치">VS2019 빌드 도구 설치</a>
+      <ul>
+        <li><a href="#다운로드">다운로드</a></li>
+        <li><a href="#설치">설치</a></li>
+        <li><a href="#설치여부-확인">설치여부 확인</a></li>
+      </ul>
+    </li>
+    <li><a href="#qt5-라이브러리-설치">Qt5 라이브러리 설치</a>
+      <ul>
+        <li><a href="#다운로드-1">다운로드</a></li>
+        <li><a href="#설치-1">설치</a></li>
+        <li><a href="#환경변수-설정">환경변수 설정</a></li>
+        <li><a href="#설치여부-확인-1">설치여부 확인</a></li>
+      </ul>
+    </li>
+    <li><a href="#geant4-설치">Geant4 설치</a>
+      <ul>
+        <li><a href="#다운로드-2">다운로드</a></li>
+        <li><a href="#설치-2">설치</a></li>
+        <li><a href="#환경변수-설정-1">환경변수 설정</a></li>
+      </ul>
+    </li>
+    <li><a href="#geant4-예제-실행해보기">Geant4 예제 실행해보기</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, <b>Windows 10을 사용하는 개인 컴퓨터 환경</b>에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. <b>(인터넷 연결 필요)</b></p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>이 글에서 제시하는 방향보다, 각자에게 더 적합한 Geant4 설치 방향이 있을 수 있습니다.</p>
+<p>하지만, 이 글은 <b>배경지식 없이도 실무에 사용 가능한 수준으로 Geant4를 설치하는 것을 목적</b>으로 하기 때문에, 작업 난이도 측면에서 쉬운 방향을 택하였습니다.</p>
+<p>묻지도 따지지도 않고 &ldquo;<strong>우선 Geant4라는걸 써봐야겠다</strong>&rdquo; 라는 분에게 권장합니다.</p>
+</div>
+        </div>
+    </div>
+<hr>
+<h2 id="작업-흐름-요약">작업 흐름 요약</h2>
+<ol>
+<li>Windows 10에 Microsoft Visual Studio 2019에 포함된 빌드 도구를 설치합니다.</li>
+<li>Microsoft Visual Studio 2019 빌드 도구에 호환되는 Qt5 라이브러리를 설치합니다.</li>
+<li>Windows 10에 Geant4를 설치합니다.
+<ul>
+<li>크로스섹션 데이터는 설치과정에서 자동으로 다운되도록 할 예정이므로 인터넷 연결이 필요합니다.</li>
+<li>CLHep은 내장된 사양만 사용하며, 따로 설치하지 않을 것입니다.</li>
+<li>그래픽 라이브러리로 Qt5를 연동하여 설치합니다.</li>
+</ul>
+</li>
+<li>Geant4 예제를 실행시켜, 잘 설치되었는지 확인합니다.</li>
+</ol>
+<hr>
+<h2 id="vs2019-빌드-도구-설치">VS2019 빌드 도구 설치</h2>
+<p>이 글에서는 Geant4 설치를 위한 빌드 도구로 gcc보다는 MSVC(Microsoft Visual C++)를 이용하여 진행할 예정입니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms" target="_blank" rel="noopener noreffer">공식 가이드</a>에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.</p>
+<blockquote>
+<p>Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild" target="_blank" rel="noopener noreffer">On Unix Platforms</a> can be used.</p>
+</blockquote>
+<p>제 경험상으로는 Linux/Unix 환경에서 gcc를 사용했던 경험에 비해 그리 시원치 않아서, 개인적으로 Windows 10에서 설치 시에는 MSVC를 추천합니다.</p>
+</div>
+        </div>
+    </div>
+<h3 id="다운로드">다운로드</h3>
+<p>Microsoft에서 제공하는 Visual Studio 2019용 Build Tools는 <a href="https://visualstudio.microsoft.com/ko/downloads/#build-tools-for-visual-studio-2019" target="_blank" rel="noopener noreffer">이 링크</a>에서 무료로 받을 수 있습니다. 아래 그림에서 보이는 다운로드 링크를 누르면 됩니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/vs2019buildtools_download.png" title="/g4install-107p2-win10basic/vs2019buildtools_download.png" data-thumbnail="/g4install-107p2-win10basic/vs2019buildtools_download.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="vs2019buildtools_download.png"
+            data-srcset="/g4install-107p2-win10basic/vs2019buildtools_download.png, vs2019buildtools_download.png 1.5x, /g4install-107p2-win10basic/vs2019buildtools_download.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/vs2019buildtools_download.png" width="100%" />
+    </a>
+<h3 id="설치">설치</h3>
+<p>다운받은 뒤 실행하면, 아래 그림과 같은 창이 뜰 것입니다. 이 중 <b>C++를 사용한 데스크톱 개발</b>을 클릭합니다. 오른쪽 설치 세부 정보에서, 자동으로 선택사항 중 일부가 선택될 것입니다. 혹시라도 <b>Windows용 C++ CMake 도구</b>가 선택이 안되어있다면, <b>꼭 선택</b>해주시기 바랍니다. 선택을 완료하셨다면 설치를 진행하시면 됩니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/vs2019buildtools_install.png" title="/g4install-107p2-win10basic/vs2019buildtools_install.png" data-thumbnail="/g4install-107p2-win10basic/vs2019buildtools_install.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="vs2019buildtools_install.png"
+            data-srcset="/g4install-107p2-win10basic/vs2019buildtools_install.png, vs2019buildtools_install.png 1.5x, /g4install-107p2-win10basic/vs2019buildtools_install.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/vs2019buildtools_install.png" width="100%" />
+    </a>
+<h3 id="설치여부-확인">설치여부 확인</h3>
+<p>제대로 설치가 되었는지 확인해보겠습니다.</p>
+<ol>
+<li>
+<p><b>[WIN]+[S]</b> 를 눌러 검색을 띄움</p>
+</li>
+<li>
+<p><code>developer powershell</code>을 입력하여 <b>Developer PowerShell for VS 2019</b>를 찾은 뒤 실행</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/vs2019buildtools_test1.png" title="/g4install-107p2-win10basic/vs2019buildtools_test1.png" data-thumbnail="/g4install-107p2-win10basic/vs2019buildtools_test1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="vs2019buildtools_test1.png"
+            data-srcset="/g4install-107p2-win10basic/vs2019buildtools_test1.png, vs2019buildtools_test1.png 1.5x, /g4install-107p2-win10basic/vs2019buildtools_test1.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/vs2019buildtools_test1.png" width="100%" />
+    </a>
+</li>
+<li>
+<p><code>cl</code>을 입력하여, 다음 그림과 같이 사용법(usage)이 뜨는지 확인</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/vs2019buildtools_test2.png" title="/g4install-107p2-win10basic/vs2019buildtools_test2.png" data-thumbnail="/g4install-107p2-win10basic/vs2019buildtools_test2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="vs2019buildtools_test2.png"
+            data-srcset="/g4install-107p2-win10basic/vs2019buildtools_test2.png, vs2019buildtools_test2.png 1.5x, /g4install-107p2-win10basic/vs2019buildtools_test2.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/vs2019buildtools_test2.png" width="100%" />
+    </a>
+</li>
+<li>
+<p>확인이 끝난 뒤에는, <b>Developer PowerShell을 일단 종료</b>(Qt 설치 시 충돌 방지)</p>
+</li>
+</ol>
+<hr>
+<h2 id="qt5-라이브러리-설치">Qt5 라이브러리 설치</h2>
+<p>Qt는 Geant4에서 GUI를 띄우기 위해 필요한 라이브러리입니다. Qt는 라이센스 이슈 때문인지, 설치하려면 <b>Qt 계정 회원가입 및 로그인이 필요</b>합니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Qt는 무료로 이용하고자 할 경우,  <a href="https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en" target="_blank" rel="noopener noreffer">(L)GPL 라이센스 규약</a>을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.</div>
+        </div>
+    </div>
+<h3 id="다운로드-1">다운로드</h3>
+<p>일단 <a href="https://www.qt.io/download" target="_blank" rel="noopener noreffer">이 링크</a>에서 Qt online installer를 다운받을 수 있습니다. 처음 들어오시면 헤매실까봐 눌러야하는 링크 순서를 보여드리니, 아래 그림을 참고해서 진행하시면 됩니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_download1.png" title="/g4install-107p2-win10basic/qt_download1.png" data-thumbnail="/g4install-107p2-win10basic/qt_download1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_download1.png"
+            data-srcset="/g4install-107p2-win10basic/qt_download1.png, qt_download1.png 1.5x, /g4install-107p2-win10basic/qt_download1.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_download1.png" width="100%" />
+    </a>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_download2.png" title="/g4install-107p2-win10basic/qt_download2.png" data-thumbnail="/g4install-107p2-win10basic/qt_download2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_download2.png"
+            data-srcset="/g4install-107p2-win10basic/qt_download2.png, qt_download2.png 1.5x, /g4install-107p2-win10basic/qt_download2.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_download2.png" width="100%" />
+    </a>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_download3.png" title="/g4install-107p2-win10basic/qt_download3.png" data-thumbnail="/g4install-107p2-win10basic/qt_download3.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_download3.png"
+            data-srcset="/g4install-107p2-win10basic/qt_download3.png, qt_download3.png 1.5x, /g4install-107p2-win10basic/qt_download3.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_download3.png" width="100%" />
+    </a>
+<h3 id="설치-1">설치</h3>
+<p>설치파일을 다운받은 뒤 실행하시면, 다음과 같이 계정을 입력하라는 창이 뜹니다. 이미 가입하셨다면 Qt 계정을 입력하여 로그인하시고, 계정이 없으시다면 <u>Sign up</u>을 눌러 계정을 생성한 뒤 입력하시면 됩니다. 가입 시 이메일 인증절차가 필요합니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_install1.png" title="/g4install-107p2-win10basic/qt_install1.png" data-thumbnail="/g4install-107p2-win10basic/qt_install1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_install1.png"
+            data-srcset="/g4install-107p2-win10basic/qt_install1.png, qt_install1.png 1.5x, /g4install-107p2-win10basic/qt_install1.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_install1.png" width="100%" />
+    </a>
+<br>
+<p>이어서 라이센스 동의 관련 내용이 뜹니다. 첫 번째 체크박스는 라이센스에 동의하겠다는 것이니 체크를 반드시 하셔야 합니다. 두 번째 네모상자 및 체크박스는 사용자가 기관인지 개인인지를 확인하는 란입니다. 기관이시면 기관명을 적고, 개인이시면 체크박스에 체크를 하면 됩니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_install2.png" title="/g4install-107p2-win10basic/qt_install2.png" data-thumbnail="/g4install-107p2-win10basic/qt_install2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_install2.png"
+            data-srcset="/g4install-107p2-win10basic/qt_install2.png, qt_install2.png 1.5x, /g4install-107p2-win10basic/qt_install2.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_install2.png" width="100%" />
+    </a>
+<br>
+<p>Next 버튼을 누르다보면, Qt 발전을 위해 정보 제공 동의를 하는 내용이 나오는데, 이는 자유롭게 선택하시면 됩니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_install3.png" title="/g4install-107p2-win10basic/qt_install3.png" data-thumbnail="/g4install-107p2-win10basic/qt_install3.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_install3.png"
+            data-srcset="/g4install-107p2-win10basic/qt_install3.png, qt_install3.png 1.5x, /g4install-107p2-win10basic/qt_install3.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_install3.png" width="100%" />
+    </a>
+<br>
+<p>다음으로 설치경로 및 설치유형 선택이 나옵니다.</p>
+<p>일단, 이 글에서 설치 경로는 기본경로인 <code>C:\Qt</code>로 가겠습니다.</p>
+<p>설치 유형은 <b>Custom Installation</b>이 선택된대로 놔두시면 됩니다.</p>
+<p>맨 아래의 <b>Associate common file types with Qt Creator.</b> 체크박스의 경우에는, 여러분이 Qt Creator라는 IDE를 사용하실 예정이라면 체크하시고, 사용할 계획이 없으시다면 체크를 해제하시면 됩니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_install4.png" title="/g4install-107p2-win10basic/qt_install4.png" data-thumbnail="/g4install-107p2-win10basic/qt_install4.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_install4.png"
+            data-srcset="/g4install-107p2-win10basic/qt_install4.png, qt_install4.png 1.5x, /g4install-107p2-win10basic/qt_install4.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_install4.png" width="100%" />
+    </a>
+<br>
+<p>Next를 누르면 설치할 항목을 고르는 부분이 나옵니다. <strong>여기가 중요</strong>합니다.</p>
+<p>일단 <font color=red><b>Deselect All을 눌러 모든 항목을 선택 해제</b></font>합니다.</p>
+<p>그리고나서, <font color=red><b>Qt &gt; Qt 5.15.2 &gt; MSVC 2019 64-bit만 선택</b></font>합니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_install5.png" title="/g4install-107p2-win10basic/qt_install5.png" data-thumbnail="/g4install-107p2-win10basic/qt_install5.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_install5.png"
+            data-srcset="/g4install-107p2-win10basic/qt_install5.png, qt_install5.png 1.5x, /g4install-107p2-win10basic/qt_install5.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_install5.png" width="100%" />
+    </a>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_install6.png" title="/g4install-107p2-win10basic/qt_install6.png" data-thumbnail="/g4install-107p2-win10basic/qt_install6.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_install6.png"
+            data-srcset="/g4install-107p2-win10basic/qt_install6.png, qt_install6.png 1.5x, /g4install-107p2-win10basic/qt_install6.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_install6.png" width="100%" />
+    </a>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>현재 Qt 최신버전은 6.x 버전입니다만, Geant4에서 아직 Qt5까지만 지원합니다.</p>
+<p>그리고 Qt를 설치할 때 사용하는 컴파일러에 맞추어 설치해야 합니다. 저희는 MSVC를 이용하므로 이에 맞추어 설치를 진행합니다.</p>
+</div>
+        </div>
+    </div>
+<p>이제 설치가 완료될 때까지 기다리시면 됩니다. Qt쪽 서버와 한국간 통신이 느려서 그런지 생각보다 오래 걸리더군요.</p>
+<h3 id="환경변수-설정">환경변수 설정</h3>
+<p>설치가 끝났다면 환경변수를 설정하는 과정이 필요합니다. <code>Path</code> 환경변수에 Qt가 설치된 경로의 bin 폴더를 추가해주어야 합니다.</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">기본경로인 <code>C:\Qt</code>가 아닌 다른 곳에 설치하셨다면, 맞추어 경로를 바꿔서 입력하셔야 합니다.</div>
+        </div>
+    </div>
+<p>PowerShell을 관리자 권한으로 열어, 명령어를 통해 설정하도록 하겠습니다.</p>
+<ol>
+<li>
+<p><b>[WIN]+[R]</b>을 눌러 실행 창 열기</p>
+</li>
+<li>
+<p><code>powershell</code> 입력 후 <b>[CTRL]+[SHIFT]+[ENTER]</b>를 눌러 관리자 권한으로 powershell 실행</p>
+</li>
+<li>
+<p>다음 명령어 입력</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Path&#34;</span><span class="p">,</span> <span class="nv">$env:Path</span><span class="p">+</span><span class="s2">&#34;;C:\Qt\5.15.2\msvc2019_64\bin&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="설치여부-확인-1">설치여부 확인</h3>
+<p>방금 열어둔 PowerShell에서 <code>qmake</code>라고 입력한 뒤 사용법(usage)이 뜨는지 확인합니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/qt_test.png" title="/g4install-107p2-win10basic/qt_test.png" data-thumbnail="/g4install-107p2-win10basic/qt_test.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="qt_test.png"
+            data-srcset="/g4install-107p2-win10basic/qt_test.png, qt_test.png 1.5x, /g4install-107p2-win10basic/qt_test.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/qt_test.png" width="100%" />
+    </a>
+<hr>
+<h2 id="geant4-설치">Geant4 설치</h2>
+<h3 id="다운로드-2">다운로드</h3>
+<p>Geant4 소스코드는 <a href="https://geant4.web.cern.ch/support/download" target="_blank" rel="noopener noreffer">이 링크</a>에서 다운받을 수 있습니다. 위의 <b>Source files</b>라고 되어있는 항목 중 <b>ZIP format 파일</b>을 받으면 됩니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/geant4_download.png" title="/g4install-107p2-win10basic/geant4_download.png" data-thumbnail="/g4install-107p2-win10basic/geant4_download.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="geant4_download.png"
+            data-srcset="/g4install-107p2-win10basic/geant4_download.png, geant4_download.png 1.5x, /g4install-107p2-win10basic/geant4_download.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/geant4_download.png" width="100%" />
+    </a>
+<h3 id="설치-2">설치</h3>
+<p>이 글에서는 <code>C:\Geant4</code> 폴더를 만들어 여기에 설치를 하도록 하겠습니다. 경로는 자유롭게 하셔도 됩니다만, 추후 환경변수 등을 설정할 때 경로를 맞추어 변경해주셔야 하니 주의하시기 바랍니다.</p>
+<p>이제 다음과 같이 순서대로 진행하시면 됩니다.</p>
+<ol>
+<li>
+<p>위에서 다운받은 압축파일(geant4_10_07_p02.zip)을 <code>C:\Geant4</code> 폴더에 옮기고, 압축을 풀어줍니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/geant4_install1.png" title="/g4install-107p2-win10basic/geant4_install1.png" data-thumbnail="/g4install-107p2-win10basic/geant4_install1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="geant4_install1.png"
+            data-srcset="/g4install-107p2-win10basic/geant4_install1.png, geant4_install1.png 1.5x, /g4install-107p2-win10basic/geant4_install1.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/geant4_install1.png" width="100%" />
+    </a>
+</li>
+<li>
+<p>압축을 풀어 생긴 geant4_10_07_p02 폴더에 들어가서, <b><code>build</code> 폴더와 <code>install</code> 폴더를 새로 만들어줍니다</b>.</p>
+<p><code>build</code> 폴더는 cmake를 통해 생성되는 컴파일 결과가 보관될 폴더입니다.</p>
+<p><code>install</code>폴더는 Geant4가 최종적으로 설치될 폴더입니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/geant4_install2.png" title="/g4install-107p2-win10basic/geant4_install2.png" data-thumbnail="/g4install-107p2-win10basic/geant4_install2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="geant4_install2.png"
+            data-srcset="/g4install-107p2-win10basic/geant4_install2.png, geant4_install2.png 1.5x, /g4install-107p2-win10basic/geant4_install2.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/geant4_install2.png" width="100%" />
+    </a>
+</li>
+<li>
+<p><b>Developer PowerShell for VS 2019</b>를 실행합니다.</p>
+<p><b>[WIN]+[S]</b> 를 눌러 검색을 띄우고, <code>developer powershell</code>을 입력하여 <b>Developer PowerShell for VS 2019</b>를 찾은 뒤 실행하면 됩니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/vs2019buildtools_test1.png" title="/g4install-107p2-win10basic/vs2019buildtools_test1.png" data-thumbnail="/g4install-107p2-win10basic/vs2019buildtools_test1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="vs2019buildtools_test1.png"
+            data-srcset="/g4install-107p2-win10basic/vs2019buildtools_test1.png, vs2019buildtools_test1.png 1.5x, /g4install-107p2-win10basic/vs2019buildtools_test1.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/vs2019buildtools_test1.png" width="100%" />
+    </a>
+</li>
+<li>
+<p>PowerShell 상에서 <code>cd</code> 명령어를 이용하여, 앞서 만든 <code>build </code>폴더 위치로 이동합니다.</p>
+<p>예를 들어 이 글에서와 같이 <code>C:\Geant4\geant4_10_07_p02\build</code>로 이동해야 하는 경우에는, 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">cd </span><span class="n">C:</span><span class="p">\</span><span class="n">Geant4</span><span class="p">\</span><span class="n">geant4_10_07_p02</span><span class="p">\</span><span class="n">build</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="/g4install-107p2-win10basic/geant4_install3.png" title="/g4install-107p2-win10basic/geant4_install3.png" data-thumbnail="/g4install-107p2-win10basic/geant4_install3.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="geant4_install3.png"
+            data-srcset="/g4install-107p2-win10basic/geant4_install3.png, geant4_install3.png 1.5x, /g4install-107p2-win10basic/geant4_install3.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/geant4_install3.png" width="100%" />
+    </a>
+</li>
+<li>
+<p>다음 명령어를 그대로 입력하여 <code>cmake</code> 작업을 수행합니다. 오탈자 방지를 위해 복사-붙여넣기를 권장합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">..</span> <span class="n">-DCMAKE_INSTALL_PREFIX</span><span class="p">=</span><span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install&#34;</span> <span class="n">-DGEANT4_BUILD_MULTITHREADED</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_INSTALL_DATA</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_BUILD_MSVC_MP</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_USE_QT</span><span class="p">=</span><span class="n">ON</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>각 옵션의 의미는 다음과 같습니다.</p>
+<ul>
+<li>CMAKE_INSTALL_PREFIX: Geant4가 설치될 폴더의 경로.</li>
+<li>GEANT4_BUILD_MULTITHREADED: Geant4에서 MultiThreading이 가능하도록 설치할 지에 대한 여부. 기본값은 OFF.</li>
+<li>GEANT4_INSTALL_DATA: Geant4 설치 시 크로스섹션 데이터를 자동으로 다운로드할 지에 대한 여부. 기본값은 OFF.</li>
+<li>GEANT4_BUILD_MSVC_MP: Windows에서 MSVC 빌드 도구를 통해 설치할 때 Multiprocessing을 통해 설치 속도를 빠르게 할 지에 대한 여부. 기본값은 OFF.</li>
+<li>GEANT4_USE_QT: Geant4에서 Qt5 기반의 GUI를 사용할 수 있도록 설치할 지에 대한 여부. 기본값은 OFF.</li>
+</ul>
+<p>다음 그림과 같이 <b>Configuring done</b>과 <b>Generating done</b> 문구를 확인하였다면 성공입니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/geant4_install4.png" title="/g4install-107p2-win10basic/geant4_install4.png" data-thumbnail="/g4install-107p2-win10basic/geant4_install4.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="geant4_install4.png"
+            data-srcset="/g4install-107p2-win10basic/geant4_install4.png, geant4_install4.png 1.5x, /g4install-107p2-win10basic/geant4_install4.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/geant4_install4.png" width="100%" />
+    </a>
+</li>
+<li>
+<p>다음 명령어를 그대로 입력하여 빌드 및 설치 작업을 수행합니다. 오탈자 방지를 위해 복사-붙여넣기를 권장합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">-</span><span class="n">-build</span> <span class="p">.</span> <span class="p">-</span><span class="n">-config</span> <span class="n">Release</span> <span class="p">-</span><span class="n">-target</span> <span class="n">install</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>수행 중에 유니코드 이슈와 관련하여 warning C4819가 뜰 수 있습니다만, 무시하고 진행하셔도 괜찮습니다.</p>
+<p>최종적으로 아래 그림과 같이 <code>-- Installing: ...</code> 내역이 쭉 뜨고 끝나면 정상적으로 종료된 것입니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/geant4_install5.png" title="/g4install-107p2-win10basic/geant4_install5.png" data-thumbnail="/g4install-107p2-win10basic/geant4_install5.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="geant4_install5.png"
+            data-srcset="/g4install-107p2-win10basic/geant4_install5.png, geant4_install5.png 1.5x, /g4install-107p2-win10basic/geant4_install5.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/geant4_install5.png" width="100%" />
+    </a>
+</li>
+</ol>
+<h3 id="환경변수-설정-1">환경변수 설정</h3>
+<p>설치가 끝났다면 환경변수를 설정하는 과정이 필요합니다.</p>
+<p>먼저, PowerShell을 관리자 권한으로 실행합니다. <font color=red><b>방금까지 Geant4 설치에 이용하던 Developer PowerShell for VS 2019에서 하는 것이 아님에 주의</b></font>하세요. 권한이 없어서 명령어가 제대로 실행되지 않을 수 있습니다.</p>
+<ol>
+<li>
+<p><b>[WIN]+[R]</b>을 눌러 실행 창 열기</p>
+</li>
+<li>
+<p><code>powershell</code> 입력 후 <b>[CTRL]+[SHIFT]+[ENTER]</b>를 눌러 관리자 권한으로 powershell 실행</p>
+</li>
+<li>
+<p>다음 명령어 입력</p>
+<ul>
+<li>
+<p><code>Path</code> 환경변수에 Geant4가 설치된 경로의 <code>bin</code> 폴더를 추가</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Path&#34;</span><span class="p">,</span> <span class="nv">$env:Path</span><span class="p">+</span><span class="s2">&#34;;C:\Geant4\geant4_10_07_p02\install\bin&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>Geant4_DIR</code>이라는 환경변수를 만들어 Geant4가 설치된 경로의 <code>lib\Geant4-10.7.2</code> 폴더를 추가</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Geant4_DIR&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\lib\Geant4-10.7.2&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>크로스섹션 데이터 경로 설정을 위한 환경변수 설정 (참고: <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html#environment-variables-for-datasets" target="_blank" rel="noopener noreffer">Postinstall Setup — Geant4 Installation Guide 10.7 documentation (cern.ch)</a>)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4ABLADATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4ABLA3.1&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4ENSDFSTATEDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4ENSDFSTATE2.3&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4INCLDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4INCL1.0&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4LEDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4EMLOW7.13&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4LEVELGAMMADATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\PhotonEvaporation5.7&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4NEUTRONHPDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4NDL4.6&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4PARTICLEXSDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4PARTICLEXS3.1.1&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4PIIDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4PII1.3&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4RADIOACTIVEDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\RadioactiveDecay5.6&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4REALSURFACEDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\RealSurface2.2&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4SAIDXSDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4SAIDDATA2.0&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="geant4-예제-실행해보기">Geant4 예제 실행해보기</h2>
+<p>Geant4 설치를 완료했으니 이제 실행을 해봐야겠죠.</p>
+<p>Windows에서 Geant4 라이브러리 기반의 코드를 빌드하려면 <b><font color=red>Developer PowerShell for VS 2019를 통해 진행</font></b>하셔야 합니다.</p>
+<p>예제파일은 소스코드의 압축을 풀었던 곳에 있는 <code>examples</code> 폴더에 있습니다. 여기서는 제일 기본예제인 <code>examples\basic\B1</code>을 테스트 해보겠습니다.</p>
+<ol>
+<li>
+<p><code>B1</code> 폴더를 <b>폴더 째로 복사</b>하여 원하는 곳에 가져옵니다. 저는 <code>C:\Geant4\B1</code>으로 복사해왔습니다.</p>
+</li>
+<li>
+<p>복사해온 <code>B1</code> 폴더 안에 <b><code>build</code>라는 폴더를 새로 만듭니다</b>.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/example1.png" title="/g4install-107p2-win10basic/example1.png" data-thumbnail="/g4install-107p2-win10basic/example1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="example1.png"
+            data-srcset="/g4install-107p2-win10basic/example1.png, example1.png 1.5x, /g4install-107p2-win10basic/example1.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/example1.png" width="100%" />
+    </a>
+</li>
+<li>
+<p>복사해온 B1 폴더 안에 있는 <code>CMakeLists.txt</code> 파일을 열어, 파일의 맨 위에 다음 내용을 추가합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cmake" data-lang="cmake"><span class="c">#----------------------------------------------------------------------------
+</span><span class="c"># Set build output directory to be ./build 
+</span><span class="c"># rather than ./build/Release or ./build/RelWithDebInfo
+</span><span class="c"></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE</span> <span class="s2">&#34;${CMAKE_BINARY_DIR}&#34;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO</span> <span class="s2">&#34;${CMAKE_BINARY_DIR}&#34;</span><span class="p">)</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="/g4install-107p2-win10basic/example2.png" title="/g4install-107p2-win10basic/example2.png" data-thumbnail="/g4install-107p2-win10basic/example2.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="example2.png"
+            data-srcset="/g4install-107p2-win10basic/example2.png, example2.png 1.5x, /g4install-107p2-win10basic/example2.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/example2.png" width="100%" />
+    </a>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Geant4 코드는 init_vis.mac, vis.mac,&hellip;과 같은 *.mac 파일을 불러와서 이를 연동하여 실행하는 경우가 많습니다.</p>
+<p>일반적으로 UNIX/LINUX 환경에서는 실행파일과 *.mac 파일이 동일한 경로에 존재하도록 빌드를 수행하기 때문에, 대부분의 Geant4 코드는 이들의 위치가 동일하게 <code>build</code> 폴더에 있으리라는 가정 하에 작성되어 있습니다. 그러나 MSVC를 이용하여 빌드를 수행할 경우에는, *.mac 파일은 <code>build</code> 폴더에 있지만, 실행파일(*.exe)은 <code>build\Release</code>나 <code>build\RelWithDebInfo</code> 폴더 안에 생성됩니다.</p>
+<p>위의 코드를 <code>CMakeLists.txt</code>에 추가하면, 실행파일이 *.mac 파일의 위치와 동일한 <code>build</code> 폴더에 생성되어 이 문제를 해결할 수 있습니다.</p>
+</div>
+        </div>
+    </div>
+</li>
+<li>
+<p>Developer PowerShell for VS 2019를 실행합니다. (앞서 켜둔 것이 있다면 그대로 쓰시면 됩니다)</p>
+<p><b>[WIN]+[S]</b> 를 눌러 검색을 띄우고, <code>developer powershell</code>을 입력하여 <b>Developer PowerShell for VS 2019</b>를 찾은 뒤 실행하면 됩니다.</p>
+</li>
+<li>
+<p><code>cd</code> 명령어를 이용하여, 예제 코드를 복사해온 경로의 <code>build</code> 폴더로 이동합니다. 이 글에서처럼 <code>C:\Geant4\B1</code>으로 복사하였다면 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">cd </span><span class="n">C:</span><span class="p">\</span><span class="n">Geant4</span><span class="p">\</span><span class="n">B1</span><span class="p">\</span><span class="n">build</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>다음 명령어를 입력하여 빌드를 수행합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">..</span>
+<span class="n">cmake</span> <span class="p">-</span><span class="n">-build</span> <span class="p">.</span> <span class="p">-</span><span class="n">-config</span> <span class="n">Release</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="lightgallery" href="/g4install-107p2-win10basic/example3.png" title="/g4install-107p2-win10basic/example3.png" data-thumbnail="/g4install-107p2-win10basic/example3.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="example3.png"
+            data-srcset="/g4install-107p2-win10basic/example3.png, example3.png 1.5x, /g4install-107p2-win10basic/example3.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/example3.png" width="100%" />
+    </a>
+</li>
+<li>
+<p>명령줄에 <code>./exampleB1.exe</code>를 입력하여 실행하거나, <code>build</code> 폴더 안에 있는 <code>exampleB1.exe</code>파일을 더블클릭하여 실행합니다.</p>
+<p>다음과 같은 GUI 창이 뜨면 성공입니다.</p>
+<a class="lightgallery" href="/g4install-107p2-win10basic/example4.png" title="/g4install-107p2-win10basic/example4.png" data-thumbnail="/g4install-107p2-win10basic/example4.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="example4.png"
+            data-srcset="/g4install-107p2-win10basic/example4.png, example4.png 1.5x, /g4install-107p2-win10basic/example4.png 2x"
+            data-sizes="auto"
+            alt="/g4install-107p2-win10basic/example4.png" width="100%" />
+    </a>
+</li>
+</ol></div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>2021-07-15에 수정</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/g4install-107p2-win10basic/index.md" target="_blank">Markdown으로 보기</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4install-107p2-win10basic/" data-title="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)" data-hashtags="HowTo,Windows,Geant4,MSVC,Visual Studio"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4install-107p2-win10basic/" data-title="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4install-107p2-win10basic/" data-title="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4install-107p2-win10basic/" data-title="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4install-107p2-win10basic/" data-title="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4install-107p2-win10basic/" data-title="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/howto/">HowTo</a>,&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/msvc/">MSVC</a>,&nbsp;<a href="/tags/visual-studio/">Visual Studio</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
+        </section>
+    </div>
+
+    
+    <div class="post-nav">
+        
+            
+
+            
+
+            
+        
+            
+                
+            
+
+            
+
+            
+        
+            
+
+            
+                
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        <a href="/geant4-install-linux/" class="prev" rel="prev" title="Geant4 설치가이드 모음 (Linux)"><i class="fas fa-angle-left fa-fw"></i>Geant4 설치가이드 모음 (Linux)</a>
+            <a href="/g4install-107p1-win10wslbasic/" class="next" rel="next" title="Geant4 WSL에 설치 무작정 따라하기(초보자용)">Geant4 WSL에 설치 무작정 따라하기(초보자용)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-JZ0NBG8ZWZ');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+</html>

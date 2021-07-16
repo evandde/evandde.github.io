@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/windows/</link>
         <description>Windows - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/windows/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 15 Jul 2021 21:41:51 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/windows/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 Windows 10에 설치 무작정 따라하기(초보자용)</title>
+    <link>https://evandde.github.io/g4install-107p2-win10basic/</link>
+    <pubDate>Thu, 15 Jul 2021 21:41:51 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4install-107p2-win10basic/</guid>
+    <description><![CDATA[<p>이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, <b>Windows 10을 사용하는 개인 컴퓨터 환경</b>에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. <b>(인터넷 연결 필요)</b></p>]]></description>
+</item><item>
     <title>Geant4 WSL에 설치 무작정 따라하기(초보자용)</title>
     <link>https://evandde.github.io/g4install-107p1-win10wslbasic/</link>
     <pubDate>Thu, 04 Mar 2021 10:39:24 &#43;0900</pubDate>
@@ -68,12 +75,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/windowrun/</guid>
     <description><![CDATA[<p>이 글에서는 <b>시작-실행</b> 혹은 단축키 <b>[WIN]+[R]</b>을 통해 띄울 수 있는 실행 창에서 사용 가능한 다양한 명령어를 정리해 봅니다.</p>]]></description>
-</item><item>
-    <title>Windows용 패키지 관리자 Chocolatey(choco) 설치 및 이용하기</title>
-    <link>https://evandde.github.io/chocolatey/</link>
-    <pubDate>Thu, 24 Sep 2020 07:05:42 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/chocolatey/</guid>
-    <description><![CDATA[<p>이 글에서는 Windows용 패키지 관리자인 Chocolatey(약칭: choco)를 설치하고 이용하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
