@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/particlegun/</link>
         <description>ParticleGun - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Sun, 20 Jun 2021 21:56:43 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/particlegun/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 16 Jul 2021 14:43:20 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/particlegun/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</title>
+    <link>https://evandde.github.io/g4-noqasked-009-randtool/</link>
+    <pubDate>Fri, 16 Jul 2021 14:43:20 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-009-randtool/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 - 8. 선원항 정의하기</title>
     <link>https://evandde.github.io/g4-noqasked-008-prigen/</link>
     <pubDate>Sun, 20 Jun 2021 21:56:43 &#43;0900</pubDate>

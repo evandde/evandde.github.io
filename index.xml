@@ -4,9 +4,16 @@
         <link>https://evandde.github.io/</link>
         <description>EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 15 Jul 2021 21:41:51 &#43;0900</lastBuildDate>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 16 Jul 2021 14:43:20 &#43;0900</lastBuildDate>
             <atom:link href="https://evandde.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</title>
+    <link>https://evandde.github.io/g4-noqasked-009-randtool/</link>
+    <pubDate>Fri, 16 Jul 2021 14:43:20 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-009-randtool/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 Windows 10에 설치 무작정 따라하기(초보자용)</title>
     <link>https://evandde.github.io/g4install-107p2-win10basic/</link>
     <pubDate>Thu, 15 Jul 2021 21:41:51 &#43;0900</pubDate>
@@ -69,13 +76,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/g4-noqasked-001-clonetest/</guid>
     <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 첫번째. 기본 틀이 이미 짜여져있는 템플릿 코드를 다운받아서 실행해봅시다.</p>]]></description>
-</item><item>
-    <title>Geant4 무작정 따라하기 시리즈를 시작하며</title>
-    <link>https://evandde.github.io/g4-noqasked-000-opening/</link>
-    <pubDate>Sun, 06 Jun 2021 17:05:44 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/g4-noqasked-000-opening/</guid>
-    <description><![CDATA[<p>Geant4가 뭔지도 모르겠는데&hellip; Geant4를 사용은 해야하는 상황에 처한 여러분!</p>
-<p>묻지도 따지지도 않고 따라만 하면 일단 Geant4를 사용할 수 있게 해드립니다.</p>]]></description>
 </item></channel>
 </rss>
