@@ -174,7 +174,7 @@ Tracking Verbose는 이러한 매크로파일을 이용하면 쉽게 설정할 �
 다음과 같이 입력해보겠습니다.
 
 ```bash
-./g4_minimal_run.mac > vb.out
+./g4_minimal run.mac > vb.out
 ```
 
 {{< image src="04_vbout.png" width=80% >}}
