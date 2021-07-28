@@ -170,7 +170,7 @@ $ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 �
 G4ThreeVector G4RandomPointOnEllipsoid(G4double a, G4double b, G4double c)
 ```
 
-$ {{x}^2 \over {a}^2} +  {{y}^2 \over {b}^2} + {{z}^2 \over {c}^2} = 1 $의 타원체의 방정식을 따르는 3차원 타원체에 대해 $a$, $b$, $c$를 입력인자로 넣으면, 타원체의 겉표면 위에서 균일한 분포의 3차원 점을 샘플링하여 반환해줍니다.
+$ {x^2 \over a^2} +  {y^2 \over b^2} + {z^2 \over c^2} = 1 $의 타원체의 방정식을 따르는 3차원 타원체에 대해 $a$, $b$, $c$를 입력인자로 넣으면, 타원체의 겉표면 위에서 균일한 분포의 3차원 점을 샘플링하여 반환해줍니다.
 
 ### G4UniformRand
 
