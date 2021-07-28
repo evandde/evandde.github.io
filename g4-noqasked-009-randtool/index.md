@@ -150,7 +150,7 @@ G4double G4RandomRadiusInRing(G4double rmin, G4double rmax)
 G4TwoVector G4RandomPointInEllipse(G4double a, G4double b)
 ```
 
-$ {{x}^2 \over {a}^2} +  {{y}^2 \over {b}^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원 내에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. G4TwoVector는 2차원 벡터를 다루는 클래스로,  G4ThreeVector와 유사하게 사용하면 됩니다.
+$ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원 내에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. G4TwoVector는 2차원 벡터를 다루는 클래스로,  G4ThreeVector와 유사하게 사용하면 됩니다.
 
 ### G4RandomPointOnEllipse
 
@@ -160,7 +160,7 @@ $ {{x}^2 \over {a}^2} +  {{y}^2 \over {b}^2} = 1 $의 타원의 방정식을 따
 G4TwoVector G4RandomPointOnEllipse(G4double a, G4double b)
 ```
 
-$ {{x}^2 \over {a}^2} +  {{y}^2 \over {b}^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원의 원주 위에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. <b>In과 On의 차이에 주의하세요</b>.
+$ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원의 원주 위에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. <b>In과 On의 차이에 주의하세요</b>.
 
 ### G4RandomPointOnEllipsoid
 
