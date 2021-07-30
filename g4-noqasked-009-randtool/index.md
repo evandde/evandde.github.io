@@ -109,13 +109,13 @@ G4ThreeVector G4RandomDirection(G4double cosTheta)
 
 ### G4LambertianRand
 
-입력된 벡터를 중심으로 Lambert 법칙을 따르게끔 방향을 샘플링하는 함수입니다. 원형은 다음과 같습니다.
+입력된 벡터를 법선벡터로 갖는 평면에 대해 Lambert 코사인 법칙[^2]을 따르게끔 방향을 샘플링하는 함수입니다. 원형은 다음과 같습니다.
 
 ```cpp
 G4ThreeVector G4LambertianRand(const G4ThreeVector& normal)
 ```
 
-이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 평면에 대해 Lambert 법칙을 따르게끔 방향을 샘플링하여 G4ThreeVector 형태로 반환받을 수 있습니다.
+이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 평면을 기준으로 하여 Lambert 코사인 법칙을 따르는 방향을 샘플링하여 G4ThreeVector 형태로 반환해 줍니다.
 
 ### G4PlaneVectorRand
 
@@ -245,4 +245,5 @@ PrimaryGeneratorAction 코드를 다음과 같이 작성하면 등방성 점선�
 ---
 
 [^1]: 사실 컴퓨터는 완전히 무작위적인 난수를 발생시키지는 못해서 의사난수(pseudo random number)를 샘플링하는 함수들을 제공합니다. 
+[^2]: 이상적인 난반사 표면에서 방출되는 선속이 법선벡터로부터 벗어난 각도의 $ \mathcal{cos} $ 값에 비례한다는 법칙. 참고 링크: [Lambert's cosine law - Wikipedia](https://en.wikipedia.org/wiki/Lambert's_cosine_law)
 

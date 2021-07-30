@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-009-randtool\/"
-        },"genre": "posts","keywords": "Geant4, G4RandomTools, Random Variable, PrimaryGeneratorAction, ParticleGun","wordcount":  2910 ,
+        },"genre": "posts","keywords": "Geant4, G4RandomTools, Random Variable, PrimaryGeneratorAction, ParticleGun","wordcount":  2980 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-009-randtool\/","datePublished": "2021-07-16T14:43:20+09:00","dateModified": "2021-07-16T14:43:20+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-16">2021-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2910&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-16">2021-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2980&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -265,7 +265,7 @@
 </div><p>이 함수는 입력인자를 아예 입력하지 않고 사용할 수 있습니다. 이 경우 모든 방향($ 4\pi $)에 대해 균일하게 샘플링된 G4ThreeVector를 반환받을 수 있습니다.</p>
 <p>혹은, 입력인자로 임의의 각도 $ \theta $에 대해 $ \mathcal{cos} \theta $ 값에 해당하는 실수(G4double)를 넣을 수도 있습니다. 이 경우에는 $ +z $축을 중심축으로 하고 꼭짓각의 절반이 $ \theta $인 원뿔 형태로 제한된 영역에 대해 균일하게 샘플링된 G4ThreeVector를 반환받을 수 있습니다.</p>
 <h3 id="g4lambertianrand">G4LambertianRand</h3>
-<p>입력된 벡터를 중심으로 Lambert 법칙을 따르게끔 방향을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
+<p>입력된 벡터를 법선벡터로 갖는 평면에 대해 Lambert 코사인 법칙<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>을 따르게끔 방향을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -274,7 +274,7 @@
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4LambertianRand</span><span class="p">(</span><span class="k">const</span> <span class="n">G4ThreeVector</span><span class="o">&amp;</span> <span class="n">normal</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 평면에 대해 Lambert 법칙을 따르게끔 방향을 샘플링하여 G4ThreeVector 형태로 반환받을 수 있습니다.</p>
+</div><p>이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 평면을 기준으로 하여 Lambert 코사인 법칙을 따르는 방향을 샘플링하여 G4ThreeVector 형태로 반환해 줍니다.</p>
 <h3 id="g4planevectorrand">G4PlaneVectorRand</h3>
 <p>입력된 벡터를 법선벡터로 갖는 무한 평면상의 점을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
@@ -405,6 +405,9 @@
 <ol>
 <li id="fn:1" role="doc-endnote">
 <p>사실 컴퓨터는 완전히 무작위적인 난수를 발생시키지는 못해서 의사난수(pseudo random number)를 샘플링하는 함수들을 제공합니다. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>이상적인 난반사 표면에서 방출되는 선속이 법선벡터로부터 벗어난 각도의 $ \mathcal{cos} $ 값에 비례한다는 법칙. 참고 링크: <a href="https://en.wikipedia.org/wiki/Lambert%27s_cosine_law" target="_blank" rel="noopener noreffer">Lambert&rsquo;s cosine law - Wikipedia</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section></div>
