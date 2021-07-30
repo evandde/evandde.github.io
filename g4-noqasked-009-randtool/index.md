@@ -9,7 +9,7 @@ Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용�
 
 ## 등방성 점선원 모사
 
-### 문제
+### 문제 제기
 
 등방적으로 발생하는 점선원을 생각해봅시다. 일반적으로 다음 그림과 같은 모양이 떠오를 것입니다.
 
@@ -39,32 +39,27 @@ SetParticleMomentumDirection 함수를 통해 방향을 설정하고, 이 때 �
 
 ### 해결책
 
-이제 다음과 같은 함수를 생각해봅시다. 이 함수는 **G4ThreeVector를 반환**하는데, **함수가 호출될 때마다 반환되는 값이 매번 바뀝니다**. 그리고 반환되는 G4ThreeVector들을 쭉 모아서 **분포**를 살펴보니, <b>단위구(Unit sphere) 표면 위의 점이 균일한 확률</b>로 나옵니다. 아마도 함수는 다음과 같이 생겼을 것입니다.
+이 문제를 해결하기 위해 다음과 같은 함수를 상상해봅시다. 
 
-```cpp
-G4ThreeVector RandomDirection()
-{
-	// ...
-	return theDirection;
-}
-```
+- 이 함수는 **G4ThreeVector를 반환**하는데, **함수가 호출될 때마다 반환되는 값이 매번 바뀝니다**. 
+- 반환되는 G4ThreeVector들을 쭉 모아서 **분포**를 살펴보니, <b>단위구(Unit sphere) 표면 위의 점이 균일한 확률</b>로 나옵니다. 
+- 함수의 원형은 다음과 같습니다.
+  ```cpp
+  G4ThreeVector RandomDirection()
+  ```
 
-설명한대로, 이 함수는 매번 호출할 때마다 다른 결과값을 줄 것입니다. 예를 들자면 다음과 같은 것이죠.
+이런 함수를 어떻게 만들 수 있을 지는 나중에 생각해보기로 하고, 이 함수의 출력값을 먼저 살펴봅시다. 아마도 다음과 같이 나타날 것입니다.
 
 ```cpp
 G4ThreeVector dir;
 
-dir = RandomDirection();
-G4cout << dir << G4endl; // output: (-0.157616,-0.293535,-0.942865)
-dir = RandomDirection();
-G4cout << dir << G4endl; // output: (0.185649,-0.743512,0.642437)
-dir = RandomDirection();
-G4cout << dir << G4endl; // output: (0.643525,0.268099,0.716937)
-dir = RandomDirection();
-G4cout << dir << G4endl; // output: (0.636717,-0.421678,0.645584)
+dir = RandomDirection(); // dir = G4ThreeVector(-0.157616,-0.293535,-0.942865);
+dir = RandomDirection(); // dir = G4ThreeVector(0.185649,-0.743512,0.642437);
+dir = RandomDirection(); // dir = G4ThreeVector(0.643525,0.268099,0.716937);
+dir = RandomDirection(); // dir = G4ThreeVector(0.636717,-0.421678,0.645584);
 ```
 
-이 RandomDirection() 함수가 바로 우리가 원하던 **방향을 등방적으로 균일하게 매 번 알아서 바꾸어서 제공해주는 함수**입니다. 이 함수만 있다면 선원항을 다음과 같이 정의하여 우리의 문제를 해결할 수 있겠군요. 다음과 같이 말입니다.
+바로 이 RandomDirection() 함수가 바로 우리가 원하던 **방향을 등방적으로 균일하게 매 번 알아서 바꾸어서 제공해주는 함수**입니다. 이런 함수만 있다면 선원항을 다음과 같이 정의하여 우리의 문제를 해결할 수 있겠군요. 다음과 같이 말입니다.
 
 {{< highlight cpp "linenos=false,hl_lines=5-6" >}}
 // ...    

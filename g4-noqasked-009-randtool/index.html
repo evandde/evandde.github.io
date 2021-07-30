@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-009-randtool\/"
-        },"genre": "posts","keywords": "Geant4, G4RandomTools, Random Variable, PrimaryGeneratorAction, ParticleGun","wordcount":  2920 ,
+        },"genre": "posts","keywords": "Geant4, G4RandomTools, Random Variable, PrimaryGeneratorAction, ParticleGun","wordcount":  2910 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-009-randtool\/","datePublished": "2021-07-16T14:43:20+09:00","dateModified": "2021-07-16T14:43:20+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-16">2021-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2920&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-16">2021-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2910&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -129,7 +129,7 @@
   <ul>
     <li><a href="#등방성-점선원-모사">등방성 점선원 모사</a>
       <ul>
-        <li><a href="#문제">문제</a></li>
+        <li><a href="#문제-제기">문제 제기</a></li>
         <li><a href="#해결책">해결책</a></li>
         <li><a href="#설명">설명</a></li>
       </ul>
@@ -157,7 +157,7 @@
             </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다.</p>
 <hr>
 <h2 id="등방성-점선원-모사">등방성 점선원 모사</h2>
-<h3 id="문제">문제</h3>
+<h3 id="문제-제기">문제 제기</h3>
 <p>등방적으로 발생하는 점선원을 생각해봅시다. 일반적으로 다음 그림과 같은 모양이 떠오를 것입니다.</p>
 <a class="lightgallery" href="/g4-noqasked-009-randtool/01_isotropic.png" title="/g4-noqasked-009-randtool/01_isotropic.png" data-thumbnail="/g4-noqasked-009-randtool/01_isotropic.png">
         <img
@@ -195,7 +195,22 @@
 </blockquote>
 <p>SetParticleMomentumDirection 함수를 통해 방향을 설정하고, 이 때 방향은 <strong>G4ThreeVector 형태로 입력</strong>을 해주어야 합니다. 우리는 결국 <strong>방향</strong>을 <strong>명시해서 입력</strong>해 줘야만 하는데, 이 <strong>방향이 알아서 매 번 바뀌어야 하는 상황</strong>에 놓였습니다.</p>
 <h3 id="해결책">해결책</h3>
-<p>이제 다음과 같은 함수를 생각해봅시다. 이 함수는 <strong>G4ThreeVector를 반환</strong>하는데, <strong>함수가 호출될 때마다 반환되는 값이 매번 바뀝니다</strong>. 그리고 반환되는 G4ThreeVector들을 쭉 모아서 <strong>분포</strong>를 살펴보니, <b>단위구(Unit sphere) 표면 위의 점이 균일한 확률</b>로 나옵니다. 아마도 함수는 다음과 같이 생겼을 것입니다.</p>
+<p>이 문제를 해결하기 위해 다음과 같은 함수를 상상해봅시다.</p>
+<ul>
+<li>이 함수는 <strong>G4ThreeVector를 반환</strong>하는데, <strong>함수가 호출될 때마다 반환되는 값이 매번 바뀝니다</strong>.</li>
+<li>반환되는 G4ThreeVector들을 쭉 모아서 <strong>분포</strong>를 살펴보니, <b>단위구(Unit sphere) 표면 위의 점이 균일한 확률</b>로 나옵니다.</li>
+<li>함수의 원형은 다음과 같습니다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">RandomDirection</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>이런 함수를 어떻게 만들 수 있을 지는 나중에 생각해보기로 하고, 이 함수의 출력값을 먼저 살펴봅시다. 아마도 다음과 같이 나타날 것입니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -203,43 +218,18 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="nf">RandomDirection</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="c1">// ...
-</span><span class="c1"></span>	<span class="k">return</span> <span class="n">theDirection</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>설명한대로, 이 함수는 매번 호출할 때마다 다른 결과값을 줄 것입니다. 예를 들자면 다음과 같은 것이죠.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">dir</span><span class="p">;</span>
 
-<span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span>
-<span class="n">G4cout</span> <span class="o">&lt;&lt;</span> <span class="n">dir</span> <span class="o">&lt;&lt;</span> <span class="n">G4endl</span><span class="p">;</span> <span class="c1">// output: (-0.157616,-0.293535,-0.942865)
-</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span>
-<span class="n">G4cout</span> <span class="o">&lt;&lt;</span> <span class="n">dir</span> <span class="o">&lt;&lt;</span> <span class="n">G4endl</span><span class="p">;</span> <span class="c1">// output: (0.185649,-0.743512,0.642437)
-</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span>
-<span class="n">G4cout</span> <span class="o">&lt;&lt;</span> <span class="n">dir</span> <span class="o">&lt;&lt;</span> <span class="n">G4endl</span><span class="p">;</span> <span class="c1">// output: (0.643525,0.268099,0.716937)
-</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span>
-<span class="n">G4cout</span> <span class="o">&lt;&lt;</span> <span class="n">dir</span> <span class="o">&lt;&lt;</span> <span class="n">G4endl</span><span class="p">;</span> <span class="c1">// output: (0.636717,-0.421678,0.645584)
+<span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(-0.157616,-0.293535,-0.942865);
+</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(0.185649,-0.743512,0.642437);
+</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(0.643525,0.268099,0.716937);
+</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(0.636717,-0.421678,0.645584);
 </span></code></pre></td></tr></table>
 </div>
-</div><p>이 RandomDirection() 함수가 바로 우리가 원하던 <strong>방향을 등방적으로 균일하게 매 번 알아서 바꾸어서 제공해주는 함수</strong>입니다. 이 함수만 있다면 선원항을 다음과 같이 정의하여 우리의 문제를 해결할 수 있겠군요. 다음과 같이 말입니다.</p>
+</div><p>바로 이 RandomDirection() 함수가 바로 우리가 원하던 <strong>방향을 등방적으로 균일하게 매 번 알아서 바꾸어서 제공해주는 함수</strong>입니다. 이런 함수만 있다면 선원항을 다음과 같이 정의하여 우리의 문제를 해결할 수 있겠군요. 다음과 같이 말입니다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
 </span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
 <span class="p">{</span>
