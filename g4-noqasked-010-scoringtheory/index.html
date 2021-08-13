@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Geant4 무작정 따라하기 - 10. 스코어링 이론 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 10. 스코어링 이론" />
+<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 열번째. Geant4 시뮬레이션에서 원하는 물리량을 기록하는 스코어링에 대해 알아봅니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-010-scoringtheory/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-30T16:48:26+09:00" />
+<meta property="article:modified_time" content="2021-07-30T16:48:26+09:00" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geant4 무작정 따라하기 - 10. 스코어링 이론"/>
+<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 열번째. Geant4 시뮬레이션에서 원하는 물리량을 기록하는 스코어링에 대해 알아봅니다."/>
+<meta name="application-name" content="EvaNote">
+<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-010-scoringtheory/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-009-randtool/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Geant4 무작정 따라하기 - 10. 스코어링 이론",
+        "inLanguage": "ko-kr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/evandde.github.io\/g4-noqasked-010-scoringtheory\/"
+        },"genre": "posts","keywords": "Geant4, Scoring, Hit, HitsCollection, MultiFunctionalDetector, SensitiveDetector, PrimitiveScorer, Tally","wordcount":  3889 ,
+        "url": "https:\/\/evandde.github.io\/g4-noqasked-010-scoringtheory\/","datePublished": "2021-07-30T16:48:26+09:00","dateModified": "2021-07-30T16:48:26+09:00","publisher": {
+            "@type": "Organization",
+            "name": "Evan Kim"},"author": {
+                "@type": "Person",
+                "name": "Evan Kim"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-3" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-4" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        취소
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">목차</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 10. 스코어링 이론</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-30">2021-07-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3889&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 8분&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>목차</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#geant4의-스코어링-용어">Geant4의 스코어링 용어</a>
+      <ul>
+        <li><a href="#관심-있는-지오메트리">관심 있는 지오메트리</a></li>
+        <li><a href="#관심-있는-물리량">관심 있는 물리량</a></li>
+      </ul>
+    </li>
+    <li><a href="#geant4의-스코어링-개념">Geant4의 스코어링 개념</a>
+      <ul>
+        <li><a href="#기본-원리">기본 원리</a></li>
+        <li><a href="#sensitive-detector-설계방법">Sensitive Detector 설계방법</a></li>
+      </ul>
+    </li>
+    <li><a href="#ps-hit-hc에-대한-상세-설명">PS, Hit, HC에 대한 상세 설명</a>
+      <ul>
+        <li><a href="#ps와-hc의-관계">PS와 HC의 관계</a></li>
+        <li><a href="#hc에-hit을-저장하는-방법">HC에 Hit을 저장하는 방법</a></li>
+        <li><a href="#여러-지오메트리끼리의-구분">여러 지오메트리끼리의 구분</a></li>
+      </ul>
+    </li>
+    <li><a href="#정리">정리</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 열번째. Geant4 시뮬레이션에서 원하는 물리량을 기록하는 스코어링에 대해 알아봅니다.</p>
+<p>이 글에서는 Geant4에서 스코어링 시스템의 기본적인 동작 이론에 대해 설명할 것입니다. 이를 바탕으로 다음 글에서 이어질 Geant4에서 기본적으로 제공하는 스코어러의 사용에 있어 이해도를 높이는 것이 이번 글의 목적입니다. 더 나아가, 이 개념을 잘 이해하시고 충분한 C++ 언어 지식을 갖추신다면 Geant4에서 기본 제공하는 스코어러를 넘어 여러분만의 스코어러를 직접 구현하여 이용할 수도 있을 것입니다.</p>
+<hr>
+<h2 id="geant4의-스코어링-용어">Geant4의 스코어링 용어</h2>
+<p>Geant4는 모든 구조물 내에서 방사선 수송에 필요한 물리량 전반을 다 계산하며 시뮬레이션을 돌립니다. 이 수많은 값들을 우리에게 모조리 알려주는 방식이 이전에 설명한 바 있는 <a href="https://evandde.github.io/g4-noqasked-007-trkvb/" rel="">verbose</a>입니다.</p>
+<p>하지만 우리는 이 모든 값이 다 필요한 것이 아닙니다. 이 중에 원하는 부분만 추려서 기록하면 좋겠지요. 이러한 작업을 <strong>스코어링</strong>이라고 합니다. 즉, 스코어링이란 <font color=red><b>관심 있는 지오메트리 내</b></font>에서 <font color=blue><b>관심 있는 물리량</b></font>이 <strong>어떠한 값을 가지는지</strong>를 살펴보는 것입니다.</p>
+<h3 id="관심-있는-지오메트리">관심 있는 지오메트리</h3>
+<p>사용자가 만든 다양한 지오메트리 중, 스코어링을 수행하고 싶은 <b><font color=red>관심 있는 지오메트리(들)</font></b>이 있을 것입니다. 이 지오메트리(들)의 <b><font color=red>Logical Volume</font></b>에 <b>Sensitive Detector를 세팅</b>해줌으로써, 해당 지오메트리 내에서의 일을 스코어링하도록 프로그램에게 지시할 수 있습니다.</p>
+<p>여기서 <b>Sensitive Detector</b>, 줄여서 <b>SD</b>는, <b><font color=blue>관심 있는 물리량</font></b>을 어떤 조건 하에서 어떻게 가공하여 메모리 공간에 저장할 것인지와 같은 <b>스코어링 방법을 정의하는 클래스</b>입니다.</p>
+<h3 id="관심-있는-물리량">관심 있는 물리량</h3>
+<p>사용자는 <b><font color=red>해당 지오메트리</font></b>에 <b><font color=blue>전달된 에너지</font></b>에 관심이 있을 수도 있고, <b><font color=blue>반응 위치에 관심</font></b>이 있을 수도 있으며, <b><font color=blue>반응 위치와 해당 위치에 전달된 에너지를 한 세트로 묶어서</font></b> 살펴보고 싶을 수도 있습니다. 이처럼 <strong>관심 있는 물리량</strong> 혹은 그 <strong>물리량들을 조합한 한 세트</strong>를 Geant4에서는 <b><font color=blue>Hit</font></b>이라는 클래스를 통해 관리합니다. 즉, <strong>Hit 하나</strong>당 <strong>한 세트의 정보</strong>가 된다고 보시면 됩니다.</p>
+<p>만약 여러 종류의 정보를 따로 관리하고 싶다면, 여러 종류의 Hit을 사용하면 됩니다. 예를 들어, 어떤 조건 하에서는 전달된 에너지만 기록하고 싶고, 또 다른 조건 하에서는 반응 위치만 기록하고 싶다면, <b>전달된 에너지라는 Hit</b>과 <b>반응 위치라는 Hit</b>으로 분리하여 두 종류의 Hit을 이용할 수 있습니다. 이는 반응 위치와 그 위치에 전달된 에너지를 한 세트로 묶은 Hit과는 다른 개념인 것입니다.</p>
+<p>Geant4는 <b>같은 종류의 Hit들을 한 데 모아서 저장</b>하는 <b>HitsCollection</b> 이라는 클래스도 제공하고 있습니다. 이는 간단히 말해 <b>Hit을 담는 주머니</b>라고 생각하면 됩니다. 하나의 HitsCollection에는 같은 종류의 Hit들만 들어가기 때문에, 예를 들어 전달된 에너지 Hit은 전달된 에너지 HitsCollection에 담기게 되고, 반응 위치 Hit은 반응 위치 HitsCollection에 담기는 식입니다.</p>
+<hr>
+<h2 id="geant4의-스코어링-개념">Geant4의 스코어링 개념</h2>
+<h3 id="기본-원리">기본 원리</h3>
+<p>스코어링은 기본적으로 <strong>Event 단위</strong>로 이루어지며, 다음 과정이 매 Event마다 반복됩니다.</p>
+<ol>
+<li>입자를 수송하던 중, 입자가 <b><font color=red>SD가 세팅된 지오메트리</font></b> 내에 들어오는 순간부터, 해당 SD가 일을 하기 시작합니다.</li>
+<li>SD는 구현된 내용에 따라, <b><font color=blue>매 Step마다 관심 있는 물리량 정보를 수집하여 Hit을 생성</font></b>합니다. 생성된 Hit은 각 종류별로 상응하는 HitsCollection에 저장됩니다.</li>
+<li>Geant4는 매 Event가 끝날 때마다, 해당 Event에서 만들어진 HitsCollection들을 한 데 묶어 <strong>HCofThisEvent</strong>라는 형태로 제공합니다. 사용자는 이 HCofThisEvent로부터 원하는 종류의 HitsCollection을 가져온 뒤, 그 안에 저장된 Hit들을 확인하고 기록할 수 있습니다.</li>
+</ol>
+<p>그림으로 나타내면 다음과 같습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-010-scoringtheory/01_Scoring.png" title="/g4-noqasked-010-scoringtheory/01_Scoring.png" data-thumbnail="/g4-noqasked-010-scoringtheory/01_Scoring.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="01_Scoring.png"
+            data-srcset="/g4-noqasked-010-scoringtheory/01_Scoring.png, 01_Scoring.png 1.5x, /g4-noqasked-010-scoringtheory/01_Scoring.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-010-scoringtheory/01_Scoring.png" width="100%" />
+    </a>
+<h3 id="sensitive-detector-설계방법">Sensitive Detector 설계방법</h3>
+<p>Sensitive Detector를 설계하는 방법은 크게 다음의 두 가지가 있습니다만, 여기서는 <b>1번 방법</b>만 다루겠습니다.</p>
+<ol>
+<li>
+<p><b>Multi Functional Detector</b>에 사용자가 원하는 <b>Primitive Scorer들을 Register</b>하여 설계</p>
+</li>
+<li>
+<p>G4VSensitiveDetector 클래스를 상속받아 사용자가 직접 Sensitive Detector를 구현. 경우에 따라 Hit과 HitsCollection 수준부터 직접 구현하여 이용하기도 함.</p>
+</li>
+</ol>
+<p>Multi Functional Detector(MFD)는 일종의 틀로 보시면 되고, 이 틀에 실질적인 기능을 가진 Primitive Scorer(PS)를 조립해 넣는 식으로 SD를 구현합니다. 일종의 모듈형 시스템<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>처럼 조립된 전체가 하나의 SD가 되는 방식입니다. Geant4가 제공하는 PS들 중 일부를 소개해 드리겠습니다. (10.7 버전 기준)</p>
+<ul>
+<li>G4PSCellCharge: 해당 지오메트리 내에 deposit된 charge의 총합을 스코어링</li>
+<li>G4PSCellFlux: 해당 지오메트리 내의 플럭스를 스코어링 (트랙길이 / 부피 방식으로 계산)</li>
+<li>G4PSDoseDeposit: 해당 지오메트리 내에서의 흡수선량(absorbed dose)을 스코어링</li>
+<li>G4PSEnergyDeposit: 해당 지오메트리 내에 deposit된 에너지의 총합을 스코어링</li>
+<li>G4PSNofCollision: 해당 지오메트리에 입사한 입자의 개수를 스코어링</li>
+<li>G4PSPassageCellCurrent<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>: 해당 지오메트리를 지나쳐간(입사 후 빠져나간) track의 수를 스코어링</li>
+<li>G4PSPassageCellFlux: 해당 지오메트리를 지나쳐간(입사 후 빠져나간) track의 플럭스를 스코어링 (트랙길이 / 부피 방식으로 계산)</li>
+<li>G4PSPopulation<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>: 해당 지오메트리에 들어온 입자의 수를 스코어링</li>
+<li>G4PSTermination: 해당 지오메트리 내에서 종료<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>된 track의 수를 스코어링</li>
+</ul>
+<p>이 외에도 더 많은 PS가 존재합니다. 그리고 이름 끝에 3D가 붙은 PS도 있는데, 이는 3D가 없는 것과 기능이 동일하며 해당 물리량을 복셀화된 각 볼륨마다 따로 저장하여 3D 분포를 살펴보는 데에 활용 가능합니다. (e.g. G4PSCellCharge3D)</p>
+<p>추가적으로, <strong>필터</strong>를 활용하면 <strong>특정 조건 하에서만 스코어링</strong>이 이루어지도록 할 수도 있습니다. 예를 들어, G4PSCellFlux를 사용하는데 여기에 입자 제한 필터로 Gamma만 스코어링하도록 제한하면, 해당 지오메트리 내에서 Gamma 입자의 플럭스만 스코어링할 수 있는 것입니다. 다만, <b>하나의 PS당 하나의 필터만 세팅</b>할 수 있습니다. 필터의 종류는 다음과 같습니다. (10.7 버전 기준)</p>
+<ul>
+<li>G4SDChargedFillter: (+) 혹은 (-) 전하를 가진 입자만 스코어링하도록 제한</li>
+<li>G4SDNeutralFilter: 전하가 없는 중성 입자만 스코어링하도록 제한</li>
+<li>G4SDKineticEnergyFilter: 입자의 운동에너지가 일정 범위(하한~상한) 내에 들어오는 경우에만 스코어링하도록 제한</li>
+<li>G4SDParticleFilter: 입자의 이름을 이용하여, 그 입자만 스코어링하도록 제한 (여러 종류의 입자도 가능)</li>
+<li>G4SDParticleWithEnergyFilter: 입자의 이름과 운동에너지 범위를 이용하여, 그 입자의 운동에너지가 일정 범위(하한~상한) 내에 들어오는 경우에만 스코어링하도록 제한 (한 종류의 입자만 가능)</li>
+</ul>
+<hr>
+<h2 id="ps-hit-hc에-대한-상세-설명">PS, Hit, HC에 대한 상세 설명</h2>
+<h3 id="ps와-hc의-관계">PS와 HC의 관계</h3>
+<p>결국 Primitive Scorer(PS)가 실질적으로 <b><font color=blue>물리량(Hit)</font></b>을 검출하는 기능을 가집니다. 그리고 PS가 검출한 물리량(Hit)들은 앞서 설명하였던 <strong>HitsCollection</strong>에 담기게 될 것입니다.</p>
+<p>이 때, PS마다 스코어링하는 물리량의 종류가 다르므로 <b><u>PS마다 각각 HitsCollection을 하나씩 담당</u></b>하게 되는 것입니다. 각 PS가 담당하여 맡고 있는 HitsCollection에, 스코어링을 통해 검출해낸 Hit들을 저장하는 방식이 되는 것이지요.</p>
+<h3 id="hc에-hit을-저장하는-방법">HC에 Hit을 저장하는 방법</h3>
+<p>Hit은 스코어링 조건에만 부합하는 상황이라면 일단 매 Step마다 생성됩니다. 이렇게 생성되는 수 많은 Hit들은 HitsCollection(HC)에 저장되지요. PS를 이용하는 경우에는 Hit이 HC에 담길 때 <strong>누적</strong>하는 방식으로 저장됩니다. 예를 들어, G4PSDoseDeposit의 경우에는 스코어링 된 흡수선량을 계속 더해서, 최종적으로 <strong>총 흡수선량의 합</strong>이라는 하나의 값만 남는 것이죠.</p>
+<h3 id="여러-지오메트리끼리의-구분">여러 지오메트리끼리의 구분</h3>
+<p><a href="https://evandde.github.io/g4-noqasked-002-detcon/#응용" rel="">이전 글</a>에서 Geant4에서는 지오메트리를 Solid, Logical, Physical로 나누어 관리하기 때문에, Logical Volume을 하나만 만들고 이를 공유하여 Physical Volume을 여러 개 둘 수 있다고 하였습니다. 이런 경우, <b>SD는 Logical Volume에 세팅</b>하므로 <b>여러 개의 지오메트리에 동일한 SD가 세팅</b> 될 것입니다.</p>
+<p>이처럼 여러 개의 Physical Volume으로 정의된 지오메트리는 실제로도 각각 서로 다른 지오메트리이므로, <b>각자의 스코어링 결과를 구분하여 기록</b>하고 싶은 경우가 많을 것입니다. 이를 위해 Geant4는 HC에 Hit을 저장할 때 <b>지오메트리 별로 구분하여 누적하는 방식을 채택</b>하였습니다.</p>
+<p>여기서 각각의 지오메트리를 구분하는 구분자가 바로 <strong>Copy Number</strong>입니다. 이전에 Physical Volume에 대한 설명을 하던 <a href="https://evandde.github.io/g4-noqasked-006-phyvol/#copy-number" rel="">이 글</a>에서 Copy Number는 스코어링 결과를 따로따로 보관하기 위한 <strong>사물함 번호</strong>라는 설명을 했었지요. 즉, G4PSDoseDeposit이 세팅된 Logical Volume을 공유하여 여러 개의 Physical Volume이 배치되었다면, Copy Number가 0번인 Physical Volume에서 스코어링 된 흡수선량은 0번 사물함에 누적되고, Copy Number가 1번인 Physical Volume에서 스코어링 된 흡수선량은 1번 사물함에 누적되는 식입니다. 최종적으로 사용자는 각 Copy Number에 상응하는 사물함에서 누적된 총 합을 확인함으로써 각 지오메트리 별로 구분할 수 있게 됩니다.</p>
+<hr>
+<h2 id="정리">정리</h2>
+<p>위 내용을 다이어그램으로 요약해보면 다음과 같습니다.</p>
+<div class="mermaid" id="id-1"></div>
+<div class="mermaid" id="id-2"></div>
+<p>Geant4에서의 스코어링에 대한 큰 개념은 이것으로 끝입니다. 새로운 용어와 개념이 너무 많아, 처음 보면 어려울 수 있습니다. 맨 마지막에 보여드린 다이어그램만 대강 이해하셔도 괜찮습니다. 일단 사용하다보면 익숙해지기 마련이니까요.</p>
+<p>다음 글에서는 이 이론을 바탕으로 스코어링을 직접 구현해보도록 하겠습니다.</p>
+<hr>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>여러 개의 기능적 구성요소(모듈)들을 조합하여 하나의 시스템으로 완성되는 구조.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Passage 유형은 해당 지오메트리를 빠져나갔던 track 다시 들어와서 또 빠져나가면 count가 추가됨.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Population 유형은 해당 지오메트리에 처음으로 들어올 때에만 count가 추가됨. 나갔다 다시 들어오면 무시.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>흡수되거나 운동에너지가 0이 되는 등의 이유로 멈춘 것. 엄밀히는 <em>fStopAndKill</em> 상태가 된 track을 의미함.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section></div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>2021-07-30에 수정</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/g4-noqasked-010-scoringtheory/index.md" target="_blank">Markdown으로 보기</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-010-scoringtheory/" data-title="Geant4 무작정 따라하기 - 10. 스코어링 이론" data-hashtags="Geant4,Scoring,Hit,HitsCollection,MultiFunctionalDetector,SensitiveDetector,PrimitiveScorer,Tally"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-010-scoringtheory/" data-title="Geant4 무작정 따라하기 - 10. 스코어링 이론" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-010-scoringtheory/" data-title="Geant4 무작정 따라하기 - 10. 스코어링 이론"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-010-scoringtheory/" data-title="Geant4 무작정 따라하기 - 10. 스코어링 이론" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-010-scoringtheory/" data-title="Geant4 무작정 따라하기 - 10. 스코어링 이론"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-010-scoringtheory/" data-title="Geant4 무작정 따라하기 - 10. 스코어링 이론" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/scoring/">Scoring</a>,&nbsp;<a href="/tags/hit/">Hit</a>,&nbsp;<a href="/tags/hitscollection/">HitsCollection</a>,&nbsp;<a href="/tags/multifunctionaldetector/">MultiFunctionalDetector</a>,&nbsp;<a href="/tags/sensitivedetector/">SensitiveDetector</a>,&nbsp;<a href="/tags/primitivescorer/">PrimitiveScorer</a>,&nbsp;<a href="/tags/tally/">Tally</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
+        </section>
+    </div>
+
+    
+    <div class="post-nav">
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+                
+            
+
+            
+
+            
+        <a href="/g4-noqasked-009-randtool/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"\r\ngraph LR\r\n    subgraph Sensitive Detector\r\n    C \u0026 D --\u003e B\r\n    E --- C\r\n    F --- D\r\n    end\r\nB ==\u003e A\r\nA[Logical Volume]\r\nB[Multi Functional Detector]\r\nC[Primitive Scorer 1]\r\nD[Primitive Scorer 2]\r\nE[Filter 1]\r\nF[Filter 2]\r","id-2":"\r\ngraph BT\r\nA --\u003e B\r\nC --\u003e D\r\nB \u0026 D --\u003e E === F\r\nA[1번에서 스코어링된 Hit]\r\nB[1번 사물함]\r\nC[2번에서 스코어링된 Hit]\r\nD[2번 사물함]\r\nE[HitsCollection]\r\nF[Primitive Scorer]\r","id-3":"EvaNote","id-4":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-3":["id-3"],"id-4":["id-4"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-JZ0NBG8ZWZ');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+</html>
