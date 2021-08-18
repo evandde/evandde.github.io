@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Geant4 무작정 따라하기 - 11. 스코어링 구현 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 11. 스코어링 구현" />
+<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 열한번째. Geant4에서 스코어링을 구현하는 방법에 대해 알아봅니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-011-scoring/" />
+<meta property="article:published_time" content="2021-08-18T14:11:10+09:00" />
+<meta property="article:modified_time" content="2021-08-18T14:11:10+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Geant4 무작정 따라하기 - 11. 스코어링 구현"/>
+<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 열한번째. Geant4에서 스코어링을 구현하는 방법에 대해 알아봅니다."/>
+<meta name="application-name" content="EvaNote">
+<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-011-scoring/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-010-scoringtheory/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Geant4 무작정 따라하기 - 11. 스코어링 구현",
+        "inLanguage": "ko-kr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/evandde.github.io\/g4-noqasked-011-scoring\/"
+        },"genre": "posts","keywords": "Geant4, Scoring, MultiFunctionalDetector, PrimitiveScorer, Filter","wordcount":  6653 ,
+        "url": "https:\/\/evandde.github.io\/g4-noqasked-011-scoring\/","datePublished": "2021-08-18T14:11:10+09:00","dateModified": "2021-08-18T14:11:10+09:00","publisher": {
+            "@type": "Organization",
+            "name": "Evan Kim"},"author": {
+                "@type": "Person",
+                "name": "Evan Kim"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="EvaNote"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        취소
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">목차</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 11. 스코어링 구현</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-18">2021-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 6653&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 14분&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>목차</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#sensitive-detector-설계">Sensitive Detector 설계</a>
+      <ul>
+        <li><a href="#mfd-만들고-추가하기">MFD 만들고 추가하기</a>
+          <ul>
+            <li><a href="#mfd-객체-만들기">MFD 객체 만들기</a></li>
+            <li><a href="#mfd-추가하기">MFD 추가하기</a></li>
+          </ul>
+        </li>
+        <li><a href="#ps-등록하기">PS 등록하기</a>
+          <ul>
+            <li><a href="#ps-객체-만들기">PS 객체 만들기</a></li>
+            <li><a href="#mfd에-ps-등록하기">MFD에 PS 등록하기</a></li>
+            <li><a href="#여러-개의-ps를-등록하는-법">여러 개의 PS를 등록하는 법</a></li>
+            <li><a href="#filter-세팅하기">Filter 세팅하기</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#logical-volume에-sd-세팅">Logical Volume에 SD 세팅</a></li>
+    <li><a href="#중간-점검">중간 점검</a></li>
+    <li><a href="#event가-끝날-때-hit-확인">Event가 끝날 때 Hit 확인</a>
+      <ul>
+        <li><a href="#hcofthisevent에서-hc-꺼내기">HCofThisEvent에서 HC 꺼내기</a></li>
+        <li><a href="#hc에서-hit-꺼내기">HC에서 Hit 꺼내기</a></li>
+      </ul>
+    </li>
+    <li><a href="#최종-파일-다운받는-법">최종 파일 다운받는 법</a></li>
+    <li><a href="#정리">정리</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 열한번째. Geant4에서 스코어링을 구현하는 방법에 대해 알아봅니다.</p>
+<p>지난 글에서 살펴본 스코어링 이론을 바탕으로, 이번 글에서는 스코어링을 직접 구현해보도록 하겠습니다.</p>
+<p>스코어링을 구현하는 방법은 크게 다음의 3단계를 통해 진행됩니다.</p>
+<ol>
+<li>스코어링을 위한 Sensitive Detector 설계</li>
+<li>관심 있는 지오메트리의 Logical Volume에 Sensitive Detector를 세팅</li>
+<li>Event가 끝날 때 HCofThisEvent에서 Hit(관심 있는 물리량)을 꺼내어 확인</li>
+</ol>
+<p>차례차례 살펴보도록 합시다.</p>
+<hr>
+<h2 id="sensitive-detector-설계">Sensitive Detector 설계</h2>
+<p>Sensitive Detector를 설계하는 방법은 지난 글에서 말씀드렸습니다. 이 시리즈에서는 Multi Functional Detector(MFD)에 사용자가 원하는 Primitive Scorer들을 Register하여 설계하는 방법만 다루겠다고 하였지요.</p>
+<p>이 내용을 코드로 입력하는 곳도 정해져 있습니다. 바로 <b>DetectorConstruction.cc 파일</b>에 있는 <b>ConstructSDandField() 함수 내부</b>입니다. DetectorConstruction.cc 파일을 열어보시면, 대부분의 경우 맨 아래쪽 부근에 다음과 같은 함수가 있을 것입니다. 이 함수의 중괄호({}) 내부에 작성할 것입니다.</p>
+<a class="lightgallery" href="/g4-noqasked-011-scoring/01_consdandfield.png" title="/g4-noqasked-011-scoring/01_consdandfield.png" data-thumbnail="/g4-noqasked-011-scoring/01_consdandfield.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="01_consdandfield.png"
+            data-srcset="/g4-noqasked-011-scoring/01_consdandfield.png, 01_consdandfield.png 1.5x, /g4-noqasked-011-scoring/01_consdandfield.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-011-scoring/01_consdandfield.png" width="100%" />
+    </a>
+<h3 id="mfd-만들고-추가하기">MFD 만들고 추가하기</h3>
+<p>Multi Functional Detector를 만드는 과정은 딱 두 가지만 하시면 됩니다.</p>
+<ol>
+<li>G4MultiFunctionalDetector 클래스의 객체를 만든다.</li>
+<li>해당 객체를 G4SDManager에 추가한다.</li>
+</ol>
+<p>코드로는 다음의 두 줄입니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">mfd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4MultiFunctionalDetector</span><span class="p">(</span><span class="s">&#34;Detector&#34;</span><span class="p">);</span>
+<span class="n">G4SDManager</span><span class="o">::</span><span class="n">GetSDMpointer</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AddNewDetector</span><span class="p">(</span><span class="n">mfd</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>mfd라는 변수명으로 객체를 만들고, 이를 추가해주었습니다.</p>
+<p>좀 더 자세히 살펴보도록 하죠.</p>
+<h4 id="mfd-객체-만들기">MFD 객체 만들기</h4>
+<p>Geant4에서는 Multi Functional Detector를 만들기 위해 이름 그대로 G4MultiFunctionalDetector라는 클래스를 제공하고 있습니다. 사용자는 이 클래스의 생성자를 이용하여 객체를 한 개 만들어주면 됩니다.</p>
+<p>이 클래스의 생성자는 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4MultiFunctionalDetector</span><span class="p">(</span><span class="n">G4String</span> <span class="n">name</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>name: Multi Functional Detector의 이름. 자유롭게 적으면 됨. <b>나중에 쓰이는 값이므로 기억</b>해둘 것</li>
+</ul>
+<p>문자열 형태의 입력값 한 개만 자유롭게 넣어주면 됩니다. 입력 인자로 넣어준 <b>이 값은 MFD의 이름</b>이 되는데, 나중에 HCofThisEvent에서 사용되니 적절한 이름으로 잘 지어주세요. 위 예시 코드에서는 &ldquo;Detector&quot;라는 이름을 지어주었습니다.</p>
+<h4 id="mfd-추가하기">MFD 추가하기</h4>
+<p>Geant4에서 Sensitive Detector를 사용하기 위해서는 <b>반드시 G4SDManager에 그 SD를 추가</b>해주어야 합니다. 그래야 Geant4가 입자를 수송하면서 SD 목록 중 조건에 부합하는 것들에 대해 스코어링을 수행해주기 때문입니다.</p>
+<p>G4SDManager는 Geant4가 제공하는 것을 가져다 쓰면 되며, 이 클래스가 제공하는 <b>AddNewDetector()라는 함수를 통해 우리가 설계한 SD를 추가</b>하게 됩니다. 이 함수의 원형은 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">AddNewDetector</span><span class="p">(</span><span class="n">G4VSensitiveDetector</span> <span class="o">*</span><span class="n">aSD</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>aSD: 추가할 Sensitive Detector 객체의 포인터</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">C++적인 내용을 덧붙이자면, G4MultiFunctionalDetector 클래스는 G4VSensitiveDetector 클래스를 상속받아 만들어진 클래스입니다. 따라서, MFD 객체를 AddNewDetector의 인자로 사용할 수 있는 것입니다.</div>
+        </div>
+    </div>
+<p>이 함수의 입력 인자로, 앞서 저희가 만들어둔 MFD 객체를 그대로 써주시면 됩니다.</p>
+<h3 id="ps-등록하기">PS 등록하기</h3>
+<p>이제 MFD는 만들었으니, 실제 스코어링 기능을 수행하는 Primitive Scorer를 등록해야 합니다. 이 내용도 <b>ConstructSDandField() 함수 내부</b>에 위에서 작성한 두 줄에 이어서 계속 써주시면 됩니다.</p>
+<p>여기도 딱 두 가지만 해주시면 됩니다.</p>
+<ol>
+<li>원하는 Primitive Scorer 클래스의 객체를 만든다.</li>
+<li>해당 PS 객체를 MFD에 등록한다.</li>
+</ol>
+<p>예를 들어 해당 지오메트리 내에 deposit된 에너지의 총합을 스코어링하는 G4PSEnergyDeposit을 등록하고 싶다면, 다음과 같이 두 줄을 작성하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">psEDep</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4PSEnergyDeposit</span><span class="p">(</span><span class="s">&#34;EDep&#34;</span><span class="p">);</span>
+<span class="n">mfd</span><span class="o">-&gt;</span><span class="n">RegisterPrimitive</span><span class="p">(</span><span class="n">psEDep</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>psEDep이라는 변수명으로 G4PSEnergyDeposit 클래스의 객체를 만들고, 이를 앞서 만들어둔 mfd 변수명으로 정의된 MFD 객체에 등록해주었습니다.</p>
+<p>좀 더 자세히 살펴보겠습니다.</p>
+<h4 id="ps-객체-만들기">PS 객체 만들기</h4>
+<p>Primitive Scorer의 종류가 너무 많기 때문에, 이 글에서 모든 PS의 생성자를 살펴볼 수는 없습니다. 하지만 <b>모든 PS의 생성자에 있어 공통적으로 중요한 내용</b>이 있습니다. 대표적으로 G4PSEnergyDeposit 클래스의 생성자를 살펴봅시다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4PSEnergyDeposit</span><span class="p">(</span><span class="n">G4String</span> <span class="n">name</span><span class="p">,</span> <span class="n">G4int</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">G4PSEnergyDeposit</span><span class="p">(</span><span class="n">G4String</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">unit</span><span class="p">,</span> <span class="n">G4int</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>name: Primitive Scorer의 이름. 자유롭게 적으면 됨. <b>나중에 쓰이는 값이므로 기억</b>해둘 것</li>
+<li><i>depth:  <b>입력하지 않아도 되는 인자</b>.지오메트리의 관계(mother-daughter)에 따라, 상위 몇 번째 단계에 있는 지오메트리의 copy number를 참고할 것인지를 지정하는 인자. 기본값은 0</i></li>
+<li><i>unit:  <b>입력하지 않아도 되는 인자</b>. 스코어링 결과의 입출력시 사용할 단위. 기본값은 MeV</i></li>
+</ul>
+<p>MFD 객체를 만들 때와 마찬가지로, 문자열 형태의 입력값 한 개만 자유롭게 넣어주면 됩니다. 이 <b>입력 인자는 어느 PS를 사용하든 무조건 입력해주도록 되어있으며, 이 값이 해당 PS의 이름</b>이 됩니다.</p>
+<p>이 또한 나중에 HCofThisEvent에서 사용되니 적절한 이름으로 잘 지어주세요. 위 예시 코드에서는 &ldquo;EDep&quot;라는 이름을 지어주었습니다.</p>
+<h4 id="mfd에-ps-등록하기">MFD에 PS 등록하기</h4>
+<p>MFD에 PS를 등록할 때에는, G4MultiFunctionalDetector 클래스가 제공하는 <b>RegisterPrimitive() 함수를 이용</b>합니다. 이 함수의 원형은 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4bool</span> <span class="n">RegisterPrimitive</span><span class="p">(</span><span class="n">G4VPrimitiveScorer</span> <span class="o">*</span><span class="n">aPS</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>aPS: 등록할 Primitive Scorer 객체의 포인터</li>
+</ul>
+<p>이 함수의 입력 인자로, 앞서 저희가 만들어둔 PS의 객체를 그대로 써주시면 됩니다.</p>
+<h4 id="여러-개의-ps를-등록하는-법">여러 개의 PS를 등록하는 법</h4>
+<p>하나의 MFD에 여러 개의 PS를 등록하는 방법도 간단합니다. 위에서 설명한 두 과정만 계속 반복해주시면 됩니다.</p>
+<ol>
+<li>원하는 Primitive Scorer 클래스의 객체를 만든다.</li>
+<li>해당 PS 객체를 MFD에 등록한다.</li>
+</ol>
+<p>예를 들어 MFD를 만들고 G4PSEnergyDeposit과 G4PSDoseDeposit 두 개의 PS를 등록하는 경우를 코드로 작성한다면 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">mfd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4MultiFunctionalDetector</span><span class="p">(</span><span class="s">&#34;Detector&#34;</span><span class="p">);</span>
+<span class="n">G4SDManager</span><span class="o">::</span><span class="n">GetSDMpointer</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AddNewDetector</span><span class="p">(</span><span class="n">mfd</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">psEDep</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4PSEnergyDeposit</span><span class="p">(</span><span class="s">&#34;EDep&#34;</span><span class="p">);</span>
+<span class="n">mfd</span><span class="o">-&gt;</span><span class="n">RegisterPrimitive</span><span class="p">(</span><span class="n">psEDep</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">psDoseDep</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4PSDoseDeposit</span><span class="p">(</span><span class="s">&#34;DoseDep&#34;</span><span class="p">);</span>
+<span class="n">mfd</span><span class="o">-&gt;</span><span class="n">RegisterPrimitive</span><span class="p">(</span><span class="n">psDoseDep</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="filter-세팅하기">Filter 세팅하기</h4>
+<p>Filter는 PS의 추가옵션 같은 기능입니다. Filter를 세팅하기 위해서는 PS를 등록할 때 Filter 관련 내용을 추가해야 합니다.</p>
+<ol>
+<li>원하는 Primitive Scorer 클래스의 객체를 만든다.</li>
+<li><font color=red>원하는 Filter 클래스의 객체를 만든다.</font></li>
+<li><font color=red>해당 Filter 객체를 PS에 세팅한다.</font></li>
+<li>해당 PS 객체를 MFD에 등록한다.</li>
+</ol>
+<p>예를 들어, G4PSEnergyDeposit을 이용하는데, 전자(e-)가 deposit한 값만 스코어링하고 싶다면, 다음과 같이 작성하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="hl"><span class="lnt">2
+</span></span><span class="hl"><span class="lnt">3
+</span></span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">psEDep</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4PSEnergyDeposit</span><span class="p">(</span><span class="s">&#34;EDep&#34;</span><span class="p">);</span>
+<span class="hl"><span class="k">auto</span> <span class="n">filterElectron</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4SDParticleFilter</span><span class="p">(</span><span class="s">&#34;e-Filter&#34;</span><span class="p">,</span> <span class="s">&#34;e-&#34;</span><span class="p">);</span>
+</span><span class="hl"><span class="n">psEDep</span><span class="o">-&gt;</span><span class="n">SetFilter</span><span class="p">(</span><span class="n">filterElectron</span><span class="p">);</span>
+</span><span class="n">mfd</span><span class="o">-&gt;</span><span class="n">RegisterPrimitive</span><span class="p">(</span><span class="n">psEDep</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>각 Filter마다 생성자의 형태나 사용방법은 상이하므로, 여기서 자세히 다루지는 않겠습니다.</p>
+<hr>
+<h2 id="logical-volume에-sd-세팅">Logical Volume에 SD 세팅</h2>
+<p>이제 관심 있는 지오메트리의 Logical Volume에, 앞서 설계한 SD를 세팅해줄 차례입니다. 이 내용 또한 <b>ConstructSDandField() 함수 내부</b>에 작성하며, 아주 간단하게 한 줄이면 끝납니다. <b>SetSensitiveDetector() 함수</b>를 사용하면 됩니다.</p>
+<p>예를 들어, <b>&ldquo;phantom&quot;이라는 이름</b>을 가진 Logical Volume에 앞서 만든 <b>mfd</b> 변수명을 가진 SD를 세팅한다면, 다음과 같이 입력하면 됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">SetSensitiveDetector</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="n">mfd</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>좀 더 자세히 살펴보도록 합시다. 이 함수의 원형은 다음과 같습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">SetSensitiveDetector</span><span class="p">(</span><span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">logVolName</span><span class="p">,</span>
+                          <span class="n">G4VSensitiveDetector</span><span class="o">*</span> <span class="n">aSD</span><span class="p">,</span> <span class="n">G4bool</span> <span class="n">multi</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">SetSensitiveDetector</span><span class="p">(</span><span class="n">G4LogicalVolume</span><span class="o">*</span> <span class="n">logVol</span><span class="p">,</span> <span class="n">G4VSensitiveDetector</span><span class="o">*</span> <span class="n">aSD</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>logVolName: 관심 있는 지오메트리의 <b>Logical Volume의 이름</b></li>
+<li>aSD: Sensitive Detector 객체의 포인터</li>
+<li><i>multi:  <b>입력하지 않아도 되는 인자</b>. logVolName 이름을 가진 지오메트리가 여러 개일 경우, 여러 개의 지오메트리 모두에 대해 SD를 세팅할지의 여부를 결정하는 인자. 기본값은 false</i></li>
+<li>logVol: 관심 있는 지오메트리의 <b>Logical Volume 객체의 포인터</b></li>
+</ul>
+<p>SetSensitiveDetector 함수를 사용할 때, 관심 있는 지오메트리의 Logical Volume을 입력하는 방법이 두 가지입니다.</p>
+<ol>
+<li>Logical Volume의 이름을 입력</li>
+<li>Logical Volume 객체의 포인터를 입력</li>
+</ol>
+<p>일단 이 시리즈에서 추천하는 바는 <b>그냥 Logical Volume의 이름을 입력하는 것</b>입니다. 제가 이전에 <a href="https://evandde.github.io/g4-noqasked-004-material/#logical-volume-정의하기" rel="">Logical Volume을 정의하는 방법에 대해 적은 글</a>에서, <b>Logical Volume의 이름을 지을 때 다른 Logical Volume과 겹치지 않게끔 고유의 이름을 권장</b>한다고 하였습니다. 그 이유 중 하나가 이것입니다. 이름이 중복되면 그 중 어느 지오메트리에 SD를 세팅할 지가 불분명하기 때문입니다.</p>
+<p>물론, 이름이 중복되는 모든 Logical Volume들에게 다 동일한 SD를 세팅하고자 한다면, 이 함수의 <i>multi</i> 인자 값을 true로 설정하여 사용할 수도 있습니다.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>이 시리즈에서는 지역변수나 변수의 범위(scope) 등을 설명하기에는 지면이 부족하여, 그냥 Logical Volume의 이름을 사용하는 방법만 설명합니다.</p>
+<p>일반적으로 Logical Volume 객체는 Construct() 함수 내에 지역변수로 만들기 때문에, ConstructSDandField() 함수에서는 그 객체를 호출하지 못하기 때문이지요.</p>
+<p>물론 객체를 불러오기 위한 몇 가지 방법들이 있습니다만 여기서는 생략하도록 하겠습니다.</p>
+</div>
+        </div>
+    </div>
+<hr>
+<h2 id="중간-점검">중간 점검</h2>
+<p>여기까지의 내용은 모두 <b>DetectorConstruction.cc 파일</b>에 있는 <b>ConstructSDandField() 함수 내부</b>에 작성하셨을 것입니다. 모두 마무리하셨다면, 일단 SD를 설계하고 이를 Logical Volume에 세팅하는 것까지 마친 상태입니다.</p>
+<p>예를 들어 <b>G4PSEnergyDeposit 클래스를 이용하여 설계한 SD</b>를 <b>&ldquo;phantom&quot;이라는 이름을 가진 Logical Volume에 세팅</b>한다면, 다음과 같이 코드가 작성되어야 합니다.</p>
+<a class="lightgallery" href="/g4-noqasked-011-scoring/02_consdandfield_complete.png" title="/g4-noqasked-011-scoring/02_consdandfield_complete.png" data-thumbnail="/g4-noqasked-011-scoring/02_consdandfield_complete.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="02_consdandfield_complete.png"
+            data-srcset="/g4-noqasked-011-scoring/02_consdandfield_complete.png, 02_consdandfield_complete.png 1.5x, /g4-noqasked-011-scoring/02_consdandfield_complete.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-011-scoring/02_consdandfield_complete.png" width="80%" />
+    </a>
+<p>여기서 중간 점검을 하는 이유는, <b><font color=red>다음 내용부터는 작성하는 파일이 달라지기 때문</font></b>입니다. 놓치지 말고 잘 따라오세요.</p>
+<hr>
+<h2 id="event가-끝날-때-hit-확인">Event가 끝날 때 Hit 확인</h2>
+<p>이제 마지막 단계입니다. 앞서 두 단계를 통해 Geant4는 알아서 매 Event마다 <b>Hit을 생성하고 이를 HitsCollection에 담아 HCofThisEvent로 묶어서 가지고 있을 것</b>입니다. Event가 끝날 때 사용자가 이 Hit을 꺼내서 확인하지 않으면, 그 정보들은 그대로 사라집니다. 메모리를 날려버리고 새로운 다음 Event에 대한 정보를 기록하지요.</p>
+<p>사용자가 할 일은 <b>Event가 끝날 때마다</b> Hit을 가져와서 확인하는 것입니다.</p>
+<p>Geant4는 <b>매 Event마다 특정 행동을 반복적으로 수행하는 용도로 활용</b>할 수 있게끔 하기 위해, <b>EventAction</b>이라는 개념을 제공하고 있습니다. 이 시리즈에서는 <b>EventAction.cc라는 파일</b>을 열어서 이용하시면 됩니다. 여기에는 BeginOfEventAction()이라는 함수와 EndOfEventAction()이라는 함수가 있는데, 이름 그대로 매 Event가 시작되기 직전과 끝난 직후에 해당 함수가 실행되는 식으로 동작합니다. 즉, 우리처럼 <b>매 Event가 끝날 때마다 무언가를 하고 싶다면 EndOfEventAction() 함수 안에 할 일을 적으면 되는 것</b>이죠.</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">엄밀히 말하면, G4UserEventAction 클래스를 상속 받아서 사용자만의 고유한 EventAction클래스를 만들고, 이 클래스의 함수 중 BeginOfEventAction() 함수나 EndOfEventAction() 함수를 overriding하여 작성하면 그 내용이 매 Event가 시작되기 직전과 끝난 직후에 각각 실행됩니다.</div>
+        </div>
+    </div>
+<p>EventAction.cc 파일을 열어보시면 아래쪽에 <b>EndOfEventAction() 함수</b>가 있을 것입니다. 이 함수 안에 내용을 작성할 것입니다.</p>
+<a class="lightgallery" href="/g4-noqasked-011-scoring/03_EOE.png" title="/g4-noqasked-011-scoring/03_EOE.png" data-thumbnail="/g4-noqasked-011-scoring/03_EOE.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="03_EOE.png"
+            data-srcset="/g4-noqasked-011-scoring/03_EOE.png, 03_EOE.png 1.5x, /g4-noqasked-011-scoring/03_EOE.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-011-scoring/03_EOE.png" width="100%" />
+    </a>
+<p>이미 다음과 같은 내용이 작성되어 있네요.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">HCE</span> <span class="o">=</span> <span class="n">anEvent</span><span class="o">-&gt;</span><span class="n">GetHCofThisEvent</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">HCE</span><span class="p">)</span>
+	<span class="k">return</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>의미는 그냥 써있는 그대로 읽으시면 됩니다. 한글로 쓰자면 다음과 같습니다.</p>
+<ul>
+<li>이번 Event에서 만들어진 HCofThisEvent를 가져와서 HCE라는 변수로 지정</li>
+<li>만약 HCE가 유효하지 않다면
+<ul>
+<li>EndOfEventAction() 함수를 종료</li>
+</ul>
+</li>
+</ul>
+<p><del>어때요, 참 쉽죠?</del></p>
+<p>HCE 변수가 유효하지 않다면 if 조건문에 의해 함수가 종료되어 버리므로, <b>이 내용 아래 부분에 있는 내용은 반드시 HCE가 유효한 경우에만 실행될 것</b>입니다.</p>
+<p>이제 HCofThisEvent로부터 Hit까지 가보도록 합시다.</p>
+<h3 id="hcofthisevent에서-hc-꺼내기">HCofThisEvent에서 HC 꺼내기</h3>
+<p>HCofThisEvent는 HitsCollectoin들의 묶음이라고 하였습니다. 이 때 Geant4는 수많은 HC들을 쉽게 구분하기 위해 <b>HC마다 0 이상의 양의 정수값으로 된 고유의 ID번호를 부여</b>합니다. 다만, 사용자가 이 정수값을 직접 기억할 필요는 없습니다. 사용자는 <font color=red><b>HC의 이름</b></font>을 이용하여 이 ID번호를 찾아올 수 있기 때문입니다.</p>
+<p>여기서 HC의 이름은 <b>Sensitive Detector를 설계할 때 결정</b>됩니다. 우리가 했던 것처럼 MFD와 PS를 이용할 경우에는, HC의 이름이 <code>{MFD의 이름}/{PS의 이름}</code>으로 결정됩니다. (대소문자 구분)</p>
+<p>이 글에서 예시로 든 것처럼 다음과 같이 SD를 설계하였다면, <b><font color=red>HC의 이름은 &ldquo;Detector/EDep&rdquo;</font></b>이 되는 것입니다.</p>
+<a class="lightgallery" href="/g4-noqasked-011-scoring/02_consdandfield_complete.png" title="/g4-noqasked-011-scoring/02_consdandfield_complete.png" data-thumbnail="/g4-noqasked-011-scoring/02_consdandfield_complete.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="02_consdandfield_complete.png"
+            data-srcset="/g4-noqasked-011-scoring/02_consdandfield_complete.png, 02_consdandfield_complete.png 1.5x, /g4-noqasked-011-scoring/02_consdandfield_complete.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-011-scoring/02_consdandfield_complete.png" width="80%" />
+    </a>
+<p>사용자는 이 HC의 이름만 있으면, G4SDManager로부터 GetCollectionID() 함수를 이용해 해당 HC의 고유 ID번호를 가져올 수 있습니다. 이는 다음의 코드 두 줄로 수행할 수 있습니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">if</span><span class="p">(</span><span class="n">fHCID</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+	<span class="n">fHCID</span> <span class="o">=</span> <span class="n">G4SDManager</span><span class="o">::</span><span class="n">GetSDMpointer</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetCollectionID</span><span class="p">(</span><span class="s">&#34;Detector/EDep&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4int</span> <span class="n">fHCID</span> <span class="o">=</span> <span class="n">G4SDManager</span><span class="o">::</span><span class="n">GetSDMpointer</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetCollectionID</span><span class="p">(</span><span class="s">&#34;Detector/EDep&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>이렇게 한 줄로 해도 될 일을 왜 굳이 if문으로 저런 이상한 조건을 붙이는 지 궁금한 분이 있으실 것입니다.</p>
+<p>GetCollectionID() 함수는 생각보다 시간을 많이 잡아먹는 느린 함수입니다. 이런 함수를 매 Event가 종료될 때마다 실행하도록 하면 그만큼 시뮬레이션에 소요되는 시간이 길어지겠지요.</p>
+<p>이런 문제를 해결하고자, 맨 처음에만 HC의 ID를 찾아오고 그 이후에는 전에 찾아온 값을 재활용하기 위해 이와 같이 코드를 작성하여 이용하는 것입니다.</p>
+</div>
+        </div>
+    </div>
+<p>이어서, 이 ID를 이용하여 HCofThisEvent로부터 HC를 꺼내옵니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">hitsMap</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">G4THitsMap</span><span class="o">&lt;</span><span class="n">G4double</span><span class="o">&gt;</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">HCE</span><span class="o">-&gt;</span><span class="n">GetHC</span><span class="p">(</span><span class="n">fHCID</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>이상한 문구가 너무 많이 있어서 생소하실 수 있겠지만, 해석해보면 간단합니다.</p>
+<ul>
+<li>
+<p>HCE-&gt;GetHC(fHCID)</p>
+<p>HCE(HCofThisEvent)로부터 fHCID라는 ID를 가진 HC를 가져옴</p>
+</li>
+<li>
+<p>static_cast&lt;G4THitsMap<G4double> *&gt;(HCE-&gt;GetHC(fHCID))</p>
+<p>앞서 가져온 HC를 <code>G4THitsMap&lt;G4double&gt; *</code> 자료형으로 형변환함</p>
+</li>
+<li>
+<p>auto hitsMap = static_cast&lt;G4THitsMap<G4double> *&gt;(HCE-&gt;GetHC(fHCID));</p>
+<p>이걸 hitsMap이라는 변수명으로 저장</p>
+</li>
+</ul>
+<p>이제 모르는 내용은 <code>G4THitsMap&lt;G4double&gt; *</code>이라는 처음보는 자료형 뿐이군요. 이는 HitsCollection의 종류 중 하나입니다. <a href="https://evandde.github.io/g4-noqasked-010-scoringtheory/#ps-hit-hc에-대한-상세-설명" rel="">이전 글</a>에서 Hit을 저장하는 방법이 여러가지가 있지만, PS를 이용하는 경우에는 <b>값을 누적</b>하여 <b><font color=blue>하나의 값</font></b>으로 저장하며, 이를 <b><font color=red>Copy Number라는 사물함 번호로 분류</font></b>하여 저장한다고 했었지요.</p>
+<p>C++에서 이처럼 사물함 번호마다 값을 분류하여 저장하는 데이터 저장 방식의 대표적인 예로 <b>Map</b>이 있습니다. 그래서 Geant4에서는 이 Map이라는 구조를 활용하여 Hit을 저장하기 위한 Map이라는 이름으로 G4THitsMap이라는 클래스를 사용하고 있으며, 그 Map에 저장될 데이터가 G4double(실수)형이라는 것을 명시하기 위해 <code>G4THitsMap&lt;G4double&gt;</code>과 같이 작성하게 됩니다. 끝의 <code>*</code>는 이 자료형의 포인터형이라는 뜻입니다.</p>
+<p><u>이 설명을 잘 모르겠으면 그냥 넘어가시고, 나중에 C++ 공부를 좀 더 한 뒤에 이해하셔도 됩니다.</u> 핵심은 다음의 두 가지입니다. 이거만 기억하셔도 충분합니다.</p>
+<ol>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">hitsMap</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">G4THitsMap</span><span class="o">&lt;</span><span class="n">G4double</span><span class="o">&gt;</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">HCE</span><span class="o">-&gt;</span><span class="n">GetHC</span><span class="p">(</span><span class="n">fHCID</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>라고 쓰면, hitsMap이라는 변수명으로 HitsCollection을 가져올 수 있음</p>
+</li>
+<li>
+<p>이 hitsMap에는 <b><font color=red>Copy Number라는 사물함 번호</font></b>마다, <b><font color=blue>PS가 누적해서 기록한 값</font></b>이 저장되어 있음</p>
+</li>
+</ol>
+<h3 id="hc에서-hit-꺼내기">HC에서 Hit 꺼내기</h3>
+<p>앞서 가져온 HitsCollection에는 PS가 기록한 값이 Copy Number라는 번호로 분류된 사물함마다 저장되어 있을 것입니다.</p>
+<p>어떤 사용자는 Sensitive Detector를 딱 하나의 지오메트리에만 달았을 수도 있고, 어떤 사용자는 여러 개의 지오메트리에 달았을 수도 있습니다. 게다가, 이 Event에서 입자들이 그 지오메트리들을 아예 안지나갔을 수도 있고(Hit이 0개), 모두 다 지나갔을 수도 있습니다.</p>
+<p>이런 이유때문에, PS를 이용하여 설계한 SD를 이용한 경우에는 <b>HitsCollection 안에 몇 개의 Hit이 들어있을지 아무도 모릅니다</b>. 이런 모든 경우를 다 아우르기 위해, <b>HC안에 들어있는 Hit을 모두 다 훑으며 확인하는 방식을 이용</b>합니다. 이는 C++에서 제공하는 for-each 반복문을 사용하면 쉽게 해결됩니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">iter</span> <span class="p">:</span> <span class="o">*</span><span class="p">(</span><span class="n">hitsMap</span><span class="o">-&gt;</span><span class="n">GetMap</span><span class="p">()))</span>
+<span class="p">{</span>
+	<span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>위와 같이 작성하면, hitsMap 안에 있는 <b>모든 사물함</b>들을 <b>iter</b>라는 변수명으로 접근할 수 있게 됩니다. 이 때 <code>iter.first</code>는 <b><font color=red>사물함 번호</font></b>가 되고, <code>*(iter.second)</code>는 <b><font color=blue>그 사물함 안에 들어있는 hit의 누적 값</font></b>이 됩니다.</p>
+<p>예를 들어, G4PSEnergyDeposit을 통해 기록된 deposit된 에너지의 총합을 살펴보고, 이 값이 0보다 큰 경우 터미널 화면에 출력하고자 한다면 다음과 같이 코드를 작성합니다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">iter</span> <span class="p">:</span> <span class="o">*</span><span class="p">(</span><span class="n">hitsMap</span><span class="o">-&gt;</span><span class="n">GetMap</span><span class="p">()))</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">eDep</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">iter</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">eDep</span> <span class="o">&gt;</span> <span class="mf">0.</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="n">G4cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;--- Energy Deposit:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">eDep</span> <span class="o">/</span> <span class="n">MeV</span> <span class="o">&lt;&lt;</span> <span class="n">G4endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><code>G4cout</code>과 <code>G4endl</code>은 각각 <code>std::cout</code>과 <code>std::endl</code>과 동일하다고 생각하셔도 무방합니다.</div>
+        </div>
+    </div>
+<p>해석하자면 다음과 같이 되겠군요</p>
+<ul>
+<li>hitsMap에 있는 사물함 각각을 iter라는 변수로 지정하여 반복문을 수행
+<ul>
+<li>사물함 안에 있는 값(<code>*(iter.second)</code>)을 eDep이라는 변수명으로 저장</li>
+<li>만약 eDep의 값이 0보다 크다면
+<ul>
+<li>화면에 &ldquo;&mdash; Energy Deposit: &ldquo;과 &ldquo;eDep 값을 MeV로 나눈 값&quot;을 이어서 출력하고 줄바꿈</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>이런 방법을 통해 PS가 저장한 값을 Event가 끝날 때 가져와서 확인할 수 있게 됩니다. 지금까지 수행한 내용을 모두 작성하여 코드로 살펴보면 다음과 같습니다.</p>
+<a class="lightgallery" href="/g4-noqasked-011-scoring/04_EOE_complete.png" title="/g4-noqasked-011-scoring/04_EOE_complete.png" data-thumbnail="/g4-noqasked-011-scoring/04_EOE_complete.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="04_EOE_complete.png"
+            data-srcset="/g4-noqasked-011-scoring/04_EOE_complete.png, 04_EOE_complete.png 1.5x, /g4-noqasked-011-scoring/04_EOE_complete.png 2x"
+            data-sizes="auto"
+            alt="/g4-noqasked-011-scoring/04_EOE_complete.png" width="90%" />
+    </a>
+<hr>
+<h2 id="최종-파일-다운받는-법">최종 파일 다운받는 법</h2>
+<p>이번 글에서 작성한 코드는 <a href="https://github.com/evandde/g4_minimal/archive/e14a65ec75c34ff35956cddada381d46d0802cbd.zip" target="_blank" rel="noopener noreffer">이 링크</a>를 통해 다운받을 수 있습니다.</p>
+<p>혹은 git repository를 clone하신 분의 경우에는, example branch의 이전 커밋 중 V3 scoring이라는 커밋을 참고하셔도 됩니다.</p>
+<hr>
+<h2 id="정리">정리</h2>
+<p>스코어링이 사실 쉽지 않습니다. 저도 여러 사람들에게 강의를 수 차례 해보았지만, 제일 어려워하시는 부분이 스코어링입니다. C++의 문법을 모르면 생소한 코드가 너무 많아서 더욱 어려워보이는 것 같기도 합니다.</p>
+<p>어떻게 하면 더 쉽게 전달할 수 있을까 많이 고민해 보았습니다만, 아직도 쉬워보이지는 않네요 <i class="far fa-frown"></i></p>
+<p>스코어링 이론을 잘 숙지하고 있으시다면, 몇 번만 직접 구현해서 활용해보면 금방 터득하실 수 있으리라 생각합니다.</p>
+<p>이제 다음 글이 이 시리즈의 마지막입니다. 다음 글에서는 스코어링 결과를 파일로 출력하는 법에 대해 알아보겠습니다.</p></div>
+
+<div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>2021-08-18에 수정</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/g4-noqasked-011-scoring/index.md" target="_blank">Markdown으로 보기</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-011-scoring/" data-title="Geant4 무작정 따라하기 - 11. 스코어링 구현" data-hashtags="Geant4,Scoring,MultiFunctionalDetector,PrimitiveScorer,Filter"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-011-scoring/" data-title="Geant4 무작정 따라하기 - 11. 스코어링 구현" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-011-scoring/" data-title="Geant4 무작정 따라하기 - 11. 스코어링 구현"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-011-scoring/" data-title="Geant4 무작정 따라하기 - 11. 스코어링 구현" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-011-scoring/" data-title="Geant4 무작정 따라하기 - 11. 스코어링 구현"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-011-scoring/" data-title="Geant4 무작정 따라하기 - 11. 스코어링 구현" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/scoring/">Scoring</a>,&nbsp;<a href="/tags/multifunctionaldetector/">MultiFunctionalDetector</a>,&nbsp;<a href="/tags/primitivescorer/">PrimitiveScorer</a>,&nbsp;<a href="/tags/filter/">Filter</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
+        </section>
+    </div>
+
+    
+    <div class="post-nav">
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+
+            
+
+            
+        
+            
+                
+            
+
+            
+
+            
+        <a href="/g4-noqasked-010-scoringtheory/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 10. 스코어링 이론"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 10. 스코어링 이론</a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-JZ0NBG8ZWZ');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+</html>
