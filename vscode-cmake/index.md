@@ -159,7 +159,7 @@ CMake Tools는 <b>CMake: Quick Start</b>라는 기능을 제공합니다. 손쉽
 
 실행하거나 디버깅할 때, command line argument를 넘겨주도록 설정하고 싶을 때가 있습니다.
 
-이는 CMake Tools extension이 직접 지원하지 않기 때문에, 우리가 <b>launch.json 파일을 생성</b>해 주어야 합니다.
+이는 <b>.vscode/settings.json 파일을 생성</b>해주고, 해당 파일에서 `cmake.debugConfig`인자로서 입력해줘야 합니다.
 
 #### 테스트 코드 수정
 
@@ -178,85 +178,37 @@ int main(int argc, char**) {
 
 {{< image src="arg1.png" width=100% >}}
 
-#### launch.json 자동생성
+#### settings.json
 
-이제 launch.json 파일을 만들어 보겠습니다. 다음 그림과 같이 진행해주세요.
+이제 settings.json 파일을 만들어 보겠습니다. (이미 만들어져 있을 수도 있습니다만, 그대로 진행하시면 됩니다)
 
-{{< admonition note >}}
-
-직접 작성하는 것이 아니라, VSCode의 기능을 통해 자동으로 기본 틀이 작성되도록 할 것입니다.
-
-{{< /admonition >}}
+다음 그림과 같이 File - Preferences - Settings를 클릭합니다. 단축키는 <b>[CTRL]+[,]</b> 입니다.
 
 {{< image src="arg2.png" width=100% >}}
 
+여기서 Workspace 탭을 클릭합니다. 이 프로젝트(workspace)에만 적용되는 설정항목이라는 뜻입니다.
+
 {{< image src="arg3.png" width=100% >}}
+
+상단 검색창에 `cmake.debugConfig`를 검색한 뒤, <u>Edit in settings.json</u> 부분을 클릭합니다. `cmake.debug` 정도만 입력하셔도 바로 뜰 것입니다.
 
 {{< image src="arg4.png" width=100% >}}
 
+클릭하시면 바로 다음과 같이 `.vscode/settings.json` 폴더 및 파일이 생성되고, settings.json 파일이 열리며, 그 안에 다음 그림과 같은 내용이 자동으로 작성되어 있을 것입니다. (추가로 다른 내용이 더 쓰여있을 수도 있습니다.)
+
 {{< image src="arg5.png" width=100% >}}
+
+이제 이 안에 `args` 항목을 만들어 command line argument를 설정합니다. 실행파일명 뒤에 이어질 추가적인 argument들만 적어주면 되며, 각 항목은 ""(double-quote)로 묶어주고 ,(comma)로 분리해주면 됩니다.
 
 {{< image src="arg6.png" width=100% >}}
 
-#### 필요없는 파일 삭제
-
-위 과정을 거치면, .vscode/launch.json, .vscode/tasks.json, main.exe의 세 파일이 생성됩니다.
-
-이 중 <b>.vscode/tasks.json</b>, <b>main.exe</b> 파일은 필요가 없고 사용하지 않을 것이니 **삭제**해줍니다.
+이제 저장한 뒤, 실행이나 디버깅을 해보면 다음과 같이 command line argument가 잘 반영된 것을 확인할 수 있습니다.
 
 {{< image src="arg7.png" width=100% >}}
 
-#### launch.json 수정
-
-이제 실행/디버깅에 사용되는 launch.json 파일을 수정합니다.
-
-1. program 변수의 값을 "${command:cmake.launchTargetPath}"로 변경
-
-   {{< admonition info >}}
-
-   cmake.launchTargetPath는 CMake Tools extension에서 제공하는 변수명으로, CMake project에서 컴파일하여 만든 실행파일의 경로를 의미합니다.
-
-   {{< /admonition >}}
-
-2. preLaunchTask 항목을 삭제 (**값만 지우는 것이 아니라 항목 전체를 삭제**)
-
-   {{< admonition info >}}
-
-   preLaunchTask는 tasks.json 파일을 통해 정의되는 선행작업입니다. CMake 기반 project에서는 tasks.json의 역할을 CMake Tools extension이 수행해주므로 이 부분은 사용하지 않습니다.
-
-   {{< /admonition >}}
-
-{{< image src="arg8.png" width=100% >}}
-
-{{< image src="arg9.png" width=100% >}}
-
-#### launch.json 파일을 통해 실행해보기
-
-launch.json 파일을 통해 실행하기 위해서는, 다음 그림과 같이 <b>(Run) - (Run Without Debugging)</b> 항목을 클릭하면 됩니다.
-
-{{< admonition info >}}
-
-launch.json 파일을 통해 디버깅하기 위해서는, 바로 위의 (Run) - (Start Debugging) 항목을 클릭하면 됩니다.
-
-{{< /admonition >}}
-
-{{< image src="arg10.png" width=100% >}}
-
-{{< image src="arg11.png" width=100% >}}
-
-#### Command line argument 설정
-
-이제 command line argument를 변경해보겠습니다.
-
-아까 수정한 <b>launch.json 파일</b>에서 <b>args의 값</b>을 통해 설정합니다.
-
-{{< image src="arg12.png" width=100% >}}
-
-{{< image src="arg13.png" width=100% >}}
-
-
-
 ---
+
+
 
 ## Reference
 
@@ -264,4 +216,5 @@ https://chocolatey.org/packages/cmake
 
 https://vector-of-bool.github.io/docs/vscode-cmake-tools/
 
+https://code.visualstudio.com/docs/getstarted/settings
 

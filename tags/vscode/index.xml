@@ -26,6 +26,13 @@
     <guid>https://evandde.github.io/vscode-wsl/</guid>
     <description><![CDATA[<p>VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다.</p>]]></description>
 </item><item>
+    <title>Visual Studio Code에서 CMake 환경 설정하기</title>
+    <link>https://evandde.github.io/vscode-cmake/</link>
+    <pubDate>Fri, 13 Nov 2020 10:04:24 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/vscode-cmake/</guid>
+    <description><![CDATA[<p>VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Visual Studio Code에서 C, C&#43;&#43; 환경 설정하기</title>
     <link>https://evandde.github.io/vscode-cpp/</link>
     <pubDate>Thu, 12 Nov 2020 16:40:31 &#43;0900</pubDate>

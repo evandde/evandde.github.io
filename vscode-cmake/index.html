@@ -8,10 +8,9 @@
         <title>Visual Studio Code에서 CMake 환경 설정하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Visual Studio Code에서 CMake 환경 설정하기" />
 <meta property="og:description" content="VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/vscode-cmake/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/vscode-cmake/" />
 <meta property="article:published_time" content="2020-11-13T10:04:24+09:00" />
-<meta property="article:modified_time" content="2020-11-13T10:04:24+09:00" />
-
+<meta property="article:modified_time" content="2021-08-18T13:35:24+09:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Visual Studio Code에서 CMake 환경 설정하기"/>
 <meta name="twitter:description" content="VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다."/>
@@ -27,8 +26,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/vscode-cmake\/"
-        },"genre": "posts","keywords": "HowTo, VSCode, CMake, CMakeTools, C, CPP, C\u002b\u002b","wordcount":  1839 ,
-        "url": "https:\/\/evandde.github.io\/vscode-cmake\/","datePublished": "2020-11-13T10:04:24+09:00","dateModified": "2020-11-13T10:04:24+09:00","publisher": {
+        },"genre": "posts","keywords": "HowTo, VSCode, CMake, CMakeTools, C, CPP, C\u002b\u002b","wordcount":  1718 ,
+        "url": "https:\/\/evandde.github.io\/vscode-cmake\/","datePublished": "2020-11-13T10:04:24+09:00","dateModified": "2021-08-18T13:35:24+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
                 "@type": "Person",
@@ -118,7 +117,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Visual Studio Code에서 CMake 환경 설정하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/vscode/"><i class="far fa-folder fa-fw"></i>VSCode</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-13">2020-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1839&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-13">2020-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1718&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 4분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -142,11 +141,7 @@
         <li><a href="#command-line-argument-설정">Command line argument 설정</a>
           <ul>
             <li><a href="#테스트-코드-수정">테스트 코드 수정</a></li>
-            <li><a href="#launchjson-자동생성">launch.json 자동생성</a></li>
-            <li><a href="#필요없는-파일-삭제">필요없는 파일 삭제</a></li>
-            <li><a href="#launchjson-수정">launch.json 수정</a></li>
-            <li><a href="#launchjson-파일을-통해-실행해보기">launch.json 파일을 통해 실행해보기</a></li>
-            <li><a href="#command-line-argument-설정-1">Command line argument 설정</a></li>
+            <li><a href="#settingsjson">settings.json</a></li>
           </ul>
         </li>
       </ul>
@@ -431,7 +426,7 @@
     </a>
 <h3 id="command-line-argument-설정">Command line argument 설정</h3>
 <p>실행하거나 디버깅할 때, command line argument를 넘겨주도록 설정하고 싶을 때가 있습니다.</p>
-<p>이는 CMake Tools extension이 직접 지원하지 않기 때문에, 우리가 <b>launch.json 파일을 생성</b>해 주어야 합니다.</p>
+<p>이는 <b>.vscode/settings.json 파일을 생성</b>해주고, 해당 파일에서 <code>cmake.debugConfig</code>인자로서 입력해줘야 합니다.</p>
 <h4 id="테스트-코드-수정">테스트 코드 수정</h4>
 <p>그 전에 먼저 argument가 제대로 동작하는지 확인하기 위해 main.cpp 코드를 수정하겠습니다.</p>
 <div class="highlight"><div class="chroma">
@@ -462,16 +457,9 @@
             data-sizes="auto"
             alt="/vscode-cmake/arg1.png" width="100%" />
     </a>
-<h4 id="launchjson-자동생성">launch.json 자동생성</h4>
-<p>이제 launch.json 파일을 만들어 보겠습니다. 다음 그림과 같이 진행해주세요.</p>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">직접 작성하는 것이 아니라, VSCode의 기능을 통해 자동으로 기본 틀이 작성되도록 할 것입니다.</div>
-        </div>
-    </div>
+<h4 id="settingsjson">settings.json</h4>
+<p>이제 settings.json 파일을 만들어 보겠습니다. (이미 만들어져 있을 수도 있습니다만, 그대로 진행하시면 됩니다)</p>
+<p>다음 그림과 같이 File - Preferences - Settings를 클릭합니다. 단축키는 <b>[CTRL]+[,]</b> 입니다.</p>
 <a class="lightgallery" href="/vscode-cmake/arg2.png" title="/vscode-cmake/arg2.png" data-thumbnail="/vscode-cmake/arg2.png">
         <img
             class="lazyload"
@@ -481,6 +469,7 @@
             data-sizes="auto"
             alt="/vscode-cmake/arg2.png" width="100%" />
     </a>
+<p>여기서 Workspace 탭을 클릭합니다. 이 프로젝트(workspace)에만 적용되는 설정항목이라는 뜻입니다.</p>
 <a class="lightgallery" href="/vscode-cmake/arg3.png" title="/vscode-cmake/arg3.png" data-thumbnail="/vscode-cmake/arg3.png">
         <img
             class="lazyload"
@@ -490,6 +479,7 @@
             data-sizes="auto"
             alt="/vscode-cmake/arg3.png" width="100%" />
     </a>
+<p>상단 검색창에 <code>cmake.debugConfig</code>를 검색한 뒤, <u>Edit in settings.json</u> 부분을 클릭합니다. <code>cmake.debug</code> 정도만 입력하셔도 바로 뜰 것입니다.</p>
 <a class="lightgallery" href="/vscode-cmake/arg4.png" title="/vscode-cmake/arg4.png" data-thumbnail="/vscode-cmake/arg4.png">
         <img
             class="lazyload"
@@ -499,6 +489,7 @@
             data-sizes="auto"
             alt="/vscode-cmake/arg4.png" width="100%" />
     </a>
+<p>클릭하시면 바로 다음과 같이 <code>.vscode/settings.json</code> 폴더 및 파일이 생성되고, settings.json 파일이 열리며, 그 안에 다음 그림과 같은 내용이 자동으로 작성되어 있을 것입니다. (추가로 다른 내용이 더 쓰여있을 수도 있습니다.)</p>
 <a class="lightgallery" href="/vscode-cmake/arg5.png" title="/vscode-cmake/arg5.png" data-thumbnail="/vscode-cmake/arg5.png">
         <img
             class="lazyload"
@@ -508,6 +499,7 @@
             data-sizes="auto"
             alt="/vscode-cmake/arg5.png" width="100%" />
     </a>
+<p>이제 이 안에 <code>args</code> 항목을 만들어 command line argument를 설정합니다. 실행파일명 뒤에 이어질 추가적인 argument들만 적어주면 되며, 각 항목은 &ldquo;&quot;(double-quote)로 묶어주고 ,(comma)로 분리해주면 됩니다.</p>
 <a class="lightgallery" href="/vscode-cmake/arg6.png" title="/vscode-cmake/arg6.png" data-thumbnail="/vscode-cmake/arg6.png">
         <img
             class="lazyload"
@@ -517,9 +509,7 @@
             data-sizes="auto"
             alt="/vscode-cmake/arg6.png" width="100%" />
     </a>
-<h4 id="필요없는-파일-삭제">필요없는 파일 삭제</h4>
-<p>위 과정을 거치면, .vscode/launch.json, .vscode/tasks.json, main.exe의 세 파일이 생성됩니다.</p>
-<p>이 중 <b>.vscode/tasks.json</b>, <b>main.exe</b> 파일은 필요가 없고 사용하지 않을 것이니 <strong>삭제</strong>해줍니다.</p>
+<p>이제 저장한 뒤, 실행이나 디버깅을 해보면 다음과 같이 command line argument가 잘 반영된 것을 확인할 수 있습니다.</p>
 <a class="lightgallery" href="/vscode-cmake/arg7.png" title="/vscode-cmake/arg7.png" data-thumbnail="/vscode-cmake/arg7.png">
         <img
             class="lazyload"
@@ -529,109 +519,17 @@
             data-sizes="auto"
             alt="/vscode-cmake/arg7.png" width="100%" />
     </a>
-<h4 id="launchjson-수정">launch.json 수정</h4>
-<p>이제 실행/디버깅에 사용되는 launch.json 파일을 수정합니다.</p>
-<ol>
-<li>
-<p>program 변수의 값을 &ldquo;${command:cmake.launchTargetPath}&ldquo;로 변경</p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>Info<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">cmake.launchTargetPath는 CMake Tools extension에서 제공하는 변수명으로, CMake project에서 컴파일하여 만든 실행파일의 경로를 의미합니다.</div>
-        </div>
-    </div>
-</li>
-<li>
-<p>preLaunchTask 항목을 삭제 (<strong>값만 지우는 것이 아니라 항목 전체를 삭제</strong>)</p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>Info<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">preLaunchTask는 tasks.json 파일을 통해 정의되는 선행작업입니다. CMake 기반 project에서는 tasks.json의 역할을 CMake Tools extension이 수행해주므로 이 부분은 사용하지 않습니다.</div>
-        </div>
-    </div>
-</li>
-</ol>
-<a class="lightgallery" href="/vscode-cmake/arg8.png" title="/vscode-cmake/arg8.png" data-thumbnail="/vscode-cmake/arg8.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="arg8.png"
-            data-srcset="/vscode-cmake/arg8.png, arg8.png 1.5x, /vscode-cmake/arg8.png 2x"
-            data-sizes="auto"
-            alt="/vscode-cmake/arg8.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-cmake/arg9.png" title="/vscode-cmake/arg9.png" data-thumbnail="/vscode-cmake/arg9.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="arg9.png"
-            data-srcset="/vscode-cmake/arg9.png, arg9.png 1.5x, /vscode-cmake/arg9.png 2x"
-            data-sizes="auto"
-            alt="/vscode-cmake/arg9.png" width="100%" />
-    </a>
-<h4 id="launchjson-파일을-통해-실행해보기">launch.json 파일을 통해 실행해보기</h4>
-<p>launch.json 파일을 통해 실행하기 위해서는, 다음 그림과 같이 <b>(Run) - (Run Without Debugging)</b> 항목을 클릭하면 됩니다.</p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>Info<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">launch.json 파일을 통해 디버깅하기 위해서는, 바로 위의 (Run) - (Start Debugging) 항목을 클릭하면 됩니다.</div>
-        </div>
-    </div>
-<a class="lightgallery" href="/vscode-cmake/arg10.png" title="/vscode-cmake/arg10.png" data-thumbnail="/vscode-cmake/arg10.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="arg10.png"
-            data-srcset="/vscode-cmake/arg10.png, arg10.png 1.5x, /vscode-cmake/arg10.png 2x"
-            data-sizes="auto"
-            alt="/vscode-cmake/arg10.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-cmake/arg11.png" title="/vscode-cmake/arg11.png" data-thumbnail="/vscode-cmake/arg11.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="arg11.png"
-            data-srcset="/vscode-cmake/arg11.png, arg11.png 1.5x, /vscode-cmake/arg11.png 2x"
-            data-sizes="auto"
-            alt="/vscode-cmake/arg11.png" width="100%" />
-    </a>
-<h4 id="command-line-argument-설정-1">Command line argument 설정</h4>
-<p>이제 command line argument를 변경해보겠습니다.</p>
-<p>아까 수정한 <b>launch.json 파일</b>에서 <b>args의 값</b>을 통해 설정합니다.</p>
-<a class="lightgallery" href="/vscode-cmake/arg12.png" title="/vscode-cmake/arg12.png" data-thumbnail="/vscode-cmake/arg12.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="arg12.png"
-            data-srcset="/vscode-cmake/arg12.png, arg12.png 1.5x, /vscode-cmake/arg12.png 2x"
-            data-sizes="auto"
-            alt="/vscode-cmake/arg12.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-cmake/arg13.png" title="/vscode-cmake/arg13.png" data-thumbnail="/vscode-cmake/arg13.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="arg13.png"
-            data-srcset="/vscode-cmake/arg13.png, arg13.png 1.5x, /vscode-cmake/arg13.png 2x"
-            data-sizes="auto"
-            alt="/vscode-cmake/arg13.png" width="100%" />
-    </a>
 <hr>
 <h2 id="reference">Reference</h2>
 <p><a href="https://chocolatey.org/packages/cmake">https://chocolatey.org/packages/cmake</a></p>
-<p><a href="https://vector-of-bool.github.io/docs/vscode-cmake-tools/">https://vector-of-bool.github.io/docs/vscode-cmake-tools/</a></p></div>
+<p><a href="https://vector-of-bool.github.io/docs/vscode-cmake-tools/">https://vector-of-bool.github.io/docs/vscode-cmake-tools/</a></p>
+<p><a href="https://code.visualstudio.com/docs/getstarted/settings">https://code.visualstudio.com/docs/getstarted/settings</a></p></div>
 
 <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>2020-11-13에 수정</span>
+                <span>2021-08-18에 수정</span>
             </div>
             <div class="post-info-license"></div>
         </div>
