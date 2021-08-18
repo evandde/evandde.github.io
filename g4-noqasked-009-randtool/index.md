@@ -230,7 +230,7 @@ PrimaryGeneratorAction 코드를 다음과 같이 작성하면 등방성 점선�
 
 이번 글에서 작성한 코드는 [이 링크](https://github.com/evandde/g4_minimal/archive/a15e944fa685c9f8e11dcfa1849826fe3d959194.zip)를 통해 다운받을 수 있습니다.
 
-혹은 git repository를 clone하신 분의 경우에는, example branch의 이전 커밋 중 V2_PriGen이라는 커밋을 참고하셔도 됩니다.
+혹은 git repository를 clone하신 분의 경우에는, example branch의 이전 커밋 중 V2 PriGen이라는 커밋을 참고하셔도 됩니다.
 
 ---
 
