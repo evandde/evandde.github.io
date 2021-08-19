@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-011-scoring\/"
-        },"genre": "posts","keywords": "Geant4, Scoring, MultiFunctionalDetector, PrimitiveScorer, Filter","wordcount":  7045 ,
+        },"genre": "posts","keywords": "Geant4, Scoring, MultiFunctionalDetector, PrimitiveScorer, Filter","wordcount":  7125 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-011-scoring\/","datePublished": "2021-08-18T14:11:10+09:00","dateModified": "2021-08-18T14:11:10+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 11. 스코어링 구현</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-18">2021-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 7045&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-18">2021-08-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 7125&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 15분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -180,6 +180,12 @@
             data-sizes="auto"
             alt="/g4-noqasked-011-scoring/01_consdandfield.png" width="100%" />
     </a>
+<p><font color=red>물론, 관련한 헤더는 당연히 DetectorConstruction.cc 파일의 맨 위에 포함시켜 주셔야 합니다. 여기서 필요한 헤더는 다음과 같습니다.</font></p>
+<ul>
+<li><font color=red>G4SDManager.hh</font></li>
+<li><font color=red>G4MultiFunctionalDetector.hh</font></li>
+<li><font color=red>사용한 PrimitiveScorer와 Filter의 헤더 (G4PSEnergyDeposit.hh 등)</font></li>
+</ul>
 <h3 id="mfd-만들고-추가하기">MFD 만들고 추가하기</h3>
 <p>Multi Functional Detector를 만드는 과정은 딱 두 가지만 하시면 됩니다.</p>
 <ol>

@@ -25,6 +25,12 @@ Sensitive Detector를 설계하는 방법은 지난 글에서 말씀드렸습니
 
 {{< image src="01_consdandfield.png" width=100% >}}
 
+<font color=red>물론, 관련한 헤더는 당연히 DetectorConstruction.cc 파일의 맨 위에 포함시켜 주셔야 합니다. 여기서 필요한 헤더는 다음과 같습니다.</font>
+
+- <font color=red>G4SDManager.hh</font>
+- <font color=red>G4MultiFunctionalDetector.hh</font>
+- <font color=red>사용한 PrimitiveScorer와 Filter의 헤더 (G4PSEnergyDeposit.hh 등)</font>
+
 ### MFD 만들고 추가하기
 
 Multi Functional Detector를 만드는 과정은 딱 두 가지만 하시면 됩니다.
