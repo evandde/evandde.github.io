@@ -4,12 +4,19 @@
         <link>https://evandde.github.io/tags/analysis/</link>
         <description>Analysis - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 19 Aug 2021 10:49:41 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/analysis/" rel="self" type="application/rss+xml" /><item>
-    <title>Geant4 무작정 따라하기 - 12. 스코어링 기록</title>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 19 Aug 2021 20:49:41 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/analysis/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</title>
+    <link>https://evandde.github.io/g4-noqasked-013-writingrslt2/</link>
+    <pubDate>Thu, 19 Aug 2021 20:49:41 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-013-writingrslt2/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 열세번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법 중 Ntuple 형태로 기록하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
+    <title>Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</title>
     <link>https://evandde.github.io/g4-noqasked-012-writingrslt1/</link>
     <pubDate>Thu, 19 Aug 2021 10:49:41 &#43;0900</pubDate>
     <author>작성자</author>
     <guid>https://evandde.github.io/g4-noqasked-012-writingrslt1/</guid>
-    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 열두번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법에 대해 알아봅니다.</p>]]></description>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 열두번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법, 그 중에서도 Histogram 형태로 기록하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
