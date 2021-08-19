@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Ntuple - 태그 - EvaNote</title>
+        <link>https://evandde.github.io/tags/ntuple/</link>
+        <description>Ntuple - 태그 - EvaNote</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 19 Aug 2021 10:49:41 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/ntuple/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 12. 스코어링 기록</title>
+    <link>https://evandde.github.io/g4-noqasked-012-writingrslt/</link>
+    <pubDate>Thu, 19 Aug 2021 10:49:41 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-012-writingrslt/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 열두번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법에 대해 알아봅니다.</p>]]></description>
+</item></channel>
+</rss>

@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/</link>
         <description>Geant4 무작정 따라하기 - 시리즈 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Wed, 18 Aug 2021 14:11:10 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 19 Aug 2021 10:49:41 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/" rel="self" type="application/rss+xml" /><item>
+    <title>Geant4 무작정 따라하기 - 12. 스코어링 기록</title>
+    <link>https://evandde.github.io/g4-noqasked-012-writingrslt/</link>
+    <pubDate>Thu, 19 Aug 2021 10:49:41 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/g4-noqasked-012-writingrslt/</guid>
+    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 열두번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 - 11. 스코어링 구현</title>
     <link>https://evandde.github.io/g4-noqasked-011-scoring/</link>
     <pubDate>Wed, 18 Aug 2021 14:11:10 &#43;0900</pubDate>
@@ -67,12 +74,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/g4-noqasked-003-solid/</guid>
     <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 세번째. 다양한 모양의 지오메트리를 만들기 위해 Solid에 대해 살펴봅시다.</p>]]></description>
-</item><item>
-    <title>Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</title>
-    <link>https://evandde.github.io/g4-noqasked-002-detcon/</link>
-    <pubDate>Thu, 10 Jun 2021 09:52:13 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/g4-noqasked-002-detcon/</guid>
-    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
