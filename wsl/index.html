@@ -8,9 +8,10 @@
         <title>Linux용 Windows Subsystem(WSL1, WSL2) - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Linux용 Windows Subsystem(WSL1, WSL2)" />
 <meta property="og:description" content="Windows Subsystem for Linux, 약칭 WSL을 설치하고 이용하는 법을 알아봅니다. 이 글은 WSL1과 WSL2을 둘 다 다룹니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/wsl/" />
+<meta property="og:url" content="https://evandde.github.io/wsl/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-28T15:41:22+09:00" />
 <meta property="article:modified_time" content="2020-09-28T15:41:22+09:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux용 Windows Subsystem(WSL1, WSL2)"/>
 <meta name="twitter:description" content="Windows Subsystem for Linux, 약칭 WSL을 설치하고 이용하는 법을 알아봅니다. 이 글은 WSL1과 WSL2을 둘 다 다룹니다."/>
@@ -26,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/wsl\/"
-        },"genre": "posts","keywords": "HowTo, Windows, WSL, Linux, Install","wordcount":  2873 ,
+        },"genre": "posts","keywords": "HowTo, Windows, WSL, Linux, Install","wordcount":  2915 ,
         "url": "https:\/\/evandde.github.io\/wsl\/","datePublished": "2020-09-28T15:41:22+09:00","dateModified": "2020-09-28T15:41:22+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -117,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Linux용 Windows Subsystem(WSL1, WSL2)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>Windows</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-28">2020-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2873&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-28">2020-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2915&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -163,7 +164,7 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">Microsoft-Windows-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="nb">Microsoft-Windows</span><span class="n">-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -245,7 +246,7 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">Microsoft-Windows-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="nb">Microsoft-Windows</span><span class="n">-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>2. 재부팅</strong></p>
@@ -277,7 +278,7 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">Microsoft-Windows-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="nb">Microsoft-Windows</span><span class="n">-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>2. Virtual Machine 플랫폼 사용</strong></p>
@@ -459,10 +460,10 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>[WIN]+[R]로 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 시스템 정보 창을 띄우고, <strong>시스템 종류</strong>를 확인합니다. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>[WIN]+[R]로 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 시스템 정보 창을 띄우고, <strong>시스템 종류</strong>를 확인합니다.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>[WIN]+[R]로 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 시스템 정보 창을 띄우고, <strong>버전</strong>을 확인합니다. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>[WIN]+[R]로 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 시스템 정보 창을 띄우고, <strong>버전</strong>을 확인합니다.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section></div>
