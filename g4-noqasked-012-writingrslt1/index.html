@@ -8,10 +8,9 @@
         <title>Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram) - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)" />
 <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 열두번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법, 그 중에서도 Histogram 형태로 기록하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-012-writingrslt1/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-012-writingrslt1/" />
 <meta property="article:published_time" content="2021-08-19T10:49:41+09:00" />
 <meta property="article:modified_time" content="2021-08-19T10:49:41+09:00" />
-
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)"/>
@@ -28,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-012-writingrslt1\/"
-        },"genre": "posts","keywords": "Geant4, csv, Analysis, Ntuple, Histogram, Writing, RunAction","wordcount":  5094 ,
+        },"genre": "posts","keywords": "Geant4, csv, Analysis, Ntuple, Histogram, Writing, RunAction","wordcount":  5098 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-012-writingrslt1\/","datePublished": "2021-08-19T10:49:41+09:00","dateModified": "2021-08-19T10:49:41+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -119,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-19">2021-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 5094&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-19">2021-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 5098&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 11분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -158,7 +157,7 @@
 <p>이 시리즈에서 알아볼 기록 방법은 다음의 두 가지입니다.</p>
 <ul>
 <li><strong>Histogram</strong>으로 기록: 매 Event마다 얻은 값을 히스토그램으로 만들어, 히스토그램의 각 계급구간 별 도수만 기록하는 방식</li>
-<li><strong>Ntuple</strong>로 기록: 매 Event마다 얻은 값(화면에 출력하던 것)을 그대로 파일에 기록하는 방식</li>
+<li><strong>Ntuple</strong>로 기록: 매 Event마다 얻은 값(화면에 출력하던 것)을 표 형태로 만들어 파일에 기록하는 방식</li>
 </ul>
 <p><b>Histogram과 Ntuple은 전부 독립적으로 관리되므로, 하나의 시뮬레이션 내에서 Histogram과 Ntuple을 원하는만큼 여러 개 기록하여도 괜찮습니다.</b></p>
 <p>이번 글에서는 기본 이론 및 Histogram 기록 방법을 다루고, 다음 글에서는 Ntuple을 다루겠습니다.</p>
