@@ -8,9 +8,10 @@
         <title>Geant4 UI command - 반복문 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 UI command - 반복문" />
 <meta property="og:description" content="Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/geant4-uicommand-loop/" />
+<meta property="og:url" content="https://evandde.github.io/geant4-uicommand-loop/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-05T17:13:04+09:00" />
 <meta property="article:modified_time" content="2021-04-05T17:13:04+09:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 UI command - 반복문"/>
 <meta name="twitter:description" content="Geant4 UI command에서 활용 가능한 반복문. &ldquo;/control/loop&quot;와 &ldquo;/control/foreach&quot;에 대해 알아봅니다."/>
@@ -170,7 +171,7 @@
 <p>다음과 같은 매크로를 만들어봅시다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -189,7 +190,7 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">/gun/energy 10. MeV
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">/gun/energy 10. MeV
 /run/beamOn <span class="m">10000</span>
 
 /gun/energy 12. MeV
@@ -212,22 +213,22 @@
 <p>이 경우 다음과 같이 두 개의 파일로 나누어 작성하면 동일하게 동작합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 주 매크로파일의 내용</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 주 매크로파일의 내용</span>
 /control/loop myRun.mac ene 10. 20. 2.
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># myRun.mac의 내용</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># myRun.mac의 내용</span>
 /gun/energy <span class="o">{</span>ene<span class="o">}</span> MeV
 /run/beamOn <span class="m">10000</span>
 </code></pre></td></tr></table>
@@ -248,7 +249,7 @@
 <p>다음과 같은 매크로를 만들어 봅시다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -261,7 +262,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">/gun/particle p
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">/gun/particle p
 /run/beamOn <span class="m">10000</span>
 
 /gun/particle e-
@@ -278,22 +279,22 @@
 <p>이 경우 다음과 같이 두 개의 파일로 나누어 작성하면 동일하게 동작합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 주 매크로파일의 내용</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 주 매크로파일의 내용</span>
 /control/foreach myRun.mac pname <span class="s2">&#34;p e- e+ gamma&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># myRun.mac의 내용</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># myRun.mac의 내용</span>
 /gun/particle <span class="o">{</span>pname<span class="o">}</span>
 /run/beamOn <span class="m">10000</span>
 </code></pre></td></tr></table>

@@ -8,9 +8,10 @@
         <title>Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기" />
 <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-009-randtool/" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-009-randtool/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-16T14:43:20+09:00" />
 <meta property="article:modified_time" content="2021-07-16T14:43:20+09:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기"/>
@@ -27,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/g4-noqasked-009-randtool\/"
-        },"genre": "posts","keywords": "Geant4, G4RandomTools, Random Variable, PrimaryGeneratorAction, ParticleGun","wordcount":  2978 ,
+        },"genre": "posts","keywords": "Geant4, G4RandomTools, Random Variable, PrimaryGeneratorAction, ParticleGun","wordcount":  2998 ,
         "url": "https:\/\/evandde.github.io\/g4-noqasked-009-randtool\/","datePublished": "2021-07-16T14:43:20+09:00","dateModified": "2021-07-16T14:43:20+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -118,7 +119,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-16">2021-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2978&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-16">2021-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2998&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -181,7 +182,7 @@
 <p>이제 앞서 배운 선원항의 방향 정의 부분을 다시 살펴봅시다.</p>
 <blockquote>
 <p>예를 들어 초기 입자의 운동방향을 +Z축인 (0, 0, 1)으로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"> <span class="c1">// ...    
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"> <span class="c1">// ...    
 </span><span class="c1"></span> <span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
  <span class="p">{</span>
   <span class="c1">// ...
@@ -202,10 +203,10 @@
 <li>함수의 원형은 다음과 같습니다.
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">RandomDirection</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">RandomDirection</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -213,7 +214,7 @@
 <p>이런 함수를 어떻게 만들 수 있을 지는 나중에 생각해보기로 하고, 이 함수의 출력값을 먼저 살펴봅시다. 아마도 다음과 같이 나타날 것입니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -221,7 +222,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">dir</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">dir</span><span class="p">;</span>
 
 <span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(-0.157616,-0.293535,-0.942865);
 </span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(0.185649,-0.743512,0.642437);
@@ -230,7 +231,7 @@
 </span></code></pre></td></tr></table>
 </div>
 </div><p>바로 이 RandomDirection() 함수가 바로 우리가 원하던 <strong>방향을 등방적으로 균일하게 매 번 알아서 바꾸어서 제공해주는 함수</strong>입니다. 이런 함수만 있다면 선원항을 다음과 같이 정의하여 우리의 문제를 해결할 수 있겠군요. 다음과 같이 말입니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
 </span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
 <span class="p">{</span>
  <span class="c1">// ...
@@ -239,8 +240,7 @@
 </span>
  <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
 
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 <h3 id="설명">설명</h3>
 <p>이처럼 특정한 확률분포(Probability Distribution Function, PDF)를 따라 변하는 수를 확률변수라고 합니다. 그리고 이렇게 확률변수를 생성해내는 행위를 샘플링(sampling)한다고 합니다.</p>
 <p>확률변수에 있어 가장 기본이 되는 것은, 소위 난수(random number)라고 불리는 $ \xi \sim \mathcal{U}(0,1) $입니다. 0~1 범위 내의 실수가 균일하게 샘플링되는 난수 $ \xi $를 반환하는 함수는 대부분의 프로그래밍 언어가 기본으로 제공하고 있습니다<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. 이 $ \xi $만 있으면, 이론상 <b>임의의 PDF를 따르는 확률변수를 샘플링하는 함수</b>를 만들 수 있습니다.</p>
@@ -254,11 +254,11 @@
 <p>앞서 설명했던, 등방적으로 방향을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4RandomDirection</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4RandomDirection</span><span class="p">()</span>
 <span class="n">G4ThreeVector</span> <span class="n">G4RandomDirection</span><span class="p">(</span><span class="n">G4double</span> <span class="n">cosTheta</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
@@ -268,10 +268,10 @@
 <p>입력된 벡터를 법선벡터로 갖는 평면에 대해 Lambert 코사인 법칙<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>을 따르게끔 방향을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4LambertianRand</span><span class="p">(</span><span class="k">const</span> <span class="n">G4ThreeVector</span><span class="o">&amp;</span> <span class="n">normal</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4LambertianRand</span><span class="p">(</span><span class="k">const</span> <span class="n">G4ThreeVector</span><span class="o">&amp;</span> <span class="n">normal</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 평면을 기준으로 하여 Lambert 코사인 법칙을 따르는 방향을 샘플링하여 G4ThreeVector 형태로 반환해 줍니다.</p>
@@ -279,10 +279,10 @@
 <p>입력된 벡터를 법선벡터로 갖는 무한 평면상의 점을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4PlaneVectorRand</span><span class="p">(</span><span class="k">const</span> <span class="n">G4ThreeVector</span><span class="o">&amp;</span> <span class="n">normal</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4PlaneVectorRand</span><span class="p">(</span><span class="k">const</span> <span class="n">G4ThreeVector</span><span class="o">&amp;</span> <span class="n">normal</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 무한평면 상의 한 지점을 샘플링하여 G4ThreeVector 형태로 반환받을 수 있습니다.</p>
@@ -290,10 +290,10 @@
 <p>평면 원 혹은 평면 고리에서 균일한 분포의 점을 샘플링 하기 위한 <strong>반경</strong>의 샘플링을 수행해주는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4double</span> <span class="n">G4RandomRadiusInRing</span><span class="p">(</span><span class="n">G4double</span> <span class="n">rmin</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">rmax</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4double</span> <span class="n">G4RandomRadiusInRing</span><span class="p">(</span><span class="n">G4double</span> <span class="n">rmin</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">rmax</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>원이면 rmin을 0으로, rmax를 반지름으로 주면 됩니다. 고리라면 rmin을 내경으로, rmax를 외경으로 주면 됩니다.</p>
@@ -301,10 +301,10 @@
 <p>평면 타원 내에서 균일한 분포의 <strong>2차원 점</strong>을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4TwoVector</span> <span class="n">G4RandomPointInEllipse</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4TwoVector</span> <span class="n">G4RandomPointInEllipse</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>$ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원 내에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. G4TwoVector는 2차원 벡터를 다루는 클래스로,  G4ThreeVector와 유사하게 사용하면 됩니다.</p>
@@ -312,10 +312,10 @@
 <p>평면 타원의 <strong>원주 위</strong>에서 균일한 분포의 <strong>2차원 점</strong>을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4TwoVector</span> <span class="n">G4RandomPointOnEllipse</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4TwoVector</span> <span class="n">G4RandomPointOnEllipse</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>$ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원의 원주 위에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. <b>In과 On의 차이에 주의하세요</b>.</p>
@@ -323,10 +323,10 @@
 <p><strong>3차원 타원체의 표면 위</strong>에서 균일한 분포의 <strong>3차원 점</strong>을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4RandomPointOnEllipsoid</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">c</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4RandomPointOnEllipsoid</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">c</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>$ {x^2 \over a^2} +  {y^2 \over b^2} + {z^2 \over c^2} = 1 $의 타원체의 방정식을 따르는 3차원 타원체에 대해 $a$, $b$, $c$를 입력인자로 넣으면, 타원체의 겉표면 위에서 균일한 분포의 3차원 점을 샘플링하여 반환해줍니다.</p>
@@ -334,20 +334,20 @@
 <p>$ X \sim \mathcal{U}(0,1) $를 따르는 <strong>실수</strong>를 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">G4UniformRand</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">G4UniformRand</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="g4randflatshoot">G4RandFlat::shoot</h3>
 <p><strong>균등분포</strong>를 따르는 <strong>실수</strong>를 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// G4RandFlat::shoot(a, b) 와 같이 사용.
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// G4RandFlat::shoot(a, b) 와 같이 사용.
 </span></code></pre></td></tr></table>
 </div>
 </div><p>$ X \sim \mathcal{U}(a,b) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
@@ -355,10 +355,10 @@
 <p><strong>정규분포</strong>를 따르는 <strong>실수</strong>를 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean</span><span class="p">,</span> <span class="kt">double</span> <span class="n">stdDev</span><span class="p">)</span> <span class="c1">// G4RandGaussQ::shoot(mean, stdDev) 와 같이 사용.
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean</span><span class="p">,</span> <span class="kt">double</span> <span class="n">stdDev</span><span class="p">)</span> <span class="c1">// G4RandGaussQ::shoot(mean, stdDev) 와 같이 사용.
 </span></code></pre></td></tr></table>
 </div>
 </div><p>평균(mean)이 $\mu$이고, 표준편차(stdDev)가 $\sigma$인 $ X \sim \mathcal{N}(\mu , {\sigma}^2) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
@@ -366,10 +366,10 @@
 <p><strong>지수분포</strong>를 따르는 <strong>실수</strong>를 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean</span><span class="p">)</span> <span class="c1">// G4RandExponential::shoot(mean) 와 같이 사용.
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean</span><span class="p">)</span> <span class="c1">// G4RandExponential::shoot(mean) 와 같이 사용.
 </span></code></pre></td></tr></table>
 </div>
 </div><p>평균(mean)이 $\lambda$인 $ X \sim Exp(\lambda) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
@@ -403,10 +403,10 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>사실 컴퓨터는 완전히 무작위적인 난수를 발생시키지는 못해서 의사난수(pseudo random number)를 샘플링하는 함수들을 제공합니다. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>사실 컴퓨터는 완전히 무작위적인 난수를 발생시키지는 못해서 의사난수(pseudo random number)를 샘플링하는 함수들을 제공합니다.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>이상적인 난반사 표면에서 방출되는 선속이 법선벡터로부터 벗어난 각도의 $ \mathcal{cos} $ 값에 비례한다는 법칙. 참고 링크: <a href="https://en.wikipedia.org/wiki/Lambert%27s_cosine_law" target="_blank" rel="noopener noreffer">Lambert&rsquo;s cosine law - Wikipedia</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>이상적인 난반사 표면에서 방출되는 선속이 법선벡터로부터 벗어난 각도의 $ \mathcal{cos} $ 값에 비례한다는 법칙. 참고 링크: <a href="https://en.wikipedia.org/wiki/Lambert%27s_cosine_law" target="_blank" rel="noopener noreffer">Lambert&rsquo;s cosine law - Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section></div>

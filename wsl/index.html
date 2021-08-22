@@ -8,9 +8,10 @@
         <title>Linux용 Windows Subsystem(WSL1, WSL2) - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Linux용 Windows Subsystem(WSL1, WSL2)" />
 <meta property="og:description" content="Windows Subsystem for Linux, 약칭 WSL을 설치하고 이용하는 법을 알아봅니다. 이 글은 WSL1과 WSL2을 둘 다 다룹니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/wsl/" />
+<meta property="og:url" content="https://evandde.github.io/wsl/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-28T15:41:22+09:00" />
 <meta property="article:modified_time" content="2020-09-28T15:41:22+09:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux용 Windows Subsystem(WSL1, WSL2)"/>
 <meta name="twitter:description" content="Windows Subsystem for Linux, 약칭 WSL을 설치하고 이용하는 법을 알아봅니다. 이 글은 WSL1과 WSL2을 둘 다 다룹니다."/>
@@ -26,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/wsl\/"
-        },"genre": "posts","keywords": "HowTo, Windows, WSL, Linux, Install","wordcount":  2873 ,
+        },"genre": "posts","keywords": "HowTo, Windows, WSL, Linux, Install","wordcount":  2915 ,
         "url": "https:\/\/evandde.github.io\/wsl\/","datePublished": "2020-09-28T15:41:22+09:00","dateModified": "2020-09-28T15:41:22+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -117,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Linux용 Windows Subsystem(WSL1, WSL2)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>Windows</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-28">2020-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2873&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-28">2020-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2915&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -160,10 +161,10 @@
 <p>PowerShell을 <strong>관리자 권한</strong>으로 실행한 뒤, Linux용 Windows 하위시스템 옵션을 사용하기 위해 다음 명령어 입력</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">Microsoft-Windows-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="nb">Microsoft-Windows</span><span class="n">-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -171,10 +172,10 @@
 <p>(<strong>WSL1 설치 시에는 이 과정 스킵</strong>) PowerShell을 <strong>관리자 권한</strong>으로 실행한 뒤, Virtual Machine 플랫폼 옵션을 사용하기 위해 다음 명령어 입력</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">VirtualMachinePlatform</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">VirtualMachinePlatform</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -183,8 +184,8 @@
 </li>
 <li>
 <p>(<strong>WSL1 설치 시에는 이 과정 스킵</strong>) 본인의 아키텍쳐에 맞추어 Linux 커널 업데이트 패키지를 다운로드 후 설치</p>
-<p>x64용 다운로드 링크: <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></p>
-<p>ARM64용 다운로드 링크: <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi</a></p>
+<p>x64용 다운로드 링크: <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" target="_blank" rel="noopener noreffer">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></p>
+<p>ARM64용 다운로드 링크: <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi" target="_blank" rel="noopener noreffer">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi</a></p>
 </li>
 <li>
 <p>(<strong>WSL1 설치 시에는 이 과정 스킵</strong>) <strong>재부팅</strong></p>
@@ -193,10 +194,10 @@
 <p>(<strong>WSL1 설치 시에는 이 과정 스킵</strong>) PowerShell을 <strong>관리자 권한</strong>으로 실행한 뒤, WSL2를 기본 버전으로 설정하기 위해 다음 명령어 입력</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -242,10 +243,10 @@
 <p>PowerShell을 <strong>관리자 권한</strong>으로 실행하고, 다음 명령어를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">Microsoft-Windows-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="nb">Microsoft-Windows</span><span class="n">-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>2. 재부팅</strong></p>
@@ -274,20 +275,20 @@
 <p>PowerShell을 <strong>관리자 권한</strong>으로 실행하고, 다음 명령어를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">Microsoft-Windows-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="nb">Microsoft-Windows</span><span class="n">-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>2. Virtual Machine 플랫폼 사용</strong></p>
 <p>PowerShell을 <strong>관리자 권한</strong>으로 실행하고, 다음 명령어를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">VirtualMachinePlatform</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">VirtualMachinePlatform</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>3. 재부팅</strong></p>
@@ -295,10 +296,10 @@
 <p><a href="https://docs.microsoft.com/ko-kr/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package" target="_blank" rel="noopener noreffer">이 페이지</a>를 방문하여 본인 시스템의 아키텍쳐에 맞는 Linux 커널 업데이트 패키지를 다운받습니다. 해당 페이지에 있는 링크를 그대로 아래에 복사해두었으니 아래를 이용하셔도 됩니다.</p>
 <ul>
 <li>
-<p>x64용 다운로드 링크: <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></p>
+<p>x64용 다운로드 링크: <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" target="_blank" rel="noopener noreffer">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></p>
 </li>
 <li>
-<p>ARM64용 다운로드 링크: <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi</a></p>
+<p>ARM64용 다운로드 링크: <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi" target="_blank" rel="noopener noreffer">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi</a></p>
 </li>
 </ul>
 <p>.msi 파일을 다운받으셨다면, 실행하여 설치를 진행합니다.</p>
@@ -307,10 +308,10 @@
 <p>PowerShell을 <strong>관리자 권한</strong>으로 열어 실행하고, 다음 명령어를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>7. 원하는 Linux 배포를 다운로드하여 설치</strong></p>
@@ -351,29 +352,29 @@
 <p>사용 가능한 명령어의 설명은 다음 명령어로 확인 가능합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-help</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-help</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="설치된-배포판-목록-확인">설치된 배포판 목록 확인</h3>
 <p>현재 설치된 배포판을 확인하려면 다음 명령어를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="n">-l</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="n">-l</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>이 때, <code>-v</code> 옵션을 더 추가하면, 각 배포판의 현재 상태와 더불어 WSL1/WSL2 중 어떤 버전인지에 대한 정보까지 출력할 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="n">-l</span> <span class="n">-v</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="n">-l</span> <span class="n">-v</span>
 </code></pre></td></tr></table>
 </div>
 </div><a class="lightgallery" href="/wsl/wsl_list.png" title="/wsl/wsl_list.png" data-thumbnail="/wsl/wsl_list.png">
@@ -391,10 +392,10 @@
 <p>예를 들어 기본 실행 배포판을 Ubuntu-20.04로 변경하는 경우에는 다음과 같이 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="n">-s</span> <span class="n">Ubuntu</span><span class="p">-</span><span class="n">20</span><span class="p">.</span><span class="n">04</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="n">-s</span> <span class="n">Ubuntu</span><span class="p">-</span><span class="n">20</span><span class="p">.</span><span class="n">04</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="설치된-배포판의-버전-변경wsl1wsl2">설치된 배포판의 버전 변경(WSL1/WSL2)</h3>
@@ -410,10 +411,10 @@
 <p>예를 들어 Ubuntu-20.04 배포판을 WSL2로 변경하는 경우에는 다음과 같이 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-version</span> <span class="n">Ubuntu</span><span class="p">-</span><span class="n">20</span><span class="p">.</span><span class="n">04</span> <span class="n">2</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-version</span> <span class="n">Ubuntu</span><span class="p">-</span><span class="n">20</span><span class="p">.</span><span class="n">04</span> <span class="n">2</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>수 분 정도 소요될 수 있습니다. 기다리면 배포판의 버전이 자동으로 변경됩니다.</p>
@@ -422,10 +423,10 @@
 <p>예를 들어 Ubuntu-20.04 배포판을 제거하는 경우에는 다음과 같이 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-unregister</span> <span class="n">Ubuntu</span><span class="p">-</span><span class="n">20</span><span class="p">.</span><span class="n">04</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">wsl</span> <span class="p">-</span><span class="n">-unregister</span> <span class="n">Ubuntu</span><span class="p">-</span><span class="n">20</span><span class="p">.</span><span class="n">04</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>이 후에, MS store에서 설치한 내역을 찾아 uninstall까지 해주면 완전히 제거됩니다.</p>
@@ -453,16 +454,16 @@
     </div>
 <hr>
 <h2 id="reference">Reference</h2>
-<p><a href="https://docs.microsoft.com/en-us/windows/wsl/">https://docs.microsoft.com/en-us/windows/wsl/</a></p>
-<p><a href="https://cloudlinuxtech.com/install-linux-on-windows-10-wsl/#Prerequisite_to_install_WSL1_or_WSL2">https://cloudlinuxtech.com/install-linux-on-windows-10-wsl/#Prerequisite_to_install_WSL1_or_WSL2</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows/wsl/" target="_blank" rel="noopener noreffer">https://docs.microsoft.com/en-us/windows/wsl/</a></p>
+<p><a href="https://cloudlinuxtech.com/install-linux-on-windows-10-wsl/#Prerequisite_to_install_WSL1_or_WSL2" target="_blank" rel="noopener noreffer">https://cloudlinuxtech.com/install-linux-on-windows-10-wsl/#Prerequisite_to_install_WSL1_or_WSL2</a></p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>[WIN]+[R]로 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 시스템 정보 창을 띄우고, <strong>시스템 종류</strong>를 확인합니다. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>[WIN]+[R]로 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 시스템 정보 창을 띄우고, <strong>시스템 종류</strong>를 확인합니다.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>[WIN]+[R]로 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 시스템 정보 창을 띄우고, <strong>버전</strong>을 확인합니다. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>[WIN]+[R]로 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 시스템 정보 창을 띄우고, <strong>버전</strong>을 확인합니다.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section></div>

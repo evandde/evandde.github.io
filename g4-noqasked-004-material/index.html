@@ -8,9 +8,10 @@
         <title>Geant4 무작정 따라하기 - 4. 물질 정의하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 4. 물질 정의하기" />
 <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-004-material/" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-004-material/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-15T09:26:01+09:00" />
 <meta property="article:modified_time" content="2021-06-15T09:26:01+09:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 무작정 따라하기 - 4. 물질 정의하기"/>
@@ -211,12 +212,12 @@
 <p>여러분이 원하는 물질을 위 목록에서 찾으셨다면, <strong>G4NistManager</strong>클래스의 <strong>FindOrBuildMaterial() 함수</strong>를 이용해 해당 물질을 정의할 수 있습니다. 이 함수의 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">FindOrBuildMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">FindOrBuildMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
                                  <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> 
                                  <span class="n">G4bool</span> <span class="n">warning</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>
 </code></pre></td></tr></table>
@@ -229,22 +230,22 @@
 <p>예를 들어 NIST Compounds 목록에 있는 G4_AIR (공기)를 정의하고자 하는 경우에는 다음과 같이 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">matAir</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_AIR&#34;</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">matAir</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_AIR&#34;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>여기서 G4NistManager::Instance() 부분은 G4NistManager 클래스의 객체를 호출해오는 명령어입니다. Geant4 물질 DB에서 물질을 가져와 정의할때마다 이 객체가 필요하기 때문에 매번 호출하기보다는, <strong>이 객체를 따로 정의해두고 가져다 쓰는 방식을 주로 이용</strong>합니다. 그러면 또다른 물질을 정의할 때에 G4NistManager 객체를 다시 호출하지 않아도 되기 때문입니다.</p>
 <p>예를 들어 G4_AIR (공기)에 이어, G4_WATER (물)도 정의한다고 하면 다음과 같이 입력할 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 <span class="k">auto</span> <span class="n">matAir</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_AIR&#34;</span><span class="p">);</span>
 <span class="k">auto</span> <span class="n">matWater</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_WATER&#34;</span><span class="p">);</span>
 </code></pre></td></tr></table>
@@ -253,7 +254,7 @@
 <p>원하는 물질이 Geant4 물질 DB에 없을 수도 있습니다. 이런 경우, 여러분이 NIST DB의 원소를 조합하여 새로운 화합물을 정의할 수 있습니다. 이는 G4NistManager 클래스의 <strong>ConstructNewMaterial() 함수</strong>를 이용하면 됩니다. 함수의 원형은 다음의 두 가지 입니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -263,7 +264,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
                                   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4String</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">elm</span><span class="p">,</span> 
                                   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4int</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">nbAtoms</span><span class="p">,</span> 
                                   <span class="n">G4double</span> <span class="n">dens</span><span class="p">,</span> 
@@ -286,7 +287,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -296,7 +297,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
                                   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4String</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">elm</span><span class="p">,</span> 
                                   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4double</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">weight</span><span class="p">,</span> 
                                   <span class="n">G4double</span> <span class="n">dens</span><span class="p">,</span> 
@@ -321,13 +322,13 @@
 <p>예를 들어 물(H2O)을 이 함수를 사용하여 정의하려면 다음과 같이 입력하면 됩니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">G4String</span><span class="o">&gt;</span> <span class="n">elWater</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;H&#34;</span><span class="p">,</span> <span class="s">&#34;O&#34;</span><span class="p">};</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">G4int</span><span class="o">&gt;</span> <span class="n">nbWater</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
 <span class="k">auto</span> <span class="n">matWater</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">ConstructNewMaterial</span><span class="p">(</span><span class="s">&#34;Water&#34;</span><span class="p">,</span> <span class="n">elWater</span><span class="p">,</span> <span class="n">nbWater</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">*</span> <span class="n">g</span> <span class="o">/</span> <span class="n">cm3</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="n">kStateLiquid</span><span class="p">);</span>
@@ -337,7 +338,7 @@
 <p>물질들을 합쳐 놓은 혼합물을 정의하는 일이 필요할 수도 있을 것입니다. 이런 경우에는 G4Material 클래스의 생성자와, G4Material 클래스의 AddMaterial() 함수를 이용하면 됩니다. 각각의 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -345,7 +346,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
             <span class="n">G4double</span> <span class="n">density</span><span class="p">,</span> 
             <span class="n">G4int</span> <span class="n">nComponents</span><span class="p">,</span> 
             <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateUndefined</span><span class="p">,</span> 
@@ -364,11 +365,11 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">AddMaterial</span> <span class="p">(</span><span class="n">G4Material</span> <span class="o">*</span><span class="n">material</span><span class="p">,</span> 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">AddMaterial</span> <span class="p">(</span><span class="n">G4Material</span> <span class="o">*</span><span class="n">material</span><span class="p">,</span> 
                   <span class="n">G4double</span> <span class="n">fraction</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
@@ -379,7 +380,7 @@
 <p>예를 들어 20% 농도의 소금물을 정의한다면 다음과 같이 입력하면 됩니다. (소금질량 : 물질량 = 20 : 80일 때 NTP(Normal Temperature Pressure) 조건에서 1.147 gcc로 알려져 있음)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -390,7 +391,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">G4String</span><span class="o">&gt;</span> <span class="n">elNaCl</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;Na&#34;</span><span class="p">,</span> <span class="s">&#34;Cl&#34;</span><span class="p">};</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">G4int</span><span class="o">&gt;</span> <span class="n">nbNaCl</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
 <span class="k">auto</span> <span class="n">matNaCl</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">ConstructNewMaterial</span><span class="p">(</span><span class="s">&#34;NaCl&#34;</span><span class="p">,</span> <span class="n">elNaCl</span><span class="p">,</span> <span class="n">nbNaCl</span><span class="p">,</span> <span class="mf">2.16</span> <span class="o">*</span> <span class="n">g</span> <span class="o">/</span> <span class="n">cm3</span><span class="p">);</span>
@@ -406,7 +407,7 @@
 <p>Solid와 물질이 있으면, 손쉽게 Logical Volume을 정의할 수 있습니다. LogicalVolume은 <strong>G4LogicalVolume</strong> 클래스가 담당하며, 생성자는 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -415,7 +416,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4LogicalVolume</span> <span class="p">(</span><span class="n">G4VSolid</span> <span class="o">*</span><span class="n">pSolid</span><span class="p">,</span> 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4LogicalVolume</span> <span class="p">(</span><span class="n">G4VSolid</span> <span class="o">*</span><span class="n">pSolid</span><span class="p">,</span> 
                  <span class="n">G4Material</span> <span class="o">*</span><span class="n">pMaterial</span><span class="p">,</span> 
                  <span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
                  <span class="n">G4FieldManager</span> <span class="o">*</span><span class="n">pFieldMgr</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> 
@@ -447,12 +448,12 @@
 <p>물이라는 물질을 정의하기 위해 사용된 부분은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 <span class="p">...</span>
 <span class="k">auto</span> <span class="n">matWater</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_WATER&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
@@ -460,19 +461,19 @@
 </div><p>그리고 phantomSol이라는 Solid를 다음 코드를 통해 생성하였습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>이 두가지를 이용하여, 물이 담긴 phantom을 정의하기 위해 다음 코드를 입력한 것입니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomLog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4LogicalVolume</span><span class="p">(</span><span class="n">phantomSol</span><span class="p">,</span> <span class="n">matWater</span><span class="p">,</span> <span class="s">&#34;phantom&#34;</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomLog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4LogicalVolume</span><span class="p">(</span><span class="n">phantomSol</span><span class="p">,</span> <span class="n">matWater</span><span class="p">,</span> <span class="s">&#34;phantom&#34;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><hr>

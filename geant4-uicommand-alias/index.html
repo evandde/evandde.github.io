@@ -8,9 +8,10 @@
         <title>Geant4 UI command - /control/alias - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 UI command - /control/alias" />
 <meta property="og:description" content="Geant4 UI command 중, 자주 반복되는 문구를 간단하게 줄여주는 명령어. &ldquo;/control/alias&quot;에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/geant4-uicommand-alias/" />
+<meta property="og:url" content="https://evandde.github.io/geant4-uicommand-alias/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-05T15:20:37+09:00" />
 <meta property="article:modified_time" content="2021-04-05T15:20:37+09:00" />
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 UI command - /control/alias"/>
 <meta name="twitter:description" content="Geant4 UI command 중, 자주 반복되는 문구를 간단하게 줄여주는 명령어. &ldquo;/control/alias&quot;에 대해 알아봅니다."/>
@@ -146,10 +147,10 @@
 <p>예를 들어, <code>/tracking/verbose</code>라는 명령어를 <code>tv</code>로 줄여서 사용하고 싶다면 다음과 같이 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">/control/alias tv /tracking/verbose
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">/control/alias tv /tracking/verbose
 </code></pre></td></tr></table>
 </div>
 </div><div class="details admonition note open">
@@ -165,11 +166,11 @@
 <p>예를 들어 앞서 부여한 <code>tv</code>별명을 활용하려면 다음과 같이 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 다음은 /tracking/verbose 1과 동일합니다.</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 다음은 /tracking/verbose 1과 동일합니다.</span>
 <span class="o">{</span>tv<span class="o">}</span> <span class="m">1</span>
 </code></pre></td></tr></table>
 </div>
@@ -187,7 +188,7 @@
 <p>예시)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -197,10 +198,10 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">/control/alias file1 /diskA/dirX/fileXX.dat
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">/control/alias file1 /diskA/dirX/fileXX.dat
 /control/alias file2 /diskA/dirY/fileYY.dat
 /control/alias run <span class="m">1</span>
-   
+
 /myDirectory/myCommand <span class="o">{</span>file<span class="o">{</span>run<span class="o">}}</span>
 <span class="c1"># /myDirectory/myCommand /diskA/dirX/fileXX.dat 와 동일</span>
 <span class="c1"># run의 alias 값을 참조하여 /myDirectory/myCommand {file1} 로 변환됨.</span>

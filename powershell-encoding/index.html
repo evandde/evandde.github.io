@@ -8,10 +8,10 @@
         <title>PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결" />
 <meta property="og:description" content="PowerShell에서 git log나 git diff 출력 시 인코딩 문제로 인해 글자가 깨져 나오는 경우가 있습니다. 이 문제를 해결하는 방법을 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/powershell-encoding/" />
-<meta property="og:image" content="https://evandde.github.io/powershell-encoding/featured.png"/>
+<meta property="og:url" content="https://evandde.github.io/powershell-encoding/" /><meta property="og:image" content="https://evandde.github.io/powershell-encoding/featured.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-25T08:55:52+09:00" />
 <meta property="article:modified_time" content="2020-09-25T08:55:52+09:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://evandde.github.io/powershell-encoding/featured.png"/>
 <meta name="twitter:title" content="PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결"/>
@@ -148,31 +148,31 @@
 <p>Git의 출력 설정을 변경합니다. 이 방법은 Git의 설정만을 변경하므로, Git에 한해서만 문제가 해결됩니다. PowerShell은 건드리지 않으므로, 동일한 문제가 다른 프로그램에서도 발생한다면 그 부분은 고쳐지지 않을 것입니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">git</span> <span class="n">config</span> <span class="p">-</span><span class="n">-global</span> <span class="n">core</span><span class="p">.</span><span class="n">pager</span> <span class="s1">&#39;less --raw-control-chars&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">git</span> <span class="n">config</span> <span class="p">-</span><span class="n">-global</span> <span class="n">core</span><span class="p">.</span><span class="n">pager</span> <span class="s1">&#39;less --raw-control-chars&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>방법 2. PowerShell 설정을 변경</strong></p>
 <p>Powershell에서 환경변수를 설정합니다. 이는 해당 PowerShell창에 한해 일시적으로 문제를 해결합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$env:LC_ALL</span><span class="p">=</span><span class="s1">&#39;C.UTF-8&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$env:LC_ALL</span><span class="p">=</span><span class="s1">&#39;C.UTF-8&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Powershell을 켤 때 자동실행되는 스크립트에 환경변수를 설정하는 내용을 적습니다. 이는 새로운 PowerShell 창이 켜질때마다 해당 PowerShell 창에 환경변수를 설정하므로, 영구적으로 문제를 해결해줍니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-ExecutionPolicy</span> <span class="n">unrestricted</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-ExecutionPolicy</span> <span class="n">unrestricted</span>
 <span class="k">if</span><span class="p">(!(</span><span class="nb">Test-Path</span> <span class="n">-path</span> <span class="nv">$profile</span><span class="p">)){</span> <span class="nb">New-Item</span> <span class="n">-Type</span> <span class="n">File</span> <span class="n">-Path</span> <span class="nv">$profile</span> <span class="n">-Force</span> <span class="p">}</span>
 <span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$profile</span> <span class="n">-Value</span> <span class="s1">&#39;$env:LC_ALL=&#39;&#39;C.UTF-8&#39;&#39;&#39;</span>
 </code></pre></td></tr></table>
@@ -200,10 +200,10 @@
 <p>PowerShell에서 다음 명령어를 통해 git의 출력 설정을 변경합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">git</span> <span class="n">config</span> <span class="p">-</span><span class="n">-global</span> <span class="n">core</span><span class="p">.</span><span class="n">pager</span> <span class="s1">&#39;less --raw-control-chars&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">git</span> <span class="n">config</span> <span class="p">-</span><span class="n">-global</span> <span class="n">core</span><span class="p">.</span><span class="n">pager</span> <span class="s1">&#39;less --raw-control-chars&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><a class="lightgallery" href="/powershell-encoding/solved_git.png" title="/powershell-encoding/solved_git.png" data-thumbnail="/powershell-encoding/solved_git.png">
@@ -218,10 +218,10 @@
 <p>참고로 이 세팅을 해제하는 방법은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">git</span> <span class="n">config</span> <span class="p">-</span><span class="n">-global</span> <span class="p">-</span><span class="n">-unset</span> <span class="n">core</span><span class="p">.</span><span class="n">pager</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">git</span> <span class="n">config</span> <span class="p">-</span><span class="n">-global</span> <span class="p">-</span><span class="n">-unset</span> <span class="n">core</span><span class="p">.</span><span class="n">pager</span>
 </code></pre></td></tr></table>
 </div>
 </div><hr>
@@ -241,10 +241,10 @@
 <p>다음 명령어를 입력하여 환경변수를 설정합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$env:LC_ALL</span><span class="p">=</span><span class="s1">&#39;C.UTF-8&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$env:LC_ALL</span><span class="p">=</span><span class="s1">&#39;C.UTF-8&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><a class="lightgallery" href="/powershell-encoding/solved_ps.png" title="/powershell-encoding/solved_ps.png" data-thumbnail="/powershell-encoding/solved_ps.png">
@@ -261,26 +261,26 @@
 <p>단, PowerShell에서 외부 스크립트를 실행하기 위해서는 <strong>실행 정책</strong>의 <strong>제한을 풀어줘야</strong> 합니다. 먼저, 다음 명령어를 통해 실행 정책 제한을 풀어줍니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-ExecutionPolicy</span> <span class="n">unrestricted</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-ExecutionPolicy</span> <span class="n">unrestricted</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>PowerShell을 켤 때마다 자동으로 실행되는 스크립트의 경로는 <code>$profile</code> 변수에 저장되어 있습니다. 다음 명령줄을 통해, 만약 해당 경로에 스크립트가 없다면 새로 만들어줍니다. 그 뒤, 만들어진 스크립트 파일에 <code>$env:LC_ALL='C.UTF-8'</code> 내용을 추가합니다. 이를 통해, 앞으로는 PowerShell을 새로 시작할 때마다 이 스크립트가 실행되어 환경변수가 설정되도록 할 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span><span class="p">(!(</span><span class="nb">Test-Path</span> <span class="n">-path</span> <span class="nv">$profile</span><span class="p">)){</span> <span class="nb">New-Item</span> <span class="n">-Type</span> <span class="n">File</span> <span class="n">-Path</span> <span class="nv">$profile</span> <span class="n">-Force</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span><span class="p">(!(</span><span class="nb">Test-Path</span> <span class="n">-path</span> <span class="nv">$profile</span><span class="p">)){</span> <span class="nb">New-Item</span> <span class="n">-Type</span> <span class="n">File</span> <span class="n">-Path</span> <span class="nv">$profile</span> <span class="n">-Force</span> <span class="p">}</span>
 <span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$profile</span> <span class="n">-Value</span> <span class="s1">&#39;$env:LC_ALL=&#39;&#39;C.UTF-8&#39;&#39;&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="reference">Reference</h2>
-<p><a href="https://stackoverflow.com/questions/41139067/git-log-output-encoding-issues-on-windows-10-command-prompt">https://stackoverflow.com/questions/41139067/git-log-output-encoding-issues-on-windows-10-command-prompt</a></p></div>
+<p><a href="https://stackoverflow.com/questions/41139067/git-log-output-encoding-issues-on-windows-10-command-prompt" target="_blank" rel="noopener noreffer">https://stackoverflow.com/questions/41139067/git-log-output-encoding-issues-on-windows-10-command-prompt</a></p></div>
 
 <div class="post-footer" id="post-footer">
     <div class="post-info">

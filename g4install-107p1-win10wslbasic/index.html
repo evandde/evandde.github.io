@@ -8,9 +8,10 @@
         <title>Geant4 WSL에 설치 무작정 따라하기(초보자용) - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 WSL에 설치 무작정 따라하기(초보자용)" />
 <meta property="og:description" content="이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, Windows 10을 사용하는 개인 컴퓨터 환경에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. (인터넷 연결 필요)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4install-107p1-win10wslbasic/" />
+<meta property="og:url" content="https://evandde.github.io/g4install-107p1-win10wslbasic/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-04T10:39:24+09:00" />
 <meta property="article:modified_time" content="2021-03-04T10:39:24+09:00" />
+<meta property="og:see_also" content="https://evandde.github.io/g4install-107p2-win10basic/" /><meta property="og:see_also" content="https://evandde.github.io/g4install-107p1-ubt2004/" /><meta property="og:see_also" content="https://evandde.github.io/geant4-install/" /><meta property="og:see_also" content="https://evandde.github.io/g4install-106p2-ubt2004/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 WSL에 설치 무작정 따라하기(초보자용)"/>
@@ -221,10 +222,10 @@
 <p>다음 명령어 입력.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="n">Microsoft-Windows-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="err">:</span><span class="nb">Microsoft-Windows</span><span class="n">-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -306,10 +307,10 @@
 <p>다음 명령어를 입력하여, Xming과의 연동을 위해 <code>DISPLAY</code> 환경변수 설정.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;export DISPLAY=localhost:0&#34;</span> &gt;&gt; ~/.bashrc
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;export DISPLAY=localhost:0&#34;</span> &gt;&gt; ~/.bashrc
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -317,10 +318,10 @@
 <p>다음 명령어를 입력하여, <code>apt</code> 패키지 매니저 최신화</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update -y <span class="o">&amp;&amp;</span> sudo apt upgrade -y <span class="o">&amp;&amp;</span> sudo apt autoremove -y
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt update -y <span class="o">&amp;&amp;</span> sudo apt upgrade -y <span class="o">&amp;&amp;</span> sudo apt autoremove -y
 </code></pre></td></tr></table>
 </div>
 </div><div class="details admonition note open">
@@ -345,10 +346,10 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y build-essential cmake libexpat1-dev qt5-default libxmu-dev
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y build-essential cmake libexpat1-dev qt5-default libxmu-dev
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -363,10 +364,10 @@
 <p>Geant4 툴킷을 설치할 디렉토리 생성</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/10.7.p01
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/10.7.p01
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -374,11 +375,11 @@
 <p>1에서 생성한 디렉토리로 이동하여, Geant4 소스코드 다운로드 (소스코드 용량 약 40 MB)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/geant4/10.7.p01
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/geant4/10.7.p01
 sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.tar.gz
 </code></pre></td></tr></table>
 </div>
@@ -387,10 +388,10 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>2에서 다운받은 압축파일을 압축해제</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf geant4.10.07.p01.tar.gz
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf geant4.10.07.p01.tar.gz
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -398,11 +399,11 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p><code>build</code>라는 이름의 디렉토리를 만들고 안으로 이동</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir build
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir build
 <span class="nb">cd</span> build
 </code></pre></td></tr></table>
 </div>
@@ -418,12 +419,12 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo cmake ../geant4.10.07.p01 -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/opt/geant4/10.7.p01 -DGEANT4_BUILD_MULTITHREADED<span class="o">=</span>ON -DGEANT4_INSTALL_DATA<span class="o">=</span>ON -DGEANT4_USE_OPENGL_X11<span class="o">=</span>ON -DGEANT4_USE_QT<span class="o">=</span>ON
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo cmake ../geant4.10.07.p01 -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/opt/geant4/10.7.p01 -DGEANT4_BUILD_MULTITHREADED<span class="o">=</span>ON -DGEANT4_INSTALL_DATA<span class="o">=</span>ON -DGEANT4_USE_OPENGL_X11<span class="o">=</span>ON -DGEANT4_USE_QT<span class="o">=</span>ON
 sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class="sb">`</span>
 sudo make install
 </code></pre></td></tr></table>
@@ -434,11 +435,11 @@ sudo make install
 <p>환경변수 세팅을 위해 <code>~/.bashrc</code>에 내용 추가</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;source /opt/geant4/10.7.p01/bin/geant4.sh&#34;</span> &gt;&gt; ~/.bashrc
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;source /opt/geant4/10.7.p01/bin/geant4.sh&#34;</span> &gt;&gt; ~/.bashrc
 <span class="nb">source</span> ~/.bashrc
 </code></pre></td></tr></table>
 </div>
@@ -451,11 +452,11 @@ sudo make install
 <p>다음 명령어를 입력하여 예제파일 복사해오기</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">cp -r /opt/geant4/10.7.p01/geant4.10.07.p01/examples/basic/B1 ~
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cp -r /opt/geant4/10.7.p01/geant4.10.07.p01/examples/basic/B1 ~
 <span class="nb">cd</span> ~/B1
 </code></pre></td></tr></table>
 </div>
@@ -464,13 +465,13 @@ sudo make install
 <p>다음 명령어를 입력하여 빌드하기</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">mkdir build
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir build
 <span class="nb">cd</span> build
 cmake ..
 make
@@ -491,10 +492,10 @@ make
 <p>다음 명령어를 입력하여 실행해보기</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">./exampleB1 run1.mac
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./exampleB1 run1.mac
 </code></pre></td></tr></table>
 </div>
 </div><p>다음 그림처럼 또 무언가 잔뜩 출력된 뒤, <code>RunManagerKernel is deleted. Good bye :)</code>가 출력되었다면 잘 실행된 것입니다.</p>
@@ -520,10 +521,10 @@ make
     </div>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">./exampleB1
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./exampleB1
 </code></pre></td></tr></table>
 </div>
 </div><p>잘 실행되었다면 다음과 같은 창이 나타날 것입니다.</p>
