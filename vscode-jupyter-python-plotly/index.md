@@ -13,6 +13,24 @@ VSCode에서 Python3 언어를 사용할 때, Jupyter와 plotly를 연동하여 
 
 ---
 
+## 소개
+
+### Jupyter
+
+[Jupyter](https://jupyter.org/)는 프로그래밍 언어를 이용할 때 <b>인터랙티브하게 개발할 수 있는 환경을 제공</b>하는 오픈소스 소프트웨어입니다. Python과 연동하게 되면, 셀단위 실행, 변수 모니터링 등 다양한 기능을 활용할 수 있죠.
+
+### plotly
+
+[plotly](https://plotly.com/)는 인터랙티브하게 이용할 수 있는 데이터 가시화 패키지입니다. Python과도 연동하여 사용 가능하며, 무엇보다 UI가 고급스럽고 마우스를 이용한 여러가지 조작이 가능합니다. 저는 개인적으로 Python에서의 데이터 가시화를 할 때, matplotlib 대신 plotly를 선호합니다.
+
+### 실 사용 예
+
+{{< image src="00_example.png" width=100% >}}
+
+
+
+---
+
 ## Jupyter Extension 설치 및 실행
 
 ### 설치
@@ -101,6 +119,38 @@ fig.show()
 {{< image src="06_plotly.png" width=100% >}}
 
 {{< image src="07_plotly.png" width=100% >}}
+
+---
+
+
+
+## .py 파일과 연동하기
+
+.py 파일을 만들어서 코드를 작성할 때 `# %%`로 시작하는 주석만 달아주면 코드가 <b>Cell</b>이라는 단위로 분리됩니다. Jupyter에서는 Cell 단위로 실행/디버깅을 수행할 수 있게 해줍니다.
+
+실습을 위해 main.py 파일을 만들고, 위에서 실행할 때 썼던 코드를 파일에 적어보겠습니다. 다만, 맨 위에 `# %%`를 추가해서 적겠습니다. 다음과 같이 말이죠.
+
+```python
+# %%
+import plotly.express as px
+df = px.data.iris()
+fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
+fig.show()
+```
+
+그러면 다음 그림에서 보시는 것처럼, 파일 안에 구획이 그어지면서 Cell단위로 실행하거나 디버깅하는 버튼이 추가됩니다.
+
+{{< image src="08_pyfile.png" width=100% >}}
+
+여기서 Run Cell 버튼을 눌러보시면 다음과 같이 오른쪽 Jupyter Interactive Window 창에서 해당 셀의 내용이 실행된 결과를 확인할 수 있습니다.
+
+
+
+
+
+
+
+
 
 ---
 
