@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/posts/</link>
         <description>모든 글 | EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Fri, 20 Aug 2021 09:42:35 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 23 Aug 2021 23:54:44 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>VSCode Python 환경에서 Jupyter 및 plotly 사용하기</title>
+    <link>https://evandde.github.io/vscode-jupyter-python-plotly/</link>
+    <pubDate>Mon, 23 Aug 2021 23:54:44 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/vscode-jupyter-python-plotly/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3 언어를 사용할 때, Jupyter와 plotly를 연동하여 사용하는 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 무작정 따라하기 시리즈를 마치며</title>
     <link>https://evandde.github.io/g4-noqasked-014-closing/</link>
     <pubDate>Fri, 20 Aug 2021 09:42:35 &#43;0900</pubDate>
@@ -67,12 +74,5 @@
     <author>작성자</author>
     <guid>https://evandde.github.io/g4-noqasked-007-trkvb/</guid>
     <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다.</p>]]></description>
-</item><item>
-    <title>Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</title>
-    <link>https://evandde.github.io/g4-noqasked-006-phyvol/</link>
-    <pubDate>Thu, 17 Jun 2021 19:23:49 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/g4-noqasked-006-phyvol/</guid>
-    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다.</p>]]></description>
 </item></channel>
 </rss>

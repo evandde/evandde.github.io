@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Jupyter - 태그 - EvaNote</title>
+        <link>https://evandde.github.io/tags/jupyter/</link>
+        <description>Jupyter - 태그 - EvaNote</description>
+        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 23 Aug 2021 23:54:44 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/jupyter/" rel="self" type="application/rss+xml" /><item>
+    <title>VSCode Python 환경에서 Jupyter 및 plotly 사용하기</title>
+    <link>https://evandde.github.io/vscode-jupyter-python-plotly/</link>
+    <pubDate>Mon, 23 Aug 2021 23:54:44 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/vscode-jupyter-python-plotly/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3 언어를 사용할 때, Jupyter와 plotly를 연동하여 사용하는 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item></channel>
+</rss>

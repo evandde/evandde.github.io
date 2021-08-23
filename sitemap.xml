@@ -2,15 +2,22 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://evandde.github.io/categories/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://evandde.github.io/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/categories/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/howto/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/jupyter/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/plotly/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/posts/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/python/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/tags/vscode/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/categories/vscode/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://evandde.github.io/vscode-jupyter-python-plotly/</loc><lastmod>2021-08-23T23:54:44&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/geant4/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/categories/geant4/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/g4-noqasked-014-closing/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://evandde.github.io/posts/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/series/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://evandde.github.io/tags/</loc><lastmod>2021-08-20T09:42:35&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/analysis/</loc><lastmod>2021-08-19T20:49:41&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/csv/</loc><lastmod>2021-08-19T20:49:41&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/g4-noqasked-013-writingrslt2/</loc><lastmod>2021-08-19T20:49:41&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -36,7 +43,6 @@
             <loc>https://evandde.github.io/tags/random-variable/</loc><lastmod>2021-07-16T14:43:20&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/g4install-107p2-win10basic/</loc><lastmod>2021-07-15T21:41:51&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/series/geant4-install/</loc><lastmod>2021-07-15T21:41:51&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/howto/</loc><lastmod>2021-08-18T13:35:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/msvc/</loc><lastmod>2021-07-15T21:41:51&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/visual-studio/</loc><lastmod>2021-07-15T21:41:51&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/windows/</loc><lastmod>2021-07-15T21:41:51&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -103,11 +109,8 @@
             <loc>https://evandde.github.io/g4install-107p1-win10wslbasic/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/ubuntu/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/wsl/</loc><lastmod>2021-03-04T10:39:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/python/</loc><lastmod>2021-02-22T12:50:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/venv/</loc><lastmod>2021-02-22T12:50:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/vscode-python-venv/</loc><lastmod>2021-02-22T12:50:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://evandde.github.io/tags/vscode/</loc><lastmod>2021-08-18T13:35:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://evandde.github.io/categories/vscode/</loc><lastmod>2021-08-18T13:35:24&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://evandde.github.io/tags/autocompletion/</loc><lastmod>2021-02-22T11:33:18&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/tags/pylance/</loc><lastmod>2021-02-22T11:33:18&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://evandde.github.io/vscode-python/</loc><lastmod>2021-02-22T11:33:18&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

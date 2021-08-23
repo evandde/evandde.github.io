@@ -4,7 +4,14 @@
         <link>https://evandde.github.io/tags/howto/</link>
         <description>HowTo - 태그 - EvaNote</description>
         <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 15 Jul 2021 21:41:51 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/howto/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Mon, 23 Aug 2021 23:54:44 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/howto/" rel="self" type="application/rss+xml" /><item>
+    <title>VSCode Python 환경에서 Jupyter 및 plotly 사용하기</title>
+    <link>https://evandde.github.io/vscode-jupyter-python-plotly/</link>
+    <pubDate>Mon, 23 Aug 2021 23:54:44 &#43;0900</pubDate>
+    <author>작성자</author>
+    <guid>https://evandde.github.io/vscode-jupyter-python-plotly/</guid>
+    <description><![CDATA[<p>VSCode에서 Python3 언어를 사용할 때, Jupyter와 plotly를 연동하여 사용하는 환경을 구축하는 방법에 대해 알아봅니다.</p>]]></description>
+</item><item>
     <title>Geant4 Windows 10에 설치 무작정 따라하기(초보자용)</title>
     <link>https://evandde.github.io/g4install-107p2-win10basic/</link>
     <pubDate>Thu, 15 Jul 2021 21:41:51 &#43;0900</pubDate>
@@ -68,12 +75,5 @@
     <guid>https://evandde.github.io/geant4-install/</guid>
     <description><![CDATA[<p>Geant4는 매질을 통과하는 입자의 수송과정을 시뮬레이션하기 위한 C++ 기반 툴킷입니다. 
 이 글에서는 Geant4 설치에 관한 다양한 정보와, 설치가이드 링크를 제공합니다.</p>]]></description>
-</item><item>
-    <title>Visual Studio Code와 Windows Subsystem for Linux 연동하기</title>
-    <link>https://evandde.github.io/vscode-wsl/</link>
-    <pubDate>Wed, 25 Nov 2020 10:42:23 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/vscode-wsl/</guid>
-    <description><![CDATA[<p>VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다.</p>]]></description>
 </item></channel>
 </rss>
