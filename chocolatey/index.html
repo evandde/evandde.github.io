@@ -8,10 +8,10 @@
         <title>Windows용 패키지 관리자 Chocolatey(choco) 설치 및 이용하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Windows용 패키지 관리자 Chocolatey(choco) 설치 및 이용하기" />
 <meta property="og:description" content="이 글에서는 Windows용 패키지 관리자인 Chocolatey(약칭: choco)를 설치하고 이용하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/chocolatey/" /><meta property="og:image" content="https://evandde.github.io/chocolatey/featured.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/chocolatey/" />
+<meta property="og:image" content="https://evandde.github.io/chocolatey/featured.png"/>
 <meta property="article:published_time" content="2020-09-24T07:05:42+09:00" />
 <meta property="article:modified_time" content="2020-09-24T07:05:42+09:00" />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://evandde.github.io/chocolatey/featured.png"/>
 <meta name="twitter:title" content="Windows용 패키지 관리자 Chocolatey(choco) 설치 및 이용하기"/>
@@ -165,7 +165,7 @@
         </div>
         <div class="details-content">
             <div class="admonition-content"><p>Chocolatey로 프로그램의 설치/제거 등을 하실 때에는 <strong>관리자 권한</strong>으로 작업하셔야 합니다. 관리자 권한 없이 이용하려면 설치경로의 변경 등의 작업이 요구됩니다.</p>
-<p>(참고: <a href="https://chocolatey.org/install#non-administrative-install" target="_blank" rel="noopener noreffer">https://chocolatey.org/install#non-administrative-install</a>)</p>
+<p>(참고: <a href="https://chocolatey.org/install#non-administrative-install">https://chocolatey.org/install#non-administrative-install</a>)</p>
 </div>
         </div>
     </div>
@@ -186,10 +186,10 @@
 <p>다음 명령줄을 실행합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="p">@</span><span class="s2">&#34;</span><span class="nv">%SystemRoot%</span><span class="s2">\System32\WindowsPowerShell\v1.0\powershell.exe&#34;</span> -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command <span class="s2">&#34; [System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&#34;</span> <span class="p">&amp;&amp;</span> <span class="k">SET</span> <span class="s2">&#34;PATH=</span><span class="nv">%PATH%</span><span class="s2">;</span><span class="nv">%ALLUSERSPROFILE%</span><span class="s2">\chocolatey\bin&#34;</span>
+<pre class="chroma"><code class="language-cmd" data-lang="cmd"><span class="p">@</span><span class="s2">&#34;</span><span class="nv">%SystemRoot%</span><span class="s2">\System32\WindowsPowerShell\v1.0\powershell.exe&#34;</span> -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command <span class="s2">&#34; [System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&#34;</span> <span class="p">&amp;&amp;</span> <span class="k">SET</span> <span class="s2">&#34;PATH=</span><span class="nv">%PATH%</span><span class="s2">;</span><span class="nv">%ALLUSERSPROFILE%</span><span class="s2">\chocolatey\bin&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -207,10 +207,10 @@
 <p>이제 다음의 명령줄을 실행합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[System.Net.ServicePointManager]</span><span class="p">::</span><span class="n">SecurityProtocol</span> <span class="p">=</span> <span class="no">[System.Net.ServicePointManager]</span><span class="p">::</span><span class="n">SecurityProtocol</span> <span class="o">-bor</span> <span class="n">3072</span><span class="p">;</span> <span class="nb">iex </span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://chocolatey.org/install.ps1&#39;</span><span class="p">))</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[System.Net.ServicePointManager]</span><span class="p">::</span><span class="n">SecurityProtocol</span> <span class="p">=</span> <span class="no">[System.Net.ServicePointManager]</span><span class="p">::</span><span class="n">SecurityProtocol</span> <span class="o">-bor</span> <span class="n">3072</span><span class="p">;</span> <span class="nb">iex </span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://chocolatey.org/install.ps1&#39;</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -220,14 +220,14 @@
 <hr>
 <h2 id="chocolatey-이용하기">Chocolatey 이용하기</h2>
 <h3 id="패키지-검색하기">패키지 검색하기</h3>
-<p>choco로 설치 가능한 전체 패키지 목록은 <a href="https://chocolatey.org/packages" target="_blank" rel="noopener noreffer">https://chocolatey.org/packages</a>에서 확인할 수 있습니다.</p>
+<p>choco로 설치 가능한 전체 패키지 목록은 <a href="https://chocolatey.org/packages">https://chocolatey.org/packages</a>에서 확인할 수 있습니다.</p>
 <p>혹은, cmd나 PowerShell에서 <code>choco search</code> 명령어로 검색이 가능합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">search</span> <span class="n">검색할내용</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">search</span> <span class="n">검색할내용</span>
 </code></pre></td></tr></table>
 </div>
 </div><a class="lightgallery" href="/chocolatey/choco_search.png" title="notepad를 검색해보았습니다" data-thumbnail="/chocolatey/choco_search.png">
@@ -249,10 +249,10 @@
 <p><code>choco install</code> 명령어를 통해 패키지를 설치할 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">install</span> <span class="n">패키지이름</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">install</span> <span class="n">패키지이름</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.</p>
@@ -264,39 +264,39 @@
 <p><code>choco search</code> 명령어 뒤에 <code>-l</code>옵션을 쓰면, 현재 이 컴퓨터에 설치된 목록을 출력해줍니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">search</span> <span class="n">-l</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">search</span> <span class="n">-l</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="패키지-삭제하기">패키지 삭제하기</h3>
 <p><code>choco uninstall</code> 명령어를 통해 설치한 패키지를 삭제할 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">uninstall</span> <span class="n">패키지이름</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">uninstall</span> <span class="n">패키지이름</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="패키지-업그레이드하기">패키지 업그레이드하기</h3>
 <p><code>choco upgrade</code> 명령어를 통해 설치한 패키지를 업그레이드할 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">upgrade</span> <span class="n">패키지이름</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">upgrade</span> <span class="n">패키지이름</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><code>choco upgrade chocolatey</code> 명령어를 입력하면, chocolatey도 최신화할 수 있습니다.</p>
 <p><code>choco upgrade all</code> 명령어를 입력하면, 현재 컴퓨터에 설치된 모든 패키지(chocolatey 포함)를 최신화할 수 있습니다.</p>
 <hr>
 <h2 id="reference">Reference</h2>
-<p><a href="https://chocolatey.org/" target="_blank" rel="noopener noreffer">https://chocolatey.org/</a></p>
-<p><a href="https://github.com/chocolatey/choco/wiki" target="_blank" rel="noopener noreffer">https://github.com/chocolatey/choco/wiki</a></p>
-<p><a href="https://chocolatey.org/docs/commands-reference" target="_blank" rel="noopener noreffer">https://chocolatey.org/docs/commands-reference</a></p></div>
+<p><a href="https://chocolatey.org/">https://chocolatey.org/</a></p>
+<p><a href="https://github.com/chocolatey/choco/wiki">https://github.com/chocolatey/choco/wiki</a></p>
+<p><a href="https://chocolatey.org/docs/commands-reference">https://chocolatey.org/docs/commands-reference</a></p></div>
         
         <br><hr><br>
         <h2>관련 포스트</h2>

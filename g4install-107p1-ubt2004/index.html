@@ -8,10 +8,9 @@
         <title>Geant4 설치하기(10.7.p01, Ubuntu 2004 LTS) - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 설치하기(10.7.p01, Ubuntu 2004 LTS)" />
 <meta property="og:description" content="이 글에서는 Linux계열 운영체제 중 하나인 Ubuntu 20.04 LTS에서 Geant4 10.7 patch 01 버전을 설치하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4install-107p1-ubt2004/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/g4install-107p1-ubt2004/" />
 <meta property="article:published_time" content="2021-02-15T13:17:56+09:00" />
 <meta property="article:modified_time" content="2021-02-15T13:17:56+09:00" />
-<meta property="og:see_also" content="https://evandde.github.io/g4install-107p2-win10basic/" /><meta property="og:see_also" content="https://evandde.github.io/g4install-107p1-win10wslbasic/" /><meta property="og:see_also" content="https://evandde.github.io/geant4-install/" /><meta property="og:see_also" content="https://evandde.github.io/g4install-106p2-ubt2004/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 설치하기(10.7.p01, Ubuntu 2004 LTS)"/>
@@ -212,10 +211,10 @@
 <p><code>apt</code> 패키지 매니저 최신화</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt update -y <span class="o">&amp;&amp;</span> sudo apt upgrade -y <span class="o">&amp;&amp;</span> sudo apt autoremove -y
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update -y <span class="o">&amp;&amp;</span> sudo apt upgrade -y <span class="o">&amp;&amp;</span> sudo apt autoremove -y
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -229,10 +228,10 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y build-essential cmake libexpat1-dev qt5-default libxmu-dev
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y build-essential cmake libexpat1-dev qt5-default libxmu-dev
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -243,10 +242,10 @@
 <p>CLHep 라이브러리를 설치할 디렉토리 생성</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/clhep
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/clhep
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -254,11 +253,11 @@
 <p>1에서 생성한 디렉토리로 이동하여, CLHep 소스코드 다운로드 (소스코드 용량 약 1.5 MB)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/clhep
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/clhep
 sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 </code></pre></td></tr></table>
 </div>
@@ -267,10 +266,10 @@ sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 <p>2에서 다운받은 압축파일을 압축해제</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf clhep-2.4.4.0.tgz
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf clhep-2.4.4.0.tgz
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -278,12 +277,12 @@ sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 <p>압축해제로 생성된 <code>2.4.4.0</code> 디렉토리로 이동한 뒤, <code>build</code>라는 이름의 디렉토리를 생성하고 그 안으로 이동</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> 2.4.4.0
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> 2.4.4.0
 sudo mkdir build
 <span class="nb">cd</span> build
 </code></pre></td></tr></table>
@@ -304,11 +303,11 @@ sudo mkdir build
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo cmake ../CLHEP -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/opt/clhep/2.4.4.0
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo cmake ../CLHEP -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/opt/clhep/2.4.4.0
 sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class="sb">`</span> <span class="o">&amp;&amp;</span> sudo make install
 </code></pre></td></tr></table>
 </div>
@@ -320,10 +319,10 @@ sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class
 <p>Geant4용 cross-section data를 넣을 디렉토리 생성</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/geant4data
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/geant4data
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -331,7 +330,7 @@ sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class
 <p>1에서 생성한 디렉토리로 이동하여, cross-section data 다운로드 (전체 데이터 용량 약 928 MB)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -344,7 +343,7 @@ sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/geant4/geant4data
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/geant4/geant4data
 sudo wget https://geant4-data.web.cern.ch/datasets/G4NDL.4.6.tar.gz
 sudo wget https://geant4-data.web.cern.ch/datasets/G4EMLOW.7.13.tar.gz
 sudo wget https://geant4-data.web.cern.ch/datasets/G4PhotonEvaporation.5.7.tar.gz
@@ -362,11 +361,11 @@ sudo wget https://geant4-data.web.cern.ch/datasets/G4ENSDFSTATE.2.3.tar.gz
 <p>2에서 다운받은 압축파일을 압축해제하고, 압축파일을 삭제</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo find -name <span class="s2">&#34;*.gz&#34;</span> -exec tar -xf <span class="o">{}</span> <span class="se">\;</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo find -name <span class="s2">&#34;*.gz&#34;</span> -exec tar -xf <span class="o">{}</span> <span class="se">\;</span>
 sudo rm -rf *.gz
 </code></pre></td></tr></table>
 </div>
@@ -378,10 +377,10 @@ sudo rm -rf *.gz
 <p>Geant4 툴킷을 설치할 디렉토리 생성</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/10.7.p01
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/10.7.p01
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -389,11 +388,11 @@ sudo rm -rf *.gz
 <p>1에서 생성한 디렉토리로 이동하여, Geant4 소스코드 다운로드 (소스코드 용량 약 35 MB)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/geant4/10.7.p01
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/geant4/10.7.p01
 sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.tar.gz
 </code></pre></td></tr></table>
 </div>
@@ -402,10 +401,10 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>2에서 다운받은 압축파일을 압축해제 후 디렉토리명을 <code>source</code>로 변경</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf geant4.10.07.p01.tar.gz
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf geant4.10.07.p01.tar.gz
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -413,11 +412,11 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p><code>build</code>라는 이름의 디렉토리를 만들고 안으로 이동</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir build
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir build
 <span class="nb">cd</span> build
 </code></pre></td></tr></table>
 </div>
@@ -443,11 +442,11 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo cmake ../geant4.10.07.p01 -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/opt/geant4/10.7.p01 -DGEANT4_BUILD_MULTITHREADED<span class="o">=</span>ON -DGEANT4_INSTALL_DATADIR<span class="o">=</span>/opt/geant4/geant4data -DGEANT4_USE_OPENGL_X11<span class="o">=</span>ON -DGEANT4_USE_QT<span class="o">=</span>ON -DGEANT4_USE_SYSTEM_CLHEP<span class="o">=</span>ON -DCLHEP_DIR<span class="o">=</span>/opt/clhep/2.4.4.0/lib/CLHEP-2.4.4.0
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo cmake ../geant4.10.07.p01 -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/opt/geant4/10.7.p01 -DGEANT4_BUILD_MULTITHREADED<span class="o">=</span>ON -DGEANT4_INSTALL_DATADIR<span class="o">=</span>/opt/geant4/geant4data -DGEANT4_USE_OPENGL_X11<span class="o">=</span>ON -DGEANT4_USE_QT<span class="o">=</span>ON -DGEANT4_USE_SYSTEM_CLHEP<span class="o">=</span>ON -DCLHEP_DIR<span class="o">=</span>/opt/clhep/2.4.4.0/lib/CLHEP-2.4.4.0
 sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class="sb">`</span> <span class="o">&amp;&amp;</span> sudo make install
 </code></pre></td></tr></table>
 </div>
@@ -456,10 +455,10 @@ sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class
 <p>환경변수 세팅을 위해 <code>~/.bashrc</code>에 내용 추가</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;source /opt/geant4/10.7.p01/bin/geant4.sh&#34;</span> &gt;&gt; ~/.bashrc
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;source /opt/geant4/10.7.p01/bin/geant4.sh&#34;</span> &gt;&gt; ~/.bashrc
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -488,55 +487,55 @@ sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class
 <h3 id="패키지-매니저-최신화">패키지 매니저 최신화</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt update -y <span class="o">&amp;&amp;</span> sudo apt upgrade -y <span class="o">&amp;&amp;</span> sudo apt autoremove -y
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update -y <span class="o">&amp;&amp;</span> sudo apt upgrade -y <span class="o">&amp;&amp;</span> sudo apt autoremove -y
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="c-컴파일러-및-표준-라이브러리-헤더-설치-gcc-등">C++ 컴파일러 및 표준 라이브러리, 헤더 설치 (GCC 등)</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y build-essential
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y build-essential
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="cmake-및-ccmake-설치">CMake 및 CCMake 설치</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y cmake cmake-curses-gui
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y cmake cmake-curses-gui
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="expat-설치">Expat 설치</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y libexpat1-dev
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y libexpat1-dev
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="qt5-설치">Qt5 설치</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y qt5-default
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y qt5-default
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="x11-opengl-설치">X11 OpenGL 설치</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y libxmu-dev
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install -y libxmu-dev
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="clhep-설치하기">CLHep 설치하기</h3>
@@ -547,10 +546,10 @@ sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class
 <p>우선 CLHep 라이브러리를 설치할 디렉토리 생성합니다. (<code>/opt</code>는 <code>sudo</code> 권한이 있어야 수정할 수 있음)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/clhep
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/clhep
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -558,11 +557,11 @@ sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class
 <p>1에서 생성한 디렉토리로 이동하여, CLHep 소스코드를 다운로드합니다. (소스코드 용량 약 1.5 MB)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/clhep
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/clhep
 sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 </code></pre></td></tr></table>
 </div>
@@ -587,10 +586,10 @@ sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 <p>2번 과정을 통해 받은 압축파일 <code>clhep-2.4.4.0.tgz</code>을 압축해제합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf clhep-2.4.4.0.tgz
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf clhep-2.4.4.0.tgz
 </code></pre></td></tr></table>
 </div>
 </div><p><code>2.4.4.0</code> 디렉토리가 생성되며 압축이 해제됩니다.</p>
@@ -599,12 +598,12 @@ sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 <p>생성된 <code>2.4.4.0</code> 디렉토리로 이동합니다. 이어서, 빌드를 수행하며 생기는 부산물을 보관하기 위한 <code>build</code>라는 이름의 디렉토리를 생성하고 그 안으로 이동합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> 2.4.4.0
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> 2.4.4.0
 sudo mkdir build
 <span class="nb">cd</span> build
 </code></pre></td></tr></table>
@@ -623,10 +622,10 @@ sudo mkdir build
 <p>우선 ccmake를 실행하기 위해 다음 명령어를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo ccmake ../CLHEP
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sudo ccmake ../CLHEP
 </code></pre></td></tr></table>
 </div>
 </div><p>다음과 같은 화면이 뜰 것입니다.</p>
@@ -669,10 +668,10 @@ sudo mkdir build
 <p>이제 컴파일 및 설치작업을 진행합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class="sb">`</span> <span class="o">&amp;&amp;</span> sudo make install
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class="sb">`</span> <span class="o">&amp;&amp;</span> sudo make install
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -706,11 +705,11 @@ sudo mkdir build
 <p>Cross-section data가 저장될 디렉토리를 생성한 뒤 이동합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/geant4data
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/geant4data
 <span class="nb">cd</span> /opt/geant4/geant4data
 </code></pre></td></tr></table>
 </div>
@@ -718,7 +717,7 @@ sudo mkdir build
 <p>Cross-section data를 다운로드합니다. (총 10가지. 전체 데이터 용량 약 928 MB)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -730,7 +729,7 @@ sudo mkdir build
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo wget https://geant4-data.web.cern.ch/datasets/G4NDL.4.6.tar.gz
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo wget https://geant4-data.web.cern.ch/datasets/G4NDL.4.6.tar.gz
 sudo wget https://geant4-data.web.cern.ch/datasets/G4EMLOW.7.13.tar.gz
 sudo wget https://geant4-data.web.cern.ch/datasets/G4PhotonEvaporation.5.7.tar.gz
 sudo wget https://geant4-data.web.cern.ch/datasets/G4RadioactiveDecay.5.6.tar.gz
@@ -756,11 +755,11 @@ sudo wget https://geant4-data.web.cern.ch/datasets/G4ENSDFSTATE.2.3.tar.gz
 <p>이후 불필요한 압축파일(<code>*.gz</code>)은 삭제해도 괜찮습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo find -name <span class="s2">&#34;*.gz&#34;</span> -exec tar -xf <span class="o">{}</span> <span class="se">\;</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo find -name <span class="s2">&#34;*.gz&#34;</span> -exec tar -xf <span class="o">{}</span> <span class="se">\;</span>
 sudo rm -rf *.gz
 </code></pre></td></tr></table>
 </div>
@@ -772,21 +771,21 @@ sudo rm -rf *.gz
 <p>우선 해당 디렉토리를 생성하기 위해 다음 명령어를 입력합니다. (<code>/opt</code>는 관리자 권한이 있어야 수정할 수 있음)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/10.7.p01
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir -p /opt/geant4/10.7.p01
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="geant4-소스코드-다운로드">Geant4 소스코드 다운로드</h3>
 <p>이어서, 해당 디렉토리로 이동한 뒤 Geant4 소스코드를 다운 받겠습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/geant4/10.7.p01
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /opt/geant4/10.7.p01
 sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.tar.gz 
 </code></pre></td></tr></table>
 </div>
@@ -811,10 +810,10 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>다음 명령어를 통해 해당 파일의 압축을 해제합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf geant4.10.07.p01.tar.gz
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo tar -xf geant4.10.07.p01.tar.gz
 </code></pre></td></tr></table>
 </div>
 </div><p><code>geant4.10.07.p01</code>라는 디렉토리가 생성되고 그 안에 압축이 풀리게 됩니다.</p>
@@ -822,11 +821,11 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>빌드를 수행하면 CMake와 관련된 잡다한 부산물이 생성됩니다. 관리의 용이성을 위해, 별도의 <code>build</code>라는 디렉토리를 만들고 이 안에서 컴파일을 수행하겠습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir build
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir build
 <span class="nb">cd</span> build
 </code></pre></td></tr></table>
 </div>
@@ -843,10 +842,10 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>우선 ccmake를 실행하기 위해 다음 명령어를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sudo ccmake ../geant4.10.07.p01
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sudo ccmake ../geant4.10.07.p01
 </code></pre></td></tr></table>
 </div>
 </div><p>다음과 같은 화면이 뜰 것입니다.</p>
@@ -939,10 +938,10 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>이제 컴파일 및 설치작업을 진행합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class="sb">`</span> <span class="o">&amp;&amp;</span> sudo make install
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo make -j <span class="sb">`</span>grep -c processor /proc/cpuinfo<span class="sb">`</span> <span class="o">&amp;&amp;</span> sudo make install
 </code></pre></td></tr></table>
 </div>
 </div><div class="details admonition tip open">
@@ -986,29 +985,29 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>실행을 위해서는 다음 명령어를 입력합니다. (<code>source</code> 명령어 뒤에 오는 경로는 Geant4를 설치한 경로에 따라 바뀔 수 있습니다)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> /opt/geant4/10.7.p01/bin/geant4.sh
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> /opt/geant4/10.7.p01/bin/geant4.sh
 </code></pre></td></tr></table>
 </div>
 </div><p>다만, 이 명령어는 실행한 이후 해당 shell이 종료될 때까지만 그 효과가 지속됩니다. 즉, 터미널을 새로 연다거나 하면 다시 환경변수 설정이 사라지게 되죠.</p>
 <p>그래서 일반적으로는 터미널을 켤 때마다 자동으로 한 번 실행되는 파일인 <code>~/.bashrc</code> 맨 밑에 위의 명령줄을 적어둡니다. vim이나 gedit 등을 이용하여 직접 입력하셔도 되고, 다음 명령줄을 이용하여 <code>~/.bashrc</code> 파일 맨 밑에 해당 내용이 추가되도록 하셔도 됩니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;source /opt/geant4/10.7.p01/bin/geant4.sh&#34;</span> &gt;&gt; ~/.bashrc
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;source /opt/geant4/10.7.p01/bin/geant4.sh&#34;</span> &gt;&gt; ~/.bashrc
 </code></pre></td></tr></table>
 </div>
 </div><p><code>~/.bashrc</code>에 추가된 내용을 새로고침하기 위해 다음 줄까지 실행하고 넘어가겠습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> ~/.bashrc
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> ~/.bashrc
 </code></pre></td></tr></table>
 </div>
 </div><p>드디어 Geant4 설치가 끝났습니다!</p>
@@ -1019,10 +1018,10 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>다음 명령어를 통해 제대로 그 경로가 출력되는지 확인할 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">env <span class="p">|</span> grep G4
+<pre class="chroma"><code class="language-bash" data-lang="bash">env <span class="p">|</span> grep G4
 </code></pre></td></tr></table>
 </div>
 </div><a class="lightgallery" href="/g4install-107p1-ubt2004/G4env.png" title="/g4install-107p1-ubt2004/G4env.png" data-thumbnail="/g4install-107p1-ubt2004/G4env.png">
@@ -1041,11 +1040,11 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>테스트를 위해 <code>basic/B1</code> 이라는 예제를 복사해오고, 복사해온 디렉토리 안으로 들어가봅시다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cp -r /opt/geant4/10.7.p01/geant4.10.07.p01/examples/basic/B1 .
+<pre class="chroma"><code class="language-bash" data-lang="bash">cp -r /opt/geant4/10.7.p01/geant4.10.07.p01/examples/basic/B1 .
 <span class="nb">cd</span> B1
 </code></pre></td></tr></table>
 </div>
@@ -1064,11 +1063,11 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 <p>우선 빌드를 하기 위해 다음 명령어를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cmake .
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cmake .
 make -f Makefile
 </code></pre></td></tr></table>
 </div>
@@ -1085,10 +1084,10 @@ make -f Makefile
 <p>이어서 실행을 해봅니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./exampleB1 run1.mac
+<pre class="chroma"><code class="language-bash" data-lang="bash">./exampleB1 run1.mac
 </code></pre></td></tr></table>
 </div>
 </div><p>다음 그림처럼 또 무언가 잔뜩 출력된 뒤, <code>RunManagerKernel is deleted. Good bye :)</code>가 출력되었다면 잘 실행된 것입니다.</p>
@@ -1105,10 +1104,10 @@ make -f Makefile
 <p>Geant4 설치 시 Qt5와 OpenGL 설치도 함께 진행했으므로, 여러분의 우분투에 X window 관련 설정이 잘 되어있다면 다음 명령어로 GUI창도 띄워볼 수 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./exampleB1
+<pre class="chroma"><code class="language-bash" data-lang="bash">./exampleB1
 </code></pre></td></tr></table>
 </div>
 </div><p>잘 실행되었다면 다음과 같은 창이 나타날 것입니다.</p>

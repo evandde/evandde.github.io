@@ -8,10 +8,9 @@
         <title>Geant4 Windows 10에 설치 무작정 따라하기(초보자용) - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)" />
 <meta property="og:description" content="이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, Windows 10을 사용하는 개인 컴퓨터 환경에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. (인터넷 연결 필요)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4install-107p2-win10basic/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/g4install-107p2-win10basic/" />
 <meta property="article:published_time" content="2021-07-15T21:41:51+09:00" />
 <meta property="article:modified_time" content="2021-07-15T21:41:51+09:00" />
-<meta property="og:see_also" content="https://evandde.github.io/g4install-107p1-win10wslbasic/" /><meta property="og:see_also" content="https://evandde.github.io/g4install-107p1-ubt2004/" /><meta property="og:see_also" content="https://evandde.github.io/geant4-install/" /><meta property="og:see_also" content="https://evandde.github.io/g4install-106p2-ubt2004/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 Windows 10에 설치 무작정 따라하기(초보자용)"/>
@@ -394,10 +393,10 @@
 <p>다음 명령어 입력</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Path&#34;</span><span class="p">,</span> <span class="nv">$env:Path</span><span class="p">+</span><span class="s2">&#34;;C:\Qt\5.15.2\msvc2019_64\bin&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Path&#34;</span><span class="p">,</span> <span class="nv">$env:Path</span><span class="p">+</span><span class="s2">&#34;;C:\Qt\5.15.2\msvc2019_64\bin&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -474,10 +473,10 @@
 <p>예를 들어 이 글에서와 같이 <code>C:\Geant4\geant4_10_07_p02\build</code>로 이동해야 하는 경우에는, 다음과 같이 입력하면 됩니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">cd </span><span class="n">C:</span><span class="p">\</span><span class="n">Geant4</span><span class="p">\</span><span class="n">geant4_10_07_p02</span><span class="p">\</span><span class="n">build</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">cd </span><span class="n">C:</span><span class="p">\</span><span class="n">Geant4</span><span class="p">\</span><span class="n">geant4_10_07_p02</span><span class="p">\</span><span class="n">build</span>
 </code></pre></td></tr></table>
 </div>
 </div><a class="lightgallery" href="/g4install-107p2-win10basic/geant4_install3.png" title="/g4install-107p2-win10basic/geant4_install3.png" data-thumbnail="/g4install-107p2-win10basic/geant4_install3.png">
@@ -494,10 +493,10 @@
 <p>다음 명령어를 그대로 입력하여 <code>cmake</code> 작업을 수행합니다. 오탈자 방지를 위해 복사-붙여넣기를 권장합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">..</span> <span class="n">-DCMAKE_INSTALL_PREFIX</span><span class="p">=</span><span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install&#34;</span> <span class="n">-DGEANT4_BUILD_MULTITHREADED</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_INSTALL_DATA</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_BUILD_MSVC_MP</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_USE_QT</span><span class="p">=</span><span class="n">ON</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">..</span> <span class="n">-DCMAKE_INSTALL_PREFIX</span><span class="p">=</span><span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install&#34;</span> <span class="n">-DGEANT4_BUILD_MULTITHREADED</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_INSTALL_DATA</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_BUILD_MSVC_MP</span><span class="p">=</span><span class="n">ON</span> <span class="n">-DGEANT4_USE_QT</span><span class="p">=</span><span class="n">ON</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>각 옵션의 의미는 다음과 같습니다.</p>
@@ -523,10 +522,10 @@
 <p>다음 명령어를 그대로 입력하여 빌드 및 설치 작업을 수행합니다. 오탈자 방지를 위해 복사-붙여넣기를 권장합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">-</span><span class="n">-build</span> <span class="p">.</span> <span class="p">-</span><span class="n">-config</span> <span class="n">Release</span> <span class="p">-</span><span class="n">-target</span> <span class="n">install</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">-</span><span class="n">-build</span> <span class="p">.</span> <span class="p">-</span><span class="n">-config</span> <span class="n">Release</span> <span class="p">-</span><span class="n">-target</span> <span class="n">install</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>수행 중에 유니코드 이슈와 관련하여 warning C4819가 뜰 수 있습니다만, 무시하고 진행하셔도 괜찮습니다.</p>
@@ -559,10 +558,10 @@
 <p><code>Path</code> 환경변수에 Geant4가 설치된 경로의 <code>bin</code> 폴더를 추가</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Path&#34;</span><span class="p">,</span> <span class="nv">$env:Path</span><span class="p">+</span><span class="s2">&#34;;C:\Geant4\geant4_10_07_p02\install\bin&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Path&#34;</span><span class="p">,</span> <span class="nv">$env:Path</span><span class="p">+</span><span class="s2">&#34;;C:\Geant4\geant4_10_07_p02\install\bin&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -570,10 +569,10 @@
 <p><code>Geant4_DIR</code>이라는 환경변수를 만들어 Geant4가 설치된 경로의 <code>lib\Geant4-10.7.2</code> 폴더를 추가</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Geant4_DIR&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\lib\Geant4-10.7.2&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;Geant4_DIR&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\lib\Geant4-10.7.2&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -581,7 +580,7 @@
 <p>크로스섹션 데이터 경로 설정을 위한 환경변수 설정 (참고: <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html#environment-variables-for-datasets" target="_blank" rel="noopener noreffer">Postinstall Setup — Geant4 Installation Guide 10.7 documentation (cern.ch)</a>)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -594,7 +593,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4ABLADATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4ABLA3.1&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4ABLADATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4ABLA3.1&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
 <span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4ENSDFSTATEDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4ENSDFSTATE2.3&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
 <span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4INCLDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4INCL1.0&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
 <span class="no">[Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&#34;G4LEDATA&#34;</span><span class="p">,</span> <span class="s2">&#34;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4EMLOW7.13&#34;</span><span class="p">,</span> <span class="s2">&#34;Machine&#34;</span><span class="p">)</span>
@@ -636,14 +635,14 @@
 <p>복사해온 B1 폴더 안에 있는 <code>CMakeLists.txt</code> 파일을 열어, 파일의 맨 위에 다음 내용을 추가합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cmake" data-lang="cmake"><span class="c">#----------------------------------------------------------------------------
+<pre class="chroma"><code class="language-cmake" data-lang="cmake"><span class="c">#----------------------------------------------------------------------------
 </span><span class="c"># Set build output directory to be ./build 
 </span><span class="c"># rather than ./build/Release or ./build/RelWithDebInfo
 </span><span class="c"></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE</span> <span class="s2">&#34;${CMAKE_BINARY_DIR}&#34;</span><span class="p">)</span><span class="err">
@@ -679,10 +678,10 @@
 <p><code>cd</code> 명령어를 이용하여, 예제 코드를 복사해온 경로의 <code>build</code> 폴더로 이동합니다. 이 글에서처럼 <code>C:\Geant4\B1</code>으로 복사하였다면 다음과 같이 입력하면 됩니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">cd </span><span class="n">C:</span><span class="p">\</span><span class="n">Geant4</span><span class="p">\</span><span class="n">B1</span><span class="p">\</span><span class="n">build</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">cd </span><span class="n">C:</span><span class="p">\</span><span class="n">Geant4</span><span class="p">\</span><span class="n">B1</span><span class="p">\</span><span class="n">build</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -690,11 +689,11 @@
 <p>다음 명령어를 입력하여 빌드를 수행합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">..</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">cmake</span> <span class="p">..</span>
 <span class="n">cmake</span> <span class="p">-</span><span class="n">-build</span> <span class="p">.</span> <span class="p">-</span><span class="n">-config</span> <span class="n">Release</span>
 </code></pre></td></tr></table>
 </div>

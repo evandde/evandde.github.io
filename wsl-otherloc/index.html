@@ -8,10 +8,9 @@
         <title>WSL을 다른 경로에 설치하는 법 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="WSL을 다른 경로에 설치하는 법" />
 <meta property="og:description" content="MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 %LocalAppData%\Packages\[PackageName] 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/wsl-otherloc/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/wsl-otherloc/" />
 <meta property="article:published_time" content="2020-10-08T14:09:10+09:00" />
 <meta property="article:modified_time" content="2020-10-08T14:09:10+09:00" />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="WSL을 다른 경로에 설치하는 법"/>
 <meta name="twitter:description" content="MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 %LocalAppData%\Packages\[PackageName] 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다."/>
@@ -152,10 +151,10 @@
 <p>다음 명령어로 파일확장자 변경</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Rename-Item</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">appx</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">zip</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Rename-Item</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">appx</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">zip</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -163,10 +162,10 @@
 <p>다음 명령어로 압축 해제</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Expand-Archive</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">zip</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Expand-Archive</span> <span class="n">XXXX</span><span class="p">.</span><span class="n">zip</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -194,13 +193,13 @@
 <p>이어서 <code>Rename-Item</code> 명령어를 통해 확장자를 zip파일로 바꾸고, <code>Expand-Archive</code> 명령어를 통해 압축을 풀 것입니다. 예를들어 Ubuntu 20.04 배포판을 받았다면, <code>Ubuntu_2004.2020.424.0_x64.appx</code> 파일이 다운받아질 것입니다(작성일 기준). 그렇다면 다음과 같이 명령어를 입력하면 됩니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">## 받은 appx 파일을 Ubuntu2004.zip으로 이름 변경</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">## 받은 appx 파일을 Ubuntu2004.zip으로 이름 변경</span>
 <span class="nb">Rename-Item</span> <span class="n">Ubuntu_2004</span><span class="p">.</span><span class="n">2020</span><span class="p">.</span><span class="n">424</span><span class="p">.</span><span class="n">0_x64</span><span class="p">.</span><span class="n">appx</span> <span class="n">Ubuntu2004</span><span class="p">.</span><span class="n">zip</span>
 <span class="c">## zip 파일의 압축을 해제</span>
 <span class="nb">Expand-Archive</span> <span class="n">Ubuntu2004</span><span class="p">.</span><span class="n">zip</span>

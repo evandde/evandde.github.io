@@ -8,10 +8,9 @@
         <title>Geant4 무작정 따라하기 - 8. 선원항 정의하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 8. 선원항 정의하기" />
 <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 여덟번째. Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-008-prigen/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-008-prigen/" />
 <meta property="article:published_time" content="2021-06-20T21:56:43+09:00" />
 <meta property="article:modified_time" content="2021-06-20T21:56:43+09:00" />
-
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 무작정 따라하기 - 8. 선원항 정의하기"/>
@@ -170,10 +169,10 @@
 <p>GeneratePrimaries 함수 안에는 다음과 같은 줄이 이미 작성되어 있습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>여기서 fPrimary 변수는 <strong>초기 입자에 대한 설정을 담당</strong>하는 클래스인 <strong>G4ParticleGun</strong> 클래스 객체의 포인터입니다.</p>
@@ -186,10 +185,10 @@
 <p>입자의 종류를 설정하기 위한 함수로, SetParticleDefinition이라는 함수를 제공합니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleDefinition</span><span class="p">(</span><span class="n">G4ParticleDefinition</span><span class="o">*</span> <span class="n">aParticleDefinition</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleDefinition</span><span class="p">(</span><span class="n">G4ParticleDefinition</span><span class="o">*</span> <span class="n">aParticleDefinition</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>G4ParticleDefinition이라는 클래스가 생소하실텐데요, Geant4에서 입자에 대한 정의를 담당하는 클래스라고만 해두고 넘어가겠습니다.</p>
@@ -250,14 +249,15 @@
 </ol>
 <p>앞서 말씀드린 것처럼, SetParticleDefinition 함수는 <code>fPrimary-&gt;GeneratePrimaryVertex(anEvent);</code> 줄보다 <font color='red'><b>위쪽에 위치</b></font>하도록 작성해야 한다는 점에 주의하세요.</p>
 <p>예를 들어 Gamma를 초기 입자로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="hl"><span class="cp">#include</span> <span class="cpf">&#34;G4Gamma.hh&#34; // Include header for G4Gamma class</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="hl"><span class="cp">#include</span> <span class="cpf">&#34;G4Gamma.hh&#34; // Include header for G4Gamma class</span><span class="cp">
 </span></span><span class="cp"></span><span class="c1">// ...    
 </span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="hl">    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticle</span><span class="p">(</span><span class="n">G4Gamma</span><span class="o">::</span><span class="n">Definition</span><span class="p">());</span> <span class="c1">// Set primary as gamma    
 </span></span><span class="c1"></span>
     <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 <p>실제 코드는 다음과 같습니다.</p>
 <a class="lightgallery" href="/g4-noqasked-008-prigen/02_setparticledefinition.png" title="/g4-noqasked-008-prigen/02_setparticledefinition.png" data-thumbnail="/g4-noqasked-008-prigen/02_setparticledefinition.png">
         <img
@@ -282,15 +282,15 @@
 <p>입자의 운동에너지를 설정하기 위한 함수로, SetParticleEnergy라는 함수를 제공합니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleEnergy</span><span class="p">(</span><span class="n">G4double</span> <span class="n">aKineticEnergy</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleEnergy</span><span class="p">(</span><span class="n">G4double</span> <span class="n">aKineticEnergy</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>입력 인자는 간단하게 G4double형입니다. 다만, 에너지에 대한 <strong>단위를 입력</strong>할 필요가 있으므로, <strong>G4SystemOfUnits 헤더를 포함</strong>시켜줘야 한다는 점에 주의하세요.</p>
 <p>예를 들어 초기 입자의 운동에너지를 0.662 MeV로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="hl"><span class="cp">#include</span> <span class="cpf">&#34;G4SystemOfUnits.hh&#34; // Include header for unit system</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="hl"><span class="cp">#include</span> <span class="cpf">&#34;G4SystemOfUnits.hh&#34; // Include header for unit system</span><span class="cp">
 </span></span><span class="cp"></span><span class="c1">// ...    
 </span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
 <span class="p">{</span>
@@ -298,7 +298,8 @@
 </span><span class="hl"><span class="c1"></span>    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticleEnergy</span><span class="p">(</span><span class="mf">0.662</span> <span class="o">*</span> <span class="n">MeV</span><span class="p">);</span>
 </span>
     <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 <p>실제 코드는 다음과 같습니다.</p>
 <a class="lightgallery" href="/g4-noqasked-008-prigen/04_setparticleenergy.png" title="/g4-noqasked-008-prigen/04_setparticleenergy.png" data-thumbnail="/g4-noqasked-008-prigen/04_setparticleenergy.png">
         <img
@@ -323,22 +324,23 @@
 <p>입자의 위치를 설정하기 위한 함수로, SetParticlePosition이라는 함수를 제공합니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticlePosition</span><span class="p">(</span><span class="n">G4ThreeVector</span> <span class="n">aPosition</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticlePosition</span><span class="p">(</span><span class="n">G4ThreeVector</span> <span class="n">aPosition</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>입력 인자는 G4ThreeVector 객체입니다.</p>
 <p>예를 들어 초기 입자의 위치를 (0, 0, 0)으로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
 </span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// ...
 </span><span class="hl"><span class="c1"></span>    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticlePosition</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">());</span>
 </span>
     <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 <p>실제 코드는 다음과 같습니다.</p>
 <a class="lightgallery" href="/g4-noqasked-008-prigen/06_setparticleposition.png" title="/g4-noqasked-008-prigen/06_setparticleposition.png" data-thumbnail="/g4-noqasked-008-prigen/06_setparticleposition.png">
         <img
@@ -363,22 +365,23 @@
 <p>입자의 운동방향을 설정하기 위한 함수로, SetParticleMomentumDirection이라는 함수를 제공합니다. 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleMomentumDirection</span><span class="p">(</span><span class="n">G4ParticleMomentum</span> <span class="n">aMomDirection</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">SetParticleMomentumDirection</span><span class="p">(</span><span class="n">G4ParticleMomentum</span> <span class="n">aMomDirection</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>입력 인자는 G4ParticleMomentum라고 적혀있습니다만, 이는 사실 <strong>G4ThreeVector의 다른 이름</strong>일 뿐입니다. 위치 때와 동일하게 G4ThreeVector 객체를 넣으시면 됩니다.</p>
 <p>예를 들어 초기 입자의 운동방향을 +Z축인 (0, 0, 1)으로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
 </span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">// ...
 </span><span class="hl"><span class="c1"></span>    <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticleMomentumDirection</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">));</span>
 </span>
     <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 <p>실제 코드는 다음과 같습니다.</p>
 <a class="lightgallery" href="/g4-noqasked-008-prigen/08_setparticlemomentumdirection.png" title="/g4-noqasked-008-prigen/08_setparticlemomentumdirection.png" data-thumbnail="/g4-noqasked-008-prigen/08_setparticlemomentumdirection.png">
         <img

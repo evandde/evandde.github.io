@@ -9,10 +9,10 @@
 <meta property="og:description" content="Windows를 설치하면, C:\Users\사용자이름 폴더에 다운로드, 사진, 문서, 동영상 등의 폴더가 있는 것을 확인할 수 있습니다. 이러한 폴더를 사용자 폴더 라고 합니다. 
 이 글에서는 사용자 폴더의 위치를 변경하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/userdir-change/" /><meta property="og:image" content="https://evandde.github.io/userdir-change/featured.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/userdir-change/" />
+<meta property="og:image" content="https://evandde.github.io/userdir-change/featured.png"/>
 <meta property="article:published_time" content="2020-10-13T16:24:20+09:00" />
 <meta property="article:modified_time" content="2020-10-13T16:24:20+09:00" />
-
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://evandde.github.io/userdir-change/featured.png"/>
 <meta name="twitter:title" content="사용자 폴더의 위치를 변경하는 방법"/>
@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/evandde.github.io\/userdir-change\/"
-        },"genre": "posts","keywords": "HowTo, Windows, User directory, 사용자 폴더","wordcount":  4413 ,
+        },"genre": "posts","keywords": "HowTo, Windows, User directory, 사용자 폴더","wordcount":  4350 ,
         "url": "https:\/\/evandde.github.io\/userdir-change\/","datePublished": "2020-10-13T16:24:20+09:00","dateModified": "2020-10-13T16:24:20+09:00","publisher": {
             "@type": "Organization",
             "name": "Evan Kim"},"author": {
@@ -121,7 +121,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">사용자 폴더의 위치를 변경하는 방법</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>Windows</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-13">2020-10-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 4413&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-13">2020-10-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 4350&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 9분&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -241,7 +241,7 @@
 <p>다음 <code>XML</code> 내용 입력. (4번 줄과 6번 줄 내용을 본인에 맞게 수정)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="hl"><span class="lnt"> 4
@@ -253,7 +253,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
 <span class="nt">&lt;unattend</span> <span class="na">xmlns=</span><span class="s">&#34;urn:schemas-microsoft-com:unattend&#34;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;settings</span> <span class="na">pass=</span><span class="s">&#34;oobeSystem&#34;</span><span class="nt">&gt;</span>
 <span class="hl"><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&#34;Microsoft-Windows-Shell-Setup&#34;</span> <span class="na">processorArchitecture=</span><span class="s">&#34;amd64&#34;</span> <span class="na">publicKeyToken=</span><span class="s">&#34;31bf3856ad364e35&#34;</span> <span class="na">language=</span><span class="s">&#34;neutral&#34;</span> <span class="na">versionScope=</span><span class="s">&#34;nonSxS&#34;</span> <span class="na">xmlns:wcm=</span><span class="s">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span><span class="nt">&gt;</span>
@@ -279,11 +279,11 @@
 <p><strong>관리자 권한</strong>으로 <strong>cmd</strong>를 켜고 다음 명령어 두 줄 실행. (2번 줄의 <code>/unattend</code> 항목은 위에서 저장한 <code>relocate.xml</code>의 경로를 입력)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="hl"><span class="lnt">2
 </span></span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">net</span> <span class="n">stop</span> <span class="n">WMPNetworkSvc</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">net</span> <span class="n">stop</span> <span class="n">WMPNetworkSvc</span>
 <span class="hl"><span class="k">%</span><span class="n">windir</span><span class="p">%\</span><span class="n">system32</span><span class="p">\</span><span class="n">sysprep</span><span class="p">\</span><span class="n">sysprep</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">oobe</span> <span class="p">/</span><span class="n">reboot</span> <span class="p">/</span><span class="n">unattend</span><span class="err">:</span><span class="n">d:</span><span class="p">\</span><span class="n">relocate</span><span class="p">.</span><span class="n">xml</span>
 </span></code></pre></td></tr></table>
 </div>
@@ -450,7 +450,7 @@
 <p>다음 <code>XML</code> 내용 입력. 단, 4번 줄과 6번 줄의 내용은 본인에 맞게 수정.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="hl"><span class="lnt"> 4
@@ -462,7 +462,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
 <span class="nt">&lt;unattend</span> <span class="na">xmlns=</span><span class="s">&#34;urn:schemas-microsoft-com:unattend&#34;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;settings</span> <span class="na">pass=</span><span class="s">&#34;oobeSystem&#34;</span><span class="nt">&gt;</span>
 <span class="hl"><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">&#34;Microsoft-Windows-Shell-Setup&#34;</span> <span class="na">processorArchitecture=</span><span class="s">&#34;amd64&#34;</span> <span class="na">publicKeyToken=</span><span class="s">&#34;31bf3856ad364e35&#34;</span> <span class="na">language=</span><span class="s">&#34;neutral&#34;</span> <span class="na">versionScope=</span><span class="s">&#34;nonSxS&#34;</span> <span class="na">xmlns:wcm=</span><span class="s">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span><span class="nt">&gt;</span>
@@ -502,11 +502,11 @@
 <p>이어서, cmd창에 다음 명령어 두 줄을 입력합니다. 단, 2번 줄의 /unattend 항목은 위에서 저장한 relocate.xml의 경로로 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="hl"><span class="lnt">2
 </span></span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">net</span> <span class="n">stop</span> <span class="n">WMPNetworkSvc</span>
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">net</span> <span class="n">stop</span> <span class="n">WMPNetworkSvc</span>
 <span class="hl"><span class="k">%</span><span class="n">windir</span><span class="p">%\</span><span class="n">system32</span><span class="p">\</span><span class="n">sysprep</span><span class="p">\</span><span class="n">sysprep</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">oobe</span> <span class="p">/</span><span class="n">reboot</span> <span class="p">/</span><span class="n">unattend</span><span class="err">:</span><span class="n">d:</span><span class="p">\</span><span class="n">relocate</span><span class="p">.</span><span class="n">xml</span>
 </span></code></pre></td></tr></table>
 </div>
@@ -524,21 +524,21 @@
 <p>정상적으로 진행되었다면, 사용자 폴더들이 원하는 드라이브에 생성되어 있을 것입니다.</p>
 <hr>
 <h2 id="reference">Reference</h2>
-<p><a href="https://itrainbowm.tistory.com/29" target="_blank" rel="noopener noreffer">https://itrainbowm.tistory.com/29</a></p>
-<p><a href="https://wisebee.tistory.com/13" target="_blank" rel="noopener noreffer">https://wisebee.tistory.com/13</a></p>
-<p><a href="https://www.tenforums.com/tutorials/1964-move-users-folder-location-windows-10-a.html" target="_blank" rel="noopener noreffer">https://www.tenforums.com/tutorials/1964-move-users-folder-location-windows-10-a.html</a></p>
-<p><a href="https://ks2colorworld.tistory.com/13" target="_blank" rel="noopener noreffer">https://ks2colorworld.tistory.com/13</a></p>
+<p><a href="https://itrainbowm.tistory.com/29">https://itrainbowm.tistory.com/29</a></p>
+<p><a href="https://wisebee.tistory.com/13">https://wisebee.tistory.com/13</a></p>
+<p><a href="https://www.tenforums.com/tutorials/1964-move-users-folder-location-windows-10-a.html">https://www.tenforums.com/tutorials/1964-move-users-folder-location-windows-10-a.html</a></p>
+<p><a href="https://ks2colorworld.tistory.com/13">https://ks2colorworld.tistory.com/13</a></p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>Out-of-Box Experience의 약자로, 새로 설치된 Windows 제품을 처음 사용할 때의 단계를 의미.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Out-of-Box Experience의 약자로, 새로 설치된 Windows 제품을 처음 사용할 때의 단계를 의미. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>Windows에 내장된 관리자 계정 모드로, 설치 시점에서 다양한 설정을 할 수 있게 해줌.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Windows에 내장된 관리자 계정 모드로, 설치 시점에서 다양한 설정을 할 수 있게 해줌. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>Windows의 설치 과정에서 사용할 설정 값이나 변수 등을 기록한 xml형식의 파일.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Windows의 설치 과정에서 사용할 설정 값이나 변수 등을 기록한 xml형식의 파일. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section></div>

@@ -8,10 +8,9 @@
         <title>WSL에서 libQt5 관련 &#34;No such file or directory&#34; 에러 해결 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="WSL에서 libQt5 관련 &#34;No such file or directory&#34; 에러 해결" />
 <meta property="og:description" content="WSL로 설치된 Debian계열 리눅스에서 Qt5 기반 프로그램 실행 시, libQt5*.so 파일과 관련하여 발생하는 cannot access 오류를 해결하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/cannot-open-libqt5core/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/cannot-open-libqt5core/" />
 <meta property="article:published_time" content="2020-10-28T13:00:27+09:00" />
 <meta property="article:modified_time" content="2020-10-28T13:00:27+09:00" />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="WSL에서 libQt5 관련 &#34;No such file or directory&#34; 에러 해결"/>
 <meta name="twitter:description" content="WSL로 설치된 Debian계열 리눅스에서 Qt5 기반 프로그램 실행 시, libQt5*.so 파일과 관련하여 발생하는 cannot access 오류를 해결하는 방법에 대해 알아봅니다."/>
@@ -139,10 +138,10 @@
 <p>다음 명령어 입력. (<code>/usr/lib/x86_64-linux-gnu/libQt5Core.so.5</code> 부분은 에러 문구에 나온 경로로 입력)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo strip --remove-section<span class="o">=</span>.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo strip --remove-section<span class="o">=</span>.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
 </code></pre></td></tr></table>
 </div>
 </div><hr>
@@ -164,17 +163,17 @@
 <p>맨 끝에 <code>/usr/lib/x86_64-linux-gnu/libQt5Core.so.5</code> 부분은 에러 문구에 출력된 라이브러리 경로를 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo strip --remove-section<span class="o">=</span>.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo strip --remove-section<span class="o">=</span>.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
 </code></pre></td></tr></table>
 </div>
 </div><hr>
 <h2 id="reference">Reference</h2>
-<p><a href="https://github.com/YosysHQ/nextpnr/issues/375" target="_blank" rel="noopener noreffer">https://github.com/YosysHQ/nextpnr/issues/375</a></p>
-<p><a href="https://superuser.com/questions/1347723/arch-on-wsl-libqt5core-so-5-not-found-despite-being-installed" target="_blank" rel="noopener noreffer">https://superuser.com/questions/1347723/arch-on-wsl-libqt5core-so-5-not-found-despite-being-installed</a></p>
-<p><a href="https://github.com/Microsoft/WSL/issues/3023" target="_blank" rel="noopener noreffer">https://github.com/Microsoft/WSL/issues/3023</a></p></div>
+<p><a href="https://github.com/YosysHQ/nextpnr/issues/375">https://github.com/YosysHQ/nextpnr/issues/375</a></p>
+<p><a href="https://superuser.com/questions/1347723/arch-on-wsl-libqt5core-so-5-not-found-despite-being-installed">https://superuser.com/questions/1347723/arch-on-wsl-libqt5core-so-5-not-found-despite-being-installed</a></p>
+<p><a href="https://github.com/Microsoft/WSL/issues/3023">https://github.com/Microsoft/WSL/issues/3023</a></p></div>
         
         <br><hr><br>
         <h2>관련 포스트</h2>

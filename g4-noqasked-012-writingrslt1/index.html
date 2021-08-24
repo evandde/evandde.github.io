@@ -8,10 +8,9 @@
         <title>Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram) - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)" />
 <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 열두번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법, 그 중에서도 Histogram 형태로 기록하는 방법에 대해 알아봅니다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-012-writingrslt1/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://evandde.github.io/g4-noqasked-012-writingrslt1/" />
 <meta property="article:published_time" content="2021-08-19T10:49:41+09:00" />
 <meta property="article:modified_time" content="2021-08-19T10:49:41+09:00" />
-
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)"/>
@@ -200,12 +199,12 @@
 <p>위 표를 csv 형식으로 쓰면 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">이름, 학번, 생년월일
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">이름, 학번, 생년월일
 홍길동, 20201234, 20020101
 임꺽정, 20215678, 20030201
 </code></pre></td></tr></table>
@@ -266,10 +265,10 @@
 <p>우리는 CSV를 이용하기로 하였으므로, 헤더를 포함하는 부분에 다음을 입력합니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;g4csv.hh&#34;</span><span class="cp">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;g4csv.hh&#34;</span><span class="cp">
 </span></code></pre></td></tr></table>
 </div>
 </div><p>입력한 모습은 다음과 같을 것입니다.</p>
@@ -289,19 +288,19 @@
 <p>일단 <font color=red><b>생성자인 RunAction()의 중괄호({}) 안</b></font>에 다음과 같이 적어줍니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>그리고, <font color=red><b>소멸자인 ~RunAction()의 중괄호({}) 안</b></font>에는 다음과 같이 적어줍니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">delete</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">delete</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>다 적으셨다면 다음 그림과 같이 되어있어야 합니다.</p>
@@ -317,21 +316,21 @@
 <p><b>이제부터 여러분은 어디에서든 다음 코드만 입력하면 analysisManager라는 변수명으로 G4AnalysisManager를 이용할 수 있습니다.</b></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="g4analysismanager로-파일-열기">G4AnalysisManager로 파일 열기</h3>
 <p>이제 실제로 출력 파일을 만들어봅시다. 출력파일을 <b>매 Run이 시작될 때마다 열어주기 위해, <font color=red>BeginOfRunAction() 함수 내</font>에 적어주도록 합니다</b>. 파일을 열 때에는 기본적으로 G4AnalysisManager 클래스가 제공하는 <b>OpenFile()이라는 함수</b>를 제공합니다. 이 함수의 입력인자로 <b>파일의 이름</b>을 적어줄 수 있습니다. 다음과 같이 작성해봅시다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 <span class="n">analysisManager</span><span class="o">-&gt;</span><span class="n">OpenFile</span><span class="p">(</span><span class="s">&#34;G4_Minimal&#34;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
@@ -348,10 +347,10 @@
 <p>이 OpenFile() 함수의 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4bool</span> <span class="n">OpenFile</span><span class="p">(</span><span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">fileName</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4bool</span> <span class="n">OpenFile</span><span class="p">(</span><span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">fileName</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -371,11 +370,11 @@
 <p>매 Run이 시작될 때 파일을 열었으니, 매 Run이 끝날 때 파일을 닫는 것이 좋겠지요. 따라서 이 내용은 <font color=red><b>EndOfRunAction() 함수 내에 적도록 합니다</b></font>. 파일을 닫기 위해서는 G4AnalysisManager 클래스가 제공하는 <b>CloseFile() 함수</b>를 이용합니다. 다음과 같이 작성해봅시다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 <span class="n">analysisManager</span><span class="o">-&gt;</span><span class="n">CloseFile</span><span class="p">();</span>
 </code></pre></td></tr></table>
 </div>
@@ -392,10 +391,10 @@
 <p>이 CloseFile() 함수의 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4bool</span> <span class="n">CloseFile</span><span class="p">(</span><span class="n">G4bool</span> <span class="n">reset</span> <span class="o">=</span> <span class="nb">true</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4bool</span> <span class="n">CloseFile</span><span class="p">(</span><span class="n">G4bool</span> <span class="n">reset</span> <span class="o">=</span> <span class="nb">true</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -414,7 +413,7 @@
 <p><font color=red><b>RunAction의 생성자</b></font>로 돌아갑니다. 여기에서 아까 만들어둔 analysisManager라는 변수명을 가진 객체를 이용해서 히스토그램을 생성해줄 것입니다. 이 때 사용하는 함수는 CreateH1() 함수인데요, 이 함수의 원형부터 살펴보겠습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -425,7 +424,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4int</span> <span class="nf">CreateH1</span><span class="p">(</span><span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">title</span><span class="p">,</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4int</span> <span class="nf">CreateH1</span><span class="p">(</span><span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">title</span><span class="p">,</span>
                <span class="n">G4int</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">xmax</span><span class="p">,</span>
                <span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">unitName</span> <span class="o">=</span> <span class="s">&#34;none&#34;</span><span class="p">,</span>
                <span class="k">const</span> <span class="n">G4String</span><span class="o">&amp;</span> <span class="n">fcnName</span> <span class="o">=</span> <span class="s">&#34;none&#34;</span><span class="p">,</span>
@@ -451,10 +450,10 @@
 <p>이 시리즈에서 앞서 스코어링한 물리량은 물 팬텀에 deposit된 에너지였습니다. 이를 <b>0 MeV ~ 3.0 MeV까지 1024개의 구간</b>으로 나누어 히스토그램을 만들어봅시다. 이 경우 <b>RunAction.cc 파일의 생성자</b>에 다음과 같이 코드를 추가하면 됩니다. <b>다만, 여기서 MeV라는 단위를 사용하기 위해서는 헤더쪽에 &ldquo;G4SystemOfUnits.hh&quot;를 포함시켜야 한다는 점도 잊지마세요.</b></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">analysisManager</span><span class="o">-&gt;</span><span class="n">CreateH1</span><span class="p">(</span><span class="s">&#34;EDep&#34;</span><span class="p">,</span> <span class="s">&#34;Energy Deposition&#34;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">MeV</span><span class="p">);</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">analysisManager</span><span class="o">-&gt;</span><span class="n">CreateH1</span><span class="p">(</span><span class="s">&#34;EDep&#34;</span><span class="p">,</span> <span class="s">&#34;Energy Deposition&#34;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">3.</span> <span class="o">*</span> <span class="n">MeV</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>히스토그램의 이름은 &ldquo;EDep&rdquo;, 제목은 &ldquo;Energy Deposition&quot;이며, 0 MeV ~ 3 MeV의 구간을 1024개로 쪼개어 히스토그램을 생성하였습니다.</p>
@@ -495,10 +494,10 @@
 <p>파일의 맨 위에 CSV용 G4AnalysisManager 사용을 위해, <code>g4csv.hh</code> 헤더 포함</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#incldue &#34;g4csv.hh&#34;
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#incldue &#34;g4csv.hh&#34;
 </span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -506,10 +505,10 @@
 <p>EndOfEventAction() 함수 내, for 반복문의 위쪽에 G4AnalysisManager 객체를 만듦</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">analysisManager</span> <span class="o">=</span> <span class="n">G4AnalysisManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -517,19 +516,19 @@
 <p>EndOfEventAction() 함수 내, for 반복문 안에서 eDep이 0보다 큰지 확인하는 if 조건문 안에 히스토그램에 누적하는 내용을 작성</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">analysisManager</span><span class="o">-&gt;</span><span class="n">FillH1</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">eDep</span><span class="p">);</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">analysisManager</span><span class="o">-&gt;</span><span class="n">FillH1</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">eDep</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>여기서 사용된 FillH1() 함수의 원형은 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4bool</span> <span class="n">G4VAnalysisManager</span><span class="o">::</span><span class="n">FillH1</span><span class="p">(</span><span class="n">G4int</span> <span class="n">id</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">value</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">weight</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4bool</span> <span class="n">G4VAnalysisManager</span><span class="o">::</span><span class="n">FillH1</span><span class="p">(</span><span class="n">G4int</span> <span class="n">id</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">value</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">weight</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -555,10 +554,10 @@
 <p>다시 <font color=red><b>RunAction.cc 파일</b></font>로 돌아옵니다. 여기서 <font color=red><b>EndOfRunAction() 함수</b></font>에서 아까 적어둔 CloseFile() 함수 줄 바로 위에, G4AnalysisManager 클래스가 제공하는 Write() 함수를 사용해주면 됩니다. 코드로는 다음과 같습니다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">analysisManager</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">();</span>
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">analysisManager</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">();</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>작성하고 나면 다음과 같은 모습일 것입니다.</p>
@@ -575,11 +574,11 @@
 <p>다 끝났습니다. 이제 build 디렉토리에 들어가서, 다음 명령어를 입력하여 시뮬레이션을 수행해봅시다.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">make
+<pre class="chroma"><code class="language-bash" data-lang="bash">make
 ./g4_minimal run.mac
 </code></pre></td></tr></table>
 </div>
