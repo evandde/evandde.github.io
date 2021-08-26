@@ -1,4 +1,4 @@
-# Visual Studio Code에서 C, C++ 환경 설정하기
+# Visual Studio Code에서 gcc 기반 C, C++ 환경 설정하기
 
 
 VSCode에서 C 언어 및 C++ 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.
