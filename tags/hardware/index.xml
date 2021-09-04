@@ -1,15 +1,248 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Hardware - 태그 - EvaNote</title>
-        <link>https://evandde.github.io/tags/hardware/</link>
-        <description>Hardware - 태그 - EvaNote</description>
-        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Tue, 16 Mar 2021 09:28:22 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/hardware/" rel="self" type="application/rss+xml" /><item>
-    <title>리눅스 운영체제에서 하드웨어/시스템 정보 모니터링 명령어 모음</title>
-    <link>https://evandde.github.io/linux-sysinfo/</link>
-    <pubDate>Tue, 16 Mar 2021 09:28:22 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/linux-sysinfo/</guid>
-    <description><![CDATA[<p>리눅스 운영체제에서 하드웨어 및 시스템의 정보나 현재 상태를 살펴보는 데에 사용되는 명령어를 정리하였습니다.</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware | EvaNote</title>
+    <link>https://evandde.github.io/tags/hardware/</link>
+      <atom:link href="https://evandde.github.io/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
+    <description>Hardware</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Tue, 16 Mar 2021 09:28:22 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>Hardware</title>
+      <link>https://evandde.github.io/tags/hardware/</link>
+    </image>
+    
+    <item>
+      <title>리눅스 운영체제에서 하드웨어/시스템 정보 모니터링 명령어 모음</title>
+      <link>https://evandde.github.io/linux-sysinfo/</link>
+      <pubDate>Tue, 16 Mar 2021 09:28:22 +0900</pubDate>
+      <guid>https://evandde.github.io/linux-sysinfo/</guid>
+      <description>&lt;p&gt;리눅스 운영체제에서 하드웨어 및 시스템의 정보나 현재 상태를 살펴보는 데에 사용되는 명령어를 정리하였습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;os-확인&#34;&gt;OS 확인&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lsb_release -a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;lsb_release&#34; srcset=&#34;
+               /linux-sysinfo/lsb_release_hu1ae3037d451d2f8c8eed18279649d073_7650_f6e750712ed0d4476ccbbabe26708db3.png 400w,
+               /linux-sysinfo/lsb_release_hu1ae3037d451d2f8c8eed18279649d073_7650_65a87b62765d1078706ec48241fb113e.png 760w,
+               /linux-sysinfo/lsb_release_hu1ae3037d451d2f8c8eed18279649d073_7650_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/linux-sysinfo/lsb_release_hu1ae3037d451d2f8c8eed18279649d073_7650_f6e750712ed0d4476ccbbabe26708db3.png&#34;
+               width=&#34;320&#34;
+               height=&#34;114&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;메모리-및-swap-영역-상태-확인&#34;&gt;메모리 및 swap 영역 상태 확인&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;free -h
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;free&#34; srcset=&#34;
+               /linux-sysinfo/free_hub0df18e3f914a7dc604e2353fe2a50aa_7717_23f4245750990b0c863603c109f16666.png 400w,
+               /linux-sysinfo/free_hub0df18e3f914a7dc604e2353fe2a50aa_7717_d0062d407dc539c117a2f859c2398f5e.png 760w,
+               /linux-sysinfo/free_hub0df18e3f914a7dc604e2353fe2a50aa_7717_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/linux-sysinfo/free_hub0df18e3f914a7dc604e2353fe2a50aa_7717_23f4245750990b0c863603c109f16666.png&#34;
+               width=&#34;720&#34;
+               height=&#34;78&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;디스크-용량-확인&#34;&gt;디스크 용량 확인&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;df -h
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;df&#34; srcset=&#34;
+               /linux-sysinfo/df_hu73cd4ae11b543103d5a6c0fa04b5e9e5_16297_44fdd7b577ca065eef5acaf3203dd396.png 400w,
+               /linux-sysinfo/df_hu73cd4ae11b543103d5a6c0fa04b5e9e5_16297_99060a5aaca90bd92c788e3b23fa76ba.png 760w,
+               /linux-sysinfo/df_hu73cd4ae11b543103d5a6c0fa04b5e9e5_16297_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/linux-sysinfo/df_hu73cd4ae11b543103d5a6c0fa04b5e9e5_16297_44fdd7b577ca065eef5acaf3203dd396.png&#34;
+               width=&#34;481&#34;
+               height=&#34;248&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;파티션-정보-확인&#34;&gt;파티션 정보 확인&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lsblk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;lsblk&#34; srcset=&#34;
+               /linux-sysinfo/lsblk_hu814b36fabd9e2ebaab5a4ffb0fe04e20_5814_4d0de8d1e8b63b1d12eb50a5c986247e.png 400w,
+               /linux-sysinfo/lsblk_hu814b36fabd9e2ebaab5a4ffb0fe04e20_5814_02cf47ebd31761e44e8125742390b1e8.png 760w,
+               /linux-sysinfo/lsblk_hu814b36fabd9e2ebaab5a4ffb0fe04e20_5814_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/linux-sysinfo/lsblk_hu814b36fabd9e2ebaab5a4ffb0fe04e20_5814_4d0de8d1e8b63b1d12eb50a5c986247e.png&#34;
+               width=&#34;371&#34;
+               height=&#34;78&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;cpu-모델명-확인&#34;&gt;CPU 모델명 확인&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cat /proc/cpuinfo | grep CPU | head -1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cpuinfo&#34; srcset=&#34;
+               /linux-sysinfo/cpuinfo_hue0ca0f2f4f8dd6a448397b2c4dfda5d8_6194_75d8d1e0d736a28d505df7b052a4721f.png 400w,
+               /linux-sysinfo/cpuinfo_hue0ca0f2f4f8dd6a448397b2c4dfda5d8_6194_c76850ec59059b9120f2c6066d7123fe.png 760w,
+               /linux-sysinfo/cpuinfo_hue0ca0f2f4f8dd6a448397b2c4dfda5d8_6194_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/linux-sysinfo/cpuinfo_hue0ca0f2f4f8dd6a448397b2c4dfda5d8_6194_75d8d1e0d736a28d505df7b052a4721f.png&#34;
+               width=&#34;528&#34;
+               height=&#34;36&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;cpu-코어-수-확인&#34;&gt;CPU 코어 수 확인&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cat /proc/cpuinfo | grep CPU | wc -l
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cpucore&#34; srcset=&#34;
+               /linux-sysinfo/cpucore_huedf4a06927d3078492580f98784c777f_3634_31cd3be7af7f55e5fbb44e93aebe434f.png 400w,
+               /linux-sysinfo/cpucore_huedf4a06927d3078492580f98784c777f_3634_ec55e8ecd668e76c1e1a79a7b3c083c4.png 760w,
+               /linux-sysinfo/cpucore_huedf4a06927d3078492580f98784c777f_3634_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/linux-sysinfo/cpucore_huedf4a06927d3078492580f98784c777f_3634_31cd3be7af7f55e5fbb44e93aebe434f.png&#34;
+               width=&#34;496&#34;
+               height=&#34;40&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;서버-상태-확인&#34;&gt;서버 상태 확인&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;w
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;w&#34; srcset=&#34;
+               /linux-sysinfo/w_hu55b3e37888b954b71f09343586bdf9a3_11214_c8406a23afb9ee96a65a1b604b7e63e6.png 400w,
+               /linux-sysinfo/w_hu55b3e37888b954b71f09343586bdf9a3_11214_635aefad6d824b1bc4da4786e1c8c321.png 760w,
+               /linux-sysinfo/w_hu55b3e37888b954b71f09343586bdf9a3_11214_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/linux-sysinfo/w_hu55b3e37888b954b71f09343586bdf9a3_11214_c8406a23afb9ee96a65a1b604b7e63e6.png&#34;
+               width=&#34;632&#34;
+               height=&#34;95&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
 </rss>

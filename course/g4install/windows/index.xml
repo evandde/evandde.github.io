@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows | EvaNote</title>
+    <link>https://evandde.github.io/course/g4install/windows/</link>
+      <atom:link href="https://evandde.github.io/course/g4install/windows/index.xml" rel="self" type="application/rss+xml" />
+    <description>Windows</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Sat, 04 Sep 2021 10:14:50 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>Windows</title>
+      <link>https://evandde.github.io/course/g4install/windows/</link>
+    </image>
+    
+    <item>
+      <title>Geant4 Windows 10에 설치 무작정 따라하기(초보자용)</title>
+      <link>https://evandde.github.io/g4install-107p2-win10basic/</link>
+      <pubDate>Thu, 15 Jul 2021 21:41:51 +0900</pubDate>
+      <guid>https://evandde.github.io/g4install-107p2-win10basic/</guid>
+      <description>&lt;p&gt;이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, &lt;b&gt;Windows 10을 사용하는 개인 컴퓨터 환경&lt;/b&gt;에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. &lt;b&gt;(인터넷 연결 필요)&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;이 글에서 제시하는 방향보다, 각자에게 더 적합한 Geant4 설치 방향이 있을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;하지만, 이 글은 &lt;b&gt;배경지식 없이도 실무에 사용 가능한 수준으로 Geant4를 설치하는 것을 목적&lt;/b&gt;으로 하기 때문에, 작업 난이도 측면에서 쉬운 방향을 택하였습니다.&lt;/p&gt;
+&lt;p&gt;다양한 설치 옵션을 입맛에 맞게 변경하기보다는, &amp;ldquo;&lt;strong&gt;우선 Geant4라는걸 써봐야겠다&lt;/strong&gt;&amp;rdquo; 라는 분에게 권장합니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;작업-흐름-요약&#34;&gt;작업 흐름 요약&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Windows 10에 Microsoft Visual Studio 2019에 포함된 빌드 도구를 설치합니다.&lt;/li&gt;
+&lt;li&gt;Microsoft Visual Studio 2019 빌드 도구에 호환되는 Qt5 라이브러리를 설치합니다.&lt;/li&gt;
+&lt;li&gt;Windows 10에 Geant4를 설치합니다.
+&lt;ul&gt;
+&lt;li&gt;크로스섹션 데이터는 설치과정에서 자동으로 다운되도록 할 예정이므로 인터넷 연결이 필요합니다.&lt;/li&gt;
+&lt;li&gt;CLHep은 내장된 사양만 사용하며, 따로 설치하지 않을 것입니다.&lt;/li&gt;
+&lt;li&gt;그래픽 라이브러리로 Qt5를 연동하여 설치합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Geant4 예제를 실행시켜, 잘 설치되었는지 확인합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vs2019-빌드-도구-설치&#34;&gt;VS2019 빌드 도구 설치&lt;/h2&gt;
+&lt;p&gt;이 글에서는 Geant4 설치를 위한 빌드 도구로 gcc보다는 MSVC(Microsoft Visual C++)를 이용하여 진행할 예정입니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;제 경험상으로는 Linux/Unix 환경에서 gcc를 사용했던 경험에 비해 그리 시원치 않아서, 개인적으로 Windows 10에서 설치 시에는 MSVC를 추천합니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;다운로드&#34;&gt;다운로드&lt;/h3&gt;
+&lt;p&gt;Microsoft에서 제공하는 Visual Studio 2019용 Build Tools는 &lt;a href=&#34;https://visualstudio.microsoft.com/ko/downloads/#build-tools-for-visual-studio-2019&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;에서 무료로 받을 수 있습니다. 아래 그림에서 보이는 다운로드 링크를 누르면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_download&#34; srcset=&#34;
+               /g4install-107p2-win10basic/vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_df9e25f1c544aa68a78a92d89e0c13a0.png 400w,
+               /g4install-107p2-win10basic/vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_b06efe6e544273a41390ecc7e564f614.png 760w,
+               /g4install-107p2-win10basic/vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_df9e25f1c544aa68a78a92d89e0c13a0.png&#34;
+               width=&#34;760&#34;
+               height=&#34;135&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;설치&#34;&gt;설치&lt;/h3&gt;
+&lt;p&gt;다운받은 뒤 실행하면, 아래 그림과 같은 창이 뜰 것입니다. 이 중 &lt;b&gt;C++를 사용한 데스크톱 개발&lt;/b&gt;을 클릭합니다. 오른쪽 설치 세부 정보에서, 자동으로 선택사항 중 일부가 선택될 것입니다. 혹시라도 &lt;b&gt;Windows용 C++ CMake 도구&lt;/b&gt;가 선택이 안되어있다면, &lt;b&gt;꼭 선택&lt;/b&gt;해주시기 바랍니다. 선택을 완료하셨다면 설치를 진행하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_install&#34; srcset=&#34;
+               /g4install-107p2-win10basic/vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_c5d8029504a4fb8ef927f8c6b3a180ce.png 400w,
+               /g4install-107p2-win10basic/vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_0b55a1d22f1be37baad8292a20a41ba4.png 760w,
+               /g4install-107p2-win10basic/vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_c5d8029504a4fb8ef927f8c6b3a180ce.png&#34;
+               width=&#34;760&#34;
+               height=&#34;424&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;설치여부-확인&#34;&gt;설치여부 확인&lt;/h3&gt;
+&lt;p&gt;제대로 설치가 되었는지 확인해보겠습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;[WIN]+[S]&lt;/b&gt; 를 눌러 검색을 띄움&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;developer powershell&lt;/code&gt;을 입력하여 &lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 찾은 뒤 실행&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_test1&#34; srcset=&#34;
+               /g4install-107p2-win10basic/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_226fbd82f31d51e44fa9627733e16400.png 400w,
+               /g4install-107p2-win10basic/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_be659fa34a05acdcb7fbe530b7909974.png 760w,
+               /g4install-107p2-win10basic/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_226fbd82f31d51e44fa9627733e16400.png&#34;
+               width=&#34;760&#34;
+               height=&#34;623&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cl&lt;/code&gt;을 입력하여, 다음 그림과 같이 사용법(usage)이 뜨는지 확인&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_test2&#34; srcset=&#34;
+               /g4install-107p2-win10basic/vs2019buildtools_test2_hub7498eb52e09045178598a550d3695f5_15086_9269aa39a59933636d852135180485aa.png 400w,
+               /g4install-107p2-win10basic/vs2019buildtools_test2_hub7498eb52e09045178598a550d3695f5_15086_4c3b6009b4d76a83b68f225ace1e4e45.png 760w,
+               /g4install-107p2-win10basic/vs2019buildtools_test2_hub7498eb52e09045178598a550d3695f5_15086_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/vs2019buildtools_test2_hub7498eb52e09045178598a550d3695f5_15086_9269aa39a59933636d852135180485aa.png&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;확인이 끝난 뒤에는, &lt;b&gt;Developer PowerShell을 일단 종료&lt;/b&gt;(Qt 설치 시 충돌 방지)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;qt5-라이브러리-설치&#34;&gt;Qt5 라이브러리 설치&lt;/h2&gt;
+&lt;p&gt;Qt는 Geant4에서 GUI를 띄우기 위해 필요한 라이브러리입니다. Qt는 라이센스 이슈 때문인지, 설치하려면 &lt;b&gt;Qt 계정 회원가입 및 로그인이 필요&lt;/b&gt;합니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;다운로드-1&#34;&gt;다운로드&lt;/h3&gt;
+&lt;p&gt;일단 &lt;a href=&#34;https://www.qt.io/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;에서 Qt online installer를 다운받을 수 있습니다. 처음 들어오시면 헤매실까봐 눌러야하는 링크 순서를 보여드리니, 아래 그림을 참고해서 진행하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_download1&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_download1_hu7c615b8709f940ffa5bb13f451cd49f9_26021_d55bd4dfc6220172c0712e02e46f26f3.png 400w,
+               /g4install-107p2-win10basic/qt_download1_hu7c615b8709f940ffa5bb13f451cd49f9_26021_4bc597226c2518d91ab75a8608765824.png 760w,
+               /g4install-107p2-win10basic/qt_download1_hu7c615b8709f940ffa5bb13f451cd49f9_26021_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_download1_hu7c615b8709f940ffa5bb13f451cd49f9_26021_d55bd4dfc6220172c0712e02e46f26f3.png&#34;
+               width=&#34;625&#34;
+               height=&#34;293&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_download2&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_download2_hu61e4050399c5055af5f56e9b4d4c2f15_36717_a356c2ea2431d6ff850205a5495bc8f6.png 400w,
+               /g4install-107p2-win10basic/qt_download2_hu61e4050399c5055af5f56e9b4d4c2f15_36717_0bf0974ceadca9bbee6f8e96b3469f0e.png 760w,
+               /g4install-107p2-win10basic/qt_download2_hu61e4050399c5055af5f56e9b4d4c2f15_36717_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_download2_hu61e4050399c5055af5f56e9b4d4c2f15_36717_a356c2ea2431d6ff850205a5495bc8f6.png&#34;
+               width=&#34;760&#34;
+               height=&#34;184&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_download3&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_download3_huea4d9f6c97de37a43c8a70ad4330f089_230053_4610af1c0ea0314a73cac61bbb438dd3.png 400w,
+               /g4install-107p2-win10basic/qt_download3_huea4d9f6c97de37a43c8a70ad4330f089_230053_475143fb405d8d23955cf331866192f7.png 760w,
+               /g4install-107p2-win10basic/qt_download3_huea4d9f6c97de37a43c8a70ad4330f089_230053_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_download3_huea4d9f6c97de37a43c8a70ad4330f089_230053_4610af1c0ea0314a73cac61bbb438dd3.png&#34;
+               width=&#34;760&#34;
+               height=&#34;450&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;설치-1&#34;&gt;설치&lt;/h3&gt;
+&lt;p&gt;설치파일을 다운받은 뒤 실행하시면, 다음과 같이 계정을 입력하라는 창이 뜹니다. 이미 가입하셨다면 Qt 계정을 입력하여 로그인하시고, 계정이 없으시다면 &lt;u&gt;Sign up&lt;/u&gt;을 눌러 계정을 생성한 뒤 입력하시면 됩니다. 가입 시 이메일 인증절차가 필요합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_install1&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_install1_hu818c53db882509e75ab7777b3766b47b_210990_96e11dcb13e813affb7354c64a6a85d9.png 400w,
+               /g4install-107p2-win10basic/qt_install1_hu818c53db882509e75ab7777b3766b47b_210990_e514343e94719cdac1452220c0bdca59.png 760w,
+               /g4install-107p2-win10basic/qt_install1_hu818c53db882509e75ab7777b3766b47b_210990_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_install1_hu818c53db882509e75ab7777b3766b47b_210990_96e11dcb13e813affb7354c64a6a85d9.png&#34;
+               width=&#34;760&#34;
+               height=&#34;505&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;이어서 라이센스 동의 관련 내용이 뜹니다. 첫 번째 체크박스는 라이센스에 동의하겠다는 것이니 체크를 반드시 하셔야 합니다. 두 번째 네모상자 및 체크박스는 사용자가 기관인지 개인인지를 확인하는 란입니다. 기관이시면 기관명을 적고, 개인이시면 체크박스에 체크를 하면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_install2&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_install2_hu1ab13f0541a3679f75fdc0602ad75b9d_222457_d3ea5d1287a138a47c5a5fff5719b2cf.png 400w,
+               /g4install-107p2-win10basic/qt_install2_hu1ab13f0541a3679f75fdc0602ad75b9d_222457_ae8408564ab169f580a24fcb3d8ed46f.png 760w,
+               /g4install-107p2-win10basic/qt_install2_hu1ab13f0541a3679f75fdc0602ad75b9d_222457_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_install2_hu1ab13f0541a3679f75fdc0602ad75b9d_222457_d3ea5d1287a138a47c5a5fff5719b2cf.png&#34;
+               width=&#34;760&#34;
+               height=&#34;505&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;Next 버튼을 누르다보면, Qt 발전을 위해 정보 제공 동의를 하는 내용이 나오는데, 이는 자유롭게 선택하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_install3&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_install3_hufbf6bdf32d1a86c543ce2016bcb78281_215592_70a047b113f0c9a1c187bc348f5ec37b.png 400w,
+               /g4install-107p2-win10basic/qt_install3_hufbf6bdf32d1a86c543ce2016bcb78281_215592_17f72271658d23736c74ed2bbf5abc69.png 760w,
+               /g4install-107p2-win10basic/qt_install3_hufbf6bdf32d1a86c543ce2016bcb78281_215592_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_install3_hufbf6bdf32d1a86c543ce2016bcb78281_215592_70a047b113f0c9a1c187bc348f5ec37b.png&#34;
+               width=&#34;760&#34;
+               height=&#34;505&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;다음으로 설치경로 및 설치유형 선택이 나옵니다.&lt;/p&gt;
+&lt;p&gt;일단, 이 글에서 설치 경로는 기본경로인 &lt;code&gt;C:\Qt&lt;/code&gt;로 가겠습니다.&lt;/p&gt;
+&lt;p&gt;설치 유형은 &lt;b&gt;Custom Installation&lt;/b&gt;이 선택된대로 놔두시면 됩니다.&lt;/p&gt;
+&lt;p&gt;맨 아래의 &lt;b&gt;Associate common file types with Qt Creator.&lt;/b&gt; 체크박스의 경우에는, 여러분이 Qt Creator라는 IDE를 사용하실 예정이라면 체크하시고, 사용할 계획이 없으시다면 체크를 해제하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_install4&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_install4_hu6fadece4545434b2bd1de367d689d836_217054_da82cc6fb696fae419854f86e54d98b8.png 400w,
+               /g4install-107p2-win10basic/qt_install4_hu6fadece4545434b2bd1de367d689d836_217054_4bb97a509b5925af6d4dfd08b704b460.png 760w,
+               /g4install-107p2-win10basic/qt_install4_hu6fadece4545434b2bd1de367d689d836_217054_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_install4_hu6fadece4545434b2bd1de367d689d836_217054_da82cc6fb696fae419854f86e54d98b8.png&#34;
+               width=&#34;760&#34;
+               height=&#34;505&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;Next를 누르면 설치할 항목을 고르는 부분이 나옵니다. &lt;strong&gt;여기가 중요&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p&gt;일단 &lt;font color=red&gt;&lt;b&gt;Deselect All을 눌러 모든 항목을 선택 해제&lt;/b&gt;&lt;/font&gt;합니다.&lt;/p&gt;
+&lt;p&gt;그리고나서, &lt;font color=red&gt;&lt;b&gt;Qt &amp;gt; Qt 5.15.2 &amp;gt; MSVC 2019 64-bit만 선택&lt;/b&gt;&lt;/font&gt;합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_install5&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_install5_hu8f5585a5cecf2d574b31193e653d9b9b_338720_f4fb1ddb13462f603f3617aba2cfe245.png 400w,
+               /g4install-107p2-win10basic/qt_install5_hu8f5585a5cecf2d574b31193e653d9b9b_338720_c7a57905a445f6007c66d75b27901a42.png 760w,
+               /g4install-107p2-win10basic/qt_install5_hu8f5585a5cecf2d574b31193e653d9b9b_338720_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_install5_hu8f5585a5cecf2d574b31193e653d9b9b_338720_f4fb1ddb13462f603f3617aba2cfe245.png&#34;
+               width=&#34;760&#34;
+               height=&#34;505&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_install6&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_install6_huae82795004dd959b0cfea99e55d4e897_232833_a1a4e1aa6c9d5afeec0f3073dceae221.png 400w,
+               /g4install-107p2-win10basic/qt_install6_huae82795004dd959b0cfea99e55d4e897_232833_3ac31b79246178d43e43c7f88f59e230.png 760w,
+               /g4install-107p2-win10basic/qt_install6_huae82795004dd959b0cfea99e55d4e897_232833_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_install6_huae82795004dd959b0cfea99e55d4e897_232833_a1a4e1aa6c9d5afeec0f3073dceae221.png&#34;
+               width=&#34;760&#34;
+               height=&#34;505&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;현재 Qt 최신버전은 6.x 버전입니다만, Geant4에서 아직 Qt5까지만 지원합니다.&lt;/p&gt;
+&lt;p&gt;그리고 Qt를 설치할 때 사용하는 컴파일러에 맞추어 설치해야 합니다. 저희는 MSVC를 이용하므로 이에 맞추어 설치를 진행합니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이제 설치가 완료될 때까지 기다리시면 됩니다. Qt쪽 서버와 한국간 통신이 느려서 그런지 생각보다 오래 걸리더군요.&lt;/p&gt;
+&lt;h3 id=&#34;환경변수-설정&#34;&gt;환경변수 설정&lt;/h3&gt;
+&lt;p&gt;설치가 끝났다면 환경변수를 설정하는 과정이 필요합니다. &lt;code&gt;Path&lt;/code&gt; 환경변수에 Qt가 설치된 경로의 bin 폴더를 추가해주어야 합니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    기본경로인 &lt;code&gt;C:\Qt&lt;/code&gt;가 아닌 다른 곳에 설치하셨다면, 맞추어 경로를 바꿔서 입력하셔야 합니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;PowerShell을 관리자 권한으로 열어, 명령어를 통해 설정하도록 하겠습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;[WIN]+[R]&lt;/b&gt;을 눌러 실행 창 열기&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;powershell&lt;/code&gt; 입력 후 &lt;b&gt;[CTRL]+[SHIFT]+[ENTER]&lt;/b&gt;를 눌러 관리자 권한으로 powershell 실행&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다음 명령어 입력&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;[Environment]::SetEnvironmentVariable(&amp;quot;Path&amp;quot;, $env:Path+&amp;quot;;C:\Qt\5.15.2\msvc2019_64\bin&amp;quot;, &amp;quot;Machine&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;설치여부-확인-1&#34;&gt;설치여부 확인&lt;/h3&gt;
+&lt;p&gt;방금 열어둔 PowerShell에서 &lt;code&gt;qmake&lt;/code&gt;라고 입력한 뒤 사용법(usage)이 뜨는지 확인합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;qt_test&#34; srcset=&#34;
+               /g4install-107p2-win10basic/qt_test_hubf3ba68a4e76097738b05b1a7f5af941_39351_98e0d27ee8767c51c93a00408c2df775.png 400w,
+               /g4install-107p2-win10basic/qt_test_hubf3ba68a4e76097738b05b1a7f5af941_39351_3e2a6b6a81c8c65d8c2d38c93fec61a9.png 760w,
+               /g4install-107p2-win10basic/qt_test_hubf3ba68a4e76097738b05b1a7f5af941_39351_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/qt_test_hubf3ba68a4e76097738b05b1a7f5af941_39351_98e0d27ee8767c51c93a00408c2df775.png&#34;
+               width=&#34;760&#34;
+               height=&#34;648&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4-설치&#34;&gt;Geant4 설치&lt;/h2&gt;
+&lt;h3 id=&#34;다운로드-2&#34;&gt;다운로드&lt;/h3&gt;
+&lt;p&gt;Geant4 소스코드는 &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;에서 다운받을 수 있습니다. 위의 &lt;b&gt;Source files&lt;/b&gt;라고 되어있는 항목 중 &lt;b&gt;ZIP format 파일&lt;/b&gt;을 받으면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;geant4_download&#34; srcset=&#34;
+               /g4install-107p2-win10basic/geant4_download_hu183cf2b1eeb3561d9817d0692bb26a75_27109_40e4803680c078ad27da5177d06f8d63.png 400w,
+               /g4install-107p2-win10basic/geant4_download_hu183cf2b1eeb3561d9817d0692bb26a75_27109_47895efb1b1bc708b1ccd2292f8d0336.png 760w,
+               /g4install-107p2-win10basic/geant4_download_hu183cf2b1eeb3561d9817d0692bb26a75_27109_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/geant4_download_hu183cf2b1eeb3561d9817d0692bb26a75_27109_40e4803680c078ad27da5177d06f8d63.png&#34;
+               width=&#34;760&#34;
+               height=&#34;272&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;설치-2&#34;&gt;설치&lt;/h3&gt;
+&lt;p&gt;이 글에서는 &lt;code&gt;C:\Geant4&lt;/code&gt; 폴더를 만들어 여기에 설치를 하도록 하겠습니다. 경로는 자유롭게 하셔도 됩니다만, 추후 환경변수 등을 설정할 때 경로를 맞추어 변경해주셔야 하니 주의하시기 바랍니다.&lt;/p&gt;
+&lt;p&gt;이제 다음과 같이 순서대로 진행하시면 됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;위에서 다운받은 압축파일(geant4_10_07_p02.zip)을 &lt;code&gt;C:\Geant4&lt;/code&gt; 폴더에 옮기고, 압축을 풀어줍니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;geant4_install1&#34; srcset=&#34;
+               /g4install-107p2-win10basic/geant4_install1_hu9513900efb93424c56c4af938a2a81cd_26224_e5de6750bdddb6b8a8df5a6b8ac14daa.png 400w,
+               /g4install-107p2-win10basic/geant4_install1_hu9513900efb93424c56c4af938a2a81cd_26224_de2d0a6224d4664c519adab116794a5e.png 760w,
+               /g4install-107p2-win10basic/geant4_install1_hu9513900efb93424c56c4af938a2a81cd_26224_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/geant4_install1_hu9513900efb93424c56c4af938a2a81cd_26224_e5de6750bdddb6b8a8df5a6b8ac14daa.png&#34;
+               width=&#34;760&#34;
+               height=&#34;429&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;압축을 풀어 생긴 geant4_10_07_p02 폴더에 들어가서, &lt;b&gt;&lt;code&gt;build&lt;/code&gt; 폴더와 &lt;code&gt;install&lt;/code&gt; 폴더를 새로 만들어줍니다&lt;/b&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;build&lt;/code&gt; 폴더는 cmake를 통해 생성되는 컴파일 결과가 보관될 폴더입니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;install&lt;/code&gt;폴더는 Geant4가 최종적으로 설치될 폴더입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;geant4_install2&#34; srcset=&#34;
+               /g4install-107p2-win10basic/geant4_install2_hua77048e5d1921956f160189de712b8f3_41530_a2daf3210fa7ee251d4a0ba48eeeb61c.png 400w,
+               /g4install-107p2-win10basic/geant4_install2_hua77048e5d1921956f160189de712b8f3_41530_8daeabc94eb674fbd290e9a8ce6333d7.png 760w,
+               /g4install-107p2-win10basic/geant4_install2_hua77048e5d1921956f160189de712b8f3_41530_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/geant4_install2_hua77048e5d1921956f160189de712b8f3_41530_a2daf3210fa7ee251d4a0ba48eeeb61c.png&#34;
+               width=&#34;760&#34;
+               height=&#34;429&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 실행합니다.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;[WIN]+[S]&lt;/b&gt; 를 눌러 검색을 띄우고, &lt;code&gt;developer powershell&lt;/code&gt;을 입력하여 &lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 찾은 뒤 실행하면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_test1&#34; srcset=&#34;
+               /g4install-107p2-win10basic/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_226fbd82f31d51e44fa9627733e16400.png 400w,
+               /g4install-107p2-win10basic/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_be659fa34a05acdcb7fbe530b7909974.png 760w,
+               /g4install-107p2-win10basic/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_226fbd82f31d51e44fa9627733e16400.png&#34;
+               width=&#34;760&#34;
+               height=&#34;623&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PowerShell 상에서 &lt;code&gt;cd&lt;/code&gt; 명령어를 이용하여, 앞서 만든 &lt;code&gt;build &lt;/code&gt;폴더 위치로 이동합니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 이 글에서와 같이 &lt;code&gt;C:\Geant4\geant4_10_07_p02\build&lt;/code&gt;로 이동해야 하는 경우에는, 다음과 같이 입력하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;cd C:\Geant4\geant4_10_07_p02\build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;geant4_install3&#34; srcset=&#34;
+               /g4install-107p2-win10basic/geant4_install3_hu85977aa02ce51a3886646f5bcd943b8b_11100_35045bc0eab59368fe1b41b175827b45.png 400w,
+               /g4install-107p2-win10basic/geant4_install3_hu85977aa02ce51a3886646f5bcd943b8b_11100_70743a14b5d9cf2c11ad3e65e3c18a87.png 760w,
+               /g4install-107p2-win10basic/geant4_install3_hu85977aa02ce51a3886646f5bcd943b8b_11100_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/geant4_install3_hu85977aa02ce51a3886646f5bcd943b8b_11100_35045bc0eab59368fe1b41b175827b45.png&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다음 명령어를 그대로 입력하여 &lt;code&gt;cmake&lt;/code&gt; 작업을 수행합니다. 오탈자 방지를 위해 복사-붙여넣기를 권장합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;cmake .. -DCMAKE_INSTALL_PREFIX=&amp;quot;C:\Geant4\geant4_10_07_p02\install&amp;quot; -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_INSTALL_DATA=ON -DGEANT4_BUILD_MSVC_MP=ON -DGEANT4_USE_QT=ON
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;각 옵션의 의미는 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CMAKE_INSTALL_PREFIX: Geant4가 설치될 폴더의 경로.&lt;/li&gt;
+&lt;li&gt;GEANT4_BUILD_MULTITHREADED: Geant4에서 MultiThreading이 가능하도록 설치할 지에 대한 여부. 기본값은 OFF.&lt;/li&gt;
+&lt;li&gt;GEANT4_INSTALL_DATA: Geant4 설치 시 크로스섹션 데이터를 자동으로 다운로드할 지에 대한 여부. 기본값은 OFF.&lt;/li&gt;
+&lt;li&gt;GEANT4_BUILD_MSVC_MP: Windows에서 MSVC 빌드 도구를 통해 설치할 때 Multiprocessing을 통해 설치 속도를 빠르게 할 지에 대한 여부. 기본값은 OFF.&lt;/li&gt;
+&lt;li&gt;GEANT4_USE_QT: Geant4에서 Qt5 기반의 GUI를 사용할 수 있도록 설치할 지에 대한 여부. 기본값은 OFF.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;다음 그림과 같이 &lt;b&gt;Configuring done&lt;/b&gt;과 &lt;b&gt;Generating done&lt;/b&gt; 문구를 확인하였다면 성공입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;geant4_install4&#34; srcset=&#34;
+               /g4install-107p2-win10basic/geant4_install4_hu043c7cfde1e15baae59434bc37191b66_74610_8cf3f8525f5cadfb3a3c191bbb552242.png 400w,
+               /g4install-107p2-win10basic/geant4_install4_hu043c7cfde1e15baae59434bc37191b66_74610_a553107361dda28ddd59717ca95be535.png 760w,
+               /g4install-107p2-win10basic/geant4_install4_hu043c7cfde1e15baae59434bc37191b66_74610_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/geant4_install4_hu043c7cfde1e15baae59434bc37191b66_74610_8cf3f8525f5cadfb3a3c191bbb552242.png&#34;
+               width=&#34;531&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다음 명령어를 그대로 입력하여 빌드 및 설치 작업을 수행합니다. 오탈자 방지를 위해 복사-붙여넣기를 권장합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;cmake --build . --config Release --target install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;수행 중에 유니코드 이슈와 관련하여 warning C4819가 뜰 수 있습니다만, 무시하고 진행하셔도 괜찮습니다.&lt;/p&gt;
+&lt;p&gt;최종적으로 아래 그림과 같이 &lt;code&gt;-- Installing: ...&lt;/code&gt; 내역이 쭉 뜨고 끝나면 정상적으로 종료된 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;geant4_install5&#34; srcset=&#34;
+               /g4install-107p2-win10basic/geant4_install5_hude43c227001a54a767c1baedb2329d83_56181_19e0f88803e50475bc722e700e86d8e8.png 400w,
+               /g4install-107p2-win10basic/geant4_install5_hude43c227001a54a767c1baedb2329d83_56181_33892bb46b3d1146dc3532feee154461.png 760w,
+               /g4install-107p2-win10basic/geant4_install5_hude43c227001a54a767c1baedb2329d83_56181_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/geant4_install5_hude43c227001a54a767c1baedb2329d83_56181_19e0f88803e50475bc722e700e86d8e8.png&#34;
+               width=&#34;760&#34;
+               height=&#34;448&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;환경변수-설정-1&#34;&gt;환경변수 설정&lt;/h3&gt;
+&lt;p&gt;설치가 끝났다면 환경변수를 설정하는 과정이 필요합니다.&lt;/p&gt;
+&lt;p&gt;먼저, PowerShell을 관리자 권한으로 실행합니다. &lt;font color=red&gt;&lt;b&gt;방금까지 Geant4 설치에 이용하던 Developer PowerShell for VS 2019에서 하는 것이 아님에 주의&lt;/b&gt;&lt;/font&gt;하세요. 권한이 없어서 명령어가 제대로 실행되지 않을 수 있습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;[WIN]+[R]&lt;/b&gt;을 눌러 실행 창 열기&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;powershell&lt;/code&gt; 입력 후 &lt;b&gt;[CTRL]+[SHIFT]+[ENTER]&lt;/b&gt;를 눌러 관리자 권한으로 powershell 실행&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다음 명령어 입력&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Path&lt;/code&gt; 환경변수에 Geant4가 설치된 경로의 &lt;code&gt;bin&lt;/code&gt; 폴더를 추가&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;[Environment]::SetEnvironmentVariable(&amp;quot;Path&amp;quot;, $env:Path+&amp;quot;;C:\Geant4\geant4_10_07_p02\install\bin&amp;quot;, &amp;quot;Machine&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Geant4_DIR&lt;/code&gt;이라는 환경변수를 만들어 Geant4가 설치된 경로의 &lt;code&gt;lib\Geant4-10.7.2&lt;/code&gt; 폴더를 추가&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;[Environment]::SetEnvironmentVariable(&amp;quot;Geant4_DIR&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\lib\Geant4-10.7.2&amp;quot;, &amp;quot;Machine&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;크로스섹션 데이터 경로 설정을 위한 환경변수 설정 (참고: &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html#environment-variables-for-datasets&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Postinstall Setup — Geant4 Installation Guide 10.7 documentation (cern.ch)&lt;/a&gt;)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;[Environment]::SetEnvironmentVariable(&amp;quot;G4ABLADATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4ABLA3.1&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4ENSDFSTATEDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4ENSDFSTATE2.3&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4INCLDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4INCL1.0&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4LEDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4EMLOW7.13&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4LEVELGAMMADATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\PhotonEvaporation5.7&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4NEUTRONHPDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4NDL4.6&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4PARTICLEXSDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4PARTICLEXS3.1.1&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4PIIDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4PII1.3&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4RADIOACTIVEDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\RadioactiveDecay5.6&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4REALSURFACEDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\RealSurface2.2&amp;quot;, &amp;quot;Machine&amp;quot;)
+[Environment]::SetEnvironmentVariable(&amp;quot;G4SAIDXSDATA&amp;quot;, &amp;quot;C:\Geant4\geant4_10_07_p02\install\share\Geant4-10.7.2\data\G4SAIDDATA2.0&amp;quot;, &amp;quot;Machine&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4-예제-실행해보기&#34;&gt;Geant4 예제 실행해보기&lt;/h2&gt;
+&lt;p&gt;Geant4 설치를 완료했으니 이제 실행을 해봐야겠죠.&lt;/p&gt;
+&lt;p&gt;Windows에서 Geant4 라이브러리 기반의 코드를 빌드하려면 &lt;b&gt;&lt;font color=red&gt;Developer PowerShell for VS 2019를 통해 진행&lt;/font&gt;&lt;/b&gt;하셔야 합니다.&lt;/p&gt;
+&lt;p&gt;예제파일은 소스코드의 압축을 풀었던 곳에 있는 &lt;code&gt;examples&lt;/code&gt; 폴더에 있습니다. 여기서는 제일 기본예제인 &lt;code&gt;examples\basic\B1&lt;/code&gt;을 테스트 해보겠습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;B1&lt;/code&gt; 폴더를 &lt;b&gt;폴더 째로 복사&lt;/b&gt;하여 원하는 곳에 가져옵니다. 저는 &lt;code&gt;C:\Geant4\B1&lt;/code&gt;으로 복사해왔습니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;복사해온 &lt;code&gt;B1&lt;/code&gt; 폴더 안에 &lt;b&gt;&lt;code&gt;build&lt;/code&gt;라는 폴더를 새로 만듭니다&lt;/b&gt;.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;example1&#34; srcset=&#34;
+               /g4install-107p2-win10basic/example1_huf71dc8f726b0bf69733721115d598312_45478_2271b60d0b0f68d1a65438b36778b1e8.png 400w,
+               /g4install-107p2-win10basic/example1_huf71dc8f726b0bf69733721115d598312_45478_1196a18e54132938e17d36258bc891d4.png 760w,
+               /g4install-107p2-win10basic/example1_huf71dc8f726b0bf69733721115d598312_45478_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/example1_huf71dc8f726b0bf69733721115d598312_45478_2271b60d0b0f68d1a65438b36778b1e8.png&#34;
+               width=&#34;760&#34;
+               height=&#34;429&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;복사해온 B1 폴더 안에 있는 &lt;code&gt;CMakeLists.txt&lt;/code&gt; 파일을 열어, 파일의 맨 위에 다음 내용을 추가합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmake&#34;&gt;#----------------------------------------------------------------------------
+# Set build output directory to be ./build 
+# rather than ./build/Release or ./build/RelWithDebInfo
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE &amp;quot;${CMAKE_BINARY_DIR}&amp;quot;)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO &amp;quot;${CMAKE_BINARY_DIR}&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;example2&#34; srcset=&#34;
+               /g4install-107p2-win10basic/example2_hu5bc646f33e70b300bacd657798df2033_61231_4a8011c4ce801c6fee4a30ce57387679.png 400w,
+               /g4install-107p2-win10basic/example2_hu5bc646f33e70b300bacd657798df2033_61231_6985b1e2e3a785ed7191d5a48e73ecde.png 760w,
+               /g4install-107p2-win10basic/example2_hu5bc646f33e70b300bacd657798df2033_61231_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/example2_hu5bc646f33e70b300bacd657798df2033_61231_4a8011c4ce801c6fee4a30ce57387679.png&#34;
+               width=&#34;760&#34;
+               height=&#34;640&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;Geant4 코드는 init_vis.mac, vis.mac,&amp;hellip;과 같은 *.mac 파일을 불러와서 이를 연동하여 실행하는 경우가 많습니다.&lt;/p&gt;
+&lt;p&gt;일반적으로 UNIX/LINUX 환경에서는 실행파일과 *.mac 파일이 동일한 경로에 존재하도록 빌드를 수행하기 때문에, 대부분의 Geant4 코드는 이들의 위치가 동일하게 &lt;code&gt;build&lt;/code&gt; 폴더에 있으리라는 가정 하에 작성되어 있습니다. 그러나 MSVC를 이용하여 빌드를 수행할 경우에는, *.mac 파일은 &lt;code&gt;build&lt;/code&gt; 폴더에 있지만, 실행파일(*.exe)은 &lt;code&gt;build\Release&lt;/code&gt;나 &lt;code&gt;build\RelWithDebInfo&lt;/code&gt; 폴더 안에 생성됩니다.&lt;/p&gt;
+&lt;p&gt;위의 코드를 &lt;code&gt;CMakeLists.txt&lt;/code&gt;에 추가하면, 실행파일이 *.mac 파일의 위치와 동일한 &lt;code&gt;build&lt;/code&gt; 폴더에 생성되어 이 문제를 해결할 수 있습니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Developer PowerShell for VS 2019를 실행합니다. (앞서 켜둔 것이 있다면 그대로 쓰시면 됩니다)&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;[WIN]+[S]&lt;/b&gt; 를 눌러 검색을 띄우고, &lt;code&gt;developer powershell&lt;/code&gt;을 입력하여 &lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 찾은 뒤 실행하면 됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cd&lt;/code&gt; 명령어를 이용하여, 예제 코드를 복사해온 경로의 &lt;code&gt;build&lt;/code&gt; 폴더로 이동합니다. 이 글에서처럼 &lt;code&gt;C:\Geant4\B1&lt;/code&gt;으로 복사하였다면 다음과 같이 입력하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;cd C:\Geant4\B1\build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다음 명령어를 입력하여 빌드를 수행합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;cmake ..
+cmake --build . --config Release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;example3&#34; srcset=&#34;
+               /g4install-107p2-win10basic/example3_hu888d8b771db12f7f66c26db0f32a15ea_33726_621f437ff057ed4f1f7c887063813c41.png 400w,
+               /g4install-107p2-win10basic/example3_hu888d8b771db12f7f66c26db0f32a15ea_33726_cfa3ba22d9eee1b9be958a931ab96906.png 760w,
+               /g4install-107p2-win10basic/example3_hu888d8b771db12f7f66c26db0f32a15ea_33726_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/example3_hu888d8b771db12f7f66c26db0f32a15ea_33726_621f437ff057ed4f1f7c887063813c41.png&#34;
+               width=&#34;760&#34;
+               height=&#34;524&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;명령줄에 &lt;code&gt;./exampleB1.exe&lt;/code&gt;를 입력하여 실행하거나, &lt;code&gt;build&lt;/code&gt; 폴더 안에 있는 &lt;code&gt;exampleB1.exe&lt;/code&gt;파일을 더블클릭하여 실행합니다.&lt;/p&gt;
+&lt;p&gt;다음과 같은 GUI 창이 뜨면 성공입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;example4&#34; srcset=&#34;
+               /g4install-107p2-win10basic/example4_hu2dde95ccbb0280d046477ee6b83126df_52878_f0e99116c4388a90fb871222be01af9f.png 400w,
+               /g4install-107p2-win10basic/example4_hu2dde95ccbb0280d046477ee6b83126df_52878_eb06ba973e5be284bd1deb4b513e8a64.png 760w,
+               /g4install-107p2-win10basic/example4_hu2dde95ccbb0280d046477ee6b83126df_52878_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4install-107p2-win10basic/example4_hu2dde95ccbb0280d046477ee6b83126df_52878_f0e99116c4388a90fb871222be01af9f.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

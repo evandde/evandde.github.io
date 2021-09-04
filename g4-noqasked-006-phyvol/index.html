@@ -1,131 +1,934 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Geant4 무작정 따라하기 - 6. 지오메트리 배치하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기" />
-<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-006-phyvol/" />
-<meta property="article:published_time" content="2021-06-17T19:23:49+09:00" />
-<meta property="article:modified_time" content="2021-06-17T19:23:49+09:00" />
+<!DOCTYPE html><html lang="ko-kr" >
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기"/>
-<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다."/>
-<meta name="application-name" content="EvaNote">
-<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-006-phyvol/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-005-clhepclasses/" /><link rel="next" href="https://evandde.github.io/g4-noqasked-007-trkvb/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Geant4 무작정 따라하기 - 6. 지오메트리 배치하기",
-        "inLanguage": "ko-kr",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/evandde.github.io\/g4-noqasked-006-phyvol\/"
-        },"genre": "posts","keywords": "Geant4, PhysicalVolume, G4PVPlacement, G4VPhysicalVolume","wordcount":  5166 ,
-        "url": "https:\/\/evandde.github.io\/g4-noqasked-006-phyvol\/","datePublished": "2021-06-17T19:23:49+09:00","dateModified": "2021-06-17T19:23:49+09:00","publisher": {
-            "@type": "Organization",
-            "name": "Evan Kim"},"author": {
-                "@type": "Person",
-                "name": "Evan Kim"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/g4-noqasked-006-phyvol/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.75edb75c66f2d6f0a9a146b10c65f58e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/g4-noqasked-006-phyvol/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/g4-noqasked-006-phyvol/" />
+  <meta property="og:title" content="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기 | EvaNote" />
+  <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-06-17T19:23:49&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-06-17T19:23:49&#43;09:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Geant4 무작정 따라하기 - 6. 지오메트리 배치하기 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="2bd494c1ac62932248268997082bc762" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
         </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-3" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        취소
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">목차</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-17">2021-06-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 5166&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 11분&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>목차</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          지오메트리
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
+    </div>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>Courses</a></li>
+      </ul>
+
+      
+      
+        
+          
+        
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-000-opening/">들어가며</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-001-clonetest/">템플릿 코드 실행하기</a></li>
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-geometry/">지오메트리</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-002-detcon/">지오메트리 정의 기본이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-003-solid/">지오메트리 모양 만들기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-004-material/">물질 정의 및 사용</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-005-clhepclasses/">위치, 회전을 정의하는 법</a></li>
+
+
+
+  <li class="active"><a href="/g4-noqasked-006-phyvol/">지오메트리 배치하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-verbose/">Verbose</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-007-trkvb/">기본용어와 Tracking Verbose</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-primgen/">선원항</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-008-prigen/">선원항을 정의하는 법</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-009-randtool/">난수 기반 선원항 정의하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-scoring/">스코어링</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-010-scoringtheory/">스코어링 이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-011-scoring/">스코어링 구현하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-012-writingrslt1/">결과를 Histogram으로 기록하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-013-writingrslt2/">결과를 Ntuple로 기록하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-closing/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-014-closing/">마치며</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
   <ul>
     <li><a href="#기본-이론">기본 이론</a>
       <ul>
@@ -138,20 +941,82 @@
     <li><a href="#physical-volume의-종류">Physical Volume의 종류</a></li>
     <li><a href="#g4pvplacement">G4PVPlacement</a>
       <ul>
-        <li><a href="#생성자">생성자</a>
-          <ul>
-            <li><a href="#g4rotationmatrix--g4threevector-이용">G4RotationMatrix &amp; G4ThreeVector 이용</a></li>
-            <li><a href="#g4transform3d-이용">G4Transform3D 이용</a></li>
-            <li><a href="#회전-후-그-방향으로-이동">회전 후 그 방향으로 이동</a></li>
-          </ul>
-        </li>
+        <li><a href="#생성자">생성자</a></li>
         <li><a href="#나머지-두-가지-생성자">나머지 두 가지 생성자</a></li>
       </ul>
     </li>
     <li><a href="#정리">정리</a></li>
   </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다.</p>
+</nav>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        Courses
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/">
+      
+        Geant4 무작정 따라하기
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/g4-noqasked-geometry/">
+      
+        지오메트리
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        지오메트리 배치하기
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</h1>
+
+          <div class="article-style">
+            <p>Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다.</p>
 <hr>
 <h2 id="기본-이론">기본 이론</h2>
 <p>Physical Volume을 정의하는 방법을 이해하려면, 먼저 다음의 개념에 대해 알아야 합니다.</p>
@@ -168,17 +1033,39 @@
 <p>Geant4에서는 모든 지오메트리가 다른 지오메트리에 포함되는 구조로 배치되어야만 합니다. 우리가 작성하고 있는 코드를 예로 들자면, water phantom이라는 지오메트리는 World라는 지오메트리 내에 포함되어 있는 식으로 말입니다. 이렇게 A라는 지오메트리가 B 지오메트리 내에 포함될 때, <strong>B</strong>를 <strong>A의 Mother Volume</strong>이라고 하고, <strong>A</strong>를 <strong>B의 Daughter Volume</strong>이라고 합니다.</p>
 <p>위 사항에서 단 하나 예외가 존재하는데, 그것이 바로 World 입니다. <strong>World는 Mother Volume을 가지지 않는 유일한 지오메트리</strong>로, 모든 지오메트리 계층에 있어 최상위에 존재하게 됩니다.</p>
 <p>Geant4에서는 어떤 지오메트리의 위치를 참조할 때, 그 지오메트리의 <strong>Mother Volume의 좌표계를 기준</strong>으로 위치를 가져옵니다. 예를 들어 다음 그림과 같은 경우를 살펴봅시다.</p>
-<a class="lightgallery" href="/g4-noqasked-006-phyvol/01_mothervol.png" title="/g4-noqasked-006-phyvol/01_mothervol.png" data-thumbnail="/g4-noqasked-006-phyvol/01_mothervol.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="01_mothervol.png"
-            data-srcset="/g4-noqasked-006-phyvol/01_mothervol.png, 01_mothervol.png 1.5x, /g4-noqasked-006-phyvol/01_mothervol.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-006-phyvol/01_mothervol.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="01_mothervol" srcset="
+               /g4-noqasked-006-phyvol/01_mothervol_hub7e12b6689d3da40b2e5f6787394f660_15267_b10c101c9dba5e1a687a6c0fd5999d3e.png 400w,
+               /g4-noqasked-006-phyvol/01_mothervol_hub7e12b6689d3da40b2e5f6787394f660_15267_144bbd759daeeb30fd035f542dba09bf.png 760w,
+               /g4-noqasked-006-phyvol/01_mothervol_hub7e12b6689d3da40b2e5f6787394f660_15267_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-006-phyvol/01_mothervol_hub7e12b6689d3da40b2e5f6787394f660_15267_b10c101c9dba5e1a687a6c0fd5999d3e.png"
+               width="760"
+               height="759"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이 그림에서 지오메트리 계층도는 다음과 같을 것입니다.</p>
-<div class="mermaid" id="id-1"></div>
+<pre><code class="language-mermaid">graph TD
+World --- A --- B
+World --- C
+</code></pre>
 <p>여기서 <font color='red'><b>A</b></font>의 위치는 A의 Mother Volume인 <strong>World를 기준</strong>으로 판단합니다. (4, 4)에 A가 있다고 보는 것이지요.</p>
 <p><font color='green'><b>C</b></font>의 위치도 C의 Mother Volume인 <strong>World를 기준</strong>으로 판단합니다. C는 (-3, 4)에 위치하는 것이 되겠네요.</p>
 <p><font color='blue'><b>B</b></font>의 위치는 B의 Mother Volume인 <font color='red'><b>A</b></font>를 기준으로 판단합니다. 여기서 <strong>World를 기준으로 하지 않음에 주의</strong>하세요. 즉 <font color='red'><b>A의 원점</b></font>을 기준으로 <font color='blue'><b>B의 위치는 (2, 1)</b></font>이 됩니다.</p>
@@ -216,35 +1103,22 @@
 <p>어떤 지오메트리를 축방향(X, Y, Z, 직경, 중심각)에 따라 절단한 지오메트리를 놓아야 할 때 사용하기 좋은 클래스입니다.</p>
 </li>
 </ul>
-<p>이 외에도 몇 종류 더 있으며, Geant4에서 제공하고 있는 <a href="https://geant4.kek.jp/Reference/" target="_blank" rel="noopener noreffer">Geant4 Doxygen</a>에서 G4VPhysicalVolume 클래스의 레퍼런스 페이지(<a href="https://geant4.kek.jp/Reference/10.07.p01/classG4VPhysicalVolume.html" target="_blank" rel="noopener noreffer">10.7.p01 버전</a>)에 들어가면 상속받은 클래스 목록(<em>Inheritance diagram for G4VPhysicalVolume</em>) 부분을 통해 확인할 수 있습니다.</p>
+<p>이 외에도 몇 종류 더 있으며, Geant4에서 제공하고 있는 <a href="https://geant4.kek.jp/Reference/" target="_blank" rel="noopener">Geant4 Doxygen</a>에서 G4VPhysicalVolume 클래스의 레퍼런스 페이지(<a href="https://geant4.kek.jp/Reference/10.07.p01/classG4VPhysicalVolume.html" target="_blank" rel="noopener">10.7.p01 버전</a>)에 들어가면 상속받은 클래스 목록(<em>Inheritance diagram for G4VPhysicalVolume</em>) 부분을 통해 확인할 수 있습니다.</p>
 <p>이 시리즈에서는 G4PVPlacement 클래스 한 가지만 설명할 것입니다.</p>
 <hr>
 <h2 id="g4pvplacement">G4PVPlacement</h2>
 <p>G4PVPlacement 클래스는 Logical Volume 한 개를 배치하는 데에 사용하는 클래스입니다. 생성자는 총 4가지 입니다만, 먼저 두 가지만 살펴보겠습니다.</p>
 <h3 id="생성자">생성자</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4PVPlacement</span> <span class="p">(</span><span class="n">G4RotationMatrix</span> <span class="o">*</span><span class="n">pRot</span><span class="p">,</span> 
-               <span class="k">const</span> <span class="n">G4ThreeVector</span> <span class="o">&amp;</span><span class="n">tlate</span><span class="p">,</span> 
-               <span class="n">G4LogicalVolume</span> <span class="o">*</span><span class="n">pCurrentLogical</span><span class="p">,</span> 
-               <span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> 
-               <span class="n">G4LogicalVolume</span> <span class="o">*</span><span class="n">pMotherLogical</span><span class="p">,</span> 
-               <span class="n">G4bool</span> <span class="n">pMany</span><span class="p">,</span> 
-               <span class="n">G4int</span> <span class="n">pCopyNo</span><span class="p">,</span> 
-               <span class="n">G4bool</span> <span class="n">pSurfChk</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<pre><code class="language-cpp">G4PVPlacement (G4RotationMatrix *pRot, 
+               const G4ThreeVector &amp;tlate, 
+               G4LogicalVolume *pCurrentLogical, 
+               const G4String &amp;pName, 
+               G4LogicalVolume *pMotherLogical, 
+               G4bool pMany, 
+               G4int pCopyNo, 
+               G4bool pSurfChk=false);
+</code></pre>
+<ul>
 <li>pRot: G4RotationMatrix 객체의 포인터. 지오메트리를 배치할 때 회전에 대한 정보를 입력하는 데에 사용</li>
 <li>tlate: G4ThreeVector 객체. 지오메트리의 위치에 대한 정보를 입력하는 데에 사용</li>
 <li>pCurrentLogical: G4LogicalVolume 객체의 포인터. 앞서 정의한 Logical Volume을 넣음</li>
@@ -254,27 +1128,15 @@
 <li>pCopyNo: Physical Volume의 Copy Number. <strong>정수값</strong>으로 입력하며, 별다른 목적이 없을 경우 대개 <strong>0</strong>을 부여하는 편</li>
 <li><em>pSurfChk: <strong>입력하지 않아도 되는 인자</strong>. 지오메트리 간 겹침 검사를 수행할 지의 여부를 설정하는 데에 사용. 기본 값은 false</em></li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4PVPlacement</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4Transform3D</span> <span class="o">&amp;</span><span class="n">Transform3D</span><span class="p">,</span> 
-               <span class="n">G4LogicalVolume</span> <span class="o">*</span><span class="n">pCurrentLogical</span><span class="p">,</span> 
-               <span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> 
-               <span class="n">G4LogicalVolume</span> <span class="o">*</span><span class="n">pMotherLogical</span><span class="p">,</span> 
-               <span class="n">G4bool</span> <span class="n">pMany</span><span class="p">,</span> 
-               <span class="n">G4int</span> <span class="n">pCopyNo</span><span class="p">,</span> 
-               <span class="n">G4bool</span> <span class="n">pSurfChk</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<pre><code class="language-cpp">G4PVPlacement (const G4Transform3D &amp;Transform3D, 
+               G4LogicalVolume *pCurrentLogical, 
+               const G4String &amp;pName, 
+               G4LogicalVolume *pMotherLogical, 
+               G4bool pMany, 
+               G4int pCopyNo, 
+               G4bool pSurfChk=false);
+</code></pre>
+<ul>
 <li>Transform3D: G4Transform3D 객체. 지오메트리를 배치할 때 평행이동 및 회전에 대한 정보를 입력하는 데에 사용</li>
 <li>pCurrentLogical: G4LogicalVolume 객체의 포인터. 앞서 정의한 Logical Volume을 넣음</li>
 <li>pName: Physical Volume의 이름. 자유롭게 적으면 됨. 다만, 다른 Physical Volume과 겹치지 않게끔 고유의 이름을 권장. Solid 및 Logical Volume의 이름과는 동일해도 상관없음</li>
@@ -288,281 +1150,265 @@
 <br>
 <p>말로 설명하면 어려우니, 실제 예시를 통해 살펴봅시다.</p>
 <p>회전을 명확하게 확인하기 위해, 기존의 정육면체에서 X축 방향의 길이를 두배로 늘렸습니다. 10 cm × 5 cm × 5 cm의 G4Box형태 Solid를 정의하고, 물을 채워 Logical Volume까지 정의한 상태입니다. 코드로는 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomXSize</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
-<span class="k">auto</span> <span class="n">phantomYSize</span> <span class="o">=</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
-<span class="k">auto</span> <span class="n">phantomZSize</span> <span class="o">=</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
-<span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> 
-                            <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomXSize</span><span class="p">,</span> 
-                            <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomYSize</span><span class="p">,</span> 
-                            <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomZSize</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">phantomLog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4LogicalVolume</span><span class="p">(</span><span class="n">phantomSol</span><span class="p">,</span> <span class="n">matWater</span><span class="p">,</span> <span class="s">&#34;phantom&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>이제 이 지오메트리를 <b>(0, 0, 20 cm) 위치</b>에 <b>Y축을 기준으로 30° 회전</b>시켜서 배치해보도록 하겠습니다.</p>
+<pre><code class="language-cpp">auto phantomXSize = 10. * cm;
+auto phantomYSize = 5. * cm;
+auto phantomZSize = 5. * cm;
+auto phantomSol = new G4Box(&quot;phantom&quot;, 
+                            .5 * phantomXSize, 
+                            .5 * phantomYSize, 
+                            .5 * phantomZSize);
+auto phantomLog = new G4LogicalVolume(phantomSol, matWater, &quot;phantom&quot;);
+</code></pre>
+<p>이제 이 지오메트리를 <b>(0, 0, 20 cm) 위치</b>에 <b>Y축을 기준으로 30° 회전</b>시켜서 배치해보도록 하겠습니다.</p>
 <h4 id="g4rotationmatrix--g4threevector-이용">G4RotationMatrix &amp; G4ThreeVector 이용</h4>
 <p>첫번째 생성자를 이용하여 다음과 같이 코드를 작성해 보았습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomPos</span> <span class="o">=</span> <span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">20.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">phantomRot</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4RotationMatrix</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="mf">30.</span> <span class="o">*</span> <span class="n">deg</span><span class="p">);</span>
-<span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="n">phantomRot</span><span class="p">,</span> 
-                  <span class="n">phantomPos</span><span class="p">,</span> 
-                  <span class="n">phantomLog</span><span class="p">,</span> 
-                  <span class="s">&#34;phantom&#34;</span><span class="p">,</span> 
-                  <span class="n">worldLog</span><span class="p">,</span> 
-                  <span class="nb">false</span><span class="p">,</span> 
-                  <span class="mi">0</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>결과는 다음과 같습니다. +Y축 방향에서 아래로 내려다본 그림입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-006-phyvol/02_motherframe.png" title="/g4-noqasked-006-phyvol/02_motherframe.png" data-thumbnail="/g4-noqasked-006-phyvol/02_motherframe.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="02_motherframe.png"
-            data-srcset="/g4-noqasked-006-phyvol/02_motherframe.png, 02_motherframe.png 1.5x, /g4-noqasked-006-phyvol/02_motherframe.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-006-phyvol/02_motherframe.png" width="100%" />
-    </a>
+<pre><code class="language-cpp">auto phantomPos = G4ThreeVector(0., 0., 20. * cm);
+auto phantomRot = new G4RotationMatrix(G4ThreeVector(0., 1., 0.), 30. * deg);
+new G4PVPlacement(phantomRot, 
+                  phantomPos, 
+                  phantomLog, 
+                  &quot;phantom&quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+</code></pre>
+<p>결과는 다음과 같습니다. +Y축 방향에서 아래로 내려다본 그림입니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="02_motherframe" srcset="
+               /g4-noqasked-006-phyvol/02_motherframe_hu438d70de5f09db55f67c04adb1db4d90_84171_70c7b3dff3f737753ca3d77e08a9bdd2.png 400w,
+               /g4-noqasked-006-phyvol/02_motherframe_hu438d70de5f09db55f67c04adb1db4d90_84171_87533f8dcb795f7f3cdba7c413dbae23.png 760w,
+               /g4-noqasked-006-phyvol/02_motherframe_hu438d70de5f09db55f67c04adb1db4d90_84171_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-006-phyvol/02_motherframe_hu438d70de5f09db55f67c04adb1db4d90_84171_70c7b3dff3f737753ca3d77e08a9bdd2.png"
+               width="760"
+               height="591"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이상한 점을 찾으셨나요? 축을 기준으로 회전을 시키면 축을 위에서 봤을때 <strong>반시계방향으로 회전</strong>해야 하는데 반대방향인 시계방향으로 돌아갔습니다. 이유는 이 생성자가 <b>Mother Volume의 좌표계를 회전시킨 뒤 평행이동을 하는 방식으로 지오메트리를 배치</b>하기 때문입니다. 다음의 그림을 보면 좀 더 이해가 쉬울 것입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-006-phyvol/03_motherframe.gif" title="/g4-noqasked-006-phyvol/03_motherframe.gif" data-thumbnail="/g4-noqasked-006-phyvol/03_motherframe.gif">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="03_motherframe.gif"
-            data-srcset="/g4-noqasked-006-phyvol/03_motherframe.gif, 03_motherframe.gif 1.5x, /g4-noqasked-006-phyvol/03_motherframe.gif 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-006-phyvol/03_motherframe.gif" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="03_motherframe"
+           src="/g4-noqasked-006-phyvol/03_motherframe.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>보시다시피 좌표계 자체가 먼저 돌아간 뒤, 돌아간 좌표계에 따라 지오메트리를 이동시킵니다. (맨 마지막에 시계방향으로 돌린 것은 그냥 보기 편하려고 원래 방향으로 되돌린 것일 뿐이므로 배치와는 무관합니다) 이런 방식을 취하기 때문에, 일반적으로 생각한 방식과 반대로 회전하는 것처럼 보이게 됩니다.</p>
 <h4 id="g4transform3d-이용">G4Transform3D 이용</h4>
 <p>이번에는 두번째 생성자를 이용하여 다음과 같이 코드를 작성해 보았습니다.</p>
-<div class="details admonition warning open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">G4Transform3D의 생성자에는 <b>G4RotationMatrix의 객체 자체</b>가 인자로 사용됩니다. G4RotationMatrix 객체의 <b>포인터가 아님에 주의</b>하세요.</div>
-        </div>
-    </div>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomPos</span> <span class="o">=</span> <span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">20.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">phantomRot</span> <span class="o">=</span> <span class="n">G4RotationMatrix</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="mf">30.</span> <span class="o">*</span> <span class="n">deg</span><span class="p">);</span>
-<span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="n">G4Transform3D</span><span class="p">(</span><span class="n">phantomRot</span><span class="p">,</span> <span class="n">phantomPos</span><span class="p">),</span> 
-                  <span class="n">phantomLog</span><span class="p">,</span> 
-                  <span class="s">&#34;phantom&#34;</span><span class="p">,</span>
-                  <span class="n">worldLog</span><span class="p">,</span> 
-                  <span class="nb">false</span><span class="p">,</span> 
-                  <span class="mi">0</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<div class="alert alert-warning">
+  <div>
+    G4Transform3D의 생성자에는 <b>G4RotationMatrix의 객체 자체</b>가 인자로 사용됩니다. G4RotationMatrix 객체의 <b>포인터가 아님에 주의</b>하세요.
+  </div>
 </div>
-</div><p>결과는 다음과 같습니다. 마찬가지로 +Y축 방향에서 아래로 내려다본 그림입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-006-phyvol/04_g4transform3d.png" title="/g4-noqasked-006-phyvol/04_g4transform3d.png" data-thumbnail="/g4-noqasked-006-phyvol/04_g4transform3d.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="04_g4transform3d.png"
-            data-srcset="/g4-noqasked-006-phyvol/04_g4transform3d.png, 04_g4transform3d.png 1.5x, /g4-noqasked-006-phyvol/04_g4transform3d.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-006-phyvol/04_g4transform3d.png" width="100%" />
-    </a>
+
+<pre><code class="language-cpp">auto phantomPos = G4ThreeVector(0., 0., 20. * cm);
+auto phantomRot = G4RotationMatrix(G4ThreeVector(0., 1., 0.), 30. * deg);
+new G4PVPlacement(G4Transform3D(phantomRot, phantomPos), 
+                  phantomLog, 
+                  &quot;phantom&quot;,
+                  worldLog, 
+                  false, 
+                  0);
+</code></pre>
+<p>결과는 다음과 같습니다. 마찬가지로 +Y축 방향에서 아래로 내려다본 그림입니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="04_g4transform3d" srcset="
+               /g4-noqasked-006-phyvol/04_g4transform3d_hu452bc544f39a1c7016f783d13823acfb_70521_ea0a9ab3fec3beb7648a762357c07955.png 400w,
+               /g4-noqasked-006-phyvol/04_g4transform3d_hu452bc544f39a1c7016f783d13823acfb_70521_2eff08c9b2ec899bdcb686eb3191e7e2.png 760w,
+               /g4-noqasked-006-phyvol/04_g4transform3d_hu452bc544f39a1c7016f783d13823acfb_70521_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-006-phyvol/04_g4transform3d_hu452bc544f39a1c7016f783d13823acfb_70521_ea0a9ab3fec3beb7648a762357c07955.png"
+               width="760"
+               height="591"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이번에는 일반적인 예상과 같이 <strong>반시계방향으로 회전한 상태로 배치</strong>가 되었습니다. 이 생성자는 자기 자신인 phantom 지오메트리의 좌표계가 평행이동한 뒤 그 자리에서 회전하는 방식을 취합니다.</p>
 <p>그래서 G4Transform3D 부분을 &ldquo;<b>평행이동변환을 한 뒤, 이어서 회전변환을 가한다</b>&ldquo;의 의미를 갖게끔 다음과 같이 입력하여도 동일한 결과를 보여줍니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomPos</span> <span class="o">=</span> <span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">20.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">phantomRot</span> <span class="o">=</span> <span class="n">G4RotationMatrix</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="mf">30.</span> <span class="o">*</span> <span class="n">deg</span><span class="p">);</span>
-<span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="n">G4Translate3D</span><span class="p">(</span><span class="n">phantomPos</span><span class="p">)</span> <span class="o">*</span> <span class="n">G4Rotate3D</span><span class="p">(</span><span class="n">phantomRot</span><span class="p">),</span> 
-                  <span class="n">phantomLog</span><span class="p">,</span> 
-                  <span class="s">&#34;phantom&#34;</span><span class="p">,</span> 
-                  <span class="n">worldLog</span><span class="p">,</span> 
-                  <span class="nb">false</span><span class="p">,</span> 
-                  <span class="mi">0</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>혹은 &ldquo;<b>Z축으로 30 cm 평행이동을 한 뒤, Y축을 기준으로 30° 회전</b>&ldquo;의 의미를 갖도록 다음과 같이 입력해도 같은 결과가 나오지요.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="n">G4TranslateZ3D</span><span class="p">(</span><span class="mf">20.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">)</span> <span class="o">*</span> <span class="n">G4RotateY3D</span><span class="p">(</span><span class="mf">30.</span> <span class="o">*</span> <span class="n">deg</span><span class="p">),</span> 
-                  <span class="n">phantomLog</span><span class="p">,</span> 
-                  <span class="s">&#34;phantom&#34;</span><span class="p">,</span> 
-                  <span class="n">worldLog</span><span class="p">,</span> 
-                  <span class="nb">false</span><span class="p">,</span> 
-                  <span class="mi">0</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>배치되는 방식을 그림을 통해 살펴보면 다음과 같습니다.</p>
-<a class="lightgallery" href="/g4-noqasked-006-phyvol/05_g4transform3d.gif" title="/g4-noqasked-006-phyvol/05_g4transform3d.gif" data-thumbnail="/g4-noqasked-006-phyvol/05_g4transform3d.gif">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="05_g4transform3d.gif"
-            data-srcset="/g4-noqasked-006-phyvol/05_g4transform3d.gif, 05_g4transform3d.gif 1.5x, /g4-noqasked-006-phyvol/05_g4transform3d.gif 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-006-phyvol/05_g4transform3d.gif" width="100%" />
-    </a>
+<pre><code class="language-cpp">auto phantomPos = G4ThreeVector(0., 0., 20. * cm);
+auto phantomRot = G4RotationMatrix(G4ThreeVector(0., 1., 0.), 30. * deg);
+new G4PVPlacement(G4Translate3D(phantomPos) * G4Rotate3D(phantomRot), 
+                  phantomLog, 
+                  &quot;phantom&quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+</code></pre>
+<p>혹은 &ldquo;<b>Z축으로 30 cm 평행이동을 한 뒤, Y축을 기준으로 30° 회전</b>&ldquo;의 의미를 갖도록 다음과 같이 입력해도 같은 결과가 나오지요.</p>
+<pre><code class="language-cpp">new G4PVPlacement(G4TranslateZ3D(20. * cm) * G4RotateY3D(30. * deg), 
+                  phantomLog, 
+                  &quot;phantom&quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+</code></pre>
+<p>배치되는 방식을 그림을 통해 살펴보면 다음과 같습니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="05_g4transform3d"
+           src="/g4-noqasked-006-phyvol/05_g4transform3d.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <h4 id="회전-후-그-방향으로-이동">회전 후 그 방향으로 이동</h4>
 <p>경우에 따라서는, 회전시킨 뒤 그 방향으로 이동하도록 하고 싶을 때도 있을 것입니다. 예를 들어 원의 둘레를 따라 구조물을 빙 둘러 배치해야 하는 경우처럼 말이죠. 이런 경우에는 <b>두 번째 생성자를 이용하되, 평행이동과 회전의 순서를 바꾸면 됩니다</b>. 말 그대로 &ldquo;<b>회전 후 이동</b>&ldquo;이니까 말이죠. 다만, G4Transform3D 클래스 객체를 생성할 때 평행이동과 회전을 함께 입력하는 식으로 만들게 되면 &ldquo;이동 후 회전&quot;의 방식이 되어버리므로, <b>회전 후 이동을 직접 명시하는 방식으로 입력</b>해야 합니다.</p>
 <p>코드로 작성하면 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomPos</span> <span class="o">=</span> <span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">20.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">phantomRot</span> <span class="o">=</span> <span class="n">G4RotationMatrix</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="mf">30.</span> <span class="o">*</span> <span class="n">deg</span><span class="p">);</span>
-<span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="n">G4Rotate3D</span><span class="p">(</span><span class="n">phantomRot</span><span class="p">)</span> <span class="o">*</span> <span class="n">G4Translate3D</span><span class="p">(</span><span class="n">phantomPos</span><span class="p">),</span>
-                  <span class="n">phantomLog</span><span class="p">,</span> 
-                  <span class="s">&#34;phantom&#34;</span><span class="p">,</span> 
-                  <span class="n">worldLog</span><span class="p">,</span> 
-                  <span class="nb">false</span><span class="p">,</span> 
-                  <span class="mi">0</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>혹은 다음과 같이 입력해도 동일한 결과가 나올 것입니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="n">G4RotateY3D</span><span class="p">(</span><span class="mf">30.</span> <span class="o">*</span> <span class="n">deg</span><span class="p">)</span> <span class="o">*</span> <span class="n">G4TranslateZ3D</span><span class="p">(</span><span class="mf">20.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">),</span> 
-                  <span class="n">phantomLog</span><span class="p">,</span> 
-                  <span class="s">&#34;phantom&#34;</span><span class="p">,</span> 
-                  <span class="n">worldLog</span><span class="p">,</span> 
-                  <span class="nb">false</span><span class="p">,</span> 
-                  <span class="mi">0</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>결과는 다음과 같습니다. 마찬가지로 +Y축 방향에서 아래로 내려다본 그림입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-006-phyvol/06_rotatethentranslate.png" title="/g4-noqasked-006-phyvol/06_rotatethentranslate.png" data-thumbnail="/g4-noqasked-006-phyvol/06_rotatethentranslate.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="06_rotatethentranslate.png"
-            data-srcset="/g4-noqasked-006-phyvol/06_rotatethentranslate.png, 06_rotatethentranslate.png 1.5x, /g4-noqasked-006-phyvol/06_rotatethentranslate.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-006-phyvol/06_rotatethentranslate.png" width="100%" />
-    </a>
+<pre><code class="language-cpp">auto phantomPos = G4ThreeVector(0., 0., 20. * cm);
+auto phantomRot = G4RotationMatrix(G4ThreeVector(0., 1., 0.), 30. * deg);
+new G4PVPlacement(G4Rotate3D(phantomRot) * G4Translate3D(phantomPos),
+                  phantomLog, 
+                  &quot;phantom&quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+</code></pre>
+<p>혹은 다음과 같이 입력해도 동일한 결과가 나올 것입니다.</p>
+<pre><code class="language-cpp">new G4PVPlacement(G4RotateY3D(30. * deg) * G4TranslateZ3D(20. * cm), 
+                  phantomLog, 
+                  &quot;phantom&quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+</code></pre>
+<p>결과는 다음과 같습니다. 마찬가지로 +Y축 방향에서 아래로 내려다본 그림입니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="06_rotatethentranslate" srcset="
+               /g4-noqasked-006-phyvol/06_rotatethentranslate_hudd47941cd2f8da2ceeb04a99c4a5c176_71908_70f360d6904202d0f1d32713689de54d.png 400w,
+               /g4-noqasked-006-phyvol/06_rotatethentranslate_hudd47941cd2f8da2ceeb04a99c4a5c176_71908_4fab6942fbcadfafb31eb3251403e1d9.png 760w,
+               /g4-noqasked-006-phyvol/06_rotatethentranslate_hudd47941cd2f8da2ceeb04a99c4a5c176_71908_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-006-phyvol/06_rotatethentranslate_hudd47941cd2f8da2ceeb04a99c4a5c176_71908_70f360d6904202d0f1d32713689de54d.png"
+               width="760"
+               height="591"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>위치 자체가 (0, 0, 20 cm)가 아니라 좀 더 왼쪽 위로 이동한 것을 볼 수 있습니다. 이렇게 배치할때 배치되는 과정을 그림으로 보면 다음과 같습니다.</p>
-<a class="lightgallery" href="/g4-noqasked-006-phyvol/07_rotatethentranslate.gif" title="/g4-noqasked-006-phyvol/07_rotatethentranslate.gif" data-thumbnail="/g4-noqasked-006-phyvol/07_rotatethentranslate.gif">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="07_rotatethentranslate.gif"
-            data-srcset="/g4-noqasked-006-phyvol/07_rotatethentranslate.gif, 07_rotatethentranslate.gif 1.5x, /g4-noqasked-006-phyvol/07_rotatethentranslate.gif 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-006-phyvol/07_rotatethentranslate.gif" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="07_rotatethentranslate"
+           src="/g4-noqasked-006-phyvol/07_rotatethentranslate.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이 세 가지 배치방식만 잘 이해하시면 원하는 방식으로 회전/이동 시키는 데에 무리없이 적용할 수 있을 것입니다.</p>
 <h3 id="나머지-두-가지-생성자">나머지 두 가지 생성자</h3>
 <p>아까 생성자가 총 4개라고 했었으니, 이제 남은 2개도 살펴봅시다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4PVPlacement</span> <span class="p">(</span><span class="n">G4RotationMatrix</span> <span class="o">*</span><span class="n">pRot</span><span class="p">,</span> 
-               <span class="k">const</span> <span class="n">G4ThreeVector</span> <span class="o">&amp;</span><span class="n">tlate</span><span class="p">,</span>
-               <span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> 
-               <span class="n">G4LogicalVolume</span> <span class="o">*</span><span class="n">pLogical</span><span class="p">,</span> 
-               <span class="n">G4VPhysicalVolume</span> <span class="o">*</span><span class="n">pMother</span><span class="p">,</span> 
-               <span class="n">G4bool</span> <span class="n">pMany</span><span class="p">,</span>
-               <span class="n">G4int</span> <span class="n">pCopyNo</span><span class="p">,</span> 
-               <span class="n">G4bool</span> <span class="n">pSurfChk</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4PVPlacement</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4Transform3D</span> <span class="o">&amp;</span><span class="n">Transform3D</span><span class="p">,</span> 
-               <span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">pName</span><span class="p">,</span> 
-               <span class="n">G4LogicalVolume</span> <span class="o">*</span><span class="n">pLogical</span><span class="p">,</span> 
-               <span class="n">G4VPhysicalVolume</span> <span class="o">*</span><span class="n">pMother</span><span class="p">,</span> 
-               <span class="n">G4bool</span> <span class="n">pMany</span><span class="p">,</span>
-               <span class="n">G4int</span> <span class="n">pCopyNo</span><span class="p">,</span> 
-               <span class="n">G4bool</span> <span class="n">pSurfChk</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>앞서 설명했던 두 가지 생성자와 거의 동일하고, 다음의 두 부분만 차이가 있습니다.</p>
+<pre><code class="language-cpp">G4PVPlacement (G4RotationMatrix *pRot, 
+               const G4ThreeVector &amp;tlate,
+               const G4String &amp;pName, 
+               G4LogicalVolume *pLogical, 
+               G4VPhysicalVolume *pMother, 
+               G4bool pMany,
+               G4int pCopyNo, 
+               G4bool pSurfChk=false);
+</code></pre>
+<pre><code class="language-cpp">G4PVPlacement (const G4Transform3D &amp;Transform3D, 
+               const G4String &amp;pName, 
+               G4LogicalVolume *pLogical, 
+               G4VPhysicalVolume *pMother, 
+               G4bool pMany,
+               G4int pCopyNo, 
+               G4bool pSurfChk=false);
+</code></pre>
+<p>앞서 설명했던 두 가지 생성자와 거의 동일하고, 다음의 두 부분만 차이가 있습니다.</p>
 <ul>
 <li>인자의 입력 순서가 약간 바뀜(Physical Volume의 이름)</li>
 <li>Mother Volume을 입력할 때 Mother Volume의 Logical Volume 대신 Physical Volume으로 입력</li>
@@ -571,164 +1417,345 @@
 <hr>
 <h2 id="정리">정리</h2>
 <p>이번 글에서는 회전과 이동을 통해 원하는 위치에 원하는 각도로 지오메트리를 배치하는 법을 알아보았습니다. 이로써 여러분은 Geant4 시뮬레이션을 돌리는 데에 필수요소 중 하나인 <strong>지오메트리를 정의하는 법</strong>을 다 배우셨습니다.</p>
-<p>다음 글부터는 선원항을 정의하는 법에 대해 알아보도록 하겠습니다.</p></div>
-        
-        <br><hr><br>
-        <h2>관련 포스트</h2>
-        <ul>
-            
-            <li><a href="/g4-noqasked-002-detcon/">Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</a></li>
-            
-            <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
-            
-            <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
-            
-            <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
-            
-            <li><a href="/g4-noqasked-011-scoring/">Geant4 무작정 따라하기 - 11. 스코어링 구현</a></li>
-            
-        </ul>
-        
+<p>다음 글부터는 선원항을 정의하는 법에 대해 알아보도록 하겠습니다.</p>
+          </div>
 
-<div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>2021-06-17에 수정</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/g4-noqasked-006-phyvol/index.md" target="_blank">Markdown으로 보기</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-006-phyvol/" data-title="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기" data-hashtags="Geant4,PhysicalVolume,G4PVPlacement,G4VPhysicalVolume"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-006-phyvol/" data-title="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-006-phyvol/" data-title="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-006-phyvol/" data-title="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-006-phyvol/" data-title="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-006-phyvol/" data-title="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
+          
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/physicalvolume/">PhysicalVolume</a>,&nbsp;<a href="/tags/g4pvplacement/">G4PVPlacement</a>,&nbsp;<a href="/tags/g4vphysicalvolume/">G4VPhysicalVolume</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
-        </section>
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/geant4/">Geant4</a>
+  
+  <a class="badge badge-light" href="/tags/physicalvolume/">PhysicalVolume</a>
+  
+  <a class="badge badge-light" href="/tags/g4pvplacement/">G4PVPlacement</a>
+  
+  <a class="badge badge-light" href="/tags/g4vphysicalvolume/">G4VPhysicalVolume</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">이전</div>
+    <a href="/g4-noqasked-005-clhepclasses/" rel="next">Geant4 무작정 따라하기 - 5. 벡터, 회전, 변환</a>
+  </div>
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Jun 17, 2021</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/g4-noqasked-002-detcon/">Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</a></li>
+      
+      <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
+      
+      <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
+      
+      <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
+      
+      <li><a href="/g4-noqasked-011-scoring/">Geant4 무작정 따라하기 - 11. 스코어링 구현</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
     </div>
+  </div>
+</div>
+
+      
 
     
-    <div class="post-nav">
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
         
-            
-                
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-                
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
         
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
 
-            
+    
 
-            
-        <a href="/g4-noqasked-005-clhepclasses/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 5. 벡터, 회전, 변환"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 5. 벡터, 회전, 변환</a>
-            <a href="/g4-noqasked-007-trkvb/" class="next" rel="next" title="Geant4 무작정 따라하기 - 7. Tracking Verbose">Geant4 무작정 따라하기 - 7. Tracking Verbose<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="utterances"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
         </div>
-    </footer></div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"\r\ngraph TD\r\nWorld --- A --- B\r\nWorld --- C\r","id-2":"EvaNote","id-3":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-2":["id-2"],"id-3":["id-3"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-JZ0NBG8ZWZ');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
 </html>

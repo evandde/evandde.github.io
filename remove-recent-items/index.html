@@ -1,260 +1,1424 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법" />
-<meta property="og:description" content="작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 최근 항목에 대한 기록을 없애는 방법에 대해 알아봅니다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/remove-recent-items/" />
-<meta property="article:published_time" content="2020-11-12T09:54:54+09:00" />
-<meta property="article:modified_time" content="2020-11-12T09:54:54+09:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법"/>
-<meta name="twitter:description" content="작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 최근 항목에 대한 기록을 없애는 방법에 대해 알아봅니다."/>
-<meta name="application-name" content="EvaNote">
-<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/remove-recent-items/" /><link rel="prev" href="https://evandde.github.io/g4install-106p2-ubt2004/" /><link rel="next" href="https://evandde.github.io/remove-activity-history/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법",
-        "inLanguage": "ko-kr",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/evandde.github.io\/remove-recent-items\/"
-        },"genre": "posts","keywords": "HowTo, Windows, 최근 항목, recent items","wordcount":  231 ,
-        "url": "https:\/\/evandde.github.io\/remove-recent-items\/","datePublished": "2020-11-12T09:54:54+09:00","dateModified": "2020-11-12T09:54:54+09:00","publisher": {
-            "@type": "Organization",
-            "name": "Evan Kim"},"author": {
-                "@type": "Person",
-                "name": "Evan Kim"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+<!DOCTYPE html><html lang="ko-kr" >
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 최근 항목에 대한 기록을 없애는 방법에 대해 알아봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/remove-recent-items/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.75edb75c66f2d6f0a9a146b10c65f58e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/remove-recent-items/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/remove-recent-items/" />
+  <meta property="og:title" content="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법 | EvaNote" />
+  <meta property="og:description" content="작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 최근 항목에 대한 기록을 없애는 방법에 대해 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-11-12T09:54:54&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-09-04T18:59:33&#43;09:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://evandde.github.io/remove-recent-items/"
+  },
+  "headline": "작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법",
+  
+  "datePublished": "2020-11-12T09:54:54+09:00",
+  "dateModified": "2021-09-04T18:59:33+09:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Evan Kim"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "EvaNote",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "\u003cp\u003e작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 \u003cstrong\u003e최근 항목\u003c/strong\u003e에 대한 기록을 없애는 방법에 대해 알아봅니다.\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="ddbb24d0183906ea7f5cd37d03faca17" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
         </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        취소
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          마지막 업데이트
+      
+    
+    Sep 4, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 분 길이
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/windows/">Windows</a></span>
+  
+
 </div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
+
+    
+
+
+
+
+
+  
 </div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">목차</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>Windows</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-12">2020-11-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 231&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 1분&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>목차</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#해결방법">해결방법</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 <strong>최근 항목</strong>에 대한 기록을 없애는 방법에 대해 알아봅니다.</p>
-<figure><a class="lightgallery" href="/remove-recent-items/recentitems.png" title="/remove-recent-items/recentitems.png" data-thumbnail="/remove-recent-items/recentitems.png" data-sub-html="<h2>논문입니다. 정말입니다.</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="recentitems.png"
-            data-srcset="/remove-recent-items/recentitems.png, recentitems.png 1.5x, /remove-recent-items/recentitems.png 2x"
-            data-sizes="auto"
-            alt="/remove-recent-items/recentitems.png" width="70%" />
-    </a><figcaption class="image-caption">논문입니다. 정말입니다.</figcaption>
-    </figure>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>작업표시줄에서 아이콘을 우클릭할 때 뜨는 팝업이나, 시작메뉴의 점프목록 등에서 나타나는 <strong>최근 항목</strong>에 대한 기록을 없애는 방법에 대해 알아봅니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="recentitems" srcset="
+               /remove-recent-items/recentitems_hu62069d273f59eafcb533d1489183463b_155059_b82a2f9c61902689ac0b929c5288ad40.png 400w,
+               /remove-recent-items/recentitems_hu62069d273f59eafcb533d1489183463b_155059_ad3fae7cf078d451475d19984979f417.png 760w,
+               /remove-recent-items/recentitems_hu62069d273f59eafcb533d1489183463b_155059_1200x1200_fit_lanczos_3.png 1200w"
+               src="/remove-recent-items/recentitems_hu62069d273f59eafcb533d1489183463b_155059_b82a2f9c61902689ac0b929c5288ad40.png"
+               width="459"
+               height="300"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <hr>
 <h2 id="해결방법">해결방법</h2>
 <ol>
 <li>
 <p>[WIN]+[I]를 눌러, <strong>Windows 설정</strong> 창을 엽니다.</p>
-<a class="lightgallery" href="/remove-recent-items/step1.png" title="/remove-recent-items/step1.png" data-thumbnail="/remove-recent-items/step1.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="step1.png"
-            data-srcset="/remove-recent-items/step1.png, step1.png 1.5x, /remove-recent-items/step1.png 2x"
-            data-sizes="auto"
-            alt="/remove-recent-items/step1.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="step1" srcset="
+               /remove-recent-items/step1_hubc09b5e5b45ebe0e6367e06cbbd22f6e_27288_cb2f46f5173535b507a310fa985ff4f5.png 400w,
+               /remove-recent-items/step1_hubc09b5e5b45ebe0e6367e06cbbd22f6e_27288_315ecf754dde28affb86577282b8c074.png 760w,
+               /remove-recent-items/step1_hubc09b5e5b45ebe0e6367e06cbbd22f6e_27288_1200x1200_fit_lanczos_3.png 1200w"
+               src="/remove-recent-items/step1_hubc09b5e5b45ebe0e6367e06cbbd22f6e_27288_cb2f46f5173535b507a310fa985ff4f5.png"
+               width="760"
+               height="588"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 </li>
 <li>
 <p><strong>개인 설정</strong>에 들어갑니다.</p>
-<a class="lightgallery" href="/remove-recent-items/step2.png" title="/remove-recent-items/step2.png" data-thumbnail="/remove-recent-items/step2.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="step2.png"
-            data-srcset="/remove-recent-items/step2.png, step2.png 1.5x, /remove-recent-items/step2.png 2x"
-            data-sizes="auto"
-            alt="/remove-recent-items/step2.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="step2" srcset="
+               /remove-recent-items/step2_hu1021b5179eb911b503dfe42d0d60102f_36812_4d4df3ae42c0fa02ba9d4746e83fe18c.png 400w,
+               /remove-recent-items/step2_hu1021b5179eb911b503dfe42d0d60102f_36812_0295068b196412ce481e1fc96471d96e.png 760w,
+               /remove-recent-items/step2_hu1021b5179eb911b503dfe42d0d60102f_36812_1200x1200_fit_lanczos_3.png 1200w"
+               src="/remove-recent-items/step2_hu1021b5179eb911b503dfe42d0d60102f_36812_4d4df3ae42c0fa02ba9d4746e83fe18c.png"
+               width="760"
+               height="588"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 </li>
 <li>
 <p>왼쪽 탭 중 <strong>시작 탭</strong>에 들어갑니다.</p>
-<a class="lightgallery" href="/remove-recent-items/step3.png" title="/remove-recent-items/step3.png" data-thumbnail="/remove-recent-items/step3.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="step3.png"
-            data-srcset="/remove-recent-items/step3.png, step3.png 1.5x, /remove-recent-items/step3.png 2x"
-            data-sizes="auto"
-            alt="/remove-recent-items/step3.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="step3" srcset="
+               /remove-recent-items/step3_hu6f0cb14a1812bfaec7b84bbba2423e52_344721_ef50967df28671ec2b5877a6a2f77b91.png 400w,
+               /remove-recent-items/step3_hu6f0cb14a1812bfaec7b84bbba2423e52_344721_a0f1fdb646de4d992a3d60537c568ac8.png 760w,
+               /remove-recent-items/step3_hu6f0cb14a1812bfaec7b84bbba2423e52_344721_1200x1200_fit_lanczos_3.png 1200w"
+               src="/remove-recent-items/step3_hu6f0cb14a1812bfaec7b84bbba2423e52_344721_ef50967df28671ec2b5877a6a2f77b91.png"
+               width="760"
+               height="588"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 </li>
 <li>
 <p><strong>시작 메뉴의 점프 목록, 작업 표시줄 또는 파일 탐색기 즐겨찾기에서 최근에 연 항목 표시</strong>의 스위치를 클릭하여 끔으로 바꾸어줍니다.</p>
-<a class="lightgallery" href="/remove-recent-items/step4.png" title="/remove-recent-items/step4.png" data-thumbnail="/remove-recent-items/step4.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="step4.png"
-            data-srcset="/remove-recent-items/step4.png, step4.png 1.5x, /remove-recent-items/step4.png 2x"
-            data-sizes="auto"
-            alt="/remove-recent-items/step4.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="step4" srcset="
+               /remove-recent-items/step4_hu7a6bb26a76c0f625a44c18439306c193_156567_2a8d110dc26faa6acd5ffedf7911fb36.png 400w,
+               /remove-recent-items/step4_hu7a6bb26a76c0f625a44c18439306c193_156567_47259439bee97601a10ac1d61543c54d.png 760w,
+               /remove-recent-items/step4_hu7a6bb26a76c0f625a44c18439306c193_156567_1200x1200_fit_lanczos_3.png 1200w"
+               src="/remove-recent-items/step4_hu7a6bb26a76c0f625a44c18439306c193_156567_2a8d110dc26faa6acd5ffedf7911fb36.png"
+               width="760"
+               height="588"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 </li>
 </ol>
-<p>끝입니다! 설정사항은 따로 확인버튼 없이 자동으로 저장되니 그냥 창을 끄셔도 됩니다!</p></div>
-        
-        <br><hr><br>
-        <h2>관련 포스트</h2>
-        <ul>
-            
-            <li><a href="/remove-activity-history/">타임라인에서 활동 기록 뜨지 않게 하는 법</a></li>
-            
-            <li><a href="/wsl2-x/">WSL2에서 X window를 세팅하는 법</a></li>
-            
-            <li><a href="/wsl1-x/">WSL1에서 X window를 세팅하는 법</a></li>
-            
-            <li><a href="/userdir-change/">사용자 폴더의 위치를 변경하는 방법</a></li>
-            
-            <li><a href="/wsl-otherloc/">WSL을 다른 경로에 설치하는 법</a></li>
-            
-        </ul>
-        
-
-<div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>2020-11-12에 수정</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/remove-recent-items/index.md" target="_blank">Markdown으로 보기</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/remove-recent-items/" data-title="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법" data-hashtags="HowTo,Windows,최근 항목,recent items"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/remove-recent-items/" data-title="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/remove-recent-items/" data-title="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/remove-recent-items/" data-title="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/remove-recent-items/" data-title="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/remove-recent-items/" data-title="작업표시줄, 시작메뉴에서 최근 항목 뜨지 않게 하는 법" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/howto/">HowTo</a>,&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/%EC%B5%9C%EA%B7%BC-%ED%95%AD%EB%AA%A9/">최근 항목</a>,&nbsp;<a href="/tags/recent-items/">recent items</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
-        </section>
+<p>끝입니다! 설정사항은 따로 확인버튼 없이 자동으로 저장되니 그냥 창을 끄셔도 됩니다!</p>
     </div>
 
     
-    <div class="post-nav">
-        </div>
-</div>
-<div id="comments"><div id="utterances"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-JZ0NBG8ZWZ');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/howto/">HowTo</a>
+  
+  <a class="badge badge-light" href="/tags/windows/">Windows</a>
+  
+  <a class="badge badge-light" href="/tags/%EC%B5%9C%EA%B7%BC-%ED%95%AD%EB%AA%A9/">최근 항목</a>
+  
+  <a class="badge badge-light" href="/tags/recent-items/">recent items</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://evandde.github.io/remove-recent-items/&amp;text=%ec%9e%91%ec%97%85%ed%91%9c%ec%8b%9c%ec%a4%84,%20%ec%8b%9c%ec%9e%91%eb%a9%94%eb%89%b4%ec%97%90%ec%84%9c%20%ec%b5%9c%ea%b7%bc%20%ed%95%ad%eb%aa%a9%20%eb%9c%a8%ec%a7%80%20%ec%95%8a%ea%b2%8c%20%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://evandde.github.io/remove-recent-items/&amp;t=%ec%9e%91%ec%97%85%ed%91%9c%ec%8b%9c%ec%a4%84,%20%ec%8b%9c%ec%9e%91%eb%a9%94%eb%89%b4%ec%97%90%ec%84%9c%20%ec%b5%9c%ea%b7%bc%20%ed%95%ad%eb%aa%a9%20%eb%9c%a8%ec%a7%80%20%ec%95%8a%ea%b2%8c%20%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%ec%9e%91%ec%97%85%ed%91%9c%ec%8b%9c%ec%a4%84,%20%ec%8b%9c%ec%9e%91%eb%a9%94%eb%89%b4%ec%97%90%ec%84%9c%20%ec%b5%9c%ea%b7%bc%20%ed%95%ad%eb%aa%a9%20%eb%9c%a8%ec%a7%80%20%ec%95%8a%ea%b2%8c%20%ed%95%98%eb%8a%94%20%eb%b2%95&amp;body=https://evandde.github.io/remove-recent-items/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://evandde.github.io/remove-recent-items/&amp;title=%ec%9e%91%ec%97%85%ed%91%9c%ec%8b%9c%ec%a4%84,%20%ec%8b%9c%ec%9e%91%eb%a9%94%eb%89%b4%ec%97%90%ec%84%9c%20%ec%b5%9c%ea%b7%bc%20%ed%95%ad%eb%aa%a9%20%eb%9c%a8%ec%a7%80%20%ec%95%8a%ea%b2%8c%20%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=%ec%9e%91%ec%97%85%ed%91%9c%ec%8b%9c%ec%a4%84,%20%ec%8b%9c%ec%9e%91%eb%a9%94%eb%89%b4%ec%97%90%ec%84%9c%20%ec%b5%9c%ea%b7%bc%20%ed%95%ad%eb%aa%a9%20%eb%9c%a8%ec%a7%80%20%ec%95%8a%ea%b2%8c%20%ed%95%98%eb%8a%94%20%eb%b2%95%20https://evandde.github.io/remove-recent-items/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://evandde.github.io/remove-recent-items/&amp;title=%ec%9e%91%ec%97%85%ed%91%9c%ec%8b%9c%ec%a4%84,%20%ec%8b%9c%ec%9e%91%eb%a9%94%eb%89%b4%ec%97%90%ec%84%9c%20%ec%b5%9c%ea%b7%bc%20%ed%95%ad%eb%aa%a9%20%eb%9c%a8%ec%a7%80%20%ec%95%8a%ea%b2%8c%20%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://evandde.github.io/remove-recent-items/&amp;title=%ec%9e%91%ec%97%85%ed%91%9c%ec%8b%9c%ec%a4%84,%20%ec%8b%9c%ec%9e%91%eb%a9%94%eb%89%b4%ec%97%90%ec%84%9c%20%ec%b5%9c%ea%b7%bc%20%ed%95%ad%eb%aa%a9%20%eb%9c%a8%ec%a7%80%20%ec%95%8a%ea%b2%8c%20%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-tumblr">
+          <i class="fab fa-tumblr"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://evandde.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/evan/avatar_hu4476cc8294ad87f920966ab8a63550ba_16674_270x270_fill_lanczos_center_3.png" alt="Evan Kim"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://evandde.github.io/">Evan Kim</a></h5>
+      <h6 class="card-subtitle">Senior Researcher</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:evandde@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=uPm-DQsAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/evandde" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/remove-activity-history/">Windows 10 타임라인에서 활동 기록 뜨지 않게 하는 법</a></li>
+      
+      <li><a href="/wsl2-x/">WSL2에서 X window를 세팅하는 법</a></li>
+      
+      <li><a href="/wsl1-x/">WSL1에서 X window를 세팅하는 법</a></li>
+      
+      <li><a href="/userdir-change/">Windows에서 사용자 폴더의 위치를 변경하는 방법</a></li>
+      
+      <li><a href="/wsl-otherloc/">WSL을 다른 경로에 설치하는 법</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
 </html>

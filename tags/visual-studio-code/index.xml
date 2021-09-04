@@ -1,15 +1,519 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Visual Studio Code - 태그 - EvaNote</title>
-        <link>https://evandde.github.io/tags/visual-studio-code/</link>
-        <description>Visual Studio Code - 태그 - EvaNote</description>
-        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 11:22:31 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/visual-studio-code/" rel="self" type="application/rss+xml" /><item>
-    <title>Visual Studio Code 소개, 설치, 기본 세팅</title>
-    <link>https://evandde.github.io/vscode/</link>
-    <pubDate>Thu, 12 Nov 2020 11:22:31 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/vscode/</guid>
-    <description><![CDATA[<p>요즘 개발자 사이에서 인기있는 코딩 툴. <strong>Visual Studio Code</strong>에 대해 살펴보고, 설치 및 기본 세팅 방법까지 알아봅니다.</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Studio Code | EvaNote</title>
+    <link>https://evandde.github.io/tags/visual-studio-code/</link>
+      <atom:link href="https://evandde.github.io/tags/visual-studio-code/index.xml" rel="self" type="application/rss+xml" />
+    <description>Visual Studio Code</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Thu, 12 Nov 2020 11:22:31 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>Visual Studio Code</title>
+      <link>https://evandde.github.io/tags/visual-studio-code/</link>
+    </image>
+    
+    <item>
+      <title>Visual Studio Code 소개, 설치, 기본 세팅</title>
+      <link>https://evandde.github.io/vscode/</link>
+      <pubDate>Thu, 12 Nov 2020 11:22:31 +0900</pubDate>
+      <guid>https://evandde.github.io/vscode/</guid>
+      <description>&lt;p&gt;요즘 개발자 사이에서 인기있는 코딩 툴. &lt;strong&gt;Visual Studio Code&lt;/strong&gt;에 대해 살펴보고, 설치 및 기본 세팅 방법까지 알아봅니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vscode_logo&#34; srcset=&#34;
+               /vscode/vscode_logo_hub58b0ad656b469a04cb691e21fc092d7_17189_e0226bcd87c6518e4ecfddf5de21624b.png 400w,
+               /vscode/vscode_logo_hub58b0ad656b469a04cb691e21fc092d7_17189_1c0117b9250d6b39bd8ed26e7996540b.png 760w,
+               /vscode/vscode_logo_hub58b0ad656b469a04cb691e21fc092d7_17189_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/vscode_logo_hub58b0ad656b469a04cb691e21fc092d7_17189_e0226bcd87c6518e4ecfddf5de21624b.png&#34;
+               width=&#34;760&#34;
+               height=&#34;380&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;공식 홈페이지: &lt;a href=&#34;https://code.visualstudio.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://code.visualstudio.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GitHub: &lt;a href=&#34;https://github.com/Microsoft/vscode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/Microsoft/vscode&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다운로드: &lt;a href=&#34;https://code.visualstudio.com/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://code.visualstudio.com/download&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Windows의 경우 chocolatey를 통해서도 설치 가능&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;choco install vscode -y
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;설치는 그냥 &lt;strong&gt;다음&lt;/strong&gt;버튼만 눌러서 진행해도 괜찮음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;[CTRL]+[SHIFT]+[X] 누르면 Extension 탭이 열림. 원하는 extension을 설치하여 이용.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;모든 extension 보기(Marketplace): &lt;a href=&#34;https://marketplace.visualstudio.com/vscode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://marketplace.visualstudio.com/vscode&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    VSCode는 컴파일러, 디버거 등을 내장하고 있지 않습니다. 사용하는 언어에 맞추어 따로 설치하고 연동하는 방식으로 사용하셔야 합니다. 이에 관한 자세한 내용은 본 블로그의 &lt;a href=&#34;https://evandde.github.io/categories/vscode/&#34;&gt;VSCode 카테고리&lt;/a&gt; 글을 참고하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;visual-studio-code-소개&#34;&gt;Visual Studio Code 소개&lt;/h2&gt;
+&lt;p&gt;Visual Studio Code는 &lt;strong&gt;마이크로소프트&lt;/strong&gt;에서 개발하여 2016년에 출시한 &lt;del&gt;고급 메모장&lt;/del&gt;&lt;strong&gt;IDE&lt;/strong&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;입니다. 줄여서 &lt;strong&gt;VSCode&lt;/strong&gt; 혹은 &lt;strong&gt;VSC&lt;/strong&gt;라고도 부릅니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com/docs&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;원문&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Getting started&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Visual Studio Code는 가벼우면서도 강력한 소스 코드 편집기로, Windows, macOS, Linux에서 모두 사용 가능합니다. VSCode는 기본적으로 JavaScript, TypeScript, Node.js를 지원하며, 다양한 확장(extension)을 통해 다른 언어(C, C++, C#, Java, Python, PHP, Go 등)나 런타임(.NET, Unity 등)을 지원하도록 설정할 수 있습니다. 이 &lt;a href=&#34;https://code.visualstudio.com/docs/getstarted/introvideos&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;소개영상&lt;/a&gt;(영어)을 통해 VSCode로의 여행을 시작해보세요.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;저는 이전에 Visual Studio, PyCharm, Eclipse, QtCreator, Vim+Plugin 등의 IDE를 사용해보았습니다만, 올 초 즈음부터 VSCode로 정착했습니다. 그 이유는 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;가볍다.&lt;/li&gt;
+&lt;li&gt;무료다.&lt;/li&gt;
+&lt;li&gt;Windows와 Linux에서 모두 사용 가능하다.&lt;/li&gt;
+&lt;li&gt;WSL과 같은 원격 환경에서의 개발을 지원한다.&lt;/li&gt;
+&lt;li&gt;내가 사용하는 여러 종류의 프로그래밍 언어를 하나의 IDE로 관리할 수 있다. (C++, Python, Go, Markdown, HTML, CSS, JavaScript)&lt;/li&gt;
+&lt;li&gt;설정해놓은 환경이 동기화되어, 여러 대의 컴퓨터를 사용해도 동일한 환경에서 작업할 수 있다.&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;뭔가 프로그래밍 고수가 된 것 같은 착각이 든다&lt;/del&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vscode-설치하기&#34;&gt;VSCode 설치하기&lt;/h2&gt;
+&lt;h3 id=&#34;설치-프로그램-다운받아-설치&#34;&gt;설치 프로그램 다운받아 설치&lt;/h3&gt;
+&lt;h4 id=&#34;설치파일-다운로드&#34;&gt;설치파일 다운로드&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;공식 홈페이지&lt;/a&gt; 첫화면에 있는 다운로드 버튼을 누르면 설치 프로그램이 다운로드 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;mainpage_download&#34; srcset=&#34;
+               /vscode/mainpage_download_hufc464033e495f88261d6484504eb9237_371107_b9cb34c2f83e07af7eabd65c08e0d5e2.png 400w,
+               /vscode/mainpage_download_hufc464033e495f88261d6484504eb9237_371107_d7547492aba88799ef40d20c0cc49ce8.png 760w,
+               /vscode/mainpage_download_hufc464033e495f88261d6484504eb9237_371107_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/mainpage_download_hufc464033e495f88261d6484504eb9237_371107_b9cb34c2f83e07af7eabd65c08e0d5e2.png&#34;
+               width=&#34;732&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;혹은, &lt;a href=&#34;https://code.visualstudio.com/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;다운로드 페이지&lt;/a&gt;를 이용하셔도 좋습니다.&lt;/p&gt;
+&lt;h4 id=&#34;설치파일-실행&#34;&gt;설치파일 실행&lt;/h4&gt;
+&lt;p&gt;User installer를 받으셨거나, 공식 홈페이지 첫화면에서 다운로드 받으신 경우에는, 설치 프로그램을 실행시키면 다음과 같은 경고가 뜰 수 있습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 설치파일은 관리자 권한으로 실행되지 않습니다. 시스템을 이용하는 모든 사용자가 VSCode를 쓰고자 한다면, System Installer를 다운받아 설치하세요. 그냥 진행해도 괜찮습니까?&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;install_warning&#34; srcset=&#34;
+               /vscode/install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_a3377eb22fdf35f25d3fdf4ca0d9717c.png 400w,
+               /vscode/install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_43ec44130e4f67adc7cb207716e8b696.png 760w,
+               /vscode/install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_a3377eb22fdf35f25d3fdf4ca0d9717c.png&#34;
+               width=&#34;413&#34;
+               height=&#34;185&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;일반적인 개인사용자 분들은 그냥 확인을 눌러 진행&lt;/strong&gt;하시면 됩니다. 여러개의 Windows 계정이 존재하고 이 모든 계정에서 사용하게끔 하고 싶으신 분들의 경우에는, System Installer를 다운받아서 설치를 진행하시기 바랍니다.&lt;/p&gt;
+&lt;p&gt;그 이후에는 경로 설정 등의 내용이므로 특별한 이유가 없다면 그냥 &lt;strong&gt;다음&lt;/strong&gt;버튼만 눌러주시면 됩니다.&lt;/p&gt;
+&lt;h3 id=&#34;chocolatey를-통해-설치windows&#34;&gt;Chocolatey를 통해 설치(Windows)&lt;/h3&gt;
+&lt;p&gt;Chocolatey를 이용하신다면, 다음 명령어를 통해 간단하게 설치하실 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;choco install vscode -y
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;install_choco&#34; srcset=&#34;
+               /vscode/install_choco_hu00848fd8df6252c4dbc7ff29e5fcba54_71153_0bb805bbd30908215e1000aefcb210cb.png 400w,
+               /vscode/install_choco_hu00848fd8df6252c4dbc7ff29e5fcba54_71153_6a4ba4498c282f06239b7fce97ac54fc.png 760w,
+               /vscode/install_choco_hu00848fd8df6252c4dbc7ff29e5fcba54_71153_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/install_choco_hu00848fd8df6252c4dbc7ff29e5fcba54_71153_0bb805bbd30908215e1000aefcb210cb.png&#34;
+               width=&#34;760&#34;
+               height=&#34;477&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Chocolatey를 설치하고 이용하는 방법이 궁금하다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;첫-화면-살펴보기&#34;&gt;첫 화면 살펴보기&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vscode_fisrtview&#34; srcset=&#34;
+               /vscode/vscode_fisrtview_hu98a461d620bb1c97124d8eca02f3ea0f_240766_7c2a00c7e62ad95a401192d9b77b7cf1.png 400w,
+               /vscode/vscode_fisrtview_hu98a461d620bb1c97124d8eca02f3ea0f_240766_2f794fb88904ea371d26e0394ae87511.png 760w,
+               /vscode/vscode_fisrtview_hu98a461d620bb1c97124d8eca02f3ea0f_240766_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/vscode_fisrtview_hu98a461d620bb1c97124d8eca02f3ea0f_240766_7c2a00c7e62ad95a401192d9b77b7cf1.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;extension-살펴보기&#34;&gt;Extension 살펴보기&lt;/h2&gt;
+&lt;p&gt;VSCode에는 정말 다양한 extension이 존재하며, 계속 개발되고 있습니다.&lt;/p&gt;
+&lt;p&gt;현재 제공하는 모든 extension은 &lt;a href=&#34;https://marketplace.visualstudio.com/vscode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;marketplace 페이지&lt;/a&gt;에서 살펴볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이 글에서는 우선 간단하게 언어 설정이나 테마 설정과 같은 기본적인 extension을 살펴보겠습니다.&lt;/p&gt;
+&lt;h3 id=&#34;language-pack-extension&#34;&gt;Language pack extension&lt;/h3&gt;
+&lt;p&gt;VSCode는 영어뿐만 아니라, &lt;strong&gt;한국어&lt;/strong&gt;를 비롯하여, 중국어, 일본어, 스페인어, 러시아어, 독일어,&amp;hellip; 등 다양한 언어를 지원합니다. Microsoft에서 직접 제공하는 언어 팩이죠.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;strong&gt;Language pack&lt;/strong&gt;으로 검색하시면 다양한 언어 팩을 확인할 수 있습니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;한국어 팩을 설치하시려면, &lt;strong&gt;korean을 검색&lt;/strong&gt;하여 나오는 &lt;strong&gt;Korean Language Pack for Visual Studio Code&lt;/strong&gt;를 설치하면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;kopack&#34; srcset=&#34;
+               /vscode/kopack_hua27a478d535d002cf8cb6de84ac364c9_87533_63bc2a2475a67d9c48cb297cbf074208.png 400w,
+               /vscode/kopack_hua27a478d535d002cf8cb6de84ac364c9_87533_72e1323c580a8c7e891fb2e601852b31.png 760w,
+               /vscode/kopack_hua27a478d535d002cf8cb6de84ac364c9_87533_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/kopack_hua27a478d535d002cf8cb6de84ac364c9_87533_63bc2a2475a67d9c48cb297cbf074208.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;설치는 금방 끝납니다.&lt;/p&gt;
+&lt;p&gt;오른쪽 아래에 &lt;strong&gt;Restart Now 버튼&lt;/strong&gt;이 나타나면, 눌러서 VSCode를 재시작하시기 바랍니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;kopack_restart&#34; srcset=&#34;
+               /vscode/kopack_restart_hu16760a2b6cd9e5a92a05d802200e203a_8225_261c847b493d023035963d17185aec77.png 400w,
+               /vscode/kopack_restart_hu16760a2b6cd9e5a92a05d802200e203a_8225_eb5b8739adae1fca9bd69f761b5ebf8a.png 760w,
+               /vscode/kopack_restart_hu16760a2b6cd9e5a92a05d802200e203a_8225_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/kopack_restart_hu16760a2b6cd9e5a92a05d802200e203a_8225_261c847b493d023035963d17185aec77.png&#34;
+               width=&#34;503&#34;
+               height=&#34;195&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;(개인적으로는 에러 검색 등의 용이성 때문에, 그냥 영어모드로 이용하고 있습니다)&lt;/p&gt;
+&lt;h3 id=&#34;themeicon-extension&#34;&gt;Theme/icon extension&lt;/h3&gt;
+&lt;p&gt;Marketplace에 보면 테마나 아이콘도 정말 다양하게 있습니다. 다음 그림과 같이 필터를 &lt;strong&gt;Themes 카테고리&lt;/strong&gt;로 설정하시면, 테마/아이콘에 관련된 extension들을 살펴볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;테마/아이콘 변경은 왼쪽 아래의 설정아이콘을 통해 가능합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;theme&#34; srcset=&#34;
+               /vscode/theme_huf34cb39c24e079bb9844e8100caef5f8_66743_0e5912b658176b4b21ab1ba9e2db7d1c.png 400w,
+               /vscode/theme_huf34cb39c24e079bb9844e8100caef5f8_66743_3f92e44f7ad57b5bdb5e6cdb6c9f8c4c.png 760w,
+               /vscode/theme_huf34cb39c24e079bb9844e8100caef5f8_66743_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/theme_huf34cb39c24e079bb9844e8100caef5f8_66743_0e5912b658176b4b21ab1ba9e2db7d1c.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;theme_change&#34; srcset=&#34;
+               /vscode/theme_change_hu52c14d4ac40959c65407d8137fc30c37_190741_f54be95f58cf14e1f88c796770fc4ec0.png 400w,
+               /vscode/theme_change_hu52c14d4ac40959c65407d8137fc30c37_190741_2455ab8c80980b167a9c5ffc904a20bd.png 760w,
+               /vscode/theme_change_hu52c14d4ac40959c65407d8137fc30c37_190741_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/theme_change_hu52c14d4ac40959c65407d8137fc30c37_190741_f54be95f58cf14e1f88c796770fc4ec0.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;extension설정-동기화하기&#34;&gt;Extension/설정 동기화하기&lt;/h2&gt;
+&lt;p&gt;VSCode는 설치한 Extension목록, 설정값 등을 다른 컴퓨터에서도 동기화하여 동일하게 사용할 수 있도록, &lt;strong&gt;Sync 기능을 제공&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p&gt;동기화를 위해서는 &lt;strong&gt;Microsoft 계정, GitHub 계정 둘 중 하나가 필요&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;h3 id=&#34;sync-켜기&#34;&gt;Sync 켜기&lt;/h3&gt;
+&lt;p&gt;왼쪽 아래의 &lt;strong&gt;계정 아이콘&lt;/strong&gt;을 클릭하여 Sync 기능을 활성화할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;sync&#34; srcset=&#34;
+               /vscode/sync_hub4123ab2c6c6b674280e527321382fae_35519_73d0e13e6e4d18c2cd576906c187765e.png 400w,
+               /vscode/sync_hub4123ab2c6c6b674280e527321382fae_35519_aa3dcb5ed722b38704913f62c90723cf.png 760w,
+               /vscode/sync_hub4123ab2c6c6b674280e527321382fae_35519_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/sync_hub4123ab2c6c6b674280e527321382fae_35519_73d0e13e6e4d18c2cd576906c187765e.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;작성일(2020년 11월) 기준, 다음과 같은 경고가 뜨네요.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;동기화 기능은 아직 준비단계입니다. 사용하기 전에 관련 문서를 읽어보세요.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;sync_warning&#34; srcset=&#34;
+               /vscode/sync_warning_hu0906452124b75270b823b99e9d105aa8_5079_31b6a5e8acd197c320da3d746e033e07.png 400w,
+               /vscode/sync_warning_hu0906452124b75270b823b99e9d105aa8_5079_72d5e19132c746702a6b2760101c4001.png 760w,
+               /vscode/sync_warning_hu0906452124b75270b823b99e9d105aa8_5079_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/sync_warning_hu0906452124b75270b823b99e9d105aa8_5079_31b6a5e8acd197c320da3d746e033e07.png&#34;
+               width=&#34;558&#34;
+               height=&#34;128&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;del&gt;아무도 안읽어보시겠죠&lt;/del&gt; &lt;strong&gt;Turn On&lt;/strong&gt;을 눌러 넘어갑니다.&lt;/p&gt;
+&lt;p&gt;그러면 창 위에 다음 그림과 같이 동기화할 항목을 선택하는 내용과 함께 &lt;strong&gt;Sign in &amp;amp; Turn On&lt;/strong&gt; 버튼이 뜹니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;sync1&#34; srcset=&#34;
+               /vscode/sync1_hu09ced26c7c6b9e428a9ae1ae4be158e3_13083_89fc7dcfe05569d86ea108d39fa1238d.png 400w,
+               /vscode/sync1_hu09ced26c7c6b9e428a9ae1ae4be158e3_13083_46180ed2c9fbb95e1dc09ee0fcce697c.png 760w,
+               /vscode/sync1_hu09ced26c7c6b9e428a9ae1ae4be158e3_13083_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/sync1_hu09ced26c7c6b9e428a9ae1ae4be158e3_13083_89fc7dcfe05569d86ea108d39fa1238d.png&#34;
+               width=&#34;652&#34;
+               height=&#34;233&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sign in &amp;amp; Turn On&lt;/strong&gt; 버튼을 누르면, 계정 종류를 선택하는 항목이 뜹니다. 여기서 &lt;strong&gt;Microsoft로 로그인&lt;/strong&gt;이나 &lt;strong&gt;GitHub으로 로그인&lt;/strong&gt; 중 편하신 쪽으로 선택하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;sync2&#34; srcset=&#34;
+               /vscode/sync2_hu0b968b7f7bc51aec80fc133399e9f3d2_7037_be493f4a2dc1bb6735fce6687bb7a3a4.png 400w,
+               /vscode/sync2_hu0b968b7f7bc51aec80fc133399e9f3d2_7037_7a32e15688ad06d8557c092a5eb4d73a.png 760w,
+               /vscode/sync2_hu0b968b7f7bc51aec80fc133399e9f3d2_7037_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode/sync2_hu0b968b7f7bc51aec80fc133399e9f3d2_7037_be493f4a2dc1bb6735fce6687bb7a3a4.png&#34;
+               width=&#34;642&#34;
+               height=&#34;165&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;GitHub 계정으로 로그인하시는 경우에는, GitHub과 VSCode 연동을 승인하는 페이지가 뜹니다.&lt;/p&gt;
+&lt;p&gt;다음과 같은 경고창이 뜨면 &lt;strong&gt;Open&lt;/strong&gt;을 눌러 진행하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;sync_github.png&#34; alt=&#34;sync_github&#34;&gt;&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://code.visualstudio.com/&lt;/a&gt;&lt;/p&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;통합 개발 환경(Integrated Development Environment). 프로젝트 관리, 소스코드 편집, 컴파일, 디버그, 바이너리 배포 등, 개발에 필요한 여러 기능을 한데 묶어놓은 프로그램.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;</description>
+    </item>
+    
+  </channel>
 </rss>

@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>스코어링(Scoring) | EvaNote</title>
+    <link>https://evandde.github.io/course/g4-noqasked/g4-noqasked-scoring/</link>
+      <atom:link href="https://evandde.github.io/course/g4-noqasked/g4-noqasked-scoring/index.xml" rel="self" type="application/rss+xml" />
+    <description>스코어링(Scoring)</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Sun, 05 Sep 2021 00:01:16 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>스코어링(Scoring)</title>
+      <link>https://evandde.github.io/course/g4-noqasked/g4-noqasked-scoring/</link>
+    </image>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 10. 스코어링 이론</title>
+      <link>https://evandde.github.io/g4-noqasked-010-scoringtheory/</link>
+      <pubDate>Fri, 30 Jul 2021 16:48:26 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-010-scoringtheory/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 열번째. Geant4 시뮬레이션에서 원하는 물리량을 기록하는 스코어링에 대해 알아봅니다.&lt;/p&gt;
+&lt;p&gt;이 글에서는 Geant4에서 스코어링 시스템의 기본적인 동작 이론에 대해 설명할 것입니다. 이를 바탕으로 다음 글에서 이어질 Geant4에서 기본적으로 제공하는 스코어러의 사용에 있어 이해도를 높이는 것이 이번 글의 목적입니다. 더 나아가, 이 개념을 잘 이해하시고 충분한 C++ 언어 지식을 갖추신다면 Geant4에서 기본 제공하는 스코어러를 넘어 여러분만의 스코어러를 직접 구현하여 이용할 수도 있을 것입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4의-스코어링-용어&#34;&gt;Geant4의 스코어링 용어&lt;/h2&gt;
+&lt;p&gt;Geant4는 모든 구조물 내에서 방사선 수송에 필요한 물리량 전반을 다 계산하며 시뮬레이션을 돌립니다. 이 수많은 값들을 우리에게 모조리 알려주는 방식이 이전에 설명한 바 있는 &lt;a href=&#34;https://evandde.github.io/g4-noqasked-007-trkvb/&#34;&gt;verbose&lt;/a&gt;입니다.&lt;/p&gt;
+&lt;p&gt;하지만 우리는 이 모든 값이 다 필요한 것이 아닙니다. 이 중에 원하는 부분만 추려서 기록하면 좋겠지요. 이러한 작업을 &lt;strong&gt;스코어링&lt;/strong&gt;이라고 합니다. 즉, 스코어링이란 &lt;font color=red&gt;&lt;b&gt;관심 있는 지오메트리 내&lt;/b&gt;&lt;/font&gt;에서 &lt;font color=blue&gt;&lt;b&gt;관심 있는 물리량&lt;/b&gt;&lt;/font&gt;이 &lt;strong&gt;어떠한 값을 가지는지&lt;/strong&gt;를 살펴보는 것입니다.&lt;/p&gt;
+&lt;h3 id=&#34;관심-있는-지오메트리&#34;&gt;관심 있는 지오메트리&lt;/h3&gt;
+&lt;p&gt;사용자가 만든 다양한 지오메트리 중, 스코어링을 수행하고 싶은 &lt;b&gt;&lt;font color=red&gt;관심 있는 지오메트리(들)&lt;/font&gt;&lt;/b&gt;이 있을 것입니다. 이 지오메트리(들)의 &lt;b&gt;&lt;font color=red&gt;Logical Volume&lt;/font&gt;&lt;/b&gt;에 &lt;b&gt;Sensitive Detector를 세팅&lt;/b&gt;해줌으로써, 해당 지오메트리 내에서의 일을 스코어링하도록 프로그램에게 지시할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;여기서 &lt;b&gt;Sensitive Detector&lt;/b&gt;, 줄여서 &lt;b&gt;SD&lt;/b&gt;는, &lt;b&gt;&lt;font color=blue&gt;관심 있는 물리량&lt;/font&gt;&lt;/b&gt;을 어떤 조건 하에서 어떻게 가공하여 메모리 공간에 저장할 것인지와 같은 &lt;b&gt;스코어링 방법을 정의하는 클래스&lt;/b&gt;입니다.&lt;/p&gt;
+&lt;h3 id=&#34;관심-있는-물리량&#34;&gt;관심 있는 물리량&lt;/h3&gt;
+&lt;p&gt;사용자는 &lt;b&gt;&lt;font color=red&gt;해당 지오메트리&lt;/font&gt;&lt;/b&gt;에 &lt;b&gt;&lt;font color=blue&gt;전달된 에너지&lt;/font&gt;&lt;/b&gt;에 관심이 있을 수도 있고, &lt;b&gt;&lt;font color=blue&gt;반응 위치에 관심&lt;/font&gt;&lt;/b&gt;이 있을 수도 있으며, &lt;b&gt;&lt;font color=blue&gt;반응 위치와 해당 위치에 전달된 에너지를 한 세트로 묶어서&lt;/font&gt;&lt;/b&gt; 살펴보고 싶을 수도 있습니다. 이처럼 &lt;strong&gt;관심 있는 물리량&lt;/strong&gt; 혹은 그 &lt;strong&gt;물리량들을 조합한 한 세트&lt;/strong&gt;를 Geant4에서는 &lt;b&gt;&lt;font color=blue&gt;Hit&lt;/font&gt;&lt;/b&gt;이라는 클래스를 통해 관리합니다. 즉, &lt;strong&gt;Hit 하나&lt;/strong&gt;당 &lt;strong&gt;한 세트의 정보&lt;/strong&gt;가 된다고 보시면 됩니다.&lt;/p&gt;
+&lt;p&gt;만약 여러 종류의 정보를 따로 관리하고 싶다면, 여러 종류의 Hit을 사용하면 됩니다. 예를 들어, 어떤 조건 하에서는 전달된 에너지만 기록하고 싶고, 또 다른 조건 하에서는 반응 위치만 기록하고 싶다면, &lt;b&gt;전달된 에너지라는 Hit&lt;/b&gt;과 &lt;b&gt;반응 위치라는 Hit&lt;/b&gt;으로 분리하여 두 종류의 Hit을 이용할 수 있습니다. 이는 반응 위치와 그 위치에 전달된 에너지를 한 세트로 묶은 Hit과는 다른 개념인 것입니다.&lt;/p&gt;
+&lt;p&gt;Geant4는 &lt;b&gt;같은 종류의 Hit들을 한 데 모아서 저장&lt;/b&gt;하는 &lt;b&gt;HitsCollection&lt;/b&gt; 이라는 클래스도 제공하고 있습니다. 이는 간단히 말해 &lt;b&gt;Hit을 담는 주머니&lt;/b&gt;라고 생각하면 됩니다. 하나의 HitsCollection에는 같은 종류의 Hit들만 들어가기 때문에, 예를 들어 전달된 에너지 Hit은 전달된 에너지 HitsCollection에 담기게 되고, 반응 위치 Hit은 반응 위치 HitsCollection에 담기는 식입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4의-스코어링-개념&#34;&gt;Geant4의 스코어링 개념&lt;/h2&gt;
+&lt;h3 id=&#34;기본-원리&#34;&gt;기본 원리&lt;/h3&gt;
+&lt;p&gt;스코어링은 기본적으로 &lt;strong&gt;Event 단위&lt;/strong&gt;로 이루어지며, 다음 과정이 매 Event마다 반복됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;입자를 수송하던 중, 입자가 &lt;b&gt;&lt;font color=red&gt;SD가 세팅된 지오메트리&lt;/font&gt;&lt;/b&gt; 내에 들어오는 순간부터, 해당 SD가 일을 하기 시작합니다.&lt;/li&gt;
+&lt;li&gt;SD는 구현된 내용에 따라, &lt;b&gt;&lt;font color=blue&gt;매 Step마다 관심 있는 물리량 정보를 수집하여 Hit을 생성&lt;/font&gt;&lt;/b&gt;합니다. 생성된 Hit은 각 종류별로 상응하는 HitsCollection에 저장됩니다.&lt;/li&gt;
+&lt;li&gt;Geant4는 매 Event가 끝날 때마다, 해당 Event에서 만들어진 HitsCollection들을 한 데 묶어 &lt;strong&gt;HCofThisEvent&lt;/strong&gt;라는 형태로 제공합니다. 사용자는 이 HCofThisEvent로부터 원하는 종류의 HitsCollection을 가져온 뒤, 그 안에 저장된 Hit들을 확인하고 기록할 수 있습니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;그림으로 나타내면 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_Scoring&#34; srcset=&#34;
+               /g4-noqasked-010-scoringtheory/01_Scoring_hu83e7a473b484a0c712644511b7ab14c4_541136_cd0a9e3028ca4e62f4b8b07c068c3c3a.png 400w,
+               /g4-noqasked-010-scoringtheory/01_Scoring_hu83e7a473b484a0c712644511b7ab14c4_541136_2bead1050922f64236121302b6dcc9e8.png 760w,
+               /g4-noqasked-010-scoringtheory/01_Scoring_hu83e7a473b484a0c712644511b7ab14c4_541136_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-010-scoringtheory/01_Scoring_hu83e7a473b484a0c712644511b7ab14c4_541136_cd0a9e3028ca4e62f4b8b07c068c3c3a.png&#34;
+               width=&#34;760&#34;
+               height=&#34;523&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;sensitive-detector-설계방법&#34;&gt;Sensitive Detector 설계방법&lt;/h3&gt;
+&lt;p&gt;Sensitive Detector를 설계하는 방법은 크게 다음의 두 가지가 있습니다만, 여기서는 &lt;b&gt;1번 방법&lt;/b&gt;만 다루겠습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;Multi Functional Detector&lt;/b&gt;에 사용자가 원하는 &lt;b&gt;Primitive Scorer들을 Register&lt;/b&gt;하여 설계&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;G4VSensitiveDetector 클래스를 상속받아 사용자가 직접 Sensitive Detector를 구현. 경우에 따라 Hit과 HitsCollection 수준부터 직접 구현하여 이용하기도 함.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Multi Functional Detector(MFD)는 일종의 틀로 보시면 되고, 이 틀에 실질적인 기능을 가진 Primitive Scorer(PS)를 조립해 넣는 식으로 SD를 구현합니다. 일종의 모듈형 시스템&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;처럼 조립된 전체가 하나의 SD가 되는 방식입니다. Geant4가 제공하는 PS들 중 일부를 소개해 드리겠습니다. (10.7 버전 기준)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;G4PSCellCharge: 해당 지오메트리 내에 deposit된 charge의 총합을 스코어링&lt;/li&gt;
+&lt;li&gt;G4PSCellFlux: 해당 지오메트리 내의 플럭스를 스코어링 (트랙길이 / 부피 방식으로 계산)&lt;/li&gt;
+&lt;li&gt;G4PSDoseDeposit: 해당 지오메트리 내에서의 흡수선량(absorbed dose)을 스코어링&lt;/li&gt;
+&lt;li&gt;G4PSEnergyDeposit: 해당 지오메트리 내에 deposit된 에너지의 총합을 스코어링&lt;/li&gt;
+&lt;li&gt;G4PSNofCollision: 해당 지오메트리에 입사한 입자의 개수를 스코어링&lt;/li&gt;
+&lt;li&gt;G4PSPassageCellCurrent&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;: 해당 지오메트리를 지나쳐간(입사 후 빠져나간) track의 수를 스코어링&lt;/li&gt;
+&lt;li&gt;G4PSPassageCellFlux: 해당 지오메트리를 지나쳐간(입사 후 빠져나간) track의 플럭스를 스코어링 (트랙길이 / 부피 방식으로 계산)&lt;/li&gt;
+&lt;li&gt;G4PSPopulation&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;: 해당 지오메트리에 들어온 입자의 수를 스코어링&lt;/li&gt;
+&lt;li&gt;G4PSTermination: 해당 지오메트리 내에서 종료&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;된 track의 수를 스코어링&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 외에도 더 많은 PS가 존재합니다. 그리고 이름 끝에 3D가 붙은 PS도 있는데, 이는 3D가 없는 것과 기능이 동일하며 해당 물리량을 복셀화된 각 볼륨마다 따로 저장하여 3D 분포를 살펴보는 데에 활용 가능합니다. (e.g. G4PSCellCharge3D)&lt;/p&gt;
+&lt;p&gt;추가적으로, &lt;strong&gt;필터&lt;/strong&gt;를 활용하면 &lt;strong&gt;특정 조건 하에서만 스코어링&lt;/strong&gt;이 이루어지도록 할 수도 있습니다. 예를 들어, G4PSCellFlux를 사용하는데 여기에 입자 제한 필터로 Gamma만 스코어링하도록 제한하면, 해당 지오메트리 내에서 Gamma 입자의 플럭스만 스코어링할 수 있는 것입니다. 다만, &lt;b&gt;하나의 PS당 하나의 필터만 세팅&lt;/b&gt;할 수 있습니다. 필터의 종류는 다음과 같습니다. (10.7 버전 기준)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;G4SDChargedFillter: (+) 혹은 (-) 전하를 가진 입자만 스코어링하도록 제한&lt;/li&gt;
+&lt;li&gt;G4SDNeutralFilter: 전하가 없는 중성 입자만 스코어링하도록 제한&lt;/li&gt;
+&lt;li&gt;G4SDKineticEnergyFilter: 입자의 운동에너지가 일정 범위(하한~상한) 내에 들어오는 경우에만 스코어링하도록 제한&lt;/li&gt;
+&lt;li&gt;G4SDParticleFilter: 입자의 이름을 이용하여, 그 입자만 스코어링하도록 제한 (여러 종류의 입자도 가능)&lt;/li&gt;
+&lt;li&gt;G4SDParticleWithEnergyFilter: 입자의 이름과 운동에너지 범위를 이용하여, 그 입자의 운동에너지가 일정 범위(하한~상한) 내에 들어오는 경우에만 스코어링하도록 제한 (한 종류의 입자만 가능)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ps-hit-hc에-대한-상세-설명&#34;&gt;PS, Hit, HC에 대한 상세 설명&lt;/h2&gt;
+&lt;h3 id=&#34;ps와-hc의-관계&#34;&gt;PS와 HC의 관계&lt;/h3&gt;
+&lt;p&gt;결국 Primitive Scorer(PS)가 실질적으로 &lt;b&gt;&lt;font color=blue&gt;물리량(Hit)&lt;/font&gt;&lt;/b&gt;을 검출하는 기능을 가집니다. 그리고 PS가 검출한 물리량(Hit)들은 앞서 설명하였던 &lt;strong&gt;HitsCollection&lt;/strong&gt;에 담기게 될 것입니다.&lt;/p&gt;
+&lt;p&gt;이 때, PS마다 스코어링하는 물리량의 종류가 다르므로 &lt;b&gt;&lt;u&gt;PS마다 각각 HitsCollection을 하나씩 담당&lt;/u&gt;&lt;/b&gt;하게 되는 것입니다. 각 PS가 담당하여 맡고 있는 HitsCollection에, 스코어링을 통해 검출해낸 Hit들을 저장하는 방식이 되는 것이지요.&lt;/p&gt;
+&lt;h3 id=&#34;hc에-hit을-저장하는-방법&#34;&gt;HC에 Hit을 저장하는 방법&lt;/h3&gt;
+&lt;p&gt;Hit은 스코어링 조건에만 부합하는 상황이라면 일단 매 Step마다 생성됩니다. 이렇게 생성되는 수 많은 Hit들은 HitsCollection(HC)에 저장되지요. PS를 이용하는 경우에는 Hit이 HC에 담길 때 &lt;strong&gt;누적&lt;/strong&gt;하는 방식으로 저장됩니다. 예를 들어, G4PSDoseDeposit의 경우에는 스코어링 된 흡수선량을 계속 더해서, 최종적으로 &lt;strong&gt;총 흡수선량의 합&lt;/strong&gt;이라는 하나의 값만 남는 것이죠.&lt;/p&gt;
+&lt;h3 id=&#34;여러-지오메트리끼리의-구분&#34;&gt;여러 지오메트리끼리의 구분&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://evandde.github.io/g4-noqasked-002-detcon/#%ec%9d%91%ec%9a%a9&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이전 글&lt;/a&gt;에서 Geant4에서는 지오메트리를 Solid, Logical, Physical로 나누어 관리하기 때문에, Logical Volume을 하나만 만들고 이를 공유하여 Physical Volume을 여러 개 둘 수 있다고 하였습니다. 이런 경우, &lt;b&gt;SD는 Logical Volume에 세팅&lt;/b&gt;하므로 &lt;b&gt;여러 개의 지오메트리에 동일한 SD가 세팅&lt;/b&gt; 될 것입니다.&lt;/p&gt;
+&lt;p&gt;이처럼 여러 개의 Physical Volume으로 정의된 지오메트리는 실제로도 각각 서로 다른 지오메트리이므로, &lt;b&gt;각자의 스코어링 결과를 구분하여 기록&lt;/b&gt;하고 싶은 경우가 많을 것입니다. 이를 위해 Geant4는 HC에 Hit을 저장할 때 &lt;b&gt;지오메트리 별로 구분하여 누적하는 방식을 채택&lt;/b&gt;하였습니다.&lt;/p&gt;
+&lt;p&gt;여기서 각각의 지오메트리를 구분하는 구분자가 바로 &lt;strong&gt;Copy Number&lt;/strong&gt;입니다. 이전에 Physical Volume에 대한 설명을 하던 &lt;a href=&#34;https://evandde.github.io/g4-noqasked-006-phyvol/#copy-number&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;에서 Copy Number는 스코어링 결과를 따로따로 보관하기 위한 &lt;strong&gt;사물함 번호&lt;/strong&gt;라는 설명을 했었지요. 즉, G4PSDoseDeposit이 세팅된 Logical Volume을 공유하여 여러 개의 Physical Volume이 배치되었다면, &lt;font color=green&gt;Copy Number가 0번인 Physical Volume&lt;/font&gt;에서 스코어링 된 &lt;font color=green&gt;흡수선량은 0번 사물함에 누적&lt;/font&gt;되고, &lt;font color=violet&gt;Copy Number가 1번인 Physical Volume&lt;/font&gt;에서 스코어링 된 &lt;font color=violet&gt;흡수선량은 1번 사물함에 누적&lt;/font&gt;되는 식입니다. 최종적으로 사용자는 각 Copy Number에 상응하는 사물함에서 누적된 총 합을 확인함으로써 각 지오메트리 별로 구분할 수 있게 됩니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;위 내용을 다이어그램으로 요약해보면 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+    subgraph Sensitive Detector
+    C &amp;amp; D --&amp;gt; B
+    E --- C
+    F --- D
+    end
+B ==&amp;gt; A
+A[Logical Volume]
+B[Multi Functional Detector]
+C[Primitive Scorer 1]
+D[Primitive Scorer 2]
+E[Filter 1]
+F[Filter 2]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph BT
+A --&amp;gt; B
+C --&amp;gt; D
+B &amp;amp; D --&amp;gt; E === F
+A[1번에서 스코어링된 Hit]
+B[1번 사물함]
+C[2번에서 스코어링된 Hit]
+D[2번 사물함]
+E[HitsCollection]
+F[Primitive Scorer]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Geant4에서의 스코어링에 대한 큰 개념은 이것으로 끝입니다. 새로운 용어와 개념이 너무 많아, 처음 보면 어려울 수 있습니다. 맨 마지막에 보여드린 다이어그램만 대강 이해하셔도 괜찮습니다. 일단 사용하다보면 익숙해지기 마련이니까요.&lt;/p&gt;
+&lt;p&gt;다음 글에서는 이 이론을 바탕으로 스코어링을 직접 구현해보도록 하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;여러 개의 기능적 구성요소(모듈)들을 조합하여 하나의 시스템으로 완성되는 구조.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Passage 유형은 해당 지오메트리를 빠져나갔던 track 다시 들어와서 또 빠져나가면 count가 추가됨.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Population 유형은 해당 지오메트리에 처음으로 들어올 때에만 count가 추가됨. 나갔다 다시 들어오면 무시.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;흡수되거나 운동에너지가 0이 되는 등의 이유로 멈춘 것. 엄밀히는 &lt;em&gt;fStopAndKill&lt;/em&gt; 상태가 된 track을 의미함.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;</description>
+    </item>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 11. 스코어링 구현</title>
+      <link>https://evandde.github.io/g4-noqasked-011-scoring/</link>
+      <pubDate>Wed, 18 Aug 2021 14:11:10 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-011-scoring/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 열한번째. Geant4에서 스코어링을 구현하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;p&gt;지난 글에서 살펴본 스코어링 이론을 바탕으로, 이번 글에서는 스코어링을 직접 구현해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;스코어링을 구현하는 방법은 크게 다음의 3단계를 통해 진행됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;스코어링을 위한 Sensitive Detector 설계&lt;/li&gt;
+&lt;li&gt;관심 있는 지오메트리의 Logical Volume에 Sensitive Detector를 세팅&lt;/li&gt;
+&lt;li&gt;Event가 끝날 때 HCofThisEvent에서 Hit(관심 있는 물리량)을 꺼내어 확인&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;차례차례 살펴보도록 합시다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;sensitive-detector-설계&#34;&gt;Sensitive Detector 설계&lt;/h2&gt;
+&lt;p&gt;Sensitive Detector를 설계하는 방법은 지난 글에서 말씀드렸습니다. 이 시리즈에서는 Multi Functional Detector(MFD)에 사용자가 원하는 Primitive Scorer들을 Register하여 설계하는 방법만 다루겠다고 하였지요.&lt;/p&gt;
+&lt;p&gt;이 내용을 코드로 입력하는 곳도 정해져 있습니다. 바로 &lt;b&gt;DetectorConstruction.cc 파일&lt;/b&gt;에 있는 &lt;b&gt;ConstructSDandField() 함수 내부&lt;/b&gt;입니다. DetectorConstruction.cc 파일을 열어보시면, 대부분의 경우 맨 아래쪽 부근에 다음과 같은 함수가 있을 것입니다. 이 함수의 중괄호({}) 내부에 작성할 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_consdandfield&#34; srcset=&#34;
+               /g4-noqasked-011-scoring/01_consdandfield_hud5d43139c37466f8384ee604e5938563_110949_2762534b1972bedebc739330bcc7b675.png 400w,
+               /g4-noqasked-011-scoring/01_consdandfield_hud5d43139c37466f8384ee604e5938563_110949_ea3ae354bc37906f7c0fdca93bff164f.png 760w,
+               /g4-noqasked-011-scoring/01_consdandfield_hud5d43139c37466f8384ee604e5938563_110949_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-011-scoring/01_consdandfield_hud5d43139c37466f8384ee604e5938563_110949_2762534b1972bedebc739330bcc7b675.png&#34;
+               width=&#34;760&#34;
+               height=&#34;504&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;font color=red&gt;물론, 관련한 헤더는 당연히 DetectorConstruction.cc 파일의 맨 위에 포함시켜 주셔야 합니다. 여기서 필요한 헤더는 다음과 같습니다.&lt;/font&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;font color=red&gt;G4SDManager.hh&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font color=red&gt;G4MultiFunctionalDetector.hh&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font color=red&gt;사용한 PrimitiveScorer와 Filter의 헤더 (G4PSEnergyDeposit.hh 등)&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mfd-만들고-추가하기&#34;&gt;MFD 만들고 추가하기&lt;/h3&gt;
+&lt;p&gt;Multi Functional Detector를 만드는 과정은 딱 두 가지만 하시면 됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;G4MultiFunctionalDetector 클래스의 객체를 만든다.&lt;/li&gt;
+&lt;li&gt;해당 객체를 G4SDManager에 추가한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;코드로는 다음의 두 줄입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto mfd = new G4MultiFunctionalDetector(&amp;quot;Detector&amp;quot;);
+G4SDManager::GetSDMpointer()-&amp;gt;AddNewDetector(mfd);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;mfd라는 변수명으로 객체를 만들고, 이를 추가해주었습니다.&lt;/p&gt;
+&lt;p&gt;좀 더 자세히 살펴보도록 하죠.&lt;/p&gt;
+&lt;h4 id=&#34;mfd-객체-만들기&#34;&gt;MFD 객체 만들기&lt;/h4&gt;
+&lt;p&gt;Geant4에서는 Multi Functional Detector를 만들기 위해 이름 그대로 G4MultiFunctionalDetector라는 클래스를 제공하고 있습니다. 사용자는 이 클래스의 생성자를 이용하여 객체를 한 개 만들어주면 됩니다.&lt;/p&gt;
+&lt;p&gt;이 클래스의 생성자는 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4MultiFunctionalDetector(G4String name);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;name: Multi Functional Detector의 이름. 자유롭게 적으면 됨. &lt;b&gt;나중에 쓰이는 값이므로 기억&lt;/b&gt;해둘 것&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;문자열 형태의 입력값 한 개만 자유롭게 넣어주면 됩니다. 입력 인자로 넣어준 &lt;b&gt;이 값은 MFD의 이름&lt;/b&gt;이 되는데, 나중에 HCofThisEvent에서 사용되니 적절한 이름으로 잘 지어주세요. 위 예시 코드에서는 &amp;ldquo;Detector&amp;quot;라는 이름을 지어주었습니다.&lt;/p&gt;
+&lt;h4 id=&#34;mfd-추가하기&#34;&gt;MFD 추가하기&lt;/h4&gt;
+&lt;p&gt;Geant4에서 Sensitive Detector를 사용하기 위해서는 &lt;b&gt;반드시 G4SDManager에 그 SD를 추가&lt;/b&gt;해주어야 합니다. 그래야 Geant4가 입자를 수송하면서 SD 목록 중 조건에 부합하는 것들에 대해 스코어링을 수행해주기 때문입니다.&lt;/p&gt;
+&lt;p&gt;G4SDManager는 Geant4가 제공하는 것을 가져다 쓰면 되며, 이 클래스가 제공하는 &lt;b&gt;AddNewDetector()라는 함수를 통해 우리가 설계한 SD를 추가&lt;/b&gt;하게 됩니다. 이 함수의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void AddNewDetector(G4VSensitiveDetector *aSD);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;aSD: 추가할 Sensitive Detector 객체의 포인터&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    C++적인 내용을 덧붙이자면, G4MultiFunctionalDetector 클래스는 G4VSensitiveDetector 클래스를 상속받아 만들어진 클래스입니다. 따라서, MFD 객체를 AddNewDetector의 인자로 사용할 수 있는 것입니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이 함수의 입력 인자로, 앞서 저희가 만들어둔 MFD 객체를 그대로 써주시면 됩니다.&lt;/p&gt;
+&lt;h3 id=&#34;ps-등록하기&#34;&gt;PS 등록하기&lt;/h3&gt;
+&lt;p&gt;이제 MFD는 만들었으니, 실제 스코어링 기능을 수행하는 Primitive Scorer를 등록해야 합니다. 이 내용도 &lt;b&gt;ConstructSDandField() 함수 내부&lt;/b&gt;에 위에서 작성한 두 줄에 이어서 계속 써주시면 됩니다.&lt;/p&gt;
+&lt;p&gt;여기도 딱 두 가지만 해주시면 됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;원하는 Primitive Scorer 클래스의 객체를 만든다.&lt;/li&gt;
+&lt;li&gt;해당 PS 객체를 MFD에 등록한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;예를 들어 해당 지오메트리 내에 deposit된 에너지의 총합을 스코어링하는 G4PSEnergyDeposit을 등록하고 싶다면, 다음과 같이 두 줄을 작성하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto psEDep = new G4PSEnergyDeposit(&amp;quot;EDep&amp;quot;);
+mfd-&amp;gt;RegisterPrimitive(psEDep);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;psEDep이라는 변수명으로 G4PSEnergyDeposit 클래스의 객체를 만들고, 이를 앞서 만들어둔 mfd 변수명으로 정의된 MFD 객체에 등록해주었습니다.&lt;/p&gt;
+&lt;p&gt;좀 더 자세히 살펴보겠습니다.&lt;/p&gt;
+&lt;h4 id=&#34;ps-객체-만들기&#34;&gt;PS 객체 만들기&lt;/h4&gt;
+&lt;p&gt;Primitive Scorer의 종류가 너무 많기 때문에, 이 글에서 모든 PS의 생성자를 살펴볼 수는 없습니다. 하지만 &lt;b&gt;모든 PS의 생성자에 있어 공통적으로 중요한 내용&lt;/b&gt;이 있습니다. 대표적으로 G4PSEnergyDeposit 클래스의 생성자를 살펴봅시다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4PSEnergyDeposit(G4String name, G4int depth=0);
+G4PSEnergyDeposit(G4String name, const G4String&amp;amp; unit, G4int depth=0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;name: Primitive Scorer의 이름. 자유롭게 적으면 됨. &lt;b&gt;나중에 쓰이는 값이므로 기억&lt;/b&gt;해둘 것&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;depth:  &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;.지오메트리의 관계(mother-daughter)에 따라, 상위 몇 번째 단계에 있는 지오메트리의 copy number를 참고할 것인지를 지정하는 인자. 기본값은 0&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;unit:  &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;. 스코어링 결과의 입출력시 사용할 단위. 기본값은 MeV&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MFD 객체를 만들 때와 마찬가지로, 문자열 형태의 입력값 한 개만 자유롭게 넣어주면 됩니다. 이 &lt;b&gt;입력 인자는 어느 PS를 사용하든 무조건 입력해주도록 되어있으며, 이 값이 해당 PS의 이름&lt;/b&gt;이 됩니다.&lt;/p&gt;
+&lt;p&gt;이 또한 나중에 HCofThisEvent에서 사용되니 적절한 이름으로 잘 지어주세요. 위 예시 코드에서는 &amp;ldquo;EDep&amp;quot;라는 이름을 지어주었습니다.&lt;/p&gt;
+&lt;h4 id=&#34;mfd에-ps-등록하기&#34;&gt;MFD에 PS 등록하기&lt;/h4&gt;
+&lt;p&gt;MFD에 PS를 등록할 때에는, G4MultiFunctionalDetector 클래스가 제공하는 &lt;b&gt;RegisterPrimitive() 함수를 이용&lt;/b&gt;합니다. 이 함수의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4bool RegisterPrimitive(G4VPrimitiveScorer *aPS);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;aPS: 등록할 Primitive Scorer 객체의 포인터&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 함수의 입력 인자로, 앞서 저희가 만들어둔 PS의 객체를 그대로 써주시면 됩니다.&lt;/p&gt;
+&lt;h4 id=&#34;여러-개의-ps를-등록하는-법&#34;&gt;여러 개의 PS를 등록하는 법&lt;/h4&gt;
+&lt;p&gt;하나의 MFD에 여러 개의 PS를 등록하는 방법도 간단합니다. 위에서 설명한 두 과정만 계속 반복해주시면 됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;원하는 Primitive Scorer 클래스의 객체를 만든다.&lt;/li&gt;
+&lt;li&gt;해당 PS 객체를 MFD에 등록한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;예를 들어 MFD를 만들고 G4PSEnergyDeposit과 G4PSDoseDeposit 두 개의 PS를 등록하는 경우를 코드로 작성한다면 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto mfd = new G4MultiFunctionalDetector(&amp;quot;Detector&amp;quot;);
+G4SDManager::GetSDMpointer()-&amp;gt;AddNewDetector(mfd);
+auto psEDep = new G4PSEnergyDeposit(&amp;quot;EDep&amp;quot;);
+mfd-&amp;gt;RegisterPrimitive(psEDep);
+auto psDoseDep = new G4PSDoseDeposit(&amp;quot;DoseDep&amp;quot;);
+mfd-&amp;gt;RegisterPrimitive(psDoseDep);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;filter-세팅하기&#34;&gt;Filter 세팅하기&lt;/h4&gt;
+&lt;p&gt;Filter는 PS의 추가옵션 같은 기능입니다. Filter를 세팅하기 위해서는 PS를 등록할 때 Filter 관련 내용을 추가해야 합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;원하는 Primitive Scorer 클래스의 객체를 만든다.&lt;/li&gt;
+&lt;li&gt;&lt;font color=red&gt;원하는 Filter 클래스의 객체를 만든다.&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;&lt;font color=red&gt;해당 Filter 객체를 PS에 세팅한다.&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;해당 PS 객체를 MFD에 등록한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;예를 들어, G4PSEnergyDeposit을 이용하는데, 전자(e-)가 deposit한 값만 스코어링하고 싶다면, 다음과 같이 작성하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto psEDep = new G4PSEnergyDeposit(&amp;quot;EDep&amp;quot;);
+auto filterElectron = new G4SDParticleFilter(&amp;quot;e-Filter&amp;quot;, &amp;quot;e-&amp;quot;); // Create filter object
+psEDep-&amp;gt;SetFilter(filterElectron); // Set the filter to PS
+mfd-&amp;gt;RegisterPrimitive(psEDep);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;각 Filter마다 생성자의 형태나 사용방법은 상이하므로, 여기서 자세히 다루지는 않겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;logical-volume에-sd-세팅&#34;&gt;Logical Volume에 SD 세팅&lt;/h2&gt;
+&lt;p&gt;이제 관심 있는 지오메트리의 Logical Volume에, 앞서 설계한 SD를 세팅해줄 차례입니다. 이 내용 또한 &lt;b&gt;ConstructSDandField() 함수 내부&lt;/b&gt;에 작성하며, 아주 간단하게 한 줄이면 끝납니다. &lt;b&gt;SetSensitiveDetector() 함수&lt;/b&gt;를 사용하면 됩니다.&lt;/p&gt;
+&lt;p&gt;예를 들어, &lt;b&gt;&amp;ldquo;phantom&amp;quot;이라는 이름&lt;/b&gt;을 가진 Logical Volume에 앞서 만든 &lt;b&gt;mfd&lt;/b&gt; 변수명을 가진 SD를 세팅한다면, 다음과 같이 입력하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;SetSensitiveDetector(&amp;quot;phantom&amp;quot;, mfd);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;좀 더 자세히 살펴보도록 합시다. 이 함수의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void SetSensitiveDetector(const G4String&amp;amp; logVolName,
+                          G4VSensitiveDetector* aSD, G4bool multi = false);
+void SetSensitiveDetector(G4LogicalVolume* logVol, G4VSensitiveDetector* aSD);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;logVolName: 관심 있는 지오메트리의 &lt;b&gt;Logical Volume의 이름&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;aSD: Sensitive Detector 객체의 포인터&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;multi:  &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;. logVolName 이름을 가진 지오메트리가 여러 개일 경우, 여러 개의 지오메트리 모두에 대해 SD를 세팅할지의 여부를 결정하는 인자. 기본값은 false&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;logVol: 관심 있는 지오메트리의 &lt;b&gt;Logical Volume 객체의 포인터&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SetSensitiveDetector 함수를 사용할 때, 관심 있는 지오메트리의 Logical Volume을 입력하는 방법이 두 가지입니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Logical Volume의 이름을 입력&lt;/li&gt;
+&lt;li&gt;Logical Volume 객체의 포인터를 입력&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;일단 이 시리즈에서 추천하는 바는 &lt;b&gt;그냥 Logical Volume의 이름을 입력하는 것&lt;/b&gt;입니다. 제가 이전에 &lt;a href=&#34;https://evandde.github.io/g4-noqasked-004-material/#logical-volume-%ec%a0%95%ec%9d%98%ed%95%98%ea%b8%b0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Logical Volume을 정의하는 방법에 대해 적은 글&lt;/a&gt;에서, &lt;b&gt;Logical Volume의 이름을 지을 때 다른 Logical Volume과 겹치지 않게끔 고유의 이름을 권장&lt;/b&gt;한다고 하였습니다. 그 이유 중 하나가 이것입니다. 이름이 중복되면 그 중 어느 지오메트리에 SD를 세팅할 지가 불분명하기 때문입니다.&lt;/p&gt;
+&lt;p&gt;물론, 이름이 중복되는 모든 Logical Volume들에게 다 동일한 SD를 세팅하고자 한다면, 이 함수의 &lt;i&gt;multi&lt;/i&gt; 인자 값을 true로 설정하여 사용할 수도 있습니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;이 시리즈에서는 지역변수나 변수의 범위(scope) 등을 설명하기에는 지면이 부족하여, 그냥 Logical Volume의 이름을 사용하는 방법만 설명합니다.&lt;/p&gt;
+&lt;p&gt;일반적으로 Logical Volume 객체는 Construct() 함수 내에 지역변수로 만들기 때문에, ConstructSDandField() 함수에서는 그 객체를 호출하지 못하기 때문이지요.&lt;/p&gt;
+&lt;p&gt;물론 객체를 불러오기 위한 몇 가지 방법들이 있습니다만 여기서는 생략하도록 하겠습니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;중간-점검&#34;&gt;중간 점검&lt;/h2&gt;
+&lt;p&gt;여기까지의 내용은 모두 &lt;b&gt;DetectorConstruction.cc 파일&lt;/b&gt;에 있는 &lt;b&gt;ConstructSDandField() 함수 내부&lt;/b&gt;에 작성하였습니다. 모두 마무리하셨다면, 일단 SD를 설계하고 이를 Logical Volume에 세팅하는 것까지 마친 상태입니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 &lt;b&gt;G4PSEnergyDeposit 클래스를 이용하여 설계한 SD&lt;/b&gt;를 &lt;b&gt;&amp;ldquo;phantom&amp;quot;이라는 이름을 가진 Logical Volume에 세팅&lt;/b&gt;한다면, 다음과 같이 코드가 작성되어야 합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_consdandfield_complete&#34; srcset=&#34;
+               /g4-noqasked-011-scoring/02_consdandfield_complete_hudfe2e1998c310fd60c01f9222d12279a_10999_ef0db3ee3e7f2c8be3b55d7f4bea6056.png 400w,
+               /g4-noqasked-011-scoring/02_consdandfield_complete_hudfe2e1998c310fd60c01f9222d12279a_10999_5d0f6efec8ea996e77db00e910019e1f.png 760w,
+               /g4-noqasked-011-scoring/02_consdandfield_complete_hudfe2e1998c310fd60c01f9222d12279a_10999_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-011-scoring/02_consdandfield_complete_hudfe2e1998c310fd60c01f9222d12279a_10999_ef0db3ee3e7f2c8be3b55d7f4bea6056.png&#34;
+               width=&#34;527&#34;
+               height=&#34;175&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;여기서 중간 점검을 하는 이유는, &lt;b&gt;&lt;font color=red&gt;다음 내용부터는 작성하는 파일이 달라지기 때문&lt;/font&gt;&lt;/b&gt;입니다. 놓치지 말고 잘 따라오세요.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;event가-끝날-때-hit-확인&#34;&gt;Event가 끝날 때 Hit 확인&lt;/h2&gt;
+&lt;p&gt;이제 마지막 단계입니다. 앞서 두 단계를 통해 Geant4는 알아서 &lt;b&gt;매 Event마다 Hit을 생성하고 이를 HitsCollection에 담아 HCofThisEvent로 묶어서 가지고 있을 것&lt;/b&gt;입니다. Event가 끝날 때 사용자가 이 Hit을 꺼내서 확인하지 않으면, 그 정보들은 그대로 사라집니다. 메모리를 날려버리고 새로운 다음 Event에 대한 정보를 기록하지요.&lt;/p&gt;
+&lt;p&gt;사용자가 할 일은 &lt;b&gt;Event가 끝날 때마다&lt;/b&gt; Hit을 가져와서 확인하는 것입니다.&lt;/p&gt;
+&lt;p&gt;Geant4는 &lt;b&gt;매 Event마다 특정 행동을 반복적으로 수행하는 용도로 활용&lt;/b&gt;할 수 있게끔 하기 위해, &lt;b&gt;EventAction&lt;/b&gt;이라는 개념을 제공하고 있습니다. 이 시리즈에서는 &lt;b&gt;EventAction.cc라는 파일&lt;/b&gt;을 열어서 이용하시면 됩니다. 여기에는 BeginOfEventAction()이라는 함수와 EndOfEventAction()이라는 함수가 있는데, 이름 그대로 매 Event가 시작되기 직전과 끝난 직후에 해당 함수가 실행되는 식으로 동작합니다. 즉, 우리처럼 &lt;b&gt;매 Event가 끝날 때마다 무언가를 하고 싶다면 EndOfEventAction() 함수 안에 할 일을 적으면 되는 것&lt;/b&gt;이죠.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    엄밀히 말하면, G4UserEventAction 클래스를 상속 받아서 사용자만의 고유한 EventAction클래스를 만들고, 이 클래스의 함수 중 BeginOfEventAction() 함수나 EndOfEventAction() 함수를 overriding하여 작성하면 그 내용이 매 Event가 시작되기 직전과 끝난 직후에 각각 실행됩니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;EventAction.cc 파일을 열어보시면 아래쪽에 &lt;b&gt;EndOfEventAction() 함수&lt;/b&gt;가 있을 것입니다. 이 함수 안에 내용을 작성할 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_EOE&#34; srcset=&#34;
+               /g4-noqasked-011-scoring/03_EOE_hub0f16bd98e7b7ed8780fe6e1639a4c13_78360_bfda29b346a7d6ba8bbb97592c6e9b27.png 400w,
+               /g4-noqasked-011-scoring/03_EOE_hub0f16bd98e7b7ed8780fe6e1639a4c13_78360_f588572f86f87eb00204661b74f13d92.png 760w,
+               /g4-noqasked-011-scoring/03_EOE_hub0f16bd98e7b7ed8780fe6e1639a4c13_78360_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-011-scoring/03_EOE_hub0f16bd98e7b7ed8780fe6e1639a4c13_78360_bfda29b346a7d6ba8bbb97592c6e9b27.png&#34;
+               width=&#34;760&#34;
+               height=&#34;504&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이미 다음과 같은 내용이 작성되어 있네요.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto HCE = anEvent-&amp;gt;GetHCofThisEvent();
+if (!HCE)
+	return;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;의미는 그냥 써있는 그대로 읽으시면 됩니다. 한글로 쓰자면 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;이번 Event에서 만들어진 HCofThisEvent를 가져와서 HCE라는 변수로 지정&lt;/li&gt;
+&lt;li&gt;만약 HCE가 유효하지 않다면
+&lt;ul&gt;
+&lt;li&gt;EndOfEventAction() 함수를 종료&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;del&gt;어때요, 참 쉽죠?&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;HCE 변수가 유효하지 않다면 if 조건문에 의해 함수가 종료되어 버리므로, &lt;b&gt;이 내용 아래 부분에 있는 내용은 반드시 HCE가 유효한 경우에만 실행될 것&lt;/b&gt;입니다.&lt;/p&gt;
+&lt;p&gt;이제 HCofThisEvent로부터 Hit까지 가보도록 합시다.&lt;/p&gt;
+&lt;h3 id=&#34;hcofthisevent에서-hc-꺼내기&#34;&gt;HCofThisEvent에서 HC 꺼내기&lt;/h3&gt;
+&lt;p&gt;HCofThisEvent는 HitsCollectoin들의 묶음이라고 하였습니다. 이 때 Geant4는 수많은 HC들을 쉽게 구분하기 위해 &lt;b&gt;HC마다 0 이상의 양의 정수값으로 된 고유의 ID번호를 부여&lt;/b&gt;합니다. 다만, 사용자가 이 정수값을 직접 기억할 필요는 없습니다. 사용자는 &lt;font color=red&gt;&lt;b&gt;HC의 이름&lt;/b&gt;&lt;/font&gt;을 이용하여 이 ID번호를 찾아올 수 있기 때문입니다.&lt;/p&gt;
+&lt;p&gt;여기서 HC의 이름은 &lt;b&gt;Sensitive Detector를 설계할 때 결정&lt;/b&gt;됩니다. 우리가 했던 것처럼 MFD와 PS를 이용할 경우에는, HC의 이름이 &lt;code&gt;{MFD의 이름}/{PS의 이름}&lt;/code&gt;으로 결정됩니다. (대소문자 구분)&lt;/p&gt;
+&lt;p&gt;이 글에서 예시로 든 것처럼 다음과 같이 SD를 설계하였다면, &lt;b&gt;&lt;font color=red&gt;HC의 이름은 &amp;ldquo;Detector/EDep&amp;rdquo;&lt;/font&gt;&lt;/b&gt;이 되는 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_consdandfield_complete&#34; srcset=&#34;
+               /g4-noqasked-011-scoring/02_consdandfield_complete-16307684293331_hudfe2e1998c310fd60c01f9222d12279a_10999_8e7b434ea11101302068d22b6dc6009f.png 400w,
+               /g4-noqasked-011-scoring/02_consdandfield_complete-16307684293331_hudfe2e1998c310fd60c01f9222d12279a_10999_f4a763251611466a8cdc890cc2777870.png 760w,
+               /g4-noqasked-011-scoring/02_consdandfield_complete-16307684293331_hudfe2e1998c310fd60c01f9222d12279a_10999_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-011-scoring/02_consdandfield_complete-16307684293331_hudfe2e1998c310fd60c01f9222d12279a_10999_8e7b434ea11101302068d22b6dc6009f.png&#34;
+               width=&#34;527&#34;
+               height=&#34;175&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;사용자는 이 HC의 이름만 있으면, G4SDManager로부터 GetCollectionID() 함수를 이용해 해당 HC의 고유 ID번호를 가져올 수 있습니다. 이는 다음의 코드 두 줄로 수행할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;if(fHCID == -1)
+	fHCID = G4SDManager::GetSDMpointer()-&amp;gt;GetCollectionID(&amp;quot;Detector/EDep&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4int fHCID = G4SDManager::GetSDMpointer()-&amp;gt;GetCollectionID(&amp;quot;Detector/EDep&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이렇게 한 줄로 해도 될 일을 왜 굳이 if문으로 저런 이상한 조건을 붙이는 지 궁금한 분이 있으실 것입니다.&lt;/p&gt;
+&lt;p&gt;GetCollectionID() 함수는 시간을 많이 잡아먹는 느린 함수입니다. 이런 함수를 매 Event가 종료될 때마다 실행하도록 하면 그만큼 시뮬레이션에 소요되는 시간이 길어지겠지요.&lt;/p&gt;
+&lt;p&gt;이런 문제를 해결하고자, &lt;b&gt;맨 처음에만 HC의 ID를 찾아오고&lt;/b&gt; 그 이후에는 전에 &lt;b&gt;찾아온 값을 재활용&lt;/b&gt;하기 위해 이와 같이 코드를 작성하여 이용하는 것입니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이어서, 이 ID를 이용하여 HCofThisEvent로부터 HC를 꺼내옵니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto hitsMap = static_cast&amp;lt;G4THitsMap&amp;lt;G4double&amp;gt; *&amp;gt;(HCE-&amp;gt;GetHC(fHCID));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이상한 문구가 너무 많이 있어서 생소하실 수 있겠지만, 해석해보면 간단합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HCE-&amp;gt;GetHC(fHCID)&lt;/p&gt;
+&lt;p&gt;HCE(HCofThisEvent)로부터 fHCID라는 ID를 가진 HC를 가져옴&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;static_cast&amp;lt;G4THitsMap&lt;G4double&gt; *&amp;gt;(HCE-&amp;gt;GetHC(fHCID))&lt;/p&gt;
+&lt;p&gt;앞서 가져온 HC를 &lt;code&gt;G4THitsMap&amp;lt;G4double&amp;gt; *&lt;/code&gt; 자료형으로 형변환함&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;auto hitsMap = static_cast&amp;lt;G4THitsMap&lt;G4double&gt; *&amp;gt;(HCE-&amp;gt;GetHC(fHCID));&lt;/p&gt;
+&lt;p&gt;이걸 hitsMap이라는 변수명으로 저장&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이제 모르는 내용은 &lt;code&gt;G4THitsMap&amp;lt;G4double&amp;gt; *&lt;/code&gt;이라는 처음보는 자료형 뿐이군요. 이는 HitsCollection의 종류 중 하나입니다. &lt;a href=&#34;https://evandde.github.io/g4-noqasked-010-scoringtheory/#ps-hit-hc%ec%97%90-%eb%8c%80%ed%95%9c-%ec%83%81%ec%84%b8-%ec%84%a4%eb%aa%85&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이전 글&lt;/a&gt;에서 Hit을 저장하는 방법이 여러가지가 있지만, PS를 이용하는 경우에는 &lt;b&gt;값을 누적&lt;/b&gt;하여 &lt;b&gt;&lt;font color=blue&gt;하나의 값&lt;/font&gt;&lt;/b&gt;으로 저장하며, 이를 &lt;b&gt;&lt;font color=red&gt;Copy Number라는 사물함 번호로 분류&lt;/font&gt;&lt;/b&gt;하여 저장한다고 했었지요.&lt;/p&gt;
+&lt;p&gt;C++에서 이처럼 사물함 번호마다 값을 분류하여 저장하는 데이터 저장 방식의 대표적인 예로 &lt;b&gt;Map&lt;/b&gt;이 있습니다. 그래서 Geant4에서는 이 Map이라는 구조를 활용하여 Hit을 저장하기 위한 Map이라는 이름으로 G4THitsMap이라는 클래스를 사용하고 있으며, 그 Map에 저장될 데이터가 G4double(실수)형이라는 것을 명시하기 위해 &lt;code&gt;G4THitsMap&amp;lt;G4double&amp;gt;&lt;/code&gt;과 같이 작성하게 됩니다. 끝의 &lt;code&gt;*&lt;/code&gt;는 이 자료형의 포인터형이라는 뜻입니다.&lt;/p&gt;
+&lt;p&gt;&lt;u&gt;이 설명을 잘 모르겠으면 그냥 넘어가시고, 나중에 C++ 공부를 좀 더 한 뒤에 이해하셔도 됩니다.&lt;/u&gt; 핵심은 다음의 두 가지입니다. 이거만 기억하셔도 충분합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto hitsMap = static_cast&amp;lt;G4THitsMap&amp;lt;G4double&amp;gt; *&amp;gt;(HCE-&amp;gt;GetHC(fHCID));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;라고 쓰면, hitsMap이라는 변수명으로 HitsCollection을 가져올 수 있음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이 hitsMap에는 &lt;b&gt;&lt;font color=red&gt;Copy Number라는 사물함 번호&lt;/font&gt;&lt;/b&gt;마다, &lt;b&gt;&lt;font color=blue&gt;PS가 누적해서 기록한 값&lt;/font&gt;&lt;/b&gt;이 저장되어 있음&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;hc에서-hit-꺼내기&#34;&gt;HC에서 Hit 꺼내기&lt;/h3&gt;
+&lt;p&gt;앞서 가져온 HitsCollection에는 PS가 기록한 값이 Copy Number라는 번호로 분류된 사물함마다 저장되어 있을 것입니다.&lt;/p&gt;
+&lt;p&gt;어떤 사용자는 Sensitive Detector를 딱 하나의 지오메트리에만 달았을 수도 있고, 어떤 사용자는 여러 개의 지오메트리에 달았을 수도 있습니다. 게다가, 이 Event에서 입자들이 그 지오메트리들을 아예 안지나갔을 수도 있고(Hit이 0개), 모두 다 지나갔을 수도 있습니다.&lt;/p&gt;
+&lt;p&gt;이런 이유때문에, PS를 이용하여 설계한 SD를 이용한 경우에는 &lt;b&gt;HitsCollection 안에 몇 개의 Hit이 들어있을지 아무도 모릅니다&lt;/b&gt;. 이런 모든 경우를 다 아우르기 위해, &lt;b&gt;HC안에 들어있는 Hit을 모두 다 훑으며 확인하는 방식을 이용&lt;/b&gt;합니다. 이는 C++에서 제공하는 for-each 반복문을 사용하면 쉽게 해결됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;for (const auto &amp;amp;iter : *(hitsMap-&amp;gt;GetMap()))
+{
+    // ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위와 같이 작성하면, hitsMap 안에 있는 &lt;b&gt;모든 사물함&lt;/b&gt;들을 &lt;b&gt;iter&lt;/b&gt;라는 변수명으로 접근할 수 있게 됩니다. 이 때 &lt;code&gt;iter.first&lt;/code&gt;는 &lt;b&gt;&lt;font color=red&gt;사물함 번호&lt;/font&gt;&lt;/b&gt;가 되고, &lt;code&gt;*(iter.second)&lt;/code&gt;는 &lt;b&gt;&lt;font color=blue&gt;그 사물함 안에 들어있는 hit의 누적 값&lt;/font&gt;&lt;/b&gt;이 됩니다.&lt;/p&gt;
+&lt;p&gt;예를 들어, G4PSEnergyDeposit을 통해 기록된 deposit된 에너지의 총합을 살펴보고, 이 값이 0보다 큰 경우 터미널 화면에 출력하고자 한다면 다음과 같이 코드를 작성합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;for (const auto &amp;amp;iter : *(hitsMap-&amp;gt;GetMap()))
+{
+    auto eDep = *(iter.second);
+    if (eDep &amp;gt; 0.)
+    {
+    	G4cout &amp;lt;&amp;lt; &amp;quot;--- Energy Deposit:&amp;quot; &amp;lt;&amp;lt; eDep / MeV &amp;lt;&amp;lt; G4endl;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;code&gt;G4cout&lt;/code&gt;과 &lt;code&gt;G4endl&lt;/code&gt;은 각각 &lt;code&gt;std::cout&lt;/code&gt;과 &lt;code&gt;std::endl&lt;/code&gt;과 동일하다고 생각하셔도 무방합니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;해석하자면 다음과 같이 되겠군요&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hitsMap에 있는 사물함 각각을 iter라는 변수로 지정하여 반복문을 수행
+&lt;ul&gt;
+&lt;li&gt;사물함 안에 있는 값(&lt;code&gt;*(iter.second)&lt;/code&gt;)을 eDep이라는 변수명으로 저장&lt;/li&gt;
+&lt;li&gt;만약 eDep의 값이 0보다 크다면
+&lt;ul&gt;
+&lt;li&gt;화면에 &amp;ldquo;&amp;mdash; Energy Deposit: &amp;ldquo;과 &amp;ldquo;eDep 값을 MeV로 나눈 값&amp;quot;을 이어서 출력하고 줄바꿈&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이런 방법을 통해 PS가 저장한 값을 Event가 끝날 때 가져와서 확인할 수 있게 됩니다. 지금까지 수행한 내용을 모두 작성하여 코드로 살펴보면 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_EOE_complete&#34; srcset=&#34;
+               /g4-noqasked-011-scoring/04_EOE_complete_hu07471f2f3de2bed73ed399c2fc9bd200_18600_4ff49cc7251b55f4d926279580379630.png 400w,
+               /g4-noqasked-011-scoring/04_EOE_complete_hu07471f2f3de2bed73ed399c2fc9bd200_18600_9a5b8e6000e5d3f3d38fef773c49c8b6.png 760w,
+               /g4-noqasked-011-scoring/04_EOE_complete_hu07471f2f3de2bed73ed399c2fc9bd200_18600_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-011-scoring/04_EOE_complete_hu07471f2f3de2bed73ed399c2fc9bd200_18600_4ff49cc7251b55f4d926279580379630.png&#34;
+               width=&#34;716&#34;
+               height=&#34;443&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;결과-확인&#34;&gt;결과 확인&lt;/h3&gt;
+&lt;p&gt;이렇게 작성하였을 때 출력되는 결과를 살펴보겠습니다. 개수가 너무 적으면 확률상 원하는 결과가 나오지 않을수도 있으니, run.mac 파일에서 &lt;code&gt;/run/beamOn 100&lt;/code&gt;이라고 되어있는 줄을 &lt;code&gt;/run/beamOn 1000&lt;/code&gt;과 같이 약간 늘려주세요.&lt;/p&gt;
+&lt;p&gt;build 디렉토리에 들어와서, 다음 명령어를 통해 tracking verbose 1단계와 함께 출력해서 살펴봅시다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;make
+./g4_minimal run.mac &amp;gt; vb.out
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;입자가 phantom에 들어가지 않은 다음과 같은 경우에는 추가적인 출력이 없는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;05_EOE_rslt1&#34; srcset=&#34;
+               /g4-noqasked-011-scoring/05_EOE_rslt1_hube3480bcdce8df8ce362d378679da3fb_29968_714dbcae9f79898a6e98973c89ec1ea7.png 400w,
+               /g4-noqasked-011-scoring/05_EOE_rslt1_hube3480bcdce8df8ce362d378679da3fb_29968_04e8c30eb59b473d9a3d0b2dfa9ffa20.png 760w,
+               /g4-noqasked-011-scoring/05_EOE_rslt1_hube3480bcdce8df8ce362d378679da3fb_29968_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-011-scoring/05_EOE_rslt1_hube3480bcdce8df8ce362d378679da3fb_29968_714dbcae9f79898a6e98973c89ec1ea7.png&#34;
+               width=&#34;760&#34;
+               height=&#34;431&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이제 phantom이라는 문구를 검색해 보겠습니다.&lt;/p&gt;
+&lt;p&gt;다음과 같이 phantom을 지나가긴 했지만, 별다른 반응이 일어나지 않아 deposit된 에너지가 없는 경우(&lt;code&gt;eDep &amp;gt; 0.&lt;/code&gt; 조건을 만족하지 못함)에도 추가적인 출력이 없는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;06_EOE_rslt2&#34; srcset=&#34;
+               /g4-noqasked-011-scoring/06_EOE_rslt2_hu3df22452996cf15d77a3335f68242939_23642_2bec1d7b18e0f716b9c5481538fb9011.png 400w,
+               /g4-noqasked-011-scoring/06_EOE_rslt2_hu3df22452996cf15d77a3335f68242939_23642_8b5edf53684d289de130f0398cd4da06.png 760w,
+               /g4-noqasked-011-scoring/06_EOE_rslt2_hu3df22452996cf15d77a3335f68242939_23642_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-011-scoring/06_EOE_rslt2_hu3df22452996cf15d77a3335f68242939_23642_2bec1d7b18e0f716b9c5481538fb9011.png&#34;
+               width=&#34;760&#34;
+               height=&#34;306&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;좀 더 찾다보면 다음처럼 phantom에서 반응이 일어난 경우도 찾을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;노란색으로 표시한 각 반응에서의 dE(MeV)들을 한 Event 내에서 다 합쳐져서, 그 총 합 값이 Event가 끝난 뒤에 &lt;code&gt;--- Energy Deposit:...&lt;/code&gt;와 같이 출력되고 있음을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;07_EOE_rslt3&#34; srcset=&#34;
+               /g4-noqasked-011-scoring/07_EOE_rslt3_hue3bba3d51fea93728d22ba41ad66cd1b_39083_3b205e1a10b8ad179606dc66dde338a4.png 400w,
+               /g4-noqasked-011-scoring/07_EOE_rslt3_hue3bba3d51fea93728d22ba41ad66cd1b_39083_cc392163e3ce94fbee644f364d4acc62.png 760w,
+               /g4-noqasked-011-scoring/07_EOE_rslt3_hue3bba3d51fea93728d22ba41ad66cd1b_39083_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-011-scoring/07_EOE_rslt3_hue3bba3d51fea93728d22ba41ad66cd1b_39083_3b205e1a10b8ad179606dc66dde338a4.png&#34;
+               width=&#34;760&#34;
+               height=&#34;489&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;최종-파일-다운받는-법&#34;&gt;최종 파일 다운받는 법&lt;/h2&gt;
+&lt;p&gt;이번 글에서 작성한 코드는 &lt;a href=&#34;https://github.com/evandde/g4_minimal/archive/e14a65ec75c34ff35956cddada381d46d0802cbd.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;를 통해 다운받을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;혹은 git repository를 clone하신 분의 경우에는, example branch의 이전 커밋 중 V3 scoring이라는 커밋을 참고하셔도 됩니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;스코어링이 사실 쉽지 않습니다. 저도 많은 분들에게 강의를 수 차례 해보았지만, 제일 어려워하시는 부분이 스코어링입니다. C++의 문법을 모르면 생소한 코드가 너무 많아서 더욱 어려워보이는 것 같기도 합니다.&lt;/p&gt;
+&lt;p&gt;어떻게 하면 더 쉽게 전달할 수 있을까 많이 고민해 보았습니다만, 아직도 쉬워보이지는 않네요 
+  &lt;i class=&#34;far fa-frown  pr-1 fa-fw&#34;&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;하지만 스코어링 이론을 잘 숙지하고 있으시다면, 몇 번만 직접 구현해서 활용해보면 금방 터득하실 수 있으리라 생각합니다.&lt;/p&gt;
+&lt;p&gt;이제 다음 내용이 이 시리즈의 마지막입니다. 다음 글부터는 스코어링 결과를 파일로 출력하는 법에 대해 알아보겠습니다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</title>
+      <link>https://evandde.github.io/g4-noqasked-012-writingrslt1/</link>
+      <pubDate>Thu, 19 Aug 2021 10:49:41 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-012-writingrslt1/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 열두번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법, 그 중에서도 Histogram 형태로 기록하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;p&gt;지난 글을 통해, 원하는 물리량을 스코어링 한 뒤 화면에 출력하는 작업까지 알아보았습니다. 이번 글과 다음 글에서는 이 스코어링 결과를 추후 분석작업에 용이하게 활용할 수 있도록 적절한 형태로 파일에 기록하는 방법을 알아보겠습니다.&lt;/p&gt;
+&lt;p&gt;이 시리즈에서 알아볼 기록 방법은 다음의 두 가지입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Histogram&lt;/strong&gt;으로 기록: 매 Event마다 얻은 값을 히스토그램으로 만들어, 히스토그램의 각 계급구간 별 도수만 기록하는 방식&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ntuple&lt;/strong&gt;로 기록: 매 Event마다 얻은 값(화면에 출력하던 것)을 표 형태로 만들어 파일에 기록하는 방식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;Histogram과 Ntuple은 전부 독립적으로 관리되므로, 하나의 시뮬레이션 내에서 Histogram과 Ntuple을 원하는만큼 여러 개 기록하여도 괜찮습니다.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;이번 글에서는 기본 이론 및 Histogram 기록 방법을 다루고, 다음 글에서는 Ntuple을 다루겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4에서의-데이터-출력&#34;&gt;Geant4에서의 데이터 출력&lt;/h2&gt;
+&lt;p&gt;Geant4는 데이터를 정리하여 파일 형태로 출력하는 방식으로 다음의 4가지를 지원합니다. (10.7 버전 기준)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ROOT&lt;/li&gt;
+&lt;li&gt;HDF5&lt;/li&gt;
+&lt;li&gt;AIDA XML&lt;/li&gt;
+&lt;li&gt;CSV&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Geant4를 개발한 CERN 그룹에서 ROOT도 개발했기 때문인지, ROOT쪽과 연계해서 이용할 때 좀 더 많은 기능이 제공됩니다.&lt;/p&gt;
+&lt;p&gt;하지만 여기서는 제일 일반적으로 어느 프로그램에서나 무난하게 사용가능한 &lt;b&gt;CSV 형식으로 출력하는 방법&lt;/b&gt;에 대해 알아볼 것입니다.&lt;/p&gt;
+&lt;h3 id=&#34;csv란&#34;&gt;CSV란?&lt;/h3&gt;
+&lt;p&gt;CSV란 comma-separated values의 약자로, 표 형태의 데이터를 comma(,)로 구분하여 텍스트 형식으로 기록하는 방식입니다. 행끼리는 줄바꿈으로 분리되며, 열끼리는 comma(,)로 분리된다고 보시면 됩니다. 경우에 따라 comma(,) 대신 공백이나 탭 등의 구분자로 대체되기도 합니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 다음과 같은 표를 생각해 봅시다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;이름&lt;/th&gt;
+&lt;th&gt;학번&lt;/th&gt;
+&lt;th&gt;생년월일&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;홍길동&lt;/td&gt;
+&lt;td&gt;20201234&lt;/td&gt;
+&lt;td&gt;20020101&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;임꺽정&lt;/td&gt;
+&lt;td&gt;20215678&lt;/td&gt;
+&lt;td&gt;20030201&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;위 표를 csv 형식으로 쓰면 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-csv&#34;&gt;이름, 학번, 생년월일
+홍길동, 20201234, 20020101
+임꺽정, 20215678, 20030201
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CSV파일은 일반적으로 엑셀, 구글시트 등과 같이 표를 다루는 프로그램에서 쉽게 불러올 수 있으며, 대부분의 데이터 분석용 프로그램들 또한 CSV 파일을 읽어들이는 기능을 제공하고 있으니 편리하게 사용할 수 있으리라 생각합니다.&lt;/p&gt;
+&lt;h3 id=&#34;runaction이란&#34;&gt;RunAction이란?&lt;/h3&gt;
+&lt;p&gt;지난 글에서 매 Event마다 무언가 작업을 수행하고 싶을 때 EventAction이라는 것을 이용한다고 하였지요. 마찬가지로, &lt;b&gt;매 Run마다 무언가 작업을 수행&lt;/b&gt;하고 싶은 경우에는 &lt;b&gt;RunAction&lt;/b&gt;을 이용하면 됩니다.&lt;/p&gt;
+&lt;p&gt;이 글에서는 RunAction.cc 파일에서 매우 많은 작업을 해야하기 때문에, 간단하게 짚고 넘어가려 합니다.&lt;/p&gt;
+&lt;p&gt;RunAction.cc 파일에 보면 함수가 총 4개 있습니다. 각 함수의 역할은 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;RunAction()&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;생성자&amp;quot;라고 부릅니다. 뭔지 모른다면 일단 이름만 기억해두고 넘어가셔도 됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;~RunAction()&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;소멸자&amp;quot;라고 부릅니다. 뭔지 모른다면 일단 이름만 기억해두고 넘어가셔도 됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;BeginOfRunAction()&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;매 Run이 시작되기 직전 호출되는 함수입니다.&lt;/b&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;EndOfRunAction()&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;매 Run이 끝난 직후 호출되는 함수입니다.&lt;/b&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;g4analysismanager로-파일-관리&#34;&gt;G4AnalysisManager로 파일 관리&lt;/h2&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    작성하는 파일과 위치가 매우 자주 바뀝니다. 차분하게 따라오세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;원하는-출력-형식의-헤더-포함시키기&#34;&gt;원하는 출력 형식의 헤더 포함시키기&lt;/h3&gt;
+&lt;p&gt;Geant4에서는 관련 기능을 사용할 수 있도록 G4AnalysisManager라는 클래스를 제공합니다. 사용자는 위에 설명한 4가지 파일 형식 중 어떤 것을 사용하든, 모두 다 동일한 G4AnalysisManager라는 클래스와 이 클래스에 포함된 함수를 이용하도록 되어있습니다. 때문에, &lt;font color=red&gt;&lt;b&gt;사용자가 헤더를 포함시킬 때 위 4가지 중 어떤 것을 이용할 지 명시&lt;/b&gt;&lt;/font&gt;해줘야 합니다.&lt;/p&gt;
+&lt;p&gt;일단, &lt;font color=red&gt;&lt;b&gt;RunAction.cc 파일&lt;/b&gt;&lt;/font&gt;을 엽니다. 다음 그림과 같이 별다른 내용이 없을 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_RunAction&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/01_RunAction_hu02f4f669d391c9b7549bee4e76ee414f_23823_409c9ecc245dd7864b518f4d4d163057.png 400w,
+               /g4-noqasked-012-writingrslt1/01_RunAction_hu02f4f669d391c9b7549bee4e76ee414f_23823_b2953376b5667d439cf92f4c8277f97a.png 760w,
+               /g4-noqasked-012-writingrslt1/01_RunAction_hu02f4f669d391c9b7549bee4e76ee414f_23823_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/01_RunAction_hu02f4f669d391c9b7549bee4e76ee414f_23823_409c9ecc245dd7864b518f4d4d163057.png&#34;
+               width=&#34;475&#34;
+               height=&#34;467&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;여기서 맨 위에 헤더를 쓰는 부분에 원하는 출력 형식에 따라 다음의 헤더를 추가합니다.&lt;/p&gt;
+&lt;p&gt;(다른 헤더와 달리 &lt;b&gt;소문자로 입력해야 함&lt;/b&gt;에 주의)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ROOT: &lt;code&gt;g4root.hh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HDF5: &lt;code&gt;g4hdf5.hh&lt;/code&gt; (Geant4를 설치할 때 HDF5를 연동하여 설치한 경우에만 이용 가능)&lt;/li&gt;
+&lt;li&gt;AIDA XML: &lt;code&gt;g4xml.hh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CSV: &lt;code&gt;g4csv.hh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;우리는 CSV를 이용하기로 하였으므로, 헤더를 포함하는 부분에 다음을 입력합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;quot;g4csv.hh&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;입력한 모습은 다음과 같을 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_RunAction&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/02_RunAction_hua16a171a68c4916860dbbc75568aaa1c_13488_25d1084aa9d616de73738dd12debae1e.png 400w,
+               /g4-noqasked-012-writingrslt1/02_RunAction_hua16a171a68c4916860dbbc75568aaa1c_13488_38b3b171ac247b3da8f840a10dfa1257.png 760w,
+               /g4-noqasked-012-writingrslt1/02_RunAction_hua16a171a68c4916860dbbc75568aaa1c_13488_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/02_RunAction_hua16a171a68c4916860dbbc75568aaa1c_13488_25d1084aa9d616de73738dd12debae1e.png&#34;
+               width=&#34;477&#34;
+               height=&#34;468&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이런 헤더를 포함시키고 나면, G4AnalysisManager라는 클래스를 이용할 수 있게 됩니다. 여기서는 &lt;code&gt;g4csv.hh&lt;/code&gt;를 포함시켰지만, 다른 헤더를 포함시켰다고 하더라도 &lt;b&gt;이하의 내용은 동일하게 진행&lt;/b&gt;하시면 됩니다.&lt;/p&gt;
+&lt;h3 id=&#34;g4analysismanager의-핸들-만들기&#34;&gt;G4AnalysisManager의 핸들 만들기&lt;/h3&gt;
+&lt;p&gt;G4AnalysisManager를 이용하려면 이 클래스의 객체를 생성해야할 것입니다.&lt;/p&gt;
+&lt;p&gt;Geant4의 공식 가이드에서는 이 클래스의 객체를 RunAction의 생성자에서 만들고, RunAction의 소멸자에서 파괴할 것을 권장합니다. &lt;u&gt;무슨 말인지 모르셔도 괜찮습니다. 그냥 따라오세요.&lt;/u&gt;&lt;/p&gt;
+&lt;p&gt;일단 &lt;font color=red&gt;&lt;b&gt;생성자인 RunAction()의 중괄호({}) 안&lt;/b&gt;&lt;/font&gt;에 다음과 같이 적어줍니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto analysisManager = G4AnalysisManager::Instance();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고, &lt;font color=red&gt;&lt;b&gt;소멸자인 ~RunAction()의 중괄호({}) 안&lt;/b&gt;&lt;/font&gt;에는 다음과 같이 적어줍니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;delete G4AnalysisManager::Instance();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;다 적으셨다면 다음 그림과 같이 되어있어야 합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_RunAction&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/03_RunAction_hu5de6c94e67068bb7a755854e79d79fbd_18087_4eb00c8b8041e42ed859bab3ce1b59a9.png 400w,
+               /g4-noqasked-012-writingrslt1/03_RunAction_hu5de6c94e67068bb7a755854e79d79fbd_18087_b9dec7b3200c1b6b98a6aa385552cc2e.png 760w,
+               /g4-noqasked-012-writingrslt1/03_RunAction_hu5de6c94e67068bb7a755854e79d79fbd_18087_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/03_RunAction_hu5de6c94e67068bb7a755854e79d79fbd_18087_4eb00c8b8041e42ed859bab3ce1b59a9.png&#34;
+               width=&#34;560&#34;
+               height=&#34;514&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;이제부터 여러분은 어디에서든 다음 코드만 입력하면 analysisManager라는 변수명으로 G4AnalysisManager를 이용할 수 있습니다.&lt;/b&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto analysisManager = G4AnalysisManager::Instance();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;g4analysismanager로-파일-열기&#34;&gt;G4AnalysisManager로 파일 열기&lt;/h3&gt;
+&lt;p&gt;이제 실제로 출력 파일을 만들어봅시다. 출력파일을 &lt;b&gt;매 Run이 시작될 때마다 열어주기 위해, &lt;font color=red&gt;BeginOfRunAction() 함수 내&lt;/font&gt;에 적어주도록 합니다&lt;/b&gt;. 파일을 열 때에는 기본적으로 G4AnalysisManager 클래스가 제공하는 &lt;b&gt;OpenFile()이라는 함수&lt;/b&gt;를 제공합니다. 이 함수의 입력인자로 &lt;b&gt;파일의 이름&lt;/b&gt;을 적어줄 수 있습니다. 다음과 같이 작성해봅시다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto analysisManager = G4AnalysisManager::Instance();
+analysisManager-&amp;gt;OpenFile(&amp;quot;G4_Minimal&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;G4AnalysisManager의 객체를 가져오고, 그 객체로 OpenFile() 함수를 사용한 것입니다. 작성한 코드의 모습은 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_RunAction&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/04_RunAction_hu6aa1b10790627322d23c4f5c290a2878_22221_cf3d30c890e858c07fb9127a70468ce2.png 400w,
+               /g4-noqasked-012-writingrslt1/04_RunAction_hu6aa1b10790627322d23c4f5c290a2878_22221_8d0a107778604bd181c16f42defa3125.png 760w,
+               /g4-noqasked-012-writingrslt1/04_RunAction_hu6aa1b10790627322d23c4f5c290a2878_22221_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/04_RunAction_hu6aa1b10790627322d23c4f5c290a2878_22221_cf3d30c890e858c07fb9127a70468ce2.png&#34;
+               width=&#34;569&#34;
+               height=&#34;578&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이 OpenFile() 함수의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4bool OpenFile(const G4String&amp;amp; fileName = &amp;quot;&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i&gt;fileName: &lt;b&gt;출력파일의 이름. 사용자가 원하는 이름으로 입력하여 사용.&lt;/b&gt; 입력하지 않아도 되며, 기본값은 &amp;quot;&amp;quot;(빈 문자열). 이 함수로 이름을 입력하지 않은 경우에는, 정상 동작을 위해 SetFileName() 등과 같은 별도의 출력파일의 이름을 설정하는 함수를 이용해야 함&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이름을 아예 지정하지 않으면 다음과 같은 경고 문구가 출력되며, 출력파일이 아예 열리지 않습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;mdash;&amp;mdash;&amp;ndash; WWWW &amp;mdash;&amp;mdash;- G4Exception-START &amp;mdash;&amp;mdash;&amp;ndash; WWWW &amp;mdash;&amp;mdash;-&lt;/p&gt;
+&lt;p&gt;*** G4Exception : Analysis_W001&lt;/p&gt;
+&lt;p&gt;​      issued by : G4VFileManager::OpenFile()&lt;/p&gt;
+&lt;p&gt;Cannot open file. File name is not defined.&lt;/p&gt;
+&lt;p&gt;*** This is just a warning message. ***&lt;/p&gt;
+&lt;p&gt;&amp;mdash;&amp;mdash;&amp;ndash; WWWW &amp;mdash;&amp;mdash;&amp;ndash; G4Exception-END &amp;mdash;&amp;mdash;&amp;mdash; WWWW &amp;mdash;&amp;mdash;-&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;g4analysismanager로-파일-닫기&#34;&gt;G4AnalysisManager로 파일 닫기&lt;/h3&gt;
+&lt;p&gt;파일을 열었다면 내용을 다 적은 뒤에 파일을 닫는 작업까지 해주어야 합니다. 데이터를 어떻게 기록하는지에 대해서는 조금 뒤에 다루기로 하고, &lt;b&gt;파일을 닫는 것&lt;/b&gt;부터 해보도록 합시다.&lt;/p&gt;
+&lt;p&gt;매 Run이 시작될 때 파일을 열었으니, 매 Run이 끝날 때 파일을 닫는 것이 좋겠지요. 따라서 이 내용은 &lt;font color=red&gt;&lt;b&gt;EndOfRunAction() 함수 내에 적도록 합니다&lt;/b&gt;&lt;/font&gt;. 파일을 닫기 위해서는 G4AnalysisManager 클래스가 제공하는 &lt;b&gt;CloseFile() 함수&lt;/b&gt;를 이용합니다. 다음과 같이 작성해봅시다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto analysisManager = G4AnalysisManager::Instance();
+analysisManager-&amp;gt;CloseFile();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;G4AnalysisManager의 객체를 가져오고, 그 객체로 CloseFile() 함수를 사용한 것입니다. 작성한 코드의 모습은 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;05_RunAction&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/05_RunAction_hu5d18257ebf280de7e47674edc8ac3e9f_26183_bfe6b6e5827ffdc1fc9e7b00a1eebd60.png 400w,
+               /g4-noqasked-012-writingrslt1/05_RunAction_hu5d18257ebf280de7e47674edc8ac3e9f_26183_aa39eb3dee69e680447c9a02a318288e.png 760w,
+               /g4-noqasked-012-writingrslt1/05_RunAction_hu5d18257ebf280de7e47674edc8ac3e9f_26183_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/05_RunAction_hu5d18257ebf280de7e47674edc8ac3e9f_26183_bfe6b6e5827ffdc1fc9e7b00a1eebd60.png&#34;
+               width=&#34;571&#34;
+               height=&#34;640&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이 CloseFile() 함수의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4bool CloseFile(G4bool reset = true);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i&gt;reset: &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;. 파일을 닫을 때, 메모리에 저장된 데이터를 reset시킬 지 여부에 대한 인자.기본값은 true&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;histogram-기록하기&#34;&gt;Histogram 기록하기&lt;/h2&gt;
+&lt;p&gt;Histogram으로 기록하기 위해서는 다음의 세 가지만 수행하면 됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;b&gt;RunAction의 생성자&lt;/b&gt;에서 &lt;b&gt;CreateH1() 함수&lt;/b&gt;를 사용하여 히스토그램을 생성&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;EventAction의 EndOfEventAction() 함수 안&lt;/b&gt;에서 &lt;b&gt;FillH1() 함수&lt;/b&gt;를 사용하여 데이터 누적&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;RunAction의 EndOfRunAction() 함수 안&lt;/b&gt;에서, 출력파일을 닫기 전에 &lt;b&gt;Write() 함수&lt;/b&gt;를 사용하여 데이터 기록&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;histogram-생성&#34;&gt;Histogram 생성&lt;/h3&gt;
+&lt;p&gt;먼저 &amp;ldquo;1. &lt;b&gt;RunAction의 생성자&lt;/b&gt;에서 &lt;b&gt;CreateH1() 함수&lt;/b&gt;를 사용하여 히스토그램을 생성 작업&amp;quot;을 수행하겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;font color=red&gt;&lt;b&gt;RunAction의 생성자&lt;/b&gt;&lt;/font&gt;로 돌아갑니다. 여기에서 아까 만들어둔 analysisManager라는 변수명을 가진 객체를 이용해서 히스토그램을 생성해줄 것입니다. 이 때 사용하는 함수는 CreateH1() 함수인데요, 이 함수의 원형부터 살펴보겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
+               G4int nbins, G4double xmin, G4double xmax,
+               const G4String&amp;amp; unitName = &amp;quot;none&amp;quot;,
+               const G4String&amp;amp; fcnName = &amp;quot;none&amp;quot;,
+               const G4String&amp;amp; binSchemeName = &amp;quot;linear&amp;quot;);
+G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
+               const std::vector&amp;lt;G4double&amp;gt;&amp;amp; edges,
+               const G4String&amp;amp; unitName = &amp;quot;none&amp;quot;,
+               const G4String&amp;amp; fcnName = &amp;quot;none&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;name: &lt;b&gt;히스토그램의 이름&lt;/b&gt;. 최종적인 출력 파일의 이름에 사용됨&lt;/li&gt;
+&lt;li&gt;title: 히스토그램의 제목. 출력된 파일 내부에서 제목으로 쓰여져 있음.&lt;/li&gt;
+&lt;li&gt;nbins: &lt;b&gt;히스토그램의 계급의 개수&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;xmin: &lt;b&gt;히스토그램의 계급의 최솟값&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;xmax: &lt;b&gt;히스토그램의 계급의 최댓값&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;edges: 히스토그램의 구간 경계. G4double 벡터 자료형으로 입력&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;unitName: &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;. 히스토그램의 정보 중 단위에 대한 내용을 저장. 기본값은 &amp;ldquo;none&amp;rdquo;&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;fcnName: &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;. 기본값은 &amp;ldquo;none&amp;rdquo;&lt;/i&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;binSchemeName: &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;. 기본값은 &amp;ldquo;linear&amp;rdquo;&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;위쪽의 함수 원형은 최소, 최대, 구간 개수로 히스토그램을 정의하는 방식이고, 아래쪽의 함수 원형은 구간의 경계를 이용하여 히스토그램을 정의하는 방식입니다. 이 시리즈에서는 위쪽의 것만 설명하겠습니다.&lt;/p&gt;
+&lt;p&gt;이 시리즈에서 앞서 스코어링한 물리량은 물 팬텀에 deposit된 에너지였습니다. 이를 &lt;b&gt;0 MeV ~ 3.0 MeV까지 1024개의 구간&lt;/b&gt;으로 나누어 히스토그램을 만들어봅시다. 이 경우 &lt;b&gt;RunAction.cc 파일의 생성자&lt;/b&gt;에 다음과 같이 코드를 추가하면 됩니다. &lt;b&gt;다만, 여기서 MeV라는 단위를 사용하기 위해서는 헤더쪽에 &amp;ldquo;G4SystemOfUnits.hh&amp;quot;를 포함시켜야 한다는 점도 잊지마세요.&lt;/b&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;CreateH1(&amp;quot;EDep&amp;quot;, &amp;quot;Energy Deposition&amp;quot;, 1024, 0., 3. * MeV);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;히스토그램의 이름은 &amp;ldquo;EDep&amp;rdquo;, 제목은 &amp;ldquo;Energy Deposition&amp;quot;이며, 0 MeV ~ 3 MeV의 구간을 1024개로 쪼개어 히스토그램을 생성하였습니다.&lt;/p&gt;
+&lt;p&gt;실제 작성된 RunAction.cc 파일의 모습은 다음과 같아야 합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;06_Hist&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_59759efb4556b1755e65123101a11546.png 400w,
+               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_ca158dfe582d052770315e790871d44f.png 760w,
+               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_59759efb4556b1755e65123101a11546.png&#34;
+               width=&#34;756&#34;
+               height=&#34;705&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;histogram에-데이터-누적&#34;&gt;Histogram에 데이터 누적&lt;/h3&gt;
+&lt;p&gt;이제 &amp;ldquo;2. &lt;b&gt;EventAction의 EndOfEventAction() 함수 안&lt;/b&gt;에서 &lt;b&gt;FillH1() 함수&lt;/b&gt;를 사용하여 데이터 누적&amp;rdquo; 작업을 수행하겠습니다.&lt;/p&gt;
+&lt;p&gt;이 작업은 매 Event가 끝난 뒤 Hit을 정리할 때마다 수행해야 하므로, &lt;font color=red&gt;&lt;b&gt;EventAction.cc 파일의 EndOfEventAction() 함수 내에 코드를 작성&lt;/b&gt;&lt;/font&gt;합니다. &lt;b&gt;물론 헤더도 추가&lt;/b&gt;해야합니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    작성하는 위치에 주의하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;현재 EventAction.cc 파일의 모습은 다음과 같을 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;07_Hist&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/07_Hist_hub17028edc57f24dd1f826f9927f8c387_66195_cd1384a0bfe08e2a431f35ae35661a17.png 400w,
+               /g4-noqasked-012-writingrslt1/07_Hist_hub17028edc57f24dd1f826f9927f8c387_66195_2dd2f881826b65a2195bb8209faa192c.png 760w,
+               /g4-noqasked-012-writingrslt1/07_Hist_hub17028edc57f24dd1f826f9927f8c387_66195_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/07_Hist_hub17028edc57f24dd1f826f9927f8c387_66195_cd1384a0bfe08e2a431f35ae35661a17.png&#34;
+               width=&#34;650&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;여기서 다음의 세 가지 작업을 할 것입니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;파일의 맨 위에 CSV용 G4AnalysisManager 사용을 위해, &lt;code&gt;g4csv.hh&lt;/code&gt; 헤더 포함&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#incldue &amp;quot;g4csv.hh&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;EndOfEventAction() 함수 내, for 반복문의 위쪽에 G4AnalysisManager 객체를 만듦&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto analysisManager = G4AnalysisManager::Instance();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;EndOfEventAction() 함수 내, for 반복문 안에서 eDep이 0보다 큰지 확인하는 if 조건문 안에 히스토그램에 누적하는 내용을 작성&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;FillH1(0, eDep);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;여기서 사용된 FillH1() 함수의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4bool G4VAnalysisManager::FillH1(G4int id, G4double value, G4double weight = 1.0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;id: &lt;b&gt;히스토그램의 ID&lt;/b&gt;. 앞서 히스토그램을 생성할 때 별도로 설정하지 않았다면, &lt;b&gt;만들어진 순서대로 0, 1, 2, &amp;hellip; 와 같이 부여&lt;/b&gt;됨.&lt;/li&gt;
+&lt;li&gt;value: &lt;b&gt;히스토그램에 누적시킬 값&lt;/b&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;weight: &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;. 히스토그램에 값을 누적시킬 때의 가중치. 기본값은 1.0&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;b&gt;히스토그램의 ID 번호&lt;/b&gt;와 &lt;b&gt;누적시킬 값&lt;/b&gt;을 입력해서 사용하면 됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;추가적으로, 이제 화면에 출력할 필요가 없으니 &amp;ldquo;G4SystemOfUnits.hh&amp;rdquo; 헤더와 G4cout 줄은 삭제해도 괜찮습니다. 다 마무리하면 다음과 같은 모양일 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;08_Hist&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_fadf0618fced7e830e341c595b5ef573.png 400w,
+               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_dc41b9d60fc2413052a8b42cb75abd19.png 760w,
+               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_fadf0618fced7e830e341c595b5ef573.png&#34;
+               width=&#34;595&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;histogram을-파일에-기록&#34;&gt;Histogram을 파일에 기록&lt;/h3&gt;
+&lt;p&gt;마지막으로, &amp;ldquo;3. &lt;b&gt;RunAction의 EndOfRunAction() 함수 안&lt;/b&gt;에서, 출력파일을 닫기 전에 &lt;b&gt;Write() 함수&lt;/b&gt;를 사용하여 데이터 기록&amp;quot;을 진행하겠습니다.&lt;/p&gt;
+&lt;p&gt;다시 &lt;font color=red&gt;&lt;b&gt;RunAction.cc 파일&lt;/b&gt;&lt;/font&gt;로 돌아옵니다. 여기서 &lt;font color=red&gt;&lt;b&gt;EndOfRunAction() 함수&lt;/b&gt;&lt;/font&gt;에서 아까 적어둔 CloseFile() 함수 줄 바로 위에, G4AnalysisManager 클래스가 제공하는 Write() 함수를 사용해주면 됩니다. 코드로는 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;Write();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;작성하고 나면 다음과 같은 모습일 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;09_Hist&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_61e75ecd522c08a3c6700cf0849f4364.png 400w,
+               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_11ea242119c44b54b09476c1e6775da1.png 760w,
+               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_61e75ecd522c08a3c6700cf0849f4364.png&#34;
+               width=&#34;753&#34;
+               height=&#34;728&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;결과-확인&#34;&gt;결과 확인&lt;/h3&gt;
+&lt;p&gt;다 끝났습니다. 이제 build 디렉토리에 들어가서, 다음 명령어를 입력하여 시뮬레이션을 수행해봅시다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;make
+./g4_minimal run.mac
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;시뮬레이션이 정상적으로 종료되고 &amp;ldquo;Good bye :)&amp;ldquo;를 확인하셨다면, build 디렉토리 안에 다음 그림과 같이 G4_Minimal_h1_EDep.csv 라는 파일이 생성된 것을 확인할 수 있습니다. 여기서 알 수 있듯, 최종 히스토그램 파일의 이름은 &lt;code&gt;{OpenFile()에서 입력한 파일 이름}_h1_{CreateH1()에서 입력한 히스토그램이름}.csv&lt;/code&gt;으로 결정됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;10_Hist&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/10_Hist_hu717eb6394220038e2ff6da44b1b487ba_14807_077f60185e937b13aca0b9e149316a3c.png 400w,
+               /g4-noqasked-012-writingrslt1/10_Hist_hu717eb6394220038e2ff6da44b1b487ba_14807_23063a5844b1b9843a21b6538f2fbb51.png 760w,
+               /g4-noqasked-012-writingrslt1/10_Hist_hu717eb6394220038e2ff6da44b1b487ba_14807_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/10_Hist_hu717eb6394220038e2ff6da44b1b487ba_14807_077f60185e937b13aca0b9e149316a3c.png&#34;
+               width=&#34;748&#34;
+               height=&#34;99&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;파일을 열어보시면 다음과 같이 맨 위의 헤더 형태로 적힌 히스토그램의 정보와 함께, 히스토그램 결과가 5열로 기록되어 있는 것을 볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;11_Hist&#34; srcset=&#34;
+               /g4-noqasked-012-writingrslt1/11_Hist_huc86d9a616db5b766ebc53d25025a6875_25216_e6942ab5ffa7fe35f1ad5bb757ddb5f3.png 400w,
+               /g4-noqasked-012-writingrslt1/11_Hist_huc86d9a616db5b766ebc53d25025a6875_25216_5c0d37835b355b612924312b45fb22df.png 760w,
+               /g4-noqasked-012-writingrslt1/11_Hist_huc86d9a616db5b766ebc53d25025a6875_25216_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/11_Hist_huc86d9a616db5b766ebc53d25025a6875_25216_e6942ab5ffa7fe35f1ad5bb757ddb5f3.png&#34;
+               width=&#34;308&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;여기서 각 열은 순서대로 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;entries: 각 계급 구간의 도수 (값이 구간에 들어온 개수)&lt;/li&gt;
+&lt;li&gt;Sw: 가중치의 합 (기본적으로 가중치는 1이며, 모든 가중치가 1인 경우 entries와 값이 동일함. 이 가중치는 variance reduction 등에 관한 내용이므로 생략)&lt;/li&gt;
+&lt;li&gt;Sw2: 가중치의 제곱합 (기본적으로 가중치는 1이며, 모든 가중치가 1인 경우 entries와 값이 동일함. 이 가중치는 variance reduction 등에 관한 내용이므로 생략)&lt;/li&gt;
+&lt;li&gt;Sxw0: 기록한 값과 가중치의 곱의 합 (기록한 값이란, 히스토그램에 누적하기 위해 입력한 실제 값을 의미함)&lt;/li&gt;
+&lt;li&gt;Sx2w0: 기록한 값의 제곱과 가중치의 곱의 합&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;각 행은 계급 구간의 좌우 경계 값에 대해 &lt;b&gt;왼쪽 값 이상~오른쪽 값 미만&lt;/b&gt;의 범위에 들어온 데이터에 대해 기록됩니다. 또한, 총 행의 수는 CreateH1() 함수에서 기록한 개수보다 2개 더 많으며, &lt;b&gt;맨 첫 행에 최솟값 미만&lt;/b&gt;인 경우, &lt;b&gt;맨 마지막 행에 최댓값 이상&lt;/b&gt;인 경우가 추가적으로 기록됩니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이번 글에서는 스코어링한 데이터를 csv 형식으로 Histogram 형태에 맞추어 출력하는 방법에 대해 알아보았습니다. 다음 글에서는 이어서 Ntuple 형태에 맞추어 출력하는 방법에 대해 알아보겠습니다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</title>
+      <link>https://evandde.github.io/g4-noqasked-013-writingrslt2/</link>
+      <pubDate>Thu, 19 Aug 2021 20:49:41 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-013-writingrslt2/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 열세번째. Geant4에서 스코어링한 결과를 파일로 기록하는 방법 중 Ntuple 형태로 기록하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;p&gt;지난 글에 이어, 이번 글에서는 스코어링 결과를 Ntuple 형태로 기록하는 방법에 대해 알아보겠습니다. 이전 글에서 작성했던 Histogram 출력 내용과 관련한 코드는 그대로 두고, 여기에 이어서 작업을 진행하도록 하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ntuple-기록하기&#34;&gt;Ntuple 기록하기&lt;/h2&gt;
+&lt;p&gt;Ntuple이란, 간단히 말해 &lt;b&gt;표&lt;/b&gt;입니다. 사실은 n개의 순서쌍으로 묶인 데이터라는 뜻입니다만, 이런 데이터를 m개 쌓아놓으면 그냥 m×n 크기의 표가 됩니다.&lt;/p&gt;
+&lt;p&gt;그래서, Ntuple로 기록하는 과정은 사용자가 표를 직접 그리듯이 작업이 진행됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;b&gt;RunAction의 생성자&lt;/b&gt;에서 &lt;b&gt;CreateNtuple() 함수&lt;/b&gt;를 사용하여 Ntuple을 생성&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;RunAction의 생성자&lt;/b&gt;에서 &lt;b&gt;CreateNtuple?Column() 함수&lt;/b&gt;를 사용하여 Ntuple의 &lt;b&gt;열&lt;/b&gt;을 생성&lt;/li&gt;
+&lt;li&gt;모든 열을 추가한 뒤, &lt;b&gt;RunAction의 생성자&lt;/b&gt;에서 &lt;b&gt;FinishNtuple() 함수&lt;/b&gt;를 사용하여 Ntuple의 디자인을 완성&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;EventAction의 EndOfEventAction() 함수 안&lt;/b&gt;에서 &lt;b&gt;FillNtuple?Column() 함수&lt;/b&gt;를 사용하여 각 열에 데이터를 기록&lt;/li&gt;
+&lt;li&gt;한 행에 해당하는 모든 열 데이터를 기록한 뒤, &lt;b&gt;EventAction의 EndOfEventAction() 함수 안&lt;/b&gt;에서 &lt;b&gt;AddNtupleRow() 함수&lt;/b&gt;를 사용하여 한 행만큼의 데이터를 Ntuple에 추가&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;RunAction의 EndOfRunAction() 함수 안&lt;/b&gt;에서, 출력파일을 닫기 전에 &lt;b&gt;Write() 함수&lt;/b&gt;를 사용하여 데이터 기록&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;ntuple-생성-및-디자인&#34;&gt;Ntuple 생성 및 디자인&lt;/h3&gt;
+&lt;p&gt;먼저, 다음의 세 단계를 통해 Ntuple이라는 데이터 양식을 생성하겠습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;b&gt;RunAction의 생성자&lt;/b&gt;에서 &lt;b&gt;CreateNtuple() 함수&lt;/b&gt;를 사용하여 Ntuple을 생성&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;RunAction의 생성자&lt;/b&gt;에서 &lt;b&gt;CreateNtuple?Column() 함수&lt;/b&gt;를 사용하여 Ntuple의 &lt;b&gt;열&lt;/b&gt;을 생성&lt;/li&gt;
+&lt;li&gt;모든 열을 추가한 뒤, &lt;b&gt;RunAction의 생성자&lt;/b&gt;에서 &lt;b&gt;FinishNtuple() 함수&lt;/b&gt;를 사용하여 Ntuple의 디자인을 완성&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;font color=red&gt;&lt;b&gt;RunAction.cc 파일을 열고, RunAction의 생성자 내&lt;/b&gt;&lt;/font&gt;에 작성합니다 . 이전 글에서 만들었던 analysisManager라는 변수명을 가진 객체를 이용해서 Ntuple을 생성해줄 것입니다. 이 때 사용하는 함수는 CreateNtuple() 함수인데요, 이 함수의 원형부터 살펴보겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4int CreateNtuple(const G4String&amp;amp; name, const G4String&amp;amp; title);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;name: &lt;b&gt;Ntuple의 이름&lt;/b&gt;. 최종적인 출력 파일의 이름에 사용됨&lt;/li&gt;
+&lt;li&gt;title: Ntuple의 제목. 출력된 파일 내부에서 제목으로 쓰여져 있음.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;예를 들어, 이름을 &amp;quot;EDep&amp;quot;라고 짓고, 제목은 &amp;quot;Energy Deposition&amp;quot;이라고 지은 Ntuple을 만든다면 다음과 같이 입력하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;CreateNtuple(&amp;quot;EDep&amp;quot;, &amp;quot;Energy Deposition&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이어서, 이 Ntuple의 열을 추가합니다. 열을 추가하는 데에 사용하는 함수들의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;G4int CreateNtupleIColumn(const G4String&amp;amp; name): &lt;b&gt;정수형&lt;/b&gt;(&lt;b&gt;i&lt;/b&gt;nteger) 값이 기록될 열을 추가하는 함수. 입력 인자 name은 이 열의 이름을 의미함.&lt;/li&gt;
+&lt;li&gt;G4int CreateNtupleFColumn(const G4String&amp;amp; name): &lt;b&gt;실수형&lt;/b&gt;(&lt;b&gt;f&lt;/b&gt;loat) 값이 기록될 열을 추가하는 함수. 입력 인자 name은 이 열의 이름을 의미함.&lt;/li&gt;
+&lt;li&gt;G4int CreateNtupleDColumn(const G4String&amp;amp; name): &lt;b&gt;실수형&lt;/b&gt;(&lt;b&gt;d&lt;/b&gt;ouble) 값이 기록될 열을 추가하는 함수. 입력 인자 name은 이 열의 이름을 의미함.&lt;/li&gt;
+&lt;li&gt;G4int CreateNtupleSColumn(const G4String&amp;amp; name): &lt;b&gt;문자열형&lt;/b&gt;(&lt;b&gt;s&lt;/b&gt;tring) 값이 기록될 열을 추가하는 함수. 입력 인자 name은 이 열의 이름을 의미함.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;데이터를 기록할 때 이 표의 열마다 어떤 자료형을 기록할 지 생각하며 &lt;b&gt;순서대로 추가&lt;/b&gt;해나가면 됩니다.&lt;/p&gt;
+&lt;p&gt;여기서는 Energy Deposition 값에 해당하는 &lt;b&gt;한 열&lt;/b&gt;만 기록하도록 하겠습니다. 이는 &lt;b&gt;실수값 double형&lt;/b&gt;이므로, &lt;b&gt;CreateNtupleDColumn() 함수&lt;/b&gt;를 이용합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;CreateNtupleDColumn(&amp;quot;E(MeV)&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;b&gt;기록하고 싶은 데이터 열이 더 많다면 같은 방식으로 이어붙여서 더 추가&lt;/b&gt;하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;다 추가하셨다면 이제 이 디자인으로 Ntuple을 완성해야 합니다. 이 때에는 &lt;b&gt;FinishNtuple() 함수&lt;/b&gt;를 사용합니다. 여기서는 한 열만 추가하기로 하였으므로, 위에 열을 추가한 내용에 이어서 FinishNtuple() 함수를 적어주면 됩니다. 다음과 같이 말이죠.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;FinishNtuple();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;최종적으로 작성된 RunAction.cc 파일의 모습은 다음과 같아야 합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;12_Ntuple&#34; srcset=&#34;
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_5f8dfa54f39a94e43fc8f2f71fec11d4.png 400w,
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_ce313438856793342143b8b0e64a21c3.png 760w,
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_5f8dfa54f39a94e43fc8f2f71fec11d4.png&#34;
+               width=&#34;661&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;ntuple-작성&#34;&gt;Ntuple 작성&lt;/h3&gt;
+&lt;p&gt;이제 다음의 두 단계에 해당하는 내용을 작성하겠습니다.&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;&lt;b&gt;EventAction의 EndOfEventAction() 함수 안&lt;/b&gt;에서 &lt;b&gt;FillNtuple?Column() 함수&lt;/b&gt;를 사용하여 각 열에 데이터를 기록&lt;/li&gt;
+&lt;li&gt;한 행에 해당하는 모든 열 데이터를 기록한 뒤, &lt;b&gt;EventAction의 EndOfEventAction() 함수 안&lt;/b&gt;에서 &lt;b&gt;AddNtupleRow() 함수&lt;/b&gt;를 사용하여 한 행만큼의 데이터를 Ntuple에 추가&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이 작업은 매 Event가 끝난 뒤 Hit을 정리할 때마다 수행해야 하므로, &lt;font color=red&gt;&lt;b&gt;EventAction.cc 파일의 EndOfEventAction() 함수 내에 코드를 작성&lt;/b&gt;&lt;/font&gt;합니다. &lt;b&gt;물론 &lt;code&gt;g4csv.hh&lt;/code&gt;와 같은 헤더도 추가&lt;/b&gt;해야합니다만, 앞서 Histogram할 때 추가해뒀으므로 생략하겠습니다.&lt;/p&gt;
+&lt;p&gt;현재 EventAction.cc 파일의 모습은 다음과 같을 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;13_Ntuple&#34; srcset=&#34;
+               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_7aebda96a00c26ba223f9df3e460b569.png 400w,
+               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_5547841aca816c62817f759885eca3a8.png 760w,
+               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_7aebda96a00c26ba223f9df3e460b569.png&#34;
+               width=&#34;622&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;여기서 아까 만들어 둔 analysisManager 객체를 활용하여 두 가지 작업을 수행할 것입니다.&lt;/p&gt;
+&lt;p&gt;먼저, &lt;font color=red&gt;&lt;b&gt;EndOfEventAction() 함수&lt;/b&gt;&lt;/font&gt; 내의 for 반복문 안에서 eDep이 0보다 큰지 확인하는 if 조건문 안에서 G4AnalysisManager 클래스가 제공하는 &lt;b&gt;FillNtuple?Column() 함수&lt;/b&gt;를 이용하여 &lt;b&gt;Ntuple의 0번째 열에 eDep 데이터를 기록&lt;/b&gt;합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;FillNtupleDColumn(0, eDep);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;CreateNtuple?Column() 함수와 동일하게 &lt;b&gt;I(정수)&lt;/b&gt;/&lt;b&gt;F(실수)&lt;/b&gt;/&lt;b&gt;D(실수)&lt;/b&gt;/&lt;b&gt;S(문자열)&lt;/b&gt;의 &lt;b&gt;4종류&lt;/b&gt;가 있습니다. 대표적으로 FillNtupleDColumn() 함수의 원형만 살펴보면 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4bool FillNtupleDColumn(G4int columnId, G4double value);
+G4bool FillNtupleDColumn(G4int ntupleId, G4int columnId, G4double value);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;columnId: Ntuple에서 데이터를 기록할 &lt;b&gt;열의 번호&lt;/b&gt; (0부터 시작하여 0, 1, 2, &amp;hellip; 로 올라감)&lt;/li&gt;
+&lt;li&gt;value: Ntuple에 기록할 &lt;b&gt;데이터 값&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;ntupleId: Ntuple이 여러 개일 경우, 데이터를 기록할 &lt;b&gt;Ntuple의 ID 번호&lt;/b&gt;. Ntuple을 생성할 때 별도로 지정하지 않았다면, &lt;b&gt;만든 순서대로 0, 1, 2, &amp;hellip;로 부여&lt;/b&gt;됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ntuple을 한 개만 이용한다면 위의 함수를 이용하여 열 번호와 값만 입력하면 됩니다. Ntuple을 여러 개 이용하고 있다면 아래의 함수를 이용하여 Ntuple의 ID 번호, 열 번호, 값의 순서로 입력하면 됩니다.&lt;/p&gt;
+&lt;p&gt;모든 열을 다 추가하였다면, G4AnalysisManager 클래스가 제공하는 &lt;b&gt;AddNtupleRow() 함수&lt;/b&gt;를 이용하여 한 행 단위로 마무리해 줍니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;AddNtupleRow();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;코드를 다 적으면 다음과 같은 모양일 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;14_Ntuple&#34; srcset=&#34;
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_5c00430008b8336d3a11c0fcad62b564.png 400w,
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_c42e3b16d5f01355df0aac272ce16876.png 760w,
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_5c00430008b8336d3a11c0fcad62b564.png&#34;
+               width=&#34;577&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;ntuple을-파일에-기록&#34;&gt;Ntuple을 파일에 기록&lt;/h3&gt;
+&lt;p&gt;마지막으로, &amp;ldquo;6. &lt;b&gt;RunAction의 EndOfRunAction() 함수 안&lt;/b&gt;에서, 출력파일을 닫기 전에 &lt;b&gt;Write() 함수&lt;/b&gt;를 사용하여 데이터 기록&amp;quot;을 진행해야 합니다만, 이 내용은 &lt;b&gt;앞서 Histogram을 할 때 해두었으므로 여기서 따로 또 할필요는 없습니다&lt;/b&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;font color=red&gt;&lt;b&gt;RunAction.cc 파일&lt;/b&gt;&lt;/font&gt;의 &lt;font color=red&gt;&lt;b&gt;EndOfRunAction() 함수&lt;/b&gt;&lt;/font&gt;에 아까 적어둔 &lt;code&gt;analysisManager-&amp;gt;Write();&lt;/code&gt; 코드가 잘 적혀있는지 확인만 하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;15_Ntuple&#34; srcset=&#34;
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_4178c5d0f3d2e7f140b278cb52f0665d.png 400w,
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_98e374a04916d8e84b3d40c72e07c482.png 760w,
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_4178c5d0f3d2e7f140b278cb52f0665d.png&#34;
+               width=&#34;753&#34;
+               height=&#34;728&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;결과-확인&#34;&gt;결과 확인&lt;/h3&gt;
+&lt;p&gt;Ntuple 기록하기도 다 끝났습니다. 이제 build 디렉토리에 들어가서, 다음 명령어를 입력하여 시뮬레이션을 수행해봅시다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;make
+./g4_minimal run.mac
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;시뮬레이션이 정상적으로 종료되고 &amp;ldquo;Good bye :)&amp;ldquo;를 확인하셨다면, build 디렉토리 안에 다음 그림과 같이 G4_Minimal_nt_EDep.csv 라는 파일이 생성된 것을 확인할 수 있습니다. 여기서 알 수 있듯, 최종 히스토그램 파일의 이름은 &lt;code&gt;{OpenFile()에서 입력한 파일 이름}_nt_{CreateNtuple()에서 입력한 Ntuple이름}.csv&lt;/code&gt;으로 결정됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;16_Ntuple&#34; srcset=&#34;
+               /g4-noqasked-013-writingrslt2/16_Ntuple_hu1040e2def15fc55c46367f73613d8eea_10614_5bbae02f010306e65214c474584240c5.png 400w,
+               /g4-noqasked-013-writingrslt2/16_Ntuple_hu1040e2def15fc55c46367f73613d8eea_10614_01e2fb50e22139907fd80e588fcfeaf0.png 760w,
+               /g4-noqasked-013-writingrslt2/16_Ntuple_hu1040e2def15fc55c46367f73613d8eea_10614_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/16_Ntuple_hu1040e2def15fc55c46367f73613d8eea_10614_5bbae02f010306e65214c474584240c5.png&#34;
+               width=&#34;760&#34;
+               height=&#34;67&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;파일을 열어보시면 다음과 같이 맨 위의 헤더 형태로 적힌 Ntuple의 정보와 함께, 결과가 1열로 기록되어 있는 것을 볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;17_Ntuple&#34; srcset=&#34;
+               /g4-noqasked-013-writingrslt2/17_Ntuple_hu9b1612882ead44547ec1c4b3fb8e8be4_6848_f783611fbbd316cb457ab1203c064a25.png 400w,
+               /g4-noqasked-013-writingrslt2/17_Ntuple_hu9b1612882ead44547ec1c4b3fb8e8be4_6848_361c630c08eb8de0aafb27f4a029ccb0.png 760w,
+               /g4-noqasked-013-writingrslt2/17_Ntuple_hu9b1612882ead44547ec1c4b3fb8e8be4_6848_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/17_Ntuple_hu9b1612882ead44547ec1c4b3fb8e8be4_6848_f783611fbbd316cb457ab1203c064a25.png&#34;
+               width=&#34;298&#34;
+               height=&#34;250&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;지금 이 결과는 &lt;code&gt;/run/beamOn 1000&lt;/code&gt;으로 돌렸을 때의 결과입니다만, 기록된 Event가 많지 않네요.&lt;/p&gt;
+&lt;p&gt;제가 돌린 시뮬레이션은 5×5×5 cm&lt;sup&gt;3&lt;/sup&gt; 크기의 작은 물팬텀을 10 cm 거리에 둔 데다가, 선원도 0.662 MeV의 등방성 감마선원이라 반응 자체가 별로 일어나지 않아서 그런 것으로 판단됩니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;최종-파일-다운받는-법&#34;&gt;최종 파일 다운받는 법&lt;/h2&gt;
+&lt;p&gt;지난 글과 이번 글에서 작성한 스코어링 결과 기록 관련 코드는 &lt;a href=&#34;https://github.com/evandde/g4_minimal/archive/refs/heads/example.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;를 통해 다운받을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;혹은 git repository를 clone하신 분의 경우에는, example branch의 가장 최신 커밋인 V4 analysis 커밋을 참고하셔도 됩니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이번 글에서는 스코어링한 데이터를 csv 형식으로 Ntuple 형태에 맞추어 출력하는 방법에 대해 알아보았습니다. 여기까지의 내용을 통해, 여러분은 이제 시뮬레이션 결과를 원하는 형태로 파일에 기록하여 출력할 수 있게 되었습니다.&lt;/p&gt;
+&lt;p&gt;이번 글로서 Geant4 무작정 따라하기 시리즈는 끝입니다. 다음 글에서 후기와 함께 마무리 짓도록 하겠습니다!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1452 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>지오메트리 | EvaNote</title>
+    <link>https://evandde.github.io/course/g4-noqasked/g4-noqasked-geometry/</link>
+      <atom:link href="https://evandde.github.io/course/g4-noqasked/g4-noqasked-geometry/index.xml" rel="self" type="application/rss+xml" />
+    <description>지오메트리</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Sat, 04 Sep 2021 19:47:43 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>지오메트리</title>
+      <link>https://evandde.github.io/course/g4-noqasked/g4-noqasked-geometry/</link>
+    </image>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</title>
+      <link>https://evandde.github.io/g4-noqasked-002-detcon/</link>
+      <pubDate>Thu, 10 Jun 2021 09:52:13 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-002-detcon/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4의-지오메트리-개념&#34;&gt;Geant4의 지오메트리 개념&lt;/h2&gt;
+&lt;h3 id=&#34;기본&#34;&gt;기본&lt;/h3&gt;
+&lt;p&gt;Geant4에서의 지오메트리 정의 과정은 다음의 세 클래스가 분리하여 담당합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Solid (형태): 지오메트리의 &lt;strong&gt;모양&lt;/strong&gt;, &lt;strong&gt;크기&lt;/strong&gt; 등에 대한 정보를 담당&lt;/li&gt;
+&lt;li&gt;Logical Volume (특성): 지오메트리의 &lt;strong&gt;매질&lt;/strong&gt; 등 질적인 특성에 대한 정보를 담당&lt;/li&gt;
+&lt;li&gt;Physical Volume (배치): 지오메트리의 &lt;strong&gt;위치&lt;/strong&gt;, &lt;strong&gt;회전&lt;/strong&gt;, &lt;strong&gt;소속&lt;/strong&gt; 등 배치에 대한 정보를 담당&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이 세 가지 클래스가 다음 다이어그램과 같이 유기적으로 연결되어 하나의 지오메트리 객체를 정의하게 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A --&amp;gt; B --&amp;gt; C
+A[Solid]
+B[Logical Volume]
+C[Physical Volume]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;모양에 대한 정보를 담은 Solid 객체를 정의.&lt;/li&gt;
+&lt;li&gt;이 Solid 객체에 매질 정보를 넣어 Logical Volume 객체를 정의.&lt;/li&gt;
+&lt;li&gt;이 Logical Volume 객체에 위치, 회전, 소속에 대한 정보를 넣어 Physical Volume 객체를 정의.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;좀 더 구체적인 예시로 다이어그램을 그려보면 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A --&amp;gt; B --&amp;gt; C
+A[직육면체]
+B[물이 담긴 직육면체]
+C[&amp;quot;(10, 0, 0)&amp;quot;에 위치한 물이 담긴 직육면체]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;중요한 부분은, &lt;strong&gt;Physical Volume까지 정의되어야만&lt;/strong&gt; 비로소 &lt;strong&gt;시뮬레이션 세계에 존재&lt;/strong&gt;하게 된다는 점입니다.&lt;/p&gt;
+&lt;p&gt;즉, Solid만 정의된 상태인 &amp;ldquo;직육면체&amp;quot;나, Logical Volume까지만 정의된 &amp;ldquo;물이 담긴 직육면체&amp;quot;는 아직 시뮬레이션 세계에 존재하지 않는 &lt;strong&gt;개념적인 존재일 뿐&lt;/strong&gt;입니다. 이를 &lt;u&gt;&lt;strong&gt;Physical Volume으로서 &amp;quot;(10, 0, 0)에 놓겠다&amp;quot;는 부분이 정의되어야 그제서야 시뮬레이션 세계에 존재&lt;/strong&gt;&lt;/u&gt;하게 됩니다.&lt;/p&gt;
+&lt;h3 id=&#34;응용&#34;&gt;응용&lt;/h3&gt;
+&lt;p&gt;Geant4에서는 지오메트리를 &lt;strong&gt;Solid(형태)&lt;/strong&gt;, &lt;strong&gt;Logical Volume(특성)&lt;/strong&gt;, &lt;b&gt;Physical Volume(배치)&lt;/b&gt;의 세 단계로 나누어 관리하기 때문에, 유사한 지오메트리를 여러개 배치하여야 할 때 이전에 만들어둔 객체를 재사용하여 효율적인 코딩이 가능합니다. Logical Volume을 재사용하는 다음의 다이어그램을 살펴봅시다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A --&amp;gt; B --&amp;gt; C &amp;amp; D &amp;amp; E
+A[직육면체]
+B[물이 담긴 직육면체]
+C[&amp;quot;(0, 0, 0)&amp;quot;에 위치한 물이 담긴 직육면체]
+D[&amp;quot;(10, 0, 0)&amp;quot;에 위치한 물이 담긴 직육면체]
+E[&amp;quot;(20, 0, 0)&amp;quot;에 위치한 물이 담긴 직육면체]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;quot;물이 담긴 직육면체&amp;quot; 라는 Logical Volume을 여러 위치에 배치해야 하는 경우, 위 다이어그램과 같이 Physical Volume만을 변경하며 여러 번 정의해줄 수 있습니다.&lt;/p&gt;
+&lt;p&gt;혹은, 모양이 동일한데 매질이 달라져야 하는 경우에는 다음과 같이 Solid 객체를 재사용하여 구성할 수도 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A --&amp;gt; B &amp;amp; C
+B --&amp;gt; D &amp;amp; E
+C --&amp;gt; F
+A[직육면체]
+B[물이 담긴 직육면체]
+C[공기가 담긴 직육면체]
+D[&amp;quot;(0, 0, 0)&amp;quot;에 위치한 물이 담긴 직육면체]
+E[&amp;quot;(10, 0, 0)&amp;quot;에 위치한 물이 담긴 직육면체]
+F[&amp;quot;(20, 0, 0)&amp;quot;에 위치한 공기가 담긴 직육면체]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;실전&#34;&gt;실전&lt;/h2&gt;
+&lt;p&gt;일단 이론은 이정도만 해두고, 코드를 직접 작성해봅시다.&lt;/p&gt;
+&lt;p&gt;Geant4 코드 작성 시, 지오메트리에 대한 내용을 적는 곳은 정해져 있습니다. G4VUserDetectorConstruction 클래스를 상속받아 만드는 UserClass에 존재하는 G4VPhysicalVolume* Construct() 함수입니다. 하지만 이렇게 정석대로 설명하면 너무 생소하실테니 제가 제공해드렸던 템플릿 코드에서 살펴보도록 하죠.&lt;/p&gt;
+&lt;p&gt;템플릿 코드의 &lt;strong&gt;src 디렉토리&lt;/strong&gt; 내부에 &lt;b&gt;DetectorConstruction.cc&lt;/b&gt;라는 파일이 있을 것입니다. 이 파일을 열면 다음 그림과 같은 코드가 나옵니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_detcon&#34; srcset=&#34;
+               /g4-noqasked-002-detcon/01_detcon_hufb6bccb991e7259a24d74e047ad0cf74_92695_98254c7e6515c22bccd06a6a250bc279.png 400w,
+               /g4-noqasked-002-detcon/01_detcon_hufb6bccb991e7259a24d74e047ad0cf74_92695_877b941cb9d0383047c8cfc68f9bee58.png 760w,
+               /g4-noqasked-002-detcon/01_detcon_hufb6bccb991e7259a24d74e047ad0cf74_92695_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-002-detcon/01_detcon_hufb6bccb991e7259a24d74e047ad0cf74_92695_98254c7e6515c22bccd06a6a250bc279.png&#34;
+               width=&#34;760&#34;
+               height=&#34;485&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;여기서 18번째 줄부터 나오는 &lt;b&gt;G4VPhysicalVolume *DetectorConstruction::Construct() 함수 안&lt;/b&gt;에 지오메트리에 대한 내용을 적으면 됩니다.&lt;/p&gt;
+&lt;p&gt;다음과 같이 정의되는 물이 담긴 팬텀&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;를 만들어보겠습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Solid: 가로, 세로, 높이가 5 cm인 정육면체&lt;/li&gt;
+&lt;li&gt;Logical Volume: 매질을 물로 채움&lt;/li&gt;
+&lt;li&gt;Physical Volume: 팬텀의 중심이 (0, 0, 10 cm)가 되게끔 위치시킴&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;물-정의하기&#34;&gt;&amp;quot;물&amp;quot; 정의하기&lt;/h3&gt;
+&lt;p&gt;일단 물이라는 물질을 가져와야 합니다. 자세한 설명은 나중에 하기로 하고, 아래 그림에서 표시된 위치에 다음 한 줄을 적어넣습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto matWater = nist-&amp;gt;FindOrBuildMaterial(&amp;quot;G4_WATER&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_material&#34; srcset=&#34;
+               /g4-noqasked-002-detcon/02_material_hu7eb2cffc733e93b6701398af02651224_33661_f0925dfeb3f749d46fcf665f23279291.png 400w,
+               /g4-noqasked-002-detcon/02_material_hu7eb2cffc733e93b6701398af02651224_33661_1b3d3fda0dbb6a171c1198db0cd40522.png 760w,
+               /g4-noqasked-002-detcon/02_material_hu7eb2cffc733e93b6701398af02651224_33661_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-002-detcon/02_material_hu7eb2cffc733e93b6701398af02651224_33661_f0925dfeb3f749d46fcf665f23279291.png&#34;
+               width=&#34;760&#34;
+               height=&#34;273&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이 한 줄을 통해, &lt;strong&gt;matWater&lt;/strong&gt; 라는 변수는 &amp;ldquo;물&amp;quot;이라는 물질로 정의되었습니다.&lt;/p&gt;
+&lt;h3 id=&#34;물이-담긴-팬텀-위치시키기&#34;&gt;물이 담긴 팬텀 위치시키기&lt;/h3&gt;
+&lt;p&gt;이제 solid, logical volume, physical volume을 정의해봅시다.&lt;/p&gt;
+&lt;p&gt;아래 그림에서 표시된 위치에 다음 내용을 적어 넣습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;// Water phantom
+auto phantomSize = 5. * cm;
+auto phantomPos = G4ThreeVector(0., 0., 10.*cm);
+auto phantomSol = new G4Box(&amp;quot;phantom&amp;quot;, .5 * phantomSize, .5 * phantomSize, .5 * phantomSize);
+auto phantomLog = new G4LogicalVolume(phantomSol, matWater, &amp;quot;phantom&amp;quot;);
+new G4PVPlacement(nullptr, phantomPos, phantomLog, &amp;quot;phantom&amp;quot;, worldLog, false, 0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_waterbox&#34; srcset=&#34;
+               /g4-noqasked-002-detcon/03_waterbox_hu6c403cf4e9ae045854b274de7e7c14fa_74536_fcaacd02e82498e2b0b060072cf4aeb6.png 400w,
+               /g4-noqasked-002-detcon/03_waterbox_hu6c403cf4e9ae045854b274de7e7c14fa_74536_745c6650d358e625439864280e5f9e97.png 760w,
+               /g4-noqasked-002-detcon/03_waterbox_hu6c403cf4e9ae045854b274de7e7c14fa_74536_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-002-detcon/03_waterbox_hu6c403cf4e9ae045854b274de7e7c14fa_74536_fcaacd02e82498e2b0b060072cf4aeb6.png&#34;
+               width=&#34;760&#34;
+               height=&#34;390&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    phantomSize, phantomPos와 같은 변수의 경우에는, 사실 따로 변수로 만들지 않고 직접 solid나 physical volume에 값을 적어도 됩니다. 하지만 재사용성 및 가독성을 고려하여 변수로 만들어 사용하였습니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;실행해보기&#34;&gt;실행해보기&lt;/h3&gt;
+&lt;p&gt;이제 작성한 코드를 저장하고 빌드를 한 뒤 UI모드로 실행하면, 물 팬텀이 추가된 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;지난 글에서 만들어뒀던 build 디렉토리에 들어간 뒤, make 명령어만 입력하면 빌드가 수행됩니다.&lt;/p&gt;
+&lt;p&gt;이어서, &lt;b&gt;./g4_minimal&lt;/b&gt; 이라고 입력하여 실행하면 UI모드로 실행할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd build
+make
+./g4_minimal
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;실행하면 다음 그림과 같은 창이 나타날 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_UI&#34; srcset=&#34;
+               /g4-noqasked-002-detcon/04_UI_hu14d7d4da1c2065ed53626b816f20effd_102424_a41c4580aa9af7a66a5e2de48c3b9182.png 400w,
+               /g4-noqasked-002-detcon/04_UI_hu14d7d4da1c2065ed53626b816f20effd_102424_0d5238257ae692deab4467d3847ec8a4.png 760w,
+               /g4-noqasked-002-detcon/04_UI_hu14d7d4da1c2065ed53626b816f20effd_102424_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-002-detcon/04_UI_hu14d7d4da1c2065ed53626b816f20effd_102424_a41c4580aa9af7a66a5e2de48c3b9182.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;왼쪽의 탭에서 &lt;strong&gt;Scene tree&lt;/strong&gt;를 클릭하면, 화면에 나타나는 지오메트리의 트리구조를 볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이 중, &lt;strong&gt;Touchables&lt;/strong&gt; 하위에 있는 것이 여러분이 만든 지오메트리 목록입니다.&lt;/p&gt;
+&lt;p&gt;지금 저희가 만들었던 물 팬텀은 &lt;strong&gt;phantom&lt;/strong&gt;이라는 이름으로 표시되고 있으며, 왼쪽의 체크박스를 누르면 오른쪽 그림에서 조그마한 직육면체가 나타났다 사라졌다 하는 것을 확인할 수 있을 것입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;최종-파일-다운받는-법&#34;&gt;최종 파일 다운받는 법&lt;/h2&gt;
+&lt;p&gt;이번 글에서 작성한 코드는 &lt;a href=&#34;https://github.com/evandde/g4_minimal/archive/ecef9c37af224cd65b866557f825508a71043e11.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;를 통해 다운받을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;혹은 git repository를 clone하신 분의 경우에는, example branch의 이전 커밋 중 V1_DetCon이라는 커밋을 참고하셔도 됩니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;새로 추가된 코드 부분을 정리하면 다음 그림과 같습니다. 주석이나 단순히 변수를 정의한 부분은 따로 표시하지 않았습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;05_newcode&#34; srcset=&#34;
+               /g4-noqasked-002-detcon/05_newcode_hu2e504eeb35f3ac4ab6ae17d5c03410c8_81300_9d7c2331a92c6d7139f550cbe762a9e4.png 400w,
+               /g4-noqasked-002-detcon/05_newcode_hu2e504eeb35f3ac4ab6ae17d5c03410c8_81300_5cb5a5e93bd5842c5c70997286a543a9.png 760w,
+               /g4-noqasked-002-detcon/05_newcode_hu2e504eeb35f3ac4ab6ae17d5c03410c8_81300_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-002-detcon/05_newcode_hu2e504eeb35f3ac4ab6ae17d5c03410c8_81300_9d7c2331a92c6d7139f550cbe762a9e4.png&#34;
+               width=&#34;760&#34;
+               height=&#34;390&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;위 코드에서 어떤 코드가 무슨 역할을 하고 있는지만 기억하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;세부적인 설명은 다음 글에서 하도록 하겠습니다.&lt;/p&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;의료영상 혹은 방사선 조사 등의 특수한 목적을 위해 제작된 구조물&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;</description>
+    </item>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</title>
+      <link>https://evandde.github.io/g4-noqasked-003-solid/</link>
+      <pubDate>Fri, 11 Jun 2021 19:27:03 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-003-solid/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 세번째. 다양한 모양의 지오메트리를 만들기 위해 Solid에 대해 살펴봅시다.&lt;/p&gt;
+&lt;p&gt;Geant4에서는 다양한 종류의 Solid(형태)를 제공하고 있습니다. 이번 글에서는 다양한 Solid들을 사용해보도록 하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4에서의-단위&#34;&gt;Geant4에서의 단위&lt;/h2&gt;
+&lt;p&gt;Solid를 알아보기에 앞서, 단위라는 개념부터 살펴보려 합니다. Solid를 만들 때 크기를 입력하려면 길이에 대한 단위가 필수적으로 요구되기 때문입니다.&lt;/p&gt;
+&lt;p&gt;Geant4에서는 각종 물리량에 대한 단위를 제공하고 있으며, 이를 사용하기 위해서는 &lt;b&gt;&amp;ldquo;G4SystemOfUnits.hh&amp;rdquo;&lt;/b&gt; 헤더가 필요합니다. 현재 작업 중인 DetectorConsturction.cc 파일에는 제가 이미 이 헤더를 추가해 놓았으므로, 바로 사용할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;사용은 실제 물리량을 기술할 때와 동일한 방식으로 사용하면 됩니다만, 곱하기를 명시해주어야 한다는 점만 주의하면 됩니다.&lt;/p&gt;
+&lt;p&gt;예를 들어, &lt;b&gt;10 cm 라는 길이를 Geant4 코드 작성에서 기술하고자 할 때에는 다음과 같이 입력&lt;/b&gt;합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;10. * cm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;길이 단위 이외에도, 질량, 밀도, 온도, 기압, 흡수선량 등 다양한 물리량에 대한 단위를 제공하고 있으므로, 필요에 따라 활용해보시기 바랍니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;solid의-여러가지-종류&#34;&gt;Solid의 여러가지 종류&lt;/h2&gt;
+&lt;p&gt;Solid는 간단히 말해 &lt;strong&gt;입체도형&lt;/strong&gt;입니다. 입체도형에는 직육면체, 원기둥, 구, 원뿔 등 다양한 모양이 있지요. Geant4에서도 Solid라는 개념 아래에 &lt;strong&gt;하위 개념&lt;/strong&gt;으로서 G4Box(직육면체), GTubs(원기둥), G4Orb/G4Sphere(구), G4Cons(원뿔) 등을 만들어, 다양한 모양을 정의할 수 있게 하였습니다.&lt;/p&gt;
+&lt;p&gt;우리는 &lt;strong&gt;Geant4에서 어떤 입체도형을 제공하는지 파악&lt;/strong&gt;하고, &lt;strong&gt;각각의 입체도형을 정의하는 방법을 학습&lt;/strong&gt;한 뒤, 그대로 사용하기만 하면 됩니다.&lt;/p&gt;
+&lt;p&gt;Geant4에서 제공하고 있는 Solid의 모든 종류는 &lt;a href=&#34;https://geant4.kek.jp/Reference/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 Doxygen&lt;/a&gt;에서 G4VSolid 클래스의 레퍼런스 페이지(&lt;a href=&#34;https://geant4.kek.jp/Reference/10.07.p01/classG4VSolid.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;10.7.p01 버전&lt;/a&gt;)에 들어가면 상속받은 클래스 목록(&lt;em&gt;Inheritance diagram for G4VSolid&lt;/em&gt;) 부분을 통해 확인할 수 있습니다. 그 종류가 너무나도 많기 때문에, 이 글에서는 다음 세 가지 클래스의 생성자만 살펴보겠습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;G4Box&lt;/li&gt;
+&lt;li&gt;G4Tubs&lt;/li&gt;
+&lt;li&gt;G4Orb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    생성자가 뭔지 모르겠다면, 일단은 그냥 어떤 개념을 가진 대상을 만들 때 사용하는 함수라고 생각하세요. 여기서는 직육면체, 원기둥, 구를 만드는 함수라고 생각하시면 됩니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Geant4에서 Solid를 만들 때에는, 맨 처음 인자로 그 Solid의 &amp;ldquo;이름&amp;quot;을 지어주게 되어있습니다. 이름을 짓는 데에 어떠한 규약이 있는 것은 아니므로, 자유롭게 지으시면 됩니다. 다만, 되도록이면 다른 Solid와 이름이 겹치지 않도록 고유의 이름을 주시는 것을 권장합니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;g4box직육면체&#34;&gt;G4Box(직육면체)&lt;/h3&gt;
+&lt;p&gt;G4Box는 직육면체 모양을 정의하는 데에 사용하는 클래스입니다. 클래스의 생성자는 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4Box (const G4String &amp;amp;pName, 
+       G4double pX, 
+       G4double pY, 
+       G4double pZ);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;pName: 정의할 직육면체의 이름. 자유롭게 적으면 됨&lt;/li&gt;
+&lt;li&gt;pX: X축 방향으로의 모서리 길이의 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;절반&lt;/b&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;pY: Y축 방향으로의 모서리 길이의 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;절반&lt;/b&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;pZ: Z축 방향으로의 모서리 길이의 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;절반&lt;/b&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;간단히 말해, 직육면체를 정의하기 위해 필요한 것은, 이름과 가로, 세로, 높이라고 볼 수 있습니다. 다만, 가로, 세로, 높이의 경우에는 그 &lt;strong&gt;길이의 절반&lt;/strong&gt;을 입력해야 한다는 점에 주의하세요.&lt;/p&gt;
+&lt;p&gt;예를 들어, X축 방향으로 10 cm, Y축 방향으로 5 cm, Z축 방향으로 20 cm 크기를 가진 직육면체 형태의 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomSol = new G4Box(&amp;quot;phantom&amp;quot;, 5. * cm, 2.5 * cm, 10. * cm);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;다만, 이렇게 적으면 실제 직육면체 크기와 코드에 써있는 값이 서로 달라 헷갈리는 경우가 있어, 저는 개인적으로 다음과 같이 실제 길이에 0.5를 곱하는 형태로 적는 것을 선호합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomSol = new G4Box(&amp;quot;phantom&amp;quot;, .5 * 10. * cm, .5 * 5. * cm, .5 * 20. * cm);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;각 변의 길이를 변수화한다면 다음과 같이 좀 더 알아보기 쉽게 적을 수 있겠지요.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomXLength = 10. * cm;
+auto phantomYLength = 5. * cm;
+auto phantomZLength = 20. * cm;
+auto phantomSol = new G4Box(&amp;quot;phantom&amp;quot;, .5 * phantomXLength, .5 * phantomYLength, .5 * phantomZLength);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;지난 글에서 작성한 코드 부분 중, Solid에 해당하는 내용을 위 코드로 바꿔준 모습입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_g4box&#34; srcset=&#34;
+               /g4-noqasked-003-solid/01_g4box_hu0e8f7b13d35a13a4e540f658820cab33_22168_1e461d9f4d3627cbd207c75d81b900e2.png 400w,
+               /g4-noqasked-003-solid/01_g4box_hu0e8f7b13d35a13a4e540f658820cab33_22168_4e6672844932ff76292aed6cee9a0f51.png 760w,
+               /g4-noqasked-003-solid/01_g4box_hu0e8f7b13d35a13a4e540f658820cab33_22168_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-003-solid/01_g4box_hu0e8f7b13d35a13a4e540f658820cab33_22168_1e461d9f4d3627cbd207c75d81b900e2.png&#34;
+               width=&#34;760&#34;
+               height=&#34;198&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이 상태로 실행해보면, 물팬텀의 크기가 바뀐 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_g4boxrun&#34; srcset=&#34;
+               /g4-noqasked-003-solid/02_g4boxrun_hube810a1bde3702d14cac63e64f046204_77702_0be8989f9f37f1805c8f13af4ddc8ee4.png 400w,
+               /g4-noqasked-003-solid/02_g4boxrun_hube810a1bde3702d14cac63e64f046204_77702_2275e2c23821bd8a85e0c406cbb68729.png 760w,
+               /g4-noqasked-003-solid/02_g4boxrun_hube810a1bde3702d14cac63e64f046204_77702_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-003-solid/02_g4boxrun_hube810a1bde3702d14cac63e64f046204_77702_0be8989f9f37f1805c8f13af4ddc8ee4.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;g4tubs원기둥&#34;&gt;G4Tubs(원기둥)&lt;/h3&gt;
+&lt;p&gt;G4Tubs는 원기둥 모양을 정의하는 데에 사용하는 클래스입니다. 가운데가 빈 두루마리 휴지같은 모양도 표현할 수 있습니다. 클래스의 생성자는 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4Tubs (const G4String &amp;amp;pName, 
+        G4double pRMin, 
+        G4double pRMax, 
+        G4double pDz, 
+        G4double pSPhi, 
+        G4double pDPhi);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;pName: 정의할 원기둥의 이름. 자유롭게 적으면 됨&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;pRMin: 내반경. 속이 꽉 찬 원기둥이라면 0을 적고, 가운데가 빈 원기둥이라면 내부 원의 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;반지름&lt;/b&gt;&lt;/font&gt;을 적음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;pRMax: 외반경. 외부 원의 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;반지름&lt;/b&gt;&lt;/font&gt;을 적음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;pDz: 원기둥 높이의 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;절반&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;pSPhi: 시작 중심각. 케이크 조각처럼 부채꼴 기둥을 표현하고자 하는 경우에, 시작할 각도를 0°~360° 사이에서 지정할 수 있음. 일반적인 원기둥의 경우 0을 적음. (0°: +x축, 90°: +y축)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;pDPhi: 중심각의 변화량. 케이크 조각처럼 부채꼴 기둥을 표현하고자 하는 경우에, 중심각의 변화량을 0°~360° 사이에서 지정할 수 있음. 일반적인 원기둥의 경우 360°(360. * deg)를 적음&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;일반적인 원기둥 뿐만 아니라, 원기둥 껍질 혹은 부채꼴 기둥 및 부채꼴 기둥 껍질모양까지 만들 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    G4Tubs 클래스는 무조건 Z축을 중심축으로 한 형태로만 만들어집니다. 다른 축을 중심축으로 하고 싶다면, Physical Volume을 설정할 때 회전을 시키는 방법밖에 없습니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;예를 들어, 반지름이 5 cm이고, 높이가 10 cm인 속이 꽉 찬 원기둥 형태의 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomSol = new G4Tubs(&amp;quot;phantom&amp;quot;, 0., 5. * cm, 5. * cm, 0., 360. * deg);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;저는 G4Box의 경우와 유사하게, 반경대신 직경을 써서 코드 작성시의 일관성을 유지하는 것을 좋아합니다. 일반적으로 다음과 같이 작성하는 편이지요.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomDiameter = 10. * cm;
+auto phantomHeight = 10. * cm;
+auto phantomSol = new G4Tubs(&amp;quot;phantom&amp;quot;, 0., .5 * phantomDiameter, .5 * phantomHeight, 0., 360. * deg);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;아까 수정하였던 Solid에 해당하는 내용을 G4Tubs의 예시인 위 코드로 바꿔준 모습입니다. &lt;font color=&#39;red&#39;&gt;G4Tubs의 헤더(G4Tubs.hh)는 제가 제공해드렸던 템플릿 코드의 DetectorConstruction에 기본으로 포함되어 있지 않으므로, 꼭 직접 넣어주셔야 합니다.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_g4tubs&#34; srcset=&#34;
+               /g4-noqasked-003-solid/03_g4tubs_hu05891ed905d4a019a805d5e6e5ea84de_203159_f4e9d7b1fec97b00d94ba319a64f1adf.png 400w,
+               /g4-noqasked-003-solid/03_g4tubs_hu05891ed905d4a019a805d5e6e5ea84de_203159_851b8ffd53511ef6c04067fabfe79934.png 760w,
+               /g4-noqasked-003-solid/03_g4tubs_hu05891ed905d4a019a805d5e6e5ea84de_203159_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-003-solid/03_g4tubs_hu05891ed905d4a019a805d5e6e5ea84de_203159_f4e9d7b1fec97b00d94ba319a64f1adf.png&#34;
+               width=&#34;760&#34;
+               height=&#34;619&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;실행해보면, 물팬텀의 모양이 바뀐 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_g4tubsrun&#34; srcset=&#34;
+               /g4-noqasked-003-solid/04_g4tubsrun_hu45feeb31614cc9859fb07c736b7b1c37_77157_89e3ff23693d8f6fc2acf064b8a97381.png 400w,
+               /g4-noqasked-003-solid/04_g4tubsrun_hu45feeb31614cc9859fb07c736b7b1c37_77157_46a625c87f6a484cf18933f5f32eec85.png 760w,
+               /g4-noqasked-003-solid/04_g4tubsrun_hu45feeb31614cc9859fb07c736b7b1c37_77157_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-003-solid/04_g4tubsrun_hu45feeb31614cc9859fb07c736b7b1c37_77157_89e3ff23693d8f6fc2acf064b8a97381.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;g4orb구&#34;&gt;G4Orb(구)&lt;/h3&gt;
+&lt;p&gt;G4Orb는 구 모양을 정의하는 데에 사용하는 클래스입니다. 클래스의 생성자는 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4Orb (const G4String &amp;amp;pName, 
+       G4double pRmax);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;pName: 정의할 구의 이름. 자유롭게 적으면 됨&lt;/li&gt;
+&lt;li&gt;pRmax: 구의 반지름&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;G4Orb는 속이 꽉 찬 구만 만들 수 있습니다. 단순히 구의 반지름만 적어주면 끝이죠.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    G4Tubs처럼 구 껍질이나 각도에 따라 잘린 구를 만들기 위해서는 G4Sphere라는 Solid를 이용하시면 됩니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;예를 들어, 반지름이 5 cm인 구형 팬텀을 정의하고자 한다면 다음과 같이 입력하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomSol = new G4Orb(&amp;quot;phantom&amp;quot;, 5. * cm);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;저는 여기서도 직경을 이용하는 편입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomDiameter = 10. * cm;
+auto phantomSol = new G4Orb(&amp;quot;phantom&amp;quot;, .5 * phantomDiameter);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;아까 수정하였던 Solid에 해당하는 내용을 G4Orb의 예시인 위 코드로 바꿔준 모습입니다. 이 경우에도 반드시 &lt;font color=&#39;red&#39;&gt;G4Orb의 헤더(G4Orb.hh)를 직접 넣어주시기 바랍니다.&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;05_g4orb&#34; srcset=&#34;
+               /g4-noqasked-003-solid/05_g4orb_huba09776a125216d4953124bbbb4120ea_196719_825c1244b29fed1817aecae870e8a2d8.png 400w,
+               /g4-noqasked-003-solid/05_g4orb_huba09776a125216d4953124bbbb4120ea_196719_7ace8ff96d65f63ac5e8964c2143f293.png 760w,
+               /g4-noqasked-003-solid/05_g4orb_huba09776a125216d4953124bbbb4120ea_196719_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-003-solid/05_g4orb_huba09776a125216d4953124bbbb4120ea_196719_825c1244b29fed1817aecae870e8a2d8.png&#34;
+               width=&#34;760&#34;
+               height=&#34;619&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;실행하면, 구형의 물팬텀을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;06_g4orbrun&#34; srcset=&#34;
+               /g4-noqasked-003-solid/06_g4orbrun_hu77955d15bf9517a9bb09aa947b7046bd_76553_05dd2ead8dd4b91f75d7bc16875aa605.png 400w,
+               /g4-noqasked-003-solid/06_g4orbrun_hu77955d15bf9517a9bb09aa947b7046bd_76553_dbb50aa7f7af86646c6f03fd1f57998e.png 760w,
+               /g4-noqasked-003-solid/06_g4orbrun_hu77955d15bf9517a9bb09aa947b7046bd_76553_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-003-solid/06_g4orbrun_hu77955d15bf9517a9bb09aa947b7046bd_76553_05dd2ead8dd4b91f75d7bc16875aa605.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;Geant4는 이 외에도 정말 많은 Solid 종류를 제공하고 있습니다. 대부분의 경우, 각 클래스의 &lt;strong&gt;헤더파일&lt;/strong&gt;을 열어보면 어떤 모양을 어떤 변수로 표현하는지 주석으로 설명되어 있습니다.&lt;/p&gt;
+&lt;p&gt;이 글에서 소개한 단순한 모양 이외에도, 두 개의 Solid를 이용하여 합집합/차집합/교집합에 해당하는 새로운 Solid를 정의하는 클래스 (G4UnionSolid, G4SubtractionSolid, G4IntersectionSolid)나, 다각형 면으로 구성된 지오메트리를 표현하기 위한 Solid 클래스 (G4TesellatedSolid) 등 다양한 클래스를 제공하고 있으니 필요에 따라 참고하시기 바랍니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;고생하셨습니다.&lt;/p&gt;
+&lt;p&gt;다음 글에서는, &lt;strong&gt;물질&lt;/strong&gt;을 정의하는 방법에 대해 좀 더 자세히 살펴보도록 하겠습니다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 4. 물질 정의하기</title>
+      <link>https://evandde.github.io/g4-noqasked-004-material/</link>
+      <pubDate>Tue, 15 Jun 2021 09:26:01 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-004-material/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4의-물질&#34;&gt;Geant4의 물질&lt;/h2&gt;
+&lt;p&gt;Geant4에서 물질은 다음의 계층을 따라 정의됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph LR
+A --&amp;gt; B --&amp;gt; C --&amp;gt; C
+A[Isotope]
+B[Element]
+C[Material]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Isotope를 조합하여 Element를 정의하고, Element를 조합하여 Material을 정의합니다. 또한, 여러 Material을 섞어서 새로운 Material을 만들 수도 있습니다.&lt;/p&gt;
+&lt;p&gt;하지만 Isotope, Element, Material 클래스에 대해 모든걸 설명하기에는 너무 글이 길어지므로, 여기서는 &lt;strong&gt;Geant4에서 기본적으로 제공하는 물질 DB에서 원하는 물질을 가져와 사용하는 법&lt;/strong&gt;만 다루겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;geant4-material-database&#34;&gt;Geant4 material database&lt;/h2&gt;
+&lt;p&gt;Geant4는 NIST(National Institute of Standards and Technology)의 &lt;a href=&#34;http://physics.nist.gov/PhysRefData/Compositions/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;원자량 및 동위원소조성비 데이터&lt;/a&gt;를 바탕으로 제작해둔 물질 DB를 제공하고 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;물질-목록-확인하기&#34;&gt;물질 목록 확인하기&lt;/h3&gt;
+&lt;p&gt;Geant4가 제공하는 material database의 목록은 &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;에서 확인할 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#simple-materials-elements&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Simple Materials (Elements)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;단일 원소로 구성된 물질의 목록&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#nist-compounds&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NIST Compounds&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;화합물의 목록. 표의 형태는 두가지로, 각각을 읽는 법은 다음과 같음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;조성비가 실수로 표시된 경우: 질량비&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_g4matcompound&#34; srcset=&#34;
+               /g4-noqasked-004-material/01_g4matcompound_huaf21c2b02a7c831d026db0f866a2bcfa_31679_490a746cbbbd6d95d20ac55203df8d8d.png 400w,
+               /g4-noqasked-004-material/01_g4matcompound_huaf21c2b02a7c831d026db0f866a2bcfa_31679_64c751ac54b4ea8a07ea6d3152fa96c0.png 760w,
+               /g4-noqasked-004-material/01_g4matcompound_huaf21c2b02a7c831d026db0f866a2bcfa_31679_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-004-material/01_g4matcompound_huaf21c2b02a7c831d026db0f866a2bcfa_31679_490a746cbbbd6d95d20ac55203df8d8d.png&#34;
+               width=&#34;760&#34;
+               height=&#34;298&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;조성비가 정수로 표시된 경우: 개수비&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_g4matcompound&#34; srcset=&#34;
+               /g4-noqasked-004-material/02_g4matcompound_hu8d4ac807cbc3459d3b8de6b1bc15d292_22425_11ba9a285b250a224078f637c38bec57.png 400w,
+               /g4-noqasked-004-material/02_g4matcompound_hu8d4ac807cbc3459d3b8de6b1bc15d292_22425_91b6dd2b745e7beb0a0908121015ac41.png 760w,
+               /g4-noqasked-004-material/02_g4matcompound_hu8d4ac807cbc3459d3b8de6b1bc15d292_22425_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-004-material/02_g4matcompound_hu8d4ac807cbc3459d3b8de6b1bc15d292_22425_11ba9a285b250a224078f637c38bec57.png&#34;
+               width=&#34;760&#34;
+               height=&#34;210&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#hep-and-nuclear-materials&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;HEP and Nuclear Materials&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#space-iss-materials&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Space (ISS) Materials&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#bio-chemical-materials&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bio-Chemical Materials&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;특정 분야에서 주로 사용되는 물질들의 목록. 읽는 법은 동일&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 중 대표적으로 많이 쓰이는 물질을 몇 개 소개하자면 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;G4_AIR (공기)&lt;/li&gt;
+&lt;li&gt;G4_Galactic (진공)&lt;/li&gt;
+&lt;li&gt;G4_WATER (물)&lt;/li&gt;
+&lt;li&gt;G4_STAINLESS-STEEL (SUS)&lt;/li&gt;
+&lt;li&gt;G4_SODIUM_IODIDE (NaI)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 외에도 다양한 물질이 있으니 찾아보시기 바랍니다.&lt;/p&gt;
+&lt;h3 id=&#34;목록에-있는-물질-정의하기&#34;&gt;목록에 있는 물질 정의하기&lt;/h3&gt;
+&lt;p&gt;여러분이 원하는 물질을 위 목록에서 찾으셨다면, &lt;strong&gt;G4NistManager&lt;/strong&gt;클래스의 &lt;strong&gt;FindOrBuildMaterial() 함수&lt;/strong&gt;를 이용해 해당 물질을 정의할 수 있습니다. 이 함수의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4Material *FindOrBuildMaterial (const G4String &amp;amp;name, 
+                                 G4bool isotopes=true, 
+                                 G4bool warning=false);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;name: Geant4 Material Database에서 가져올 물질의 이름. 위 링크에서 확인한 물질의 이름을 &lt;strong&gt;대소문자까지 맞추어 정확하게 입력&lt;/strong&gt;해야 함&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;isotopes: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;warning: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질 정의 작업이 정상적으로 이루어지지 않은 경우 경고문구를 띄울지 여부를 정의하는 인자. 기본값은 false&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;예를 들어 NIST Compounds 목록에 있는 G4_AIR (공기)를 정의하고자 하는 경우에는 다음과 같이 입력합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto matAir = G4NistManager::Instance()-&amp;gt;FindOrBuildMaterial(&amp;quot;G4_AIR&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;여기서 G4NistManager::Instance() 부분은 G4NistManager 클래스의 객체를 호출해오는 명령어입니다. Geant4 물질 DB에서 물질을 가져와 정의할때마다 이 객체가 필요하기 때문에 매번 호출하기보다는, &lt;strong&gt;이 객체를 따로 정의해두고 가져다 쓰는 방식을 주로 이용&lt;/strong&gt;합니다. 그러면 또다른 물질을 정의할 때에 G4NistManager 객체를 다시 호출하지 않아도 되기 때문입니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 G4_AIR (공기)에 이어, G4_WATER (물)도 정의한다고 하면 다음과 같이 입력할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto nist = G4NistManager::Instance();
+auto matAir = nist-&amp;gt;FindOrBuildMaterial(&amp;quot;G4_AIR&amp;quot;);
+auto matWater = nist-&amp;gt;FindOrBuildMaterial(&amp;quot;G4_WATER&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;nist-db의-원소로-화합물-만들기&#34;&gt;NIST DB의 원소로 화합물 만들기&lt;/h3&gt;
+&lt;p&gt;원하는 물질이 Geant4 물질 DB에 없을 수도 있습니다. 이런 경우, 여러분이 NIST DB의 원소를 조합하여 새로운 화합물을 정의할 수 있습니다. 이는 G4NistManager 클래스의 &lt;strong&gt;ConstructNewMaterial() 함수&lt;/strong&gt;를 이용하면 됩니다. 함수의 원형은 다음의 두 가지 입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4Material *ConstructNewMaterial (const G4String &amp;amp;name, 
+                                  const std::vector&amp;lt; G4String &amp;gt; &amp;amp;elm, 
+                                  const std::vector&amp;lt; G4int &amp;gt; &amp;amp;nbAtoms, 
+                                  G4double dens, 
+                                  G4bool isotopes=true, 
+                                  G4State state=kStateSolid, 
+                                  G4double temp=NTP_Temperature, 
+                                  G4double pressure=CLHEP::STP_Pressure);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;b&gt;조성비를 &lt;font color = &#39;red&#39;&gt;개수비&lt;/font&gt;로서 입력하고자 할 때 사용합니다.&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;name: 물질의 이름. 자유롭게 적으면 됨&lt;/li&gt;
+&lt;li&gt;elm: 원소기호의 목록을 적은 G4String형 벡터. 화합물의 구성원소를 순서대로 적음&lt;/li&gt;
+&lt;li&gt;nbAtoms: 원소별 조성비를 &lt;strong&gt;개수비&lt;/strong&gt;형태로 적은 G4int형 벡터. 화합물의 구성원소별 조성비를 순서대로 적음&lt;/li&gt;
+&lt;li&gt;dens: 물질의 밀도&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;isotopes: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;state: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateSolid(고체형)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;temp: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 온도를 특정하고 싶을 때 사용. 기본값은 NTP_Temperature(약 293.15 K)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pressure: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4Material *ConstructNewMaterial (const G4String &amp;amp;name, 
+                                  const std::vector&amp;lt; G4String &amp;gt; &amp;amp;elm, 
+                                  const std::vector&amp;lt; G4double &amp;gt; &amp;amp;weight, 
+                                  G4double dens, 
+                                  G4bool isotopes=true, 
+                                  G4State state=kStateSolid, 
+                                  G4double temp=NTP_Temperature, 
+                                  G4double pressure=CLHEP::STP_Pressure);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;b&gt;조성비를 &lt;font color = &#39;red&#39;&gt;질량비&lt;/font&gt;로서 입력하고자 할 때 사용합니다.&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;name: 물질의 이름. 자유롭게 적으면 됨&lt;/li&gt;
+&lt;li&gt;elm: 원소기호의 목록을 적은 G4String형 벡터. 화합물의 구성원소를 순서대로 적음&lt;/li&gt;
+&lt;li&gt;weight: 원소별 조성비를 &lt;strong&gt;질량비&lt;/strong&gt;형태로 적은 G4double형 벡터. 화합물의 구성원소별 조성비를 순서대로 적음&lt;/li&gt;
+&lt;li&gt;dens: 물질의 밀도&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;isotopes: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;state: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateSolid(고체형)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;temp: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 온도를 특정하고 싶을 때 사용합 기본값은 NTP_Temperature(약 293.15 K)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pressure: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 함수를 이용할 때 주의할 점은, &lt;strong&gt;원소기호를 적은 벡터의 원소 순서대로 조성비를 적어주어야 한다는 것&lt;/strong&gt;입니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 물(H2O)을 이 함수를 사용하여 정의하려면 다음과 같이 입력하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto nist = G4NistManager::Instance();
+std::vector&amp;lt;G4String&amp;gt; elWater = {&amp;quot;H&amp;quot;, &amp;quot;O&amp;quot;};
+std::vector&amp;lt;G4int&amp;gt; nbWater = {2, 1};
+auto matWater = nist-&amp;gt;ConstructNewMaterial(&amp;quot;Water&amp;quot;, elWater, nbWater, 1. * g / cm3, true, kStateLiquid);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;여러가지-물질로-혼합물-정의하기&#34;&gt;여러가지 물질로 혼합물 정의하기&lt;/h3&gt;
+&lt;p&gt;물질들을 합쳐 놓은 혼합물을 정의하는 일이 필요할 수도 있을 것입니다. 이런 경우에는 G4Material 클래스의 생성자와, G4Material 클래스의 AddMaterial() 함수를 이용하면 됩니다. 각각의 원형은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4Material (const G4String &amp;amp;name, 
+            G4double density, 
+            G4int nComponents, 
+            G4State state=kStateUndefined, 
+            G4double temp=NTP_Temperature, 
+            G4double pressure=CLHEP::STP_Pressure);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;G4Material의 생성자 중, 원소/물질의 조성비를 바탕으로 정의하는 데에 사용하는 생성자&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;name: 물질의 이름. 자유롭게 적으면 됨&lt;/li&gt;
+&lt;li&gt;density: 물질의 밀도&lt;/li&gt;
+&lt;li&gt;nComponents: 이 물질을 구성하는 원소/물질 종류의 수&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;state: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 상을 특정하고 싶을 때 사용. 기본값은 kStateUndefined(고체 혹은 기체형)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;temp: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 온도를 특정하고 싶을 때 사용. 기본값은 NTP_Temperature(약 293.15 K)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pressure: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void AddMaterial (G4Material *material, 
+                  G4double fraction);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;material: 구성요소가 될 물질에 해당하는 G4Material 객체의 포인터&lt;/li&gt;
+&lt;li&gt;fraction: 해당 물질의 조성비. &lt;strong&gt;질량비&lt;/strong&gt;로 입력&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;예를 들어 20% 농도의 소금물을 정의한다면 다음과 같이 입력하면 됩니다. (소금질량 : 물질량 = 20 : 80일 때 NTP(Normal Temperature Pressure) 조건에서 1.147 gcc로 알려져 있음)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto nist = G4NistManager::Instance();
+std::vector&amp;lt;G4String&amp;gt; elNaCl = {&amp;quot;Na&amp;quot;, &amp;quot;Cl&amp;quot;};
+std::vector&amp;lt;G4int&amp;gt; nbNaCl = {1, 1};
+auto matNaCl = nist-&amp;gt;ConstructNewMaterial(&amp;quot;NaCl&amp;quot;, elNaCl, nbNaCl, 2.16 * g / cm3);
+auto matWater = nist-&amp;gt;FindOrBuildMaterial(&amp;quot;G4_WATER&amp;quot;);
+
+auto matNaClSolution = new G4Material(&amp;quot;NaClSolution&amp;quot;, 1.147 * g / cm3, 2);
+matNaClSolution-&amp;gt;AddMaterial(matNaCl, 0.2);
+matNaClSolution-&amp;gt;AddMaterial(matWater, 0.8);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;logical-volume-정의하기&#34;&gt;Logical Volume 정의하기&lt;/h2&gt;
+&lt;p&gt;Solid와 물질이 있으면, 손쉽게 Logical Volume을 정의할 수 있습니다. LogicalVolume은 &lt;strong&gt;G4LogicalVolume&lt;/strong&gt; 클래스가 담당하며, 생성자는 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4LogicalVolume (G4VSolid *pSolid, 
+                 G4Material *pMaterial, 
+                 const G4String &amp;amp;name, 
+                 G4FieldManager *pFieldMgr=nullptr, 
+                 G4VSensitiveDetector *pSDetector=nullptr, 
+                 G4UserLimits *pULimits=nullptr, 
+                 G4bool optimise=true);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;pSolid: G4VSolid 객체의 포인터. 앞서 정의한 Solid를 넣음&lt;/li&gt;
+&lt;li&gt;pMaterial: G4Material 객체의 포인터. 앞서 정의한 Material을 넣음&lt;/li&gt;
+&lt;li&gt;name: Logical Volume의 이름. 자유롭게 적으면 됨. 다만, 다른 Logical Volume과 겹치지 않게끔 고유의 이름을 권장. Solid의 이름과는 동일해도 상관없음&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pFieldMgr: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 전기장/자기장 등에 대한 설정을 위해 사용&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pSDetector: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 스코어링용 SD에 대한 설정을 위해 사용&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pULimits: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 입자 트래킹에서의 제한치 등에 대한 설정을 위해 사용&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;optimise: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 최적화에 대한 설정을 위해 사용&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;대부분의 경우, &lt;strong&gt;맨 위의 3가지 인자만 입력&lt;/strong&gt;하여 사용하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;앞서 water phantom을 정의하기 위해 작성한 코드를 살펴보겠습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_newcode&#34; srcset=&#34;
+               /g4-noqasked-004-material/03_newcode_huded07a23cd17e5cefecea5543090488a_58723_4260714892fdfef829619708a3352877.png 400w,
+               /g4-noqasked-004-material/03_newcode_huded07a23cd17e5cefecea5543090488a_58723_6ee3ca88722032239d91d2da07d7b51f.png 760w,
+               /g4-noqasked-004-material/03_newcode_huded07a23cd17e5cefecea5543090488a_58723_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-004-material/03_newcode_huded07a23cd17e5cefecea5543090488a_58723_4260714892fdfef829619708a3352877.png&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;물이라는 물질을 정의하기 위해 사용된 부분은 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto nist = G4NistManager::Instance();
+...
+auto matWater = nist-&amp;gt;FindOrBuildMaterial(&amp;quot;G4_WATER&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그리고 phantomSol이라는 Solid를 다음 코드를 통해 생성하였습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomSol = new G4Box(&amp;quot;phantom&amp;quot;, .5 * phantomSize, .5 * phantomSize, .5 * phantomSize);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이 두가지를 이용하여, 물이 담긴 phantom을 정의하기 위해 다음 코드를 입력한 것입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomLog = new G4LogicalVolume(phantomSol, matWater, &amp;quot;phantom&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이번 글에서는 원하는 물질을 정의하는 법을 알아보았습니다. 또한, 앞선 글에서 정의한 Solid에, 이번 글에서 정의한 물질을 연동하여 Logical Volume을 정의하는 방법까지 알아보았습니다.&lt;/p&gt;
+&lt;p&gt;다음 글에서는 지오메트리의 배치에 관한 내용, Physical Volume을 정의하는 법에 대해 알아보겠습니다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 5. 벡터, 회전, 변환</title>
+      <link>https://evandde.github.io/g4-noqasked-005-clhepclasses/</link>
+      <pubDate>Thu, 17 Jun 2021 18:28:42 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-005-clhepclasses/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 다섯번째. 위치와 회전을 표현하는 데에 사용하는 클래스에 대해 살펴봅니다.&lt;/p&gt;
+&lt;p&gt;이제 Solid와 Logical Volume을 정의하는 방법까지 다루었으니, 지오메트리의 배치에 관한 내용인 Physical Volume만 남았습니다. 하지만, 이 내용을 다루기 위해서는 먼저 Geant4에서 &lt;strong&gt;위치&lt;/strong&gt;와 &lt;strong&gt;회전&lt;/strong&gt;을 어떻게 표현하는지 알아야 합니다. 이번 글은 실습 없이 이론만 설명하게 될 것 같지만, 다음 글에서 꼭 필요한 내용이니 잘 따라오시기 바랍니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;g4threevector&#34;&gt;G4ThreeVector&lt;/h2&gt;
+&lt;p&gt;G4ThreeVector는 Geant4와 연동하여 설치하는 CLHep 라이브러리 중 &lt;strong&gt;Hep3Vector 클래스&lt;/strong&gt;의 다른 이름입니다. 이 클래스는 &lt;strong&gt;3차원 좌표공간 상의 벡터&lt;/strong&gt;에 해당하는 개념을 담당하는 클래스이며, 벡터 연산을 위한 다양한 기능을 담고 있습니다. 이를 모두 다루는 것은 무리가 있으므로, 대표적인 기능 몇 가지만 살펴보겠습니다.&lt;/p&gt;
+&lt;h3 id=&#34;생성자&#34;&gt;생성자&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;Hep3Vector ();
+Hep3Vector (double x, 
+            double y,
+            double z);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;x, y, z: 3차원 벡터의 각 좌표값에 해당하는 실수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;G4ThreeVector 객체를 생성하는 방법입니다. 아무런 인자 없이 그냥 &lt;b&gt;G4ThreeVector()&lt;/b&gt;라고 입력하면 &lt;b&gt;(0, 0, 0)&lt;/b&gt;에 해당하는 벡터가 정의됩니다. 혹은, double 형 인자 3개를 넣어 &lt;b&gt;G4ThreeVector(x, y, z)&lt;/b&gt;로 입력하여 &lt;b&gt;(x, y, z)&lt;/b&gt;에 해당하는 벡터를 정의할 수도 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;x-y-z-값&#34;&gt;X, Y, Z 값&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;double x () const;
+double y () const;
+double z () const;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;따로 입력인자 없이, 해당 벡터의 X, Y, Z 값을 가져오는 데에 사용하는 함수입니다. 다음과 같이 사용합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto vec = G4ThreeVector(1., 2., 3.);
+auto xVal = vec.x(); // xVal = 1.;
+auto yVal = vec.y(); // yVal = 2.;
+auto zVal = vec.z(); // zVal = 3.;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;연산자&#34;&gt;연산자&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;bool operator== (const Hep3Vector &amp;amp;) const;
+bool operator!= (const Hep3Vector &amp;amp;) const;
+Hep3Vector operator + (const Hep3Vector &amp;amp;, const Hep3Vector &amp;amp;);
+Hep3Vector operator - (const Hep3Vector &amp;amp;, const Hep3Vector &amp;amp;);
+Hep3Vector operator * (const Hep3Vector &amp;amp;, double a);
+Hep3Vector operator * (double a, const Hep3Vector &amp;amp;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;벡터 간의 비교연산, 합연산, 차연산도 제공하고 있으며, 벡터와 실수끼리의 곱에 해당하는 상수배연산도 제공하고 있습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;g4rotationmatrix&#34;&gt;G4RotationMatrix&lt;/h2&gt;
+&lt;p&gt;Geant4와 연동하여 설치하는 CLHep 라이브러리 중 &lt;strong&gt;HepRotation 클래스&lt;/strong&gt;의 다른 이름입니다. 이 클래스는 벡터의 회전변환에 관한 다양한 기능을 담고 있습니다. 마찬가지로 몇 가지만 간단하게 살펴보겠습니다.&lt;/p&gt;
+&lt;h3 id=&#34;생성자-1&#34;&gt;생성자&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;HepRotation ();
+HepRotation (const Hep3Vector &amp;amp;axis, double delta);
+HepRotation (double phi, double theta, double psi);
+HepRotation (const Hep3Vector &amp;amp;colX, const Hep3Vector &amp;amp;colY, const Hep3Vector &amp;amp;colZ);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;axis: 회전 축에 해당하는 G4ThreeVector 객체&lt;/li&gt;
+&lt;li&gt;delta: 회전 각도&lt;/li&gt;
+&lt;li&gt;phi, theta, psi: 회전에 따른 Euler 각도&lt;/li&gt;
+&lt;li&gt;colX, colY, colZ: 회전한 좌표계의 새로운 직교좌표축 3개에 해당하는 G4ThreeVector 객체&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;아무런 인자를 넣지 않고 추후 G4RotationMatrix 클래스의 함수를 이용해 회전을 연산하고자 하는 경우에는 입력인자가 없는 생성자인 &lt;b&gt;G4RotationMatrix()&lt;/b&gt;를 이용할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;회전 축과 각도를 알고 있는 상태라면, &lt;b&gt;G4RotationMatrix(axis, delta)&lt;/b&gt;의 형태로 회전행렬에 대한 객체를 바로 정의할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;회전된 좌표계와 기존 좌표계를 바탕으로 오일러 각을 계산할 수 있다면, &lt;b&gt;G4RotationMatrix(phi, theta, psi)&lt;/b&gt;의 형태로 회전행렬 객체를 정의하면 됩니다.&lt;/p&gt;
+&lt;p&gt;회전된 좌표계의 직교좌표축 3개를 알고 있다면, 이를 각각 새로운 x, y, z축으로 상정하여 &lt;b&gt;G4RotationMatrix(colX, colY, colZ)&lt;/b&gt; 생성자를 이용할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;회전-연산-함수&#34;&gt;회전 연산 함수&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;HepRotation &amp;amp; rotateX (double delta);
+HepRotation &amp;amp; rotateY (double delta);
+HepRotation &amp;amp; rotateZ (double delta);
+HepRotation &amp;amp; rotate (double delta, const Hep3Vector &amp;amp;axis);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;delta: 회전 각도&lt;/li&gt;
+&lt;li&gt;axis: 회전 축에 해당하는 G4ThreeVector 객체&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이미 생성해둔 G4RotationMatrix 객체에 대해, 추가적으로 회전 연산을 더 수행해야 하는 경우, 위와 같은 함수를 사용할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;rotateX(), rotateY(), rotateZ() 함수는 각각 X, Y, Z축을 회전 축으로 하여 회전 연산을 추가하는 함수이고, rotate()함수는 임의의 회전 축에 대해 회전 연산을 추가하는 함수입니다.&lt;/p&gt;
+&lt;h3 id=&#34;연산자-1&#34;&gt;연산자&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;bool operator== (const HepRotation &amp;amp;r) const;
+bool operator!= (const HepRotation &amp;amp;r) const;
+HepRotation operator* (const HepRotation &amp;amp;r) const;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;회전행렬 간 비교연산자를 제공하며, 회전행렬끼리 곱하여 회전 연산을 추가하는 것 또한 가능합니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;g4transform3d&#34;&gt;G4Transform3D&lt;/h2&gt;
+&lt;p&gt;Geant4와 연동하여 설치하는 CLHep 라이브러리 중 &lt;strong&gt;Transform3D 클래스&lt;/strong&gt;의 다른 이름입니다. 이 클래스는 회전변환, 평행이동변환, 대칭이동변환, 확대/축소변환과 같은 선형변환에 관한 여러가지 기능을 담고 있습니다.&lt;/p&gt;
+&lt;p&gt;다만, Physical Volume에서는 G4Transform3D의 변환 종류 중 &lt;strong&gt;회전변환&lt;/strong&gt;과 &lt;strong&gt;평행이동변환&lt;/strong&gt;만 이용하므로, 이 부분만 알아보도록 하겠습니다.&lt;/p&gt;
+&lt;h3 id=&#34;생성자-2&#34;&gt;생성자&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;Transform3D ();
+Transform3D (const CLHEP::HepRotation &amp;amp;mt, const CLHEP::Hep3Vector &amp;amp;v);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;mt: G4RotationMatrix 객체. 회전변환의 정보를 담은 회전행렬&lt;/li&gt;
+&lt;li&gt;v: G4ThreeVector 객체. 평행이동변환의 정보를 담은 3차원 벡터&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;아무런 인자를 넣지 않고 추후 G4Transform3D 클래스의 함수를 이용해 변환을 연산하고자 하는 경우에는 입력인자가 없는 생성자인 &lt;b&gt;G4Transform3D()&lt;/b&gt;를 이용할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;변환에 대한 회전행렬과 평행이동벡터를 알고 있는 상태라면, &lt;b&gt;G4Transform3D(mt, v)&lt;/b&gt;의 형태로 객체를 바로 정의할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;상속받은-클래스의-생성자&#34;&gt;상속받은 클래스의 생성자&lt;/h3&gt;
+&lt;p&gt;Transform3D를 상속받은 클래스들이 있습니다. 여기서는 그 중 8가지를 살펴보겠습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;평행이동 관련
+&lt;ul&gt;
+&lt;li&gt;G4Translate3D: Translate3D 클래스의 다른 이름&lt;/li&gt;
+&lt;li&gt;G4TranslateX3D: TranslateX3D 클래스의 다른 이름&lt;/li&gt;
+&lt;li&gt;G4TranslateY3D: TranslateY3D 클래스의 다른 이름&lt;/li&gt;
+&lt;li&gt;G4TranslateZ3D: TranslateZ3D 클래스의 다른 이름&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;회전 관련
+&lt;ul&gt;
+&lt;li&gt;G4Rotate3D: Rotate3D 클래스의 다른 이름&lt;/li&gt;
+&lt;li&gt;G4RotateX3D: RotateX3D 클래스의 다른 이름&lt;/li&gt;
+&lt;li&gt;G4RotateY3D: RotateY3D 클래스의 다른 이름&lt;/li&gt;
+&lt;li&gt;G4RotateZ3D: RotateZ3D 클래스의 다른 이름&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;각 클래스의 생성자는 다음과 같습니다. (입력인자 없이 사용하는 생성자는 생략하였음)&lt;/p&gt;
+&lt;p&gt;먼저 평행이동 관련 클래스입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;Translate3D (const CLHEP::Hep3Vector &amp;amp;v);
+Translate3D (double x, double y, double z);
+TranslateX3D (double x);
+TranslateY3D (double y);
+TranslateZ3D (double z);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;평행이동만을 수행하는 변환을 나타내고자 할 때, G4Translate3D 클래스를 사용할 수 있습니다. G4ThreeVector 객체가 있다면 이를 입력인자로 넣는 &lt;b&gt;G4Translate3D(v)&lt;/b&gt;를 사용해도 되고, 혹은 x, y, z축으로의 평행이동 벡터의 값을 직접 입력하여 &lt;b&gt;G4Translate3D(x, y, z)&lt;/b&gt;를 이용해도 됩니다.&lt;/p&gt;
+&lt;p&gt;만약 특정 축방향으로만 이동하는 경우에는 &lt;strong&gt;G4TranslateX3D&lt;/strong&gt;, &lt;strong&gt;G4TranslateY3D&lt;/strong&gt;, &lt;strong&gt;G4TranslateZ3D&lt;/strong&gt;를 이용하여 좀 더 간단하게 표현할 수도 있습니다.&lt;/p&gt;
+&lt;p&gt;다음은 회전 관련 클래스입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;Rotate3D (const CLHEP::HepRotation &amp;amp;mt);
+Rotate3D (double a, const Vector3D&amp;lt; double &amp;gt; &amp;amp;v);
+RotateX3D (double a);
+RotateY3D (double a);
+RotateZ3D (double a);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;회전만을 수행하는 변환을 나타내고자 할 때, G4Rotate3D 클래스를 사용할 수 있습니다. G4RotationMatrix 객체가 있다면 이를 입력인자로 넣는 &lt;b&gt;G4Rotate3D(mt)&lt;/b&gt;를 사용해도 되고, 혹은 회전 각도와 회전 축 벡터를 직접 입력하여 &lt;b&gt;G4Rotate3D(a, v)&lt;/b&gt;를 이용해도 됩니다.&lt;/p&gt;
+&lt;p&gt;만약 특정 좌표축을 회전 축으로 삼아 회전하는 경우에는 &lt;strong&gt;G4RotateX3D&lt;/strong&gt;, &lt;strong&gt;G4RotateY3D&lt;/strong&gt;, &lt;strong&gt;G4RotateZ3D&lt;/strong&gt;를 이용하여 좀 더 간단하게 표현할 수도 있습니다.&lt;/p&gt;
+&lt;p&gt;G4Transform3D 클래스를 상속받은 이 8가지 클래스는, 앞으로 설명할 &lt;b&gt;G4Transform3D 클래스의 함수 및 연산자를 동일하게 사용&lt;/b&gt;할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;회전성분-평행이동성분&#34;&gt;회전성분, 평행이동성분&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;CLHEP::HepRotation getRotation () const;
+CLHEP::Hep3Vector getTranslation () const;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;G4Transform3D 객체가 가진 회전성분 혹은 평행이동성분을 반환하는 함수입니다. 입력인자 없이 다음과 같이 이용할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto mt = G4RotationMatrix(G4ThreeVector(0., 0., 1.), 30. * deg);
+auto v = G4ThreeVector(5. * cm, 0., 0.);
+auto tr = G4Transform3D(mt, v);
+
+auto mt2 = tr.getRotation(); // mt2 = mt
+auto v2 = tr.getTranslation(); // v2 = v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;연산자-2&#34;&gt;연산자&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;Transform3D operator* (const Transform3D &amp;amp;b) const
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;선형변환에 추가로 또 다른 선형변환을 가하여 새로운 선형변환을 얻는 연산입니다.&lt;/p&gt;
+&lt;p&gt;예를 들어, X축으로 3 cm 이동시키고, Z축으로 2 cm 이동시킨 뒤, X축을 기준으로 30° 회전하는 변환을 수행하는 선형변환을 만들고 싶다면 다음과 같이 작성하면 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto tr1 = G4TranslateX3D(3. * cm); // Translate 3 cm along X-axis 
+auto tr2 = G4TranslateZ3D(2. * cm); // Translate 2 cm along Z-axis 
+auto tr3 = G4RotateX3D(30. * deg); // Rotate 30° around X-axis
+
+// Translate 3 cm along X-axis (tr1), 
+// then translate 2 cm along Z-axis (tr2), 
+// and then finally rotate 30° around X-axis (tr3)
+auto tr = tr1 * tr2 * tr3; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이번 글에서는 위치와 회전, 그리고 이를 한번에 표현할 수 있는 선형변환을 다루는 클래스에 대해 알아보았습니다.&lt;/p&gt;
+&lt;p&gt;다음 글에서는 이를 이용하여 지오메트리를 배치해보도록 하겠습니다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</title>
+      <link>https://evandde.github.io/g4-noqasked-006-phyvol/</link>
+      <pubDate>Thu, 17 Jun 2021 19:23:49 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-006-phyvol/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 여섯번째. Physical Volume을 정의하여 지오메트리를 시뮬레이션 세계에 배치해 보겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;기본-이론&#34;&gt;기본 이론&lt;/h2&gt;
+&lt;p&gt;Physical Volume을 정의하는 방법을 이해하려면, 먼저 다음의 개념에 대해 알아야 합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;World&lt;/li&gt;
+&lt;li&gt;Mother Volume &amp;amp; Daughter Volume&lt;/li&gt;
+&lt;li&gt;Copy number&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;world&#34;&gt;World&lt;/h3&gt;
+&lt;p&gt;Geant4 시뮬레이션은 여러 다양한 지오메트리를 놓아 구성된 공간에서 이루어집니다. 이 중 &lt;strong&gt;가장 큰 최외곽의 지오메트리&lt;/strong&gt;를 &lt;strong&gt;World&lt;/strong&gt;라고 합니다. World는 적당한 수준의 여유공간을 두고 &lt;strong&gt;모든 다른 지오메트리를 World 내부에 포함&lt;/strong&gt;할 수 있도록 설정되어야 합니다. World는 가장 간단하고 연산측면에서도 효율성이 좋은 &lt;strong&gt;G4Box 형태&lt;/strong&gt;로 제작하는 것이 일반적입니다.&lt;/p&gt;
+&lt;p&gt;실제 세상에서 외부 환경은 무한히 펼쳐져 있지만, 아주 멀리 있는 구조물이나 공기같은 환경적 요인이 관심있는 대상물에서 계측하는 결과에 유의미한 영향을 줄 확률은 그리 높지 않을 것이라 생각할 수 있습니다. 시뮬레이션으로 실제 세상을 모사할 때 무한한 공간을 다 넣을 수는 없으므로 &lt;strong&gt;적당한 수준에서 잘라내어 모사&lt;/strong&gt;를 하게 될 것입니다. 이 &lt;strong&gt;잘라진 세상의 경계&lt;/strong&gt;를 &lt;strong&gt;World&lt;/strong&gt;라고 생각하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;어떤 지오메트리나 입자도 World 바깥에서는 정의되지 않습니다. 어떤 입자가 수송되는 과정에서 World의 경계면을 만나 외부로 나가려는 순간이 되면, Geant4는 더 이상 그 입자를 수송하지 않고 그 즉시 해당 입자에 대한 연산을 종료합니다. 관심 영역 밖으로 탈출한 입자로 보는 것입니다.&lt;/p&gt;
+&lt;h3 id=&#34;mother-volume--daughter-volume&#34;&gt;Mother Volume &amp;amp; Daughter Volume&lt;/h3&gt;
+&lt;p&gt;Geant4에서는 모든 지오메트리가 다른 지오메트리에 포함되는 구조로 배치되어야만 합니다. 우리가 작성하고 있는 코드를 예로 들자면, water phantom이라는 지오메트리는 World라는 지오메트리 내에 포함되어 있는 식으로 말입니다. 이렇게 A라는 지오메트리가 B 지오메트리 내에 포함될 때, &lt;strong&gt;B&lt;/strong&gt;를 &lt;strong&gt;A의 Mother Volume&lt;/strong&gt;이라고 하고, &lt;strong&gt;A&lt;/strong&gt;를 &lt;strong&gt;B의 Daughter Volume&lt;/strong&gt;이라고 합니다.&lt;/p&gt;
+&lt;p&gt;위 사항에서 단 하나 예외가 존재하는데, 그것이 바로 World 입니다. &lt;strong&gt;World는 Mother Volume을 가지지 않는 유일한 지오메트리&lt;/strong&gt;로, 모든 지오메트리 계층에 있어 최상위에 존재하게 됩니다.&lt;/p&gt;
+&lt;p&gt;Geant4에서는 어떤 지오메트리의 위치를 참조할 때, 그 지오메트리의 &lt;strong&gt;Mother Volume의 좌표계를 기준&lt;/strong&gt;으로 위치를 가져옵니다. 예를 들어 다음 그림과 같은 경우를 살펴봅시다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_mothervol&#34; srcset=&#34;
+               /g4-noqasked-006-phyvol/01_mothervol_hub7e12b6689d3da40b2e5f6787394f660_15267_b10c101c9dba5e1a687a6c0fd5999d3e.png 400w,
+               /g4-noqasked-006-phyvol/01_mothervol_hub7e12b6689d3da40b2e5f6787394f660_15267_144bbd759daeeb30fd035f542dba09bf.png 760w,
+               /g4-noqasked-006-phyvol/01_mothervol_hub7e12b6689d3da40b2e5f6787394f660_15267_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-006-phyvol/01_mothervol_hub7e12b6689d3da40b2e5f6787394f660_15267_b10c101c9dba5e1a687a6c0fd5999d3e.png&#34;
+               width=&#34;760&#34;
+               height=&#34;759&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이 그림에서 지오메트리 계층도는 다음과 같을 것입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mermaid&#34;&gt;graph TD
+World --- A --- B
+World --- C
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;여기서 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;A&lt;/b&gt;&lt;/font&gt;의 위치는 A의 Mother Volume인 &lt;strong&gt;World를 기준&lt;/strong&gt;으로 판단합니다. (4, 4)에 A가 있다고 보는 것이지요.&lt;/p&gt;
+&lt;p&gt;&lt;font color=&#39;green&#39;&gt;&lt;b&gt;C&lt;/b&gt;&lt;/font&gt;의 위치도 C의 Mother Volume인 &lt;strong&gt;World를 기준&lt;/strong&gt;으로 판단합니다. C는 (-3, 4)에 위치하는 것이 되겠네요.&lt;/p&gt;
+&lt;p&gt;&lt;font color=&#39;blue&#39;&gt;&lt;b&gt;B&lt;/b&gt;&lt;/font&gt;의 위치는 B의 Mother Volume인 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;A&lt;/b&gt;&lt;/font&gt;를 기준으로 판단합니다. 여기서 &lt;strong&gt;World를 기준으로 하지 않음에 주의&lt;/strong&gt;하세요. 즉 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;A의 원점&lt;/b&gt;&lt;/font&gt;을 기준으로 &lt;font color=&#39;blue&#39;&gt;&lt;b&gt;B의 위치는 (2, 1)&lt;/b&gt;&lt;/font&gt;이 됩니다.&lt;/p&gt;
+&lt;p&gt;B가 World를 기준으로 어디에 위치하였는지를 판단하려면, Mother Volume이 World가 될 때까지 자신의 위치에 Mother Volume의 위치를 순차적으로 더해나가면 됩니다. A에서의 B의 위치는 (2, 1)이고, World에서의 A의 위치가 (4, 4)이므로, 이를 더하면 World에서의 B의 위치가 (6, 5)임을 알 수 있는 것이지요.&lt;/p&gt;
+&lt;h3 id=&#34;copy-number&#34;&gt;Copy Number&lt;/h3&gt;
+&lt;p&gt;Copy Number란 Geant4에서 지오메트리를 구분하는 데에 사용되는 번호입니다. 상황에 따라 Replica Number라고 부르기도 합니다. Geant4 시뮬레이션 시 모든 지오메트리는 예외없이 Copy Number를 가지고 있습니다.&lt;/p&gt;
+&lt;p&gt;지오메트리를 서로 구분하는 데에 사용한다고 했습니다만, 중복되는 번호를 부여한다고 해서 문제가 생기는 것은 아닙니다. 사실 &lt;strong&gt;대부분의 지오메트리에 대해서는 그냥 아무 생각없이 0으로 설정하여 사용&lt;/strong&gt;해도 괜찮습니다. Copy Number에 관심을 가져야 하는 경우는 여러가지 있지만, 이 시리즈에서는 &lt;strong&gt;스코어링 관점&lt;/strong&gt;에서만 간단하게 설명을 하도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 어떤 지오메트리의 흡수선량을 계산하고자 Geant4 시뮬레이션을 돌린다고 가정해봅시다. 그런데 흡수선량의 평가가 필요한 지오메트리가 여러 개라면 각각의 흡수선량을 따로따로 기록하고 관리해야 할 것입니다. 이 때 &lt;strong&gt;흡수선량이라는 값&lt;/strong&gt;을 따로따로 보관하기 위한 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;사물함 번호&lt;/b&gt;&lt;/font&gt;에 해당하는 것이 바로 &lt;font color=&#39;red&#39;&gt;&lt;b&gt;Copy Number&lt;/b&gt;&lt;/font&gt;입니다. 우선은 이 정도로만 설명해두고, 나중에 스코어링 파트에서 자세히 다루도록 하지요.&lt;/p&gt;
+&lt;h3 id=&#34;배치할-때의-주의사항&#34;&gt;배치할 때의 주의사항&lt;/h3&gt;
+&lt;p&gt;지오메트리를 배치할 때 반드시 지켜야하는 주의사항이 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Daughter Volume은 반드시 Mother Volume 내에 포함되는 형태여야 하며, Mother Volume 밖까지 빠져나와서 미포함된 영역이 있어서는 안됨&lt;/li&gt;
+&lt;li&gt;동일한 Mother Volume을 가지는 지오메트리끼리 서로 겹쳐지는 영역이 있어서는 안됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;간단히 말해, 하위계층의 지오메트리는 상위계층인 Mother Volume 내에 쏙 들어가야하고, 같은 계층의 지오메트리끼리는 겹치지 않아야 한다는 것입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;다만 지오메트리의 면, 선, 점끼리만 맞닿는 것은 괜찮습니다&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;physical-volume의-종류&#34;&gt;Physical Volume의 종류&lt;/h2&gt;
+&lt;p&gt;Geant4에서는 지오메트리를 배치하는 여러가지 방법을 제공합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;G4PVPlacement&lt;/p&gt;
+&lt;p&gt;한 번에 하나의 지오메트리를 배치하는 방법입니다. 가장 간단하고 자주 사용되는 방법입니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;G4PVReplica&lt;/p&gt;
+&lt;p&gt;동일한 지오메트리를 반복적으로 놓아야 할 때 사용하기 좋은 클래스입니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;G4PVParameterised&lt;/p&gt;
+&lt;p&gt;유사한 지오메트리를 반복적으로 놓아야 할 때 사용하기 좋은 클래스입니다. Copy Number를 일종의 매개변수로 사용하여, 각 지오메트리의 위치, Solid, 매질 등 여러 조건을 바꾸며 배치할 수 있습니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;G4PVDivision&lt;/p&gt;
+&lt;p&gt;어떤 지오메트리를 축방향(X, Y, Z, 직경, 중심각)에 따라 절단한 지오메트리를 놓아야 할 때 사용하기 좋은 클래스입니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 외에도 몇 종류 더 있으며, Geant4에서 제공하고 있는 &lt;a href=&#34;https://geant4.kek.jp/Reference/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 Doxygen&lt;/a&gt;에서 G4VPhysicalVolume 클래스의 레퍼런스 페이지(&lt;a href=&#34;https://geant4.kek.jp/Reference/10.07.p01/classG4VPhysicalVolume.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;10.7.p01 버전&lt;/a&gt;)에 들어가면 상속받은 클래스 목록(&lt;em&gt;Inheritance diagram for G4VPhysicalVolume&lt;/em&gt;) 부분을 통해 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이 시리즈에서는 G4PVPlacement 클래스 한 가지만 설명할 것입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;g4pvplacement&#34;&gt;G4PVPlacement&lt;/h2&gt;
+&lt;p&gt;G4PVPlacement 클래스는 Logical Volume 한 개를 배치하는 데에 사용하는 클래스입니다. 생성자는 총 4가지 입니다만, 먼저 두 가지만 살펴보겠습니다.&lt;/p&gt;
+&lt;h3 id=&#34;생성자&#34;&gt;생성자&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4PVPlacement (G4RotationMatrix *pRot, 
+               const G4ThreeVector &amp;amp;tlate, 
+               G4LogicalVolume *pCurrentLogical, 
+               const G4String &amp;amp;pName, 
+               G4LogicalVolume *pMotherLogical, 
+               G4bool pMany, 
+               G4int pCopyNo, 
+               G4bool pSurfChk=false);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;pRot: G4RotationMatrix 객체의 포인터. 지오메트리를 배치할 때 회전에 대한 정보를 입력하는 데에 사용&lt;/li&gt;
+&lt;li&gt;tlate: G4ThreeVector 객체. 지오메트리의 위치에 대한 정보를 입력하는 데에 사용&lt;/li&gt;
+&lt;li&gt;pCurrentLogical: G4LogicalVolume 객체의 포인터. 앞서 정의한 Logical Volume을 넣음&lt;/li&gt;
+&lt;li&gt;pName: Physical Volume의 이름. 자유롭게 적으면 됨. 다만, 다른 Physical Volume과 겹치지 않게끔 고유의 이름을 권장. Solid 및 Logical Volume의 이름과는 동일해도 상관없음&lt;/li&gt;
+&lt;li&gt;pMotherLogical: G4LogicalVolume 객체의 포인터. 이 지오메트리의 Mother Volume이 될 지오메트리의 Logical Volume을 넣음&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pMany: &lt;strong&gt;무조건 false로 쓰면 되는 인자&lt;/strong&gt;. Geant4에서 아직 구현되지 않은 기능임. 어떤 값을 넣어도 기능하지 않지만, 대부분의 예제 코드에서는 false로 입력하는 편&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;pCopyNo: Physical Volume의 Copy Number. &lt;strong&gt;정수값&lt;/strong&gt;으로 입력하며, 별다른 목적이 없을 경우 대개 &lt;strong&gt;0&lt;/strong&gt;을 부여하는 편&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pSurfChk: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 지오메트리 간 겹침 검사를 수행할 지의 여부를 설정하는 데에 사용. 기본 값은 false&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4PVPlacement (const G4Transform3D &amp;amp;Transform3D, 
+               G4LogicalVolume *pCurrentLogical, 
+               const G4String &amp;amp;pName, 
+               G4LogicalVolume *pMotherLogical, 
+               G4bool pMany, 
+               G4int pCopyNo, 
+               G4bool pSurfChk=false);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Transform3D: G4Transform3D 객체. 지오메트리를 배치할 때 평행이동 및 회전에 대한 정보를 입력하는 데에 사용&lt;/li&gt;
+&lt;li&gt;pCurrentLogical: G4LogicalVolume 객체의 포인터. 앞서 정의한 Logical Volume을 넣음&lt;/li&gt;
+&lt;li&gt;pName: Physical Volume의 이름. 자유롭게 적으면 됨. 다만, 다른 Physical Volume과 겹치지 않게끔 고유의 이름을 권장. Solid 및 Logical Volume의 이름과는 동일해도 상관없음&lt;/li&gt;
+&lt;li&gt;pMotherLogical: G4LogicalVolume 객체의 포인터. 이 지오메트리의 Mother Volume이 될 지오메트리의 Logical Volume을 넣음&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pMany: &lt;strong&gt;무조건 false로 쓰면 되는 인자&lt;/strong&gt;. Geant4에서 아직 구현되지 않은 기능임. 어떤 값을 넣어도 기능하지 않지만, 대부분의 예제 코드에서는 false로 입력하는 편&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;pCopyNo: Physical Volume의 Copy Number. &lt;strong&gt;정수값&lt;/strong&gt;으로 입력하며, 별다른 목적이 없을 경우 대개 &lt;strong&gt;0&lt;/strong&gt;을 부여하는 편&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;pSurfChk: &lt;strong&gt;입력하지 않아도 되는 인자&lt;/strong&gt;. 지오메트리 간 겹침 검사를 수행할 지의 여부를 설정하는 데에 사용. 기본 값은 false&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 두 가지 생성자는 거의 비슷하지만, &lt;strong&gt;위치/회전에 대한 정보를 입력하는 방식&lt;/strong&gt;이 다릅니다. 첫번째 생성자는 회전행렬(G4RotationMatrix)과 위치에 해당하는 벡터(G4ThreeVector)를 입력하고, 두번째 생성자는 회전과 평행이동을 묶어서 다루는 선형변환(G4Transform3D)을 입력하게 되어있지요.&lt;/p&gt;
+&lt;p&gt;중요한 점은 입력하는 방식만 다른 것이 아니라, &lt;font color=&#39;red&#39;&gt;&lt;b&gt;배치하는 방식 자체가 근본적으로 다르다&lt;/b&gt;&lt;/font&gt;는 데에 있습니다. 첫번째 생성자는 Mother Volume의 좌표계를 회전시킨 뒤 평행이동을 하는 방식이고, 두번째 생성자는 배치되는 자기자신의 좌표계가 평행이동한 뒤 그자리에서 회전하는 방식입니다.&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;말로 설명하면 어려우니, 실제 예시를 통해 살펴봅시다.&lt;/p&gt;
+&lt;p&gt;회전을 명확하게 확인하기 위해, 기존의 정육면체에서 X축 방향의 길이를 두배로 늘렸습니다. 10 cm × 5 cm × 5 cm의 G4Box형태 Solid를 정의하고, 물을 채워 Logical Volume까지 정의한 상태입니다. 코드로는 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomXSize = 10. * cm;
+auto phantomYSize = 5. * cm;
+auto phantomZSize = 5. * cm;
+auto phantomSol = new G4Box(&amp;quot;phantom&amp;quot;, 
+                            .5 * phantomXSize, 
+                            .5 * phantomYSize, 
+                            .5 * phantomZSize);
+auto phantomLog = new G4LogicalVolume(phantomSol, matWater, &amp;quot;phantom&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이제 이 지오메트리를 &lt;b&gt;(0, 0, 20 cm) 위치&lt;/b&gt;에 &lt;b&gt;Y축을 기준으로 30° 회전&lt;/b&gt;시켜서 배치해보도록 하겠습니다.&lt;/p&gt;
+&lt;h4 id=&#34;g4rotationmatrix--g4threevector-이용&#34;&gt;G4RotationMatrix &amp;amp; G4ThreeVector 이용&lt;/h4&gt;
+&lt;p&gt;첫번째 생성자를 이용하여 다음과 같이 코드를 작성해 보았습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomPos = G4ThreeVector(0., 0., 20. * cm);
+auto phantomRot = new G4RotationMatrix(G4ThreeVector(0., 1., 0.), 30. * deg);
+new G4PVPlacement(phantomRot, 
+                  phantomPos, 
+                  phantomLog, 
+                  &amp;quot;phantom&amp;quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;결과는 다음과 같습니다. +Y축 방향에서 아래로 내려다본 그림입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_motherframe&#34; srcset=&#34;
+               /g4-noqasked-006-phyvol/02_motherframe_hu438d70de5f09db55f67c04adb1db4d90_84171_70c7b3dff3f737753ca3d77e08a9bdd2.png 400w,
+               /g4-noqasked-006-phyvol/02_motherframe_hu438d70de5f09db55f67c04adb1db4d90_84171_87533f8dcb795f7f3cdba7c413dbae23.png 760w,
+               /g4-noqasked-006-phyvol/02_motherframe_hu438d70de5f09db55f67c04adb1db4d90_84171_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-006-phyvol/02_motherframe_hu438d70de5f09db55f67c04adb1db4d90_84171_70c7b3dff3f737753ca3d77e08a9bdd2.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이상한 점을 찾으셨나요? 축을 기준으로 회전을 시키면 축을 위에서 봤을때 &lt;strong&gt;반시계방향으로 회전&lt;/strong&gt;해야 하는데 반대방향인 시계방향으로 돌아갔습니다. 이유는 이 생성자가 &lt;b&gt;Mother Volume의 좌표계를 회전시킨 뒤 평행이동을 하는 방식으로 지오메트리를 배치&lt;/b&gt;하기 때문입니다. 다음의 그림을 보면 좀 더 이해가 쉬울 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_motherframe&#34;
+           src=&#34;https://evandde.github.io/g4-noqasked-006-phyvol/03_motherframe.gif&#34;
+           loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;보시다시피 좌표계 자체가 먼저 돌아간 뒤, 돌아간 좌표계에 따라 지오메트리를 이동시킵니다. (맨 마지막에 시계방향으로 돌린 것은 그냥 보기 편하려고 원래 방향으로 되돌린 것일 뿐이므로 배치와는 무관합니다) 이런 방식을 취하기 때문에, 일반적으로 생각한 방식과 반대로 회전하는 것처럼 보이게 됩니다.&lt;/p&gt;
+&lt;h4 id=&#34;g4transform3d-이용&#34;&gt;G4Transform3D 이용&lt;/h4&gt;
+&lt;p&gt;이번에는 두번째 생성자를 이용하여 다음과 같이 코드를 작성해 보았습니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    G4Transform3D의 생성자에는 &lt;b&gt;G4RotationMatrix의 객체 자체&lt;/b&gt;가 인자로 사용됩니다. G4RotationMatrix 객체의 &lt;b&gt;포인터가 아님에 주의&lt;/b&gt;하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomPos = G4ThreeVector(0., 0., 20. * cm);
+auto phantomRot = G4RotationMatrix(G4ThreeVector(0., 1., 0.), 30. * deg);
+new G4PVPlacement(G4Transform3D(phantomRot, phantomPos), 
+                  phantomLog, 
+                  &amp;quot;phantom&amp;quot;,
+                  worldLog, 
+                  false, 
+                  0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;결과는 다음과 같습니다. 마찬가지로 +Y축 방향에서 아래로 내려다본 그림입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_g4transform3d&#34; srcset=&#34;
+               /g4-noqasked-006-phyvol/04_g4transform3d_hu452bc544f39a1c7016f783d13823acfb_70521_ea0a9ab3fec3beb7648a762357c07955.png 400w,
+               /g4-noqasked-006-phyvol/04_g4transform3d_hu452bc544f39a1c7016f783d13823acfb_70521_2eff08c9b2ec899bdcb686eb3191e7e2.png 760w,
+               /g4-noqasked-006-phyvol/04_g4transform3d_hu452bc544f39a1c7016f783d13823acfb_70521_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-006-phyvol/04_g4transform3d_hu452bc544f39a1c7016f783d13823acfb_70521_ea0a9ab3fec3beb7648a762357c07955.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이번에는 일반적인 예상과 같이 &lt;strong&gt;반시계방향으로 회전한 상태로 배치&lt;/strong&gt;가 되었습니다. 이 생성자는 자기 자신인 phantom 지오메트리의 좌표계가 평행이동한 뒤 그 자리에서 회전하는 방식을 취합니다.&lt;/p&gt;
+&lt;p&gt;그래서 G4Transform3D 부분을 &amp;ldquo;&lt;b&gt;평행이동변환을 한 뒤, 이어서 회전변환을 가한다&lt;/b&gt;&amp;ldquo;의 의미를 갖게끔 다음과 같이 입력하여도 동일한 결과를 보여줍니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomPos = G4ThreeVector(0., 0., 20. * cm);
+auto phantomRot = G4RotationMatrix(G4ThreeVector(0., 1., 0.), 30. * deg);
+new G4PVPlacement(G4Translate3D(phantomPos) * G4Rotate3D(phantomRot), 
+                  phantomLog, 
+                  &amp;quot;phantom&amp;quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;혹은 &amp;ldquo;&lt;b&gt;Z축으로 30 cm 평행이동을 한 뒤, Y축을 기준으로 30° 회전&lt;/b&gt;&amp;ldquo;의 의미를 갖도록 다음과 같이 입력해도 같은 결과가 나오지요.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;new G4PVPlacement(G4TranslateZ3D(20. * cm) * G4RotateY3D(30. * deg), 
+                  phantomLog, 
+                  &amp;quot;phantom&amp;quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;배치되는 방식을 그림을 통해 살펴보면 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;05_g4transform3d&#34;
+           src=&#34;https://evandde.github.io/g4-noqasked-006-phyvol/05_g4transform3d.gif&#34;
+           loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;회전-후-그-방향으로-이동&#34;&gt;회전 후 그 방향으로 이동&lt;/h4&gt;
+&lt;p&gt;경우에 따라서는, 회전시킨 뒤 그 방향으로 이동하도록 하고 싶을 때도 있을 것입니다. 예를 들어 원의 둘레를 따라 구조물을 빙 둘러 배치해야 하는 경우처럼 말이죠. 이런 경우에는 &lt;b&gt;두 번째 생성자를 이용하되, 평행이동과 회전의 순서를 바꾸면 됩니다&lt;/b&gt;. 말 그대로 &amp;ldquo;&lt;b&gt;회전 후 이동&lt;/b&gt;&amp;ldquo;이니까 말이죠. 다만, G4Transform3D 클래스 객체를 생성할 때 평행이동과 회전을 함께 입력하는 식으로 만들게 되면 &amp;ldquo;이동 후 회전&amp;quot;의 방식이 되어버리므로, &lt;b&gt;회전 후 이동을 직접 명시하는 방식으로 입력&lt;/b&gt;해야 합니다.&lt;/p&gt;
+&lt;p&gt;코드로 작성하면 다음과 같습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;auto phantomPos = G4ThreeVector(0., 0., 20. * cm);
+auto phantomRot = G4RotationMatrix(G4ThreeVector(0., 1., 0.), 30. * deg);
+new G4PVPlacement(G4Rotate3D(phantomRot) * G4Translate3D(phantomPos),
+                  phantomLog, 
+                  &amp;quot;phantom&amp;quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;혹은 다음과 같이 입력해도 동일한 결과가 나올 것입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;new G4PVPlacement(G4RotateY3D(30. * deg) * G4TranslateZ3D(20. * cm), 
+                  phantomLog, 
+                  &amp;quot;phantom&amp;quot;, 
+                  worldLog, 
+                  false, 
+                  0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;결과는 다음과 같습니다. 마찬가지로 +Y축 방향에서 아래로 내려다본 그림입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;06_rotatethentranslate&#34; srcset=&#34;
+               /g4-noqasked-006-phyvol/06_rotatethentranslate_hudd47941cd2f8da2ceeb04a99c4a5c176_71908_70f360d6904202d0f1d32713689de54d.png 400w,
+               /g4-noqasked-006-phyvol/06_rotatethentranslate_hudd47941cd2f8da2ceeb04a99c4a5c176_71908_4fab6942fbcadfafb31eb3251403e1d9.png 760w,
+               /g4-noqasked-006-phyvol/06_rotatethentranslate_hudd47941cd2f8da2ceeb04a99c4a5c176_71908_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-006-phyvol/06_rotatethentranslate_hudd47941cd2f8da2ceeb04a99c4a5c176_71908_70f360d6904202d0f1d32713689de54d.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;위치 자체가 (0, 0, 20 cm)가 아니라 좀 더 왼쪽 위로 이동한 것을 볼 수 있습니다. 이렇게 배치할때 배치되는 과정을 그림으로 보면 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;07_rotatethentranslate&#34;
+           src=&#34;https://evandde.github.io/g4-noqasked-006-phyvol/07_rotatethentranslate.gif&#34;
+           loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이 세 가지 배치방식만 잘 이해하시면 원하는 방식으로 회전/이동 시키는 데에 무리없이 적용할 수 있을 것입니다.&lt;/p&gt;
+&lt;h3 id=&#34;나머지-두-가지-생성자&#34;&gt;나머지 두 가지 생성자&lt;/h3&gt;
+&lt;p&gt;아까 생성자가 총 4개라고 했었으니, 이제 남은 2개도 살펴봅시다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4PVPlacement (G4RotationMatrix *pRot, 
+               const G4ThreeVector &amp;amp;tlate,
+               const G4String &amp;amp;pName, 
+               G4LogicalVolume *pLogical, 
+               G4VPhysicalVolume *pMother, 
+               G4bool pMany,
+               G4int pCopyNo, 
+               G4bool pSurfChk=false);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4PVPlacement (const G4Transform3D &amp;amp;Transform3D, 
+               const G4String &amp;amp;pName, 
+               G4LogicalVolume *pLogical, 
+               G4VPhysicalVolume *pMother, 
+               G4bool pMany,
+               G4int pCopyNo, 
+               G4bool pSurfChk=false);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;앞서 설명했던 두 가지 생성자와 거의 동일하고, 다음의 두 부분만 차이가 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;인자의 입력 순서가 약간 바뀜(Physical Volume의 이름)&lt;/li&gt;
+&lt;li&gt;Mother Volume을 입력할 때 Mother Volume의 Logical Volume 대신 Physical Volume으로 입력&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;기능은 앞서 설명했던 두 가지 생성자와 &lt;strong&gt;완전히 동일&lt;/strong&gt;합니다. 그래서 이 둘은 거의 사용할 일이 없습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이번 글에서는 회전과 이동을 통해 원하는 위치에 원하는 각도로 지오메트리를 배치하는 법을 알아보았습니다. 이로써 여러분은 Geant4 시뮬레이션을 돌리는 데에 필수요소 중 하나인 &lt;strong&gt;지오메트리를 정의하는 법&lt;/strong&gt;을 다 배우셨습니다.&lt;/p&gt;
+&lt;p&gt;다음 글부터는 선원항을 정의하는 법에 대해 알아보도록 하겠습니다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

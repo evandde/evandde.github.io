@@ -1,0 +1,2377 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; | EvaNote</title>
+    <link>https://evandde.github.io/tags/c-/</link>
+      <atom:link href="https://evandde.github.io/tags/c-/index.xml" rel="self" type="application/rss+xml" />
+    <description>C&#43;&#43;</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Thu, 26 Aug 2021 10:05:15 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>C&#43;&#43;</title>
+      <link>https://evandde.github.io/tags/c-/</link>
+    </image>
+    
+    <item>
+      <title>Visual Studio Code에서 MSVC 기반 C&#43;&#43;, CMake 환경 설정하기</title>
+      <link>https://evandde.github.io/vscode-msvc/</link>
+      <pubDate>Thu, 26 Aug 2021 10:05:15 +0900</pubDate>
+      <guid>https://evandde.github.io/vscode-msvc/</guid>
+      <description>&lt;p&gt;VSCode에서 Microsoft Visual Studio 빌드 도구인 &lt;b&gt;MSVC&lt;/b&gt;를 이용하여 &lt;b&gt;C/C++ 언어&lt;/b&gt; 및 &lt;b&gt;CMake&lt;/b&gt;를 사용하기 위한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    MSVC는 Windows에서만 이용 가능합니다. Linux나 Mac을 이용하시는 경우에는 &lt;b&gt;gcc&lt;/b&gt;와 같은 다른 대안을 이용하시기 바랍니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;vs2019-빌드-도구-설치&#34;&gt;VS2019 빌드 도구 설치&lt;/h2&gt;
+&lt;p&gt;VSCode는 C 언어용 컴파일러나 디버거를 자체적으로 내장하고있지 않습니다. 때문에 C 언어를 VSCode에서 사용하려면, 컴파일러와 디버거를 직접 설치하고 이를 연동해주는 작업이 필요합니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    Extension을 설치한다고 해서 컴파일러나 디버거가 설치되는 것은 아닙니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이 글에서는 Microsoft사에서 제공하는 MSVC(Microsoft Visual C++)를 이용하여 진행할 것입니다.&lt;/p&gt;
+&lt;h3 id=&#34;다운로드&#34;&gt;다운로드&lt;/h3&gt;
+&lt;p&gt;Microsoft에서 제공하는 Visual Studio 2019용 Build Tools는 &lt;a href=&#34;https://visualstudio.microsoft.com/ko/downloads/#build-tools-for-visual-studio-2019&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;에서 무료로 받을 수 있습니다. 아래 그림에서 보이는 다운로드 링크를 누르면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_download&#34; srcset=&#34;
+               /vscode-msvc/vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_df9e25f1c544aa68a78a92d89e0c13a0.png 400w,
+               /vscode-msvc/vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_b06efe6e544273a41390ecc7e564f614.png 760w,
+               /vscode-msvc/vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_df9e25f1c544aa68a78a92d89e0c13a0.png&#34;
+               width=&#34;760&#34;
+               height=&#34;135&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;설치&#34;&gt;설치&lt;/h3&gt;
+&lt;p&gt;다운받은 뒤 실행하면, 아래 그림과 같은 창이 뜰 것입니다. 이 중 &lt;b&gt;C++를 사용한 데스크톱 개발&lt;/b&gt;을 클릭합니다. 오른쪽 설치 세부 정보에서, 자동으로 선택사항 중 일부가 선택될 것입니다. 혹시라도 &lt;b&gt;Windows용 C++ CMake 도구&lt;/b&gt;가 선택이 안되어있다면, &lt;b&gt;꼭 선택&lt;/b&gt;해주시기 바랍니다. 선택을 완료하셨다면 설치를 진행하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_install&#34; srcset=&#34;
+               /vscode-msvc/vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_c5d8029504a4fb8ef927f8c6b3a180ce.png 400w,
+               /vscode-msvc/vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_0b55a1d22f1be37baad8292a20a41ba4.png 760w,
+               /vscode-msvc/vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_c5d8029504a4fb8ef927f8c6b3a180ce.png&#34;
+               width=&#34;760&#34;
+               height=&#34;424&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;실행&#34;&gt;실행&lt;/h3&gt;
+&lt;p&gt;제대로 설치가 되었는지 확인해보겠습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;[WIN]+[S]&lt;/b&gt; 를 눌러 검색을 띄움&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;developer powershell&lt;/code&gt;을 입력하여 &lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 찾은 뒤 실행&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_test1&#34; srcset=&#34;
+               /vscode-msvc/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_226fbd82f31d51e44fa9627733e16400.png 400w,
+               /vscode-msvc/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_be659fa34a05acdcb7fbe530b7909974.png 760w,
+               /vscode-msvc/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_226fbd82f31d51e44fa9627733e16400.png&#34;
+               width=&#34;760&#34;
+               height=&#34;623&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cl&lt;/code&gt; 명령어와 &lt;code&gt;cmake&lt;/code&gt; 명령어를 입력하여, 다음 그림과 같이 사용법(usage)이 뜨는지 확인&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_test2&#34; srcset=&#34;
+               /vscode-msvc/vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_2a6a75a7035c6176fb951ab1b20f22f7.png 400w,
+               /vscode-msvc/vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_d0b2445390538f91ec4903fd6b0dd1b7.png 760w,
+               /vscode-msvc/vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_2a6a75a7035c6176fb951ab1b20f22f7.png&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이제 여러분은 MSVC에 포함된 C/C++ 빌드 도구 및 CMake 도구를 사용할 수 있게 되었습니다.&lt;/p&gt;
+&lt;h3 id=&#34;vscode-실행&#34;&gt;VSCode 실행&lt;/h3&gt;
+&lt;p&gt;VSCode와 MSVC를 연동하여 사용하고자 하는 경우에는, &lt;b&gt;&lt;font color=red&gt;반드시 Developer PowerShell for VS 2019를 통해 VSCode를 실행시켜야만 합니다.&lt;/font&gt;&lt;/b&gt; 그렇지 않으면, VSCode에서 MSVC 관련 툴을 인지하지 못합니다.&lt;/p&gt;
+&lt;p&gt;Developer PowerShell for VS 2019에서 VSCode를 실행시키는 법은 간단합니다. 다음 그림과 같이 &lt;code&gt;code&lt;/code&gt;라는 명령어만 실행시키시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vs2019buildtools_vscode&#34; srcset=&#34;
+               /vscode-msvc/vs2019buildtools_vscode_hu8348c4528a86525fa2392b0a2da116ad_13291_bfa1e99fb80419795fa53111b638bdeb.png 400w,
+               /vscode-msvc/vs2019buildtools_vscode_hu8348c4528a86525fa2392b0a2da116ad_13291_1f77e81671e3dadffa69895898cd2817.png 760w,
+               /vscode-msvc/vs2019buildtools_vscode_hu8348c4528a86525fa2392b0a2da116ad_13291_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/vs2019buildtools_vscode_hu8348c4528a86525fa2392b0a2da116ad_13291_bfa1e99fb80419795fa53111b638bdeb.png&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;VSCode 창이 뜨면, &lt;b&gt;[File] - [Open Folder]&lt;/b&gt;를 선택하여, 작업을 진행할 폴더를 선택해주시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;vscode_openfolder&#34; srcset=&#34;
+               /vscode-msvc/vscode_openfolder_hu04d48c7a25e5aaf0265aedbf430106de_54019_a42ed27b8f7572ec2f92b245192b2eee.png 400w,
+               /vscode-msvc/vscode_openfolder_hu04d48c7a25e5aaf0265aedbf430106de_54019_6c6f446b400d5cb8ef78e06bf19e9ada.png 760w,
+               /vscode-msvc/vscode_openfolder_hu04d48c7a25e5aaf0265aedbf430106de_54019_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/vscode_openfolder_hu04d48c7a25e5aaf0265aedbf430106de_54019_a42ed27b8f7572ec2f92b245192b2eee.png&#34;
+               width=&#34;760&#34;
+               height=&#34;647&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;extension-설치&#34;&gt;Extension 설치&lt;/h2&gt;
+&lt;p&gt;이제 VSCode에서 extension을 설치할 차례입니다.&lt;/p&gt;
+&lt;h3 id=&#34;cc&#34;&gt;C/C++&lt;/h3&gt;
+&lt;p&gt;VSCode를 켜고 extension 탭으로 간 뒤 &amp;ldquo;&lt;strong&gt;c&lt;/strong&gt;&amp;ldquo;를 검색하세요. 맨 위에 C/C++ extension이 뜰 것입니다. Install 버튼을 눌러 설치합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;extension_c&#34; srcset=&#34;
+               /vscode-msvc/extension_c_hu115aacab3740fa41f6835fd9d1b9086c_54413_6effe4ec295e401b02f8e8d25bd8cb0e.png 400w,
+               /vscode-msvc/extension_c_hu115aacab3740fa41f6835fd9d1b9086c_54413_d7e0729455c36626dfc5123f0d498ede.png 760w,
+               /vscode-msvc/extension_c_hu115aacab3740fa41f6835fd9d1b9086c_54413_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/extension_c_hu115aacab3740fa41f6835fd9d1b9086c_54413_6effe4ec295e401b02f8e8d25bd8cb0e.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;cmake&#34;&gt;CMake&lt;/h3&gt;
+&lt;p&gt;이어서 CMake 관련 extension도 설치합니다.&lt;/p&gt;
+&lt;p&gt;VSCode를 켜고 extension 탭으로 간 뒤 “&lt;strong&gt;cmake&lt;/strong&gt;“를 검색하세요. 맨 위부터 &lt;strong&gt;CMake&lt;/strong&gt;와 &lt;strong&gt;CMake Tools&lt;/strong&gt;가 뜰 것입니다. 두 가지 모두 Install 버튼을 눌러 설치합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;extension_cmake&#34; srcset=&#34;
+               /vscode-msvc/extension_cmake_hu3da5222f7d42ccd615f0b10e3c843ad1_77547_4e6d4b33b76a1390296ae0108ae9ba55.png 400w,
+               /vscode-msvc/extension_cmake_hu3da5222f7d42ccd615f0b10e3c843ad1_77547_46089bc2159dbb4772073c745321d074.png 760w,
+               /vscode-msvc/extension_cmake_hu3da5222f7d42ccd615f0b10e3c843ad1_77547_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/extension_cmake_hu3da5222f7d42ccd615f0b10e3c843ad1_77547_4e6d4b33b76a1390296ae0108ae9ba55.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;각각의 용도는 이렇습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CMake extension: CMake 명령어에 대한 자동완성 제공. CMakeLists.txt 파일 작성에 도움&lt;/li&gt;
+&lt;li&gt;CMake Tools extension: CMake 기반 프로젝트를 관리하는데에 도움&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;테스트&#34;&gt;테스트&lt;/h2&gt;
+&lt;p&gt;이제 제대로 설치가 되었는지 확인할 시간입니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    경로에 &lt;strong&gt;한글&lt;/strong&gt;이 있으면 제대로 동작하지 않습니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;hello-world-프로젝트-만들어보기&#34;&gt;Hello world 프로젝트 만들어보기&lt;/h3&gt;
+&lt;p&gt;CMake Tools는 &lt;b&gt;CMake: Quick Start&lt;/b&gt;라는 기능을 제공합니다. 손쉽게 CMake 기반의 Hello world 프로젝트를 만들어주는 것이죠.&lt;/p&gt;
+&lt;p&gt;적당한 경로에 빈 폴더를 만들어주고 다음과 같이 진행합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs1&#34; srcset=&#34;
+               /vscode-msvc/cqs1_hu0e7303143497f0e4a137757a573cefc0_45640_caabe28af57f76ad3462e5cede53839c.png 400w,
+               /vscode-msvc/cqs1_hu0e7303143497f0e4a137757a573cefc0_45640_3da3f460f72e8cabaaf3889ef5780923.png 760w,
+               /vscode-msvc/cqs1_hu0e7303143497f0e4a137757a573cefc0_45640_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/cqs1_hu0e7303143497f0e4a137757a573cefc0_45640_caabe28af57f76ad3462e5cede53839c.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs2&#34; srcset=&#34;
+               /vscode-msvc/cqs2_hu7f22ed4d7a598ee99fbd02dc85f95eec_42358_2558a20512433bd005186796729aa5a5.png 400w,
+               /vscode-msvc/cqs2_hu7f22ed4d7a598ee99fbd02dc85f95eec_42358_f9f11df871b2487e26ca5679338a6be8.png 760w,
+               /vscode-msvc/cqs2_hu7f22ed4d7a598ee99fbd02dc85f95eec_42358_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/cqs2_hu7f22ed4d7a598ee99fbd02dc85f95eec_42358_2558a20512433bd005186796729aa5a5.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs3&#34; srcset=&#34;
+               /vscode-msvc/cqs3_hu8ae8568f48c1e6cc3dda2f57b9ad71bd_73424_90322c3a2e550c599c95d82ba2446d72.png 400w,
+               /vscode-msvc/cqs3_hu8ae8568f48c1e6cc3dda2f57b9ad71bd_73424_c10044573126886eedd0e2d972091b76.png 760w,
+               /vscode-msvc/cqs3_hu8ae8568f48c1e6cc3dda2f57b9ad71bd_73424_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/cqs3_hu8ae8568f48c1e6cc3dda2f57b9ad71bd_73424_90322c3a2e550c599c95d82ba2446d72.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs4&#34; srcset=&#34;
+               /vscode-msvc/cqs4_hu651e505c86ff239e93aff82d745041ea_46310_b7233074ab7ba107154fcc97db32ac24.png 400w,
+               /vscode-msvc/cqs4_hu651e505c86ff239e93aff82d745041ea_46310_8cd8b9516849d5a9d8d75ca9fb813464.png 760w,
+               /vscode-msvc/cqs4_hu651e505c86ff239e93aff82d745041ea_46310_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/cqs4_hu651e505c86ff239e93aff82d745041ea_46310_b7233074ab7ba107154fcc97db32ac24.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs5&#34; srcset=&#34;
+               /vscode-msvc/cqs5_huccc2f1247fcbf6dd401b7f495cf147cb_50218_17d669e23dfa30cb3dab8686981a3128.png 400w,
+               /vscode-msvc/cqs5_huccc2f1247fcbf6dd401b7f495cf147cb_50218_2a9520c56ea9bd1f1d8c0f10ab602f8f.png 760w,
+               /vscode-msvc/cqs5_huccc2f1247fcbf6dd401b7f495cf147cb_50218_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/cqs5_huccc2f1247fcbf6dd401b7f495cf147cb_50218_17d669e23dfa30cb3dab8686981a3128.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs6&#34; srcset=&#34;
+               /vscode-msvc/cqs6_hu95d915dd180392f838a32ab1e81c2198_42933_c41e8bd1a6a9127e52114d072653ffc2.png 400w,
+               /vscode-msvc/cqs6_hu95d915dd180392f838a32ab1e81c2198_42933_7c3275d6d1a0e5d48b7a79780d75038b.png 760w,
+               /vscode-msvc/cqs6_hu95d915dd180392f838a32ab1e81c2198_42933_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/cqs6_hu95d915dd180392f838a32ab1e81c2198_42933_c41e8bd1a6a9127e52114d072653ffc2.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;실행-1&#34;&gt;실행&lt;/h3&gt;
+&lt;p&gt;다음 그림과 같이 실행하시면 됩니다. 동일 폴더 내에 &lt;b&gt;.vscode&lt;/b&gt;라는 폴더가 생기고 그 안에 CMake 설정 등에 관한 &lt;code&gt;.json&lt;/code&gt; 파일이 자동으로 생성될 것입니다. 또한, &lt;b&gt;build&lt;/b&gt;라는 폴더가 생기고 그 안에 &lt;strong&gt;CMake를 통한 빌드 부산물 및 컴파일 결과물&lt;/strong&gt;이 자동으로 생성될 것입니다.&lt;/p&gt;
+&lt;p&gt;이후 아래쪽의 &lt;strong&gt;TERMINAL&lt;/strong&gt; 탭을 확인하시면, 자동 생성된 main.cpp의 내용대로 Hello, world!가 출력되는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run1&#34; srcset=&#34;
+               /vscode-msvc/run1_hu23cbc9ee6d94a3922a35bb52f261e9f6_41631_a0936e7fd0a5303dd4898784745d755f.png 400w,
+               /vscode-msvc/run1_hu23cbc9ee6d94a3922a35bb52f261e9f6_41631_0830794d6928faa454db44cb37713ac3.png 760w,
+               /vscode-msvc/run1_hu23cbc9ee6d94a3922a35bb52f261e9f6_41631_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/run1_hu23cbc9ee6d94a3922a35bb52f261e9f6_41631_a0936e7fd0a5303dd4898784745d755f.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run2&#34; srcset=&#34;
+               /vscode-msvc/run2_hua87ae9c2ff262c1bd9334f65408d52c2_53270_8782fbb70eef9231d034ed3435be5a6b.png 400w,
+               /vscode-msvc/run2_hua87ae9c2ff262c1bd9334f65408d52c2_53270_51d0b8047f56d8954d98888e1a03ec14.png 760w,
+               /vscode-msvc/run2_hua87ae9c2ff262c1bd9334f65408d52c2_53270_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/run2_hua87ae9c2ff262c1bd9334f65408d52c2_53270_8782fbb70eef9231d034ed3435be5a6b.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;디버깅&#34;&gt;디버깅&lt;/h3&gt;
+&lt;p&gt;다음 그림과 같이 진행하여 디버깅도 가능합니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    맨 처음 그림에서 보이는 바와 같이, CMake type을 Debug로 설정해야 함에 주의하세요!
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug1&#34; srcset=&#34;
+               /vscode-msvc/debug1_hu164b5677826c8eacb553a5632840e7f1_67492_6e6ce9ac77aafe17495f6bb3738fcd6d.png 400w,
+               /vscode-msvc/debug1_hu164b5677826c8eacb553a5632840e7f1_67492_8bd4fe75f72748f2f1abec2b49ee6738.png 760w,
+               /vscode-msvc/debug1_hu164b5677826c8eacb553a5632840e7f1_67492_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/debug1_hu164b5677826c8eacb553a5632840e7f1_67492_6e6ce9ac77aafe17495f6bb3738fcd6d.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug2&#34; srcset=&#34;
+               /vscode-msvc/debug2_hua21a153eb3eb6cbbd7dccc89fc1a0738_74148_90d69e79938c9aee1109b9116d6ec3ac.png 400w,
+               /vscode-msvc/debug2_hua21a153eb3eb6cbbd7dccc89fc1a0738_74148_f9d287c1cb825e1f442a098e2e351024.png 760w,
+               /vscode-msvc/debug2_hua21a153eb3eb6cbbd7dccc89fc1a0738_74148_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/debug2_hua21a153eb3eb6cbbd7dccc89fc1a0738_74148_90d69e79938c9aee1109b9116d6ec3ac.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug3&#34; srcset=&#34;
+               /vscode-msvc/debug3_hu571b8c96d405a1ad6a1a679231de34ef_72722_5d1ce6d547d3b6774b361664d026fc88.png 400w,
+               /vscode-msvc/debug3_hu571b8c96d405a1ad6a1a679231de34ef_72722_7a86a29cff6db9ce2bed4c66f0c4ae71.png 760w,
+               /vscode-msvc/debug3_hu571b8c96d405a1ad6a1a679231de34ef_72722_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/debug3_hu571b8c96d405a1ad6a1a679231de34ef_72722_5d1ce6d547d3b6774b361664d026fc88.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug4&#34; srcset=&#34;
+               /vscode-msvc/debug4_hu8260f189d847922232a10d48b8fb98d6_96886_19264063bdb622727eb8d20b9428bf23.png 400w,
+               /vscode-msvc/debug4_hu8260f189d847922232a10d48b8fb98d6_96886_dc1e0e7796f2a56584f0e24fc089a09d.png 760w,
+               /vscode-msvc/debug4_hu8260f189d847922232a10d48b8fb98d6_96886_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/debug4_hu8260f189d847922232a10d48b8fb98d6_96886_19264063bdb622727eb8d20b9428bf23.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug5&#34; srcset=&#34;
+               /vscode-msvc/debug5_hu9bcbe7397ec7a3bd2daf2d3e9f7033fa_86537_4e8880b22573bb0628e8760e43c7d814.png 400w,
+               /vscode-msvc/debug5_hu9bcbe7397ec7a3bd2daf2d3e9f7033fa_86537_48f79a1d99308f24c3c1818ab0a64c3b.png 760w,
+               /vscode-msvc/debug5_hu9bcbe7397ec7a3bd2daf2d3e9f7033fa_86537_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/debug5_hu9bcbe7397ec7a3bd2daf2d3e9f7033fa_86537_4e8880b22573bb0628e8760e43c7d814.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;command-line-argument-설정&#34;&gt;Command line argument 설정&lt;/h3&gt;
+&lt;p&gt;실행하거나 디버깅할 때, command line argument를 넘겨주도록 설정하고 싶을 때가 있습니다.&lt;/p&gt;
+&lt;p&gt;이는 &lt;b&gt;.vscode/settings.json 파일을 생성&lt;/b&gt;해주고, 해당 파일에서 &lt;code&gt;cmake.debugConfig&lt;/code&gt;인자로서 입력해줘야 합니다.&lt;/p&gt;
+&lt;h4 id=&#34;테스트-코드-수정&#34;&gt;테스트 코드 수정&lt;/h4&gt;
+&lt;p&gt;그 전에 먼저 argument가 제대로 동작하는지 확인하기 위해 main.cpp 코드를 수정하겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;iostream&amp;gt;
+
+int main(int argc, char**) {
+    std::cout &amp;lt;&amp;lt; &amp;quot;Hello, world!\n&amp;quot;;
+    std::cout &amp;lt;&amp;lt; &amp;quot;argc: &amp;quot; &amp;lt;&amp;lt; argc &amp;lt;&amp;lt; std::endl;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이 상태로 그냥 실행해보면 다음과 같이 나타날 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg1&#34; srcset=&#34;
+               /vscode-msvc/arg1_hu3a15c3b7e617d931524b050348937c2a_48397_34c28f2952277af9d574ae29d4482c71.png 400w,
+               /vscode-msvc/arg1_hu3a15c3b7e617d931524b050348937c2a_48397_f4a8f7ec275524a9111222bf92809d79.png 760w,
+               /vscode-msvc/arg1_hu3a15c3b7e617d931524b050348937c2a_48397_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/arg1_hu3a15c3b7e617d931524b050348937c2a_48397_34c28f2952277af9d574ae29d4482c71.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;settingsjson-설정-및-실행&#34;&gt;settings.json 설정 및 실행&lt;/h4&gt;
+&lt;p&gt;이제 settings.json 파일을 만들어 보겠습니다. (이미 만들어져 있을 수도 있습니다만, 그대로 진행하시면 됩니다)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;다음 그림과 같이 File - Preferences - Settings를 클릭합니다. 단축키는 &lt;b&gt;[CTRL]+[,]&lt;/b&gt; 입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg2&#34; srcset=&#34;
+               /vscode-msvc/arg2_huee035e19a4a82fd2afe280a473865c1e_95774_56b5c80af94e7c09a01234bd2dc3b9dc.png 400w,
+               /vscode-msvc/arg2_huee035e19a4a82fd2afe280a473865c1e_95774_65c616437706abe59a2dbc43109e2633.png 760w,
+               /vscode-msvc/arg2_huee035e19a4a82fd2afe280a473865c1e_95774_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/arg2_huee035e19a4a82fd2afe280a473865c1e_95774_56b5c80af94e7c09a01234bd2dc3b9dc.png&#34;
+               width=&#34;760&#34;
+               height=&#34;549&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;여기서 Workspace 탭을 클릭합니다. 이 프로젝트(workspace)에만 적용되는 설정항목이라는 뜻입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg3&#34; srcset=&#34;
+               /vscode-msvc/arg3_hu27dcf0e43bc0a941f885a9e8bbb5dd1a_70248_89aded21624db7e599b13f64312ffbc8.png 400w,
+               /vscode-msvc/arg3_hu27dcf0e43bc0a941f885a9e8bbb5dd1a_70248_13eb3447d52efcc9587d006f0fe4e81b.png 760w,
+               /vscode-msvc/arg3_hu27dcf0e43bc0a941f885a9e8bbb5dd1a_70248_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/arg3_hu27dcf0e43bc0a941f885a9e8bbb5dd1a_70248_89aded21624db7e599b13f64312ffbc8.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;상단 검색창에 &lt;code&gt;cmake.debugConfig&lt;/code&gt;를 검색한 뒤, &lt;u&gt;Edit in settings.json&lt;/u&gt; 부분을 클릭합니다. &lt;code&gt;cmake.debug&lt;/code&gt; 정도만 입력하셔도 바로 뜰 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg4&#34; srcset=&#34;
+               /vscode-msvc/arg4_hub35353a5b53ed0a09d9dc6a0af763b24_87426_76799a240fa2170b3a90649176dbadcb.png 400w,
+               /vscode-msvc/arg4_hub35353a5b53ed0a09d9dc6a0af763b24_87426_748696740cce29f2715b14ab0cbbe055.png 760w,
+               /vscode-msvc/arg4_hub35353a5b53ed0a09d9dc6a0af763b24_87426_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/arg4_hub35353a5b53ed0a09d9dc6a0af763b24_87426_76799a240fa2170b3a90649176dbadcb.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;클릭하시면 바로 다음과 같이 &lt;code&gt;.vscode/settings.json&lt;/code&gt; 폴더 및 파일이 생성되고, settings.json 파일이 열리며, 그 안에 다음 그림과 같은 내용이 자동으로 작성되어 있을 것입니다. (추가로 다른 내용이 더 쓰여있을 수도 있습니다.)&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg5&#34; srcset=&#34;
+               /vscode-msvc/arg5_hu78284473b6cc163dc60de15408c7f415_67837_ccbdd3d38192395f02b0ca3a07701225.png 400w,
+               /vscode-msvc/arg5_hu78284473b6cc163dc60de15408c7f415_67837_31882fb69a1599a520fda4d0b80951be.png 760w,
+               /vscode-msvc/arg5_hu78284473b6cc163dc60de15408c7f415_67837_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/arg5_hu78284473b6cc163dc60de15408c7f415_67837_ccbdd3d38192395f02b0ca3a07701225.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이제 이 안에 &lt;code&gt;args&lt;/code&gt; 항목을 만들어 command line argument를 설정합니다. 실행파일명 뒤에 이어질 추가적인 argument들만 적어주면 되며, 각 항목은 &amp;ldquo;&amp;quot;(double-quote)로 묶어주고 ,(comma)로 분리해주면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg6&#34; srcset=&#34;
+               /vscode-msvc/arg6_hu0c67c12b1cda36a60f2a210f9ef8732f_56962_b6ae80161893bbf02e68257e051ba56f.png 400w,
+               /vscode-msvc/arg6_hu0c67c12b1cda36a60f2a210f9ef8732f_56962_c9ff1596f853439e269c3e58da89d3ba.png 760w,
+               /vscode-msvc/arg6_hu0c67c12b1cda36a60f2a210f9ef8732f_56962_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/arg6_hu0c67c12b1cda36a60f2a210f9ef8732f_56962_b6ae80161893bbf02e68257e051ba56f.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이제 저장한 뒤, 실행이나 디버깅을 해보면 다음과 같이 command line argument가 잘 반영된 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg7&#34; srcset=&#34;
+               /vscode-msvc/arg7_hu72e75db658e05d1b13d2f3cc7bc1f901_53536_a83fb439045a7589d4e825bdef5b78dc.png 400w,
+               /vscode-msvc/arg7_hu72e75db658e05d1b13d2f3cc7bc1f901_53536_193e7f64d30ffcba4b84ba7d57d00d13.png 760w,
+               /vscode-msvc/arg7_hu72e75db658e05d1b13d2f3cc7bc1f901_53536_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-msvc/arg7_hu72e75db658e05d1b13d2f3cc7bc1f901_53536_a83fb439045a7589d4e825bdef5b78dc.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>Visual Studio Code에서 CMake 환경 설정하기</title>
+      <link>https://evandde.github.io/vscode-cmake/</link>
+      <pubDate>Fri, 13 Nov 2020 10:04:24 +0900</pubDate>
+      <guid>https://evandde.github.io/vscode-cmake/</guid>
+      <description>&lt;p&gt;VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    여기서는 VSCode 설치 후, &lt;b&gt;C++ 언어를 사용하기 위한 환경 구축까지 완료한 상태&lt;/b&gt;라고 가정합니다. C++ 언어 사용을 위한 환경 구축은 &lt;a href=&#34;https://evandde.github.io/vscode-cpp/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;cmake-설치&#34;&gt;CMake 설치&lt;/h2&gt;
+&lt;p&gt;VSCode는 CMake를 자체적으로 내장하고있지 않습니다. 때문에 CMake를 직접 설치하고 이를 연동해주는 작업이 필요합니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    Extension을 설치한다고 해서 CMake가 설치되는 것은 아닙니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;windows를-이용하는-경우&#34;&gt;Windows를 이용하는 경우&lt;/h3&gt;
+&lt;p&gt;Chocolatey를 이용하면 쉽게 설치할 수 있습니다. 다만, chocolatey로 CMake를 설치하는 경우 &lt;code&gt;PATH&lt;/code&gt; 환경변수가 자동으로 잡히지 않아, 추가적인 명령어를 입력해주어야 합니다. 다음 명령어를 입력하세요.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;choco install cmake -y --installargs &#39;ADD_CMAKE_TO_PATH=System&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cmake_windows&#34; srcset=&#34;
+               /vscode-cmake/cmake_windows_huf9d6185fcc3b986572bd5104885e87fd_46967_9771e93ed3e87c576f6fb2867e7b5956.png 400w,
+               /vscode-cmake/cmake_windows_huf9d6185fcc3b986572bd5104885e87fd_46967_f38a49ff98e14257a9b883dedfdabf5a.png 760w,
+               /vscode-cmake/cmake_windows_huf9d6185fcc3b986572bd5104885e87fd_46967_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cmake_windows_huf9d6185fcc3b986572bd5104885e87fd_46967_9771e93ed3e87c576f6fb2867e7b5956.png&#34;
+               width=&#34;760&#34;
+               height=&#34;331&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;다음 명령어를 통해 설치가 잘 되었는지 확인해보세요.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;cmake --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;Chocolatey 특성 상, 설치한 직후에는 &lt;code&gt;cmake&lt;/code&gt; 명령어를 인식하지 못할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;PowerShell을 껐다 켜거나, &lt;code&gt;refreshenv&lt;/code&gt; 명령어를 활용하세요.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cmake_version_windows&#34; srcset=&#34;
+               /vscode-cmake/cmake_version_windows_hu89a6af564cc18670337a8f92b68e3118_12456_0bc90b9ece12811ecdcb9939d2704be4.png 400w,
+               /vscode-cmake/cmake_version_windows_hu89a6af564cc18670337a8f92b68e3118_12456_afb26016a1a0ad67fc17e85ed1c59bba.png 760w,
+               /vscode-cmake/cmake_version_windows_hu89a6af564cc18670337a8f92b68e3118_12456_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cmake_version_windows_hu89a6af564cc18670337a8f92b68e3118_12456_0bc90b9ece12811ecdcb9939d2704be4.png&#34;
+               width=&#34;760&#34;
+               height=&#34;122&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;linux를-이용하는-경우&#34;&gt;Linux를 이용하는 경우&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://salsa.debian.org/apt-team/apt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;apt(apt-get)&lt;/a&gt;나 &lt;a href=&#34;http://yum.baseurl.org/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;yum&lt;/a&gt;을 이용하면 쉽게 설치할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;예를 들어 &lt;code&gt;apt&lt;/code&gt;를 이용하여 설치한다면 다음 명령어를 입력합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt install cmake -y
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cmake_linux&#34; srcset=&#34;
+               /vscode-cmake/cmake_linux_huaed6654e1f9d1908b9a5d0635f33e73f_34421_08db8804eb063c564c76702499a0f070.png 400w,
+               /vscode-cmake/cmake_linux_huaed6654e1f9d1908b9a5d0635f33e73f_34421_68103a3937f845ce58583da48ddc4d0e.png 760w,
+               /vscode-cmake/cmake_linux_huaed6654e1f9d1908b9a5d0635f33e73f_34421_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cmake_linux_huaed6654e1f9d1908b9a5d0635f33e73f_34421_08db8804eb063c564c76702499a0f070.png&#34;
+               width=&#34;760&#34;
+               height=&#34;300&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;다음 명령어를 통해 설치가 잘 되었는지 확인해보세요.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cmake --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cmake_version_linux&#34; srcset=&#34;
+               /vscode-cmake/cmake_version_linux_hua78ef093bdc60e6242f0783d85dba23b_5482_1a5c2e360d69d4f6e5ccd10c0e5ee3b7.png 400w,
+               /vscode-cmake/cmake_version_linux_hua78ef093bdc60e6242f0783d85dba23b_5482_1d69aa391dc32fc422821a292d815295.png 760w,
+               /vscode-cmake/cmake_version_linux_hua78ef093bdc60e6242f0783d85dba23b_5482_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cmake_version_linux_hua78ef093bdc60e6242f0783d85dba23b_5482_1a5c2e360d69d4f6e5ccd10c0e5ee3b7.png&#34;
+               width=&#34;736&#34;
+               height=&#34;77&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;extension-설치&#34;&gt;Extension 설치&lt;/h2&gt;
+&lt;p&gt;이제 VSCode에서 extension을 설치할 차례입니다.&lt;/p&gt;
+&lt;p&gt;VSCode를 켜고 extension 탭으로 간 뒤 “&lt;strong&gt;cmake&lt;/strong&gt;“를 검색하세요. 맨 위부터 &lt;strong&gt;CMake&lt;/strong&gt;와 &lt;strong&gt;CMake Tools&lt;/strong&gt;가 뜰 것입니다. 두 가지 모두 Install 버튼을 눌러 설치합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;extension_cmake&#34; srcset=&#34;
+               /vscode-cmake/extension_cmake_hu3da5222f7d42ccd615f0b10e3c843ad1_77547_4e6d4b33b76a1390296ae0108ae9ba55.png 400w,
+               /vscode-cmake/extension_cmake_hu3da5222f7d42ccd615f0b10e3c843ad1_77547_46089bc2159dbb4772073c745321d074.png 760w,
+               /vscode-cmake/extension_cmake_hu3da5222f7d42ccd615f0b10e3c843ad1_77547_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/extension_cmake_hu3da5222f7d42ccd615f0b10e3c843ad1_77547_4e6d4b33b76a1390296ae0108ae9ba55.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;각각의 용도는 이렇습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CMake extension: CMake 명령어에 대한 자동완성 제공. CMakeLists.txt 파일 작성에 도움.&lt;/li&gt;
+&lt;li&gt;CMake Tools extension: CMake 기반 프로젝트를 관리하는데에 도움.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;테스트&#34;&gt;테스트&lt;/h2&gt;
+&lt;p&gt;이제 제대로 설치가 되었는지 확인할 시간입니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    경로에 &lt;strong&gt;한글&lt;/strong&gt;이 있으면 제대로 동작하지 않습니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;hello-world-프로젝트-만들어보기&#34;&gt;Hello world 프로젝트 만들어보기&lt;/h3&gt;
+&lt;p&gt;CMake Tools는 &lt;b&gt;CMake: Quick Start&lt;/b&gt;라는 기능을 제공합니다. 손쉽게 CMake 기반의 Hello world 프로젝트를 만들어주는 것이죠.&lt;/p&gt;
+&lt;p&gt;적당한 경로에 빈 폴더를 만들어주고 다음과 같이 진행합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs1&#34; srcset=&#34;
+               /vscode-cmake/cqs1_hu0e7303143497f0e4a137757a573cefc0_45640_caabe28af57f76ad3462e5cede53839c.png 400w,
+               /vscode-cmake/cqs1_hu0e7303143497f0e4a137757a573cefc0_45640_3da3f460f72e8cabaaf3889ef5780923.png 760w,
+               /vscode-cmake/cqs1_hu0e7303143497f0e4a137757a573cefc0_45640_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cqs1_hu0e7303143497f0e4a137757a573cefc0_45640_caabe28af57f76ad3462e5cede53839c.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs2&#34; srcset=&#34;
+               /vscode-cmake/cqs2_hu7f22ed4d7a598ee99fbd02dc85f95eec_42358_2558a20512433bd005186796729aa5a5.png 400w,
+               /vscode-cmake/cqs2_hu7f22ed4d7a598ee99fbd02dc85f95eec_42358_f9f11df871b2487e26ca5679338a6be8.png 760w,
+               /vscode-cmake/cqs2_hu7f22ed4d7a598ee99fbd02dc85f95eec_42358_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cqs2_hu7f22ed4d7a598ee99fbd02dc85f95eec_42358_2558a20512433bd005186796729aa5a5.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs3&#34; srcset=&#34;
+               /vscode-cmake/cqs3_hu8ae8568f48c1e6cc3dda2f57b9ad71bd_73424_90322c3a2e550c599c95d82ba2446d72.png 400w,
+               /vscode-cmake/cqs3_hu8ae8568f48c1e6cc3dda2f57b9ad71bd_73424_c10044573126886eedd0e2d972091b76.png 760w,
+               /vscode-cmake/cqs3_hu8ae8568f48c1e6cc3dda2f57b9ad71bd_73424_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cqs3_hu8ae8568f48c1e6cc3dda2f57b9ad71bd_73424_90322c3a2e550c599c95d82ba2446d72.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs4&#34; srcset=&#34;
+               /vscode-cmake/cqs4_hu651e505c86ff239e93aff82d745041ea_46310_b7233074ab7ba107154fcc97db32ac24.png 400w,
+               /vscode-cmake/cqs4_hu651e505c86ff239e93aff82d745041ea_46310_8cd8b9516849d5a9d8d75ca9fb813464.png 760w,
+               /vscode-cmake/cqs4_hu651e505c86ff239e93aff82d745041ea_46310_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cqs4_hu651e505c86ff239e93aff82d745041ea_46310_b7233074ab7ba107154fcc97db32ac24.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs5&#34; srcset=&#34;
+               /vscode-cmake/cqs5_huccc2f1247fcbf6dd401b7f495cf147cb_50218_17d669e23dfa30cb3dab8686981a3128.png 400w,
+               /vscode-cmake/cqs5_huccc2f1247fcbf6dd401b7f495cf147cb_50218_2a9520c56ea9bd1f1d8c0f10ab602f8f.png 760w,
+               /vscode-cmake/cqs5_huccc2f1247fcbf6dd401b7f495cf147cb_50218_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cqs5_huccc2f1247fcbf6dd401b7f495cf147cb_50218_17d669e23dfa30cb3dab8686981a3128.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;cqs6&#34; srcset=&#34;
+               /vscode-cmake/cqs6_hu95d915dd180392f838a32ab1e81c2198_42933_c41e8bd1a6a9127e52114d072653ffc2.png 400w,
+               /vscode-cmake/cqs6_hu95d915dd180392f838a32ab1e81c2198_42933_7c3275d6d1a0e5d48b7a79780d75038b.png 760w,
+               /vscode-cmake/cqs6_hu95d915dd180392f838a32ab1e81c2198_42933_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/cqs6_hu95d915dd180392f838a32ab1e81c2198_42933_c41e8bd1a6a9127e52114d072653ffc2.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;실행&#34;&gt;실행&lt;/h3&gt;
+&lt;p&gt;다음 그림과 같이 실행하시면 됩니다. 동일 폴더 내에 &lt;b&gt;.vscode&lt;/b&gt;라는 폴더가 생기고 그 안에 CMake 설정 등에 관한 &lt;code&gt;.json&lt;/code&gt; 파일이 자동으로 생성될 것입니다. 또한, &lt;b&gt;build&lt;/b&gt;라는 폴더가 생기고 그 안에 &lt;strong&gt;CMake를 통한 빌드 부산물 및 컴파일 결과물&lt;/strong&gt;이 자동으로 생성될 것입니다.&lt;/p&gt;
+&lt;p&gt;이후 아래쪽의 &lt;strong&gt;TERMINAL&lt;/strong&gt; 탭을 확인하시면, 자동 생성된 main.cpp의 내용대로 Hello, world!가 출력되는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run1&#34; srcset=&#34;
+               /vscode-cmake/run1_hu23cbc9ee6d94a3922a35bb52f261e9f6_41631_a0936e7fd0a5303dd4898784745d755f.png 400w,
+               /vscode-cmake/run1_hu23cbc9ee6d94a3922a35bb52f261e9f6_41631_0830794d6928faa454db44cb37713ac3.png 760w,
+               /vscode-cmake/run1_hu23cbc9ee6d94a3922a35bb52f261e9f6_41631_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/run1_hu23cbc9ee6d94a3922a35bb52f261e9f6_41631_a0936e7fd0a5303dd4898784745d755f.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run2&#34; srcset=&#34;
+               /vscode-cmake/run2_hua87ae9c2ff262c1bd9334f65408d52c2_53270_8782fbb70eef9231d034ed3435be5a6b.png 400w,
+               /vscode-cmake/run2_hua87ae9c2ff262c1bd9334f65408d52c2_53270_51d0b8047f56d8954d98888e1a03ec14.png 760w,
+               /vscode-cmake/run2_hua87ae9c2ff262c1bd9334f65408d52c2_53270_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/run2_hua87ae9c2ff262c1bd9334f65408d52c2_53270_8782fbb70eef9231d034ed3435be5a6b.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;디버깅&#34;&gt;디버깅&lt;/h3&gt;
+&lt;p&gt;다음 그림과 같이 진행하여 디버깅도 가능합니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    맨 처음 그림에서 보이는 바와 같이, CMake type을 Debug로 설정해야 함에 주의하세요!
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug1&#34; srcset=&#34;
+               /vscode-cmake/debug1_hu164b5677826c8eacb553a5632840e7f1_67492_6e6ce9ac77aafe17495f6bb3738fcd6d.png 400w,
+               /vscode-cmake/debug1_hu164b5677826c8eacb553a5632840e7f1_67492_8bd4fe75f72748f2f1abec2b49ee6738.png 760w,
+               /vscode-cmake/debug1_hu164b5677826c8eacb553a5632840e7f1_67492_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/debug1_hu164b5677826c8eacb553a5632840e7f1_67492_6e6ce9ac77aafe17495f6bb3738fcd6d.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug2&#34; srcset=&#34;
+               /vscode-cmake/debug2_hua21a153eb3eb6cbbd7dccc89fc1a0738_74148_90d69e79938c9aee1109b9116d6ec3ac.png 400w,
+               /vscode-cmake/debug2_hua21a153eb3eb6cbbd7dccc89fc1a0738_74148_f9d287c1cb825e1f442a098e2e351024.png 760w,
+               /vscode-cmake/debug2_hua21a153eb3eb6cbbd7dccc89fc1a0738_74148_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/debug2_hua21a153eb3eb6cbbd7dccc89fc1a0738_74148_90d69e79938c9aee1109b9116d6ec3ac.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug3&#34; srcset=&#34;
+               /vscode-cmake/debug3_hu571b8c96d405a1ad6a1a679231de34ef_72722_5d1ce6d547d3b6774b361664d026fc88.png 400w,
+               /vscode-cmake/debug3_hu571b8c96d405a1ad6a1a679231de34ef_72722_7a86a29cff6db9ce2bed4c66f0c4ae71.png 760w,
+               /vscode-cmake/debug3_hu571b8c96d405a1ad6a1a679231de34ef_72722_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/debug3_hu571b8c96d405a1ad6a1a679231de34ef_72722_5d1ce6d547d3b6774b361664d026fc88.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug4&#34; srcset=&#34;
+               /vscode-cmake/debug4_hu8260f189d847922232a10d48b8fb98d6_96886_19264063bdb622727eb8d20b9428bf23.png 400w,
+               /vscode-cmake/debug4_hu8260f189d847922232a10d48b8fb98d6_96886_dc1e0e7796f2a56584f0e24fc089a09d.png 760w,
+               /vscode-cmake/debug4_hu8260f189d847922232a10d48b8fb98d6_96886_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/debug4_hu8260f189d847922232a10d48b8fb98d6_96886_19264063bdb622727eb8d20b9428bf23.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug5&#34; srcset=&#34;
+               /vscode-cmake/debug5_hu9bcbe7397ec7a3bd2daf2d3e9f7033fa_86537_4e8880b22573bb0628e8760e43c7d814.png 400w,
+               /vscode-cmake/debug5_hu9bcbe7397ec7a3bd2daf2d3e9f7033fa_86537_48f79a1d99308f24c3c1818ab0a64c3b.png 760w,
+               /vscode-cmake/debug5_hu9bcbe7397ec7a3bd2daf2d3e9f7033fa_86537_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/debug5_hu9bcbe7397ec7a3bd2daf2d3e9f7033fa_86537_4e8880b22573bb0628e8760e43c7d814.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;command-line-argument-설정&#34;&gt;Command line argument 설정&lt;/h3&gt;
+&lt;p&gt;실행하거나 디버깅할 때, command line argument를 넘겨주도록 설정하고 싶을 때가 있습니다.&lt;/p&gt;
+&lt;p&gt;이는 &lt;b&gt;.vscode/settings.json 파일을 생성&lt;/b&gt;해주고, 해당 파일에서 &lt;code&gt;cmake.debugConfig&lt;/code&gt;인자로서 입력해줘야 합니다.&lt;/p&gt;
+&lt;h4 id=&#34;테스트-코드-수정&#34;&gt;테스트 코드 수정&lt;/h4&gt;
+&lt;p&gt;그 전에 먼저 argument가 제대로 동작하는지 확인하기 위해 main.cpp 코드를 수정하겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;iostream&amp;gt;
+
+int main(int argc, char**) {
+    std::cout &amp;lt;&amp;lt; &amp;quot;Hello, world!\n&amp;quot;;
+    std::cout &amp;lt;&amp;lt; &amp;quot;argc: &amp;quot; &amp;lt;&amp;lt; argc &amp;lt;&amp;lt; std::endl;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이 상태로 그냥 실행해보면 다음과 같이 나타날 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg1&#34; srcset=&#34;
+               /vscode-cmake/arg1_hu3a15c3b7e617d931524b050348937c2a_48397_34c28f2952277af9d574ae29d4482c71.png 400w,
+               /vscode-cmake/arg1_hu3a15c3b7e617d931524b050348937c2a_48397_f4a8f7ec275524a9111222bf92809d79.png 760w,
+               /vscode-cmake/arg1_hu3a15c3b7e617d931524b050348937c2a_48397_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/arg1_hu3a15c3b7e617d931524b050348937c2a_48397_34c28f2952277af9d574ae29d4482c71.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;settingsjson-설정-및-실행&#34;&gt;settings.json 설정 및 실행&lt;/h4&gt;
+&lt;p&gt;이제 settings.json 파일을 만들어 보겠습니다. (이미 만들어져 있을 수도 있습니다만, 그대로 진행하시면 됩니다)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;다음 그림과 같이 File - Preferences - Settings를 클릭합니다. 단축키는 &lt;b&gt;[CTRL]+[,]&lt;/b&gt; 입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg2&#34; srcset=&#34;
+               /vscode-cmake/arg2_huee035e19a4a82fd2afe280a473865c1e_95774_56b5c80af94e7c09a01234bd2dc3b9dc.png 400w,
+               /vscode-cmake/arg2_huee035e19a4a82fd2afe280a473865c1e_95774_65c616437706abe59a2dbc43109e2633.png 760w,
+               /vscode-cmake/arg2_huee035e19a4a82fd2afe280a473865c1e_95774_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/arg2_huee035e19a4a82fd2afe280a473865c1e_95774_56b5c80af94e7c09a01234bd2dc3b9dc.png&#34;
+               width=&#34;760&#34;
+               height=&#34;549&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;여기서 Workspace 탭을 클릭합니다. 이 프로젝트(workspace)에만 적용되는 설정항목이라는 뜻입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg3&#34; srcset=&#34;
+               /vscode-cmake/arg3_hu27dcf0e43bc0a941f885a9e8bbb5dd1a_70248_89aded21624db7e599b13f64312ffbc8.png 400w,
+               /vscode-cmake/arg3_hu27dcf0e43bc0a941f885a9e8bbb5dd1a_70248_13eb3447d52efcc9587d006f0fe4e81b.png 760w,
+               /vscode-cmake/arg3_hu27dcf0e43bc0a941f885a9e8bbb5dd1a_70248_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/arg3_hu27dcf0e43bc0a941f885a9e8bbb5dd1a_70248_89aded21624db7e599b13f64312ffbc8.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;상단 검색창에 &lt;code&gt;cmake.debugConfig&lt;/code&gt;를 검색한 뒤, &lt;u&gt;Edit in settings.json&lt;/u&gt; 부분을 클릭합니다. &lt;code&gt;cmake.debug&lt;/code&gt; 정도만 입력하셔도 바로 뜰 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg4&#34; srcset=&#34;
+               /vscode-cmake/arg4_hub35353a5b53ed0a09d9dc6a0af763b24_87426_76799a240fa2170b3a90649176dbadcb.png 400w,
+               /vscode-cmake/arg4_hub35353a5b53ed0a09d9dc6a0af763b24_87426_748696740cce29f2715b14ab0cbbe055.png 760w,
+               /vscode-cmake/arg4_hub35353a5b53ed0a09d9dc6a0af763b24_87426_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/arg4_hub35353a5b53ed0a09d9dc6a0af763b24_87426_76799a240fa2170b3a90649176dbadcb.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;클릭하시면 바로 다음과 같이 &lt;code&gt;.vscode/settings.json&lt;/code&gt; 폴더 및 파일이 생성되고, settings.json 파일이 열리며, 그 안에 다음 그림과 같은 내용이 자동으로 작성되어 있을 것입니다. (추가로 다른 내용이 더 쓰여있을 수도 있습니다.)&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg5&#34; srcset=&#34;
+               /vscode-cmake/arg5_hu78284473b6cc163dc60de15408c7f415_67837_ccbdd3d38192395f02b0ca3a07701225.png 400w,
+               /vscode-cmake/arg5_hu78284473b6cc163dc60de15408c7f415_67837_31882fb69a1599a520fda4d0b80951be.png 760w,
+               /vscode-cmake/arg5_hu78284473b6cc163dc60de15408c7f415_67837_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/arg5_hu78284473b6cc163dc60de15408c7f415_67837_ccbdd3d38192395f02b0ca3a07701225.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이제 이 안에 &lt;code&gt;args&lt;/code&gt; 항목을 만들어 command line argument를 설정합니다. 실행파일명 뒤에 이어질 추가적인 argument들만 적어주면 되며, 각 항목은 &amp;ldquo;&amp;quot;(double-quote)로 묶어주고 ,(comma)로 분리해주면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg6&#34; srcset=&#34;
+               /vscode-cmake/arg6_hu0c67c12b1cda36a60f2a210f9ef8732f_56962_b6ae80161893bbf02e68257e051ba56f.png 400w,
+               /vscode-cmake/arg6_hu0c67c12b1cda36a60f2a210f9ef8732f_56962_c9ff1596f853439e269c3e58da89d3ba.png 760w,
+               /vscode-cmake/arg6_hu0c67c12b1cda36a60f2a210f9ef8732f_56962_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/arg6_hu0c67c12b1cda36a60f2a210f9ef8732f_56962_b6ae80161893bbf02e68257e051ba56f.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이제 저장한 뒤, 실행이나 디버깅을 해보면 다음과 같이 command line argument가 잘 반영된 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;arg7&#34; srcset=&#34;
+               /vscode-cmake/arg7_hu72e75db658e05d1b13d2f3cc7bc1f901_53536_a83fb439045a7589d4e825bdef5b78dc.png 400w,
+               /vscode-cmake/arg7_hu72e75db658e05d1b13d2f3cc7bc1f901_53536_193e7f64d30ffcba4b84ba7d57d00d13.png 760w,
+               /vscode-cmake/arg7_hu72e75db658e05d1b13d2f3cc7bc1f901_53536_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cmake/arg7_hu72e75db658e05d1b13d2f3cc7bc1f901_53536_a83fb439045a7589d4e825bdef5b78dc.png&#34;
+               width=&#34;760&#34;
+               height=&#34;548&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://chocolatey.org/packages/cmake&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://chocolatey.org/packages/cmake&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://vector-of-bool.github.io/docs/vscode-cmake-tools/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://vector-of-bool.github.io/docs/vscode-cmake-tools/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com/docs/getstarted/settings&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://code.visualstudio.com/docs/getstarted/settings&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Visual Studio Code에서 GCC/MinGW 기반 C, C&#43;&#43; 환경 설정하기</title>
+      <link>https://evandde.github.io/vscode-cpp/</link>
+      <pubDate>Thu, 12 Nov 2020 16:40:31 +0900</pubDate>
+      <guid>https://evandde.github.io/vscode-cpp/</guid>
+      <description>&lt;p&gt;VSCode에서 C 언어 및 C++ 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;컴파일러디버거-설치&#34;&gt;컴파일러/디버거 설치&lt;/h2&gt;
+&lt;p&gt;VSCode는 C 언어용 컴파일러나 디버거를 자체적으로 내장하고있지 않습니다. 때문에 C 언어를 VSCode에서 사용하려면, 컴파일러와 디버거를 직접 설치하고 이를 연동해주는 작업이 필요합니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    Extension을 설치한다고 해서 컴파일러나 디버거가 설치되는 것은 아닙니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;windows를-이용하는-경우&#34;&gt;Windows를 이용하는 경우&lt;/h3&gt;
+&lt;p&gt;Windows는 기본적으로 C 언어용 컴파일러나 디버거를 제공하지 않습니다. 따라서, 우리가 직접 설치해주어야 합니다.&lt;/p&gt;
+&lt;p&gt;이 글에서는 &lt;strong&gt;&lt;a href=&#34;http://www.mingw.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MinGW&lt;/a&gt;&lt;/strong&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;를 이용하도록 하겠습니다. MinGW는 chocolatey를 통해 쉽게 설치할 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;choco install mingw -y
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&lt;b&gt; 2021년 6월 28일 수정&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;2021년 1월 12일에 chocolatey repo에 등록된 mingw-w64 10.2.0 버전에서 gdb.exe가 누락된 사항이 발견되었습니다.&lt;/p&gt;
+&lt;p&gt;현 시점에서는 Chocolatey로 MinGW를 설치 시 다음과 같이 입력하여 이전 버전인 8.1.0 버전으로 설치하시기를 권장합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;choco install mingw -y --version=8.1.0
+&lt;/code&gt;&lt;/pre&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;mingw&#34; srcset=&#34;
+               /vscode-cpp/mingw_hud2d42d6840e6382d3092f466b6f083f0_69601_4a0158719c3551a2d375ef1b2c35ad80.png 400w,
+               /vscode-cpp/mingw_hud2d42d6840e6382d3092f466b6f083f0_69601_59651aa1a8ad4756dfd14517fcece68f.png 760w,
+               /vscode-cpp/mingw_hud2d42d6840e6382d3092f466b6f083f0_69601_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/mingw_hud2d42d6840e6382d3092f466b6f083f0_69601_4a0158719c3551a2d375ef1b2c35ad80.png&#34;
+               width=&#34;760&#34;
+               height=&#34;483&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;다음 명령어를 통해 설치가 잘 되었는지 확인해보세요.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;gcc --version
+gdb --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;Chocolatey 특성 상, 설치한 직후에는 &lt;code&gt;gcc&lt;/code&gt;, &lt;code&gt;gdb&lt;/code&gt; 명령어를 인식하지 못할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;PowerShell을 껐다 켜거나, &lt;code&gt;refreshenv&lt;/code&gt; 명령어를 활용하세요.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;gccgdb_version_windows&#34; srcset=&#34;
+               /vscode-cpp/gccgdb_version_windows_hue37915aa608bae256dd62c3c3068b260_49032_83dff4d7e4d41ad76cb8eed09febf5a3.png 400w,
+               /vscode-cpp/gccgdb_version_windows_hue37915aa608bae256dd62c3c3068b260_49032_42175046d4dad78409fa82d381a5d8ac.png 760w,
+               /vscode-cpp/gccgdb_version_windows_hue37915aa608bae256dd62c3c3068b260_49032_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/gccgdb_version_windows_hue37915aa608bae256dd62c3c3068b260_49032_83dff4d7e4d41ad76cb8eed09febf5a3.png&#34;
+               width=&#34;760&#34;
+               height=&#34;437&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;linux를-이용하는-경우&#34;&gt;Linux를 이용하는 경우&lt;/h3&gt;
+&lt;p&gt;대부분의 Linux 배포판은 gcc&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;와 gdb&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;를 기본적으로 제공합니다.&lt;/p&gt;
+&lt;p&gt;터미널을 켜서 다음 명령어를 입력했을 때 버전 정보가 정상적으로 출력되면 설치되어 있는 것입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gcc --version
+gdb --version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;gccgdb_version_linux&#34; srcset=&#34;
+               /vscode-cpp/gccgdb_version_linux_hu31f77190b1307c8e73ffe9e2ec5e112c_23718_7755913bd0b1090e437853543509463f.png 400w,
+               /vscode-cpp/gccgdb_version_linux_hu31f77190b1307c8e73ffe9e2ec5e112c_23718_4101639bc24c33d29948d3a304ae3381.png 760w,
+               /vscode-cpp/gccgdb_version_linux_hu31f77190b1307c8e73ffe9e2ec5e112c_23718_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/gccgdb_version_linux_hu31f77190b1307c8e73ffe9e2ec5e112c_23718_7755913bd0b1090e437853543509463f.png&#34;
+               width=&#34;707&#34;
+               height=&#34;248&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;만약 설치가 되어있지 않다면, 패키지 관리자인 &lt;code&gt;apt&lt;/code&gt;나 &lt;code&gt;yum&lt;/code&gt;을 이용하여 설치하시기를 권장합니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;extension-설치&#34;&gt;Extension 설치&lt;/h2&gt;
+&lt;p&gt;이제 VSCode에서 extension을 설치할 차례입니다.&lt;/p&gt;
+&lt;p&gt;VSCode를 켜고 extension 탭으로 간 뒤 &amp;ldquo;&lt;strong&gt;c&lt;/strong&gt;&amp;ldquo;를 검색하세요. 맨 위에 C/C++ extension이 뜰 것입니다. Install 버튼을 눌러 설치합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;extension_c&#34; srcset=&#34;
+               /vscode-cpp/extension_c_hu115aacab3740fa41f6835fd9d1b9086c_54413_6effe4ec295e401b02f8e8d25bd8cb0e.png 400w,
+               /vscode-cpp/extension_c_hu115aacab3740fa41f6835fd9d1b9086c_54413_d7e0729455c36626dfc5123f0d498ede.png 760w,
+               /vscode-cpp/extension_c_hu115aacab3740fa41f6835fd9d1b9086c_54413_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/extension_c_hu115aacab3740fa41f6835fd9d1b9086c_54413_6effe4ec295e401b02f8e8d25bd8cb0e.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;테스트&#34;&gt;테스트&lt;/h2&gt;
+&lt;p&gt;이제 제대로 설치가 되었는지 확인할 시간입니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    경로에 &lt;strong&gt;한글&lt;/strong&gt;이 있으면 제대로 동작하지 않습니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;코드-작성&#34;&gt;코드 작성&lt;/h3&gt;
+&lt;p&gt;Explorer 탭으로 이동하여 적당한 경로에 &lt;b&gt;main.cpp&lt;/b&gt;라는 새 파일을 만들어주고 다음과 같이 작성하도록 하겠습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;iostream&amp;gt;
+
+int main(int argc, char **)
+{
+    std::cout &amp;lt;&amp;lt; &amp;quot;Hello, World!&amp;quot; &amp;lt;&amp;lt; std::endl;
+    std::cout &amp;lt;&amp;lt; &amp;quot;argc: &amp;quot; &amp;lt;&amp;lt; argc &amp;lt;&amp;lt; std::endl;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;codewriting&#34; srcset=&#34;
+               /vscode-cpp/codewriting_hu5265b2e32d201fa8dc1d8701db5e3ce3_68027_a5033151e66c2286b7236c5783188134.png 400w,
+               /vscode-cpp/codewriting_hu5265b2e32d201fa8dc1d8701db5e3ce3_68027_0ab0e51abc4a2b55beedf2dbf77c7bad.png 760w,
+               /vscode-cpp/codewriting_hu5265b2e32d201fa8dc1d8701db5e3ce3_68027_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/codewriting_hu5265b2e32d201fa8dc1d8701db5e3ce3_68027_a5033151e66c2286b7236c5783188134.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;실행&#34;&gt;실행&lt;/h3&gt;
+&lt;p&gt;다음 그림과 같이 실행하시면 됩니다. 동일 폴더 내에 &lt;b&gt;.vscode&lt;/b&gt;라는 폴더가 생기고, 그 안에 컴파일 옵션에 관한 설정이 적힌 &lt;code&gt;.json&lt;/code&gt; 파일이 자동으로 생성될 것입니다.&lt;/p&gt;
+&lt;p&gt;이후 아래쪽의 &lt;strong&gt;TERMINAL&lt;/strong&gt; 탭을 확인하시면, 우리가 작성한대로 두 줄이 화면에 출력되는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;C++이 아닌 &lt;strong&gt;C 언어&lt;/strong&gt;로 작성하였다면, 세 번째 그림에서 g++.exe대신 &lt;b&gt;gcc.exe를 선택&lt;/b&gt;하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;아마 gcc.exe만 선택 가능하게끔 뜰 것입니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run1&#34; srcset=&#34;
+               /vscode-cpp/run1_hu52a9019c1184d2b9fd9aab9c9d8c95e4_58870_a4ec28ad4af3a5047c00231403a0e7e9.png 400w,
+               /vscode-cpp/run1_hu52a9019c1184d2b9fd9aab9c9d8c95e4_58870_a5ad4c2e597002ee2ef1f7428efc0a80.png 760w,
+               /vscode-cpp/run1_hu52a9019c1184d2b9fd9aab9c9d8c95e4_58870_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/run1_hu52a9019c1184d2b9fd9aab9c9d8c95e4_58870_a4ec28ad4af3a5047c00231403a0e7e9.png&#34;
+               width=&#34;760&#34;
+               height=&#34;569&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run2&#34; srcset=&#34;
+               /vscode-cpp/run2_hu14425b5936a3daeb9dc20b354bde779a_43119_51d7dca2fb20f88b543e62ce6c7bf337.png 400w,
+               /vscode-cpp/run2_hu14425b5936a3daeb9dc20b354bde779a_43119_aba5919f52ebb7228451c1367ae30f85.png 760w,
+               /vscode-cpp/run2_hu14425b5936a3daeb9dc20b354bde779a_43119_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/run2_hu14425b5936a3daeb9dc20b354bde779a_43119_51d7dca2fb20f88b543e62ce6c7bf337.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run3&#34; srcset=&#34;
+               /vscode-cpp/run3_hub8f211d0c8f8ef855494fea902468013_55193_222d1f1cfe70ebceb10d717aaff40b1e.png 400w,
+               /vscode-cpp/run3_hub8f211d0c8f8ef855494fea902468013_55193_e28eb11faef440a2c60c8db33010d87a.png 760w,
+               /vscode-cpp/run3_hub8f211d0c8f8ef855494fea902468013_55193_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/run3_hub8f211d0c8f8ef855494fea902468013_55193_222d1f1cfe70ebceb10d717aaff40b1e.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run4&#34; srcset=&#34;
+               /vscode-cpp/run4_hue8fd9039d89c9c975cf91efada4036df_114331_633eef85eeb6eaf9f80e8e81717854e7.png 400w,
+               /vscode-cpp/run4_hue8fd9039d89c9c975cf91efada4036df_114331_82f36961dec929f382c26db5e7fb7b41.png 760w,
+               /vscode-cpp/run4_hue8fd9039d89c9c975cf91efada4036df_114331_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/run4_hue8fd9039d89c9c975cf91efada4036df_114331_633eef85eeb6eaf9f80e8e81717854e7.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;실행을 하실 때, &lt;b&gt;main.cpp가 활성화된 상태에서 실행&lt;/b&gt;하세요.&lt;/p&gt;
+&lt;p&gt;이 방법을 통해 자동으로 만들어진 launch.json 파일은 &lt;b&gt;&amp;ldquo;활성화된 파일의 이름.exe&amp;rdquo;&lt;/b&gt;를 실행합니다.&lt;/p&gt;
+&lt;p&gt;예를들어 launch.json을 보면서 실행 버튼을 누르면, launch.exe를 찾아 실행하려고 하기 때문에 에러가 발생합니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;디버깅&#34;&gt;디버깅&lt;/h3&gt;
+&lt;p&gt;다음 그림과 같이 진행하여 디버깅도 가능합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug1&#34; srcset=&#34;
+               /vscode-cpp/debug1_huee9e2a433bb92ff56aea0e3873d5958d_74913_f8f6163795764a377baf486c395e79d5.png 400w,
+               /vscode-cpp/debug1_huee9e2a433bb92ff56aea0e3873d5958d_74913_4a13082008f3fa5b3677afc6c55a95fb.png 760w,
+               /vscode-cpp/debug1_huee9e2a433bb92ff56aea0e3873d5958d_74913_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/debug1_huee9e2a433bb92ff56aea0e3873d5958d_74913_f8f6163795764a377baf486c395e79d5.png&#34;
+               width=&#34;760&#34;
+               height=&#34;572&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug2&#34; srcset=&#34;
+               /vscode-cpp/debug2_hua50440bfff40a6da8f2d0888a89a4c65_86088_8082201454e6d7adf8e0275a65760b4b.png 400w,
+               /vscode-cpp/debug2_hua50440bfff40a6da8f2d0888a89a4c65_86088_6e19ee49020d9d703822d2f3e95a209a.png 760w,
+               /vscode-cpp/debug2_hua50440bfff40a6da8f2d0888a89a4c65_86088_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/debug2_hua50440bfff40a6da8f2d0888a89a4c65_86088_8082201454e6d7adf8e0275a65760b4b.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug3&#34; srcset=&#34;
+               /vscode-cpp/debug3_hu75ddfbdaf40c5f8341057da80ea90c3b_78867_7c673a3e3775560aebe55755d1d3cf4d.png 400w,
+               /vscode-cpp/debug3_hu75ddfbdaf40c5f8341057da80ea90c3b_78867_3594c91c136da35faa9869353eb8f325.png 760w,
+               /vscode-cpp/debug3_hu75ddfbdaf40c5f8341057da80ea90c3b_78867_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/debug3_hu75ddfbdaf40c5f8341057da80ea90c3b_78867_7c673a3e3775560aebe55755d1d3cf4d.png&#34;
+               width=&#34;760&#34;
+               height=&#34;572&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug4&#34; srcset=&#34;
+               /vscode-cpp/debug4_huee020204c52e58149d7df10f808c06f2_80913_194ef73fe7ad9214105c6e61f9f5d468.png 400w,
+               /vscode-cpp/debug4_huee020204c52e58149d7df10f808c06f2_80913_cbd4f38336d2b2e47632a78886e9598a.png 760w,
+               /vscode-cpp/debug4_huee020204c52e58149d7df10f808c06f2_80913_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/debug4_huee020204c52e58149d7df10f808c06f2_80913_194ef73fe7ad9214105c6e61f9f5d468.png&#34;
+               width=&#34;760&#34;
+               height=&#34;569&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;debug5&#34; srcset=&#34;
+               /vscode-cpp/debug5_hu212bbef05a0c2737d6ce7389bf4327f6_62005_0c4b81f052bd1dc318e5282dee7396c9.png 400w,
+               /vscode-cpp/debug5_hu212bbef05a0c2737d6ce7389bf4327f6_62005_cdc4d9c7e3ede44e1c23f05e3b37d6a9.png 760w,
+               /vscode-cpp/debug5_hu212bbef05a0c2737d6ce7389bf4327f6_62005_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/debug5_hu212bbef05a0c2737d6ce7389bf4327f6_62005_0c4b81f052bd1dc318e5282dee7396c9.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;command-line-argument-설정&#34;&gt;Command line argument 설정&lt;/h3&gt;
+&lt;p&gt;실행하거나 디버깅할 때, command line argument를 넘겨주도록 설정하고 싶을 때가 있습니다.&lt;/p&gt;
+&lt;p&gt;이 부분은 아까 자동으로 만들어졌던 &lt;b&gt;launch.json&lt;/b&gt; 파일의 &lt;b&gt;args 값&lt;/b&gt;을 통해 설정합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;args1&#34; srcset=&#34;
+               /vscode-cpp/args1_hu7f277c1f4935011f99e87d9e4a095153_86943_f1f0c25542760007db66132373fa41b6.png 400w,
+               /vscode-cpp/args1_hu7f277c1f4935011f99e87d9e4a095153_86943_2b113fd69436ef12692e5f62acd18104.png 760w,
+               /vscode-cpp/args1_hu7f277c1f4935011f99e87d9e4a095153_86943_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/args1_hu7f277c1f4935011f99e87d9e4a095153_86943_f1f0c25542760007db66132373fa41b6.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;args2&#34; srcset=&#34;
+               /vscode-cpp/args2_hu5bc6b5ad26b7135c3411762cb190937b_93732_eda1308cdefe5b26629a2a19b79695d8.png 400w,
+               /vscode-cpp/args2_hu5bc6b5ad26b7135c3411762cb190937b_93732_6afbd584d11344d7fe3b77dbf5529628.png 760w,
+               /vscode-cpp/args2_hu5bc6b5ad26b7135c3411762cb190937b_93732_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/args2_hu5bc6b5ad26b7135c3411762cb190937b_93732_eda1308cdefe5b26629a2a19b79695d8.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;args3&#34; srcset=&#34;
+               /vscode-cpp/args3_hub793b610b49b9b0002b9d7beb42a089a_69712_c5b24194fba8437dff5c4831ccfdb6b7.png 400w,
+               /vscode-cpp/args3_hub793b610b49b9b0002b9d7beb42a089a_69712_df436a76155a523c2f7747a29b3176af.png 760w,
+               /vscode-cpp/args3_hub793b610b49b9b0002b9d7beb42a089a_69712_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/args3_hub793b610b49b9b0002b9d7beb42a089a_69712_c5b24194fba8437dff5c4831ccfdb6b7.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;args4&#34; srcset=&#34;
+               /vscode-cpp/args4_hu7ee3fb4b707b5e5725bd0a8797709d8f_65884_992be4acd52b0aa4d47f949a2f1dfc20.png 400w,
+               /vscode-cpp/args4_hu7ee3fb4b707b5e5725bd0a8797709d8f_65884_6a30e4380661d5d3180d92bc0238f396.png 760w,
+               /vscode-cpp/args4_hu7ee3fb4b707b5e5725bd0a8797709d8f_65884_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/vscode-cpp/args4_hu7ee3fb4b707b5e5725bd0a8797709d8f_65884_992be4acd52b0aa4d47f949a2f1dfc20.png&#34;
+               width=&#34;760&#34;
+               height=&#34;620&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Minimalist GNU for Windows. 마이크로소프트 Windows로 포팅한 GNU 소프트웨어 도구 모음&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;GNU Compiler Collection. 혹은 그 중 하나인 GNU C Compiler. C 언어 컴파일러의 일종.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;GNU Debugger. C 언어 디버거의 일종.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

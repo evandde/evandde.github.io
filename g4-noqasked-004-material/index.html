@@ -1,131 +1,934 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Geant4 무작정 따라하기 - 4. 물질 정의하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 4. 물질 정의하기" />
-<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-004-material/" />
-<meta property="article:published_time" content="2021-06-15T09:26:01+09:00" />
-<meta property="article:modified_time" content="2021-06-15T09:26:01+09:00" />
+<!DOCTYPE html><html lang="ko-kr" >
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Geant4 무작정 따라하기 - 4. 물질 정의하기"/>
-<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다."/>
-<meta name="application-name" content="EvaNote">
-<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-004-material/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-003-solid/" /><link rel="next" href="https://evandde.github.io/g4-noqasked-005-clhepclasses/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Geant4 무작정 따라하기 - 4. 물질 정의하기",
-        "inLanguage": "ko-kr",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/evandde.github.io\/g4-noqasked-004-material\/"
-        },"genre": "posts","keywords": "Geant4, G4Material, G4LogicalVolume, G4Element, NIST, G4Isotope","wordcount":  3106 ,
-        "url": "https:\/\/evandde.github.io\/g4-noqasked-004-material\/","datePublished": "2021-06-15T09:26:01+09:00","dateModified": "2021-06-15T09:26:01+09:00","publisher": {
-            "@type": "Organization",
-            "name": "Evan Kim"},"author": {
-                "@type": "Person",
-                "name": "Evan Kim"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/g4-noqasked-004-material/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.75edb75c66f2d6f0a9a146b10c65f58e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/g4-noqasked-004-material/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/g4-noqasked-004-material/" />
+  <meta property="og:title" content="Geant4 무작정 따라하기 - 4. 물질 정의하기 | EvaNote" />
+  <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-06-15T09:26:01&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-06-15T09:26:01&#43;09:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Geant4 무작정 따라하기 - 4. 물질 정의하기 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="883f4709ce30957a0d4803be91caf87b" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
         </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-3" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        취소
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">목차</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 4. 물질 정의하기</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-15">2021-06-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 3106&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 7분&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>목차</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          지오메트리
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
+    </div>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>Courses</a></li>
+      </ul>
+
+      
+      
+        
+          
+        
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-000-opening/">들어가며</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-001-clonetest/">템플릿 코드 실행하기</a></li>
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-geometry/">지오메트리</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-002-detcon/">지오메트리 정의 기본이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-003-solid/">지오메트리 모양 만들기</a></li>
+
+
+
+  <li class="active"><a href="/g4-noqasked-004-material/">물질 정의 및 사용</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-005-clhepclasses/">위치, 회전을 정의하는 법</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-006-phyvol/">지오메트리 배치하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-verbose/">Verbose</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-007-trkvb/">기본용어와 Tracking Verbose</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-primgen/">선원항</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-008-prigen/">선원항을 정의하는 법</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-009-randtool/">난수 기반 선원항 정의하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-scoring/">스코어링</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-010-scoringtheory/">스코어링 이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-011-scoring/">스코어링 구현하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-012-writingrslt1/">결과를 Histogram으로 기록하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-013-writingrslt2/">결과를 Ntuple로 기록하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-closing/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-014-closing/">마치며</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
   <ul>
     <li><a href="#geant4의-물질">Geant4의 물질</a></li>
     <li><a href="#geant4-material-database">Geant4 material database</a>
@@ -138,63 +941,174 @@
     </li>
     <li><a href="#logical-volume-정의하기">Logical Volume 정의하기</a></li>
     <li><a href="#정리">정리</a></li>
-    <li><a href="#더보기">더보기</a></li>
   </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다.</p>
+</nav>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        Courses
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/">
+      
+        Geant4 무작정 따라하기
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/g4-noqasked-geometry/">
+      
+        지오메트리
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        물질 정의 및 사용
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>Geant4 무작정 따라하기 - 4. 물질 정의하기</h1>
+
+          <div class="article-style">
+            <p>Geant4 무작정 따라하기 시리즈의 네번째. 여러가지 물질을 정의하는 방법을 알아보고, 이를 이용하여 LogicalVolume을 정의해 봅니다.</p>
 <hr>
 <h2 id="geant4의-물질">Geant4의 물질</h2>
 <p>Geant4에서 물질은 다음의 계층을 따라 정의됩니다.</p>
-<div class="mermaid" id="id-1"></div>
+<pre><code class="language-mermaid">graph LR
+A --&gt; B --&gt; C --&gt; C
+A[Isotope]
+B[Element]
+C[Material]
+</code></pre>
 <p>Isotope를 조합하여 Element를 정의하고, Element를 조합하여 Material을 정의합니다. 또한, 여러 Material을 섞어서 새로운 Material을 만들 수도 있습니다.</p>
 <p>하지만 Isotope, Element, Material 클래스에 대해 모든걸 설명하기에는 너무 글이 길어지므로, 여기서는 <strong>Geant4에서 기본적으로 제공하는 물질 DB에서 원하는 물질을 가져와 사용하는 법</strong>만 다루겠습니다.</p>
+<hr>
 <h2 id="geant4-material-database">Geant4 material database</h2>
-<p>Geant4는 NIST(National Institute of Standards and Technology)의 <a href="http://physics.nist.gov/PhysRefData/Compositions/index.html" target="_blank" rel="noopener noreffer">원자량 및 동위원소조성비 데이터</a>를 바탕으로 제작해둔 물질 DB를 제공하고 있습니다.</p>
+<p>Geant4는 NIST(National Institute of Standards and Technology)의 <a href="http://physics.nist.gov/PhysRefData/Compositions/index.html" target="_blank" rel="noopener">원자량 및 동위원소조성비 데이터</a>를 바탕으로 제작해둔 물질 DB를 제공하고 있습니다.</p>
 <h3 id="물질-목록-확인하기">물질 목록 확인하기</h3>
-<p>Geant4가 제공하는 material database의 목록은 <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html" target="_blank" rel="noopener noreffer">이 링크</a>에서 확인할 수 있습니다.</p>
+<p>Geant4가 제공하는 material database의 목록은 <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html" target="_blank" rel="noopener">이 링크</a>에서 확인할 수 있습니다.</p>
 <ul>
 <li>
-<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#simple-materials-elements" target="_blank" rel="noopener noreffer">Simple Materials (Elements)</a></p>
+<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#simple-materials-elements" target="_blank" rel="noopener">Simple Materials (Elements)</a></p>
 <p>단일 원소로 구성된 물질의 목록</p>
 </li>
 <li>
-<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#nist-compounds" target="_blank" rel="noopener noreffer">NIST Compounds</a></p>
+<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#nist-compounds" target="_blank" rel="noopener">NIST Compounds</a></p>
 <p>화합물의 목록. 표의 형태는 두가지로, 각각을 읽는 법은 다음과 같음</p>
 <ul>
 <li>
 <p>조성비가 실수로 표시된 경우: 질량비</p>
-<a class="lightgallery" href="/g4-noqasked-004-material/01_g4matcompound.png" title="/g4-noqasked-004-material/01_g4matcompound.png" data-thumbnail="/g4-noqasked-004-material/01_g4matcompound.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="01_g4matcompound.png"
-            data-srcset="/g4-noqasked-004-material/01_g4matcompound.png, 01_g4matcompound.png 1.5x, /g4-noqasked-004-material/01_g4matcompound.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-004-material/01_g4matcompound.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="01_g4matcompound" srcset="
+               /g4-noqasked-004-material/01_g4matcompound_huaf21c2b02a7c831d026db0f866a2bcfa_31679_490a746cbbbd6d95d20ac55203df8d8d.png 400w,
+               /g4-noqasked-004-material/01_g4matcompound_huaf21c2b02a7c831d026db0f866a2bcfa_31679_64c751ac54b4ea8a07ea6d3152fa96c0.png 760w,
+               /g4-noqasked-004-material/01_g4matcompound_huaf21c2b02a7c831d026db0f866a2bcfa_31679_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-004-material/01_g4matcompound_huaf21c2b02a7c831d026db0f866a2bcfa_31679_490a746cbbbd6d95d20ac55203df8d8d.png"
+               width="760"
+               height="298"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 </li>
 <li>
 <p>조성비가 정수로 표시된 경우: 개수비</p>
-<a class="lightgallery" href="/g4-noqasked-004-material/02_g4matcompound.png" title="/g4-noqasked-004-material/02_g4matcompound.png" data-thumbnail="/g4-noqasked-004-material/02_g4matcompound.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="02_g4matcompound.png"
-            data-srcset="/g4-noqasked-004-material/02_g4matcompound.png, 02_g4matcompound.png 1.5x, /g4-noqasked-004-material/02_g4matcompound.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-004-material/02_g4matcompound.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="02_g4matcompound" srcset="
+               /g4-noqasked-004-material/02_g4matcompound_hu8d4ac807cbc3459d3b8de6b1bc15d292_22425_11ba9a285b250a224078f637c38bec57.png 400w,
+               /g4-noqasked-004-material/02_g4matcompound_hu8d4ac807cbc3459d3b8de6b1bc15d292_22425_91b6dd2b745e7beb0a0908121015ac41.png 760w,
+               /g4-noqasked-004-material/02_g4matcompound_hu8d4ac807cbc3459d3b8de6b1bc15d292_22425_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-004-material/02_g4matcompound_hu8d4ac807cbc3459d3b8de6b1bc15d292_22425_11ba9a285b250a224078f637c38bec57.png"
+               width="760"
+               height="210"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 </li>
 </ul>
 </li>
 <li>
-<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#hep-and-nuclear-materials" target="_blank" rel="noopener noreffer">HEP and Nuclear Materials</a></p>
+<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#hep-and-nuclear-materials" target="_blank" rel="noopener">HEP and Nuclear Materials</a></p>
 </li>
 <li>
-<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#space-iss-materials" target="_blank" rel="noopener noreffer">Space (ISS) Materials</a></p>
+<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#space-iss-materials" target="_blank" rel="noopener">Space (ISS) Materials</a></p>
 </li>
 <li>
-<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#bio-chemical-materials" target="_blank" rel="noopener noreffer">Bio-Chemical Materials</a></p>
+<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#bio-chemical-materials" target="_blank" rel="noopener">Bio-Chemical Materials</a></p>
 <p>특정 분야에서 주로 사용되는 물질들의 목록. 읽는 법은 동일</p>
 </li>
 </ul>
@@ -209,71 +1123,36 @@
 <p>이 외에도 다양한 물질이 있으니 찾아보시기 바랍니다.</p>
 <h3 id="목록에-있는-물질-정의하기">목록에 있는 물질 정의하기</h3>
 <p>여러분이 원하는 물질을 위 목록에서 찾으셨다면, <strong>G4NistManager</strong>클래스의 <strong>FindOrBuildMaterial() 함수</strong>를 이용해 해당 물질을 정의할 수 있습니다. 이 함수의 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">FindOrBuildMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
-                                 <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> 
-                                 <span class="n">G4bool</span> <span class="n">warning</span><span class="o">=</span><span class="nb">false</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<pre><code class="language-cpp">G4Material *FindOrBuildMaterial (const G4String &amp;name, 
+                                 G4bool isotopes=true, 
+                                 G4bool warning=false);
+</code></pre>
+<ul>
 <li>name: Geant4 Material Database에서 가져올 물질의 이름. 위 링크에서 확인한 물질의 이름을 <strong>대소문자까지 맞추어 정확하게 입력</strong>해야 함</li>
 <li><em>isotopes: <strong>입력하지 않아도 되는 인자</strong>. 내부 소스코드를 뜯어보면, 사실 아예 이용되지 않는 변수임</em></li>
 <li><em>warning: <strong>입력하지 않아도 되는 인자</strong>. 물질 정의 작업이 정상적으로 이루어지지 않은 경우 경고문구를 띄울지 여부를 정의하는 인자. 기본값은 false</em></li>
 </ul>
 <p>예를 들어 NIST Compounds 목록에 있는 G4_AIR (공기)를 정의하고자 하는 경우에는 다음과 같이 입력합니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">matAir</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_AIR&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>여기서 G4NistManager::Instance() 부분은 G4NistManager 클래스의 객체를 호출해오는 명령어입니다. Geant4 물질 DB에서 물질을 가져와 정의할때마다 이 객체가 필요하기 때문에 매번 호출하기보다는, <strong>이 객체를 따로 정의해두고 가져다 쓰는 방식을 주로 이용</strong>합니다. 그러면 또다른 물질을 정의할 때에 G4NistManager 객체를 다시 호출하지 않아도 되기 때문입니다.</p>
+<pre><code class="language-cpp">auto matAir = G4NistManager::Instance()-&gt;FindOrBuildMaterial(&quot;G4_AIR&quot;);
+</code></pre>
+<p>여기서 G4NistManager::Instance() 부분은 G4NistManager 클래스의 객체를 호출해오는 명령어입니다. Geant4 물질 DB에서 물질을 가져와 정의할때마다 이 객체가 필요하기 때문에 매번 호출하기보다는, <strong>이 객체를 따로 정의해두고 가져다 쓰는 방식을 주로 이용</strong>합니다. 그러면 또다른 물질을 정의할 때에 G4NistManager 객체를 다시 호출하지 않아도 되기 때문입니다.</p>
 <p>예를 들어 G4_AIR (공기)에 이어, G4_WATER (물)도 정의한다고 하면 다음과 같이 입력할 수 있습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
-<span class="k">auto</span> <span class="n">matAir</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_AIR&#34;</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">matWater</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_WATER&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="nist-db의-원소로-화합물-만들기">NIST DB의 원소로 화합물 만들기</h3>
+<pre><code class="language-cpp">auto nist = G4NistManager::Instance();
+auto matAir = nist-&gt;FindOrBuildMaterial(&quot;G4_AIR&quot;);
+auto matWater = nist-&gt;FindOrBuildMaterial(&quot;G4_WATER&quot;);
+</code></pre>
+<h3 id="nist-db의-원소로-화합물-만들기">NIST DB의 원소로 화합물 만들기</h3>
 <p>원하는 물질이 Geant4 물질 DB에 없을 수도 있습니다. 이런 경우, 여러분이 NIST DB의 원소를 조합하여 새로운 화합물을 정의할 수 있습니다. 이는 G4NistManager 클래스의 <strong>ConstructNewMaterial() 함수</strong>를 이용하면 됩니다. 함수의 원형은 다음의 두 가지 입니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
-                                  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4String</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">elm</span><span class="p">,</span> 
-                                  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4int</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">nbAtoms</span><span class="p">,</span> 
-                                  <span class="n">G4double</span> <span class="n">dens</span><span class="p">,</span> 
-                                  <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> 
-                                  <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateSolid</span><span class="p">,</span> 
-                                  <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> 
-                                  <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><b>조성비를 <font color = 'red'>개수비</font>로서 입력하고자 할 때 사용합니다.</b></p>
+<pre><code class="language-cpp">G4Material *ConstructNewMaterial (const G4String &amp;name, 
+                                  const std::vector&lt; G4String &gt; &amp;elm, 
+                                  const std::vector&lt; G4int &gt; &amp;nbAtoms, 
+                                  G4double dens, 
+                                  G4bool isotopes=true, 
+                                  G4State state=kStateSolid, 
+                                  G4double temp=NTP_Temperature, 
+                                  G4double pressure=CLHEP::STP_Pressure);
+</code></pre>
+<p><b>조성비를 <font color = 'red'>개수비</font>로서 입력하고자 할 때 사용합니다.</b></p>
 <ul>
 <li>name: 물질의 이름. 자유롭게 적으면 됨</li>
 <li>elm: 원소기호의 목록을 적은 G4String형 벡터. 화합물의 구성원소를 순서대로 적음</li>
@@ -284,29 +1163,16 @@
 <li><em>temp: <strong>입력하지 않아도 되는 인자</strong>. 물질의 온도를 특정하고 싶을 때 사용. 기본값은 NTP_Temperature(약 293.15 K)</em></li>
 <li><em>pressure: <strong>입력하지 않아도 되는 인자</strong>. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)</em></li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="o">*</span><span class="n">ConstructNewMaterial</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
-                                  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4String</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">elm</span><span class="p">,</span> 
-                                  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">G4double</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">weight</span><span class="p">,</span> 
-                                  <span class="n">G4double</span> <span class="n">dens</span><span class="p">,</span> 
-                                  <span class="n">G4bool</span> <span class="n">isotopes</span><span class="o">=</span><span class="nb">true</span><span class="p">,</span> 
-                                  <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateSolid</span><span class="p">,</span> 
-                                  <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> 
-                                  <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><b>조성비를 <font color = 'red'>질량비</font>로서 입력하고자 할 때 사용합니다.</b></p>
+<pre><code class="language-cpp">G4Material *ConstructNewMaterial (const G4String &amp;name, 
+                                  const std::vector&lt; G4String &gt; &amp;elm, 
+                                  const std::vector&lt; G4double &gt; &amp;weight, 
+                                  G4double dens, 
+                                  G4bool isotopes=true, 
+                                  G4State state=kStateSolid, 
+                                  G4double temp=NTP_Temperature, 
+                                  G4double pressure=CLHEP::STP_Pressure);
+</code></pre>
+<p><b>조성비를 <font color = 'red'>질량비</font>로서 입력하고자 할 때 사용합니다.</b></p>
 <ul>
 <li>name: 물질의 이름. 자유롭게 적으면 됨</li>
 <li>elm: 원소기호의 목록을 적은 G4String형 벡터. 화합물의 구성원소를 순서대로 적음</li>
@@ -319,41 +1185,21 @@
 </ul>
 <p>이 함수를 이용할 때 주의할 점은, <strong>원소기호를 적은 벡터의 원소 순서대로 조성비를 적어주어야 한다는 것</strong>입니다.</p>
 <p>예를 들어 물(H2O)을 이 함수를 사용하여 정의하려면 다음과 같이 입력하면 됩니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">G4String</span><span class="o">&gt;</span> <span class="n">elWater</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;H&#34;</span><span class="p">,</span> <span class="s">&#34;O&#34;</span><span class="p">};</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">G4int</span><span class="o">&gt;</span> <span class="n">nbWater</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
-<span class="k">auto</span> <span class="n">matWater</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">ConstructNewMaterial</span><span class="p">(</span><span class="s">&#34;Water&#34;</span><span class="p">,</span> <span class="n">elWater</span><span class="p">,</span> <span class="n">nbWater</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">*</span> <span class="n">g</span> <span class="o">/</span> <span class="n">cm3</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="n">kStateLiquid</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="여러가지-물질로-혼합물-정의하기">여러가지 물질로 혼합물 정의하기</h3>
+<pre><code class="language-cpp">auto nist = G4NistManager::Instance();
+std::vector&lt;G4String&gt; elWater = {&quot;H&quot;, &quot;O&quot;};
+std::vector&lt;G4int&gt; nbWater = {2, 1};
+auto matWater = nist-&gt;ConstructNewMaterial(&quot;Water&quot;, elWater, nbWater, 1. * g / cm3, true, kStateLiquid);
+</code></pre>
+<h3 id="여러가지-물질로-혼합물-정의하기">여러가지 물질로 혼합물 정의하기</h3>
 <p>물질들을 합쳐 놓은 혼합물을 정의하는 일이 필요할 수도 있을 것입니다. 이런 경우에는 G4Material 클래스의 생성자와, G4Material 클래스의 AddMaterial() 함수를 이용하면 됩니다. 각각의 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4Material</span> <span class="p">(</span><span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
-            <span class="n">G4double</span> <span class="n">density</span><span class="p">,</span> 
-            <span class="n">G4int</span> <span class="n">nComponents</span><span class="p">,</span> 
-            <span class="n">G4State</span> <span class="n">state</span><span class="o">=</span><span class="n">kStateUndefined</span><span class="p">,</span> 
-            <span class="n">G4double</span> <span class="n">temp</span><span class="o">=</span><span class="n">NTP_Temperature</span><span class="p">,</span> 
-            <span class="n">G4double</span> <span class="n">pressure</span><span class="o">=</span><span class="n">CLHEP</span><span class="o">::</span><span class="n">STP_Pressure</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>G4Material의 생성자 중, 원소/물질의 조성비를 바탕으로 정의하는 데에 사용하는 생성자</strong></p>
+<pre><code class="language-cpp">G4Material (const G4String &amp;name, 
+            G4double density, 
+            G4int nComponents, 
+            G4State state=kStateUndefined, 
+            G4double temp=NTP_Temperature, 
+            G4double pressure=CLHEP::STP_Pressure);
+</code></pre>
+<p><strong>G4Material의 생성자 중, 원소/물질의 조성비를 바탕으로 정의하는 데에 사용하는 생성자</strong></p>
 <ul>
 <li>name: 물질의 이름. 자유롭게 적으면 됨</li>
 <li>density: 물질의 밀도</li>
@@ -362,69 +1208,36 @@
 <li><em>temp: <strong>입력하지 않아도 되는 인자</strong>. 물질의 온도를 특정하고 싶을 때 사용. 기본값은 NTP_Temperature(약 293.15 K)</em></li>
 <li><em>pressure: <strong>입력하지 않아도 되는 인자</strong>. 물질의 압력을 특정하고 싶을 때 사용. 기본값은 CLHEP::STP_Pressure(1 atm)</em></li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">AddMaterial</span> <span class="p">(</span><span class="n">G4Material</span> <span class="o">*</span><span class="n">material</span><span class="p">,</span> 
-                  <span class="n">G4double</span> <span class="n">fraction</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<pre><code class="language-cpp">void AddMaterial (G4Material *material, 
+                  G4double fraction);
+</code></pre>
+<ul>
 <li>material: 구성요소가 될 물질에 해당하는 G4Material 객체의 포인터</li>
 <li>fraction: 해당 물질의 조성비. <strong>질량비</strong>로 입력</li>
 </ul>
 <p>예를 들어 20% 농도의 소금물을 정의한다면 다음과 같이 입력하면 됩니다. (소금질량 : 물질량 = 20 : 80일 때 NTP(Normal Temperature Pressure) 조건에서 1.147 gcc로 알려져 있음)</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">G4String</span><span class="o">&gt;</span> <span class="n">elNaCl</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;Na&#34;</span><span class="p">,</span> <span class="s">&#34;Cl&#34;</span><span class="p">};</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">G4int</span><span class="o">&gt;</span> <span class="n">nbNaCl</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
-<span class="k">auto</span> <span class="n">matNaCl</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">ConstructNewMaterial</span><span class="p">(</span><span class="s">&#34;NaCl&#34;</span><span class="p">,</span> <span class="n">elNaCl</span><span class="p">,</span> <span class="n">nbNaCl</span><span class="p">,</span> <span class="mf">2.16</span> <span class="o">*</span> <span class="n">g</span> <span class="o">/</span> <span class="n">cm3</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">matWater</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_WATER&#34;</span><span class="p">);</span>
+<pre><code class="language-cpp">auto nist = G4NistManager::Instance();
+std::vector&lt;G4String&gt; elNaCl = {&quot;Na&quot;, &quot;Cl&quot;};
+std::vector&lt;G4int&gt; nbNaCl = {1, 1};
+auto matNaCl = nist-&gt;ConstructNewMaterial(&quot;NaCl&quot;, elNaCl, nbNaCl, 2.16 * g / cm3);
+auto matWater = nist-&gt;FindOrBuildMaterial(&quot;G4_WATER&quot;);
 
-<span class="k">auto</span> <span class="n">matNaClSolution</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Material</span><span class="p">(</span><span class="s">&#34;NaClSolution&#34;</span><span class="p">,</span> <span class="mf">1.147</span> <span class="o">*</span> <span class="n">g</span> <span class="o">/</span> <span class="n">cm3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="n">matNaClSolution</span><span class="o">-&gt;</span><span class="n">AddMaterial</span><span class="p">(</span><span class="n">matNaCl</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">);</span>
-<span class="n">matNaClSolution</span><span class="o">-&gt;</span><span class="n">AddMaterial</span><span class="p">(</span><span class="n">matWater</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><hr>
+auto matNaClSolution = new G4Material(&quot;NaClSolution&quot;, 1.147 * g / cm3, 2);
+matNaClSolution-&gt;AddMaterial(matNaCl, 0.2);
+matNaClSolution-&gt;AddMaterial(matWater, 0.8);
+</code></pre>
+<hr>
 <h2 id="logical-volume-정의하기">Logical Volume 정의하기</h2>
 <p>Solid와 물질이 있으면, 손쉽게 Logical Volume을 정의할 수 있습니다. LogicalVolume은 <strong>G4LogicalVolume</strong> 클래스가 담당하며, 생성자는 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4LogicalVolume</span> <span class="p">(</span><span class="n">G4VSolid</span> <span class="o">*</span><span class="n">pSolid</span><span class="p">,</span> 
-                 <span class="n">G4Material</span> <span class="o">*</span><span class="n">pMaterial</span><span class="p">,</span> 
-                 <span class="k">const</span> <span class="n">G4String</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> 
-                 <span class="n">G4FieldManager</span> <span class="o">*</span><span class="n">pFieldMgr</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> 
-                 <span class="n">G4VSensitiveDetector</span> <span class="o">*</span><span class="n">pSDetector</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> 
-                 <span class="n">G4UserLimits</span> <span class="o">*</span><span class="n">pULimits</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span> 
-                 <span class="n">G4bool</span> <span class="n">optimise</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<pre><code class="language-cpp">G4LogicalVolume (G4VSolid *pSolid, 
+                 G4Material *pMaterial, 
+                 const G4String &amp;name, 
+                 G4FieldManager *pFieldMgr=nullptr, 
+                 G4VSensitiveDetector *pSDetector=nullptr, 
+                 G4UserLimits *pULimits=nullptr, 
+                 G4bool optimise=true);
+</code></pre>
+<ul>
 <li>pSolid: G4VSolid 객체의 포인터. 앞서 정의한 Solid를 넣음</li>
 <li>pMaterial: G4Material 객체의 포인터. 앞서 정의한 Material을 넣음</li>
 <li>name: Logical Volume의 이름. 자유롭게 적으면 됨. 다만, 다른 Logical Volume과 겹치지 않게끔 고유의 이름을 권장. Solid의 이름과는 동일해도 상관없음</li>
@@ -435,212 +1248,397 @@
 </ul>
 <p>대부분의 경우, <strong>맨 위의 3가지 인자만 입력</strong>하여 사용하시면 됩니다.</p>
 <p>앞서 water phantom을 정의하기 위해 작성한 코드를 살펴보겠습니다.</p>
-<a class="lightgallery" href="/g4-noqasked-004-material/03_newcode.png" title="/g4-noqasked-004-material/03_newcode.png" data-thumbnail="/g4-noqasked-004-material/03_newcode.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="03_newcode.png"
-            data-srcset="/g4-noqasked-004-material/03_newcode.png, 03_newcode.png 1.5x, /g4-noqasked-004-material/03_newcode.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-004-material/03_newcode.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="03_newcode" srcset="
+               /g4-noqasked-004-material/03_newcode_huded07a23cd17e5cefecea5543090488a_58723_4260714892fdfef829619708a3352877.png 400w,
+               /g4-noqasked-004-material/03_newcode_huded07a23cd17e5cefecea5543090488a_58723_6ee3ca88722032239d91d2da07d7b51f.png 760w,
+               /g4-noqasked-004-material/03_newcode_huded07a23cd17e5cefecea5543090488a_58723_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-004-material/03_newcode_huded07a23cd17e5cefecea5543090488a_58723_4260714892fdfef829619708a3352877.png"
+               width="760"
+               height="397"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>물이라는 물질을 정의하기 위해 사용된 부분은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">nist</span> <span class="o">=</span> <span class="n">G4NistManager</span><span class="o">::</span><span class="n">Instance</span><span class="p">();</span>
-<span class="p">...</span>
-<span class="k">auto</span> <span class="n">matWater</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_WATER&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>그리고 phantomSol이라는 Solid를 다음 코드를 통해 생성하였습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>이 두가지를 이용하여, 물이 담긴 phantom을 정의하기 위해 다음 코드를 입력한 것입니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">phantomLog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4LogicalVolume</span><span class="p">(</span><span class="n">phantomSol</span><span class="p">,</span> <span class="n">matWater</span><span class="p">,</span> <span class="s">&#34;phantom&#34;</span><span class="p">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><hr>
+<pre><code class="language-cpp">auto nist = G4NistManager::Instance();
+...
+auto matWater = nist-&gt;FindOrBuildMaterial(&quot;G4_WATER&quot;);
+</code></pre>
+<p>그리고 phantomSol이라는 Solid를 다음 코드를 통해 생성하였습니다.</p>
+<pre><code class="language-cpp">auto phantomSol = new G4Box(&quot;phantom&quot;, .5 * phantomSize, .5 * phantomSize, .5 * phantomSize);
+</code></pre>
+<p>이 두가지를 이용하여, 물이 담긴 phantom을 정의하기 위해 다음 코드를 입력한 것입니다.</p>
+<pre><code class="language-cpp">auto phantomLog = new G4LogicalVolume(phantomSol, matWater, &quot;phantom&quot;);
+</code></pre>
+<hr>
 <h2 id="정리">정리</h2>
 <p>이번 글에서는 원하는 물질을 정의하는 법을 알아보았습니다. 또한, 앞선 글에서 정의한 Solid에, 이번 글에서 정의한 물질을 연동하여 Logical Volume을 정의하는 방법까지 알아보았습니다.</p>
 <p>다음 글에서는 지오메트리의 배치에 관한 내용, Physical Volume을 정의하는 법에 대해 알아보겠습니다.</p>
-<hr>
-<h2 id="더보기">더보기</h2>
-<ul>
-<li>동위원소 조성비를 임의로 조정하여 물질을 정의하는 법 (WIP)</li>
-</ul></div>
-        
-        <br><hr><br>
-        <h2>관련 포스트</h2>
-        <ul>
-            
-            <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
-            
-            <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
-            
-            <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
-            
-            <li><a href="/g4-noqasked-011-scoring/">Geant4 무작정 따라하기 - 11. 스코어링 구현</a></li>
-            
-            <li><a href="/g4-noqasked-010-scoringtheory/">Geant4 무작정 따라하기 - 10. 스코어링 이론</a></li>
-            
-        </ul>
-        
+          </div>
 
-<div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>2021-06-15에 수정</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/g4-noqasked-004-material/index.md" target="_blank">Markdown으로 보기</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-004-material/" data-title="Geant4 무작정 따라하기 - 4. 물질 정의하기" data-hashtags="Geant4,G4Material,G4LogicalVolume,G4Element,NIST,G4Isotope"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-004-material/" data-title="Geant4 무작정 따라하기 - 4. 물질 정의하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-004-material/" data-title="Geant4 무작정 따라하기 - 4. 물질 정의하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-004-material/" data-title="Geant4 무작정 따라하기 - 4. 물질 정의하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-004-material/" data-title="Geant4 무작정 따라하기 - 4. 물질 정의하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-004-material/" data-title="Geant4 무작정 따라하기 - 4. 물질 정의하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
+          
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/g4material/">G4Material</a>,&nbsp;<a href="/tags/g4logicalvolume/">G4LogicalVolume</a>,&nbsp;<a href="/tags/g4element/">G4Element</a>,&nbsp;<a href="/tags/nist/">NIST</a>,&nbsp;<a href="/tags/g4isotope/">G4Isotope</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
-        </section>
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/geant4/">Geant4</a>
+  
+  <a class="badge badge-light" href="/tags/g4material/">G4Material</a>
+  
+  <a class="badge badge-light" href="/tags/g4logicalvolume/">G4LogicalVolume</a>
+  
+  <a class="badge badge-light" href="/tags/g4element/">G4Element</a>
+  
+  <a class="badge badge-light" href="/tags/nist/">NIST</a>
+  
+  <a class="badge badge-light" href="/tags/g4isotope/">G4Isotope</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">이전</div>
+    <a href="/g4-noqasked-003-solid/" rel="next">Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">다음</div>
+    <a href="/g4-noqasked-005-clhepclasses/" rel="prev">Geant4 무작정 따라하기 - 5. 벡터, 회전, 변환</a>
+  </div>
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Jun 15, 2021</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
+      
+      <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
+      
+      <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
+      
+      <li><a href="/g4-noqasked-011-scoring/">Geant4 무작정 따라하기 - 11. 스코어링 구현</a></li>
+      
+      <li><a href="/g4-noqasked-010-scoringtheory/">Geant4 무작정 따라하기 - 10. 스코어링 이론</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
     </div>
+  </div>
+</div>
+
+      
 
     
-    <div class="post-nav">
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
         
-            
-                
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-                
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
         
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
 
-            
+    
 
-            
-        <a href="/g4-noqasked-003-solid/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</a>
-            <a href="/g4-noqasked-005-clhepclasses/" class="next" rel="next" title="Geant4 무작정 따라하기 - 5. 벡터, 회전, 변환">Geant4 무작정 따라하기 - 5. 벡터, 회전, 변환<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="utterances"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
         </div>
-    </footer></div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"\r\ngraph LR\r\nA --\u003e B --\u003e C --\u003e C\r\nA[Isotope]\r\nB[Element]\r\nC[Material]\r","id-2":"EvaNote","id-3":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-2":["id-2"],"id-3":["id-3"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-JZ0NBG8ZWZ');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
 </html>

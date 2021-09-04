@@ -1,131 +1,934 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Geant4 무작정 따라하기 - 7. Tracking Verbose - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 7. Tracking Verbose" />
-<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-007-trkvb/" />
-<meta property="article:published_time" content="2021-06-18T10:00:26+09:00" />
-<meta property="article:modified_time" content="2021-06-18T10:00:26+09:00" />
+<!DOCTYPE html><html lang="ko-kr" >
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Geant4 무작정 따라하기 - 7. Tracking Verbose"/>
-<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다."/>
-<meta name="application-name" content="EvaNote">
-<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-007-trkvb/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-006-phyvol/" /><link rel="next" href="https://evandde.github.io/g4-noqasked-008-prigen/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Geant4 무작정 따라하기 - 7. Tracking Verbose",
-        "inLanguage": "ko-kr",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/evandde.github.io\/g4-noqasked-007-trkvb\/"
-        },"genre": "posts","keywords": "Geant4, Verbose, Tracking, Event, Run, run.mac, macro","wordcount":  5058 ,
-        "url": "https:\/\/evandde.github.io\/g4-noqasked-007-trkvb\/","datePublished": "2021-06-18T10:00:26+09:00","dateModified": "2021-06-18T10:00:26+09:00","publisher": {
-            "@type": "Organization",
-            "name": "Evan Kim"},"author": {
-                "@type": "Person",
-                "name": "Evan Kim"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/g4-noqasked-007-trkvb/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.75edb75c66f2d6f0a9a146b10c65f58e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/g4-noqasked-007-trkvb/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/g4-noqasked-007-trkvb/" />
+  <meta property="og:title" content="Geant4 무작정 따라하기 - 7. Tracking Verbose | EvaNote" />
+  <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-06-18T10:00:26&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-06-18T10:00:26&#43;09:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Geant4 무작정 따라하기 - 7. Tracking Verbose | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="697cca6e6db72d0e61acc7306e02cfac" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
         </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        취소
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">목차</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 7. Tracking Verbose</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-18">2021-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 5058&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 11분&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>목차</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          Verbose
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
+    </div>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>Courses</a></li>
+      </ul>
+
+      
+      
+        
+          
+        
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-000-opening/">들어가며</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-001-clonetest/">템플릿 코드 실행하기</a></li>
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-geometry/">지오메트리</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-002-detcon/">지오메트리 정의 기본이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-003-solid/">지오메트리 모양 만들기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-004-material/">물질 정의 및 사용</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-005-clhepclasses/">위치, 회전을 정의하는 법</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-006-phyvol/">지오메트리 배치하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-verbose/">Verbose</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class="active"><a href="/g4-noqasked-007-trkvb/">기본용어와 Tracking Verbose</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-primgen/">선원항</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-008-prigen/">선원항을 정의하는 법</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-009-randtool/">난수 기반 선원항 정의하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-scoring/">스코어링</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-010-scoringtheory/">스코어링 이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-011-scoring/">스코어링 구현하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-012-writingrslt1/">결과를 Histogram으로 기록하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-013-writingrslt2/">결과를 Ntuple로 기록하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-closing/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-014-closing/">마치며</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
   <ul>
     <li><a href="#event--run">Event &amp; Run</a>
       <ul>
@@ -152,8 +955,76 @@
     </li>
     <li><a href="#정리">정리</a></li>
   </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다.</p>
+</nav>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        Courses
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/">
+      
+        Geant4 무작정 따라하기
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/g4-noqasked-verbose/">
+      
+        Verbose
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        기본용어와 Tracking Verbose
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>Geant4 무작정 따라하기 - 7. Tracking Verbose</h1>
+
+          <div class="article-style">
+            <p>Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다.</p>
 <p>선원항을 정의하고 나면 시뮬레이션 상에서 실제로 내가 정의한대로 초기 입자가 발생되고 있는지 확인을 할 필요가 있을 것입니다. 그래서 선원항을 정의하는 방법을 배우기 전에, Tracking Verbose를 먼저 다루게 되었습니다.</p>
 <p>관련된 Geant4의 용어부터 간단하게 설명한 뒤, Tracking Verbose의 모습을 살펴보겠습니다.</p>
 <hr>
@@ -226,112 +1097,157 @@
 <p>이 시리즈에서는 Tracking Verbose 한 가지만 알아볼 것입니다. Tracking Verbose는 말그대로 Geant4가 Tracking을 하며 얻은 정보를 출력(Verbose)하는 기능입니다. 출력 수준은 <strong>-1부터 5까지 조정</strong>할 수 있으며, 수준이 높아질수록 더욱 상세한 정보가 출력됩니다.</p>
 <h3 id="tracking-verbose-설정하기">Tracking Verbose 설정하기</h3>
 <p>일단 Tracking Verbose를 설정하는 방법부터 알아봅시다.</p>
-<p>이전에 Geant4 프로그램을 실행하는 방식 중 <a href="https://evandde.github.io/g4-noqasked-001-clonetest/#실행ui모드-실행-batch모드-실행" rel="">batch모드 실행</a>에 대해 언급한 적이 있습니다. <code>./g4_minimal run.mac</code>과 같이 입력하여 실행하면, <code>run.mac</code>파일의 내용이 일괄적으로 입력되어 시뮬레이션이 수행된다고 했었지요. 여기서 <code>run.mac</code>과 같은 파일을 <b>매크로파일(macro file)</b>이라고 부릅니다.</p>
+<p>이전에 Geant4 프로그램을 실행하는 방식 중 <a href="https://evandde.github.io/g4-noqasked-001-clonetest/#%ec%8b%a4%ed%96%89ui%eb%aa%a8%eb%93%9c-%ec%8b%a4%ed%96%89-batch%eb%aa%a8%eb%93%9c-%ec%8b%a4%ed%96%89" target="_blank" rel="noopener">batch모드 실행</a>에 대해 언급한 적이 있습니다. <code>./g4_minimal run.mac</code>과 같이 입력하여 실행하면, <code>run.mac</code>파일의 내용이 일괄적으로 입력되어 시뮬레이션이 수행된다고 했었지요. 여기서 <code>run.mac</code>과 같은 파일을 <b>매크로파일(macro file)</b>이라고 부릅니다.</p>
 <p>Tracking Verbose는 이러한 매크로파일을 이용하면 쉽게 설정할 수 있습니다.</p>
 <p>현재 <code>run.mac</code> 파일을 열어보면 다음과 같이 작성되어 있을 것입니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Can be run in batch, without graphic</span>
-<span class="c1"># or interactively: Idle&gt; /control/execute run.mac</span>
+<pre><code class="language-bash"># Can be run in batch, without graphic
+# or interactively: Idle&gt; /control/execute run.mac
 
-<span class="c1"># Verbose</span>
-/control/verbose <span class="m">2</span>
-/run/verbose <span class="m">2</span>
-/event/verbose <span class="m">0</span>
-/tracking/verbose <span class="m">1</span>
+# Verbose
+/control/verbose 2
+/run/verbose 2
+/event/verbose 0
+/tracking/verbose 1
 
-/run/beamOn <span class="m">100</span>
-</code></pre></td></tr></table>
+/run/beamOn 100
+</code></pre>
+<div class="alert alert-note">
+  <div>
+    매크로파일에서 <code>#</code> 이후는 주석으로 처리됩니다.
+  </div>
 </div>
-</div><div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">매크로파일에서 <code>#</code> 이후는 주석으로 처리됩니다.</div>
-        </div>
-    </div>
+
 <p>주석 이후 위에서부터 4개 줄에 전부 verbose가 적혀있지요. 이 모두가 각 사항에 대한 출력 수준을 설정하는 부분입니다. 여기서는 <code>/tracking/verbose 1</code>이라고 적힌 부분만 조절하며 살펴볼 것입니다. 적혀있는 숫자 <code>1</code>은 <strong>출력 수준을 1로 설정</strong>하겠다는 뜻입니다.</p>
 <p>마지막 줄에는 <code>/run/beamOn 100</code>이라는 내용이 있는데요, 이 줄이 바로 Run을 실행하는 명령줄입니다. <code>/run/beamOn</code>은 Geant4 프로그램이 입자 수송을 시작하도록 하는 명령어로, 뒤에 정수 인자를 받아 이 <strong>정수 값만큼 Event를 반복시행</strong>하여 <strong>하나의 Run을 구성</strong>하도록 합니다.</p>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">필요에 따라, <code>/run/beamOn</code> 줄을 여러 회 입력하여 여러 개의 Run이 순차적으로 실행되게끔 할 수도 있습니다.</div>
-        </div>
-    </div>
+<div class="alert alert-note">
+  <div>
+    필요에 따라, <code>/run/beamOn</code> 줄을 여러 회 입력하여 여러 개의 Run이 순차적으로 실행되게끔 할 수도 있습니다.
+  </div>
+</div>
+
 <h3 id="tracking-verbose-확인하기">Tracking Verbose 확인하기</h3>
 <p>지금 상태인 출력 수준 1에서 출력이 제대로 되는지부터 확인해보겠습니다. <code>build</code> 디렉토리에서 다음 명령어를 입력하여 Geant4 프로그램을 batch 모드로 실행합니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">./g4_minimal run.mac
-</code></pre></td></tr></table>
-</div>
-</div><a class="lightgallery" href="/g4-noqasked-007-trkvb/01_batchrun.png" title="/g4-noqasked-007-trkvb/01_batchrun.png" data-thumbnail="/g4-noqasked-007-trkvb/01_batchrun.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="01_batchrun.png"
-            data-srcset="/g4-noqasked-007-trkvb/01_batchrun.png, 01_batchrun.png 1.5x, /g4-noqasked-007-trkvb/01_batchrun.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/01_batchrun.png" width="100%" />
-    </a>
+<pre><code class="language-bash">./g4_minimal run.mac
+</code></pre>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="01_batchrun" srcset="
+               /g4-noqasked-007-trkvb/01_batchrun_huc08464d3f5749a22c8510b2f1d8128b6_65792_89fd67b33e54a53b041a1cd8b34d5ae5.png 400w,
+               /g4-noqasked-007-trkvb/01_batchrun_huc08464d3f5749a22c8510b2f1d8128b6_65792_ed09ae09db91898b21530b6a5d004529.png 760w,
+               /g4-noqasked-007-trkvb/01_batchrun_huc08464d3f5749a22c8510b2f1d8128b6_65792_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-007-trkvb/01_batchrun_huc08464d3f5749a22c8510b2f1d8128b6_65792_89fd67b33e54a53b041a1cd8b34d5ae5.png"
+               width="760"
+               height="400"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>많은 양의 글이 화면에 주르륵 뜨며 스크롤이 내려간 뒤, 다음 그림과 같이 Good Bye :)를 띄우며 끝나는 것을 확인할 수 있을 것입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-007-trkvb/02_batchrunend.png" title="/g4-noqasked-007-trkvb/02_batchrunend.png" data-thumbnail="/g4-noqasked-007-trkvb/02_batchrunend.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="02_batchrunend.png"
-            data-srcset="/g4-noqasked-007-trkvb/02_batchrunend.png, 02_batchrunend.png 1.5x, /g4-noqasked-007-trkvb/02_batchrunend.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/02_batchrunend.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="02_batchrunend" srcset="
+               /g4-noqasked-007-trkvb/02_batchrunend_hu49339d8422ae1c6f14d1f0751b5cd448_74215_0d1d9efba2a3417b48143ece51b1486a.png 400w,
+               /g4-noqasked-007-trkvb/02_batchrunend_hu49339d8422ae1c6f14d1f0751b5cd448_74215_5bfe2bf47194776a24ce55ab87d3f7d3.png 760w,
+               /g4-noqasked-007-trkvb/02_batchrunend_hu49339d8422ae1c6f14d1f0751b5cd448_74215_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-007-trkvb/02_batchrunend_hu49339d8422ae1c6f14d1f0751b5cd448_74215_0d1d9efba2a3417b48143ece51b1486a.png"
+               width="760"
+               height="399"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>여기까지는 이미 이전 글에서 해봤던 작업이지요.</p>
 <p>지금 우리가 관심있는 부분은, 위에 스쳐지나간 <strong>많은 양의 글</strong>입니다. 스크롤을 올리다보면 다음 그림과 같은 부분이 보일 것입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-007-trkvb/03_trackingverbose.png" title="/g4-noqasked-007-trkvb/03_trackingverbose.png" data-thumbnail="/g4-noqasked-007-trkvb/03_trackingverbose.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="03_trackingverbose.png"
-            data-srcset="/g4-noqasked-007-trkvb/03_trackingverbose.png, 03_trackingverbose.png 1.5x, /g4-noqasked-007-trkvb/03_trackingverbose.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/03_trackingverbose.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="03_trackingverbose" srcset="
+               /g4-noqasked-007-trkvb/03_trackingverbose_hu30349d2646ba777bd862190f29ee5ef2_39791_98f217962839ec3b722913781bf4b35c.png 400w,
+               /g4-noqasked-007-trkvb/03_trackingverbose_hu30349d2646ba777bd862190f29ee5ef2_39791_f8050bdc195a790e4b4f807b93cb714a.png 760w,
+               /g4-noqasked-007-trkvb/03_trackingverbose_hu30349d2646ba777bd862190f29ee5ef2_39791_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-007-trkvb/03_trackingverbose_hu30349d2646ba777bd862190f29ee5ef2_39791_98f217962839ec3b722913781bf4b35c.png"
+               width="760"
+               height="399"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이것이 Tracking Verbose 입니다. 보시다시피 출력되는 양이 너무 많기도 하고, 터미널 창에서 보기에는 불편함이 많지요. 그래서 일반적으로는 리눅스 표준 입출력을 redirection하는 명령어인 <code>&gt;</code> 기능을 사용하여 파일에 출력시켜 내용을 확인합니다. 이 명령어를 간단히 설명하면, &ldquo;<strong>화면에 출력될 내용을 파일에 적고싶을 때 사용하는 명령어</strong>&ldquo;라고 보시면 됩니다.</p>
 <p>다음과 같이 입력해보겠습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">./g4_minimal run.mac &gt; vb.out
-</code></pre></td></tr></table>
-</div>
-</div><a class="lightgallery" href="/g4-noqasked-007-trkvb/04_vbout.png" title="/g4-noqasked-007-trkvb/04_vbout.png" data-thumbnail="/g4-noqasked-007-trkvb/04_vbout.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="04_vbout.png"
-            data-srcset="/g4-noqasked-007-trkvb/04_vbout.png, 04_vbout.png 1.5x, /g4-noqasked-007-trkvb/04_vbout.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/04_vbout.png" width="80%" />
-    </a>
+<pre><code class="language-bash">./g4_minimal run.mac &gt; vb.out
+</code></pre>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="04_vbout" srcset="
+               /g4-noqasked-007-trkvb/04_vbout_hu3adb6c5584afbdff09ffc90d59ec6b07_4524_5042dc896246c24f3b1b10a35badd324.png 400w,
+               /g4-noqasked-007-trkvb/04_vbout_hu3adb6c5584afbdff09ffc90d59ec6b07_4524_c317a56eba9b98c1efdfb9798396a7b3.png 760w,
+               /g4-noqasked-007-trkvb/04_vbout_hu3adb6c5584afbdff09ffc90d59ec6b07_4524_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-007-trkvb/04_vbout_hu3adb6c5584afbdff09ffc90d59ec6b07_4524_5042dc896246c24f3b1b10a35badd324.png"
+               width="654"
+               height="38"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이러면 <b>build 디렉토리 안</b>에 <b>vb.out이라는 새로운 파일이 생성</b>되고, 화면에는 아무것도 출력되지 않을 것입니다. 화면에 출력될 내용을 vb.out에 담은 것이지요. 이런 방법을 통해 Verbose 수준을 올려서 <strong>출력되는 내용을 저장한 뒤에 확인</strong>할 수 있습니다.</p>
 <p>이제 Tracking Verbose의 출력 수준을 바꾸어가며, 실제로 어떤 내용이 출력되는지 차근차근 살펴보겠습니다.</p>
 <h3 id="출력-수준--1-0">출력 수준 -1, 0</h3>
@@ -345,23 +1261,40 @@
 <p>1: Minimum information of each Step</p>
 </blockquote>
 <p>Tracking Verbose를 1로 설정하였을 때의 출력은 다음 그림과 같습니다.</p>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">여러분이 앞서 배치한 지오메트리에 따라, Tracking Verbose의 내용이 약간 다를수도 있습니다.</div>
-        </div>
-    </div>
-<a class="lightgallery" href="/g4-noqasked-007-trkvb/05_vb1.png" title="/g4-noqasked-007-trkvb/05_vb1.png" data-thumbnail="/g4-noqasked-007-trkvb/05_vb1.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="05_vb1.png"
-            data-srcset="/g4-noqasked-007-trkvb/05_vb1.png, 05_vb1.png 1.5x, /g4-noqasked-007-trkvb/05_vb1.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/05_vb1.png" width="100%" />
-    </a>
+<div class="alert alert-note">
+  <div>
+    여러분이 앞서 배치한 지오메트리에 따라, Tracking Verbose의 내용이 약간 다를수도 있습니다.
+  </div>
+</div>
+
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="05_vb1" srcset="
+               /g4-noqasked-007-trkvb/05_vb1_hue0951ee785ef860f82684cfb95d129ab_55161_162488fb707a31dedcf805b19bd5cedd.png 400w,
+               /g4-noqasked-007-trkvb/05_vb1_hue0951ee785ef860f82684cfb95d129ab_55161_7dbf82f38a67872e1d4cf5d3eaf75457.png 760w,
+               /g4-noqasked-007-trkvb/05_vb1_hue0951ee785ef860f82684cfb95d129ab_55161_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-007-trkvb/05_vb1_hue0951ee785ef860f82684cfb95d129ab_55161_162488fb707a31dedcf805b19bd5cedd.png"
+               width="760"
+               height="411"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이 그림에서 보이는 것이 입자를 Tracking한 기록 3개 분량입니다. 빨간색 테두리로 표시한만큼이 입자 하나의 생성부터 소멸까지의 기록입니다.</p>
 <p>각 기록마다 맨 위에는 Tracking한 <strong>입자의 정보</strong>가 간단하게 적혀 있습니다. (주황색 테두리로 표시한 부분)</p>
 <ul>
@@ -369,16 +1302,14 @@
 <li>Track ID: <strong>Tracking을 수행한 이 입자의 고유 번호</strong>. 해당 입자가 <strong>초기입자라면 1번</strong>이 부여됨. 이후에는 반응을 통해 이차입자가 생성될 때마다 순차적으로 정수 값이 부여되는 식임.</li>
 <li>Parent ID: <strong>이 입자를 생성시킨 입자의 Track ID</strong>. 해당 입자가 <strong>초기입자라면 0번</strong>이 부여됨.(초기입자를 생성시킨 입자라는 개념은 존재하지 않음)</li>
 </ul>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>여기서 입자의 이름으로 나타난 <b>geantino</b>는 실제 존재하는 입자가 아니라 Geant4가 만들어낸 <strong>가상의 입자</strong>입니다. 이 입자는 어떠한 반응도 일으키지 않는 입자로, 여러가지 테스트를 목적으로 종종 사용됩니다.</p>
+<div class="alert alert-note">
+  <div>
+    <p>여기서 입자의 이름으로 나타난 <b>geantino</b>는 실제 존재하는 입자가 아니라 Geant4가 만들어낸 <strong>가상의 입자</strong>입니다. 이 입자는 어떠한 반응도 일으키지 않는 입자로, 여러가지 테스트를 목적으로 종종 사용됩니다.</p>
 <p>자세한 사항은 선원항 정의를 다루게 될 다음 글에서 좀 더 살펴보도록 하겠습니다.</p>
+
+  </div>
 </div>
-        </div>
-    </div>
+
 <p>초록색 테두리로 표시한 입자의 정보 아래 부분에는 해당 입자를 <strong>Tracking을 하며 획득한 다양한 정보가 순차적으로 기록</strong>됩니다. 표 형태로 기록되어 있으며, <strong>Track이라는 스냅샷을 새로이 찍을 때마다 가로줄이 한 줄씩 추가</strong>되는 식입니다. 각 열이 의미하는 바를 간단하게 설명하자면 다음과 같습니다.</p>
 <ul>
 <li>Step #: 해당 Step의 ID. Track의 값이 변경되어 Step이 바뀔 때마다 순차적으로 정수 값이 부여되는 식</li>
@@ -397,15 +1328,34 @@
 <p>Tracking Verbose를 2로 설정하면, 1일 때의 출력에 추가적으로 이차입자의 정보가 표시됩니다.</p>
 <p>현재 초기입자가 geantino라서 아무런 반응이 일어나지 않아 차이를 확인할 수 없을 것입니다.</p>
 <p>예시를 보여드리기 위해 제가 임의로 gamma를 수송할 때의 결과를 가져와 보았습니다.</p>
-<a class="lightgallery" href="/g4-noqasked-007-trkvb/06_vb2.png" title="/g4-noqasked-007-trkvb/06_vb2.png" data-thumbnail="/g4-noqasked-007-trkvb/06_vb2.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="06_vb2.png"
-            data-srcset="/g4-noqasked-007-trkvb/06_vb2.png, 06_vb2.png 1.5x, /g4-noqasked-007-trkvb/06_vb2.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/06_vb2.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="06_vb2" srcset="
+               /g4-noqasked-007-trkvb/06_vb2_hu7833e2b777444a3cdb3cfc3d62278add_27763_090c0c4123be6ecdc5e2c9b23e464b71.png 400w,
+               /g4-noqasked-007-trkvb/06_vb2_hu7833e2b777444a3cdb3cfc3d62278add_27763_47e845c2bec2bc5c79a9351cd6c574ac.png 760w,
+               /g4-noqasked-007-trkvb/06_vb2_hu7833e2b777444a3cdb3cfc3d62278add_27763_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-007-trkvb/06_vb2_hu7833e2b777444a3cdb3cfc3d62278add_27763_090c0c4123be6ecdc5e2c9b23e464b71.png"
+               width="760"
+               height="202"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>출력 수준이 2가 되면 이차입자가 생성된 분절점에서, 그 이차입자에 대한 정보를 추가적으로 출력해 줍니다.</p>
 <p>앞서 말한 바와 같이, Geant4는 한 번에 한 입자만 수송하므로, 생성된 이차입자는 이처럼 기록만 해두고, 원래 수송하던 입자를 마저 수송하게 됩니다.</p>
 <h3 id="출력-수준-3-4-5">출력 수준 3, 4, 5</h3>
@@ -414,16 +1364,35 @@
 <p>4: Addition to Level=3, pre/postStepoint information at each AlongStepPostStep process execuation.</p>
 <p>5 : Addition to Level=4, proposed Step length information from each AlongStepPostStep process.</p>
 </blockquote>
-<p>수준 3일 때의 출력은 다음 그림과 같습니다. (스크롤압박 주의)</p>
-<a class="lightgallery" href="/g4-noqasked-007-trkvb/07_vb3.png" title="/g4-noqasked-007-trkvb/07_vb3.png" data-thumbnail="/g4-noqasked-007-trkvb/07_vb3.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="07_vb3.png"
-            data-srcset="/g4-noqasked-007-trkvb/07_vb3.png, 07_vb3.png 1.5x, /g4-noqasked-007-trkvb/07_vb3.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-007-trkvb/07_vb3.png" width="100%" />
-    </a>
+<p>수준 3일 때의 출력은 다음 그림과 같습니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="07_vb3" srcset="
+               /g4-noqasked-007-trkvb/07_vb3_huf54de9fc2d2acda1437a8e24e9c3594e_118645_38002bc4ef871200c08e712da95aaebb.png 400w,
+               /g4-noqasked-007-trkvb/07_vb3_huf54de9fc2d2acda1437a8e24e9c3594e_118645_368d31128ba139585d75c8c8c8c143f6.png 760w,
+               /g4-noqasked-007-trkvb/07_vb3_huf54de9fc2d2acda1437a8e24e9c3594e_118645_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-007-trkvb/07_vb3_huf54de9fc2d2acda1437a8e24e9c3594e_118645_38002bc4ef871200c08e712da95aaebb.png"
+               width="393"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>지금 보시는 이만큼이 <strong>분절점 한 개</strong> 입니다. 입자 한 개 분량이 아닙니다. 엄청나게 길죠.</p>
 <p>여기부터는 Geant4에 어느정도 익숙해지시고 난 뒤에 공부하셔도 충분할 것이라 생각합니다.</p>
 <hr>
@@ -439,167 +1408,345 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>시간의 흐름에 따라 작업, 성능, 컴퓨터/네트워크 사용 등 일련의 작업 흐름을 기록해 둔 것 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>시간의 흐름에 따라 작업, 성능, 컴퓨터/네트워크 사용 등 일련의 작업 흐름을 기록해 둔 것&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section></div>
-        
-        <br><hr><br>
-        <h2>관련 포스트</h2>
-        <ul>
-            
-            <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
-            
-            <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
-            
-            <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
-            
-            <li><a href="/g4-noqasked-011-scoring/">Geant4 무작정 따라하기 - 11. 스코어링 구현</a></li>
-            
-            <li><a href="/g4-noqasked-010-scoringtheory/">Geant4 무작정 따라하기 - 10. 스코어링 이론</a></li>
-            
-        </ul>
-        
+</section>
+          </div>
 
-<div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>2021-06-18에 수정</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/g4-noqasked-007-trkvb/index.md" target="_blank">Markdown으로 보기</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-hashtags="Geant4,Verbose,Tracking,Event,Run,run.mac,macro"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-007-trkvb/" data-title="Geant4 무작정 따라하기 - 7. Tracking Verbose" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
+          
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/verbose/">Verbose</a>,&nbsp;<a href="/tags/tracking/">Tracking</a>,&nbsp;<a href="/tags/event/">Event</a>,&nbsp;<a href="/tags/run/">Run</a>,&nbsp;<a href="/tags/run.mac/">run.mac</a>,&nbsp;<a href="/tags/macro/">macro</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
-        </section>
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/geant4/">Geant4</a>
+  
+  <a class="badge badge-light" href="/tags/verbose/">Verbose</a>
+  
+  <a class="badge badge-light" href="/tags/tracking/">Tracking</a>
+  
+  <a class="badge badge-light" href="/tags/event/">Event</a>
+  
+  <a class="badge badge-light" href="/tags/run/">Run</a>
+  
+  <a class="badge badge-light" href="/tags/run.mac/">run.mac</a>
+  
+  <a class="badge badge-light" href="/tags/macro/">macro</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Jun 18, 2021</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
+      
+      <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
+      
+      <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
+      
+      <li><a href="/g4-noqasked-011-scoring/">Geant4 무작정 따라하기 - 11. 스코어링 구현</a></li>
+      
+      <li><a href="/g4-noqasked-010-scoringtheory/">Geant4 무작정 따라하기 - 10. 스코어링 이론</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
     </div>
+  </div>
+</div>
+
+      
 
     
-    <div class="post-nav">
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
         
-            
-                
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-                
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
         
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
 
-            
+    
 
-            
-        <a href="/g4-noqasked-006-phyvol/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 6. 지오메트리 배치하기"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</a>
-            <a href="/g4-noqasked-008-prigen/" class="next" rel="next" title="Geant4 무작정 따라하기 - 8. 선원항 정의하기">Geant4 무작정 따라하기 - 8. 선원항 정의하기<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="utterances"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
         </div>
-    </footer></div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-JZ0NBG8ZWZ');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
 </html>

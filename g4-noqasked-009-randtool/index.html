@@ -1,131 +1,937 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기" />
-<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-009-randtool/" />
-<meta property="article:published_time" content="2021-07-16T14:43:20+09:00" />
-<meta property="article:modified_time" content="2021-07-16T14:43:20+09:00" />
+<!DOCTYPE html><html lang="ko-kr" >
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기"/>
-<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다."/>
-<meta name="application-name" content="EvaNote">
-<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-009-randtool/" /><link rel="prev" href="https://evandde.github.io/g4install-107p2-win10basic/" /><link rel="next" href="https://evandde.github.io/g4-noqasked-010-scoringtheory/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기",
-        "inLanguage": "ko-kr",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/evandde.github.io\/g4-noqasked-009-randtool\/"
-        },"genre": "posts","keywords": "Geant4, G4RandomTools, Random Variable, PrimaryGeneratorAction, ParticleGun","wordcount":  2978 ,
-        "url": "https:\/\/evandde.github.io\/g4-noqasked-009-randtool\/","datePublished": "2021-07-16T14:43:20+09:00","dateModified": "2021-07-16T14:43:20+09:00","publisher": {
-            "@type": "Organization",
-            "name": "Evan Kim"},"author": {
-                "@type": "Person",
-                "name": "Evan Kim"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/g4-noqasked-009-randtool/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.75edb75c66f2d6f0a9a146b10c65f58e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/g4-noqasked-009-randtool/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/g4-noqasked-009-randtool/" />
+  <meta property="og:title" content="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기 | EvaNote" />
+  <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-07-16T14:43:20&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-07-16T14:43:20&#43;09:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="719ba43890fd3042f58195862081540a" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
         </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        취소
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">목차</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-16">2021-07-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 2978&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 6분&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>목차</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          선원항
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
+    </div>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>Courses</a></li>
+      </ul>
+
+      
+      
+        
+          
+        
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-000-opening/">들어가며</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-001-clonetest/">템플릿 코드 실행하기</a></li>
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-geometry/">지오메트리</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-002-detcon/">지오메트리 정의 기본이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-003-solid/">지오메트리 모양 만들기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-004-material/">물질 정의 및 사용</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-005-clhepclasses/">위치, 회전을 정의하는 법</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-006-phyvol/">지오메트리 배치하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-verbose/">Verbose</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-007-trkvb/">기본용어와 Tracking Verbose</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-primgen/">선원항</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-008-prigen/">선원항을 정의하는 법</a></li>
+
+
+
+  <li class="active"><a href="/g4-noqasked-009-randtool/">난수 기반 선원항 정의하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-scoring/">스코어링</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-010-scoringtheory/">스코어링 이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-011-scoring/">스코어링 구현하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-012-writingrslt1/">결과를 Histogram으로 기록하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-013-writingrslt2/">결과를 Ntuple로 기록하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-closing/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-014-closing/">마치며</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
   <ul>
     <li><a href="#등방성-점선원-모사">등방성 점선원 모사</a>
       <ul>
@@ -153,94 +959,180 @@
     <li><a href="#최종-파일-다운받는-법">최종 파일 다운받는 법</a></li>
     <li><a href="#정리">정리</a></li>
   </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다.</p>
+</nav>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        Courses
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/">
+      
+        Geant4 무작정 따라하기
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/g4-noqasked-primgen/">
+      
+        선원항
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        난수 기반 선원항 정의하기
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</h1>
+
+          <div class="article-style">
+            <p>Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다.</p>
 <hr>
 <h2 id="등방성-점선원-모사">등방성 점선원 모사</h2>
 <h3 id="문제-제기">문제 제기</h3>
 <p>등방적으로 발생하는 점선원을 생각해봅시다. 일반적으로 다음 그림과 같은 모양이 떠오를 것입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-009-randtool/01_isotropic.png" title="/g4-noqasked-009-randtool/01_isotropic.png" data-thumbnail="/g4-noqasked-009-randtool/01_isotropic.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="01_isotropic.png"
-            data-srcset="/g4-noqasked-009-randtool/01_isotropic.png, 01_isotropic.png 1.5x, /g4-noqasked-009-randtool/01_isotropic.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-009-randtool/01_isotropic.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="01_isotropic" srcset="
+               /g4-noqasked-009-randtool/01_isotropic_huf6baa88101f874f0c3ede1f096d1d7af_58450_3b814b4b544ccedf3310aca84e937ff9.png 400w,
+               /g4-noqasked-009-randtool/01_isotropic_huf6baa88101f874f0c3ede1f096d1d7af_58450_db54ba0ace8e9c842bb631f984d25fe2.png 760w,
+               /g4-noqasked-009-randtool/01_isotropic_huf6baa88101f874f0c3ede1f096d1d7af_58450_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-009-randtool/01_isotropic_huf6baa88101f874f0c3ede1f096d1d7af_58450_3b814b4b544ccedf3310aca84e937ff9.png"
+               width="760"
+               height="591"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>하지만 앞서 말씀드린 것처럼 Geant4는 한 번에 하나의 입자만을 수송하기 때문에, 실제로는 다음과 같이 매 Event마다 방향이 바뀌는 입자가 순차적으로 나오는 형태일 것입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-009-randtool/02_isotropic.gif" title="/g4-noqasked-009-randtool/02_isotropic.gif" data-thumbnail="/g4-noqasked-009-randtool/02_isotropic.gif">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="02_isotropic.gif"
-            data-srcset="/g4-noqasked-009-randtool/02_isotropic.gif, 02_isotropic.gif 1.5x, /g4-noqasked-009-randtool/02_isotropic.gif 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-009-randtool/02_isotropic.gif" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="02_isotropic"
+           src="/g4-noqasked-009-randtool/02_isotropic.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이제 앞서 배운 선원항의 방향 정의 부분을 다시 살펴봅시다.</p>
 <blockquote>
 <p>예를 들어 초기 입자의 운동방향을 +Z축인 (0, 0, 1)으로 설정하고 싶다면, 다음과 같이 입력하면 됩니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"> <span class="c1">// ...    
-</span><span class="c1"></span> <span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
- <span class="p">{</span>
-  <span class="c1">// ...
-</span><span class="hl"><span class="c1"></span>  <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticleMomentumDirection</span><span class="p">(</span><span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">));</span>
-</span>
-  <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
+<pre><code class="language-cpp"> // ...    
+ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
+ {
+     // ...
+     fPrimary-&gt;SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
 
- <span class="p">}</span>
- 
-</code></pre></div>
+     fPrimary-&gt;GeneratePrimaryVertex(anEvent);
+}
+</code></pre>
 </blockquote>
 <p>SetParticleMomentumDirection 함수를 통해 방향을 설정하고, 이 때 방향은 <strong>G4ThreeVector 형태로 입력</strong>을 해주어야 합니다. 우리는 결국 <strong>방향</strong>을 <strong>명시해서 입력</strong>해 줘야만 하는데, 이 <strong>방향이 알아서 매 번 바뀌어야 하는 상황</strong>에 놓였습니다.</p>
 <h3 id="해결책">해결책</h3>
 <p>이 문제를 해결하기 위해 다음과 같은 함수를 상상해봅시다.</p>
 <ul>
-<li>이 함수는 <strong>G4ThreeVector를 반환</strong>하는데, <strong>함수가 호출될 때마다 반환되는 값이 매번 바뀝니다</strong>.</li>
-<li>반환되는 G4ThreeVector들을 쭉 모아서 <strong>분포</strong>를 살펴보니, <b>단위구(Unit sphere) 표면 위의 점이 균일한 확률</b>로 나옵니다.</li>
-<li>함수의 원형은 다음과 같습니다.
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">RandomDirection</span><span class="p">()</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<li>
+<p>이 함수는 <strong>G4ThreeVector를 반환</strong>하는데, <strong>함수가 호출될 때마다 반환되는 값이 매번 바뀝니다</strong>.</p>
+</li>
+<li>
+<p>반환되는 G4ThreeVector들을 쭉 모아서 <strong>분포</strong>를 살펴보니, <b>단위구(Unit sphere) 표면 위의 점이 균일한 확률</b>로 나옵니다.</p>
+</li>
+<li>
+<p>함수의 원형은 다음과 같습니다.</p>
+<pre><code class="language-cpp">G4ThreeVector RandomDirection();
+</code></pre>
+</li>
 </ul>
 <p>이런 함수를 어떻게 만들 수 있을 지는 나중에 생각해보기로 하고, 이 함수의 출력값을 먼저 살펴봅시다. 아마도 다음과 같이 나타날 것입니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">dir</span><span class="p">;</span>
+<pre><code class="language-cpp">G4ThreeVector dir;
 
-<span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(-0.157616,-0.293535,-0.942865);
-</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(0.185649,-0.743512,0.642437);
-</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(0.643525,0.268099,0.716937);
-</span><span class="c1"></span><span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span> <span class="c1">// dir = G4ThreeVector(0.636717,-0.421678,0.645584);
-</span></code></pre></td></tr></table>
-</div>
-</div><p>바로 이 RandomDirection() 함수가 바로 우리가 원하던 <strong>방향을 등방적으로 균일하게 매 번 알아서 바꾸어서 제공해주는 함수</strong>입니다. 이런 함수만 있다면 선원항을 다음과 같이 정의하여 우리의 문제를 해결할 수 있겠군요. 다음과 같이 말입니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// ...    
-</span><span class="c1"></span><span class="kt">void</span> <span class="n">PrimaryGeneratorAction</span><span class="o">::</span><span class="n">GeneratePrimaries</span><span class="p">(</span><span class="n">G4Event</span> <span class="o">*</span><span class="n">anEvent</span><span class="p">)</span>
-<span class="p">{</span>
- <span class="c1">// ...
-</span><span class="hl"><span class="c1"></span> <span class="k">auto</span> <span class="n">dir</span> <span class="o">=</span> <span class="n">RandomDirection</span><span class="p">();</span>
-</span><span class="hl"> <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">SetParticleMomentumDirection</span><span class="p">(</span><span class="n">dir</span><span class="p">);</span>
-</span>
- <span class="n">fPrimary</span><span class="o">-&gt;</span><span class="n">GeneratePrimaryVertex</span><span class="p">(</span><span class="n">anEvent</span><span class="p">);</span>
+dir = RandomDirection(); // dir = G4ThreeVector(-0.157616,-0.293535,-0.942865);
+dir = RandomDirection(); // dir = G4ThreeVector(0.185649,-0.743512,0.642437);
+dir = RandomDirection(); // dir = G4ThreeVector(0.643525,0.268099,0.716937);
+dir = RandomDirection(); // dir = G4ThreeVector(0.636717,-0.421678,0.645584);
+</code></pre>
+<p>바로 이 RandomDirection() 함수가 바로 우리가 원하던 <strong>방향을 등방적으로 균일하게 매 번 알아서 바꾸어서 제공해주는 함수</strong>입니다. 이런 함수만 있다면 선원항을 다음과 같이 정의하여 우리의 문제를 해결할 수 있겠군요. 다음과 같이 말입니다.</p>
+<pre><code class="language-cpp">// ...    
+void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
+{
+  // ...
+  auto dir = RandomDirection();
+  fPrimary-&gt;SetParticleMomentumDirection(dir);
 
-<span class="p">}</span>
-</code></pre></div>
+  fPrimary-&gt;GeneratePrimaryVertex(anEvent);
+}
+</code></pre>
 <h3 id="설명">설명</h3>
 <p>이처럼 특정한 확률분포(Probability Distribution Function, PDF)를 따라 변하는 수를 확률변수라고 합니다. 그리고 이렇게 확률변수를 생성해내는 행위를 샘플링(sampling)한다고 합니다.</p>
 <p>확률변수에 있어 가장 기본이 되는 것은, 소위 난수(random number)라고 불리는 $ \xi \sim \mathcal{U}(0,1) $입니다. 0~1 범위 내의 실수가 균일하게 샘플링되는 난수 $ \xi $를 반환하는 함수는 대부분의 프로그래밍 언어가 기본으로 제공하고 있습니다<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. 이 $ \xi $만 있으면, 이론상 <b>임의의 PDF를 따르는 확률변수를 샘플링하는 함수</b>를 만들 수 있습니다.</p>
@@ -252,127 +1144,60 @@
 <p>대표적인 함수들을 일부 소개해드리겠습니다. (10.7 버전 기준)</p>
 <h3 id="g4randomdirection">G4RandomDirection</h3>
 <p>앞서 설명했던, 등방적으로 방향을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4RandomDirection</span><span class="p">()</span>
-<span class="n">G4ThreeVector</span> <span class="n">G4RandomDirection</span><span class="p">(</span><span class="n">G4double</span> <span class="n">cosTheta</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>이 함수는 입력인자를 아예 입력하지 않고 사용할 수 있습니다. 이 경우 모든 방향($ 4\pi $)에 대해 균일하게 샘플링된 G4ThreeVector를 반환받을 수 있습니다.</p>
+<pre><code class="language-cpp">G4ThreeVector G4RandomDirection();
+G4ThreeVector G4RandomDirection(G4double cosTheta);
+</code></pre>
+<p>이 함수는 입력인자를 아예 입력하지 않고 사용할 수 있습니다. 이 경우 모든 방향($ 4\pi $)에 대해 균일하게 샘플링된 G4ThreeVector를 반환받을 수 있습니다.</p>
 <p>혹은, 입력인자로 임의의 각도 $ \theta $에 대해 $ \mathcal{cos} \theta $ 값에 해당하는 실수(G4double)를 넣을 수도 있습니다. 이 경우에는 $ +z $축을 중심축으로 하고 꼭짓각의 절반이 $ \theta $인 원뿔 형태로 제한된 영역에 대해 균일하게 샘플링된 G4ThreeVector를 반환받을 수 있습니다.</p>
 <h3 id="g4lambertianrand">G4LambertianRand</h3>
 <p>입력된 벡터를 법선벡터로 갖는 평면에 대해 Lambert 코사인 법칙<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>을 따르게끔 방향을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4LambertianRand</span><span class="p">(</span><span class="k">const</span> <span class="n">G4ThreeVector</span><span class="o">&amp;</span> <span class="n">normal</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 평면을 기준으로 하여 Lambert 코사인 법칙을 따르는 방향을 샘플링하여 G4ThreeVector 형태로 반환해 줍니다.</p>
+<pre><code class="language-cpp">G4ThreeVector G4LambertianRand(const G4ThreeVector&amp; normal);
+</code></pre>
+<p>이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 평면을 기준으로 하여 Lambert 코사인 법칙을 따르는 방향을 샘플링하여 G4ThreeVector 형태로 반환해 줍니다.</p>
 <h3 id="g4planevectorrand">G4PlaneVectorRand</h3>
 <p>입력된 벡터를 법선벡터로 갖는 무한 평면상의 점을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4PlaneVectorRand</span><span class="p">(</span><span class="k">const</span> <span class="n">G4ThreeVector</span><span class="o">&amp;</span> <span class="n">normal</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 무한평면 상의 한 지점을 샘플링하여 G4ThreeVector 형태로 반환받을 수 있습니다.</p>
+<pre><code class="language-cpp">G4ThreeVector G4PlaneVectorRand(const G4ThreeVector&amp; normal);
+</code></pre>
+<p>이 함수는 입력인자로 G4ThreeVector 하나를 넣어줘야 합니다. 그러면 그 벡터를 법선벡터(normal vector)로 갖는 무한평면 상의 한 지점을 샘플링하여 G4ThreeVector 형태로 반환받을 수 있습니다.</p>
 <h3 id="g4randomradiusinring">G4RandomRadiusInRing</h3>
 <p>평면 원 혹은 평면 고리에서 균일한 분포의 점을 샘플링 하기 위한 <strong>반경</strong>의 샘플링을 수행해주는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4double</span> <span class="n">G4RandomRadiusInRing</span><span class="p">(</span><span class="n">G4double</span> <span class="n">rmin</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">rmax</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>원이면 rmin을 0으로, rmax를 반지름으로 주면 됩니다. 고리라면 rmin을 내경으로, rmax를 외경으로 주면 됩니다.</p>
+<pre><code class="language-cpp">G4double G4RandomRadiusInRing(G4double rmin, G4double rmax);
+</code></pre>
+<p>원이면 rmin을 0으로, rmax를 반지름으로 주면 됩니다. 고리라면 rmin을 내경으로, rmax를 외경으로 주면 됩니다.</p>
 <h3 id="g4randompointinellipse">G4RandomPointInEllipse</h3>
 <p>평면 타원 내에서 균일한 분포의 <strong>2차원 점</strong>을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4TwoVector</span> <span class="n">G4RandomPointInEllipse</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>$ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원 내에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. G4TwoVector는 2차원 벡터를 다루는 클래스로,  G4ThreeVector와 유사하게 사용하면 됩니다.</p>
+<pre><code class="language-cpp">G4TwoVector G4RandomPointInEllipse(G4double a, G4double b);
+</code></pre>
+<p>$ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원 내에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. G4TwoVector는 2차원 벡터를 다루는 클래스로,  G4ThreeVector와 유사하게 사용하면 됩니다.</p>
 <h3 id="g4randompointonellipse">G4RandomPointOnEllipse</h3>
 <p>평면 타원의 <strong>원주 위</strong>에서 균일한 분포의 <strong>2차원 점</strong>을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4TwoVector</span> <span class="n">G4RandomPointOnEllipse</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>$ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원의 원주 위에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. <b>In과 On의 차이에 주의하세요</b>.</p>
+<pre><code class="language-cpp">G4TwoVector G4RandomPointOnEllipse(G4double a, G4double b);
+</code></pre>
+<p>$ {x^2 \over a^2} +  {y^2 \over b^2} = 1 $의 타원의 방정식을 따르는 평면 타원에 대해 $a$, $b$를 입력인자로 넣으면, 타원의 원주 위에서 균일한 분포의 2차원 점을 샘플링하여 반환해줍니다. <b>In과 On의 차이에 주의하세요</b>.</p>
 <h3 id="g4randompointonellipsoid">G4RandomPointOnEllipsoid</h3>
 <p><strong>3차원 타원체의 표면 위</strong>에서 균일한 분포의 <strong>3차원 점</strong>을 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">G4ThreeVector</span> <span class="n">G4RandomPointOnEllipsoid</span><span class="p">(</span><span class="n">G4double</span> <span class="n">a</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">b</span><span class="p">,</span> <span class="n">G4double</span> <span class="n">c</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>$ {x^2 \over a^2} +  {y^2 \over b^2} + {z^2 \over c^2} = 1 $의 타원체의 방정식을 따르는 3차원 타원체에 대해 $a$, $b$, $c$를 입력인자로 넣으면, 타원체의 겉표면 위에서 균일한 분포의 3차원 점을 샘플링하여 반환해줍니다.</p>
+<pre><code class="language-cpp">G4ThreeVector G4RandomPointOnEllipsoid(G4double a, G4double b, G4double c);
+</code></pre>
+<p>$ {x^2 \over a^2} +  {y^2 \over b^2} + {z^2 \over c^2} = 1 $의 타원체의 방정식을 따르는 3차원 타원체에 대해 $a$, $b$, $c$를 입력인자로 넣으면, 타원체의 겉표면 위에서 균일한 분포의 3차원 점을 샘플링하여 반환해줍니다.</p>
 <h3 id="g4uniformrand">G4UniformRand</h3>
 <p>$ X \sim \mathcal{U}(0,1) $를 따르는 <strong>실수</strong>를 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">G4UniformRand</span><span class="p">()</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="g4randflatshoot">G4RandFlat::shoot</h3>
+<pre><code class="language-cpp">double G4UniformRand();
+</code></pre>
+<h3 id="g4randflatshoot">G4RandFlat::shoot</h3>
 <p><strong>균등분포</strong>를 따르는 <strong>실수</strong>를 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// G4RandFlat::shoot(a, b) 와 같이 사용.
-</span></code></pre></td></tr></table>
-</div>
-</div><p>$ X \sim \mathcal{U}(a,b) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
+<pre><code class="language-cpp">double shoot(double a, double b); // example: G4RandFlat::shoot(a, b)
+</code></pre>
+<p>$ X \sim \mathcal{U}(a,b) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
 <h3 id="g4randgaussqshoot">G4RandGaussQ::shoot</h3>
 <p><strong>정규분포</strong>를 따르는 <strong>실수</strong>를 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean</span><span class="p">,</span> <span class="kt">double</span> <span class="n">stdDev</span><span class="p">)</span> <span class="c1">// G4RandGaussQ::shoot(mean, stdDev) 와 같이 사용.
-</span></code></pre></td></tr></table>
-</div>
-</div><p>평균(mean)이 $\mu$이고, 표준편차(stdDev)가 $\sigma$인 $ X \sim \mathcal{N}(\mu , {\sigma}^2) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
+<pre><code class="language-cpp">double shoot(double mean, double stdDev); // example: G4RandGaussQ::shoot(mean, stdDev)
+</code></pre>
+<p>평균(mean)이 $\mu$이고, 표준편차(stdDev)가 $\sigma$인 $ X \sim \mathcal{N}(\mu , {\sigma}^2) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
 <h3 id="g4randexponentialshoot">G4RandExponential::shoot</h3>
 <p><strong>지수분포</strong>를 따르는 <strong>실수</strong>를 샘플링하는 함수입니다. 원형은 다음과 같습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">double</span> <span class="n">shoot</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean</span><span class="p">)</span> <span class="c1">// G4RandExponential::shoot(mean) 와 같이 사용.
-</span></code></pre></td></tr></table>
-</div>
-</div><p>평균(mean)이 $\lambda$인 $ X \sim Exp(\lambda) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
+<pre><code class="language-cpp">double shoot(double mean); // example: G4RandExponential::shoot(mean)
+</code></pre>
+<p>평균(mean)이 $\lambda$인 $ X \sim Exp(\lambda) $를 따르는 확률변수 $ X $를 샘플링하는 함수입니다.</p>
 <hr>
 <h2 id="실제-적용---등방성-점선원">실제 적용 - 등방성 점선원</h2>
 <p>이제 맨처음 고민하였던 등방성 점선원을 모사하는 방법을 모두 알아냈습니다.</p>
@@ -382,18 +1207,37 @@
 <li><strong>SetParticleMomentumDirection() 함수의 입력 인자</strong>로, <strong>G4RandomDirection() 함수의 출력값</strong>을 대입</li>
 </ul>
 <p>실제 소스코드는 다음과 같이 작성하면 됩니다.</p>
-<a class="lightgallery" href="/g4-noqasked-009-randtool/03_isotropic_code.png" title="/g4-noqasked-009-randtool/03_isotropic_code.png" data-thumbnail="/g4-noqasked-009-randtool/03_isotropic_code.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="03_isotropic_code.png"
-            data-srcset="/g4-noqasked-009-randtool/03_isotropic_code.png, 03_isotropic_code.png 1.5x, /g4-noqasked-009-randtool/03_isotropic_code.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-009-randtool/03_isotropic_code.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="03_isotropic_code" srcset="
+               /g4-noqasked-009-randtool/03_isotropic_code_huf9814039e9a694a5d2c0466fbee79250_31171_06f7655ae73400be0b340c2d8c09eaa6.png 400w,
+               /g4-noqasked-009-randtool/03_isotropic_code_huf9814039e9a694a5d2c0466fbee79250_31171_73906b086d23b6828dd99db790e906a2.png 760w,
+               /g4-noqasked-009-randtool/03_isotropic_code_huf9814039e9a694a5d2c0466fbee79250_31171_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-009-randtool/03_isotropic_code_huf9814039e9a694a5d2c0466fbee79250_31171_06f7655ae73400be0b340c2d8c09eaa6.png"
+               width="650"
+               height="641"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <hr>
 <h2 id="최종-파일-다운받는-법">최종 파일 다운받는 법</h2>
-<p>이번 글에서 작성한 코드는 <a href="https://github.com/evandde/g4_minimal/archive/a15e944fa685c9f8e11dcfa1849826fe3d959194.zip" target="_blank" rel="noopener noreffer">이 링크</a>를 통해 다운받을 수 있습니다.</p>
+<p>이번 글에서 작성한 코드는 <a href="https://github.com/evandde/g4_minimal/archive/a15e944fa685c9f8e11dcfa1849826fe3d959194.zip" target="_blank" rel="noopener">이 링크</a>를 통해 다운받을 수 있습니다.</p>
 <p>혹은 git repository를 clone하신 분의 경우에는, example branch의 이전 커밋 중 V2 PriGen이라는 커밋을 참고하셔도 됩니다.</p>
 <hr>
 <h2 id="정리">정리</h2>
@@ -403,170 +1247,351 @@
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>사실 컴퓨터는 완전히 무작위적인 난수를 발생시키지는 못해서 의사난수(pseudo random number)를 샘플링하는 함수들을 제공합니다. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>사실 컴퓨터는 완전히 무작위적인 난수를 발생시키지는 못해서 의사난수(pseudo random number)를 샘플링하는 함수들을 제공합니다.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>이상적인 난반사 표면에서 방출되는 선속이 법선벡터로부터 벗어난 각도의 $ \mathcal{cos} $ 값에 비례한다는 법칙. 참고 링크: <a href="https://en.wikipedia.org/wiki/Lambert%27s_cosine_law" target="_blank" rel="noopener noreffer">Lambert&rsquo;s cosine law - Wikipedia</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>이상적인 난반사 표면에서 방출되는 선속이 법선벡터로부터 벗어난 각도의 $ \mathcal{cos} $ 값에 비례한다는 법칙. 참고 링크: <a href="https://en.wikipedia.org/wiki/Lambert%27s_cosine_law" target="_blank" rel="noopener">Lambert&rsquo;s cosine law - Wikipedia</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section></div>
-        
-        <br><hr><br>
-        <h2>관련 포스트</h2>
-        <ul>
-            
-            <li><a href="/g4-noqasked-008-prigen/">Geant4 무작정 따라하기 - 8. 선원항 정의하기</a></li>
-            
-            <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
-            
-            <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
-            
-            <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
-            
-            <li><a href="/g4-noqasked-011-scoring/">Geant4 무작정 따라하기 - 11. 스코어링 구현</a></li>
-            
-        </ul>
-        
+</section>
+          </div>
 
-<div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>2021-07-16에 수정</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/g4-noqasked-009-randtool/index.md" target="_blank">Markdown으로 보기</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-009-randtool/" data-title="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기" data-hashtags="Geant4,G4RandomTools,Random Variable,PrimaryGeneratorAction,ParticleGun"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-009-randtool/" data-title="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-009-randtool/" data-title="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-009-randtool/" data-title="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-009-randtool/" data-title="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-009-randtool/" data-title="Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
+          
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/g4randomtools/">G4RandomTools</a>,&nbsp;<a href="/tags/random-variable/">Random Variable</a>,&nbsp;<a href="/tags/primarygeneratoraction/">PrimaryGeneratorAction</a>,&nbsp;<a href="/tags/particlegun/">ParticleGun</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
-        </section>
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/geant4/">Geant4</a>
+  
+  <a class="badge badge-light" href="/tags/g4randomtools/">G4RandomTools</a>
+  
+  <a class="badge badge-light" href="/tags/random-variable/">Random Variable</a>
+  
+  <a class="badge badge-light" href="/tags/primarygeneratoraction/">PrimaryGeneratorAction</a>
+  
+  <a class="badge badge-light" href="/tags/particlegun/">ParticleGun</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">이전</div>
+    <a href="/g4-noqasked-008-prigen/" rel="next">Geant4 무작정 따라하기 - 8. 선원항 정의하기</a>
+  </div>
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Jul 16, 2021</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/g4-noqasked-008-prigen/">Geant4 무작정 따라하기 - 8. 선원항 정의하기</a></li>
+      
+      <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
+      
+      <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
+      
+      <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
+      
+      <li><a href="/g4-noqasked-011-scoring/">Geant4 무작정 따라하기 - 11. 스코어링 구현</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
     </div>
+  </div>
+</div>
+
+      
 
     
-    <div class="post-nav">
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
         
-            
-                
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-                
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
         
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
 
-            
+    
 
-            
-        <a href="/g4-noqasked-008-prigen/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 8. 선원항 정의하기"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 8. 선원항 정의하기</a>
-            <a href="/g4-noqasked-010-scoringtheory/" class="next" rel="next" title="Geant4 무작정 따라하기 - 10. 스코어링 이론">Geant4 무작정 따라하기 - 10. 스코어링 이론<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="utterances"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
         </div>
-    </footer></div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-JZ0NBG8ZWZ');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
 </html>

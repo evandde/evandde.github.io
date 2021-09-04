@@ -1,401 +1,1662 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Visual Studio Code에서 Python3 환경 설정하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Visual Studio Code에서 Python3 환경 설정하기" />
-<meta property="og:description" content="VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/vscode-python/" />
-<meta property="article:published_time" content="2021-02-22T11:33:18+09:00" />
-<meta property="article:modified_time" content="2021-02-22T11:33:18+09:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Visual Studio Code에서 Python3 환경 설정하기"/>
-<meta name="twitter:description" content="VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다."/>
-<meta name="application-name" content="EvaNote">
-<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/vscode-python/" /><link rel="prev" href="https://evandde.github.io/g4install-107p1-ubt2004/" /><link rel="next" href="https://evandde.github.io/vscode-python-venv/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Visual Studio Code에서 Python3 환경 설정하기",
-        "inLanguage": "ko-kr",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/evandde.github.io\/vscode-python\/"
-        },"genre": "posts","keywords": "HowTo, VSCode, Python, Pylance, Autocompletion","wordcount":  881 ,
-        "url": "https:\/\/evandde.github.io\/vscode-python\/","datePublished": "2021-02-22T11:33:18+09:00","dateModified": "2021-02-22T11:33:18+09:00","publisher": {
-            "@type": "Organization",
-            "name": "Evan Kim"},"author": {
-                "@type": "Person",
-                "name": "Evan Kim"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+<!DOCTYPE html><html lang="ko-kr" >
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/vscode-python/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.75edb75c66f2d6f0a9a146b10c65f58e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/vscode-python/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/vscode-python/" />
+  <meta property="og:title" content="Visual Studio Code에서 Python3 환경 설정하기 | EvaNote" />
+  <meta property="og:description" content="VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-02-22T11:33:18&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-09-04T19:24:31&#43;09:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://evandde.github.io/vscode-python/"
+  },
+  "headline": "Visual Studio Code에서 Python3 환경 설정하기",
+  
+  "datePublished": "2021-02-22T11:33:18+09:00",
+  "dateModified": "2021-09-04T19:24:31+09:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Evan Kim"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "EvaNote",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "\u003cp\u003eVSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Visual Studio Code에서 Python3 환경 설정하기 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="36476e2f0129ce8b4964becde954a2ab" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
         </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        취소
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">목차</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Visual Studio Code에서 Python3 환경 설정하기</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/vscode/"><i class="far fa-folder fa-fw"></i>VSCode</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-22">2021-02-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 881&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 2분&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>목차</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#컴파일러디버거-설치">컴파일러/디버거 설치</a>
-      <ul>
-        <li><a href="#windows를-이용하는-경우">Windows를 이용하는 경우</a></li>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
       </ul>
-    </li>
-    <li><a href="#extension-설치">Extension 설치</a></li>
-    <li><a href="#테스트">테스트</a>
-      <ul>
-        <li><a href="#코드-작성">코드 작성</a></li>
-        <li><a href="#실행">실행</a></li>
-        <li><a href="#디버깅">디버깅</a></li>
-        <li><a href="#추천-extension">추천 extension</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>
-<div class="details admonition success open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-check-circle fa-fw"></i>Success<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">여기서는 <b>VSCode 설치를 완료한 상태</b>라고 가정합니다. VSCode 설치 및 기본 세팅은 <a href="https://evandde.github.io/vscode/" target="_blank" rel="noopener noreffer">이 글</a>을 참고하세요.</div>
-        </div>
     </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Visual Studio Code에서 Python3 환경 설정하기</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          마지막 업데이트
+      
+    
+    Sep 4, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 분 길이
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/vscode/">VSCode</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.</p>
+<div class="alert alert-note">
+  <div>
+    여기서는 <b>VSCode 설치를 완료한 상태</b>라고 가정합니다. VSCode 설치 및 기본 세팅은 <a href="https://evandde.github.io/vscode/">이 글</a>을 참고하세요.
+  </div>
+</div>
+
 <hr>
 <h2 id="컴파일러디버거-설치">컴파일러/디버거 설치</h2>
 <p>VSCode는 Python3 언어용 인터프리터를 자체적으로 내장하고있지 않습니다. 때문에 Python3 언어를 VSCode에서 사용하려면, 인터프리터를 직접 설치하고 이를 연동해주는 작업이 필요합니다.</p>
-<div class="details admonition warning open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Extension을 설치한다고 해서 인터프리터가 설치되는 것은 아닙니다.</div>
-        </div>
-    </div>
+<div class="alert alert-warning">
+  <div>
+    Extension을 설치한다고 해서 인터프리터가 설치되는 것은 아닙니다.
+  </div>
+</div>
+
 <h3 id="windows를-이용하는-경우">Windows를 이용하는 경우</h3>
 <p>Windows는 기본적으로 Python3 언어용 인터프리터를 제공하지 않습니다. 따라서, 우리가 직접 설치해주어야 합니다.</p>
 <p>이는 chocolatey를 통해 쉽게 설치할 수 있습니다.</p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>Info<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, <a href="https://evandde.github.io/chocolatey/" target="_blank" rel="noopener noreffer">이 글</a>을 참고하세요.</div>
-        </div>
-    </div>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">choco</span> <span class="n">install</span> <span class="n">python</span> <span class="n">-y</span>
-</code></pre></td></tr></table>
+<div class="alert alert-note">
+  <div>
+    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, <a href="https://evandde.github.io/chocolatey/">이 글</a>을 참고하세요.
+  </div>
 </div>
-</div><a class="lightgallery" href="/vscode-python/python.png" title="/vscode-python/python.png" data-thumbnail="/vscode-python/python.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="python.png"
-            data-srcset="/vscode-python/python.png, python.png 1.5x, /vscode-python/python.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/python.png" width="100%" />
-    </a>
+
+<pre><code class="language-powershell">choco install python -y
+</code></pre>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="python" srcset="
+               /vscode-python/python_hu6e2d05cb9a13539a28afd7639719bf5c_41500_703bb37218bd66563d4e36da4f28e468.png 400w,
+               /vscode-python/python_hu6e2d05cb9a13539a28afd7639719bf5c_41500_11fd434edc6ee46a7e147ed94c4a04e4.png 760w,
+               /vscode-python/python_hu6e2d05cb9a13539a28afd7639719bf5c_41500_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/python_hu6e2d05cb9a13539a28afd7639719bf5c_41500_703bb37218bd66563d4e36da4f28e468.png"
+               width="740"
+               height="494"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>다음 명령어를 통해 설치가 잘 되었는지 확인해보세요.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">python</span> <span class="p">-</span><span class="n">-version</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="details admonition tip open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>Chocolatey 특성 상, 설치한 직후에는 <code>python</code> 명령어를 인식하지 못할 수 있습니다.</p>
+<pre><code class="language-powershell">python --version
+</code></pre>
+<div class="alert alert-note">
+  <div>
+    <p>Chocolatey 특성 상, 설치한 직후에는 <code>python</code> 명령어를 인식하지 못할 수 있습니다.</p>
 <p>PowerShell을 껐다 켜거나, <code>refreshenv</code> 명령어를 활용하세요.</p>
+
+  </div>
 </div>
-        </div>
-    </div>
-<a class="lightgallery" href="/vscode-python/python_version_windows.png" title="/vscode-python/python_version_windows.png" data-thumbnail="/vscode-python/python_version_windows.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="python_version_windows.png"
-            data-srcset="/vscode-python/python_version_windows.png, python_version_windows.png 1.5x, /vscode-python/python_version_windows.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/python_version_windows.png" width="80%" />
-    </a>
+
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="python_version_windows" srcset="
+               /vscode-python/python_version_windows_hu387b960dddce961ae4b280eb6c79089d_2919_92890a0be2655ca0d77ed47cd717dbd7.png 400w,
+               /vscode-python/python_version_windows_hu387b960dddce961ae4b280eb6c79089d_2919_4622c0f932ccf2499dff9c47085e2f70.png 760w,
+               /vscode-python/python_version_windows_hu387b960dddce961ae4b280eb6c79089d_2919_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/python_version_windows_hu387b960dddce961ae4b280eb6c79089d_2919_92890a0be2655ca0d77ed47cd717dbd7.png"
+               width="480"
+               height="41"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <hr>
 <h2 id="extension-설치">Extension 설치</h2>
 <p>이제 VSCode에서 extension을 설치할 차례입니다.</p>
-<p>VSCode를 켜고 extension 탭으로 간 뒤 &ldquo;<strong>python</strong>&ldquo;를 검색하세요. 맨 위에 python extension이 뜰 것입니다. Install 버튼을 눌러 설치합니다.</p>
-<a class="lightgallery" href="/vscode-python/extension_python.png" title="/vscode-python/extension_python.png" data-thumbnail="/vscode-python/extension_python.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="extension_python.png"
-            data-srcset="/vscode-python/extension_python.png, extension_python.png 1.5x, /vscode-python/extension_python.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/extension_python.png" width="100%" />
-    </a>
+<p>VSCode를 켜고 extension 탭으로 간 뒤 &quot;<strong>python</strong>&quot;를 검색하세요. 맨 위에 python extension이 뜰 것입니다. Install 버튼을 눌러 설치합니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="extension_python" srcset="
+               /vscode-python/extension_python_hu5ac9417cd662cdf9460ddfba50989f19_72511_ad2e777e59664c609e2bc81c4fa56b1d.png 400w,
+               /vscode-python/extension_python_hu5ac9417cd662cdf9460ddfba50989f19_72511_bf1a4e1d4575305c39fb888add3b0126.png 760w,
+               /vscode-python/extension_python_hu5ac9417cd662cdf9460ddfba50989f19_72511_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/extension_python_hu5ac9417cd662cdf9460ddfba50989f19_72511_ad2e777e59664c609e2bc81c4fa56b1d.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <hr>
 <h2 id="테스트">테스트</h2>
 <p>이제 제대로 설치가 되었는지 확인할 시간입니다.</p>
 <h3 id="코드-작성">코드 작성</h3>
 <p>Explorer 탭으로 이동하여 적당한 경로에 <b>main.py</b>라는 새 파일을 만들어주고 다음과 같이 작성하도록 하겠습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Hello, World!&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><a class="lightgallery" href="/vscode-python/codewriting.png" title="/vscode-python/codewriting.png" data-thumbnail="/vscode-python/codewriting.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="codewriting.png"
-            data-srcset="/vscode-python/codewriting.png, codewriting.png 1.5x, /vscode-python/codewriting.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/codewriting.png" width="100%" />
-    </a>
+<pre><code class="language-python">print(&quot;Hello, World!&quot;)
+</code></pre>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="codewriting" srcset="
+               /vscode-python/codewriting_hu3258aa037c885de537f74aef06ed958c_38131_44b6e59100ba6c21f3737ad02b2b1435.png 400w,
+               /vscode-python/codewriting_hu3258aa037c885de537f74aef06ed958c_38131_2999fa9618f6388a376fb978f9fffa3f.png 760w,
+               /vscode-python/codewriting_hu3258aa037c885de537f74aef06ed958c_38131_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/codewriting_hu3258aa037c885de537f74aef06ed958c_38131_44b6e59100ba6c21f3737ad02b2b1435.png"
+               width="695"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <h3 id="실행">실행</h3>
 <p>다음 그림과 같이 [Run]-[Run Without Debugging]을 눌러 실행하시면 됩니다.</p>
 <p>이후 아래쪽의 <strong>TERMINAL</strong> 탭을 확인하시면, 우리가 작성한대로 Hello, World!가 화면에 출력되는 것을 확인할 수 있습니다.</p>
-<a class="lightgallery" href="/vscode-python/run1.png" title="/vscode-python/run1.png" data-thumbnail="/vscode-python/run1.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="run1.png"
-            data-srcset="/vscode-python/run1.png, run1.png 1.5x, /vscode-python/run1.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/run1.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-python/run2.png" title="/vscode-python/run2.png" data-thumbnail="/vscode-python/run2.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="run2.png"
-            data-srcset="/vscode-python/run2.png, run2.png 1.5x, /vscode-python/run2.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/run2.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="run1" srcset="
+               /vscode-python/run1_hu2e74798ec29e178f2d2d60cef2edcb88_42206_51c57614711bb021536456f995e838cb.png 400w,
+               /vscode-python/run1_hu2e74798ec29e178f2d2d60cef2edcb88_42206_943b665ca312c50cf36a7de895ba9f9e.png 760w,
+               /vscode-python/run1_hu2e74798ec29e178f2d2d60cef2edcb88_42206_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/run1_hu2e74798ec29e178f2d2d60cef2edcb88_42206_51c57614711bb021536456f995e838cb.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="run2" srcset="
+               /vscode-python/run2_hu15dd6c7e5bc1232eda1d5a0707ac041f_52244_ea85ba663330cae3476d81755912bee8.png 400w,
+               /vscode-python/run2_hu15dd6c7e5bc1232eda1d5a0707ac041f_52244_7dafbdad8ec61ed19f3e19c142daa49b.png 760w,
+               /vscode-python/run2_hu15dd6c7e5bc1232eda1d5a0707ac041f_52244_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/run2_hu15dd6c7e5bc1232eda1d5a0707ac041f_52244_ea85ba663330cae3476d81755912bee8.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <h3 id="디버깅">디버깅</h3>
 <p>다음 그림과 같이 진행하여 디버깅도 가능합니다.</p>
-<a class="lightgallery" href="/vscode-python/debug1.png" title="/vscode-python/debug1.png" data-thumbnail="/vscode-python/debug1.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="debug1.png"
-            data-srcset="/vscode-python/debug1.png, debug1.png 1.5x, /vscode-python/debug1.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/debug1.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-python/debug2.png" title="/vscode-python/debug2.png" data-thumbnail="/vscode-python/debug2.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="debug2.png"
-            data-srcset="/vscode-python/debug2.png, debug2.png 1.5x, /vscode-python/debug2.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/debug2.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-python/debug3.png" title="/vscode-python/debug3.png" data-thumbnail="/vscode-python/debug3.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="debug3.png"
-            data-srcset="/vscode-python/debug3.png, debug3.png 1.5x, /vscode-python/debug3.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/debug3.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-python/debug4.png" title="/vscode-python/debug4.png" data-thumbnail="/vscode-python/debug4.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="debug4.png"
-            data-srcset="/vscode-python/debug4.png, debug4.png 1.5x, /vscode-python/debug4.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/debug4.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-python/debug5.png" title="/vscode-python/debug5.png" data-thumbnail="/vscode-python/debug5.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="debug5.png"
-            data-srcset="/vscode-python/debug5.png, debug5.png 1.5x, /vscode-python/debug5.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/debug5.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="debug1" srcset="
+               /vscode-python/debug1_huea92c79a15bd67ab41dc987ee2336c1e_44850_a643b0d95fb82fa8b90991df5ce3c690.png 400w,
+               /vscode-python/debug1_huea92c79a15bd67ab41dc987ee2336c1e_44850_47b45d5186e3383dbffeb8e4475d2756.png 760w,
+               /vscode-python/debug1_huea92c79a15bd67ab41dc987ee2336c1e_44850_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/debug1_huea92c79a15bd67ab41dc987ee2336c1e_44850_a643b0d95fb82fa8b90991df5ce3c690.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="debug2" srcset="
+               /vscode-python/debug2_hub256b7d4345ed72aeb0efacbcea9146d_63096_afd30996f992a43e300b34bc8d1710b8.png 400w,
+               /vscode-python/debug2_hub256b7d4345ed72aeb0efacbcea9146d_63096_e26d3b9bc3ad62944bd5ac86af167661.png 760w,
+               /vscode-python/debug2_hub256b7d4345ed72aeb0efacbcea9146d_63096_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/debug2_hub256b7d4345ed72aeb0efacbcea9146d_63096_afd30996f992a43e300b34bc8d1710b8.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="debug3" srcset="
+               /vscode-python/debug3_hu9259eb6f4bf6485a560db9bdf2b16733_58711_1ecf6f1ceb709b12731f62c58d826339.png 400w,
+               /vscode-python/debug3_hu9259eb6f4bf6485a560db9bdf2b16733_58711_7f04a88eb9d72b6d41cc240a7d03e2ef.png 760w,
+               /vscode-python/debug3_hu9259eb6f4bf6485a560db9bdf2b16733_58711_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/debug3_hu9259eb6f4bf6485a560db9bdf2b16733_58711_1ecf6f1ceb709b12731f62c58d826339.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="debug4" srcset="
+               /vscode-python/debug4_hu0fb868517a0036bb1dcc579f0bc70fe0_55281_491478477d1985c5abd72e7e96e547bc.png 400w,
+               /vscode-python/debug4_hu0fb868517a0036bb1dcc579f0bc70fe0_55281_442d12385300746a883668fe9ba844a8.png 760w,
+               /vscode-python/debug4_hu0fb868517a0036bb1dcc579f0bc70fe0_55281_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/debug4_hu0fb868517a0036bb1dcc579f0bc70fe0_55281_491478477d1985c5abd72e7e96e547bc.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="debug5" srcset="
+               /vscode-python/debug5_hu05174299344a0a4de7c35a5fba4d3e93_54773_cd5f4569022f58b0365b35c4ae70cfa3.png 400w,
+               /vscode-python/debug5_hu05174299344a0a4de7c35a5fba4d3e93_54773_606e538de1a728f6ff2b3a4c56053a3a.png 760w,
+               /vscode-python/debug5_hu05174299344a0a4de7c35a5fba4d3e93_54773_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/debug5_hu05174299344a0a4de7c35a5fba4d3e93_54773_cd5f4569022f58b0365b35c4ae70cfa3.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <hr>
 <h3 id="추천-extension">추천 extension</h3>
 <p>VSCode에서 python을 사용할 경우, import한 패키지의 내장함수에 대해 자동완성이 잘 이루어지지 않는 경우가 많습니다. 개인적으로는 이 때문에 한동안 VSCode에서 python을 사용하는 것이 꺼려졌습니다.</p>
 <p>이런 문제를 해결하기 위해 <strong>Pylance</strong>라는 extension을 강력히 추천드립니다.</p>
-<a class="lightgallery" href="/vscode-python/pylance.png" title="/vscode-python/pylance.png" data-thumbnail="/vscode-python/pylance.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="pylance.png"
-            data-srcset="/vscode-python/pylance.png, pylance.png 1.5x, /vscode-python/pylance.png 2x"
-            data-sizes="auto"
-            alt="/vscode-python/pylance.png" width="100%" />
-    </a></div>
-        
-        <br><hr><br>
-        <h2>관련 포스트</h2>
-        <ul>
-            
-            <li><a href="/vscode-jupyter-python-plotly/">VSCode Python 환경에서 Jupyter 및 plotly 사용하기</a></li>
-            
-            <li><a href="/vscode-python-venv/">Visual Studio Code에서 Python3의 venv 사용하기</a></li>
-            
-            <li><a href="/vscode-msvc/">Visual Studio Code에서 MSVC 기반 C&#43;&#43;, CMake 환경 설정하기</a></li>
-            
-            <li><a href="/vscode-wsl/">Visual Studio Code와 Windows Subsystem for Linux 연동하기</a></li>
-            
-            <li><a href="/vscode-cmake/">Visual Studio Code에서 CMake 환경 설정하기</a></li>
-            
-        </ul>
-        
+<p>
 
-<div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>2021-02-22에 수정</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/vscode-python/index.md" target="_blank">Markdown으로 보기</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/vscode-python/" data-title="Visual Studio Code에서 Python3 환경 설정하기" data-hashtags="HowTo,VSCode,Python,Pylance,Autocompletion"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/vscode-python/" data-title="Visual Studio Code에서 Python3 환경 설정하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/vscode-python/" data-title="Visual Studio Code에서 Python3 환경 설정하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/vscode-python/" data-title="Visual Studio Code에서 Python3 환경 설정하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/vscode-python/" data-title="Visual Studio Code에서 Python3 환경 설정하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/vscode-python/" data-title="Visual Studio Code에서 Python3 환경 설정하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/howto/">HowTo</a>,&nbsp;<a href="/tags/vscode/">VSCode</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/pylance/">Pylance</a>,&nbsp;<a href="/tags/autocompletion/">Autocompletion</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
-        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="pylance" srcset="
+               /vscode-python/pylance_hu93ecdcad1a2c88a746d67dacb1229e42_129562_08ff78f5e657792b612a3a9b10cfe4a6.png 400w,
+               /vscode-python/pylance_hu93ecdcad1a2c88a746d67dacb1229e42_129562_71ec2427e9851a2d8bc0e80687bc08b5.png 760w,
+               /vscode-python/pylance_hu93ecdcad1a2c88a746d67dacb1229e42_129562_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-python/pylance_hu93ecdcad1a2c88a746d67dacb1229e42_129562_08ff78f5e657792b612a3a9b10cfe4a6.png"
+               width="760"
+               height="571"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
     </div>
 
     
-    <div class="post-nav">
-        </div>
-</div>
-<div id="comments"><div id="utterances"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-JZ0NBG8ZWZ');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/howto/">HowTo</a>
+  
+  <a class="badge badge-light" href="/tags/vscode/">VSCode</a>
+  
+  <a class="badge badge-light" href="/tags/python/">Python</a>
+  
+  <a class="badge badge-light" href="/tags/pylance/">Pylance</a>
+  
+  <a class="badge badge-light" href="/tags/autocompletion/">Autocompletion</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://evandde.github.io/vscode-python/&amp;text=Visual%20Studio%20Code%ec%97%90%ec%84%9c%20Python3%20%ed%99%98%ea%b2%bd%20%ec%84%a4%ec%a0%95%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://evandde.github.io/vscode-python/&amp;t=Visual%20Studio%20Code%ec%97%90%ec%84%9c%20Python3%20%ed%99%98%ea%b2%bd%20%ec%84%a4%ec%a0%95%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Visual%20Studio%20Code%ec%97%90%ec%84%9c%20Python3%20%ed%99%98%ea%b2%bd%20%ec%84%a4%ec%a0%95%ed%95%98%ea%b8%b0&amp;body=https://evandde.github.io/vscode-python/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://evandde.github.io/vscode-python/&amp;title=Visual%20Studio%20Code%ec%97%90%ec%84%9c%20Python3%20%ed%99%98%ea%b2%bd%20%ec%84%a4%ec%a0%95%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Visual%20Studio%20Code%ec%97%90%ec%84%9c%20Python3%20%ed%99%98%ea%b2%bd%20%ec%84%a4%ec%a0%95%ed%95%98%ea%b8%b0%20https://evandde.github.io/vscode-python/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://evandde.github.io/vscode-python/&amp;title=Visual%20Studio%20Code%ec%97%90%ec%84%9c%20Python3%20%ed%99%98%ea%b2%bd%20%ec%84%a4%ec%a0%95%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://evandde.github.io/vscode-python/&amp;title=Visual%20Studio%20Code%ec%97%90%ec%84%9c%20Python3%20%ed%99%98%ea%b2%bd%20%ec%84%a4%ec%a0%95%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-tumblr">
+          <i class="fab fa-tumblr"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://evandde.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/evan/avatar_hu4476cc8294ad87f920966ab8a63550ba_16674_270x270_fill_lanczos_center_3.png" alt="Evan Kim"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://evandde.github.io/">Evan Kim</a></h5>
+      <h6 class="card-subtitle">Senior Researcher</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:evandde@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=uPm-DQsAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/evandde" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/vscode-jupyter-python-plotly/">VSCode Python 환경에서 Jupyter 및 plotly 사용하기</a></li>
+      
+      <li><a href="/vscode-python-venv/">Visual Studio Code에서 Python3의 venv 사용하기</a></li>
+      
+      <li><a href="/vscode-msvc/">Visual Studio Code에서 MSVC 기반 C&#43;&#43;, CMake 환경 설정하기</a></li>
+      
+      <li><a href="/vscode-wsl/">Visual Studio Code와 Windows Subsystem for Linux 연동하기</a></li>
+      
+      <li><a href="/vscode-cmake/">Visual Studio Code에서 CMake 환경 설정하기</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
 </html>

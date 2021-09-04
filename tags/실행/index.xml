@@ -1,15 +1,251 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>실행 - 태그 - EvaNote</title>
-        <link>https://evandde.github.io/tags/%EC%8B%A4%ED%96%89/</link>
-        <description>실행 - 태그 - EvaNote</description>
-        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 24 Sep 2020 23:07:12 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/%EC%8B%A4%ED%96%89/" rel="self" type="application/rss+xml" /><item>
-    <title>Windows 실행([WIN]&#43;[R]) 명령어 정리</title>
-    <link>https://evandde.github.io/windowrun/</link>
-    <pubDate>Thu, 24 Sep 2020 23:07:12 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/windowrun/</guid>
-    <description><![CDATA[<p>이 글에서는 <b>시작-실행</b> 혹은 단축키 <b>[WIN]+[R]</b>을 통해 띄울 수 있는 실행 창에서 사용 가능한 다양한 명령어를 정리해 봅니다.</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>실행 | EvaNote</title>
+    <link>https://evandde.github.io/tags/%EC%8B%A4%ED%96%89/</link>
+      <atom:link href="https://evandde.github.io/tags/%EC%8B%A4%ED%96%89/index.xml" rel="self" type="application/rss+xml" />
+    <description>실행</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Thu, 24 Sep 2020 23:07:12 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>실행</title>
+      <link>https://evandde.github.io/tags/%EC%8B%A4%ED%96%89/</link>
+    </image>
+    
+    <item>
+      <title>Windows 실행([WIN]&#43;[R]) 명령어 정리</title>
+      <link>https://evandde.github.io/windowrun/</link>
+      <pubDate>Thu, 24 Sep 2020 23:07:12 +0900</pubDate>
+      <guid>https://evandde.github.io/windowrun/</guid>
+      <description>&lt;p&gt;이 글에서는 &lt;b&gt;시작-실행&lt;/b&gt; 혹은 단축키 &lt;b&gt;[WIN]+[R]&lt;/b&gt;을 통해 띄울 수 있는 실행 창에서 사용 가능한 다양한 명령어를 정리해 봅니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;run&#34; srcset=&#34;
+               /windowrun/run_hu9e8321c22afa1e03261d9f36a197b4cf_8782_42e54cebf8eb1262da46ea61982c6edc.png 400w,
+               /windowrun/run_hu9e8321c22afa1e03261d9f36a197b4cf_8782_4d19731ad97a3adf486797db7c3eb3b2.png 760w,
+               /windowrun/run_hu9e8321c22afa1e03261d9f36a197b4cf_8782_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/windowrun/run_hu9e8321c22afa1e03261d9f36a197b4cf_8782_42e54cebf8eb1262da46ea61982c6edc.png&#34;
+               width=&#34;399&#34;
+               height=&#34;206&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;사용법&#34;&gt;사용법&lt;/h2&gt;
+&lt;h3 id=&#34;기본적인-사용&#34;&gt;기본적인 사용&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;실행 창을 띄웁니다. (&lt;b&gt;시작-실행&lt;/b&gt; 혹은 단축키 &lt;b&gt;[WIN]+[R]&lt;/b&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;열기(&lt;u&gt;O&lt;/u&gt;):&lt;/b&gt; 라고 표시된 상자 안에 명령어를 입력합니다. (대소문자는 상관 없습니다)&lt;/li&gt;
+&lt;li&gt;확인을 누릅니다. (혹은 &lt;b&gt;[ENTER]&lt;/b&gt;를 누릅니다.)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;관리자-권한으로-실행&#34;&gt;관리자 권한으로 실행&lt;/h3&gt;
+&lt;p&gt;어떤 명령어든, 위의 사용법 설명에서 확인을 누르는 대신, &lt;b&gt;[CTRL]+[SHIFT]+[ENTER]&lt;/b&gt;를 누르면, 해당 명령어가 &lt;strong&gt;관리자 권한으로 실행&lt;/strong&gt;됩니다.&lt;/p&gt;
+&lt;p&gt;주로 cmd나 powershell 등을 관리자권한으로 실행하고 싶을 때 사용하면 좋습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;응용프로그램-명령어&#34;&gt;응용프로그램 명령어&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;명령어&lt;/th&gt;
+&lt;th&gt;결과&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;calc&lt;/td&gt;
+&lt;td&gt;계산기&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cmd&lt;/td&gt;
+&lt;td&gt;커맨드 창&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mspaint&lt;/td&gt;
+&lt;td&gt;그림판&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;notepad&lt;/td&gt;
+&lt;td&gt;메모장&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;powershell&lt;/td&gt;
+&lt;td&gt;파워셸&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;환경변수로-정의된-폴더명&#34;&gt;환경변수로 정의된 폴더명&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;명령어&lt;/th&gt;
+&lt;th&gt;결과&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;%AppData%&lt;/td&gt;
+&lt;td&gt;현재 로그인한 사용자계정 폴더 내에 숨김처리된 AppData\Roaming\ 폴더 (일반적으로 C:\Users\&amp;lt;계정명&amp;gt;\Appdata\Roaming\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%LocalAppData%&lt;/td&gt;
+&lt;td&gt;현재 로그인한 사용자계정 폴더 내에 숨김처리된 AppData\Local\ 폴더 (일반적으로 C:\Users\&amp;lt;계정명&amp;gt;\Appdata\Local\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%ProgramData%&lt;/td&gt;
+&lt;td&gt;ProgramData 폴더 (일반적으로 C:\ProgramData\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%ProgramFiles%&lt;/td&gt;
+&lt;td&gt;Program Files 폴더 (일반적으로 C:\Program Files\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%ProgramFiles(x86)%&lt;/td&gt;
+&lt;td&gt;Program Files (x86) 폴더. 64 bit 전용 (일반적으로 C:\Program Files (x86)\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%UserProfile%&lt;/td&gt;
+&lt;td&gt;현재 로그인한 사용자계정 폴더 (일반적으로 C:\Users\&amp;lt;계정명&amp;gt;\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%WinDir%&lt;/td&gt;
+&lt;td&gt;Windows 폴더 (일반적으로 C:\Windows\)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;shell:Startup&lt;/td&gt;
+&lt;td&gt;현재 사용자의 시작프로그램 폴더&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;shell:Common Startup&lt;/td&gt;
+&lt;td&gt;모든 사용자를 위한 시작프로그램 폴더&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;windows-시스템&#34;&gt;Windows 시스템&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;명령어&lt;/th&gt;
+&lt;th&gt;결과&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;appwiz.cpl&lt;/td&gt;
+&lt;td&gt;프로그램 제거 또는 변경&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cleanmgr&lt;/td&gt;
+&lt;td&gt;디스크 정리&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;compmgmt.msc&lt;/td&gt;
+&lt;td&gt;컴퓨터 관리&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;control&lt;/td&gt;
+&lt;td&gt;제어판&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;desk.cpl&lt;/td&gt;
+&lt;td&gt;디스플레이 설정&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;devmgmt.msc&lt;/td&gt;
+&lt;td&gt;장치 관리자&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;diskmgmt.msc&lt;/td&gt;
+&lt;td&gt;디스크 관리&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dxdiag&lt;/td&gt;
+&lt;td&gt;Direct X 진단 도구&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;firewall.cpl&lt;/td&gt;
+&lt;td&gt;방화벽&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mmsys.cpl&lt;/td&gt;
+&lt;td&gt;사운드 및 오디오 등록정보&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mrt&lt;/td&gt;
+&lt;td&gt;악성 소프트웨어 제거 도구&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mstsc&lt;/td&gt;
+&lt;td&gt;원격 데스크탑 연결&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mstsc /v &amp;lt;IP주소&amp;gt;&lt;/td&gt;
+&lt;td&gt;IP 주소를 명시하여 원격 데스크탑 연결 실행&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ncpa.cpl&lt;/td&gt;
+&lt;td&gt;네트워크 연결 정보&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;optionalfeatures&lt;/td&gt;
+&lt;td&gt;Windows 기능 켜기/끄기&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;perfmon.msc&lt;/td&gt;
+&lt;td&gt;성능 모니터 뷰&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;powercfg.cpl&lt;/td&gt;
+&lt;td&gt;전원 옵션&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;regedit&lt;/td&gt;
+&lt;td&gt;레지스트리 편집기&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;services.msc&lt;/td&gt;
+&lt;td&gt;서비스&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;sndvol&lt;/td&gt;
+&lt;td&gt;볼륨 Mixer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;sysdm.cpl&lt;/td&gt;
+&lt;td&gt;시스템 속성&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;taskmgr&lt;/td&gt;
+&lt;td&gt;Windows 작업 관리자&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;taskschd.msc&lt;/td&gt;
+&lt;td&gt;작업 스케줄러&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;winver&lt;/td&gt;
+&lt;td&gt;Windows 버전 정보&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    
+  </channel>
 </rss>

@@ -1,15 +1,251 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Template - 태그 - EvaNote</title>
-        <link>https://evandde.github.io/tags/template/</link>
-        <description>Template - 태그 - EvaNote</description>
-        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Wed, 09 Jun 2021 22:03:29 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/template/" rel="self" type="application/rss+xml" /><item>
-    <title>Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기</title>
-    <link>https://evandde.github.io/g4-noqasked-001-clonetest/</link>
-    <pubDate>Wed, 09 Jun 2021 22:03:29 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/g4-noqasked-001-clonetest/</guid>
-    <description><![CDATA[<p>Geant4 무작정 따라하기 시리즈의 첫번째. 기본 틀이 이미 짜여져있는 템플릿 코드를 다운받아서 실행해봅시다.</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Template | EvaNote</title>
+    <link>https://evandde.github.io/tags/template/</link>
+      <atom:link href="https://evandde.github.io/tags/template/index.xml" rel="self" type="application/rss+xml" />
+    <description>Template</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Wed, 09 Jun 2021 22:03:29 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>Template</title>
+      <link>https://evandde.github.io/tags/template/</link>
+    </image>
+    
+    <item>
+      <title>Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기</title>
+      <link>https://evandde.github.io/g4-noqasked-001-clonetest/</link>
+      <pubDate>Wed, 09 Jun 2021 22:03:29 +0900</pubDate>
+      <guid>https://evandde.github.io/g4-noqasked-001-clonetest/</guid>
+      <description>&lt;p&gt;Geant4 무작정 따라하기 시리즈의 첫번째. 기본 틀이 이미 짜여져있는 템플릿 코드를 다운받아서 실행해봅시다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;템플릿-코드&#34;&gt;템플릿 코드&lt;/h2&gt;
+&lt;p&gt;Geant4 코드 작성을 여러번 하다 보면 시뮬레이션의 내용이 다소 바뀌더라도, 기본적인 틀에 해당하는 부분은 크게 달라지지 않는다는 사실을 깨닫게 됩니다. 그래서 저는 &lt;strong&gt;미리 짜두었던 기본 틀을 복사해와서 실제 시뮬레이션의 요구사항에 맞추어 세부적인 부분만 조정&lt;/strong&gt;하는 식으로 작업을 수행함으로써 작업시간을 단축시키곤 합니다. PPT나 워드 프로세싱등에서 사용되는 샘플 문서인 템플릿(Template)과 유사한 용도이기에, 이 &lt;strong&gt;기본 틀&lt;/strong&gt;을 저는 &lt;strong&gt;템플릿 코드&lt;/strong&gt;라고 부릅니다.&lt;/p&gt;
+&lt;p&gt;이 시리즈에서는 여러분에게 제가 직접 만든 템플릿 코드를 제공해드리려 합니다. 이 템플릿 코드는 Geant4 공식 예제 중 기본 예제 수준의 시뮬레이션을 작성하기에 적합하도록 하되, 불필요한 부분을 최소화하여 작성했습니다. 여러분은 이 시리즈를 통해, 제가 제공해드린 템플릿 코드에 여러분이 원하는 구조물, 선원항, 데이터기록방식을 정의하게 될 것이고, 이를 통해 여러분만의 Geant4 시뮬레이션 코드를 만들어 결과를 얻어볼 수 있을 것입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;템플릿-코드-다운받기&#34;&gt;템플릿 코드 다운받기&lt;/h2&gt;
+&lt;p&gt;다음 세 가지 방법 중 본인에게 편한 방법을 통해 다운받으시기 바랍니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;템플릿 코드는 &lt;a href=&#34;https://github.com/evandde/g4_minimal/archive/refs/heads/main.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;를 통해 다운받을 수 있습니다. &lt;code&gt;g4_minimal-main.zip&lt;/code&gt; 파일이 다운받아질 것입니다. 압축을 풀어 사용하시면 됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;혹은, 리눅스 환경에서 &lt;code&gt;wget&lt;/code&gt;명령어를 통해 다음과 같이 진행하셔도 됩니다. (Linux에서는 &lt;code&gt;unzip&lt;/code&gt; 명령어로 zip 형식의 압축을 풀 수 있습니다)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget https://github.com/evandde/g4_minimal/archive/refs/heads/main.zip
+unzip main.zip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;또는, 여러분이 &lt;code&gt;git&lt;/code&gt;을 사용하실 줄 안다면, 다음의 명령어를 통해 repository 자체를 클론해가셔도 됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone https://github.com/evandde/g4_minimal
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    git을 사용할 줄 아신다면, 3번 방법을 추천합니다. 이 후 본 시리즈에서 만들어 나갈 단계별 정답 코드를 해당 repository의 example 브랜치에 지난 commit들의 형태로 제공하고 있습니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;실행해보기&#34;&gt;실행해보기&lt;/h2&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;이 글은 Linux 혹은 WSL에서 gcc 기반으로 Geant4를 설치한 분을 대상으로 작성되었습니다.&lt;/p&gt;
+&lt;p&gt;Windows에서 MSVC 기반으로 Geant4를 설치하신 분은 &lt;a href=&#34;https://evandde.github.io/g4install-107p2-win10basic/#geant4-%EC%98%88%EC%A0%9C-%EC%8B%A4%ED%96%89%ED%95%B4%EB%B3%B4%EA%B8%B0&#34;&gt;이 링크&lt;/a&gt;의 예제 실행방법과 동일하게 실행해보시면 됩니다.&lt;/p&gt;
+&lt;p&gt;아래에 적은 과정과 유사합니다만, 다음의 두 과정을 지켜주시는 것이 핵심입니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;CMakeLists.txt의 맨 위에 다음 내용 추가&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmake&#34;&gt;#----------------------------------------------------------------------------
+# Set build output directory to be ./build 
+# rather than ./build/Release or ./build/RelWithDebInfo
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE &amp;quot;${CMAKE_BINARY_DIR}&amp;quot;)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO &amp;quot;${CMAKE_BINARY_DIR}&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;make&lt;/code&gt;명령어 대신 &lt;code&gt;cmake --build . --config Release&lt;/code&gt; 명령어 사용&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;압축을 풀고 해당 디렉토리 안에 들어가면 다음과 같은 파일들이 있을 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_firstview&#34; srcset=&#34;
+               /g4-noqasked-001-clonetest/01_firstview_hud4dcb00d012ad7d07c5134c08af2242c_5049_a7b00354bf69e5ba783c70bf9aca499b.png 400w,
+               /g4-noqasked-001-clonetest/01_firstview_hud4dcb00d012ad7d07c5134c08af2242c_5049_16ffc2363effcd0a04836cb89953f599.png 760w,
+               /g4-noqasked-001-clonetest/01_firstview_hud4dcb00d012ad7d07c5134c08af2242c_5049_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-001-clonetest/01_firstview_hud4dcb00d012ad7d07c5134c08af2242c_5049_a7b00354bf69e5ba783c70bf9aca499b.png&#34;
+               width=&#34;608&#34;
+               height=&#34;42&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;먼저, 컴파일 결과를 담을 build 디렉토리를 생성해준 뒤, build 디렉토리로 들어갑니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir build
+cd build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이어서, &lt;code&gt;cmake&lt;/code&gt;와 &lt;code&gt;make&lt;/code&gt;를 통해 컴파일을 수행합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cmake ..
+make
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;퍼센트가 쭉 올라가서 100%까지 진행된 뒤에 다음과 같은 파일들이 만들어짐을 확인하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_make&#34; srcset=&#34;
+               /g4-noqasked-001-clonetest/02_make_hufe14d17728f5b714c6aab66b1f5744ec_115354_27e2daec9f8708c75dd5ba0eb62ab34d.png 400w,
+               /g4-noqasked-001-clonetest/02_make_hufe14d17728f5b714c6aab66b1f5744ec_115354_30e27b85caa85804a30375d92f1b5510.png 760w,
+               /g4-noqasked-001-clonetest/02_make_hufe14d17728f5b714c6aab66b1f5744ec_115354_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-001-clonetest/02_make_hufe14d17728f5b714c6aab66b1f5744ec_115354_27e2daec9f8708c75dd5ba0eb62ab34d.png&#34;
+               width=&#34;760&#34;
+               height=&#34;720&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;이제 다음 명령어를 입력하여 실행이 되는지 확인합니다.&lt;/strong&gt; 아래 그림과 같이 문구가 주르륵 올라간 뒤에 &lt;font color=&#39;red&#39;&gt;Good bye :) 인사를 받아내었다면 성공&lt;/font&gt;입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./g4_minimal run.mac
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_batchrun&#34; srcset=&#34;
+               /g4-noqasked-001-clonetest/03_batchrun_hu8516dcc1b3dedd146aadf1b2675bf3cb_85899_11831c18687eb6ae9a1f5adaff1983ca.png 400w,
+               /g4-noqasked-001-clonetest/03_batchrun_hu8516dcc1b3dedd146aadf1b2675bf3cb_85899_5ab2a6d81280caba40c2065e804ffdf5.png 760w,
+               /g4-noqasked-001-clonetest/03_batchrun_hu8516dcc1b3dedd146aadf1b2675bf3cb_85899_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-001-clonetest/03_batchrun_hu8516dcc1b3dedd146aadf1b2675bf3cb_85899_11831c18687eb6ae9a1f5adaff1983ca.png&#34;
+               width=&#34;505&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;그래픽을 사용할 수 있는 환경&lt;/strong&gt;이라면, 다음 명령어로도 실행해봅니다. Qt 라이브러리를 연동하여 설치하셨다면, 아래 그림과 같이 마우스로 조작가능한 3D 화면을 볼 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Qt가 아닌 다른 그래픽 라이브러리를 연동하셨다면, UI창의 모습이 다소 다를 수도 있습니다.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./g4_minimal
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_uirun&#34; srcset=&#34;
+               /g4-noqasked-001-clonetest/04_uirun_hu188d1c06a87cdf6cb9c528bd0e1c8fb5_75441_988e4783dd2678d0753f3d48dcba7e7e.png 400w,
+               /g4-noqasked-001-clonetest/04_uirun_hu188d1c06a87cdf6cb9c528bd0e1c8fb5_75441_130e3718bb1835b5f6a988b1a6d2fc5d.png 760w,
+               /g4-noqasked-001-clonetest/04_uirun_hu188d1c06a87cdf6cb9c528bd0e1c8fb5_75441_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-001-clonetest/04_uirun_hu188d1c06a87cdf6cb9c528bd0e1c8fb5_75441_988e4783dd2678d0753f3d48dcba7e7e.png&#34;
+               width=&#34;760&#34;
+               height=&#34;591&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이 모든 화면을 확인하셨다면 이번 글의 목표는 달성한 것입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;보충-설명&#34;&gt;보충 설명&lt;/h2&gt;
+&lt;h3 id=&#34;빌드cmake-make&#34;&gt;빌드(cmake, make)&lt;/h3&gt;
+&lt;p&gt;실행해보기에서 입력한 &lt;code&gt;cmake&lt;/code&gt;와 &lt;code&gt;make&lt;/code&gt; 명령어는 C++ 언어로 작성된 코드를 빌드하기 위해 수행한 작업입니다.&lt;/p&gt;
+&lt;p&gt;최근의 Geant4는 CMake를 활용하는 방식을 채용하고 있으므로, 해당 프로젝트의 디렉토리 안에 CMakeLists.txt 파일이 제대로 구비되어 있어야 합니다. Geant4 공식 홈페이지에서 사용자를 위한 CMakeLists.txt의 작성법을 제공하고 있습니다(&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/GettingStarted/makeFile.html#&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;링크&lt;/a&gt;). 대부분의 경우 CMakeLists.txt 파일을 수정할 일은 없으므로, 여기서는 이에 대한 설명을 생략하겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cmake&lt;/code&gt; 명령어를 입력하면, &lt;code&gt;make&lt;/code&gt;를 수행하기 위해 필요한 Makefile이 생성됩니다. 이어서 &lt;code&gt;make &lt;/code&gt; 명령어를 입력하여 빌드를 수행하면 &lt;strong&gt;g4_minimal&lt;/strong&gt;이라는 실행파일이 만들어집니다.&lt;/p&gt;
+&lt;h3 id=&#34;실행ui모드-실행-batch모드-실행&#34;&gt;실행(UI모드 실행, batch모드 실행)&lt;/h3&gt;
+&lt;p&gt;Geant4는 프로그램을 실행하는 방식으로 다음의 두 가지를 제공합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;UI모드 실행&lt;/p&gt;
+&lt;p&gt;프로그램이 실행된 뒤 IDLE상태로 대기. 사용자가 명령어를 입력하면 이에 따라 명령어가 실행되는 구조.&lt;/p&gt;
+&lt;p&gt;그래픽 관련 라이브러리를 연동하여 Geant4를 설치한 경우, 지오메트리 및 입자 수송을 그래픽 형태로 보거나 저장할 수도 있음.&lt;/p&gt;
+&lt;p&gt;일반적으로 실제 시뮬레이션을 수행하여 결과를 얻기 전에, 지오메트리/선원항/데이터기록 등을 테스트하고 확인하는 목적으로 이용함.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;batch모드 실행&lt;/p&gt;
+&lt;p&gt;시뮬레이션을 수행하는 데에 필요한 명령어를, 프로그램을 실행하는 시점에 일괄적으로(batch) 함께 입력해주어 바로 시뮬레이션을 수행하는 구조.&lt;/p&gt;
+&lt;p&gt;일반적으로 충분한 수의 초기입자를 발생시켜 실제 시뮬레이션을 수행하고 이에 대한 결과를 얻는 목적으로 이용함.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;main함수를 어떻게 작성하느냐에 따라 위의 두 실행방식을 자유롭게 선택할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;다만, Geant4 기반으로 작성한 대부분의 코드에서 &lt;strong&gt;다음의 방식을 따르도록 main함수를 작성&lt;/strong&gt;하는 것이 일반적인 관습입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;실행파일명만 입력&lt;/strong&gt;하여 실행한 경우에는 &lt;strong&gt;UI모드&lt;/strong&gt;로 실행&lt;/p&gt;
+&lt;p&gt;예를 들어, 위에서 &lt;code&gt;./g4_minimal&lt;/code&gt; 만 입력하여 실행한 경우에는 UI창이 뜨는 것을 확인할 수 있음.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;실행파일명 뒤에 &lt;code&gt;.mac&lt;/code&gt; 형식의 파일을 함께 입력&lt;/strong&gt;하여 실행한 경우에는, 해당 &lt;code&gt;.mac&lt;/code&gt; 파일의 내용을 일괄적으로 입력하여 &lt;strong&gt;batch모드&lt;/strong&gt;로 실행&lt;/p&gt;
+&lt;p&gt;예를 들어, 위에서 &lt;code&gt;./g4_minimal run.mac&lt;/code&gt;을 입력하여 실행한 경우에는 &lt;code&gt;run.mac&lt;/code&gt;파일의 내용이 일괄적으로 입력되어 시뮬레이션이 batch모드로 수행되고, 최종적으로 Good bye :)가 출력되며 시뮬레이션이 종료되는 것을 확인할 수 있음.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;※  &lt;code&gt;.mac&lt;/code&gt; 파일에 어떤 내용을 작성하는지에 대해서는 이 시리즈에서 추후에 다루도록 하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;고생하셨습니다.&lt;/p&gt;
+&lt;p&gt;다음 글에서는 &lt;strong&gt;지오메트리&lt;/strong&gt;를 정의하는 방법에 대해 알아보겠습니다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
 </rss>

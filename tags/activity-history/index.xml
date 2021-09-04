@@ -1,15 +1,180 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>activity history - 태그 - EvaNote</title>
-        <link>https://evandde.github.io/tags/activity-history/</link>
-        <description>activity history - 태그 - EvaNote</description>
-        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/activity-history/" rel="self" type="application/rss+xml" /><item>
-    <title>타임라인에서 활동 기록 뜨지 않게 하는 법</title>
-    <link>https://evandde.github.io/remove-activity-history/</link>
-    <pubDate>Thu, 12 Nov 2020 11:01:34 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/remove-activity-history/</guid>
-    <description><![CDATA[<p>이 글에서는 [WIN]+[TAB]키를 눌러 데스크톱 목록을 볼 때, 아래쪽에 타임라인이라는 이름으로 나타나는 활동 기록이 뜨지 않도록 없애는 방법을 알아보고자 합니다.</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>activity history | EvaNote</title>
+    <link>https://evandde.github.io/tags/activity-history/</link>
+      <atom:link href="https://evandde.github.io/tags/activity-history/index.xml" rel="self" type="application/rss+xml" />
+    <description>activity history</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Thu, 12 Nov 2020 11:01:34 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>activity history</title>
+      <link>https://evandde.github.io/tags/activity-history/</link>
+    </image>
+    
+    <item>
+      <title>Windows 10 타임라인에서 활동 기록 뜨지 않게 하는 법</title>
+      <link>https://evandde.github.io/remove-activity-history/</link>
+      <pubDate>Thu, 12 Nov 2020 11:01:34 +0900</pubDate>
+      <guid>https://evandde.github.io/remove-activity-history/</guid>
+      <description>&lt;p&gt;이 글에서는 [WIN]+[TAB]키를 눌러 데스크톱 목록을 볼 때, 아래쪽에 타임라인이라는 이름으로 나타나는 활동 기록이 뜨지 않도록 없애는 방법을 알아보고자 합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;activityhistory&#34; srcset=&#34;
+               /remove-activity-history/activityhistory_hu6c7127ef64e11e0d4b33d7b3e5e0516d_2721993_c314d44e5852df194c69b604dbfcd204.png 400w,
+               /remove-activity-history/activityhistory_hu6c7127ef64e11e0d4b33d7b3e5e0516d_2721993_2c54c1d5682725df4e4594b7b0a6084b.png 760w,
+               /remove-activity-history/activityhistory_hu6c7127ef64e11e0d4b33d7b3e5e0516d_2721993_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/remove-activity-history/activityhistory_hu6c7127ef64e11e0d4b33d7b3e5e0516d_2721993_c314d44e5852df194c69b604dbfcd204.png&#34;
+               width=&#34;760&#34;
+               height=&#34;409&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;해결방법&#34;&gt;해결방법&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;[WIN]+[I]를 눌러, &lt;strong&gt;Windows 설정&lt;/strong&gt; 창을 엽니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;step1&#34; srcset=&#34;
+               /remove-activity-history/step1_hubc09b5e5b45ebe0e6367e06cbbd22f6e_27288_cb2f46f5173535b507a310fa985ff4f5.png 400w,
+               /remove-activity-history/step1_hubc09b5e5b45ebe0e6367e06cbbd22f6e_27288_315ecf754dde28affb86577282b8c074.png 760w,
+               /remove-activity-history/step1_hubc09b5e5b45ebe0e6367e06cbbd22f6e_27288_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/remove-activity-history/step1_hubc09b5e5b45ebe0e6367e06cbbd22f6e_27288_cb2f46f5173535b507a310fa985ff4f5.png&#34;
+               width=&#34;760&#34;
+               height=&#34;588&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;개인 정보&lt;/strong&gt;에 들어갑니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;step2&#34; srcset=&#34;
+               /remove-activity-history/step2_hu39f9253d5e399196892cfb0d4c4fe6f2_37305_2764535d3419154d58366deb5f30a2c0.png 400w,
+               /remove-activity-history/step2_hu39f9253d5e399196892cfb0d4c4fe6f2_37305_e7abea642bdcca27c623e7c4f9f25133.png 760w,
+               /remove-activity-history/step2_hu39f9253d5e399196892cfb0d4c4fe6f2_37305_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/remove-activity-history/step2_hu39f9253d5e399196892cfb0d4c4fe6f2_37305_2764535d3419154d58366deb5f30a2c0.png&#34;
+               width=&#34;760&#34;
+               height=&#34;588&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;왼쪽 탭 중 &lt;strong&gt;활동 기록&lt;/strong&gt;에 들어갑니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;step3&#34; srcset=&#34;
+               /remove-activity-history/step3_hu563d7cd15cc199e04254788b975c776d_161109_f56ef915b27969d946a23fd405940744.png 400w,
+               /remove-activity-history/step3_hu563d7cd15cc199e04254788b975c776d_161109_ee121892e8350510128e693e11c63994.png 760w,
+               /remove-activity-history/step3_hu563d7cd15cc199e04254788b975c776d_161109_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/remove-activity-history/step3_hu563d7cd15cc199e04254788b975c776d_161109_f56ef915b27969d946a23fd405940744.png&#34;
+               width=&#34;760&#34;
+               height=&#34;588&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;다음 계정의 활동 표시&lt;/strong&gt; 부분에서 계정 옆의 스위치를 클릭하여 끔으로 바꾸어주고, 원한다면 밑의 &lt;strong&gt;활동 기록 지우기&lt;/strong&gt;에서 지우기 버튼을 클릭합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;step4&#34; srcset=&#34;
+               /remove-activity-history/step4_huf4e908e2d27d66e02f15f37bd2f8ca6d_209717_7942ed98d7cd3df8b69acaca3682d1ab.png 400w,
+               /remove-activity-history/step4_huf4e908e2d27d66e02f15f37bd2f8ca6d_209717_6022f708b51c20c545fe3a6642b8b35e.png 760w,
+               /remove-activity-history/step4_huf4e908e2d27d66e02f15f37bd2f8ca6d_209717_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/remove-activity-history/step4_huf4e908e2d27d66e02f15f37bd2f8ca6d_209717_7942ed98d7cd3df8b69acaca3682d1ab.png&#34;
+               width=&#34;760&#34;
+               height=&#34;712&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;끝입니다! 설정사항은 따로 확인버튼 없이 자동으로 저장되니 그냥 창을 끄셔도 됩니다!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
 </rss>

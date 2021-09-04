@@ -1,131 +1,934 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Geant4 무작정 따라하기 - 2. 지오메트리 정의하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기" />
-<meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/g4-noqasked-002-detcon/" />
-<meta property="article:published_time" content="2021-06-10T09:52:13+09:00" />
-<meta property="article:modified_time" content="2021-06-10T09:52:13+09:00" />
+<!DOCTYPE html><html lang="ko-kr" >
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기"/>
-<meta name="twitter:description" content="Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다."/>
-<meta name="application-name" content="EvaNote">
-<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/g4-noqasked-002-detcon/" /><link rel="prev" href="https://evandde.github.io/g4-noqasked-001-clonetest/" /><link rel="next" href="https://evandde.github.io/g4-noqasked-003-solid/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Geant4 무작정 따라하기 - 2. 지오메트리 정의하기",
-        "inLanguage": "ko-kr",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/evandde.github.io\/g4-noqasked-002-detcon\/"
-        },"genre": "posts","keywords": "Geant4, DetectorConstruction, Geometry, Material, Solid, LogicalVolume, PhysicalVolume","wordcount":  1945 ,
-        "url": "https:\/\/evandde.github.io\/g4-noqasked-002-detcon\/","datePublished": "2021-06-10T09:52:13+09:00","dateModified": "2021-06-10T09:52:13+09:00","publisher": {
-            "@type": "Organization",
-            "name": "Evan Kim"},"author": {
-                "@type": "Person",
-                "name": "Evan Kim"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-5" class="typeit"></span></a>
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/g4-noqasked-002-detcon/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.75edb75c66f2d6f0a9a146b10c65f58e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/g4-noqasked-002-detcon/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/g4-noqasked-002-detcon/" />
+  <meta property="og:title" content="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기 | EvaNote" />
+  <meta property="og:description" content="Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-06-10T09:52:13&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-06-10T09:52:13&#43;09:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Geant4 무작정 따라하기 - 2. 지오메트리 정의하기 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="b404eb68e0c45c323da42b863d05d912" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
         </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-6" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        취소
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">목차</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/geant4/"><i class="far fa-folder fa-fw"></i>Geant4</a></span>&nbsp;<span class="post-series">　<a href="/series/geant4-%EB%AC%B4%EC%9E%91%EC%A0%95-%EB%94%B0%EB%9D%BC%ED%95%98%EA%B8%B0/"><i class="fas fa-book fa-fw"></i>Geant4 무작정 따라하기</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-10">2021-06-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 1945&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 4분&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>목차</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          지오메트리
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
+    </div>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>Courses</a></li>
+      </ul>
+
+      
+      
+        
+          
+        
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-000-opening/">들어가며</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-001-clonetest/">템플릿 코드 실행하기</a></li>
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-geometry/">지오메트리</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class="active"><a href="/g4-noqasked-002-detcon/">지오메트리 정의 기본이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-003-solid/">지오메트리 모양 만들기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-004-material/">물질 정의 및 사용</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-005-clhepclasses/">위치, 회전을 정의하는 법</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-006-phyvol/">지오메트리 배치하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-verbose/">Verbose</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-007-trkvb/">기본용어와 Tracking Verbose</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-primgen/">선원항</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-008-prigen/">선원항을 정의하는 법</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-009-randtool/">난수 기반 선원항 정의하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-scoring/">스코어링</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-010-scoringtheory/">스코어링 이론</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-011-scoring/">스코어링 구현하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-012-writingrslt1/">결과를 Histogram으로 기록하기</a></li>
+
+
+
+  <li class=""><a href="/g4-noqasked-013-writingrslt2/">결과를 Ntuple로 기록하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/g4-noqasked/g4-noqasked-closing/">Geant4 무작정 따라하기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/g4-noqasked-014-closing/">마치며</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
   <ul>
     <li><a href="#geant4의-지오메트리-개념">Geant4의 지오메트리 개념</a>
       <ul>
@@ -135,7 +938,7 @@
     </li>
     <li><a href="#실전">실전</a>
       <ul>
-        <li><a href="#물-정의하기">&ldquo;물&rdquo; 정의하기</a></li>
+        <li><a href="#물-정의하기">&quot;물&quot; 정의하기</a></li>
         <li><a href="#물이-담긴-팬텀-위치시키기">물이 담긴 팬텀 위치시키기</a></li>
         <li><a href="#실행해보기">실행해보기</a></li>
       </ul>
@@ -143,8 +946,76 @@
     <li><a href="#최종-파일-다운받는-법">최종 파일 다운받는 법</a></li>
     <li><a href="#정리">정리</a></li>
   </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다.</p>
+</nav>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        Courses
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/">
+      
+        Geant4 무작정 따라하기
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/g4-noqasked/g4-noqasked-geometry/">
+      
+        지오메트리
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        지오메트리 정의 기본이론
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</h1>
+
+          <div class="article-style">
+            <p>Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다.</p>
 <hr>
 <h2 id="geant4의-지오메트리-개념">Geant4의 지오메트리 개념</h2>
 <h3 id="기본">기본</h3>
@@ -155,36 +1026,82 @@
 <li>Physical Volume (배치): 지오메트리의 <strong>위치</strong>, <strong>회전</strong>, <strong>소속</strong> 등 배치에 대한 정보를 담당</li>
 </ol>
 <p>이 세 가지 클래스가 다음 다이어그램과 같이 유기적으로 연결되어 하나의 지오메트리 객체를 정의하게 됩니다.</p>
-<div class="mermaid" id="id-1"></div>
+<pre><code class="language-mermaid">graph LR
+A --&gt; B --&gt; C
+A[Solid]
+B[Logical Volume]
+C[Physical Volume]
+</code></pre>
 <ol>
 <li>모양에 대한 정보를 담은 Solid 객체를 정의.</li>
 <li>이 Solid 객체에 매질 정보를 넣어 Logical Volume 객체를 정의.</li>
 <li>이 Logical Volume 객체에 위치, 회전, 소속에 대한 정보를 넣어 Physical Volume 객체를 정의.</li>
 </ol>
 <p>좀 더 구체적인 예시로 다이어그램을 그려보면 다음과 같습니다.</p>
-<div class="mermaid" id="id-2"></div>
+<pre><code class="language-mermaid">graph LR
+A --&gt; B --&gt; C
+A[직육면체]
+B[물이 담긴 직육면체]
+C[&quot;(10, 0, 0)&quot;에 위치한 물이 담긴 직육면체]
+</code></pre>
 <p>중요한 부분은, <strong>Physical Volume까지 정의되어야만</strong> 비로소 <strong>시뮬레이션 세계에 존재</strong>하게 된다는 점입니다.</p>
-<p>즉, Solid만 정의된 상태인 &ldquo;직육면체&quot;나, Logical Volume까지만 정의된 &ldquo;물이 담긴 직육면체&quot;는 아직 시뮬레이션 세계에 존재하지 않는 <strong>개념적인 존재일 뿐</strong>입니다. 이를 <u><strong>Physical Volume으로서 &ldquo;(10, 0, 0)에 놓겠다&quot;는 부분이 정의되어야 그제서야 시뮬레이션 세계에 존재</strong></u>하게 됩니다.</p>
+<p>즉, Solid만 정의된 상태인 &ldquo;직육면체&quot;나, Logical Volume까지만 정의된 &ldquo;물이 담긴 직육면체&quot;는 아직 시뮬레이션 세계에 존재하지 않는 <strong>개념적인 존재일 뿐</strong>입니다. 이를 <u><strong>Physical Volume으로서 &quot;(10, 0, 0)에 놓겠다&quot;는 부분이 정의되어야 그제서야 시뮬레이션 세계에 존재</strong></u>하게 됩니다.</p>
 <h3 id="응용">응용</h3>
 <p>Geant4에서는 지오메트리를 <strong>Solid(형태)</strong>, <strong>Logical Volume(특성)</strong>, <b>Physical Volume(배치)</b>의 세 단계로 나누어 관리하기 때문에, 유사한 지오메트리를 여러개 배치하여야 할 때 이전에 만들어둔 객체를 재사용하여 효율적인 코딩이 가능합니다. Logical Volume을 재사용하는 다음의 다이어그램을 살펴봅시다.</p>
-<div class="mermaid" id="id-3"></div>
-<p>&ldquo;물이 담긴 직육면체&rdquo; 라는 Logical Volume을 여러 위치에 배치해야 하는 경우, 위 다이어그램과 같이 Physical Volume만을 변경하며 여러 번 정의해줄 수 있습니다.</p>
+<pre><code class="language-mermaid">graph LR
+A --&gt; B --&gt; C &amp; D &amp; E
+A[직육면체]
+B[물이 담긴 직육면체]
+C[&quot;(0, 0, 0)&quot;에 위치한 물이 담긴 직육면체]
+D[&quot;(10, 0, 0)&quot;에 위치한 물이 담긴 직육면체]
+E[&quot;(20, 0, 0)&quot;에 위치한 물이 담긴 직육면체]
+</code></pre>
+<p>&quot;물이 담긴 직육면체&quot; 라는 Logical Volume을 여러 위치에 배치해야 하는 경우, 위 다이어그램과 같이 Physical Volume만을 변경하며 여러 번 정의해줄 수 있습니다.</p>
 <p>혹은, 모양이 동일한데 매질이 달라져야 하는 경우에는 다음과 같이 Solid 객체를 재사용하여 구성할 수도 있습니다.</p>
-<div class="mermaid" id="id-4"></div>
+<pre><code class="language-mermaid">graph LR
+A --&gt; B &amp; C
+B --&gt; D &amp; E
+C --&gt; F
+A[직육면체]
+B[물이 담긴 직육면체]
+C[공기가 담긴 직육면체]
+D[&quot;(0, 0, 0)&quot;에 위치한 물이 담긴 직육면체]
+E[&quot;(10, 0, 0)&quot;에 위치한 물이 담긴 직육면체]
+F[&quot;(20, 0, 0)&quot;에 위치한 공기가 담긴 직육면체]
+</code></pre>
 <hr>
 <h2 id="실전">실전</h2>
 <p>일단 이론은 이정도만 해두고, 코드를 직접 작성해봅시다.</p>
 <p>Geant4 코드 작성 시, 지오메트리에 대한 내용을 적는 곳은 정해져 있습니다. G4VUserDetectorConstruction 클래스를 상속받아 만드는 UserClass에 존재하는 G4VPhysicalVolume* Construct() 함수입니다. 하지만 이렇게 정석대로 설명하면 너무 생소하실테니 제가 제공해드렸던 템플릿 코드에서 살펴보도록 하죠.</p>
 <p>템플릿 코드의 <strong>src 디렉토리</strong> 내부에 <b>DetectorConstruction.cc</b>라는 파일이 있을 것입니다. 이 파일을 열면 다음 그림과 같은 코드가 나옵니다.</p>
-<a class="lightgallery" href="/g4-noqasked-002-detcon/01_detcon.png" title="/g4-noqasked-002-detcon/01_detcon.png" data-thumbnail="/g4-noqasked-002-detcon/01_detcon.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="01_detcon.png"
-            data-srcset="/g4-noqasked-002-detcon/01_detcon.png, 01_detcon.png 1.5x, /g4-noqasked-002-detcon/01_detcon.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-002-detcon/01_detcon.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="01_detcon" srcset="
+               /g4-noqasked-002-detcon/01_detcon_hufb6bccb991e7259a24d74e047ad0cf74_92695_98254c7e6515c22bccd06a6a250bc279.png 400w,
+               /g4-noqasked-002-detcon/01_detcon_hufb6bccb991e7259a24d74e047ad0cf74_92695_877b941cb9d0383047c8cfc68f9bee58.png 760w,
+               /g4-noqasked-002-detcon/01_detcon_hufb6bccb991e7259a24d74e047ad0cf74_92695_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-002-detcon/01_detcon_hufb6bccb991e7259a24d74e047ad0cf74_92695_98254c7e6515c22bccd06a6a250bc279.png"
+               width="760"
+               height="485"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>여기서 18번째 줄부터 나오는 <b>G4VPhysicalVolume *DetectorConstruction::Construct() 함수 안</b>에 지오메트리에 대한 내용을 적으면 됩니다.</p>
 <p>다음과 같이 정의되는 물이 담긴 팬텀<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>를 만들어보겠습니다.</p>
 <ul>
@@ -192,259 +1109,511 @@
 <li>Logical Volume: 매질을 물로 채움</li>
 <li>Physical Volume: 팬텀의 중심이 (0, 0, 10 cm)가 되게끔 위치시킴</li>
 </ul>
-<h3 id="물-정의하기">&ldquo;물&rdquo; 정의하기</h3>
+<h3 id="물-정의하기">&quot;물&quot; 정의하기</h3>
 <p>일단 물이라는 물질을 가져와야 합니다. 자세한 설명은 나중에 하기로 하고, 아래 그림에서 표시된 위치에 다음 한 줄을 적어넣습니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">auto</span> <span class="n">matWater</span> <span class="o">=</span> <span class="n">nist</span><span class="o">-&gt;</span><span class="n">FindOrBuildMaterial</span><span class="p">(</span><span class="s">&#34;G4_WATER&#34;</span><span class="p">);</span>
-</code></pre></div>
-<a class="lightgallery" href="/g4-noqasked-002-detcon/02_material.png" title="/g4-noqasked-002-detcon/02_material.png" data-thumbnail="/g4-noqasked-002-detcon/02_material.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="02_material.png"
-            data-srcset="/g4-noqasked-002-detcon/02_material.png, 02_material.png 1.5x, /g4-noqasked-002-detcon/02_material.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-002-detcon/02_material.png" width="100%" />
-    </a>
+<pre><code class="language-cpp">auto matWater = nist-&gt;FindOrBuildMaterial(&quot;G4_WATER&quot;);
+</code></pre>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="02_material" srcset="
+               /g4-noqasked-002-detcon/02_material_hu7eb2cffc733e93b6701398af02651224_33661_f0925dfeb3f749d46fcf665f23279291.png 400w,
+               /g4-noqasked-002-detcon/02_material_hu7eb2cffc733e93b6701398af02651224_33661_1b3d3fda0dbb6a171c1198db0cd40522.png 760w,
+               /g4-noqasked-002-detcon/02_material_hu7eb2cffc733e93b6701398af02651224_33661_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-002-detcon/02_material_hu7eb2cffc733e93b6701398af02651224_33661_f0925dfeb3f749d46fcf665f23279291.png"
+               width="760"
+               height="273"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>이 한 줄을 통해, <strong>matWater</strong> 라는 변수는 &ldquo;물&quot;이라는 물질로 정의되었습니다.</p>
 <h3 id="물이-담긴-팬텀-위치시키기">물이 담긴 팬텀 위치시키기</h3>
 <p>이제 solid, logical volume, physical volume을 정의해봅시다.</p>
 <p>아래 그림에서 표시된 위치에 다음 내용을 적어 넣습니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Water phantom
-</span><span class="c1"></span><span class="k">auto</span> <span class="n">phantomSize</span> <span class="o">=</span> <span class="mf">5.</span> <span class="o">*</span> <span class="n">cm</span><span class="p">;</span>
-<span class="k">auto</span> <span class="n">phantomPos</span> <span class="o">=</span> <span class="n">G4ThreeVector</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="o">*</span><span class="n">cm</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">phantomSol</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4Box</span><span class="p">(</span><span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">,</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">phantomSize</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">phantomLog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">G4LogicalVolume</span><span class="p">(</span><span class="n">phantomSol</span><span class="p">,</span> <span class="n">matWater</span><span class="p">,</span> <span class="s">&#34;phantom&#34;</span><span class="p">);</span>
-<span class="k">new</span> <span class="nf">G4PVPlacement</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">phantomPos</span><span class="p">,</span> <span class="n">phantomLog</span><span class="p">,</span> <span class="s">&#34;phantom&#34;</span><span class="p">,</span> <span class="n">worldLog</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</code></pre></div>
-<a class="lightgallery" href="/g4-noqasked-002-detcon/03_waterbox.png" title="/g4-noqasked-002-detcon/03_waterbox.png" data-thumbnail="/g4-noqasked-002-detcon/03_waterbox.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="03_waterbox.png"
-            data-srcset="/g4-noqasked-002-detcon/03_waterbox.png, 03_waterbox.png 1.5x, /g4-noqasked-002-detcon/03_waterbox.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-002-detcon/03_waterbox.png" width="100%" />
-    </a>
-<div class="details admonition tip open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">phantomSize, phantomPos와 같은 변수의 경우에는, 사실 따로 변수로 만들지 않고 직접 solid나 physical volume에 값을 적어도 됩니다. 하지만 재사용성 및 가독성을 고려하여 변수로 만들어 사용하였습니다.</div>
-        </div>
-    </div>
+<pre><code class="language-cpp">// Water phantom
+auto phantomSize = 5. * cm;
+auto phantomPos = G4ThreeVector(0., 0., 10.*cm);
+auto phantomSol = new G4Box(&quot;phantom&quot;, .5 * phantomSize, .5 * phantomSize, .5 * phantomSize);
+auto phantomLog = new G4LogicalVolume(phantomSol, matWater, &quot;phantom&quot;);
+new G4PVPlacement(nullptr, phantomPos, phantomLog, &quot;phantom&quot;, worldLog, false, 0);
+</code></pre>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="03_waterbox" srcset="
+               /g4-noqasked-002-detcon/03_waterbox_hu6c403cf4e9ae045854b274de7e7c14fa_74536_fcaacd02e82498e2b0b060072cf4aeb6.png 400w,
+               /g4-noqasked-002-detcon/03_waterbox_hu6c403cf4e9ae045854b274de7e7c14fa_74536_745c6650d358e625439864280e5f9e97.png 760w,
+               /g4-noqasked-002-detcon/03_waterbox_hu6c403cf4e9ae045854b274de7e7c14fa_74536_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-002-detcon/03_waterbox_hu6c403cf4e9ae045854b274de7e7c14fa_74536_fcaacd02e82498e2b0b060072cf4aeb6.png"
+               width="760"
+               height="390"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<div class="alert alert-note">
+  <div>
+    phantomSize, phantomPos와 같은 변수의 경우에는, 사실 따로 변수로 만들지 않고 직접 solid나 physical volume에 값을 적어도 됩니다. 하지만 재사용성 및 가독성을 고려하여 변수로 만들어 사용하였습니다.
+  </div>
+</div>
+
 <h3 id="실행해보기">실행해보기</h3>
 <p>이제 작성한 코드를 저장하고 빌드를 한 뒤 UI모드로 실행하면, 물 팬텀이 추가된 것을 확인할 수 있습니다.</p>
 <p>지난 글에서 만들어뒀던 build 디렉토리에 들어간 뒤, make 명령어만 입력하면 빌드가 수행됩니다.</p>
 <p>이어서, <b>./g4_minimal</b> 이라고 입력하여 실행하면 UI모드로 실행할 수 있습니다.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> build
+<pre><code class="language-bash">cd build
 make
 ./g4_minimal
-</code></pre></td></tr></table>
-</div>
-</div><p>실행하면 다음 그림과 같은 창이 나타날 것입니다.</p>
-<a class="lightgallery" href="/g4-noqasked-002-detcon/04_UI.png" title="/g4-noqasked-002-detcon/04_UI.png" data-thumbnail="/g4-noqasked-002-detcon/04_UI.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="04_UI.png"
-            data-srcset="/g4-noqasked-002-detcon/04_UI.png, 04_UI.png 1.5x, /g4-noqasked-002-detcon/04_UI.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-002-detcon/04_UI.png" width="100%" />
-    </a>
+</code></pre>
+<p>실행하면 다음 그림과 같은 창이 나타날 것입니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="04_UI" srcset="
+               /g4-noqasked-002-detcon/04_UI_hu14d7d4da1c2065ed53626b816f20effd_102424_a41c4580aa9af7a66a5e2de48c3b9182.png 400w,
+               /g4-noqasked-002-detcon/04_UI_hu14d7d4da1c2065ed53626b816f20effd_102424_0d5238257ae692deab4467d3847ec8a4.png 760w,
+               /g4-noqasked-002-detcon/04_UI_hu14d7d4da1c2065ed53626b816f20effd_102424_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-002-detcon/04_UI_hu14d7d4da1c2065ed53626b816f20effd_102424_a41c4580aa9af7a66a5e2de48c3b9182.png"
+               width="760"
+               height="591"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>왼쪽의 탭에서 <strong>Scene tree</strong>를 클릭하면, 화면에 나타나는 지오메트리의 트리구조를 볼 수 있습니다.</p>
 <p>이 중, <strong>Touchables</strong> 하위에 있는 것이 여러분이 만든 지오메트리 목록입니다.</p>
 <p>지금 저희가 만들었던 물 팬텀은 <strong>phantom</strong>이라는 이름으로 표시되고 있으며, 왼쪽의 체크박스를 누르면 오른쪽 그림에서 조그마한 직육면체가 나타났다 사라졌다 하는 것을 확인할 수 있을 것입니다.</p>
 <hr>
 <h2 id="최종-파일-다운받는-법">최종 파일 다운받는 법</h2>
-<p>이번 글에서 작성한 코드는 <a href="https://github.com/evandde/g4_minimal/archive/ecef9c37af224cd65b866557f825508a71043e11.zip" target="_blank" rel="noopener noreffer">이 링크</a>를 통해 다운받을 수 있습니다.</p>
+<p>이번 글에서 작성한 코드는 <a href="https://github.com/evandde/g4_minimal/archive/ecef9c37af224cd65b866557f825508a71043e11.zip" target="_blank" rel="noopener">이 링크</a>를 통해 다운받을 수 있습니다.</p>
 <p>혹은 git repository를 clone하신 분의 경우에는, example branch의 이전 커밋 중 V1_DetCon이라는 커밋을 참고하셔도 됩니다.</p>
 <hr>
 <h2 id="정리">정리</h2>
 <p>새로 추가된 코드 부분을 정리하면 다음 그림과 같습니다. 주석이나 단순히 변수를 정의한 부분은 따로 표시하지 않았습니다.</p>
-<a class="lightgallery" href="/g4-noqasked-002-detcon/05_newcode.png" title="/g4-noqasked-002-detcon/05_newcode.png" data-thumbnail="/g4-noqasked-002-detcon/05_newcode.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="05_newcode.png"
-            data-srcset="/g4-noqasked-002-detcon/05_newcode.png, 05_newcode.png 1.5x, /g4-noqasked-002-detcon/05_newcode.png 2x"
-            data-sizes="auto"
-            alt="/g4-noqasked-002-detcon/05_newcode.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="05_newcode" srcset="
+               /g4-noqasked-002-detcon/05_newcode_hu2e504eeb35f3ac4ab6ae17d5c03410c8_81300_9d7c2331a92c6d7139f550cbe762a9e4.png 400w,
+               /g4-noqasked-002-detcon/05_newcode_hu2e504eeb35f3ac4ab6ae17d5c03410c8_81300_5cb5a5e93bd5842c5c70997286a543a9.png 760w,
+               /g4-noqasked-002-detcon/05_newcode_hu2e504eeb35f3ac4ab6ae17d5c03410c8_81300_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-002-detcon/05_newcode_hu2e504eeb35f3ac4ab6ae17d5c03410c8_81300_9d7c2331a92c6d7139f550cbe762a9e4.png"
+               width="760"
+               height="390"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <p>위 코드에서 어떤 코드가 무슨 역할을 하고 있는지만 기억하시면 됩니다.</p>
 <p>세부적인 설명은 다음 글에서 하도록 하겠습니다.</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>의료영상 혹은 방사선 조사 등의 특수한 목적을 위해 제작된 구조물 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>의료영상 혹은 방사선 조사 등의 특수한 목적을 위해 제작된 구조물&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section></div>
-        
-        <br><hr><br>
-        <h2>관련 포스트</h2>
-        <ul>
-            
-            <li><a href="/g4-noqasked-003-solid/">Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</a></li>
-            
-            <li><a href="/g4-noqasked-006-phyvol/">Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</a></li>
-            
-            <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
-            
-            <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
-            
-            <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
-            
-        </ul>
-        
+</section>
+          </div>
 
-<div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>2021-06-10에 수정</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/g4-noqasked-002-detcon/index.md" target="_blank">Markdown으로 보기</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/g4-noqasked-002-detcon/" data-title="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기" data-hashtags="Geant4,DetectorConstruction,Geometry,Material,Solid,LogicalVolume,PhysicalVolume"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/g4-noqasked-002-detcon/" data-title="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/g4-noqasked-002-detcon/" data-title="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/g4-noqasked-002-detcon/" data-title="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/g4-noqasked-002-detcon/" data-title="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/g4-noqasked-002-detcon/" data-title="Geant4 무작정 따라하기 - 2. 지오메트리 정의하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
+          
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/geant4/">Geant4</a>,&nbsp;<a href="/tags/detectorconstruction/">DetectorConstruction</a>,&nbsp;<a href="/tags/geometry/">Geometry</a>,&nbsp;<a href="/tags/material/">Material</a>,&nbsp;<a href="/tags/solid/">Solid</a>,&nbsp;<a href="/tags/logicalvolume/">LogicalVolume</a>,&nbsp;<a href="/tags/physicalvolume/">PhysicalVolume</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
-        </section>
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/geant4/">Geant4</a>
+  
+  <a class="badge badge-light" href="/tags/detectorconstruction/">DetectorConstruction</a>
+  
+  <a class="badge badge-light" href="/tags/geometry/">Geometry</a>
+  
+  <a class="badge badge-light" href="/tags/material/">Material</a>
+  
+  <a class="badge badge-light" href="/tags/solid/">Solid</a>
+  
+  <a class="badge badge-light" href="/tags/logicalvolume/">LogicalVolume</a>
+  
+  <a class="badge badge-light" href="/tags/physicalvolume/">PhysicalVolume</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">다음</div>
+    <a href="/g4-noqasked-003-solid/" rel="prev">Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</a>
+  </div>
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Jun 10, 2021</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/g4-noqasked-003-solid/">Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기</a></li>
+      
+      <li><a href="/g4-noqasked-006-phyvol/">Geant4 무작정 따라하기 - 6. 지오메트리 배치하기</a></li>
+      
+      <li><a href="/g4-noqasked-014-closing/">Geant4 무작정 따라하기 시리즈를 마치며</a></li>
+      
+      <li><a href="/g4-noqasked-013-writingrslt2/">Geant4 무작정 따라하기 - 13. 스코어링 기록(Ntuple)</a></li>
+      
+      <li><a href="/g4-noqasked-012-writingrslt1/">Geant4 무작정 따라하기 - 12. 스코어링 기록(Histogram)</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
     </div>
+  </div>
+</div>
+
+      
 
     
-    <div class="post-nav">
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.4/mermaid.min.js" integrity="sha512-as1BF4+iHZ3BVO6LLDQ7zrbvTXM+c/1iZ1qII/c3c4L8Rn5tHLpFUtpaEtBNS92f+xGsCzsD7b62XP3XYap6oA==" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
         
-            
-                
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-                
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
         
-            
-
-            
-
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
         
-            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
 
-            
+    
 
-            
-        <a href="/g4-noqasked-001-clonetest/" class="prev" rel="prev" title="Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기"><i class="fas fa-angle-left fa-fw"></i>Geant4 무작정 따라하기 - 1. 템플릿 코드 실행하기</a>
-            <a href="/g4-noqasked-003-solid/" class="next" rel="next" title="Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기">Geant4 무작정 따라하기 - 3. 다양한 모양의 지오메트리 만들기<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="utterances"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
         </div>
-    </footer></div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"\r\ngraph LR\r\nA --\u003e B --\u003e C\r\nA[Solid]\r\nB[Logical Volume]\r\nC[Physical Volume]\r","id-2":"\r\ngraph LR\r\nA --\u003e B --\u003e C\r\nA[직육면체]\r\nB[물이 담긴 직육면체]\r\nC[\"(10, 0, 0)\"에 위치한 물이 담긴 직육면체]\r","id-3":"\r\ngraph LR\r\nA --\u003e B --\u003e C \u0026 D \u0026 E\r\nA[직육면체]\r\nB[물이 담긴 직육면체]\r\nC[\"(0, 0, 0)\"에 위치한 물이 담긴 직육면체]\r\nD[\"(10, 0, 0)\"에 위치한 물이 담긴 직육면체]\r\nE[\"(20, 0, 0)\"에 위치한 물이 담긴 직육면체]\r","id-4":"\r\ngraph LR\r\nA --\u003e B \u0026 C\r\nB --\u003e D \u0026 E\r\nC --\u003e F\r\nA[직육면체]\r\nB[물이 담긴 직육면체]\r\nC[공기가 담긴 직육면체]\r\nD[\"(0, 0, 0)\"에 위치한 물이 담긴 직육면체]\r\nE[\"(10, 0, 0)\"에 위치한 물이 담긴 직육면체]\r\nF[\"(20, 0, 0)\"에 위치한 공기가 담긴 직육면체]\r","id-5":"EvaNote","id-6":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-5":["id-5"],"id-6":["id-6"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-JZ0NBG8ZWZ');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
 </html>

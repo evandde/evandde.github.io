@@ -1,15 +1,156 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>CUDA - 태그 - EvaNote</title>
-        <link>https://evandde.github.io/tags/cuda/</link>
-        <description>CUDA - 태그 - EvaNote</description>
-        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Thu, 22 Oct 2020 16:22:11 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/cuda/" rel="self" type="application/rss+xml" /><item>
-    <title>cudart64_xxx.dll not found 에러 해결</title>
-    <link>https://evandde.github.io/cudart64-not-found/</link>
-    <pubDate>Thu, 22 Oct 2020 16:22:11 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/cudart64-not-found/</guid>
-    <description><![CDATA[<p>TensorFlow 설치 후 이용 시, cudart64_xxx.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CUDA | EvaNote</title>
+    <link>https://evandde.github.io/tags/cuda/</link>
+      <atom:link href="https://evandde.github.io/tags/cuda/index.xml" rel="self" type="application/rss+xml" />
+    <description>CUDA</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Thu, 22 Oct 2020 16:22:11 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>CUDA</title>
+      <link>https://evandde.github.io/tags/cuda/</link>
+    </image>
+    
+    <item>
+      <title>cudart64_xxx.dll not found 에러 해결</title>
+      <link>https://evandde.github.io/cudart64-not-found/</link>
+      <pubDate>Thu, 22 Oct 2020 16:22:11 +0900</pubDate>
+      <guid>https://evandde.github.io/cudart64-not-found/</guid>
+      <description>&lt;p&gt;TensorFlow 설치 후 이용 시, cudart64_xxx.dll을 찾지 못하는 오류를 해결하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;&lt;b&gt;&lt;a href=&#34;https://developer.nvidia.com/cuda-toolkit-archive&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://developer.nvidia.com/cuda-toolkit-archive&lt;/a&gt;에서 맞는 버전을 다운받아 설치합니다.&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;예: cudart64_101.dll -&amp;gt; CUDA Toolkit 10.1 update 2 설치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;버그-설명&#34;&gt;버그 설명&lt;/h2&gt;
+&lt;p&gt;TensorFlow 2를 설치한 뒤 이용하려 할 때, cudart64_xxx.dll을 찾지 못하는 에러가 발생하는 경우가 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;error&#34; srcset=&#34;
+               /cudart64-not-found/error_hu382ddf66dda8b9c0e74a84755a6eb4d7_2253_b4d5b5985f9e4f8d7db835e788f7e8e8.png 400w,
+               /cudart64-not-found/error_hu382ddf66dda8b9c0e74a84755a6eb4d7_2253_77fefef733e646bb26fb5197085bb46d.png 760w,
+               /cudart64-not-found/error_hu382ddf66dda8b9c0e74a84755a6eb4d7_2253_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/cudart64-not-found/error_hu382ddf66dda8b9c0e74a84755a6eb4d7_2253_b4d5b5985f9e4f8d7db835e788f7e8e8.png&#34;
+               width=&#34;619&#34;
+               height=&#34;21&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;왜-발생하는가&#34;&gt;왜 발생하는가?&lt;/h2&gt;
+&lt;p&gt;TensorFlow 2로 오면서, GPU 사용이 기본이 되었습니다. 이에 따라, 관련 하드웨어 및 소프트웨어 요구사항이 존재합니다.&lt;/p&gt;
+&lt;p&gt;자세한 사항은 &lt;a href=&#34;https://www.tensorflow.org/install/gpu&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tensorflow 설치가이드&lt;/a&gt;에서 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;hw_req&#34; srcset=&#34;
+               /cudart64-not-found/hw_req_hu0ad19dfc9e065e893c61606d7e6ce243_63185_2e4daa22fbdb1a9ca22f485cab83cc65.png 400w,
+               /cudart64-not-found/hw_req_hu0ad19dfc9e065e893c61606d7e6ce243_63185_2f40a99a954aac8f53fb8ae8ffdbbe1b.png 760w,
+               /cudart64-not-found/hw_req_hu0ad19dfc9e065e893c61606d7e6ce243_63185_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/cudart64-not-found/hw_req_hu0ad19dfc9e065e893c61606d7e6ce243_63185_2e4daa22fbdb1a9ca22f485cab83cc65.png&#34;
+               width=&#34;760&#34;
+               height=&#34;334&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;sw_req&#34; srcset=&#34;
+               /cudart64-not-found/sw_req_hud0e9902a58724d102076724365675e5c_42769_199acbe09f63e0f25655ac084d4e3f07.png 400w,
+               /cudart64-not-found/sw_req_hud0e9902a58724d102076724365675e5c_42769_f8a81e93701190f289777765c6bd9008.png 760w,
+               /cudart64-not-found/sw_req_hud0e9902a58724d102076724365675e5c_42769_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/cudart64-not-found/sw_req_hud0e9902a58724d102076724365675e5c_42769_199acbe09f63e0f25655ac084d4e3f07.png&#34;
+               width=&#34;658&#34;
+               height=&#34;277&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;해결방법&#34;&gt;해결방법&lt;/h2&gt;
+&lt;p&gt;NVIDIA 홈페이지의 CUDA Toolkit 다운로드 페이지에서 맞는 버전을 다운받아 설치합니다.&lt;/p&gt;
+&lt;p&gt;최신 버전을 요구하지 않는 경우가 있으므로, &lt;a href=&#34;https://developer.nvidia.com/cuda-toolkit-archive&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 곳&lt;/a&gt;에서 해당하는 버전을 찾아 설치하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cudart64_xxx.dll&lt;/code&gt;에서 xxx 부분이 버전에 해당합니다.&lt;/p&gt;
+&lt;p&gt;예를 들어, 2020년 10월 기준 TensorFlow 2에서 요구하는 버전은 &lt;code&gt;cudart64_101.dll&lt;/code&gt;로, 10.1 버전을 받으시면 됩니다.&lt;/p&gt;
+&lt;p&gt;아래 그림과 같이 뜨면 성공입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;solved&#34; srcset=&#34;
+               /cudart64-not-found/solved_hu7ffe73168613e819c82d258fb467ba7d_2112_8a5b9af3a3a4aacd5d230414e955b80b.png 400w,
+               /cudart64-not-found/solved_hu7ffe73168613e819c82d258fb467ba7d_2112_c30ee170c3d8e6492d464497f7492104.png 760w,
+               /cudart64-not-found/solved_hu7ffe73168613e819c82d258fb467ba7d_2112_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/cudart64-not-found/solved_hu7ffe73168613e819c82d258fb467ba7d_2112_8a5b9af3a3a4aacd5d230414e955b80b.png&#34;
+               width=&#34;376&#34;
+               height=&#34;24&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
 </rss>

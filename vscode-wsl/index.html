@@ -1,376 +1,1600 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Visual Studio Code와 Windows Subsystem for Linux 연동하기 - EvaNote</title><meta name="Description" content=""><meta property="og:title" content="Visual Studio Code와 Windows Subsystem for Linux 연동하기" />
-<meta property="og:description" content="VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://evandde.github.io/vscode-wsl/" />
-<meta property="article:published_time" content="2020-11-25T10:42:23+09:00" />
-<meta property="article:modified_time" content="2020-11-25T10:42:23+09:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Visual Studio Code와 Windows Subsystem for Linux 연동하기"/>
-<meta name="twitter:description" content="VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다."/>
-<meta name="application-name" content="EvaNote">
-<meta name="apple-mobile-web-app-title" content="EvaNote"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://evandde.github.io/vscode-wsl/" /><link rel="prev" href="https://evandde.github.io/vscode-cmake/" /><link rel="next" href="https://evandde.github.io/geant4-install/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Visual Studio Code와 Windows Subsystem for Linux 연동하기",
-        "inLanguage": "ko-kr",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/evandde.github.io\/vscode-wsl\/"
-        },"genre": "posts","keywords": "HowTo, VSCode, WSL","wordcount":  749 ,
-        "url": "https:\/\/evandde.github.io\/vscode-wsl\/","datePublished": "2020-11-25T10:42:23+09:00","dateModified": "2020-11-25T10:42:23+09:00","publisher": {
-            "@type": "Organization",
-            "name": "Evan Kim"},"author": {
-                "@type": "Person",
-                "name": "Evan Kim"
-            },"description": ""
-    }
-    </script></head>
-    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+<!DOCTYPE html><html lang="ko-kr" >
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-1" class="typeit"></span></a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/vscode-wsl/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.75edb75c66f2d6f0a9a146b10c65f58e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/vscode-wsl/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/vscode-wsl/" />
+  <meta property="og:title" content="Visual Studio Code와 Windows Subsystem for Linux 연동하기 | EvaNote" />
+  <meta property="og:description" content="VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-11-25T10:42:23&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-09-04T17:24:23&#43;09:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://evandde.github.io/vscode-wsl/"
+  },
+  "headline": "Visual Studio Code와 Windows Subsystem for Linux 연동하기",
+  
+  "datePublished": "2020-11-25T10:42:23+09:00",
+  "dateModified": "2021-09-04T17:24:23+09:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Evan Kim"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "EvaNote",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "\u003cp\u003eVSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다.\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Visual Studio Code와 Windows Subsystem for Linux 연동하기 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="a46c19befda5fd1bb32e1fd493886a11" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
         </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/series/"> Series </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a>
-            </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
         </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="EvaNote"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/images/logo.png"
-        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
-        data-sizes="auto"
-        alt="/images/logo.png"
-        title="/images/logo.png" /><span id="id-2" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="검색할 내용을 입력하세요" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="검색">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="지우기">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        취소
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/series/" title="">Series</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="테마 변경">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">목차</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Visual Studio Code와 Windows Subsystem for Linux 연동하기</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://evandde.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Evan Kim</a></span>&nbsp;<span class="post-category">　<a href="/categories/vscode/"><i class="far fa-folder fa-fw"></i>VSCode</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-25">2020-11-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;글자 수: 749&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;읽는 데에 2분&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>목차</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#remote-wsl-확장-설치">Remote WSL 확장 설치</a></li>
-    <li><a href="#linux-배포판-최신화-및-라이브러리-설치">Linux 배포판 최신화 및 라이브러리 설치</a></li>
-    <li><a href="#실행해보기">실행해보기</a>
-      <ul>
-        <li><a href="#wsl-터미널에서-실행">WSL 터미널에서 실행</a></li>
-        <li><a href="#vscode에서-실행">VSCode에서 실행</a></li>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
       </ul>
-    </li>
-    <li><a href="#wsl에-확장-설치하기">WSL에 확장 설치하기</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다.</p>
-<div class="details admonition success open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-check-circle fa-fw"></i>Success<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">여기서는 <b>WSL1 혹은 WSL2</b> 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 <a href="https://evandde.github.io/wsl/" target="_blank" rel="noopener noreffer">이 글</a>을 참고하세요.</div>
-        </div>
     </div>
-<div class="details admonition success open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-check-circle fa-fw"></i>Success<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">여기서는 <b>VSCode</b> 설치가 완료된 상태라고 가정합니다. VSCode 설치 및 기본 세팅은 <a href="https://evandde.github.io/vscode/" target="_blank" rel="noopener noreffer">이 글</a>을 참고하세요.</div>
-        </div>
-    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Visual Studio Code와 Windows Subsystem for Linux 연동하기</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          마지막 업데이트
+      
+    
+    Sep 4, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 분 길이
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/vscode/">VSCode</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다.</p>
+<div class="alert alert-note">
+  <div>
+    여기서는 <b>WSL1 혹은 WSL2</b> 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 <a href="https://evandde.github.io/wsl/">이 글</a>을 참고하세요.
+  </div>
+</div>
+
+<div class="alert alert-note">
+  <div>
+    여기서는 <b>VSCode</b> 설치가 완료된 상태라고 가정합니다. VSCode 설치 및 기본 세팅은 <a href="https://evandde.github.io/vscode/">이 글</a>을 참고하세요.
+  </div>
+</div>
+
 <hr>
 <h2 id="remote-wsl-확장-설치">Remote WSL 확장 설치</h2>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>Info<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Remote WSL 확장을 설치하기 위해서는, <b>1.35 버전 이상</b>의 VSCode가 필요합니다.</div>
-        </div>
-    </div>
-<p>VSCode를 켜고 extension 탭으로 간 뒤 &ldquo;<strong>wsl</strong>&ldquo;를 검색하세요. 맨 위에 Remote - WSL extension이 뜰 것입니다. Install 버튼을 눌러 설치합니다.</p>
-<a class="lightgallery" href="/vscode-wsl/extension_wsl.png" title="/vscode-wsl/extension_wsl.png" data-thumbnail="/vscode-wsl/extension_wsl.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="extension_wsl.png"
-            data-srcset="/vscode-wsl/extension_wsl.png, extension_wsl.png 1.5x, /vscode-wsl/extension_wsl.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/extension_wsl.png" width="100%" />
-    </a>
+<div class="alert alert-note">
+  <div>
+    Remote WSL 확장을 설치하기 위해서는, <b>1.35 버전 이상</b>의 VSCode가 필요합니다.
+  </div>
+</div>
+
+<p>VSCode를 켜고 extension 탭으로 간 뒤 &quot;<strong>wsl</strong>&quot;를 검색하세요. 맨 위에 <b>Remote - WSL extension</b>이 뜰 것입니다. Install 버튼을 눌러 설치합니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="extension_wsl" srcset="
+               /vscode-wsl/extension_wsl_hu31afeebf120d8ac309f15d19d69fda50_80471_3eab379f164895b5cf04f97656d18119.png 400w,
+               /vscode-wsl/extension_wsl_hu31afeebf120d8ac309f15d19d69fda50_80471_87b7d291fba01da023cdb7a0c5387836.png 760w,
+               /vscode-wsl/extension_wsl_hu31afeebf120d8ac309f15d19d69fda50_80471_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/extension_wsl_hu31afeebf120d8ac309f15d19d69fda50_80471_3eab379f164895b5cf04f97656d18119.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <hr>
 <h2 id="linux-배포판-최신화-및-라이브러리-설치">Linux 배포판 최신화 및 라이브러리 설치</h2>
 <p>일부 WSL 배포판의 경우에는 VSCode를 실행하기 위한 라이브러리가 없을 수 있습니다.</p>
-<p>이 경우에는 패키지매니저(apt, yum)를 최신화하고, 필요한 라이브러리를 설치하시기 바랍니다.</p>
+<p>이 경우에는 패키지매니저(<code>apt</code>, <code>yum</code>)를 최신화하고, 필요한 라이브러리를 설치하시기 바랍니다.</p>
 <blockquote>
 <p>Debian이나 Ubuntu의 경우 apt를 활용한 예</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update -y <span class="o">&amp;&amp;</span> sudo apt upgrade -y
-</code></pre></td></tr></table>
-</div>
-</div></blockquote>
+<pre><code class="language-bash">sudo apt update -y &amp;&amp; sudo apt upgrade -y
+</code></pre>
+</blockquote>
 <p>wget<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>이나 ca 인증서<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>를 다운받아야 할 수 있습니다.</p>
 <blockquote>
 <p>Debian이나 Ubuntu의 경우 apt를 활용한 예</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install wget -y
+<pre><code class="language-bash">sudo apt install wget -y
 sudo apt install ca-certificates -y
-</code></pre></td></tr></table>
-</div>
-</div></blockquote>
+</code></pre>
+</blockquote>
 <hr>
 <h2 id="실행해보기">실행해보기</h2>
 <h3 id="wsl-터미널에서-실행">WSL 터미널에서 실행</h3>
-<p>원하는 프로젝트의 디렉토리에서, <code>code .</code> 명령어를 입력합니다.</p>
+<p>원하는 프로젝트의 디렉토리에서 <code>code .</code> 명령어를 입력합니다.</p>
 <p>첫 실행 시에는 자동으로 설치가 진행된 뒤 VSCode가 실행됩니다.</p>
 <p>실행한 뒤, 창 왼쪽 아래의 초록색 부분에 <b>WSL: [배포판 이름]</b>이 정상적으로 뜬다면 성공입니다.</p>
-<figure><a class="lightgallery" href="/vscode-wsl/wsl-open-vs-code.gif" title="/vscode-wsl/wsl-open-vs-code.gif" data-thumbnail="/vscode-wsl/wsl-open-vs-code.gif" data-sub-html="<h2>Ref.: Get started using VS Code with Windows Subsystem for Linux | Microsoft Docs</h2>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="wsl-open-vs-code.gif"
-            data-srcset="/vscode-wsl/wsl-open-vs-code.gif, wsl-open-vs-code.gif 1.5x, /vscode-wsl/wsl-open-vs-code.gif 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/wsl-open-vs-code.gif" width="100%" />
-    </a><figcaption class="image-caption">Ref.: <a href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode" target="_blank" rel="noopener noreffer">Get started using VS Code with Windows Subsystem for Linux | Microsoft Docs</a></figcaption>
-    </figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-ref-get-started-using-vs-code-with-windows-subsystem-for-linux--microsoft-docshttpsdocsmicrosoftcomen-uswindowswsltutorialswsl-vscode">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Ref.: [Get started using VS Code with Windows Subsystem for Linux | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode)"
+           src="/vscode-wsl/wsl-open-vs-code.gif"
+           loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Ref.: <a href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode">Get started using VS Code with Windows Subsystem for Linux | Microsoft Docs</a>
+    </figcaption></figure>
 <h3 id="vscode에서-실행">VSCode에서 실행</h3>
 <p>다음 그림과 같이 진행합니다.</p>
-<a class="lightgallery" href="/vscode-wsl/vscode_open_remotewsl1.png" title="/vscode-wsl/vscode_open_remotewsl1.png" data-thumbnail="/vscode-wsl/vscode_open_remotewsl1.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="vscode_open_remotewsl1.png"
-            data-srcset="/vscode-wsl/vscode_open_remotewsl1.png, vscode_open_remotewsl1.png 1.5x, /vscode-wsl/vscode_open_remotewsl1.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/vscode_open_remotewsl1.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-wsl/vscode_open_remotewsl2.png" title="/vscode-wsl/vscode_open_remotewsl2.png" data-thumbnail="/vscode-wsl/vscode_open_remotewsl2.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="vscode_open_remotewsl2.png"
-            data-srcset="/vscode-wsl/vscode_open_remotewsl2.png, vscode_open_remotewsl2.png 1.5x, /vscode-wsl/vscode_open_remotewsl2.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/vscode_open_remotewsl2.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-wsl/vscode_open_remotewsl3.png" title="/vscode-wsl/vscode_open_remotewsl3.png" data-thumbnail="/vscode-wsl/vscode_open_remotewsl3.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="vscode_open_remotewsl3.png"
-            data-srcset="/vscode-wsl/vscode_open_remotewsl3.png, vscode_open_remotewsl3.png 1.5x, /vscode-wsl/vscode_open_remotewsl3.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/vscode_open_remotewsl3.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="vscode_open_remotewsl1" srcset="
+               /vscode-wsl/vscode_open_remotewsl1_huaa1c17110882f41aa0a4384ed1b766f0_46007_c107efe44e721ebf4a9cb02a607116ea.png 400w,
+               /vscode-wsl/vscode_open_remotewsl1_huaa1c17110882f41aa0a4384ed1b766f0_46007_7ec7a1a72568b5cbaee46f1cb4f0a686.png 760w,
+               /vscode-wsl/vscode_open_remotewsl1_huaa1c17110882f41aa0a4384ed1b766f0_46007_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/vscode_open_remotewsl1_huaa1c17110882f41aa0a4384ed1b766f0_46007_c107efe44e721ebf4a9cb02a607116ea.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="vscode_open_remotewsl2" srcset="
+               /vscode-wsl/vscode_open_remotewsl2_hu99f3459e099ff8fc97eb6a43aa703d64_46816_a2d36fd35c86f8cb7aa429678fb68d47.png 400w,
+               /vscode-wsl/vscode_open_remotewsl2_hu99f3459e099ff8fc97eb6a43aa703d64_46816_4b0ae88d9910a058601da9ecd31b20be.png 760w,
+               /vscode-wsl/vscode_open_remotewsl2_hu99f3459e099ff8fc97eb6a43aa703d64_46816_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/vscode_open_remotewsl2_hu99f3459e099ff8fc97eb6a43aa703d64_46816_a2d36fd35c86f8cb7aa429678fb68d47.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="vscode_open_remotewsl3" srcset="
+               /vscode-wsl/vscode_open_remotewsl3_hua9c4c0917fe0f9e88673719e1c794159_76269_3fcc2404b1f1ebd9ad90ebb242bd55be.png 400w,
+               /vscode-wsl/vscode_open_remotewsl3_hua9c4c0917fe0f9e88673719e1c794159_76269_ba439e65bc21c69c989a85551483a6ec.png 760w,
+               /vscode-wsl/vscode_open_remotewsl3_hua9c4c0917fe0f9e88673719e1c794159_76269_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/vscode_open_remotewsl3_hua9c4c0917fe0f9e88673719e1c794159_76269_3fcc2404b1f1ebd9ad90ebb242bd55be.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <hr>
 <h2 id="wsl에-확장-설치하기">WSL에 확장 설치하기</h2>
 <p>Extension 탭을 열면 위쪽에는 Local(윈도우)에 설치된 확장 목록이, 아래쪽에는 WSL에 설치된 확장 목록이 뜹니다.</p>
 <p>이미 로컬에 설치된 확장을 설치할 수도 있고, WSL에만 확장을 설치할 수도 있습니다.</p>
 <p>다음 그림을 참고하세요.</p>
-<a class="lightgallery" href="/vscode-wsl/extension_copy1.png" title="/vscode-wsl/extension_copy1.png" data-thumbnail="/vscode-wsl/extension_copy1.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="extension_copy1.png"
-            data-srcset="/vscode-wsl/extension_copy1.png, extension_copy1.png 1.5x, /vscode-wsl/extension_copy1.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/extension_copy1.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-wsl/extension_copy2.png" title="/vscode-wsl/extension_copy2.png" data-thumbnail="/vscode-wsl/extension_copy2.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="extension_copy2.png"
-            data-srcset="/vscode-wsl/extension_copy2.png, extension_copy2.png 1.5x, /vscode-wsl/extension_copy2.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/extension_copy2.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-wsl/extension_copy3.png" title="/vscode-wsl/extension_copy3.png" data-thumbnail="/vscode-wsl/extension_copy3.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="extension_copy3.png"
-            data-srcset="/vscode-wsl/extension_copy3.png, extension_copy3.png 1.5x, /vscode-wsl/extension_copy3.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/extension_copy3.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-wsl/extension_copy4.png" title="/vscode-wsl/extension_copy4.png" data-thumbnail="/vscode-wsl/extension_copy4.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="extension_copy4.png"
-            data-srcset="/vscode-wsl/extension_copy4.png, extension_copy4.png 1.5x, /vscode-wsl/extension_copy4.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/extension_copy4.png" width="100%" />
-    </a>
-<a class="lightgallery" href="/vscode-wsl/extension_copy5.png" title="/vscode-wsl/extension_copy5.png" data-thumbnail="/vscode-wsl/extension_copy5.png">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="extension_copy5.png"
-            data-srcset="/vscode-wsl/extension_copy5.png, extension_copy5.png 1.5x, /vscode-wsl/extension_copy5.png 2x"
-            data-sizes="auto"
-            alt="/vscode-wsl/extension_copy5.png" width="100%" />
-    </a>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="extension_copy1" srcset="
+               /vscode-wsl/extension_copy1_hu2dbe3ec6e318ac7fb7f8ef0b62ea57b3_150478_b2e0722f782bf38067604cd7f3f0f0ea.png 400w,
+               /vscode-wsl/extension_copy1_hu2dbe3ec6e318ac7fb7f8ef0b62ea57b3_150478_eaad8e696e95f81ede7ce27598cfce33.png 760w,
+               /vscode-wsl/extension_copy1_hu2dbe3ec6e318ac7fb7f8ef0b62ea57b3_150478_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/extension_copy1_hu2dbe3ec6e318ac7fb7f8ef0b62ea57b3_150478_b2e0722f782bf38067604cd7f3f0f0ea.png"
+               width="760"
+               height="584"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="extension_copy2" srcset="
+               /vscode-wsl/extension_copy2_hud8a81bc5f5eca29be782f6935b8b62e7_84124_1d2ffe353fac757515f707957fd4d788.png 400w,
+               /vscode-wsl/extension_copy2_hud8a81bc5f5eca29be782f6935b8b62e7_84124_c7c5d6fed26ae5ca61d188efb29503bb.png 760w,
+               /vscode-wsl/extension_copy2_hud8a81bc5f5eca29be782f6935b8b62e7_84124_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/extension_copy2_hud8a81bc5f5eca29be782f6935b8b62e7_84124_1d2ffe353fac757515f707957fd4d788.png"
+               width="760"
+               height="584"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="extension_copy3" srcset="
+               /vscode-wsl/extension_copy3_hu7c330a01e9857d89173737c29c11fd46_99783_301652b25a1cdf4cdee107c215ac79ba.png 400w,
+               /vscode-wsl/extension_copy3_hu7c330a01e9857d89173737c29c11fd46_99783_52648a9ff9a399171c1f7c934865ef89.png 760w,
+               /vscode-wsl/extension_copy3_hu7c330a01e9857d89173737c29c11fd46_99783_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/extension_copy3_hu7c330a01e9857d89173737c29c11fd46_99783_301652b25a1cdf4cdee107c215ac79ba.png"
+               width="760"
+               height="584"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="extension_copy4" srcset="
+               /vscode-wsl/extension_copy4_hu408d3fb6cb7459c36fd03cda3fd53eaf_99852_0b0d5a0b238f9afb859dacfdd9c460b8.png 400w,
+               /vscode-wsl/extension_copy4_hu408d3fb6cb7459c36fd03cda3fd53eaf_99852_6b31a7796e435cdeb8023f50bcf73c87.png 760w,
+               /vscode-wsl/extension_copy4_hu408d3fb6cb7459c36fd03cda3fd53eaf_99852_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/extension_copy4_hu408d3fb6cb7459c36fd03cda3fd53eaf_99852_0b0d5a0b238f9afb859dacfdd9c460b8.png"
+               width="760"
+               height="584"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="extension_copy5" srcset="
+               /vscode-wsl/extension_copy5_hu9d1e06428f495f8dae4da46e316505c1_70666_2cdc28818baedbfc656f66afcecadfea.png 400w,
+               /vscode-wsl/extension_copy5_hu9d1e06428f495f8dae4da46e316505c1_70666_51ab29c428e9a4ec761e0091e0d14b09.png 760w,
+               /vscode-wsl/extension_copy5_hu9d1e06428f495f8dae4da46e316505c1_70666_1200x1200_fit_lanczos_3.png 1200w"
+               src="/vscode-wsl/extension_copy5_hu9d1e06428f495f8dae4da46e316505c1_70666_2cdc28818baedbfc656f66afcecadfea.png"
+               width="760"
+               height="584"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>웹 서버로부터 데이터를 다운 받기 위한 명령어 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>웹 서버로부터 데이터를 다운 받기 위한 명령어&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p>SSL 기반의 응용프로그램이 SSL 연결의 신뢰성을 검사할 수 있도록 허용하기 위한 인증서 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>SSL 기반의 응용프로그램이 SSL 연결의 신뢰성을 검사할 수 있도록 허용하기 위한 인증서&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section></div>
-        
-        <br><hr><br>
-        <h2>관련 포스트</h2>
-        <ul>
-            
-            <li><a href="/vscode-cmake/">Visual Studio Code에서 CMake 환경 설정하기</a></li>
-            
-            <li><a href="/vscode-cpp/">Visual Studio Code에서 gcc 기반 C, C&#43;&#43; 환경 설정하기</a></li>
-            
-            <li><a href="/vscode/">Visual Studio Code 소개, 설치, 기본 세팅</a></li>
-            
-            <li><a href="/wsl2-x/">WSL2에서 X window를 세팅하는 법</a></li>
-            
-            <li><a href="/wsl1-x/">WSL1에서 X window를 세팅하는 법</a></li>
-            
-        </ul>
-        
-
-<div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>2020-11-25에 수정</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/vscode-wsl/index.md" target="_blank">Markdown으로 보기</a>
-                        </span></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="이 글을 공유하기 Twitter" data-sharer="twitter" data-url="https://evandde.github.io/vscode-wsl/" data-title="Visual Studio Code와 Windows Subsystem for Linux 연동하기" data-hashtags="HowTo,VSCode,WSL"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 WhatsApp" data-sharer="whatsapp" data-url="https://evandde.github.io/vscode-wsl/" data-title="Visual Studio Code와 Windows Subsystem for Linux 연동하기" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Line" data-sharer="line" data-url="https://evandde.github.io/vscode-wsl/" data-title="Visual Studio Code와 Windows Subsystem for Linux 연동하기"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Blogger" data-sharer="blogger" data-url="https://evandde.github.io/vscode-wsl/" data-title="Visual Studio Code와 Windows Subsystem for Linux 연동하기" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Evernote" data-sharer="evernote" data-url="https://evandde.github.io/vscode-wsl/" data-title="Visual Studio Code와 Windows Subsystem for Linux 연동하기"><i class="fab fa-evernote fa-fw"></i></a><a href="javascript:void(0);" title="이 글을 공유하기 Trello" data-sharer="trello" data-url="https://evandde.github.io/vscode-wsl/" data-title="Visual Studio Code와 Windows Subsystem for Linux 연동하기" data-description=""><i class="fab fa-trello fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/howto/">HowTo</a>,&nbsp;<a href="/tags/vscode/">VSCode</a>,&nbsp;<a href="/tags/wsl/">WSL</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">뒤로가기</a></span>&nbsp;|&nbsp;<span><a href="/">홈으로</a></span>
-        </section>
+</section>
     </div>
 
     
-    <div class="post-nav">
-        </div>
-</div>
-<div id="comments"><div id="utterances"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://evandde.github.io/" target="_blank">Evan Kim</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-        </div>
-    </footer></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="맨 위로">
-                <i class="fas fa-arrow-up fa-fw"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="댓글 보기">
-                <i class="fas fa-comment fa-fw"></i>
-            </a>
-        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"클립보드에 복사","maxShownLines":15},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"url","label":"","lightTheme":"github-light","repo":"evandde/blog_comment"}},"data":{"id-1":"EvaNote","id-2":"EvaNote"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"73Y72T19E4","algoliaIndex":"evandde","algoliaSearchKey":"4c1ab5e4739ef32df049f0aa178f252f","highlightTag":"em","maxResultLength":10,"noResultsFound":"찾는 결과가 없습니다","snippetLength":30,"type":"algolia"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-JZ0NBG8ZWZ');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-JZ0NBG8ZWZ" async></script></body>
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/howto/">HowTo</a>
+  
+  <a class="badge badge-light" href="/tags/vscode/">VSCode</a>
+  
+  <a class="badge badge-light" href="/tags/wsl/">WSL</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://evandde.github.io/vscode-wsl/&amp;text=Visual%20Studio%20Code%ec%99%80%20Windows%20Subsystem%20for%20Linux%20%ec%97%b0%eb%8f%99%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://evandde.github.io/vscode-wsl/&amp;t=Visual%20Studio%20Code%ec%99%80%20Windows%20Subsystem%20for%20Linux%20%ec%97%b0%eb%8f%99%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Visual%20Studio%20Code%ec%99%80%20Windows%20Subsystem%20for%20Linux%20%ec%97%b0%eb%8f%99%ed%95%98%ea%b8%b0&amp;body=https://evandde.github.io/vscode-wsl/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://evandde.github.io/vscode-wsl/&amp;title=Visual%20Studio%20Code%ec%99%80%20Windows%20Subsystem%20for%20Linux%20%ec%97%b0%eb%8f%99%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Visual%20Studio%20Code%ec%99%80%20Windows%20Subsystem%20for%20Linux%20%ec%97%b0%eb%8f%99%ed%95%98%ea%b8%b0%20https://evandde.github.io/vscode-wsl/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://evandde.github.io/vscode-wsl/&amp;title=Visual%20Studio%20Code%ec%99%80%20Windows%20Subsystem%20for%20Linux%20%ec%97%b0%eb%8f%99%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://evandde.github.io/vscode-wsl/&amp;title=Visual%20Studio%20Code%ec%99%80%20Windows%20Subsystem%20for%20Linux%20%ec%97%b0%eb%8f%99%ed%95%98%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-tumblr">
+          <i class="fab fa-tumblr"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://evandde.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/evan/avatar_hu4476cc8294ad87f920966ab8a63550ba_16674_270x270_fill_lanczos_center_3.png" alt="Evan Kim"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://evandde.github.io/">Evan Kim</a></h5>
+      <h6 class="card-subtitle">Senior Researcher</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:evandde@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=uPm-DQsAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/evandde" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/vscode-msvc/">Visual Studio Code에서 MSVC 기반 C&#43;&#43;, CMake 환경 설정하기</a></li>
+      
+      <li><a href="/vscode-jupyter-python-plotly/">VSCode Python 환경에서 Jupyter 및 plotly 사용하기</a></li>
+      
+      <li><a href="/vscode-python-venv/">Visual Studio Code에서 Python3의 venv 사용하기</a></li>
+      
+      <li><a href="/vscode-python/">Visual Studio Code에서 Python3 환경 설정하기</a></li>
+      
+      <li><a href="/vscode-cmake/">Visual Studio Code에서 CMake 환경 설정하기</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
 </html>

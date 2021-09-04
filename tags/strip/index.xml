@@ -1,15 +1,53 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>strip - 태그 - EvaNote</title>
-        <link>https://evandde.github.io/tags/strip/</link>
-        <description>strip - 태그 - EvaNote</description>
-        <generator>Hugo -- gohugo.io</generator><language>ko-kr</language><managingEditor>evandde@gmail.com (Evan Kim)</managingEditor>
-            <webMaster>evandde@gmail.com (Evan Kim)</webMaster><lastBuildDate>Wed, 28 Oct 2020 13:00:27 &#43;0900</lastBuildDate><atom:link href="https://evandde.github.io/tags/strip/" rel="self" type="application/rss+xml" /><item>
-    <title>WSL에서 libQt5 관련 &#34;No such file or directory&#34; 에러 해결</title>
-    <link>https://evandde.github.io/cannot-open-libqt5core/</link>
-    <pubDate>Wed, 28 Oct 2020 13:00:27 &#43;0900</pubDate>
-    <author>작성자</author>
-    <guid>https://evandde.github.io/cannot-open-libqt5core/</guid>
-    <description><![CDATA[<p>WSL로 설치된 Debian계열 리눅스에서 Qt5 기반 프로그램 실행 시, libQt5*.so 파일과 관련하여 발생하는 cannot access 오류를 해결하는 방법에 대해 알아봅니다.</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>strip | EvaNote</title>
+    <link>https://evandde.github.io/tags/strip/</link>
+      <atom:link href="https://evandde.github.io/tags/strip/index.xml" rel="self" type="application/rss+xml" />
+    <description>strip</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Wed, 28 Oct 2020 13:00:27 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>strip</title>
+      <link>https://evandde.github.io/tags/strip/</link>
+    </image>
+    
+    <item>
+      <title>WSL에서 libQt5 관련 &#34;No such file or directory&#34; 에러 해결</title>
+      <link>https://evandde.github.io/cannot-open-libqt5core/</link>
+      <pubDate>Wed, 28 Oct 2020 13:00:27 +0900</pubDate>
+      <guid>https://evandde.github.io/cannot-open-libqt5core/</guid>
+      <description>&lt;p&gt;WSL로 설치된 Debian계열 리눅스에서 Qt5 기반 프로그램 실행 시, libQt5*.so 파일과 관련하여 발생하는 cannot access 오류를 해결하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;다음 명령어 입력. (&lt;code&gt;/usr/lib/x86_64-linux-gnu/libQt5Core.so.5&lt;/code&gt; 부분은 에러 문구에 나온 경로로 입력)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;버그-설명&#34;&gt;버그 설명&lt;/h2&gt;
+&lt;p&gt;WSL로 설치된 Debian계열 리눅스에서 Qt5 기반 프로그램을 실행하려 할 때, Qt5 라이브러리를 apt 등을 통해 정상설치 하였음에도 불구하고, libQt5Core.so.5, libQt5Gui.so.5, &amp;hellip; 등 libQt5 관련 라이브러리에서 cannot access 오류가 발생하는 경우가 있습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;왜-발생하는가&#34;&gt;왜 발생하는가?&lt;/h2&gt;
+&lt;p&gt;WSL로 설치된 Debian 계열 리눅스(Ubuntu 등)에 대해 &lt;a href=&#34;https://github.com/Microsoft/WSL/issues/3023&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;알려진 이슈&lt;/a&gt;입니다.&lt;/p&gt;
+&lt;p&gt;내용이 어려워서 저도 전부 이해하지는 못했으나, 대강의 흐름은 이렇습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Qt5 tool에서 &lt;code&gt;lupdate&lt;/code&gt;를 실행할 때, (&lt;code&gt;LD_DEBUG=all ldd /usr/lib/libQt5Xml.so&lt;/code&gt; 등)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;libQt5Core.so.5&lt;/code&gt;를 정상적인 라이브러리로 인식하지 않는 문제가 발생함.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.note.ABI-tag&lt;/code&gt;를 호출하는 ELF section이 존재하는 한, 이 라이브러리는 &lt;code&gt;ld-linux&lt;/code&gt;링커로 직접 실행될 수는 있지만, 다른 shared object와 연동하여 링킹될 수 없음.&lt;/li&gt;
+&lt;li&gt;이를 해결하려면 &lt;code&gt;strip --remove-section=.note.ABI-tag /usr/lib/libQt5Core.so.5&lt;/code&gt;와 같이 해당 라이브러리에서 ELF section을 제거해야 함.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;해결방법&#34;&gt;해결방법&lt;/h2&gt;
+&lt;p&gt;위에 설명한 바와 같이, &lt;code&gt;strip&lt;/code&gt;이라는 명령어를 사용하여 해당 정보를 제거하면 됩니다.&lt;/p&gt;
+&lt;p&gt;맨 끝에 &lt;code&gt;/usr/lib/x86_64-linux-gnu/libQt5Core.so.5&lt;/code&gt; 부분은 에러 문구에 출력된 라이브러리 경로를 입력합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/YosysHQ/nextpnr/issues/375&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/YosysHQ/nextpnr/issues/375&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://superuser.com/questions/1347723/arch-on-wsl-libqt5core-so-5-not-found-despite-being-installed&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://superuser.com/questions/1347723/arch-on-wsl-libqt5core-so-5-not-found-despite-being-installed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Microsoft/WSL/issues/3023&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/Microsoft/WSL/issues/3023&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
 </rss>
