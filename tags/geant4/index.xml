@@ -2443,8 +2443,7 @@ make
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;There is currently no official support for building/using Geant4 through Windows Subsystem for Linux, but we welcome reports or feedback on use of Geant4 under this system via our&lt;/em&gt; &lt;a href=&#34;https://geant4-forum.web.cern.ch/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Discourse Forum&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;다만, 제 경험상 속도 측면에서는 물론 Ubuntu 운영체제에 직접 설치한 것에 비해 약간 느리지만, 결과 자체가 틀리게 나온다거나 사용 상에 문제가 있었던 적은 크게 없었습니다.&lt;/p&gt;
-&lt;p&gt;이 점을 참고하시어 진행하시기 바랍니다.&lt;/p&gt;
+&lt;p&gt;다만, 제 경험상 Linux 운영체제에 직접 설치한 것에 비해 속도는 약간 느리지만, 결과 자체가 틀리게 나온다거나 사용 상에 문제가 있었던 적은 크게 없었기에 설치 과정을 공유합니다.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;작업-흐름-요약&#34;&gt;작업 흐름 요약&lt;/h2&gt;
 &lt;ol&gt;
