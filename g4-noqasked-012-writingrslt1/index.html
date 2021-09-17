@@ -1339,10 +1339,10 @@ G4int CreateH1(const G4String&amp; name, const G4String&amp; title,
 <li><i>binSchemeName: <b>입력하지 않아도 되는 인자</b>. 기본값은 &ldquo;linear&rdquo;</i></li>
 </ul>
 <p>위쪽의 함수 원형은 최소, 최대, 구간 개수로 히스토그램을 정의하는 방식이고, 아래쪽의 함수 원형은 구간의 경계를 이용하여 히스토그램을 정의하는 방식입니다. 이 시리즈에서는 위쪽의 것만 설명하겠습니다.</p>
-<p>이 시리즈에서 앞서 스코어링한 물리량은 물 팬텀에 deposit된 에너지였습니다. 이를 <b>0 MeV ~ 3.0 MeV까지 1024개의 구간</b>으로 나누어 히스토그램을 만들어봅시다. 이 경우 <b>RunAction.cc 파일의 생성자</b>에 다음과 같이 코드를 추가하면 됩니다. <b>다만, 여기서 MeV라는 단위를 사용하기 위해서는 헤더쪽에 &ldquo;G4SystemOfUnits.hh&quot;를 포함시켜야 한다는 점도 잊지마세요.</b></p>
-<pre><code class="language-cpp">analysisManager-&gt;CreateH1(&quot;EDep&quot;, &quot;Energy Deposition&quot;, 1024, 0., 3. * MeV);
+<p>이 시리즈에서 앞서 스코어링한 물리량은 물 팬텀에 deposit된 에너지였습니다. 이를 <b>0.0 ~ 3.0까지 1024개의 구간</b>으로 나누어 히스토그램을 만들어봅시다. 이 경우 <b>RunAction.cc 파일의 생성자</b>에 다음과 같이 코드를 추가하면 됩니다. <b>다만, 여기서 MeV라는 단위를 사용하기 위해서는 헤더쪽에 &quot;G4SystemOfUnits.hh&quot;를 포함시켜야 한다는 점도 잊지마세요.</b></p>
+<pre><code class="language-cpp">analysisManager-&gt;CreateH1(&quot;EDep&quot;, &quot;Energy Deposition&quot;, 1024, 0., 3.);
 </code></pre>
-<p>히스토그램의 이름은 &ldquo;EDep&rdquo;, 제목은 &ldquo;Energy Deposition&quot;이며, 0 MeV ~ 3 MeV의 구간을 1024개로 쪼개어 히스토그램을 생성하였습니다.</p>
+<p>히스토그램의 이름은 &quot;EDep&quot;, 제목은 &quot;Energy Deposition&quot;이며, 0.0 ~ 3.0의 구간을 1024개로 쪼개어 히스토그램을 생성하였습니다.</p>
 <p>실제 작성된 RunAction.cc 파일의 모습은 다음과 같아야 합니다.</p>
 <p>
 
@@ -1363,25 +1363,25 @@ G4int CreateH1(const G4String&amp; name, const G4String&amp; title,
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="06_Hist" srcset="
-               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_59759efb4556b1755e65123101a11546.png 400w,
-               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_ca158dfe582d052770315e790871d44f.png 760w,
-               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_1200x1200_fit_lanczos_3.png 1200w"
-               src="/g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_59759efb4556b1755e65123101a11546.png"
-               width="756"
-               height="705"
+               /g4-noqasked-012-writingrslt1/06_Hist_hu30f625ded2fa16f03330b03aacd8325a_55218_dd4cbe6347e31efc5219d9a3d211777f.png 400w,
+               /g4-noqasked-012-writingrslt1/06_Hist_hu30f625ded2fa16f03330b03aacd8325a_55218_a07cb1a63b11b5132d5d64ba43a21aca.png 760w,
+               /g4-noqasked-012-writingrslt1/06_Hist_hu30f625ded2fa16f03330b03aacd8325a_55218_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-012-writingrslt1/06_Hist_hu30f625ded2fa16f03330b03aacd8325a_55218_dd4cbe6347e31efc5219d9a3d211777f.png"
+               width="760"
+               height="654"
                loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>
 <h3 id="histogram에-데이터-누적">Histogram에 데이터 누적</h3>
-<p>이제 &ldquo;2. <b>EventAction의 EndOfEventAction() 함수 안</b>에서 <b>FillH1() 함수</b>를 사용하여 데이터 누적&rdquo; 작업을 수행하겠습니다.</p>
+<p>이제 &quot;2. <b>EventAction의 EndOfEventAction() 함수 안</b>에서 <b>FillH1() 함수</b>를 사용하여 데이터 누적&quot; 작업을 수행하겠습니다.</p>
 <p>이 작업은 매 Event가 끝난 뒤 Hit을 정리할 때마다 수행해야 하므로, <font color=red><b>EventAction.cc 파일의 EndOfEventAction() 함수 내에 코드를 작성</b></font>합니다. <b>물론 헤더도 추가</b>해야합니다.</p>
 <div class="alert alert-warning">
   <div>
-    작성하는 위치에 주의하세요.
+    작성하는 파일과 위치에 주의하세요.
   </div>
 </div>
 
-<p>현재 EventAction.cc 파일의 모습은 다음과 같을 것입니다.</p>
+<p>현재 <b>EventAction.cc</b> 파일의 모습은 다음과 같을 것입니다.</p>
 <p>
 
 
@@ -1424,7 +1424,7 @@ G4int CreateH1(const G4String&amp; name, const G4String&amp; title,
 </li>
 <li>
 <p>EndOfEventAction() 함수 내, for 반복문 안에서 eDep이 0보다 큰지 확인하는 if 조건문 안에 히스토그램에 누적하는 내용을 작성</p>
-<pre><code class="language-cpp">analysisManager-&gt;FillH1(0, eDep);
+<pre><code class="language-cpp">analysisManager-&gt;FillH1(0, eDep / MeV);
 </code></pre>
 <p>여기서 사용된 FillH1() 함수의 원형은 다음과 같습니다.</p>
 <pre><code class="language-cpp">G4bool G4VAnalysisManager::FillH1(G4int id, G4double value, G4double weight = 1.0);
@@ -1437,7 +1437,6 @@ G4int CreateH1(const G4String&amp; name, const G4String&amp; title,
 <p><b>히스토그램의 ID 번호</b>와 <b>누적시킬 값</b>을 입력해서 사용하면 됩니다.</p>
 </li>
 </ol>
-<p>추가적으로, 이제 화면에 출력할 필요가 없으니 &ldquo;G4SystemOfUnits.hh&rdquo; 헤더와 G4cout 줄은 삭제해도 괜찮습니다. 다 마무리하면 다음과 같은 모양일 것입니다.</p>
 <p>
 
 
@@ -1457,10 +1456,10 @@ G4int CreateH1(const G4String&amp; name, const G4String&amp; title,
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="08_Hist" srcset="
-               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_fadf0618fced7e830e341c595b5ef573.png 400w,
-               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_dc41b9d60fc2413052a8b42cb75abd19.png 760w,
-               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_1200x1200_fit_lanczos_3.png 1200w"
-               src="/g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_fadf0618fced7e830e341c595b5ef573.png"
+               /g4-noqasked-012-writingrslt1/08_Hist_hu83449043b55f85752a70dd754a3cceae_74814_d9f971a534d778116aca5cb71ca2e67d.png 400w,
+               /g4-noqasked-012-writingrslt1/08_Hist_hu83449043b55f85752a70dd754a3cceae_74814_1f36dbf637e8060accd7b7621b7aaab5.png 760w,
+               /g4-noqasked-012-writingrslt1/08_Hist_hu83449043b55f85752a70dd754a3cceae_74814_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-012-writingrslt1/08_Hist_hu83449043b55f85752a70dd754a3cceae_74814_d9f971a534d778116aca5cb71ca2e67d.png"
                width="595"
                height="760"
                loading="lazy" data-zoomable /></div>
@@ -1491,12 +1490,12 @@ G4int CreateH1(const G4String&amp; name, const G4String&amp; title,
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="09_Hist" srcset="
-               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_61e75ecd522c08a3c6700cf0849f4364.png 400w,
-               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_11ea242119c44b54b09476c1e6775da1.png 760w,
-               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_1200x1200_fit_lanczos_3.png 1200w"
-               src="/g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_61e75ecd522c08a3c6700cf0849f4364.png"
-               width="753"
-               height="728"
+               /g4-noqasked-012-writingrslt1/09_Hist_hu77979dcff9ca7695a1598bbe0a7bf188_57644_5caee0bbe8164c149a495192d671b89c.png 400w,
+               /g4-noqasked-012-writingrslt1/09_Hist_hu77979dcff9ca7695a1598bbe0a7bf188_57644_a188531d7a3ffb9a31d1b0c5bfab755b.png 760w,
+               /g4-noqasked-012-writingrslt1/09_Hist_hu77979dcff9ca7695a1598bbe0a7bf188_57644_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-012-writingrslt1/09_Hist_hu77979dcff9ca7695a1598bbe0a7bf188_57644_5caee0bbe8164c149a495192d671b89c.png"
+               width="760"
+               height="679"
                loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>

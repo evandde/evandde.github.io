@@ -333,10 +333,10 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;li&gt;&lt;i&gt;binSchemeName: &lt;b&gt;입력하지 않아도 되는 인자&lt;/b&gt;. 기본값은 &amp;ldquo;linear&amp;rdquo;&lt;/i&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;위쪽의 함수 원형은 최소, 최대, 구간 개수로 히스토그램을 정의하는 방식이고, 아래쪽의 함수 원형은 구간의 경계를 이용하여 히스토그램을 정의하는 방식입니다. 이 시리즈에서는 위쪽의 것만 설명하겠습니다.&lt;/p&gt;
-&lt;p&gt;이 시리즈에서 앞서 스코어링한 물리량은 물 팬텀에 deposit된 에너지였습니다. 이를 &lt;b&gt;0 MeV ~ 3.0 MeV까지 1024개의 구간&lt;/b&gt;으로 나누어 히스토그램을 만들어봅시다. 이 경우 &lt;b&gt;RunAction.cc 파일의 생성자&lt;/b&gt;에 다음과 같이 코드를 추가하면 됩니다. &lt;b&gt;다만, 여기서 MeV라는 단위를 사용하기 위해서는 헤더쪽에 &amp;ldquo;G4SystemOfUnits.hh&amp;quot;를 포함시켜야 한다는 점도 잊지마세요.&lt;/b&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;CreateH1(&amp;quot;EDep&amp;quot;, &amp;quot;Energy Deposition&amp;quot;, 1024, 0., 3. * MeV);
+&lt;p&gt;이 시리즈에서 앞서 스코어링한 물리량은 물 팬텀에 deposit된 에너지였습니다. 이를 &lt;b&gt;0.0 ~ 3.0까지 1024개의 구간&lt;/b&gt;으로 나누어 히스토그램을 만들어봅시다. 이 경우 &lt;b&gt;RunAction.cc 파일의 생성자&lt;/b&gt;에 다음과 같이 코드를 추가하면 됩니다. &lt;b&gt;다만, 여기서 MeV라는 단위를 사용하기 위해서는 헤더쪽에 &amp;quot;G4SystemOfUnits.hh&amp;quot;를 포함시켜야 한다는 점도 잊지마세요.&lt;/b&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;CreateH1(&amp;quot;EDep&amp;quot;, &amp;quot;Energy Deposition&amp;quot;, 1024, 0., 3.);
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;히스토그램의 이름은 &amp;ldquo;EDep&amp;rdquo;, 제목은 &amp;ldquo;Energy Deposition&amp;quot;이며, 0 MeV ~ 3 MeV의 구간을 1024개로 쪼개어 히스토그램을 생성하였습니다.&lt;/p&gt;
+&lt;p&gt;히스토그램의 이름은 &amp;quot;EDep&amp;quot;, 제목은 &amp;quot;Energy Deposition&amp;quot;이며, 0.0 ~ 3.0의 구간을 1024개로 쪼개어 히스토그램을 생성하였습니다.&lt;/p&gt;
 &lt;p&gt;실제 작성된 RunAction.cc 파일의 모습은 다음과 같아야 합니다.&lt;/p&gt;
 &lt;p&gt;
 
@@ -357,25 +357,25 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;06_Hist&#34; srcset=&#34;
-               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_59759efb4556b1755e65123101a11546.png 400w,
-               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_ca158dfe582d052770315e790871d44f.png 760w,
-               /g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/06_Hist_huc503821bd31bd8503b048f492795907b_31699_59759efb4556b1755e65123101a11546.png&#34;
-               width=&#34;756&#34;
-               height=&#34;705&#34;
+               /g4-noqasked-012-writingrslt1/06_Hist_hu30f625ded2fa16f03330b03aacd8325a_55218_dd4cbe6347e31efc5219d9a3d211777f.png 400w,
+               /g4-noqasked-012-writingrslt1/06_Hist_hu30f625ded2fa16f03330b03aacd8325a_55218_a07cb1a63b11b5132d5d64ba43a21aca.png 760w,
+               /g4-noqasked-012-writingrslt1/06_Hist_hu30f625ded2fa16f03330b03aacd8325a_55218_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/06_Hist_hu30f625ded2fa16f03330b03aacd8325a_55218_dd4cbe6347e31efc5219d9a3d211777f.png&#34;
+               width=&#34;760&#34;
+               height=&#34;654&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 id=&#34;histogram에-데이터-누적&#34;&gt;Histogram에 데이터 누적&lt;/h3&gt;
-&lt;p&gt;이제 &amp;ldquo;2. &lt;b&gt;EventAction의 EndOfEventAction() 함수 안&lt;/b&gt;에서 &lt;b&gt;FillH1() 함수&lt;/b&gt;를 사용하여 데이터 누적&amp;rdquo; 작업을 수행하겠습니다.&lt;/p&gt;
+&lt;p&gt;이제 &amp;quot;2. &lt;b&gt;EventAction의 EndOfEventAction() 함수 안&lt;/b&gt;에서 &lt;b&gt;FillH1() 함수&lt;/b&gt;를 사용하여 데이터 누적&amp;quot; 작업을 수행하겠습니다.&lt;/p&gt;
 &lt;p&gt;이 작업은 매 Event가 끝난 뒤 Hit을 정리할 때마다 수행해야 하므로, &lt;font color=red&gt;&lt;b&gt;EventAction.cc 파일의 EndOfEventAction() 함수 내에 코드를 작성&lt;/b&gt;&lt;/font&gt;합니다. &lt;b&gt;물론 헤더도 추가&lt;/b&gt;해야합니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-warning&#34;&gt;
   &lt;div&gt;
-    작성하는 위치에 주의하세요.
+    작성하는 파일과 위치에 주의하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;현재 EventAction.cc 파일의 모습은 다음과 같을 것입니다.&lt;/p&gt;
+&lt;p&gt;현재 &lt;b&gt;EventAction.cc&lt;/b&gt; 파일의 모습은 다음과 같을 것입니다.&lt;/p&gt;
 &lt;p&gt;
 
 
@@ -418,7 +418,7 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;EndOfEventAction() 함수 내, for 반복문 안에서 eDep이 0보다 큰지 확인하는 if 조건문 안에 히스토그램에 누적하는 내용을 작성&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;FillH1(0, eDep);
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;FillH1(0, eDep / MeV);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;여기서 사용된 FillH1() 함수의 원형은 다음과 같습니다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4bool G4VAnalysisManager::FillH1(G4int id, G4double value, G4double weight = 1.0);
@@ -431,7 +431,6 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;p&gt;&lt;b&gt;히스토그램의 ID 번호&lt;/b&gt;와 &lt;b&gt;누적시킬 값&lt;/b&gt;을 입력해서 사용하면 됩니다.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;추가적으로, 이제 화면에 출력할 필요가 없으니 &amp;ldquo;G4SystemOfUnits.hh&amp;rdquo; 헤더와 G4cout 줄은 삭제해도 괜찮습니다. 다 마무리하면 다음과 같은 모양일 것입니다.&lt;/p&gt;
 &lt;p&gt;
 
 
@@ -451,10 +450,10 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;08_Hist&#34; srcset=&#34;
-               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_fadf0618fced7e830e341c595b5ef573.png 400w,
-               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_dc41b9d60fc2413052a8b42cb75abd19.png 760w,
-               /g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/08_Hist_hu7cd94a6d663b61a437415829c15eabb6_41656_fadf0618fced7e830e341c595b5ef573.png&#34;
+               /g4-noqasked-012-writingrslt1/08_Hist_hu83449043b55f85752a70dd754a3cceae_74814_d9f971a534d778116aca5cb71ca2e67d.png 400w,
+               /g4-noqasked-012-writingrslt1/08_Hist_hu83449043b55f85752a70dd754a3cceae_74814_1f36dbf637e8060accd7b7621b7aaab5.png 760w,
+               /g4-noqasked-012-writingrslt1/08_Hist_hu83449043b55f85752a70dd754a3cceae_74814_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/08_Hist_hu83449043b55f85752a70dd754a3cceae_74814_d9f971a534d778116aca5cb71ca2e67d.png&#34;
                width=&#34;595&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -485,12 +484,12 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;09_Hist&#34; srcset=&#34;
-               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_61e75ecd522c08a3c6700cf0849f4364.png 400w,
-               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_11ea242119c44b54b09476c1e6775da1.png 760w,
-               /g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/09_Hist_hua23d443093897df972769286727b6140_32990_61e75ecd522c08a3c6700cf0849f4364.png&#34;
-               width=&#34;753&#34;
-               height=&#34;728&#34;
+               /g4-noqasked-012-writingrslt1/09_Hist_hu77979dcff9ca7695a1598bbe0a7bf188_57644_5caee0bbe8164c149a495192d671b89c.png 400w,
+               /g4-noqasked-012-writingrslt1/09_Hist_hu77979dcff9ca7695a1598bbe0a7bf188_57644_a188531d7a3ffb9a31d1b0c5bfab755b.png 760w,
+               /g4-noqasked-012-writingrslt1/09_Hist_hu77979dcff9ca7695a1598bbe0a7bf188_57644_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-012-writingrslt1/09_Hist_hu77979dcff9ca7695a1598bbe0a7bf188_57644_5caee0bbe8164c149a495192d671b89c.png&#34;
+               width=&#34;760&#34;
+               height=&#34;679&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
@@ -615,8 +614,8 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;li&gt;G4int CreateNtupleSColumn(const G4String&amp;amp; name): &lt;b&gt;문자열형&lt;/b&gt;(&lt;b&gt;s&lt;/b&gt;tring) 값이 기록될 열을 추가하는 함수. 입력 인자 name은 이 열의 이름을 의미함.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;데이터를 기록할 때 이 표의 열마다 어떤 자료형을 기록할 지 생각하며 &lt;b&gt;순서대로 추가&lt;/b&gt;해나가면 됩니다.&lt;/p&gt;
-&lt;p&gt;여기서는 Energy Deposition 값에 해당하는 &lt;b&gt;한 열&lt;/b&gt;만 기록하도록 하겠습니다. 이는 &lt;b&gt;실수값 double형&lt;/b&gt;이므로, &lt;b&gt;CreateNtupleDColumn() 함수&lt;/b&gt;를 이용합니다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;CreateNtupleDColumn(&amp;quot;E(MeV)&amp;quot;);
+&lt;p&gt;여기서는 Energy Deposition 값에 해당하는 &lt;b&gt;한 열&lt;/b&gt;만 기록하도록 하겠습니다. 열의 이름은 &amp;quot;EDep&amp;quot;으로 하겠습니다. 이는 &lt;b&gt;실수값 double형&lt;/b&gt;이므로, &lt;b&gt;CreateNtupleDColumn() 함수&lt;/b&gt;를 이용합니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;CreateNtupleDColumn(&amp;quot;EDep&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;b&gt;기록하고 싶은 데이터 열이 더 많다면 같은 방식으로 이어붙여서 더 추가&lt;/b&gt;하시면 됩니다.&lt;/p&gt;
 &lt;p&gt;다 추가하셨다면 이제 이 디자인으로 Ntuple을 완성해야 합니다. 이 때에는 &lt;b&gt;FinishNtuple() 함수&lt;/b&gt;를 사용합니다. 여기서는 한 열만 추가하기로 하였으므로, 위에 열을 추가한 내용에 이어서 FinishNtuple() 함수를 적어주면 됩니다. 다음과 같이 말이죠.&lt;/p&gt;
@@ -642,11 +641,11 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;12_Ntuple&#34; srcset=&#34;
-               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_5f8dfa54f39a94e43fc8f2f71fec11d4.png 400w,
-               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_ce313438856793342143b8b0e64a21c3.png 760w,
-               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_5f8dfa54f39a94e43fc8f2f71fec11d4.png&#34;
-               width=&#34;661&#34;
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu68214706d433b542a1a512a1062a3657_70724_b5ec96256ce7e480bdb1f8695fa00ae8.png 400w,
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu68214706d433b542a1a512a1062a3657_70724_8198c090a018507dad481fd6f2ce4956.png 760w,
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu68214706d433b542a1a512a1062a3657_70724_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/12_Ntuple_hu68214706d433b542a1a512a1062a3657_70724_b5ec96256ce7e480bdb1f8695fa00ae8.png&#34;
+               width=&#34;740&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
@@ -678,18 +677,18 @@ G4int CreateH1(const G4String&amp;amp; name, const G4String&amp;amp; title,
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;13_Ntuple&#34; srcset=&#34;
-               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_7aebda96a00c26ba223f9df3e460b569.png 400w,
-               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_5547841aca816c62817f759885eca3a8.png 760w,
-               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_7aebda96a00c26ba223f9df3e460b569.png&#34;
-               width=&#34;622&#34;
+               /g4-noqasked-013-writingrslt2/13_Ntuple_hu24a617866c52b3f4d49494e11be43312_74059_77c7c0d86956814489f8450044769fa8.png 400w,
+               /g4-noqasked-013-writingrslt2/13_Ntuple_hu24a617866c52b3f4d49494e11be43312_74059_cab0dc8f3b8098ba79087db73b9f2ad3.png 760w,
+               /g4-noqasked-013-writingrslt2/13_Ntuple_hu24a617866c52b3f4d49494e11be43312_74059_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/13_Ntuple_hu24a617866c52b3f4d49494e11be43312_74059_77c7c0d86956814489f8450044769fa8.png&#34;
+               width=&#34;601&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;여기서 아까 만들어 둔 analysisManager 객체를 활용하여 두 가지 작업을 수행할 것입니다.&lt;/p&gt;
 &lt;p&gt;먼저, &lt;font color=red&gt;&lt;b&gt;EndOfEventAction() 함수&lt;/b&gt;&lt;/font&gt; 내의 for 반복문 안에서 eDep이 0보다 큰지 확인하는 if 조건문 안에서 G4AnalysisManager 클래스가 제공하는 &lt;b&gt;FillNtuple?Column() 함수&lt;/b&gt;를 이용하여 &lt;b&gt;Ntuple의 0번째 열에 eDep 데이터를 기록&lt;/b&gt;합니다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;FillNtupleDColumn(0, eDep);
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;analysisManager-&amp;gt;FillNtupleDColumn(0, eDep / MeV);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;CreateNtuple?Column() 함수와 동일하게 &lt;b&gt;I(정수)&lt;/b&gt;/&lt;b&gt;F(실수)&lt;/b&gt;/&lt;b&gt;D(실수)&lt;/b&gt;/&lt;b&gt;S(문자열)&lt;/b&gt;의 &lt;b&gt;4종류&lt;/b&gt;가 있습니다. 대표적으로 FillNtupleDColumn() 함수의 원형만 살펴보면 다음과 같습니다.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;G4bool FillNtupleDColumn(G4int columnId, G4double value);
@@ -724,11 +723,11 @@ G4bool FillNtupleDColumn(G4int ntupleId, G4int columnId, G4double value);
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;14_Ntuple&#34; srcset=&#34;
-               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_5c00430008b8336d3a11c0fcad62b564.png 400w,
-               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_c42e3b16d5f01355df0aac272ce16876.png 760w,
-               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_5c00430008b8336d3a11c0fcad62b564.png&#34;
-               width=&#34;577&#34;
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hua5d049ded43bfc855ca46a2995c65bf1_78921_fcba76ac968e8046259240425704a562.png 400w,
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hua5d049ded43bfc855ca46a2995c65bf1_78921_08215f10bebc810cf74e29caf14d226e.png 760w,
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hua5d049ded43bfc855ca46a2995c65bf1_78921_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/14_Ntuple_hua5d049ded43bfc855ca46a2995c65bf1_78921_fcba76ac968e8046259240425704a562.png&#34;
+               width=&#34;564&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
@@ -755,12 +754,12 @@ G4bool FillNtupleDColumn(G4int ntupleId, G4int columnId, G4double value);
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;15_Ntuple&#34; srcset=&#34;
-               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_4178c5d0f3d2e7f140b278cb52f0665d.png 400w,
-               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_98e374a04916d8e84b3d40c72e07c482.png 760w,
-               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_4178c5d0f3d2e7f140b278cb52f0665d.png&#34;
-               width=&#34;753&#34;
-               height=&#34;728&#34;
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hub67d0d4aeac9225003144941d4788486_69855_ebe2270078f05e1d02848583037e4b01.png 400w,
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hub67d0d4aeac9225003144941d4788486_69855_7760f6ce0ec16e19f4f5c05a40ac87bf.png 760w,
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hub67d0d4aeac9225003144941d4788486_69855_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/g4-noqasked-013-writingrslt2/15_Ntuple_hub67d0d4aeac9225003144941d4788486_69855_ebe2270078f05e1d02848583037e4b01.png&#34;
+               width=&#34;739&#34;
+               height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;

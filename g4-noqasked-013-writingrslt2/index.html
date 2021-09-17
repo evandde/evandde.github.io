@@ -1049,8 +1049,8 @@
 <li>G4int CreateNtupleSColumn(const G4String&amp; name): <b>문자열형</b>(<b>s</b>tring) 값이 기록될 열을 추가하는 함수. 입력 인자 name은 이 열의 이름을 의미함.</li>
 </ul>
 <p>데이터를 기록할 때 이 표의 열마다 어떤 자료형을 기록할 지 생각하며 <b>순서대로 추가</b>해나가면 됩니다.</p>
-<p>여기서는 Energy Deposition 값에 해당하는 <b>한 열</b>만 기록하도록 하겠습니다. 이는 <b>실수값 double형</b>이므로, <b>CreateNtupleDColumn() 함수</b>를 이용합니다.</p>
-<pre><code class="language-cpp">analysisManager-&gt;CreateNtupleDColumn(&quot;E(MeV)&quot;);
+<p>여기서는 Energy Deposition 값에 해당하는 <b>한 열</b>만 기록하도록 하겠습니다. 열의 이름은 &quot;EDep&quot;으로 하겠습니다. 이는 <b>실수값 double형</b>이므로, <b>CreateNtupleDColumn() 함수</b>를 이용합니다.</p>
+<pre><code class="language-cpp">analysisManager-&gt;CreateNtupleDColumn(&quot;EDep&quot;);
 </code></pre>
 <p><b>기록하고 싶은 데이터 열이 더 많다면 같은 방식으로 이어붙여서 더 추가</b>하시면 됩니다.</p>
 <p>다 추가하셨다면 이제 이 디자인으로 Ntuple을 완성해야 합니다. 이 때에는 <b>FinishNtuple() 함수</b>를 사용합니다. 여기서는 한 열만 추가하기로 하였으므로, 위에 열을 추가한 내용에 이어서 FinishNtuple() 함수를 적어주면 됩니다. 다음과 같이 말이죠.</p>
@@ -1076,11 +1076,11 @@
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="12_Ntuple" srcset="
-               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_5f8dfa54f39a94e43fc8f2f71fec11d4.png 400w,
-               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_ce313438856793342143b8b0e64a21c3.png 760w,
-               /g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_1200x1200_fit_lanczos_3.png 1200w"
-               src="/g4-noqasked-013-writingrslt2/12_Ntuple_hu75bee668e8940aaa7812360d76f857cf_40158_5f8dfa54f39a94e43fc8f2f71fec11d4.png"
-               width="661"
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu68214706d433b542a1a512a1062a3657_70724_b5ec96256ce7e480bdb1f8695fa00ae8.png 400w,
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu68214706d433b542a1a512a1062a3657_70724_8198c090a018507dad481fd6f2ce4956.png 760w,
+               /g4-noqasked-013-writingrslt2/12_Ntuple_hu68214706d433b542a1a512a1062a3657_70724_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-013-writingrslt2/12_Ntuple_hu68214706d433b542a1a512a1062a3657_70724_b5ec96256ce7e480bdb1f8695fa00ae8.png"
+               width="740"
                height="760"
                loading="lazy" data-zoomable /></div>
   </div></figure>
@@ -1112,18 +1112,18 @@
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="13_Ntuple" srcset="
-               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_7aebda96a00c26ba223f9df3e460b569.png 400w,
-               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_5547841aca816c62817f759885eca3a8.png 760w,
-               /g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_1200x1200_fit_lanczos_3.png 1200w"
-               src="/g4-noqasked-013-writingrslt2/13_Ntuple_huf635c00c54918b5d9fb9fe93c45669f6_71202_7aebda96a00c26ba223f9df3e460b569.png"
-               width="622"
+               /g4-noqasked-013-writingrslt2/13_Ntuple_hu24a617866c52b3f4d49494e11be43312_74059_77c7c0d86956814489f8450044769fa8.png 400w,
+               /g4-noqasked-013-writingrslt2/13_Ntuple_hu24a617866c52b3f4d49494e11be43312_74059_cab0dc8f3b8098ba79087db73b9f2ad3.png 760w,
+               /g4-noqasked-013-writingrslt2/13_Ntuple_hu24a617866c52b3f4d49494e11be43312_74059_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-013-writingrslt2/13_Ntuple_hu24a617866c52b3f4d49494e11be43312_74059_77c7c0d86956814489f8450044769fa8.png"
+               width="601"
                height="760"
                loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>
 <p>여기서 아까 만들어 둔 analysisManager 객체를 활용하여 두 가지 작업을 수행할 것입니다.</p>
 <p>먼저, <font color=red><b>EndOfEventAction() 함수</b></font> 내의 for 반복문 안에서 eDep이 0보다 큰지 확인하는 if 조건문 안에서 G4AnalysisManager 클래스가 제공하는 <b>FillNtuple?Column() 함수</b>를 이용하여 <b>Ntuple의 0번째 열에 eDep 데이터를 기록</b>합니다.</p>
-<pre><code class="language-cpp">analysisManager-&gt;FillNtupleDColumn(0, eDep);
+<pre><code class="language-cpp">analysisManager-&gt;FillNtupleDColumn(0, eDep / MeV);
 </code></pre>
 <p>CreateNtuple?Column() 함수와 동일하게 <b>I(정수)</b>/<b>F(실수)</b>/<b>D(실수)</b>/<b>S(문자열)</b>의 <b>4종류</b>가 있습니다. 대표적으로 FillNtupleDColumn() 함수의 원형만 살펴보면 다음과 같습니다.</p>
 <pre><code class="language-cpp">G4bool FillNtupleDColumn(G4int columnId, G4double value);
@@ -1158,11 +1158,11 @@ G4bool FillNtupleDColumn(G4int ntupleId, G4int columnId, G4double value);
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="14_Ntuple" srcset="
-               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_5c00430008b8336d3a11c0fcad62b564.png 400w,
-               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_c42e3b16d5f01355df0aac272ce16876.png 760w,
-               /g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_1200x1200_fit_lanczos_3.png 1200w"
-               src="/g4-noqasked-013-writingrslt2/14_Ntuple_hu315f518ac5731b2fe8eef048cd703cac_42804_5c00430008b8336d3a11c0fcad62b564.png"
-               width="577"
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hua5d049ded43bfc855ca46a2995c65bf1_78921_fcba76ac968e8046259240425704a562.png 400w,
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hua5d049ded43bfc855ca46a2995c65bf1_78921_08215f10bebc810cf74e29caf14d226e.png 760w,
+               /g4-noqasked-013-writingrslt2/14_Ntuple_hua5d049ded43bfc855ca46a2995c65bf1_78921_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-013-writingrslt2/14_Ntuple_hua5d049ded43bfc855ca46a2995c65bf1_78921_fcba76ac968e8046259240425704a562.png"
+               width="564"
                height="760"
                loading="lazy" data-zoomable /></div>
   </div></figure>
@@ -1189,12 +1189,12 @@ G4bool FillNtupleDColumn(G4int ntupleId, G4int columnId, G4double value);
 <figure  >
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="15_Ntuple" srcset="
-               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_4178c5d0f3d2e7f140b278cb52f0665d.png 400w,
-               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_98e374a04916d8e84b3d40c72e07c482.png 760w,
-               /g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_1200x1200_fit_lanczos_3.png 1200w"
-               src="/g4-noqasked-013-writingrslt2/15_Ntuple_hua23d443093897df972769286727b6140_32990_4178c5d0f3d2e7f140b278cb52f0665d.png"
-               width="753"
-               height="728"
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hub67d0d4aeac9225003144941d4788486_69855_ebe2270078f05e1d02848583037e4b01.png 400w,
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hub67d0d4aeac9225003144941d4788486_69855_7760f6ce0ec16e19f4f5c05a40ac87bf.png 760w,
+               /g4-noqasked-013-writingrslt2/15_Ntuple_hub67d0d4aeac9225003144941d4788486_69855_1200x1200_fit_lanczos_3.png 1200w"
+               src="/g4-noqasked-013-writingrslt2/15_Ntuple_hub67d0d4aeac9225003144941d4788486_69855_ebe2270078f05e1d02848583037e4b01.png"
+               width="739"
+               height="760"
                loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>
