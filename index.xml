@@ -8440,7 +8440,7 @@ Add-Content -Path $profile -Value &#39;$env:LC_ALL=&#39;&#39;C.UTF-8&#39;&#39;&#
 &lt;p&gt;위에서 켜보았던 &lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 실행&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;명령줄에 &lt;code&gt;code&lt;/code&gt;라고 입력하여 실행&lt;/p&gt;
+&lt;p&gt;명령줄에 &lt;code&gt;code&lt;/code&gt;라고 입력하여 &lt;b&gt;VSCode&lt;/b&gt;를 실행&lt;/p&gt;
 &lt;p&gt;
 
 
