@@ -5,7 +5,7 @@
     <link>https://evandde.github.io/tags/msvc/</link>
       <atom:link href="https://evandde.github.io/tags/msvc/index.xml" rel="self" type="application/rss+xml" />
     <description>MSVC</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Thu, 26 Aug 2021 10:05:15 +0900</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Fri, 24 Sep 2021 17:57:09 +0900</lastBuildDate>
     <image>
       <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
       <title>MSVC</title>
@@ -967,6 +967,346 @@ cmake --build . --config Release
 &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>대충보는 C&#43;&#43; &amp; CMake - 1. 실습환경 만들기</title>
+      <link>https://evandde.github.io/praccpp-001-envsetting/</link>
+      <pubDate>Fri, 24 Sep 2021 17:57:09 +0900</pubDate>
+      <guid>https://evandde.github.io/praccpp-001-envsetting/</guid>
+      <description>&lt;p&gt;&lt;b&gt;Windows 10&lt;/b&gt; 환경에서 Microsoft Visual C++ (MSVC)를 이용하여 C++ 및 CMake 개발 환경을 구축하고 VSCode를 설치하여 연동하는 방법을 살펴봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;microsoft-visual-c-설치&#34;&gt;Microsoft Visual C++ 설치&lt;/h2&gt;
+&lt;h3 id=&#34;다운로드&#34;&gt;다운로드&lt;/h3&gt;
+&lt;p&gt;현재 시점에서 최신 버전에 해당하는, &lt;b&gt;Visual Studio 2019용 Build Tools&lt;/b&gt;를 다운로드 받겠습니다.&lt;/p&gt;
+&lt;p&gt;Microsoft에서 제공하는 Visual Studio 2019용 Build Tools는 &lt;a href=&#34;https://visualstudio.microsoft.com/ko/downloads/#build-tools-for-visual-studio-2019&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;에서 무료로 받을 수 있습니다. 아래 그림에서 보이는 다운로드 링크를 누르면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_vs2019buildtools_download&#34; srcset=&#34;
+               /praccpp-001-envsetting/01_vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_909f8b98a44ad6a4f6cf4df19f3ef6ba.png 400w,
+               /praccpp-001-envsetting/01_vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_8578db8bcfddfb3e89d513c19e7ed0e7.png 760w,
+               /praccpp-001-envsetting/01_vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/01_vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_909f8b98a44ad6a4f6cf4df19f3ef6ba.png&#34;
+               width=&#34;760&#34;
+               height=&#34;135&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;설치&#34;&gt;설치&lt;/h3&gt;
+&lt;p&gt;다운받은 파일(&lt;code&gt;vs_buildtools_....exe&lt;/code&gt;)을 실행합니다. 다음 그림과 같은 창이 뜰 수 있습니다. &lt;b&gt;계속&lt;/b&gt; 버튼을 누르고 잠시 기다려줍니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_vs2019buildtools_install&#34; srcset=&#34;
+               /praccpp-001-envsetting/02_vs2019buildtools_install_hu6e02cd8b0b7d1d230c309820161a8cdd_19149_4efc43656ed797e74ddf58cb381dc51d.png 400w,
+               /praccpp-001-envsetting/02_vs2019buildtools_install_hu6e02cd8b0b7d1d230c309820161a8cdd_19149_7e57b38156a4bcbdd92e55c5a68a663a.png 760w,
+               /praccpp-001-envsetting/02_vs2019buildtools_install_hu6e02cd8b0b7d1d230c309820161a8cdd_19149_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/02_vs2019buildtools_install_hu6e02cd8b0b7d1d230c309820161a8cdd_19149_4efc43656ed797e74ddf58cb381dc51d.png&#34;
+               width=&#34;480&#34;
+               height=&#34;280&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;다운로드를 마치고 설치 준비가 다 되면, 다음 그림과 같은 창이 뜰 것입니다. 이 중 &lt;b&gt;C++를 사용한 데스크톱 개발&lt;/b&gt;을 클릭합니다. 오른쪽 설치 세부 정보에서, 자동으로 선택사항 중 일부가 선택될 것입니다. 혹시라도 &lt;b&gt;Windows용 C++ CMake 도구&lt;/b&gt;가 선택이 안되어있다면, &lt;b&gt;꼭 선택&lt;/b&gt;해주시기 바랍니다. 선택을 완료하셨다면 &lt;b&gt;Install&lt;/b&gt; 버튼을 눌러 설치를 진행하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_vs2019buildtools_install&#34; srcset=&#34;
+               /praccpp-001-envsetting/03_vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_3802a8ff8d6569e57d6b90ed90dc4033.png 400w,
+               /praccpp-001-envsetting/03_vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_8fed8aa0d866cb0977b6d1166f22591b.png 760w,
+               /praccpp-001-envsetting/03_vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/03_vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_3802a8ff8d6569e57d6b90ed90dc4033.png&#34;
+               width=&#34;760&#34;
+               height=&#34;424&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;실행&#34;&gt;실행&lt;/h3&gt;
+&lt;p&gt;설치가 완료되었다면, 잘 실행되는지 테스트를 해보아야 합니다. 앞으로 진행할 실습을 시작할 때마다, 이 &lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 켜주어야 합니다. &lt;b&gt;작업표시줄에 고정&lt;/b&gt;하거나, &lt;b&gt;시작화면에 고정&lt;/b&gt;하거나, 혹은 &lt;b&gt;바탕화면에 단축 아이콘&lt;/b&gt;을 만드시는 등, 실행하기 편하도록 해두시기를 추천드립니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;b&gt;[WIN]+[S]&lt;/b&gt; 를 눌러 검색을 띄움&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;developer powershell&lt;/code&gt;을 입력하여 &lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 찾은 뒤 실행&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_vs2019buildtools_test1&#34; srcset=&#34;
+               /praccpp-001-envsetting/04_vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_9e520458cb5b5fcc62dbf79c7daf6f75.png 400w,
+               /praccpp-001-envsetting/04_vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_4e142f530f81ad56b5a45665a47bdc0f.png 760w,
+               /praccpp-001-envsetting/04_vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/04_vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_9e520458cb5b5fcc62dbf79c7daf6f75.png&#34;
+               width=&#34;760&#34;
+               height=&#34;623&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cl&lt;/code&gt; 명령어와 &lt;code&gt;cmake&lt;/code&gt; 명령어를 각각 입력하여, 다음 그림과 같이 각각의 사용법(usage)이 뜨는지 확인&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;05_vs2019buildtools_test2&#34; srcset=&#34;
+               /praccpp-001-envsetting/05_vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_44a9d9706cd9e3255bce1f784eac3e01.png 400w,
+               /praccpp-001-envsetting/05_vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_3befd5a34a8b7a447e978981ce71caff.png 760w,
+               /praccpp-001-envsetting/05_vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/05_vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_44a9d9706cd9e3255bce1f784eac3e01.png&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;vscode-설치&#34;&gt;VSCode 설치&lt;/h2&gt;
+&lt;h3 id=&#34;다운로드-1&#34;&gt;다운로드&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;공식 홈페이지&lt;/a&gt; 첫화면에 있는 다운로드 버튼을 누르면 설치 프로그램이 다운로드 됩니다.&lt;/p&gt;
+&lt;p&gt;혹은, &lt;a href=&#34;https://code.visualstudio.com/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;다운로드 페이지&lt;/a&gt;를 이용하시면 좀 더 다양한 옵션의 설치 파일을 다운로드 받을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;06_vscode_mainpage_download&#34; srcset=&#34;
+               /praccpp-001-envsetting/06_vscode_mainpage_download_hufc464033e495f88261d6484504eb9237_371107_5032079348e1f8b63c47acc58d00d188.png 400w,
+               /praccpp-001-envsetting/06_vscode_mainpage_download_hufc464033e495f88261d6484504eb9237_371107_e485de552509a5a298763d268417dd8a.png 760w,
+               /praccpp-001-envsetting/06_vscode_mainpage_download_hufc464033e495f88261d6484504eb9237_371107_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/06_vscode_mainpage_download_hufc464033e495f88261d6484504eb9237_371107_5032079348e1f8b63c47acc58d00d188.png&#34;
+               width=&#34;732&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;설치-1&#34;&gt;설치&lt;/h3&gt;
+&lt;p&gt;다운받은 파일(&lt;code&gt;VSCode...Setup-....exe&lt;/code&gt;)을 실행합니다.&lt;/p&gt;
+&lt;p&gt;공식 홈페이지 첫화면에서 다운로드 버튼을 눌렀거나, User installer를 받으신 경우에는, 권한 이슈로 인해 다음과 같은 경고가 뜰 수 있습니다. 개인 컴퓨터에 작업을 수행하고 있는 일반적인 경우라면, &lt;b&gt;확인 &lt;/b&gt;버튼을 누르고 진행하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;07_vscode_install_warning&#34; srcset=&#34;
+               /praccpp-001-envsetting/07_vscode_install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_e0b102a8223aa77038f3df9aa151f1d9.png 400w,
+               /praccpp-001-envsetting/07_vscode_install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_7a434070efdaae037b5a501caa1beeb9.png 760w,
+               /praccpp-001-envsetting/07_vscode_install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/07_vscode_install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_e0b102a8223aa77038f3df9aa151f1d9.png&#34;
+               width=&#34;413&#34;
+               height=&#34;185&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;설치 과정 중 다음과 같은 화면이 뜰 텐데, 여기서 다른 건 몰라도 &lt;b&gt;다음 그림에 표시한 세 가지 항목은 체크해 두시길 권장&lt;/b&gt;합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;08_vscode_install&#34; srcset=&#34;
+               /praccpp-001-envsetting/08_vscode_install_hu5f444f29464cd1fc206f6e3c6be42c2c_24527_be0695542f04faefe9122a652983f34c.png 400w,
+               /praccpp-001-envsetting/08_vscode_install_hu5f444f29464cd1fc206f6e3c6be42c2c_24527_c34c609d7dbcf724b827810f58fc9891.png 760w,
+               /praccpp-001-envsetting/08_vscode_install_hu5f444f29464cd1fc206f6e3c6be42c2c_24527_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/08_vscode_install_hu5f444f29464cd1fc206f6e3c6be42c2c_24527_be0695542f04faefe9122a652983f34c.png&#34;
+               width=&#34;598&#34;
+               height=&#34;464&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;실행-1&#34;&gt;실행&lt;/h3&gt;
+&lt;p&gt;VSCode를 실행시키는 것만이 목적이라면 그냥 시작메뉴나 바탕화면에 있는 Visual Studio Code를 실행시키면 됩니다.&lt;/p&gt;
+&lt;p&gt;하지만, &lt;font color=red&gt;&lt;b&gt;우리는 MSVC와 연동해서 VSCode를 실행시켜야 하므로, 반드시 다음의 방법으로 실행해주셔야 합니다&lt;/b&gt;&lt;/font&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;위에서 켜보았던 &lt;b&gt;Developer PowerShell for VS 2019&lt;/b&gt;를 실행&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;명령줄에 &lt;code&gt;code&lt;/code&gt;라고 입력하여 실행&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;09_vscode_run&#34; srcset=&#34;
+               /praccpp-001-envsetting/09_vscode_run_hua461e13989bf23c0cb14046057f8973e_11313_110c40b3170ab34fc73b0f8d6f41a128.png 400w,
+               /praccpp-001-envsetting/09_vscode_run_hua461e13989bf23c0cb14046057f8973e_11313_30a03729ba673b7a17f400996e7b337b.png 760w,
+               /praccpp-001-envsetting/09_vscode_run_hua461e13989bf23c0cb14046057f8973e_11313_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/09_vscode_run_hua461e13989bf23c0cb14046057f8973e_11313_110c40b3170ab34fc73b0f8d6f41a128.png&#34;
+               width=&#34;643&#34;
+               height=&#34;129&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;다음과 같은 창이 떴다면 정상적으로 실행이 된 것입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;10_vscode_run&#34; srcset=&#34;
+               /praccpp-001-envsetting/10_vscode_run_hu0b0e1eda9dd677061eff8de8c8a75a99_71769_36f07cc44663cd8e4afc0ffeac1a0acb.png 400w,
+               /praccpp-001-envsetting/10_vscode_run_hu0b0e1eda9dd677061eff8de8c8a75a99_71769_fb08da58e0a9a0a8779eb8abf404899d.png 760w,
+               /praccpp-001-envsetting/10_vscode_run_hu0b0e1eda9dd677061eff8de8c8a75a99_71769_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/10_vscode_run_hu0b0e1eda9dd677061eff8de8c8a75a99_71769_36f07cc44663cd8e4afc0ffeac1a0acb.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이 글에서는 MSVC의 구성요소인 C++ 빌드 도구와 CMake를 설치하였고, IDE로서 활용할 수 있는 VSCode를 설치하였습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2021-09-24: 최초 게시&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>

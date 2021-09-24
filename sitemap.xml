@@ -89,11 +89,32 @@
     <loc>https://evandde.github.io/course/g4install/wsl/</loc>
     <lastmod>2021-09-04T10:14:50+09:00</lastmod>
   </url><url>
+    <loc>https://evandde.github.io/course/practical-cpp-cmake/01_prep/</loc>
+    <lastmod>2021-09-24T18:00:11+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/praccpp-001-envsetting/</loc>
+    <lastmod>2021-09-24T17:57:09+09:00</lastmod>
+  </url><url>
     <loc>https://evandde.github.io/</loc>
-    <lastmod>2021-09-24T17:35:10+09:00</lastmod>
+    <lastmod>2021-09-24T18:00:11+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/course/</loc>
-    <lastmod>2021-09-24T17:35:10+09:00</lastmod>
+    <lastmod>2021-09-24T18:00:11+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/c-/</loc>
+    <lastmod>2021-09-24T17:57:09+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/cmake/</loc>
+    <lastmod>2021-09-24T17:57:09+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/msvc/</loc>
+    <lastmod>2021-09-24T17:57:09+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/</loc>
+    <lastmod>2021-09-24T17:57:09+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/vscode/</loc>
+    <lastmod>2021-09-24T17:57:09+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/course/practical-cpp-cmake/</loc>
     <lastmod>2021-09-24T17:35:10+09:00</lastmod>
@@ -104,9 +125,6 @@
     <loc>https://evandde.github.io/bithacks-power/</loc>
     <lastmod>2021-09-24T14:21:45+09:00</lastmod>
   </url><url>
-    <loc>https://evandde.github.io/tags/c-/</loc>
-    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
-  </url><url>
     <loc>https://evandde.github.io/tags/hack/</loc>
     <lastmod>2021-09-24T14:21:45+09:00</lastmod>
   </url><url>
@@ -114,9 +132,6 @@
     <lastmod>2021-09-24T14:21:45+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/tags/power/</loc>
-    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/</loc>
     <lastmod>2021-09-24T14:21:45+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/post/</loc>
@@ -143,17 +158,8 @@
     <loc>https://evandde.github.io/course/g4-noqasked/</loc>
     <lastmod>2021-09-04T15:03:56+09:00</lastmod>
   </url><url>
-    <loc>https://evandde.github.io/tags/cmake/</loc>
-    <lastmod>2021-09-04T16:46:05+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/msvc/</loc>
-    <lastmod>2021-09-04T16:46:05+09:00</lastmod>
-  </url><url>
     <loc>https://evandde.github.io/vscode-msvc/</loc>
     <lastmod>2021-09-04T16:46:05+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/vscode/</loc>
-    <lastmod>2021-09-04T19:29:27+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/categories/vscode/</loc>
     <lastmod>2021-09-04T19:29:27+09:00</lastmod>

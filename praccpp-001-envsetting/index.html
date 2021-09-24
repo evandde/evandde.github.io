@@ -1,0 +1,1519 @@
+<!DOCTYPE html><html lang="ko-kr" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Windows 10 환경에서 Microsoft Visual C&#43;&#43; (MSVC)를 이용하여 C&#43;&#43; 및 CMake 개발 환경을 구축하고 VSCode를 설치하여 연동하는 방법을 살펴봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/praccpp-001-envsetting/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.ddda8084c9ad8c98d0b2a8a46c09681e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/praccpp-001-envsetting/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/praccpp-001-envsetting/" />
+  <meta property="og:title" content="대충보는 C&#43;&#43; &amp; CMake - 1. 실습환경 만들기 | EvaNote" />
+  <meta property="og:description" content="Windows 10 환경에서 Microsoft Visual C&#43;&#43; (MSVC)를 이용하여 C&#43;&#43; 및 CMake 개발 환경을 구축하고 VSCode를 설치하여 연동하는 방법을 살펴봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-09-24T17:57:09&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-09-24T17:57:09&#43;09:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>대충보는 C&#43;&#43; &amp; CMake - 1. 실습환경 만들기 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="24cf199b254b0f3e0bec87bc12680e58" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          준비
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
+    </div>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>강의시리즈</a></li>
+      </ul>
+
+      
+      
+        
+          
+        
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/">대충보는 C&#43;&#43; &amp; CMake</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/01_prep/">준비</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class="active"><a href="/praccpp-001-envsetting/">실습환경 만들기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#microsoft-visual-c-설치">Microsoft Visual C++ 설치</a>
+      <ul>
+        <li><a href="#다운로드">다운로드</a></li>
+        <li><a href="#설치">설치</a></li>
+        <li><a href="#실행">실행</a></li>
+      </ul>
+    </li>
+    <li><a href="#vscode-설치">VSCode 설치</a>
+      <ul>
+        <li><a href="#다운로드-1">다운로드</a></li>
+        <li><a href="#설치-1">설치</a></li>
+        <li><a href="#실행-1">실행</a></li>
+      </ul>
+    </li>
+    <li><a href="#정리">정리</a></li>
+    <li><a href="#changelog">Changelog</a></li>
+  </ul>
+</nav>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        강의시리즈
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/">
+      
+        대충보는 C++ & CMake
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/01_prep/">
+      
+        준비
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        실습환경 만들기
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>대충보는 C&#43;&#43; &amp; CMake - 1. 실습환경 만들기</h1>
+
+          <div class="article-style">
+            <p><b>Windows 10</b> 환경에서 Microsoft Visual C++ (MSVC)를 이용하여 C++ 및 CMake 개발 환경을 구축하고 VSCode를 설치하여 연동하는 방법을 살펴봅니다.</p>
+<hr>
+<h2 id="microsoft-visual-c-설치">Microsoft Visual C++ 설치</h2>
+<h3 id="다운로드">다운로드</h3>
+<p>현재 시점에서 최신 버전에 해당하는, <b>Visual Studio 2019용 Build Tools</b>를 다운로드 받겠습니다.</p>
+<p>Microsoft에서 제공하는 Visual Studio 2019용 Build Tools는 <a href="https://visualstudio.microsoft.com/ko/downloads/#build-tools-for-visual-studio-2019" target="_blank" rel="noopener">이 링크</a>에서 무료로 받을 수 있습니다. 아래 그림에서 보이는 다운로드 링크를 누르면 됩니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="01_vs2019buildtools_download" srcset="
+               /praccpp-001-envsetting/01_vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_909f8b98a44ad6a4f6cf4df19f3ef6ba.png 400w,
+               /praccpp-001-envsetting/01_vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_8578db8bcfddfb3e89d513c19e7ed0e7.png 760w,
+               /praccpp-001-envsetting/01_vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/01_vs2019buildtools_download_hub57466a22a601cab6b68f2e5874681b3_25611_909f8b98a44ad6a4f6cf4df19f3ef6ba.png"
+               width="760"
+               height="135"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="설치">설치</h3>
+<p>다운받은 파일(<code>vs_buildtools_....exe</code>)을 실행합니다. 다음 그림과 같은 창이 뜰 수 있습니다. <b>계속</b> 버튼을 누르고 잠시 기다려줍니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="02_vs2019buildtools_install" srcset="
+               /praccpp-001-envsetting/02_vs2019buildtools_install_hu6e02cd8b0b7d1d230c309820161a8cdd_19149_4efc43656ed797e74ddf58cb381dc51d.png 400w,
+               /praccpp-001-envsetting/02_vs2019buildtools_install_hu6e02cd8b0b7d1d230c309820161a8cdd_19149_7e57b38156a4bcbdd92e55c5a68a663a.png 760w,
+               /praccpp-001-envsetting/02_vs2019buildtools_install_hu6e02cd8b0b7d1d230c309820161a8cdd_19149_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/02_vs2019buildtools_install_hu6e02cd8b0b7d1d230c309820161a8cdd_19149_4efc43656ed797e74ddf58cb381dc51d.png"
+               width="480"
+               height="280"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>다운로드를 마치고 설치 준비가 다 되면, 다음 그림과 같은 창이 뜰 것입니다. 이 중 <b>C++를 사용한 데스크톱 개발</b>을 클릭합니다. 오른쪽 설치 세부 정보에서, 자동으로 선택사항 중 일부가 선택될 것입니다. 혹시라도 <b>Windows용 C++ CMake 도구</b>가 선택이 안되어있다면, <b>꼭 선택</b>해주시기 바랍니다. 선택을 완료하셨다면 <b>Install</b> 버튼을 눌러 설치를 진행하시면 됩니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="03_vs2019buildtools_install" srcset="
+               /praccpp-001-envsetting/03_vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_3802a8ff8d6569e57d6b90ed90dc4033.png 400w,
+               /praccpp-001-envsetting/03_vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_8fed8aa0d866cb0977b6d1166f22591b.png 760w,
+               /praccpp-001-envsetting/03_vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/03_vs2019buildtools_install_huefd9916a1e1dc2faa688934edddc7916_120879_3802a8ff8d6569e57d6b90ed90dc4033.png"
+               width="760"
+               height="424"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="실행">실행</h3>
+<p>설치가 완료되었다면, 잘 실행되는지 테스트를 해보아야 합니다. 앞으로 진행할 실습을 시작할 때마다, 이 <b>Developer PowerShell for VS 2019</b>를 켜주어야 합니다. <b>작업표시줄에 고정</b>하거나, <b>시작화면에 고정</b>하거나, 혹은 <b>바탕화면에 단축 아이콘</b>을 만드시는 등, 실행하기 편하도록 해두시기를 추천드립니다.</p>
+<ol>
+<li>
+<p><b>[WIN]+[S]</b> 를 눌러 검색을 띄움</p>
+</li>
+<li>
+<p><code>developer powershell</code>을 입력하여 <b>Developer PowerShell for VS 2019</b>를 찾은 뒤 실행</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="04_vs2019buildtools_test1" srcset="
+               /praccpp-001-envsetting/04_vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_9e520458cb5b5fcc62dbf79c7daf6f75.png 400w,
+               /praccpp-001-envsetting/04_vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_4e142f530f81ad56b5a45665a47bdc0f.png 760w,
+               /praccpp-001-envsetting/04_vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/04_vs2019buildtools_test1_hu607f4985e581e7292b5d47d4b801dedf_138468_9e520458cb5b5fcc62dbf79c7daf6f75.png"
+               width="760"
+               height="623"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p><code>cl</code> 명령어와 <code>cmake</code> 명령어를 각각 입력하여, 다음 그림과 같이 각각의 사용법(usage)이 뜨는지 확인</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="05_vs2019buildtools_test2" srcset="
+               /praccpp-001-envsetting/05_vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_44a9d9706cd9e3255bce1f784eac3e01.png 400w,
+               /praccpp-001-envsetting/05_vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_3befd5a34a8b7a447e978981ce71caff.png 760w,
+               /praccpp-001-envsetting/05_vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/05_vs2019buildtools_test2_hu94a7aa42ba3a8e8312a5ae88b2edc2c9_24846_44a9d9706cd9e3255bce1f784eac3e01.png"
+               width="760"
+               height="397"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="vscode-설치">VSCode 설치</h2>
+<h3 id="다운로드-1">다운로드</h3>
+<p><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">공식 홈페이지</a> 첫화면에 있는 다운로드 버튼을 누르면 설치 프로그램이 다운로드 됩니다.</p>
+<p>혹은, <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">다운로드 페이지</a>를 이용하시면 좀 더 다양한 옵션의 설치 파일을 다운로드 받을 수 있습니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="06_vscode_mainpage_download" srcset="
+               /praccpp-001-envsetting/06_vscode_mainpage_download_hufc464033e495f88261d6484504eb9237_371107_5032079348e1f8b63c47acc58d00d188.png 400w,
+               /praccpp-001-envsetting/06_vscode_mainpage_download_hufc464033e495f88261d6484504eb9237_371107_e485de552509a5a298763d268417dd8a.png 760w,
+               /praccpp-001-envsetting/06_vscode_mainpage_download_hufc464033e495f88261d6484504eb9237_371107_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/06_vscode_mainpage_download_hufc464033e495f88261d6484504eb9237_371107_5032079348e1f8b63c47acc58d00d188.png"
+               width="732"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="설치-1">설치</h3>
+<p>다운받은 파일(<code>VSCode...Setup-....exe</code>)을 실행합니다.</p>
+<p>공식 홈페이지 첫화면에서 다운로드 버튼을 눌렀거나, User installer를 받으신 경우에는, 권한 이슈로 인해 다음과 같은 경고가 뜰 수 있습니다. 개인 컴퓨터에 작업을 수행하고 있는 일반적인 경우라면, <b>확인 </b>버튼을 누르고 진행하시면 됩니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="07_vscode_install_warning" srcset="
+               /praccpp-001-envsetting/07_vscode_install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_e0b102a8223aa77038f3df9aa151f1d9.png 400w,
+               /praccpp-001-envsetting/07_vscode_install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_7a434070efdaae037b5a501caa1beeb9.png 760w,
+               /praccpp-001-envsetting/07_vscode_install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/07_vscode_install_warning_hu48d02a51faed26f6ada0cf7f7622eea8_6129_e0b102a8223aa77038f3df9aa151f1d9.png"
+               width="413"
+               height="185"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>설치 과정 중 다음과 같은 화면이 뜰 텐데, 여기서 다른 건 몰라도 <b>다음 그림에 표시한 세 가지 항목은 체크해 두시길 권장</b>합니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="08_vscode_install" srcset="
+               /praccpp-001-envsetting/08_vscode_install_hu5f444f29464cd1fc206f6e3c6be42c2c_24527_be0695542f04faefe9122a652983f34c.png 400w,
+               /praccpp-001-envsetting/08_vscode_install_hu5f444f29464cd1fc206f6e3c6be42c2c_24527_c34c609d7dbcf724b827810f58fc9891.png 760w,
+               /praccpp-001-envsetting/08_vscode_install_hu5f444f29464cd1fc206f6e3c6be42c2c_24527_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/08_vscode_install_hu5f444f29464cd1fc206f6e3c6be42c2c_24527_be0695542f04faefe9122a652983f34c.png"
+               width="598"
+               height="464"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h3 id="실행-1">실행</h3>
+<p>VSCode를 실행시키는 것만이 목적이라면 그냥 시작메뉴나 바탕화면에 있는 Visual Studio Code를 실행시키면 됩니다.</p>
+<p>하지만, <font color=red><b>우리는 MSVC와 연동해서 VSCode를 실행시켜야 하므로, 반드시 다음의 방법으로 실행해주셔야 합니다</b></font>.</p>
+<ol>
+<li>
+<p>위에서 켜보았던 <b>Developer PowerShell for VS 2019</b>를 실행</p>
+</li>
+<li>
+<p>명령줄에 <code>code</code>라고 입력하여 실행</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="09_vscode_run" srcset="
+               /praccpp-001-envsetting/09_vscode_run_hua461e13989bf23c0cb14046057f8973e_11313_110c40b3170ab34fc73b0f8d6f41a128.png 400w,
+               /praccpp-001-envsetting/09_vscode_run_hua461e13989bf23c0cb14046057f8973e_11313_30a03729ba673b7a17f400996e7b337b.png 760w,
+               /praccpp-001-envsetting/09_vscode_run_hua461e13989bf23c0cb14046057f8973e_11313_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/09_vscode_run_hua461e13989bf23c0cb14046057f8973e_11313_110c40b3170ab34fc73b0f8d6f41a128.png"
+               width="643"
+               height="129"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>다음과 같은 창이 떴다면 정상적으로 실행이 된 것입니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="10_vscode_run" srcset="
+               /praccpp-001-envsetting/10_vscode_run_hu0b0e1eda9dd677061eff8de8c8a75a99_71769_36f07cc44663cd8e4afc0ffeac1a0acb.png 400w,
+               /praccpp-001-envsetting/10_vscode_run_hu0b0e1eda9dd677061eff8de8c8a75a99_71769_fb08da58e0a9a0a8779eb8abf404899d.png 760w,
+               /praccpp-001-envsetting/10_vscode_run_hu0b0e1eda9dd677061eff8de8c8a75a99_71769_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-001-envsetting/10_vscode_run_hu0b0e1eda9dd677061eff8de8c8a75a99_71769_36f07cc44663cd8e4afc0ffeac1a0acb.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="정리">정리</h2>
+<p>이 글에서는 MSVC의 구성요소인 C++ 빌드 도구와 CMake를 설치하였고, IDE로서 활용할 수 있는 VSCode를 설치하였습니다.</p>
+<hr>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li>2021-09-24: 최초 게시</li>
+</ul>
+          </div>
+
+          
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/msvc/">MSVC</a>
+  
+  <a class="badge badge-light" href="/tags/c-/">C&#43;&#43;</a>
+  
+  <a class="badge badge-light" href="/tags/cmake/">cmake</a>
+  
+  <a class="badge badge-light" href="/tags/vscode/">VSCode</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Sep 24, 2021</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/vscode-msvc/">Visual Studio Code에서 MSVC 기반 C&#43;&#43;, CMake 환경 설정하기</a></li>
+      
+      <li><a href="/vscode-cmake/">Visual Studio Code에서 CMake 환경 설정하기</a></li>
+      
+      <li><a href="/vscode-cpp/">Visual Studio Code에서 GCC/MinGW 기반 C, C&#43;&#43; 환경 설정하기</a></li>
+      
+      <li><a href="/bithacks-power/">BIT Hacks - 자연수 승수 계산을 비트연산으로 빠르게 하는 법</a></li>
+      
+      <li><a href="/vscode-jupyter-python-plotly/">VSCode Python 환경에서 Jupyter 및 plotly 사용하기</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
+</html>
