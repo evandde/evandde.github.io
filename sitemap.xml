@@ -89,8 +89,32 @@
     <loc>https://evandde.github.io/course/g4install/wsl/</loc>
     <lastmod>2021-09-04T10:14:50+09:00</lastmod>
   </url><url>
+    <loc>https://evandde.github.io/categories/</loc>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+  </url><url>
     <loc>https://evandde.github.io/</loc>
-    <lastmod>2021-09-05T00:33:12+09:00</lastmod>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/geant4/</loc>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/categories/geant4/</loc>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/geant4-coding-asversion/</loc>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/howto/</loc>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/</loc>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/version/</loc>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/post/</loc>
+    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/course/g4-noqasked/g4-noqasked-closing/</loc>
     <lastmod>2021-09-05T00:33:12+09:00</lastmod>
@@ -104,20 +128,11 @@
     <loc>https://evandde.github.io/tags/c-/</loc>
     <lastmod>2021-09-04T16:46:05+09:00</lastmod>
   </url><url>
-    <loc>https://evandde.github.io/categories/</loc>
-    <lastmod>2021-09-04T19:29:27+09:00</lastmod>
-  </url><url>
     <loc>https://evandde.github.io/tags/cmake/</loc>
     <lastmod>2021-09-04T16:46:05+09:00</lastmod>
   </url><url>
-    <loc>https://evandde.github.io/tags/howto/</loc>
-    <lastmod>2021-09-04T19:29:27+09:00</lastmod>
-  </url><url>
     <loc>https://evandde.github.io/tags/msvc/</loc>
     <lastmod>2021-09-04T16:46:05+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/</loc>
-    <lastmod>2021-09-04T19:29:27+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/vscode-msvc/</loc>
     <lastmod>2021-09-04T16:46:05+09:00</lastmod>
@@ -126,9 +141,6 @@
     <lastmod>2021-09-04T19:29:27+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/categories/vscode/</loc>
-    <lastmod>2021-09-04T19:29:27+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/post/</loc>
     <lastmod>2021-09-04T19:29:27+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/tags/jupyter/</loc>
@@ -142,9 +154,6 @@
   </url><url>
     <loc>https://evandde.github.io/vscode-jupyter-python-plotly/</loc>
     <lastmod>2021-09-04T19:29:27+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/geant4/</loc>
-    <lastmod>2021-09-04T18:04:56+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/tags/analysis/</loc>
     <lastmod>2021-08-19T20:49:41+09:00</lastmod>
@@ -324,9 +333,6 @@
     <lastmod>2021-09-04T18:10:33+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/tags/foreach/</loc>
-    <lastmod>2021-09-04T18:04:56+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/categories/geant4/</loc>
     <lastmod>2021-09-04T18:04:56+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/geant4-uicommand-loop/</loc>

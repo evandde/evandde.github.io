@@ -30,10 +30,10 @@
   
     
   
-  <meta name="description" content="Researcher" />
+  <meta name="description" content="Geant4 코드 작성 시, 연동되는 Geant4의 버전을 확인하고 버전에 따라 동작을 달리 하도록 코딩하는 방법을 알아봅니다." />
 
   
-  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/tags/geant4/" />
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/geant4-coding-asversion/" />
 
   
 
@@ -274,8 +274,6 @@
   
 
   
-    <link rel="alternate" href="/tags/geant4/index.xml" type="application/rss+xml" title="EvaNote" />
-  
 
   
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -284,7 +282,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://evandde.github.io/tags/geant4/" />
+  <link rel="canonical" href="https://evandde.github.io/geant4-coding-asversion/" />
 
   
   
@@ -301,33 +299,82 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="EvaNote" />
-  <meta property="og:url" content="https://evandde.github.io/tags/geant4/" />
-  <meta property="og:title" content="Geant4 | EvaNote" />
-  <meta property="og:description" content="Researcher" /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:url" content="https://evandde.github.io/geant4-coding-asversion/" />
+  <meta property="og:title" content="Geant4 Version에 따라 동작을 달리하도록 코딩하는 법 | EvaNote" />
+  <meta property="og:description" content="Geant4 코드 작성 시, 연동되는 Geant4의 버전을 확인하고 버전에 따라 동작을 달리 하도록 코딩하는 방법을 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
   
     
-      <meta property="og:updated_time" content="2021-09-24T10:05:36&#43;09:00" />
+      <meta
+        property="article:published_time"
+        content="2021-09-24T10:05:36&#43;09:00"
+      />
     
+    <meta property="article:modified_time" content="2021-09-24T10:05:36&#43;09:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://evandde.github.io/geant4-coding-asversion/"
+  },
+  "headline": "Geant4 Version에 따라 동작을 달리하도록 코딩하는 법",
+  
+  "datePublished": "2021-09-24T10:05:36+09:00",
+  "dateModified": "2021-09-24T10:05:36+09:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Evan Kim"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "EvaNote",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "\u003cp\u003eGeant4 코드 작성 시, 연동되는 Geant4의 버전을 확인하고 버전에 따라 동작을 달리 하도록 코딩하는 방법을 알아봅니다.\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
   
 
   
 
 
 
-  
-
-  
 
 
-
-
-
-  <title>Geant4 | EvaNote</title>
+  <title>Geant4 Version에 따라 동작을 달리하도록 코딩하는 법 | EvaNote</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="6fd1c170ea7f291c37140e2fe5da26cf" >
 
   
   
@@ -632,7 +679,9 @@
   </div>
 
   <div class="page-body">
-    
+    <article class="article">
+
+  
 
 
 
@@ -650,62 +699,13 @@
   
   
   
-    
-  
-<div class="universal-wrapper pt-3">
-  <h1>Geant4</h1>
+<div class="article-container pt-3">
+  <h1>Geant4 Version에 따라 동작을 달리하도록 코딩하는 법</h1>
 
   
 
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-  
-
-  
   
     
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4-noqasked-010-scoringtheory/" >Geant4 무작정 따라하기 - 10. 스코어링 이론</a>
-    </div>
-
-    
-    <a href="/g4-noqasked-010-scoringtheory/"  class="summary-link">
-      <div class="article-style">
-        <p>Geant4 무작정 따라하기 시리즈의 열번째. Geant4 시뮬레이션에서 원하는 물리량을 기록하는 스코어링에 대해 알아봅니다.</p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
 
 
 <div class="article-metadata">
@@ -719,828 +719,395 @@
     
       
     
-    Jul 30, 2021
+    Sep 24, 2021
   </span>
   
 
   
 
   
-
-  
-  
-  
-  
-  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 분 길이
+  </span>
   
 
   
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/geant4/">Geant4</a></span>
   
 
 </div>
 
-      
-    </div>
-
     
 
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
+
+
+
+
+  
 </div>
 
-    
-  
-    
-      
 
 
+  <div class="article-container">
 
+    <div class="article-style">
+      <p>Geant4 코드 작성 시, 연동되는 Geant4의 버전을 확인하고 버전에 따라 동작을 달리 하도록 코딩하는 방법을 알아봅니다.</p>
+<hr>
+<h2 id="tldr">TL;DR</h2>
+<ol>
+<li>
+<p>G4Version.hh 헤더를 포함시킴</p>
+</li>
+<li>
+<p><code>#define</code> 전처리기를 통해 정의되는 <code>G4VERSION_NUMBER</code> 매크로상수를 이용하여 Geant4의 <strong>버전 번호</strong> 확인</p>
+<p>버전 번호는 정수값으로 부여되며 다음의 규칙을 따름</p>
+<p><font color=red>A</font><font color=blue>B</font><font color=green>C</font></p>
+<p><font color=red>A</font>: Major version number</p>
+<p><font color=blue>B</font>: Minor version number</p>
+<p><font color=green>C</font>: patch number</p>
+</li>
+<li>
+<p>예시</p>
+<p>Geant4 Version <font color=red>9</font>.<font color=blue>6</font>의 <code>G4VERSION_NUMBER</code>는 <font color=red>9</font><font color=blue>6</font><font color=green>0</font></p>
+<p>Geant4 Version <font color=red>10</font>.<font color=blue>7</font> patch 0<font color=green>2</font>의 <code>G4VERSION_NUMBER</code>는 <font color=red>10</font><font color=blue>7</font><font color=green>2</font></p>
+</li>
+<li>
+<p>이 외, <code>G4VERSION_TAG</code> 매크로상수나, G4String 자료형의 <code>G4Version</code>, <code>G4Date</code> 변수를 이용할 수도 있음</p>
+</li>
+</ol>
+<hr>
+<h2 id="g4versionhh">G4Version.hh</h2>
+<p>Geant4에서는 현재 이용중인 Geant4 라이브러리의 버전 정보를 담고있는 G4Version.hh 헤더를 제공합니다.</p>
+<p>사용자는, 코드 어느 곳에서든 이 헤더를 포함시켜서 Geant4의 버전 정보를 이용할 수 있습니다.</p>
+<h3 id="g4version_number">G4VERSION_NUMBER</h3>
+<p>가장 많이 쓰일 것으로 생각되는 매크로상수입니다.</p>
+<p>G4Version.hh 파일 내에서, 다음과 같은 코드를 통해 정의되어 있습니다. (Version 10.7 patch 02 기준)</p>
+<pre><code class="language-cpp">#ifndef G4VERSION_NUMBER
+	#define G4VERSION_NUMBER 1072
+#endif
+</code></pre>
+<p><code>G4VERSION_NUMBER</code>라는 매크로상수는 Geant4의 버전 번호를 의미하는 정수값으로 부여되며 다음의 규칙을 따릅니다.</p>
+<blockquote>
+<p><font color=red>A</font><font color=blue>B</font><font color=green>C</font></p>
+<p><font color=red>A</font>: Major version number</p>
+<p><font color=blue>B</font>: Minor version number</p>
+<p><font color=green>C</font>: patch number</p>
+</blockquote>
+<p>예를 들어 Geant4 Version <font color=red>9</font>.<font color=blue>6</font>의 <code>G4VERSION_NUMBER</code>는 <font color=red>9</font><font color=blue>6</font><font color=green>0</font>이 됩니다. (patch 번호가 없으면 0번으로 붙게됩니다)</p>
+<p>또 다른 예로, Geant4 Version <font color=red>10</font>.<font color=blue>7</font> patch 0<font color=green>2</font>의 <code>G4VERSION_NUMBER</code>는 <font color=red>10</font><font color=blue>7</font><font color=green>2</font>가 됩니다. (10.x 버전 이후의 경우에는 major version number가 두자리수가 됩니다)</p>
+<p>사용자는 이 매크로상수를 다음과 같이 활용할 수 있습니다.</p>
+<pre><code class="language-cpp">#include &quot;G4Version.hh&quot;
 
+// ...
 
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4install-107p2-win10basic/" >Geant4 Windows 10에 설치 무작정 따라하기(초보자용)</a>
+if(G4VERSION_NUMBER &gt;= 1000)
+{
+	// What to do when the version is 10.x
+}
+else
+{
+	// What to do when the version is 9.x
+}
+</code></pre>
+<h3 id="g4version_tag">G4VERSION_TAG</h3>
+<p>이 매크로상수는 G4Version.hh 파일 내에서, 다음과 같은 코드를 통해 정의되어 있습니다. (Version 10.7 patch 02 기준)</p>
+<pre><code class="language-cpp">#ifndef G4VERSION_TAG
+	#define G4VERSION_TAG &quot;$Name: geant4-10-07-patch-02 $&quot;
+#endif
+</code></pre>
+<p>Geant4의 버전명이 보다 상세하게 풀어서 쓰여있습니다.</p>
+<h3 id="g4version">G4Version</h3>
+<p><code>G4Version</code>은 G4Version.hh에 정의된 G4String형 변수입니다. 다음과 같은 코드를 통해 정의되어 있습니다. (Version 10.7 patch 02 기준)</p>
+<pre><code class="language-cpp">#ifdef G4MULTITHREADED
+static const G4String G4Version = &quot;$Name: geant4-10-07-patch-02 [MT]$&quot;;
+#else
+static const G4String G4Version = &quot;$Name: geant4-10-07-patch-02 $&quot;;
+#endif
+</code></pre>
+<p><code>G4VERSION_TAG</code> 매크로상수와 기본적으로 같은 값을 가집니다만, Multi-threading 옵션을 켜고 설치한 Geant4의 경우에는 <code>G4Version</code>변수의 끝에 <code>[MT]</code> 표시가 추가됩니다.</p>
+<h3 id="g4date">G4Date</h3>
+<p><code>G4Date</code>은 G4Version.hh에 정의된 G4String형 변수입니다. 다음과 같은 코드를 통해 정의되어 있습니다. (Version 10.7 patch 02 기준)</p>
+<pre><code class="language-cpp">static const G4String G4Date = &quot;(11-June-2021)&quot;;
+</code></pre>
+<p>해당 버전이 출시된 날짜가 저장되어 있습니다.</p>
     </div>
 
     
-    <a href="/g4install-107p2-win10basic/"  class="summary-link">
-      <div class="article-style">
-        <p>이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, <b>Windows 10을 사용하는 개인 컴퓨터 환경</b>에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. <b>(인터넷 연결 필요)</b></p>
-      </div>
-    </a>
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/howto/">HowTo</a>
+  
+  <a class="badge badge-light" href="/tags/geant4/">Geant4</a>
+  
+  <a class="badge badge-light" href="/tags/version/">Version</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
     
-
-    <div class="stream-meta article-metadata">
-
       
-
+      
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://evandde.github.io/geant4-coding-asversion/&amp;text=Geant4%20Version%ec%97%90%20%eb%94%b0%eb%9d%bc%20%eb%8f%99%ec%9e%91%ec%9d%84%20%eb%8b%ac%eb%a6%ac%ed%95%98%eb%8f%84%eb%a1%9d%20%ec%bd%94%eb%94%a9%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-    
-    Jul 15, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4-noqasked-008-prigen/" >Geant4 무작정 따라하기 - 8. 선원항 정의하기</a>
-    </div>
-
-    
-    <a href="/g4-noqasked-008-prigen/"  class="summary-link">
-      <div class="article-style">
-        <p>Geant4 무작정 따라하기 시리즈의 여덟번째. Event의 시작에 해당하는 선원항을 정의하는 방법에 대해 알아봅니다.</p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://evandde.github.io/geant4-coding-asversion/&amp;t=Geant4%20Version%ec%97%90%20%eb%94%b0%eb%9d%bc%20%eb%8f%99%ec%9e%91%ec%9d%84%20%eb%8b%ac%eb%a6%ac%ed%95%98%eb%8f%84%eb%a1%9d%20%ec%bd%94%eb%94%a9%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
     
       
-    
-    Jun 20, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4-noqasked-007-trkvb/" >Geant4 무작정 따라하기 - 7. Tracking Verbose</a>
-    </div>
-
-    
-    <a href="/g4-noqasked-007-trkvb/"  class="summary-link">
-      <div class="article-style">
-        <p>Geant4 무작정 따라하기 시리즈의 일곱번째. 시뮬레이션에서 입자가 발생되어 수송되는 과정을 직접 눈으로 보기 위해, Tracking Verbose를 다루는 법을 알아봅니다.</p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Geant4%20Version%ec%97%90%20%eb%94%b0%eb%9d%bc%20%eb%8f%99%ec%9e%91%ec%9d%84%20%eb%8b%ac%eb%a6%ac%ed%95%98%eb%8f%84%eb%a1%9d%20%ec%bd%94%eb%94%a9%ed%95%98%eb%8a%94%20%eb%b2%95&amp;body=https://evandde.github.io/geant4-coding-asversion/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
     
       
-    
-    Jun 18, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4-noqasked-002-detcon/" >Geant4 무작정 따라하기 - 2. 지오메트리 정의하기</a>
-    </div>
-
-    
-    <a href="/g4-noqasked-002-detcon/"  class="summary-link">
-      <div class="article-style">
-        <p>Geant4 무작정 따라하기 시리즈의 두번째. 지오메트리를 정의하는 방법에 대해 알아봅니다.</p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://evandde.github.io/geant4-coding-asversion/&amp;title=Geant4%20Version%ec%97%90%20%eb%94%b0%eb%9d%bc%20%eb%8f%99%ec%9e%91%ec%9d%84%20%eb%8b%ac%eb%a6%ac%ed%95%98%eb%8f%84%eb%a1%9d%20%ec%bd%94%eb%94%a9%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
     
       
-    
-    Jun 10, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4-noqasked-000-opening/" >Geant4 무작정 따라하기 시리즈를 시작하며</a>
-    </div>
-
-    
-    <a href="/g4-noqasked-000-opening/"  class="summary-link">
-      <div class="article-style">
-        <p>Geant4가 뭔지도 모르겠는데&hellip; Geant4를 사용은 해야하는 상황에 처한 여러분!</p>
-<p>묻지도 따지지도 않고 따라만 하면 일단 Geant4를 사용할 수 있게 해드립니다.</p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Geant4%20Version%ec%97%90%20%eb%94%b0%eb%9d%bc%20%eb%8f%99%ec%9e%91%ec%9d%84%20%eb%8b%ac%eb%a6%ac%ed%95%98%eb%8f%84%eb%a1%9d%20%ec%bd%94%eb%94%a9%ed%95%98%eb%8a%94%20%eb%b2%95%20https://evandde.github.io/geant4-coding-asversion/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
     
       
-    
-    Jun 6, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4install-107p1-win10wslbasic/" >Geant4 WSL에 설치 무작정 따라하기(초보자용)</a>
-    </div>
-
-    
-    <a href="/g4install-107p1-win10wslbasic/"  class="summary-link">
-      <div class="article-style">
-        <p>이 글은 Geant4 초보자 혹은 Geant4를 처음 사용하시는 분들에게, <b>Windows 10을 사용하는 개인 컴퓨터 환경</b>에서 Geant4를 최대한 쉽게 설치하는 방법을 전달하기 위해 작성하였습니다. <b>(인터넷 연결 필요)</b></p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=https://evandde.github.io/geant4-coding-asversion/&amp;title=Geant4%20Version%ec%97%90%20%eb%94%b0%eb%9d%bc%20%eb%8f%99%ec%9e%91%ec%9d%84%20%eb%8b%ac%eb%a6%ac%ed%95%98%eb%8f%84%eb%a1%9d%20%ec%bd%94%eb%94%a9%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
     
       
-    
-    Mar 4, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/geant4-install/" >Geant4 공식 설치가이드 요약</a>
-    </div>
-
-    
-    <a href="/geant4-install/"  class="summary-link">
-      <div class="article-style">
-        <p>이 글에서는 Geant4 공식 홈페이지에서 제공하는 설치가이드를 살펴보고, 대표적으로 사용되는 주요 옵션들에 대해 알아봅니다.</p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
       
-    
-    Feb 15, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4-noqasked-011-scoring/" >Geant4 무작정 따라하기 - 11. 스코어링 구현</a>
-    </div>
-
-    
-    <a href="/g4-noqasked-011-scoring/"  class="summary-link">
-      <div class="article-style">
-        <p>Geant4 무작정 따라하기 시리즈의 열한번째. Geant4에서 스코어링을 구현하는 방법에 대해 알아봅니다.</p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Aug 18, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/g4-noqasked-009-randtool/" >Geant4 무작정 따라하기 - 9. 확률변수 이용하여 선원항 정의하기</a>
-    </div>
-
-    
-    <a href="/g4-noqasked-009-randtool/"  class="summary-link">
-      <div class="article-style">
-        <p>Geant4 무작정 따라하기 시리즈의 아홉번째. 확률변수를 이용하여 Event마다 바뀌는 선원항을 정의하는 방법을 알아봅니다.</p>
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Jul 16, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-
-  
-<nav class="mt-1">
-  <ul class="pagination justify-content-center">
-    
-    
-    <li class="page-item"><a class="page-link" href="/tags/geant4/page/2/">&raquo;</a></li>
+      <li>
+        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://evandde.github.io/geant4-coding-asversion/&amp;title=Geant4%20Version%ec%97%90%20%eb%94%b0%eb%9d%bc%20%eb%8f%99%ec%9e%91%ec%9d%84%20%eb%8b%ac%eb%a6%ac%ed%95%98%eb%8f%84%eb%a1%9d%20%ec%bd%94%eb%94%a9%ed%95%98%eb%8a%94%20%eb%b2%95" target="_blank" rel="noopener" class="share-btn-tumblr">
+          <i class="fab fa-tumblr"></i>
+        </a>
+      </li>
     
   </ul>
-</nav>
-
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://evandde.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/evan/avatar_hu4476cc8294ad87f920966ab8a63550ba_16674_270x270_fill_lanczos_center_3.png" alt="Evan Kim"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://evandde.github.io/">Evan Kim</a></h5>
+      <h6 class="card-subtitle">Senior Researcher</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:evandde@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=uPm-DQsAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/evandde" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/geant4-uicommand-loop/">Geant4 UI command 소개 - 반복문</a></li>
+      
+      <li><a href="/geant4-uicommand-alias/">Geant4 UI command 소개 - /control/alias</a></li>
+      
+      <li><a href="/g4install-107p2-win10basic/">Geant4 Windows 10에 설치 무작정 따라하기(초보자용)</a></li>
+      
+      <li><a href="/g4install-107p1-win10wslbasic/">Geant4 WSL에 설치 무작정 따라하기(초보자용)</a></li>
+      
+      <li><a href="/g4install-107p1-ubt2004/">Geant4 설치하기(10.7.p01, Ubuntu2004 LTS)</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">

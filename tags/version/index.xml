@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Version | EvaNote</title>
+    <link>https://evandde.github.io/tags/version/</link>
+      <atom:link href="https://evandde.github.io/tags/version/index.xml" rel="self" type="application/rss+xml" />
+    <description>Version</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Fri, 24 Sep 2021 10:05:36 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>Version</title>
+      <link>https://evandde.github.io/tags/version/</link>
+    </image>
+    
+    <item>
+      <title>Geant4 Version에 따라 동작을 달리하도록 코딩하는 법</title>
+      <link>https://evandde.github.io/geant4-coding-asversion/</link>
+      <pubDate>Fri, 24 Sep 2021 10:05:36 +0900</pubDate>
+      <guid>https://evandde.github.io/geant4-coding-asversion/</guid>
+      <description>&lt;p&gt;Geant4 코드 작성 시, 연동되는 Geant4의 버전을 확인하고 버전에 따라 동작을 달리 하도록 코딩하는 방법을 알아봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;G4Version.hh 헤더를 포함시킴&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;#define&lt;/code&gt; 전처리기를 통해 정의되는 &lt;code&gt;G4VERSION_NUMBER&lt;/code&gt; 매크로상수를 이용하여 Geant4의 &lt;strong&gt;버전 번호&lt;/strong&gt; 확인&lt;/p&gt;
+&lt;p&gt;버전 번호는 정수값으로 부여되며 다음의 규칙을 따름&lt;/p&gt;
+&lt;p&gt;&lt;font color=red&gt;A&lt;/font&gt;&lt;font color=blue&gt;B&lt;/font&gt;&lt;font color=green&gt;C&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font color=red&gt;A&lt;/font&gt;: Major version number&lt;/p&gt;
+&lt;p&gt;&lt;font color=blue&gt;B&lt;/font&gt;: Minor version number&lt;/p&gt;
+&lt;p&gt;&lt;font color=green&gt;C&lt;/font&gt;: patch number&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;예시&lt;/p&gt;
+&lt;p&gt;Geant4 Version &lt;font color=red&gt;9&lt;/font&gt;.&lt;font color=blue&gt;6&lt;/font&gt;의 &lt;code&gt;G4VERSION_NUMBER&lt;/code&gt;는 &lt;font color=red&gt;9&lt;/font&gt;&lt;font color=blue&gt;6&lt;/font&gt;&lt;font color=green&gt;0&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;Geant4 Version &lt;font color=red&gt;10&lt;/font&gt;.&lt;font color=blue&gt;7&lt;/font&gt; patch 0&lt;font color=green&gt;2&lt;/font&gt;의 &lt;code&gt;G4VERSION_NUMBER&lt;/code&gt;는 &lt;font color=red&gt;10&lt;/font&gt;&lt;font color=blue&gt;7&lt;/font&gt;&lt;font color=green&gt;2&lt;/font&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이 외, &lt;code&gt;G4VERSION_TAG&lt;/code&gt; 매크로상수나, G4String 자료형의 &lt;code&gt;G4Version&lt;/code&gt;, &lt;code&gt;G4Date&lt;/code&gt; 변수를 이용할 수도 있음&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;g4versionhh&#34;&gt;G4Version.hh&lt;/h2&gt;
+&lt;p&gt;Geant4에서는 현재 이용중인 Geant4 라이브러리의 버전 정보를 담고있는 G4Version.hh 헤더를 제공합니다.&lt;/p&gt;
+&lt;p&gt;사용자는, 코드 어느 곳에서든 이 헤더를 포함시켜서 Geant4의 버전 정보를 이용할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;g4version_number&#34;&gt;G4VERSION_NUMBER&lt;/h3&gt;
+&lt;p&gt;가장 많이 쓰일 것으로 생각되는 매크로상수입니다.&lt;/p&gt;
+&lt;p&gt;G4Version.hh 파일 내에서, 다음과 같은 코드를 통해 정의되어 있습니다. (Version 10.7 patch 02 기준)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#ifndef G4VERSION_NUMBER
+	#define G4VERSION_NUMBER 1072
+#endif
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;G4VERSION_NUMBER&lt;/code&gt;라는 매크로상수는 Geant4의 버전 번호를 의미하는 정수값으로 부여되며 다음의 규칙을 따릅니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;font color=red&gt;A&lt;/font&gt;&lt;font color=blue&gt;B&lt;/font&gt;&lt;font color=green&gt;C&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font color=red&gt;A&lt;/font&gt;: Major version number&lt;/p&gt;
+&lt;p&gt;&lt;font color=blue&gt;B&lt;/font&gt;: Minor version number&lt;/p&gt;
+&lt;p&gt;&lt;font color=green&gt;C&lt;/font&gt;: patch number&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;예를 들어 Geant4 Version &lt;font color=red&gt;9&lt;/font&gt;.&lt;font color=blue&gt;6&lt;/font&gt;의 &lt;code&gt;G4VERSION_NUMBER&lt;/code&gt;는 &lt;font color=red&gt;9&lt;/font&gt;&lt;font color=blue&gt;6&lt;/font&gt;&lt;font color=green&gt;0&lt;/font&gt;이 됩니다. (patch 번호가 없으면 0번으로 붙게됩니다)&lt;/p&gt;
+&lt;p&gt;또 다른 예로, Geant4 Version &lt;font color=red&gt;10&lt;/font&gt;.&lt;font color=blue&gt;7&lt;/font&gt; patch 0&lt;font color=green&gt;2&lt;/font&gt;의 &lt;code&gt;G4VERSION_NUMBER&lt;/code&gt;는 &lt;font color=red&gt;10&lt;/font&gt;&lt;font color=blue&gt;7&lt;/font&gt;&lt;font color=green&gt;2&lt;/font&gt;가 됩니다. (10.x 버전 이후의 경우에는 major version number가 두자리수가 됩니다)&lt;/p&gt;
+&lt;p&gt;사용자는 이 매크로상수를 다음과 같이 활용할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;quot;G4Version.hh&amp;quot;
+
+// ...
+
+if(G4VERSION_NUMBER &amp;gt;= 1000)
+{
+	// What to do when the version is 10.x
+}
+else
+{
+	// What to do when the version is 9.x
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;g4version_tag&#34;&gt;G4VERSION_TAG&lt;/h3&gt;
+&lt;p&gt;이 매크로상수는 G4Version.hh 파일 내에서, 다음과 같은 코드를 통해 정의되어 있습니다. (Version 10.7 patch 02 기준)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#ifndef G4VERSION_TAG
+	#define G4VERSION_TAG &amp;quot;$Name: geant4-10-07-patch-02 $&amp;quot;
+#endif
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Geant4의 버전명이 보다 상세하게 풀어서 쓰여있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;g4version&#34;&gt;G4Version&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;G4Version&lt;/code&gt;은 G4Version.hh에 정의된 G4String형 변수입니다. 다음과 같은 코드를 통해 정의되어 있습니다. (Version 10.7 patch 02 기준)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#ifdef G4MULTITHREADED
+static const G4String G4Version = &amp;quot;$Name: geant4-10-07-patch-02 [MT]$&amp;quot;;
+#else
+static const G4String G4Version = &amp;quot;$Name: geant4-10-07-patch-02 $&amp;quot;;
+#endif
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;G4VERSION_TAG&lt;/code&gt; 매크로상수와 기본적으로 같은 값을 가집니다만, Multi-threading 옵션을 켜고 설치한 Geant4의 경우에는 &lt;code&gt;G4Version&lt;/code&gt;변수의 끝에 &lt;code&gt;[MT]&lt;/code&gt; 표시가 추가됩니다.&lt;/p&gt;
+&lt;h3 id=&#34;g4date&#34;&gt;G4Date&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;G4Date&lt;/code&gt;은 G4Version.hh에 정의된 G4String형 변수입니다. 다음과 같은 코드를 통해 정의되어 있습니다. (Version 10.7 patch 02 기준)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;static const G4String G4Date = &amp;quot;(11-June-2021)&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;해당 버전이 출시된 날짜가 저장되어 있습니다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
