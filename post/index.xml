@@ -5,12 +5,245 @@
     <link>https://evandde.github.io/post/</link>
       <atom:link href="https://evandde.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>포스트</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Fri, 24 Sep 2021 10:05:36 +0900</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Fri, 24 Sep 2021 14:21:45 +0900</lastBuildDate>
     <image>
       <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
       <title>포스트</title>
       <link>https://evandde.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>BIT Hacks - 자연수 승수 계산을 비트연산으로 빠르게 하는 법</title>
+      <link>https://evandde.github.io/bithacks-power/</link>
+      <pubDate>Fri, 24 Sep 2021 14:21:45 +0900</pubDate>
+      <guid>https://evandde.github.io/bithacks-power/</guid>
+      <description>&lt;p&gt;자연수 승수 연산에 한해, 비트연산 트릭을 활용하여 C++에서 기본으로 제공하는 pow() 함수보다 빠르게 계산하는 방법을 알아봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;double pow_int(double base, int exp)
+{
+    double result = 1.;
+    while (exp)
+    {
+        if (exp &amp;amp; 1)
+            result *= base;
+        exp &amp;gt;&amp;gt;= 1;
+        base *= base;
+    }
+    return result;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_result&#34; srcset=&#34;
+               /bithacks-power/01_result_huef670fe8e129f9b27517dd7a606eb88f_2674_2f48893f03abd14ce0c371db43bdab63.png 400w,
+               /bithacks-power/01_result_huef670fe8e129f9b27517dd7a606eb88f_2674_5bd99c34fd40afc05a3b7cebaf84cbc7.png 760w,
+               /bithacks-power/01_result_huef670fe8e129f9b27517dd7a606eb88f_2674_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/bithacks-power/01_result_huef670fe8e129f9b27517dd7a606eb88f_2674_2f48893f03abd14ce0c371db43bdab63.png&#34;
+               width=&#34;261&#34;
+               height=&#34;148&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;원리&#34;&gt;원리&lt;/h2&gt;
+&lt;p&gt;실수 $a$와 자연수 $n$에 대하여, $a^n$을 계산하는 경우를 살펴보겠습니다.&lt;/p&gt;
+&lt;p&gt;여기서 $n$은 2진법 변환을 통해 다음과 같이 표현할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;$$n = \sum_{i=0} b_i 2^i \text{, where }b_i=0 \text{ or }1$$&lt;/p&gt;
+&lt;p&gt;위 식을 이용하면 $a^n$은 다음과 같이 변형됩니다.&lt;/p&gt;
+&lt;p&gt;$$
+\begin{equation}
+\begin{aligned}
+a^n &amp;amp; = a^{\sum_{i=0} b_i 2^i} \\&lt;br&gt;
+&amp;amp; = \prod_{i=0} {a^{b_i 2^i}} \text{ (} \because x^{m+n} = x^m x^n \text{)} \\&lt;br&gt;
+&amp;amp; = \prod_{i=0} ({a^{2^i}})^{b_i} \text{ (} \because x^{mn} = (x^m)^n \text{)} \\&lt;br&gt;
+&amp;amp; = (b_0 \times a) \times (b_1 \times a^2) \times (b_2 \times (a^2)^2) \times (b_3 \times ((a^2)^2)^2) \times &amp;hellip;
+\end{aligned}
+\end{equation}
+$$
+이 식의 의미를 해석해보면 다음과 같습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;$n$을 2진법으로 나타내었을 때 낮은 자리수부터 확인($b_0, b_1, &amp;hellip;$)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;매 $b_i$를 확인할 때마다, $a, a^2, (a^2)^2, &amp;hellip;$의 형태로 계속 제곱해 나감&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$b_i$가 0이면 그냥 넘어가고,&lt;/p&gt;
+&lt;p&gt;$b_i$가 1이면 2에서 구한 $a^{2^i}$를 누적하여 곱함&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;예시&#34;&gt;예시&lt;/h2&gt;
+&lt;p&gt;$3^5$를 계산해보겠습니다. 여기서 $a=3$이고, $n=5$가 됩니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;먼저, $n$을 2진법으로 변환하여 $b_i$들을 구합니다.&lt;/p&gt;
+&lt;p&gt;$$n=5=1+4=1\times2^0+0\times2^1+1\times2^2$$&lt;/p&gt;
+&lt;p&gt;$$\text{i.e. }b_0=1 \text{, } b_1=0 \text{, } b_2 = 1 \text{, and } b_k = 0 \text{ for }k&amp;gt;=3$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이제 낮은 자리 수부터 확인하며 누적곱 작업을 수행합니다. 누적곱의 초기 값은 곱셈의 항등원인 &lt;font color=blue&gt;&lt;b&gt;1&lt;/b&gt;&lt;/font&gt;로 설정합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$a$는 &lt;font color=red&gt;&lt;b&gt;3&lt;/b&gt;&lt;/font&gt;입니다.&lt;/p&gt;
+&lt;p&gt;$b_0$을 확인합니다. $b_0$가 $1$이므로, &lt;font color=blue&gt;&lt;b&gt;1&lt;/b&gt;&lt;/font&gt;에 &lt;font color=red&gt;&lt;b&gt;3&lt;/b&gt;&lt;/font&gt;을 곱합니다.&lt;/p&gt;
+&lt;p&gt;결과는 &lt;font color=blue&gt;&lt;b&gt;3&lt;/b&gt;&lt;/font&gt;이 됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$a^2$는 &lt;font color=red&gt;&lt;b&gt;9&lt;/b&gt;&lt;/font&gt;입니다.&lt;/p&gt;
+&lt;p&gt;$b_1$을 확인합니다. $b_1$가 $0$이므로, 아무것도 곱하지 않습니다.&lt;/p&gt;
+&lt;p&gt;결과는 여전히 &lt;font color=blue&gt;&lt;b&gt;3&lt;/b&gt;&lt;/font&gt;입니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$(a^2)^2$는 &lt;font color=red&gt;&lt;b&gt;81&lt;/b&gt;&lt;/font&gt;입니다.&lt;/p&gt;
+&lt;p&gt;$b_2$을 확인합니다. $b_2$가 $1$이므로, &lt;font color=blue&gt;&lt;b&gt;3&lt;/b&gt;&lt;/font&gt;에 &lt;font color=red&gt;&lt;b&gt;81&lt;/b&gt;&lt;/font&gt;을 곱합니다.&lt;/p&gt;
+&lt;p&gt;결과는 &lt;font color=blue&gt;&lt;b&gt;243&lt;/b&gt;&lt;/font&gt;이 됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이후의 $b_k$들은 모두 $0$이므로 최종 결과는 &lt;font color=blue&gt;&lt;b&gt;243&lt;/b&gt;&lt;/font&gt;입니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;코드로의-적용c&#34;&gt;코드로의 적용(C++)&lt;/h2&gt;
+&lt;p&gt;위 내용을 코드로 변환하면 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;변수명의 의미를 고려하여, 위 식에서 $a$를 &lt;code&gt;base&lt;/code&gt;로, $n$을 &lt;code&gt;exp&lt;/code&gt;로 명명하였습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;double pow_int(double base, int exp)
+{
+    double result = 1.;
+    while (exp)
+    {
+        if (exp &amp;amp; 1)
+            result *= base;
+        exp &amp;gt;&amp;gt;= 1;
+        base *= base;
+    }
+    return result;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;누적곱을 수행하기 위한 &lt;code&gt;result&lt;/code&gt; 변수의 초기 값을 곱셈의 항등원인 &lt;font color=blue&gt;&lt;b&gt;1&lt;/b&gt;&lt;/font&gt;로 설정합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;exp&lt;/code&gt; 값이 유효한 동안 while 반복문을 수행합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;exp&lt;/code&gt;를 2진법으로 표현하였을 때 의 가장 낮은 자리수를 구합니다. (&lt;code&gt;exp &amp;amp; 1&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;만약 이 값이 1이라면, $b_i$가 1인 경우에 해당합니다. 따라서, 현재의 &lt;code&gt;base&lt;/code&gt; 값을 &lt;code&gt;result&lt;/code&gt;에 누적하여 곱합니다.&lt;/p&gt;
+&lt;p&gt;만약 이 값이 0이라면, $b_i$가 0인 경우에 해당합니다. 따라서 &lt;code&gt;result&lt;/code&gt;에 아무것도 곱하지 않고 넘어갑니다.&lt;/p&gt;
+&lt;p&gt;예를 들어, &lt;code&gt;exp&lt;/code&gt;의 $b_0$ 값이 1이었다면, while 반복문을 맨 처음 수행할 때 이 if 조건이 참이 되어, &lt;code&gt;result *= base;&lt;/code&gt; 구문이 수행되고, 위 설명에서 $a$를 곱해주는 것과 동일한 작업이 이루어집니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;exp&lt;/code&gt;를 오른쪽으로 한 칸 비트시프트를 수행합니다. (&lt;code&gt;exp &amp;gt;&amp;gt;= 1;&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;이를 통해, 방금 살펴본 $b_i$가 버려지고, 그 다음 자리에 해당하는 $b_{i+1}$이 가장 낮은 자리로 옮겨지는 과정이 반복됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;base&lt;/code&gt;를 제곱합니다. (&lt;code&gt;base *= base;&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;이를 통해 $(&amp;hellip;(a^2)^2)&amp;hellip;)^2$에 해당하는 반복 연산이 수행됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;최종적으로 누적곱이 수행된 결과를 반환합니다. (&lt;code&gt;return result;&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;pow-함수와의-비교용-예시-코드&#34;&gt;pow() 함수와의 비교용 예시 코드&lt;/h2&gt;
+&lt;h3 id=&#34;코드&#34;&gt;코드&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;iostream&amp;gt;
+
+double pow_int(double base, int exp)
+{
+    double result = 1.;
+    while (exp)
+    {
+        if (exp &amp;amp; 1)
+            result *= base;
+        exp &amp;gt;&amp;gt;= 1;
+        base *= base;
+    }
+    return result;
+}
+
+int main()
+{
+    const int N = 100000000;
+    double base = 12.345;
+    int exp = 67;
+    double result1, result2;
+
+    std::cout &amp;lt;&amp;lt; base &amp;lt;&amp;lt; &amp;quot;^&amp;quot; &amp;lt;&amp;lt; exp &amp;lt;&amp;lt; &amp;quot;\n\n&amp;quot;;
+
+    auto startT1 = clock();
+    for (int i = 0; i &amp;lt; N; ++i)
+        result1 = pow(base, exp);
+    auto endT1 = clock();
+    std::cout &amp;lt;&amp;lt; &amp;quot;Calculated by pow() function\n&amp;quot;;
+    std::cout &amp;lt;&amp;lt; &amp;quot;Answer: &amp;quot; &amp;lt;&amp;lt; result1 &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;;
+    std::cout &amp;lt;&amp;lt; &amp;quot;Elapsed time: &amp;quot; &amp;lt;&amp;lt; (endT1 - startT1) &amp;lt;&amp;lt; &amp;quot; ms\n\n&amp;quot;;
+    
+    auto startT2 = clock();
+    for (int i = 0; i &amp;lt; N; ++i)
+        result2 = pow_int(base, exp);
+    auto endT2 = clock();
+    std::cout &amp;lt;&amp;lt; &amp;quot;Calculated by pow_int() function\n&amp;quot;;
+    std::cout &amp;lt;&amp;lt; &amp;quot;Answer: &amp;quot; &amp;lt;&amp;lt; result2 &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;;
+    std::cout &amp;lt;&amp;lt; &amp;quot;Elapsed time: &amp;quot; &amp;lt;&amp;lt; (endT2 - startT2) &amp;lt;&amp;lt; &amp;quot; ms\n\n&amp;quot;;
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;결과&#34;&gt;결과&lt;/h3&gt;
+&lt;p&gt;i5-9500 @ 3.00GHz 기준&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_result&#34; srcset=&#34;
+               /bithacks-power/01_result_huef670fe8e129f9b27517dd7a606eb88f_2674_2f48893f03abd14ce0c371db43bdab63.png 400w,
+               /bithacks-power/01_result_huef670fe8e129f9b27517dd7a606eb88f_2674_5bd99c34fd40afc05a3b7cebaf84cbc7.png 760w,
+               /bithacks-power/01_result_huef670fe8e129f9b27517dd7a606eb88f_2674_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/bithacks-power/01_result_huef670fe8e129f9b27517dd7a606eb88f_2674_2f48893f03abd14ce0c371db43bdab63.png&#34;
+               width=&#34;261&#34;
+               height=&#34;148&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Geant4 Version에 따라 동작을 달리하도록 코딩하는 법</title>

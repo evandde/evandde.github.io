@@ -89,10 +89,34 @@
     <loc>https://evandde.github.io/course/g4install/wsl/</loc>
     <lastmod>2021-09-04T10:14:50+09:00</lastmod>
   </url><url>
-    <loc>https://evandde.github.io/categories/</loc>
-    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
+    <loc>https://evandde.github.io/tags/bit/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/bithacks-power/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/c-/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/hack/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/howto/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/power/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/post/</loc>
+    <lastmod>2021-09-24T14:21:45+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/categories/</loc>
     <lastmod>2021-09-24T10:05:36+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/tags/geant4/</loc>
@@ -104,16 +128,7 @@
     <loc>https://evandde.github.io/geant4-coding-asversion/</loc>
     <lastmod>2021-09-24T10:05:36+09:00</lastmod>
   </url><url>
-    <loc>https://evandde.github.io/tags/howto/</loc>
-    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/</loc>
-    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
-  </url><url>
     <loc>https://evandde.github.io/tags/version/</loc>
-    <lastmod>2021-09-24T10:05:36+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/post/</loc>
     <lastmod>2021-09-24T10:05:36+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/course/g4-noqasked/g4-noqasked-closing/</loc>
@@ -124,9 +139,6 @@
   </url><url>
     <loc>https://evandde.github.io/course/g4-noqasked/</loc>
     <lastmod>2021-09-04T15:03:56+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/c-/</loc>
-    <lastmod>2021-09-04T16:46:05+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/tags/cmake/</loc>
     <lastmod>2021-09-04T16:46:05+09:00</lastmod>
@@ -562,6 +574,8 @@
   </url><url>
     <loc>https://evandde.github.io/chocolatey/</loc>
     <lastmod>2021-09-03T21:31:52+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/categories/c/c-/</loc>
   </url><url>
     <loc>https://evandde.github.io/publication_types/</loc>
   </url>
