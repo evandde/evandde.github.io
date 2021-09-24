@@ -433,7 +433,7 @@ if (!HCE)
 &lt;p&gt;HCE 변수가 유효하지 않다면 if 조건문에 의해 함수가 종료되어 버리므로, &lt;b&gt;이 내용 아래 부분에 있는 내용은 반드시 HCE가 유효한 경우에만 실행될 것&lt;/b&gt;입니다.&lt;/p&gt;
 &lt;p&gt;이제 HCofThisEvent로부터 Hit까지 가보도록 합시다.&lt;/p&gt;
 &lt;h3 id=&#34;hcofthisevent에서-hc-꺼내기&#34;&gt;HCofThisEvent에서 HC 꺼내기&lt;/h3&gt;
-&lt;p&gt;HCofThisEvent는 HitsCollectoin들의 묶음이라고 하였습니다. 이 때 Geant4는 수많은 HC들을 쉽게 구분하기 위해 &lt;b&gt;HC마다 0 이상의 양의 정수값으로 된 고유의 ID번호를 부여&lt;/b&gt;합니다. 다만, 사용자가 이 정수값을 직접 기억할 필요는 없습니다. 사용자는 &lt;font color=red&gt;&lt;b&gt;HC의 이름&lt;/b&gt;&lt;/font&gt;을 이용하여 이 ID번호를 찾아올 수 있기 때문입니다.&lt;/p&gt;
+&lt;p&gt;HCofThisEvent는 HitsCollection들의 묶음이라고 하였습니다. 이 때 Geant4는 수많은 HC들을 쉽게 구분하기 위해 &lt;b&gt;HC마다 0 이상의 양의 정수값으로 된 고유의 ID번호를 부여&lt;/b&gt;합니다. 다만, 사용자가 이 정수값을 직접 기억할 필요는 없습니다. 사용자는 &lt;font color=red&gt;&lt;b&gt;HC의 이름&lt;/b&gt;&lt;/font&gt;을 이용하여 이 ID번호를 찾아올 수 있기 때문입니다.&lt;/p&gt;
 &lt;p&gt;여기서 HC의 이름은 &lt;b&gt;Sensitive Detector를 설계할 때 결정&lt;/b&gt;됩니다. 우리가 했던 것처럼 MFD와 PS를 이용할 경우에는, HC의 이름이 &lt;code&gt;{MFD의 이름}/{PS의 이름}&lt;/code&gt;으로 결정됩니다. (대소문자 구분)&lt;/p&gt;
 &lt;p&gt;이 글에서 예시로 든 것처럼 다음과 같이 SD를 설계하였다면, &lt;b&gt;&lt;font color=red&gt;HC의 이름은 &amp;ldquo;Detector/EDep&amp;rdquo;&lt;/font&gt;&lt;/b&gt;이 되는 것입니다.&lt;/p&gt;
 &lt;p&gt;
