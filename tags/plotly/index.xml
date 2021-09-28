@@ -63,7 +63,7 @@
 &lt;h2 id=&#34;jupyter-설치-및-실행&#34;&gt;Jupyter 설치 및 실행&lt;/h2&gt;
 &lt;h3 id=&#34;extension설치&#34;&gt;Extension설치&lt;/h3&gt;
 &lt;p&gt;먼저 VSCode에서 Jupyter extension을 설치하겠습니다.&lt;/p&gt;
-&lt;p&gt;VSCode를 켜고, extension 탭으로 간 뒤 &amp;ldquo;&lt;b&gt;jupyter&lt;/b&gt;&amp;ldquo;를 검색하세요. 맨 위에 jupyter extension이 뜰 것입니다. Install 버튼을 눌러 설치합니다.&lt;/p&gt;
+&lt;p&gt;VSCode를 켜고, extension 탭으로 간 뒤 &amp;quot;&lt;b&gt;jupyter&lt;/b&gt;&amp;quot;를 검색하세요. 맨 위에 jupyter extension이 뜰 것입니다. Install 버튼을 눌러 설치합니다.&lt;/p&gt;
 &lt;p&gt;
 
 
@@ -126,7 +126,7 @@
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install ipykernel
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;실행&#34;&gt;실행&lt;/h3&gt;
-&lt;p&gt;[View] - [Command Palette]를 눌러 명령창을 띄운 뒤, &amp;ldquo;&lt;b&gt;jupyter interactive&lt;/b&gt;&amp;ldquo;를 입력하여 Jupyter: Create Interactive Window를 클릭합니다. 다음 그림을 참고하세요.&lt;/p&gt;
+&lt;p&gt;[View] - [Command Palette]를 눌러 명령창을 띄운 뒤, &amp;quot;&lt;b&gt;jupyter interactive&lt;/b&gt;&amp;quot;를 입력하여 Jupyter: Create Interactive Window를 클릭합니다. 다음 그림을 참고하세요.&lt;/p&gt;
 &lt;p&gt;
 
 
@@ -394,7 +394,7 @@ fig.show()
 &lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://jupyter.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Project Jupyter | Home&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://code.visualstudio.com/docs/datascience/jupyter-notebooks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Working with Jupyter Notebooks in Visual Studio Code&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;[Plotly: The front end for ML and data science models](&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;https://plotly.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Plotly: The front end for ML and data science models&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>
