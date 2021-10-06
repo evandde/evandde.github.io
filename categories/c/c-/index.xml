@@ -576,12 +576,107 @@ int main()
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
+&lt;h2 id=&#34;필수-extension-설치&#34;&gt;필수 Extension 설치&lt;/h2&gt;
+&lt;p&gt;이어서, 이 시리즈를 진행하기 위해 필수적인 &lt;strong&gt;VSCode의 extension들을 설치&lt;/strong&gt;하도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;Extension에 관한 내용을 살펴보기 위해서는, 첫 화면의 &lt;strong&gt;맨 왼쪽에 있는 아이콘 중 5번째에 있는 것&lt;/strong&gt;을 누르거나, 단축키 &lt;b&gt;[CTRL]+[SHIFT]+[X]&lt;/b&gt;를 누르면 됩니다. 이후, 검색 란에 키워드를 입력하여 원하는 extension을 찾아서 설치할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;11_vscode_extension&#34; srcset=&#34;
+               /praccpp-001-envsetting/11_vscode_extension_hua79e4ac25bcc1889071411ce591649da_143263_065250876e363ceba80f04bcf267c811.png 400w,
+               /praccpp-001-envsetting/11_vscode_extension_hua79e4ac25bcc1889071411ce591649da_143263_d3b714f23fe078ee1c4c6572870fb957.png 760w,
+               /praccpp-001-envsetting/11_vscode_extension_hua79e4ac25bcc1889071411ce591649da_143263_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/11_vscode_extension_hua79e4ac25bcc1889071411ce591649da_143263_065250876e363ceba80f04bcf267c811.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;extension-1-cc&#34;&gt;Extension 1: C/C++&lt;/h3&gt;
+&lt;p&gt;&amp;quot;&lt;b&gt;C/C++&lt;/b&gt;&amp;quot;이라고 검색하시면 다음과 같은 extension이 뜹니다. &lt;strong&gt;Install&lt;/strong&gt; 버튼을 눌러 설치하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;이 extension은 VSCode에서 C 언어 및 C++ 언어를 사용함에 있어, &lt;strong&gt;여러 C 언어 및 C++ 언어용 컴파일러 및 빌드도구와의 연동&lt;/strong&gt;이나 &lt;strong&gt;자동완성 기능&lt;/strong&gt; 등을 사용할 수 있게 해줍니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;12_vscode_ccpp_extension&#34; srcset=&#34;
+               /praccpp-001-envsetting/12_vscode_ccpp_extension_hu114703246117f9ee3ec0c95693f134bb_116957_4c13d9c73e3a16a3befcca4640106e1a.png 400w,
+               /praccpp-001-envsetting/12_vscode_ccpp_extension_hu114703246117f9ee3ec0c95693f134bb_116957_e4b20650c198d3cd81590a14f05a165d.png 760w,
+               /praccpp-001-envsetting/12_vscode_ccpp_extension_hu114703246117f9ee3ec0c95693f134bb_116957_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/12_vscode_ccpp_extension_hu114703246117f9ee3ec0c95693f134bb_116957_4c13d9c73e3a16a3befcca4640106e1a.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;extension-2-cmake-tools&#34;&gt;Extension 2: CMake Tools&lt;/h3&gt;
+&lt;p&gt;&amp;quot;&lt;b&gt;CMake Tools&lt;/b&gt;&amp;quot;이라고 검색하시면 다음과 같은 extension이 뜹니다. &lt;strong&gt;Install&lt;/strong&gt; 버튼을 눌러 설치하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;이 extension은 VSCode에서 CMake를 바로 사용할 수 있도록 &lt;strong&gt;CMake와 연동&lt;/strong&gt;을 해주고, &lt;strong&gt;CMake 기반의 빌드 작업을 좀 더 쉽게 수행할 수 있도록 여러 UI를 제공&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;13_vscode_cmaketools_extension&#34; srcset=&#34;
+               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu742564b1a78877c83ee1ebacbdf9d4d3_111257_9c2c4886ba1dc2515aaac4c6f4fea970.png 400w,
+               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu742564b1a78877c83ee1ebacbdf9d4d3_111257_cf798f0cae1f5f80fa2e0b9bca4b6735.png 760w,
+               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu742564b1a78877c83ee1ebacbdf9d4d3_111257_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/13_vscode_cmaketools_extension_hu742564b1a78877c83ee1ebacbdf9d4d3_111257_9c2c4886ba1dc2515aaac4c6f4fea970.png&#34;
+               width=&#34;760&#34;
+               height=&#34;570&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
 &lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
-&lt;p&gt;이 글에서는 MSVC의 구성요소인 C++ 빌드 도구와 CMake를 설치하였고, IDE로서 활용할 수 있는 VSCode를 설치하였습니다.&lt;/p&gt;
+&lt;p&gt;이 글에서는 MSVC의 구성요소인 C++ 빌드 도구와 CMake를 설치하였고, IDE로서 활용할 수 있는 VSCode를 설치 및 세팅하였습니다.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-09-24: 최초 게시&lt;/li&gt;
+&lt;li&gt;2021-10-06: 필수 Extension 설치 내용 추가&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     
