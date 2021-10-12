@@ -2136,7 +2136,7 @@ int main(int argc, char**) {
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
-&lt;h3 id=&#34;extension-2-cmake-tools&#34;&gt;Extension 2: CMake Tools&lt;/h3&gt;
+&lt;h3 id=&#34;extension-2-cmake-tools-cmake&#34;&gt;Extension 2: CMake Tools (+CMake)&lt;/h3&gt;
 &lt;p&gt;&amp;quot;&lt;b&gt;CMake Tools&lt;/b&gt;&amp;quot;이라고 검색하시면 다음과 같은 extension이 뜹니다. &lt;strong&gt;Install&lt;/strong&gt; 버튼을 눌러 설치하시면 됩니다.&lt;/p&gt;
 &lt;p&gt;이 extension은 VSCode에서 CMake를 바로 사용할 수 있도록 &lt;strong&gt;CMake와 연동&lt;/strong&gt;을 해주고, &lt;strong&gt;CMake 기반의 빌드 작업을 좀 더 쉽게 수행할 수 있도록 여러 UI를 제공&lt;/strong&gt;합니다.&lt;/p&gt;
 &lt;p&gt;
@@ -2158,15 +2158,16 @@ int main(int argc, char**) {
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;13_vscode_cmaketools_extension&#34; srcset=&#34;
-               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu742564b1a78877c83ee1ebacbdf9d4d3_111257_9c2c4886ba1dc2515aaac4c6f4fea970.png 400w,
-               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu742564b1a78877c83ee1ebacbdf9d4d3_111257_cf798f0cae1f5f80fa2e0b9bca4b6735.png 760w,
-               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu742564b1a78877c83ee1ebacbdf9d4d3_111257_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/praccpp-001-envsetting/13_vscode_cmaketools_extension_hu742564b1a78877c83ee1ebacbdf9d4d3_111257_9c2c4886ba1dc2515aaac4c6f4fea970.png&#34;
+               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu135c962e182735c05b83f1a7877aab93_153536_e009a687ecc1beb33f19cd98c42757c8.png 400w,
+               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu135c962e182735c05b83f1a7877aab93_153536_45ce2078f5add597652348d7ebbcc091.png 760w,
+               /praccpp-001-envsetting/13_vscode_cmaketools_extension_hu135c962e182735c05b83f1a7877aab93_153536_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-001-envsetting/13_vscode_cmaketools_extension_hu135c962e182735c05b83f1a7877aab93_153536_e009a687ecc1beb33f19cd98c42757c8.png&#34;
                width=&#34;760&#34;
                height=&#34;570&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
+&lt;p&gt;이걸 깔면, 바로 밑에 있는 &lt;b&gt;&amp;quot;CMake&amp;quot;&lt;/b&gt; extension도 알아서 자동으로 설치될텐데요, &lt;b&gt;그냥 같이 깔리게 두시면 됩니다&lt;/b&gt;. 이 extension은 CMake Tools에서 제공하지 않는, &lt;strong&gt;CMake 스크립트 작성 시 도움을 주는 여러 기능&lt;/strong&gt;이나 &lt;b&gt;문법에 따른 강조기능(Syntax Highlighting)&lt;/b&gt; 등을 제공합니다.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
 &lt;p&gt;이 글에서는 MSVC의 구성요소인 C++ 빌드 도구와 CMake를 설치하였고, IDE로서 활용할 수 있는 VSCode를 설치 및 세팅하였습니다.&lt;/p&gt;
