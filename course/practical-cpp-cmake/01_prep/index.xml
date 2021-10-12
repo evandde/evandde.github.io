@@ -895,6 +895,10 @@
 &lt;p&gt;이번 글에서는 앞서 구축한 VSCode와 MSVC를 기반으로 한 작업환경이 정상적으로 작동하는지 테스트해보았습니다.&lt;/p&gt;
 &lt;p&gt;앞으로 강의를 진행하며 좀 더 세부적인 옵션을 설정하는 방법에 대해 배워나가겠지만, 프로젝트를 만들고 실행하는 큰 흐름은 이번 글에서 진행한 바와 거의 유사합니다. 그러므로, 이번 글에서 했던 작업이 &lt;b&gt;익숙해지실 수 있도록 꼭 한 번 이상 실습을 해보시길 권장&lt;/b&gt;합니다.&lt;/p&gt;
 &lt;hr&gt;
+&lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2021-10-12: 최초 게시&lt;/li&gt;
+&lt;/ul&gt;
 &lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
 &lt;ol&gt;
