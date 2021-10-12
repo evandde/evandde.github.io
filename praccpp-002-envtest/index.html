@@ -1,0 +1,1636 @@
+<!DOCTYPE html><html lang="ko-kr" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="앞서 구축한 실습 환경이 제대로 동작하는지 테스트 해봅시다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/praccpp-002-envtest/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.ddda8084c9ad8c98d0b2a8a46c09681e.css" />
+
+  
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/praccpp-002-envtest/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/praccpp-002-envtest/" />
+  <meta property="og:title" content="대충보는 C&#43;&#43; &amp; CMake - 2. 실습환경 테스트하기 | EvaNote" />
+  <meta property="og:description" content="앞서 구축한 실습 환경이 제대로 동작하는지 테스트 해봅시다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-10-06T17:01:14&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-10-06T17:01:14&#43;09:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>대충보는 C&#43;&#43; &amp; CMake - 2. 실습환경 테스트하기 | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="db30dd42726158cf91e8ad87c0f39acd" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          준비
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
+    </div>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>강의시리즈</a></li>
+      </ul>
+
+      
+      
+        
+          
+        
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/">대충보는 C&#43;&#43; &amp; CMake</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/01_prep/">준비</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/praccpp-001-envsetting/">실습환경 만들기</a></li>
+
+
+
+  <li class="active"><a href="/praccpp-002-envtest/">실습환경 테스트하기</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#작업공간-만들기">작업공간 만들기</a></li>
+    <li><a href="#vscode-실행하기">VSCode 실행하기</a></li>
+    <li><a href="#vscode에서-작업공간-열기">VSCode에서 작업공간 열기</a></li>
+    <li><a href="#cmake-quick-start">CMake: Quick Start</a></li>
+    <li><a href="#정리">정리</a></li>
+  </ul>
+</nav>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        강의시리즈
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/">
+      
+        대충보는 C++ & CMake
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/01_prep/">
+      
+        준비
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        실습환경 테스트하기
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>대충보는 C&#43;&#43; &amp; CMake - 2. 실습환경 테스트하기</h1>
+
+          <div class="article-style">
+            <p>앞서 구축한 실습 환경이 제대로 동작하는지 테스트 해봅시다.</p>
+<hr>
+<h2 id="작업공간-만들기">작업공간 만들기</h2>
+<p>일단, <strong>작업을 진행할 폴더를 자유롭게 하나 준비</strong>합니다. 저는 <code>C:\</code> 하위에 <code>cpp\helloworld</code>라는 폴더를 만들고, 여기서 작업을 진행해보도록 하겠습니다. 즉, <strong>제 작업공간의 경로</strong>는 <code>C:\cpp\helloworld</code> 입니다.</p>
+<div class="alert alert-warning">
+  <div>
+    경로에 한글이 들어가면 안됩니다.
+  </div>
+</div>
+
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="01_workspace" srcset="
+               /praccpp-002-envtest/01_workspace_hu641ea03d319e1089a74265e11b66e829_38953_2cbe2e9d7537dfd0e216ac2956ffbe79.png 400w,
+               /praccpp-002-envtest/01_workspace_hu641ea03d319e1089a74265e11b66e829_38953_37ac8ee78c888a0c71d844514b567102.png 760w,
+               /praccpp-002-envtest/01_workspace_hu641ea03d319e1089a74265e11b66e829_38953_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/01_workspace_hu641ea03d319e1089a74265e11b66e829_38953_2cbe2e9d7537dfd0e216ac2956ffbe79.png"
+               width="760"
+               height="503"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<hr>
+<h2 id="vscode-실행하기">VSCode 실행하기</h2>
+<div class="alert alert-note">
+  <div>
+    앞서 실습환경 만들기 과정에서 켜둔 VSCode가 있으시다면 그대로 사용하시면 됩니다.
+  </div>
+</div>
+
+<p>이전 글에서 말씀드렸듯, 반드시 <b>Developer PowerShell for VS2019를 실행</b>시키신 뒤 이 <b>터미널에서 <code>code</code> 명령어를 입력하여 VSCode를 실행</b>해야 합니다. 그냥 VSCode만 실행하지 않도록 주의하세요.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="02_vscode_run1" srcset="
+               /praccpp-002-envtest/02_vscode_run1_hu0ac915b5608152b6cbbb45b2b38d6bd0_178450_f741c91e7fc7b5d07cc6454ce66dc76e.png 400w,
+               /praccpp-002-envtest/02_vscode_run1_hu0ac915b5608152b6cbbb45b2b38d6bd0_178450_7249a493260a0d3187c25eace6704da8.png 760w,
+               /praccpp-002-envtest/02_vscode_run1_hu0ac915b5608152b6cbbb45b2b38d6bd0_178450_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/02_vscode_run1_hu0ac915b5608152b6cbbb45b2b38d6bd0_178450_f741c91e7fc7b5d07cc6454ce66dc76e.png"
+               width="743"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<hr>
+<h2 id="vscode에서-작업공간-열기">VSCode에서 작업공간 열기</h2>
+<p>VSCode에서 앞서 만들어둔 작업공간 폴더를 열어보겠습니다.</p>
+<ol>
+<li>
+<p>위쪽의 메뉴바에서 <b>File - Open Folder</b>를 누릅니다. 단축키로는 <b>[CTRL]+[K],[O]</b>입니다(<b>[CTRL]키를 누른상태</b>로 <b>[K]키와 [O]키를 순서대로</b> 누르면 됩니다).</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="03_openfolder" srcset="
+               /praccpp-002-envtest/03_openfolder_hu13531afdd7e4b083ed7b7cd9cda49e8d_94490_c0d564ecee8b7855cf855352bb861fdb.png 400w,
+               /praccpp-002-envtest/03_openfolder_hu13531afdd7e4b083ed7b7cd9cda49e8d_94490_4a6a2db05367aac2714939c10b26d887.png 760w,
+               /praccpp-002-envtest/03_openfolder_hu13531afdd7e4b083ed7b7cd9cda49e8d_94490_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/03_openfolder_hu13531afdd7e4b083ed7b7cd9cda49e8d_94490_c0d564ecee8b7855cf855352bb861fdb.png"
+               width="760"
+               height="569"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>이어서 뜨는 폴더 선택창에서, 앞서 만들어둔 작업공간 경로로 이동하여 <b>폴더 선택</b>을 해주시면 됩니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="04_openfolder" srcset="
+               /praccpp-002-envtest/04_openfolder_hufe142dfb0759ebf76758db51702f088d_19129_c46d49204a05ec5753d882c3b5a7fb53.png 400w,
+               /praccpp-002-envtest/04_openfolder_hufe142dfb0759ebf76758db51702f088d_19129_52f494c42a24c87ff9d7ba47bd9a563a.png 760w,
+               /praccpp-002-envtest/04_openfolder_hufe142dfb0759ebf76758db51702f088d_19129_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/04_openfolder_hufe142dfb0759ebf76758db51702f088d_19129_c46d49204a05ec5753d882c3b5a7fb53.png"
+               width="760"
+               height="457"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>다음과 같은 경고창이 뜰 수도 있습니다. VSCode에서 이 폴더 안에 있는 실행파일을 실행할 수도 있으니, 이 폴더가 신뢰해도 되는 폴더인지 확인하라는 경고창입니다. 직접 만든 폴더이므로 당연히 신뢰할 수 있겠죠.</p>
+<p>체크박스는, 이 폴더의 상위폴더도 신뢰할 수 있는 폴더인지를 묻는 것입니다. 저는 향후 <code>C:\cpp</code> 하위에 새로운 프로젝트를 만들어 나갈 예정이므로, 체크박스까지 체크해준 뒤 진행하도록 하겠습니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="05_openfolder" srcset="
+               /praccpp-002-envtest/05_openfolder_hub1590651155a5b37883bc96eab199e52_68304_5442964e1457da565ed2e67909ee50c1.png 400w,
+               /praccpp-002-envtest/05_openfolder_hub1590651155a5b37883bc96eab199e52_68304_e50b0322ea2de6d7cdd90052da50d47d.png 760w,
+               /praccpp-002-envtest/05_openfolder_hub1590651155a5b37883bc96eab199e52_68304_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/05_openfolder_hub1590651155a5b37883bc96eab199e52_68304_5442964e1457da565ed2e67909ee50c1.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>완료되었다면, 다음 그림과 같이 <b>탐색기 항목의 최상위부분이 폴더명으로 변경된 것을 확인</b>할 수 있습니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="06_openfolder" srcset="
+               /praccpp-002-envtest/06_openfolder_hub0d43befaf7fab2573941462c41bf3a0_59150_4d1fd6bb0b02bc2c16a9a5fead66cf23.png 400w,
+               /praccpp-002-envtest/06_openfolder_hub0d43befaf7fab2573941462c41bf3a0_59150_741d2e5af3b39fa76489bc50ba4f9ada.png 760w,
+               /praccpp-002-envtest/06_openfolder_hub0d43befaf7fab2573941462c41bf3a0_59150_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/06_openfolder_hub0d43befaf7fab2573941462c41bf3a0_59150_4d1fd6bb0b02bc2c16a9a5fead66cf23.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="cmake-quick-start">CMake: Quick Start</h2>
+<p>지난 글에서 설치한 extension 중, CMake Tools가 제공하는 기능을 활용하여 Hello World 프로젝트를 만들어 보겠습니다.</p>
+<p>CMake Tools는 <b>CMake: Quick Start</b>라는 기능을 제공합니다. 이는, Hello World를 출력하는 간단한 예제 프로젝트를 자동으로 생성해주는 기능입니다.</p>
+<ol>
+<li>
+<p>위쪽의 메뉴바에서 <b>View - Command Palette</b>를 누릅니다. 단축키로는 <b>[CTRL]+[SHIFT]+[P]</b>입니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="07_cqs" srcset="
+               /praccpp-002-envtest/07_cqs_hu3f4709795be6401f50a9d4c5ae7541a9_44735_3d64ca3b2895a1ceea1a4bc9b903326e.png 400w,
+               /praccpp-002-envtest/07_cqs_hu3f4709795be6401f50a9d4c5ae7541a9_44735_2f98a3fba0df0dd872d4588287c2bd21.png 760w,
+               /praccpp-002-envtest/07_cqs_hu3f4709795be6401f50a9d4c5ae7541a9_44735_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/07_cqs_hu3f4709795be6401f50a9d4c5ae7541a9_44735_3d64ca3b2895a1ceea1a4bc9b903326e.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>위쪽에 작은 명령창이 뜨고, <code>&gt;</code> 표시가 적혀있을 것입니다. 뒤에 이어서 <b>cmake quick start</b>라고 적으면, 하단에 <b>CMake: Quick Start</b>라는 항목이 검색되어 나타날 것입니다. 이를 클릭합니다. (간단하게 <b>cqs</b>라고만 적어도 검색됩니다)</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="08_cqs" srcset="
+               /praccpp-002-envtest/08_cqs_hu295d22ffc740697df9751216a6db0bfa_31971_cf41b9cdca8281be99b2302f26ffca39.png 400w,
+               /praccpp-002-envtest/08_cqs_hu295d22ffc740697df9751216a6db0bfa_31971_87c6115ae3e313cfc241d9ac655bc24f.png 760w,
+               /praccpp-002-envtest/08_cqs_hu295d22ffc740697df9751216a6db0bfa_31971_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/08_cqs_hu295d22ffc740697df9751216a6db0bfa_31971_cf41b9cdca8281be99b2302f26ffca39.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>경우에 따라, 다음 그림과 같이 <b>컴파일러 선택 요청</b>이 뜰 수도 있습니다. VSCode가 탐지한 빌드 도구가 모두 나타나는 것이므로, 여러분의 화면에 나타난 항목이 저와 약간 다를 수도 있습니다.</p>
+<p>이 중에서 <b>Visual Studio 2019 Build Tools 2019 Release - amd64</b>가 있다면 이것을 클릭하시면 됩니다. 만약 이 항목이 없는 경우에는 Visual Studio 2019 Build Tools 2019 Release - x86으로 진행하셔도 큰 차이는 없습니다<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="09_cqs" srcset="
+               /praccpp-002-envtest/09_cqs_hu12f5b7a89c9ef6c6ba690aed89cbd008_81023_7e97658e4fa36c661c8ffe20a2d1d772.png 400w,
+               /praccpp-002-envtest/09_cqs_hu12f5b7a89c9ef6c6ba690aed89cbd008_81023_5d94e5ae278c363518902813d9786487.png 760w,
+               /praccpp-002-envtest/09_cqs_hu12f5b7a89c9ef6c6ba690aed89cbd008_81023_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/09_cqs_hu12f5b7a89c9ef6c6ba690aed89cbd008_81023_7e97658e4fa36c661c8ffe20a2d1d772.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>이어서, 다음 그림과 같이 <b>새 프로젝트의 이름을 적으라는 요청</b>이 뜹니다. <b>아무거나 자유롭게 적으시면 됩니다</b>. 여기서는 <b>helloworld</b>라고 적겠습니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="10_cqs" srcset="
+               /praccpp-002-envtest/10_cqs_hu296195b1b1c48ac9027d73a340276653_36801_1a6d977e61a8dc7c5921512cc7de9d66.png 400w,
+               /praccpp-002-envtest/10_cqs_hu296195b1b1c48ac9027d73a340276653_36801_47a2603a6d692e6c5d61a0d06a29ae28.png 760w,
+               /praccpp-002-envtest/10_cqs_hu296195b1b1c48ac9027d73a340276653_36801_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/10_cqs_hu296195b1b1c48ac9027d73a340276653_36801_1a6d977e61a8dc7c5921512cc7de9d66.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>마지막으로, <b>라이브러리를 만들 것인지 실행파일을 만들 것인지 선택하라는 요청</b>이 뜹니다. 여기서는 실행파일을 만들 것이므로, <b>Executable</b>을 선택합니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="11_cqs" srcset="
+               /praccpp-002-envtest/11_cqs_hubba53dacd36534ee3151fb5316822625_35961_e74db500a196fb9c35783243e821ff7d.png 400w,
+               /praccpp-002-envtest/11_cqs_hubba53dacd36534ee3151fb5316822625_35961_6221f7459cad3e8b56961b152b37e00a.png 760w,
+               /praccpp-002-envtest/11_cqs_hubba53dacd36534ee3151fb5316822625_35961_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/11_cqs_hubba53dacd36534ee3151fb5316822625_35961_e74db500a196fb9c35783243e821ff7d.png"
+               width="760"
+               height="570"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>그러면 하단부의 <b>OUTPUT</b> 탭에서 뭔가 많은 문구가 올라가며 여러 작업이 자동으로 진행된 뒤, 다음과 같은 폴더와 파일들이 생성될 것입니다.</p>
+<ul>
+<li><code>build</code> 폴더</li>
+<li><code>CMakeLists.txt</code> 파일</li>
+<li><code>main.cpp</code> 파일</li>
+</ul>
+<p>여기서는 각 파일에 쓰여있는 내용을 설명하진 않을 것입니다. 이 파일들이 다음 그림처럼 <b>잘 만들어져 있는지만 확인</b>해봅니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="12_cqs" srcset="
+               /praccpp-002-envtest/12_cqs_hu4408a6854878df58a905338c2634c563_86597_d8df402aa121452e7051b08f70704026.png 400w,
+               /praccpp-002-envtest/12_cqs_hu4408a6854878df58a905338c2634c563_86597_c7b1f730ae9512354a5b9df57c904b0c.png 760w,
+               /praccpp-002-envtest/12_cqs_hu4408a6854878df58a905338c2634c563_86597_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/12_cqs_hu4408a6854878df58a905338c2634c563_86597_d8df402aa121452e7051b08f70704026.png"
+               width="760"
+               height="549"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>이제 실행이 잘 되는지 확인해보겠습니다. 실행은 창 맨 밑의 파란색 상태표시줄에서 <b>재생버튼(▷) 모양</b>을 눌러주시면 됩니다.</p>
+<p>이번에도 OUTPUT 탭에서 여러 문구가 올라가며 진행이 된 뒤, <b>TERMINAL 탭</b>으로 자동 전환되며 다음 그림과 같은 <b>Hello, world!</b> 문구가 나타날 것입니다.</p>
+<p>여기까지 확인하셨다면, 작업 환경이 모두 정상적으로 세팅된 것입니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="13_cqs" srcset="
+               /praccpp-002-envtest/13_cqs_hud2570c914757390b02b16dbc28720b9f_65898_2ee69525ffac83fa5643e7d763d032d7.png 400w,
+               /praccpp-002-envtest/13_cqs_hud2570c914757390b02b16dbc28720b9f_65898_85b583e02eb0154f4cf6d216583b5879.png 760w,
+               /praccpp-002-envtest/13_cqs_hud2570c914757390b02b16dbc28720b9f_65898_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-002-envtest/13_cqs_hud2570c914757390b02b16dbc28720b9f_65898_2ee69525ffac83fa5643e7d763d032d7.png"
+               width="760"
+               height="549"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="정리">정리</h2>
+<p>이번 글에서는 앞서 구축한 VSCode와 MSVC를 기반으로 한 작업환경이 정상적으로 작동하는지 테스트해보았습니다.</p>
+<p>앞으로 강의를 진행하며 좀 더 세부적인 옵션을 설정하는 방법에 대해 배워나가겠지만, 프로젝트를 만들고 실행하는 큰 흐름은 이번 글에서 진행한 바와 거의 유사합니다. 그러므로, 이번 글에서 했던 작업이 <b>익숙해지실 수 있도록 꼭 한 번 이상 실습을 해보시길 권장</b>합니다.</p>
+<hr>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>이는 엄밀히 말하면, 여러분이 작업을 진행하시는 컴퓨터 환경과 프로그램을 실행하게 될 컴퓨터 환경의 비트수를 고려하여 선택하는 부분입니다. 무슨 말인지 잘 모르시겠다면, <b>요즘 사용하시는 컴퓨터는 대부분 64 bit일 것이므로 그냥 64 bit용에 해당하는 amd64를 선택하여 진행</b>하시면 됩니다. 참고로 현재 사용 중인 컴퓨터 환경의 비트수는 [WIN]+[R]을 눌러 실행 창을 연 뒤, <code>msinfo32</code>를 입력하여 실행하여 시스템 정보 창을 띄우고, 여기서 시스템 종류 항목을 확인하면 알 수 있습니다.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+          </div>
+
+          
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/msvc/">MSVC</a>
+  
+  <a class="badge badge-light" href="/tags/c-/">C&#43;&#43;</a>
+  
+  <a class="badge badge-light" href="/tags/cmake/">cmake</a>
+  
+  <a class="badge badge-light" href="/tags/vscode/">VSCode</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">이전</div>
+    <a href="/praccpp-001-envsetting/" rel="next">대충보는 C&#43;&#43; &amp; CMake - 1. 실습환경 만들기</a>
+  </div>
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Oct 6, 2021</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/praccpp-001-envsetting/">대충보는 C&#43;&#43; &amp; CMake - 1. 실습환경 만들기</a></li>
+      
+      <li><a href="/vscode-msvc/">Visual Studio Code에서 MSVC 기반 C&#43;&#43;, CMake 환경 설정하기</a></li>
+      
+      <li><a href="/vscode-cmake/">Visual Studio Code에서 CMake 환경 설정하기</a></li>
+      
+      <li><a href="/vscode-cpp/">Visual Studio Code에서 GCC/MinGW 기반 C, C&#43;&#43; 환경 설정하기</a></li>
+      
+      <li><a href="/bithacks-power/">BIT Hacks - 자연수 승수 계산을 비트연산으로 빠르게 하는 법</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2021 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay:0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+          
+            
+            onBeforeTextCopied: function(text, codeElement) {
+              return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    },10);
+</script>
+
+
+</body>
+</html>
