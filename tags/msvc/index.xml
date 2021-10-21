@@ -1362,43 +1362,6 @@ int main(int argc, char**) {
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;vscode-실행하기&#34;&gt;VSCode 실행하기&lt;/h2&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    앞서 실습환경 만들기 과정에서 켜둔 VSCode가 있으시다면 그대로 사용하시면 됩니다.
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;이전 글에서 말씀드렸듯, 반드시 &lt;b&gt;Developer PowerShell for VS2019를 실행&lt;/b&gt;시키신 뒤 이 &lt;b&gt;터미널에서 &lt;code&gt;code&lt;/code&gt; 명령어를 입력하여 VSCode를 실행&lt;/b&gt;해야 합니다. 그냥 VSCode만 실행하지 않도록 주의하세요.&lt;/p&gt;
-&lt;p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_vscode_run1&#34; srcset=&#34;
-               /praccpp-002-envtest/02_vscode_run1_hu0ac915b5608152b6cbbb45b2b38d6bd0_178450_f741c91e7fc7b5d07cc6454ce66dc76e.png 400w,
-               /praccpp-002-envtest/02_vscode_run1_hu0ac915b5608152b6cbbb45b2b38d6bd0_178450_7249a493260a0d3187c25eace6704da8.png 760w,
-               /praccpp-002-envtest/02_vscode_run1_hu0ac915b5608152b6cbbb45b2b38d6bd0_178450_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/praccpp-002-envtest/02_vscode_run1_hu0ac915b5608152b6cbbb45b2b38d6bd0_178450_f741c91e7fc7b5d07cc6454ce66dc76e.png&#34;
-               width=&#34;743&#34;
-               height=&#34;760&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/p&gt;
-&lt;hr&gt;
 &lt;h2 id=&#34;vscode에서-작업공간-열기&#34;&gt;VSCode에서 작업공간 열기&lt;/h2&gt;
 &lt;p&gt;VSCode에서 앞서 만들어둔 작업공간 폴더를 열어보겠습니다.&lt;/p&gt;
 &lt;ol&gt;
@@ -1768,6 +1731,7 @@ int main(int argc, char**) {
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-10-12: 최초 게시&lt;/li&gt;
+&lt;li&gt;2021-10-21: Code 실행 시 Developer PowerShell for VS 2019를 통해 실행할 필요가 없어서, 해당 내용 삭제&lt;/li&gt;
 &lt;/ul&gt;
 &lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
