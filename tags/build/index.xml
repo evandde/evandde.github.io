@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>기본 다지기 | EvaNote</title>
-    <link>https://evandde.github.io/course/practical-cpp-cmake/02_basic/</link>
-      <atom:link href="https://evandde.github.io/course/practical-cpp-cmake/02_basic/index.xml" rel="self" type="application/rss+xml" />
-    <description>기본 다지기</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Fri, 15 Oct 2021 13:23:24 +0900</lastBuildDate>
+    <title>Build | EvaNote</title>
+    <link>https://evandde.github.io/tags/build/</link>
+      <atom:link href="https://evandde.github.io/tags/build/index.xml" rel="self" type="application/rss+xml" />
+    <description>Build</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Wed, 10 Nov 2021 16:32:26 +0900</lastBuildDate>
     <image>
       <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
-      <title>기본 다지기</title>
-      <link>https://evandde.github.io/course/practical-cpp-cmake/02_basic/</link>
+      <title>Build</title>
+      <link>https://evandde.github.io/tags/build/</link>
     </image>
     
     <item>
