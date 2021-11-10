@@ -5,7 +5,7 @@
     <link>https://evandde.github.io/tags/cmake/</link>
       <atom:link href="https://evandde.github.io/tags/cmake/index.xml" rel="self" type="application/rss+xml" />
     <description>cmake</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Wed, 10 Nov 2021 16:32:26 +0900</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Wed, 10 Nov 2021 20:50:10 +0900</lastBuildDate>
     <image>
       <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
       <title>cmake</title>
@@ -2576,6 +2576,76 @@ int main(int argc, char**) {
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;</description>
+    </item>
+    
+    <item>
+      <title>대충보는 C&#43;&#43; &amp; CMake - *. 실습환경 만들기(VSCode를 안쓰는 경우)</title>
+      <link>https://evandde.github.io/praccpp-000-env_general/</link>
+      <pubDate>Wed, 10 Nov 2021 20:50:10 +0900</pubDate>
+      <guid>https://evandde.github.io/praccpp-000-env_general/</guid>
+      <description>&lt;p&gt;이 글에서는 MSVC + VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.&lt;/p&gt;
+&lt;p&gt;앞서 예시로 보여드린 MSVC + VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;예제-코드-준비&#34;&gt;예제 코드 준비&lt;/h2&gt;
+&lt;p&gt;앞서 &lt;a href=&#34;https://evandde.github.io/praccpp-002-envtest/&#34;&gt;실습환경 테스트하기&lt;/a&gt;에서 CMake: Quick Start를 통해 만든 파일들과 동일한 파일을 준비하면 됩니다.&lt;/p&gt;
+&lt;p&gt;다음 두 개의 파일을 다운받아서 여러분이 원하는 작업공간에 넣어주시면 됩니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://evandde.github.io/uploads/main.cpp&#34; target=&#34;_blank&#34;&gt;main.cpp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://evandde.github.io/uploads/CMakeLists.txt&#34; target=&#34;_blank&#34;&gt;CMakeLists.txt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;c-빌드-도구&#34;&gt;C++ 빌드 도구&lt;/h2&gt;
+&lt;p&gt;C++ 코드를 이용하여 빌드하기 위한 &lt;b&gt;빌드 도구&lt;/b&gt;가 있어야 합니다.&lt;/p&gt;
+&lt;p&gt;대표적으로 다음과 같은 것들이 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Microsoft Visual C++ 빌드 도구 (이 시리즈에서 사용하고 있는 것)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.mingw-w64.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Mingw-w64&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gcc.gnu.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GCC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/kr/xcode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Xcode&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;각자 운영체제와 사용환경에 따라 적합한 것을 선택하여 진행하시면 됩니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;cmake&#34;&gt;CMake&lt;/h2&gt;
+&lt;p&gt;CMake는 사용환경과 상관없이 설치해서 이용하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;이 시리즈에서 소개한 방법처럼 MSVC를 이용하여 한 번에 설치할 수도 있습니다만, 그렇지 않은 경우에는 따로 설치해주시면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://cmake.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CMake 홈페이지&lt;/a&gt;에서 직접 받아서 설치하시거나, &lt;a href=&#34;https://github.com/microsoft/winget-cli&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;winget&lt;/a&gt;, &lt;a href=&#34;https://wiki.debian.org/Apt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;apt&lt;/a&gt;, &lt;a href=&#34;https://brew.sh/index_ko&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;brew&lt;/a&gt; 등 패키지관리자를 통해서도 설치하실 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;버전은 3.0 이상&lt;/b&gt;으로 설치하시기 바랍니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;통합개발환경ide&#34;&gt;통합개발환경(IDE)&lt;/h2&gt;
+&lt;p&gt;통합개발환경도 다양한 선택지가 있습니다. 대표적으로 다음과 같은 것들이 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;VSCode (이 시리즈에서 사용하고 있는 것)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://visualstudio.microsoft.com/ko/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Visual Studio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.eclipse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Eclipse&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/kr/xcode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Xcode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.qt.io/ko-kr/product/development-tools&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Qt Creator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.codeblocks.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Code::Blocks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;C++ 코드 자동완성, 빌더/디버거 연동 등의 기능을 제공한다면 어떤 것을 사용하셔도 괜찮습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;빌드-및-실행&#34;&gt;빌드 및 실행&lt;/h2&gt;
+&lt;p&gt;빌드는 어느 디렉토리(폴더)에서 수행해도 상관없습니다만, 전통적인 관례를 따라 &lt;code&gt;build&lt;/code&gt; 디렉토리(폴더)를 만들고 그 안에 빌드 결과물이 담기도록 하시는 것을 권장합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;위에서 받은 &lt;code&gt;main.cpp&lt;/code&gt; 파일과 &lt;code&gt;CMakeLists.txt&lt;/code&gt; 파일이 있는 곳에 &lt;code&gt;build&lt;/code&gt;라는 이름의 디렉토리(폴더)를 새로 만듭니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CMake를 이용하여 &lt;code&gt;build&lt;/code&gt; 디렉토리(폴더)에 결과물이 담기도록, 작업공간 디렉토리(폴더)에 대해 cmake와 빌드를 수행합니다.&lt;/p&gt;
+&lt;p&gt;터미널을 이용할 수 있다면, &lt;b&gt;&lt;code&gt;build&lt;/code&gt; 디렉토리(폴더)로 이동한 상태에서 다음과 같이 입력&lt;/b&gt;하면 &lt;b&gt;빌드가 수행&lt;/b&gt;됩니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cmake ..
+cmake --build . --config Release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;build&lt;/code&gt; 디렉토리 내에 있는 &lt;code&gt;helloworld.exe&lt;/code&gt; 파일을 실행해서 프로그램이 제대로 작동하는지 확인합니다.&lt;/p&gt;
+&lt;p&gt;경우에 따라, &lt;code&gt;build/Release&lt;/code&gt; 내에 &lt;code&gt;helloworld.exe&lt;/code&gt; 파일이 존재할 수도 있습니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2021-11-10: 최초 게시&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>

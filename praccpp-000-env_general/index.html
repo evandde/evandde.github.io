@@ -30,10 +30,11 @@
   
     
   
-  <meta name="description" content="Researcher" />
+  <meta name="description" content="이 글에서는 MSVC &#43; VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.
+앞서 예시로 보여드린 MSVC &#43; VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다." />
 
   
-  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/course/practical-cpp-cmake/01_prep/" />
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/praccpp-000-env_general/" />
 
   
 
@@ -274,8 +275,6 @@
   
 
   
-    <link rel="alternate" href="/course/practical-cpp-cmake/01_prep/index.xml" type="application/rss+xml" title="EvaNote" />
-  
 
   
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -284,7 +283,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://evandde.github.io/course/practical-cpp-cmake/01_prep/" />
+  <link rel="canonical" href="https://evandde.github.io/praccpp-000-env_general/" />
 
   
   
@@ -301,14 +300,19 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="EvaNote" />
-  <meta property="og:url" content="https://evandde.github.io/course/practical-cpp-cmake/01_prep/" />
-  <meta property="og:title" content="준비 | EvaNote" />
-  <meta property="og:description" content="Researcher" /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:url" content="https://evandde.github.io/praccpp-000-env_general/" />
+  <meta property="og:title" content="대충보는 C&#43;&#43; &amp; CMake - *. 실습환경 만들기(VSCode를 안쓰는 경우) | EvaNote" />
+  <meta property="og:description" content="이 글에서는 MSVC &#43; VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.
+앞서 예시로 보여드린 MSVC &#43; VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
   
     
-      <meta property="og:updated_time" content="2021-09-24T18:00:11&#43;09:00" />
+      <meta
+        property="article:published_time"
+        content="2021-11-10T20:50:10&#43;09:00"
+      />
     
+    <meta property="article:modified_time" content="2021-11-10T20:50:10&#43;09:00">
   
 
   
@@ -319,15 +323,17 @@
 
   
 
+  
 
 
 
 
-  <title>준비 | EvaNote</title>
+
+  <title>대충보는 C&#43;&#43; &amp; CMake - *. 실습환경 만들기(VSCode를 안쓰는 경우) | EvaNote</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="e930a2b198ae260d0c1c711accbf1c67" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="34d9259af00b373bb70d78575be0b09f" >
 
   
   
@@ -480,7 +486,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link  active" href="/course"><span>강의시리즈</span></a>
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
         </li>
 
         
@@ -646,7 +652,7 @@
     <div class="d-flex">
       <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
         
-          대충보는 C++ & CMake
+          준비
         
       </span>
       <span><i class="fas fa-chevron-down"></i></span>
@@ -718,7 +724,7 @@
 
     
       <div class="docs-toc-item">
-        <a class="docs-toc-link  active" href="/course/practical-cpp-cmake/01_prep/">준비</a>
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/01_prep/">준비</a>
     
       
         <ul class="nav docs-sidenav">
@@ -733,7 +739,7 @@
 
 
 
-  <li class=""><a href="/praccpp-000-env_general/">VSCode를 안쓰는 경우</a></li>
+  <li class="active"><a href="/praccpp-000-env_general/">VSCode를 안쓰는 경우</a></li>
 
       
         </ul>
@@ -799,7 +805,16 @@
         <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
       </ul>
 
-      <nav id="TableOfContents"></nav>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#예제-코드-준비">예제 코드 준비</a></li>
+    <li><a href="#c-빌드-도구">C++ 빌드 도구</a></li>
+    <li><a href="#cmake">CMake</a></li>
+    <li><a href="#통합개발환경ide">통합개발환경(IDE)</a></li>
+    <li><a href="#빌드-및-실행">빌드 및 실행</a></li>
+    <li><a href="#changelog">Changelog</a></li>
+  </ul>
+</nav>
 
       
     </div>
@@ -815,6 +830,7 @@
   <nav class="d-none d-md-flex" aria-label="breadcrumb">
     <ol class="breadcrumb">
       
+  
   
   
   
@@ -846,8 +862,17 @@
   </li>
 
 
-      <li class="breadcrumb-item active" aria-current="page">
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/01_prep/">
+      
         준비
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        VSCode를 안쓰는 경우
       </li>
     </ol>
   </nav>
@@ -855,39 +880,83 @@
 
           
 
-          <h1>준비</h1>
+          <h1>대충보는 C&#43;&#43; &amp; CMake - *. 실습환경 만들기(VSCode를 안쓰는 경우)</h1>
 
           <div class="article-style">
-            
-
-  <ul class="list-unstyled">
-    
-      <li>
-        <h5><a href="/praccpp-001-envsetting/">실습환경 만들기</a></h5>
-        <p>Windows 10 환경에서 Microsoft Visual C++ (MSVC)를 이용하여 C++ 및 CMake 개발 환경을 구축하고 VSCode를 설치하여 연동하는 방법을 살펴봅니다.
-</p>
-      </li>
-    
-      <li>
-        <h5><a href="/praccpp-002-envtest/">실습환경 테스트하기</a></h5>
-        <p>앞서 구축한 실습 환경이 제대로 동작하는지 테스트 해봅시다.
-</p>
-      </li>
-    
-      <li>
-        <h5><a href="/praccpp-000-env_general/">VSCode를 안쓰는 경우</a></h5>
-        <p>이 글에서는 MSVC + VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.
-앞서 예시로 보여드린 MSVC + VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다.
-</p>
-      </li>
-    
-  </ul>
-
-
-
+            <p>이 글에서는 MSVC + VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.</p>
+<p>앞서 예시로 보여드린 MSVC + VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다.</p>
+<hr>
+<h2 id="예제-코드-준비">예제 코드 준비</h2>
+<p>앞서 <a href="https://evandde.github.io/praccpp-002-envtest/">실습환경 테스트하기</a>에서 CMake: Quick Start를 통해 만든 파일들과 동일한 파일을 준비하면 됩니다.</p>
+<p>다음 두 개의 파일을 다운받아서 여러분이 원하는 작업공간에 넣어주시면 됩니다.</p>
+<ul>
+<li><a href="/uploads/main.cpp" target="_blank">main.cpp</a></li>
+<li><a href="/uploads/CMakeLists.txt" target="_blank">CMakeLists.txt</a></li>
+</ul>
+<hr>
+<h2 id="c-빌드-도구">C++ 빌드 도구</h2>
+<p>C++ 코드를 이용하여 빌드하기 위한 <b>빌드 도구</b>가 있어야 합니다.</p>
+<p>대표적으로 다음과 같은 것들이 있습니다.</p>
+<ul>
+<li>Microsoft Visual C++ 빌드 도구 (이 시리즈에서 사용하고 있는 것)</li>
+<li><a href="https://www.mingw-w64.org/" target="_blank" rel="noopener">Mingw-w64</a></li>
+<li><a href="https://gcc.gnu.org/" target="_blank" rel="noopener">GCC</a></li>
+<li><a href="https://developer.apple.com/kr/xcode/" target="_blank" rel="noopener">Xcode</a></li>
+</ul>
+<p>각자 운영체제와 사용환경에 따라 적합한 것을 선택하여 진행하시면 됩니다.</p>
+<hr>
+<h2 id="cmake">CMake</h2>
+<p>CMake는 사용환경과 상관없이 설치해서 이용하시면 됩니다.</p>
+<p>이 시리즈에서 소개한 방법처럼 MSVC를 이용하여 한 번에 설치할 수도 있습니다만, 그렇지 않은 경우에는 따로 설치해주시면 됩니다.</p>
+<p><a href="https://cmake.org/" target="_blank" rel="noopener">CMake 홈페이지</a>에서 직접 받아서 설치하시거나, <a href="https://github.com/microsoft/winget-cli" target="_blank" rel="noopener">winget</a>, <a href="https://wiki.debian.org/Apt" target="_blank" rel="noopener">apt</a>, <a href="https://brew.sh/index_ko" target="_blank" rel="noopener">brew</a> 등 패키지관리자를 통해서도 설치하실 수 있습니다.</p>
+<p><b>버전은 3.0 이상</b>으로 설치하시기 바랍니다.</p>
+<hr>
+<h2 id="통합개발환경ide">통합개발환경(IDE)</h2>
+<p>통합개발환경도 다양한 선택지가 있습니다. 대표적으로 다음과 같은 것들이 있습니다.</p>
+<ul>
+<li>VSCode (이 시리즈에서 사용하고 있는 것)</li>
+<li><a href="https://visualstudio.microsoft.com/ko/" target="_blank" rel="noopener">Visual Studio</a></li>
+<li><a href="https://www.eclipse.org/" target="_blank" rel="noopener">Eclipse</a></li>
+<li><a href="https://developer.apple.com/kr/xcode/" target="_blank" rel="noopener">Xcode</a></li>
+<li><a href="https://www.qt.io/ko-kr/product/development-tools" target="_blank" rel="noopener">Qt Creator</a></li>
+<li><a href="https://www.codeblocks.org/" target="_blank" rel="noopener">Code::Blocks</a></li>
+</ul>
+<p>C++ 코드 자동완성, 빌더/디버거 연동 등의 기능을 제공한다면 어떤 것을 사용하셔도 괜찮습니다.</p>
+<hr>
+<h2 id="빌드-및-실행">빌드 및 실행</h2>
+<p>빌드는 어느 디렉토리(폴더)에서 수행해도 상관없습니다만, 전통적인 관례를 따라 <code>build</code> 디렉토리(폴더)를 만들고 그 안에 빌드 결과물이 담기도록 하시는 것을 권장합니다.</p>
+<ol>
+<li>
+<p>위에서 받은 <code>main.cpp</code> 파일과 <code>CMakeLists.txt</code> 파일이 있는 곳에 <code>build</code>라는 이름의 디렉토리(폴더)를 새로 만듭니다.</p>
+</li>
+<li>
+<p>CMake를 이용하여 <code>build</code> 디렉토리(폴더)에 결과물이 담기도록, 작업공간 디렉토리(폴더)에 대해 cmake와 빌드를 수행합니다.</p>
+<p>터미널을 이용할 수 있다면, <b><code>build</code> 디렉토리(폴더)로 이동한 상태에서 다음과 같이 입력</b>하면 <b>빌드가 수행</b>됩니다.</p>
+<pre><code class="language-bash">cmake ..
+cmake --build . --config Release
+</code></pre>
+</li>
+<li>
+<p><code>build</code> 디렉토리 내에 있는 <code>helloworld.exe</code> 파일을 실행해서 프로그램이 제대로 작동하는지 확인합니다.</p>
+<p>경우에 따라, <code>build/Release</code> 내에 <code>helloworld.exe</code> 파일이 존재할 수도 있습니다.</p>
+</li>
+</ol>
+<hr>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li>2021-11-10: 최초 게시</li>
+</ul>
           </div>
 
           
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/c-/">C&#43;&#43;</a>
+  
+  <a class="badge badge-light" href="/tags/cmake/">CMake</a>
+  
+</div>
 
 
 
@@ -898,6 +967,13 @@
 <div class="post-nav">
   
   
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">이전</div>
+    <a href="/praccpp-002-envtest/" rel="next">대충보는 C&#43;&#43; &amp; CMake - 2. 실습환경 테스트하기</a>
+  </div>
+  
+  
 </div>
 
           </div>
@@ -905,7 +981,7 @@
         </div>
 
         <div class="body-footer">
-          <p>마지막 업데이트 Sep 24, 2021</p>
+          <p>마지막 업데이트 Nov 10, 2021</p>
 
           
 
@@ -942,6 +1018,23 @@
 
 
   
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/praccpp-003-whatisbuild/">대충보는 C&#43;&#43; &amp; CMake - 3. 빌드, 컴파일, 링크</a></li>
+      
+      <li><a href="/praccpp-002-envtest/">대충보는 C&#43;&#43; &amp; CMake - 2. 실습환경 테스트하기</a></li>
+      
+      <li><a href="/praccpp-001-envsetting/">대충보는 C&#43;&#43; &amp; CMake - 1. 실습환경 만들기</a></li>
+      
+      <li><a href="/vscode-msvc/">Visual Studio Code에서 MSVC 기반 C&#43;&#43;, CMake 환경 설정하기</a></li>
+      
+      <li><a href="/vscode-cmake/">Visual Studio Code에서 CMake 환경 설정하기</a></li>
+      
+    </ul>
+  </div>
   
 
 
