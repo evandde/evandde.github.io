@@ -252,6 +252,13 @@ int main()
       <guid>https://evandde.github.io/praccpp-001-envsetting/</guid>
       <description>&lt;p&gt;&lt;b&gt;Windows 10&lt;/b&gt; 환경에서 Microsoft Visual C++ (MSVC)를 이용하여 C++ 및 CMake 개발 환경을 구축하고 VSCode를 설치하여 연동하는 방법을 살펴봅니다.&lt;/p&gt;
 &lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;MSVC 설치&lt;/li&gt;
+&lt;li&gt;VSCode 설치&lt;/li&gt;
+&lt;li&gt;VSCode Extension (C/C++, CMake Tools, CMake) 설치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
 &lt;h2 id=&#34;microsoft-visual-c-설치&#34;&gt;Microsoft Visual C++ 설치&lt;/h2&gt;
 &lt;h3 id=&#34;다운로드&#34;&gt;다운로드&lt;/h3&gt;
 &lt;p&gt;현재 시점에서 최신 버전에 해당하는, &lt;b&gt;Visual Studio 2022용 Build Tools&lt;/b&gt;를 다운로드 받겠습니다.&lt;/p&gt;
@@ -639,18 +646,11 @@ int main()
 &lt;hr&gt;
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;2021-09-24: 최초 게시&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2021-10-06: 필수 Extension 설치 내용 추가&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2021-10-21: Code 실행 시 Developer PowerShell for VS 2019를 통해 실행할 필요가 없어서, 해당 내용 삭제&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2021-11-10: Visual Studio 2022 버전 출시에 따른 내용 수정&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;2021-09-24: 최초 게시&lt;/li&gt;
+&lt;li&gt;2021-10-06: 필수 Extension 설치 내용 추가&lt;/li&gt;
+&lt;li&gt;2021-10-21: Code 실행 시 Developer PowerShell for VS 2019를 통해 실행할 필요가 없어서, 해당 내용 삭제&lt;/li&gt;
+&lt;li&gt;2021-11-10: Visual Studio 2022 버전 출시에 따른 내용 수정&lt;/li&gt;
+&lt;li&gt;2021-11-11: TL;DR 추가&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     
@@ -660,6 +660,12 @@ int main()
       <pubDate>Wed, 06 Oct 2021 17:01:14 +0900</pubDate>
       <guid>https://evandde.github.io/praccpp-002-envtest/</guid>
       <description>&lt;p&gt;앞서 구축한 실습 환경이 제대로 동작하는지 테스트 해봅시다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;VSCode - CMake Tools Extension이 제공하는 CMake: Quick Start로 Hello World 프로젝트 만들기&lt;/li&gt;
+&lt;li&gt;VSCode로 프로젝트 실행&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;작업공간-만들기&#34;&gt;작업공간 만들기&lt;/h2&gt;
 &lt;p&gt;일단, &lt;strong&gt;작업을 진행할 폴더를 자유롭게 하나 준비&lt;/strong&gt;합니다. 저는 &lt;code&gt;C:\&lt;/code&gt; 하위에 &lt;code&gt;cpp\helloworld&lt;/code&gt;라는 폴더를 만들고, 여기서 작업을 진행해보도록 하겠습니다. 즉, &lt;strong&gt;제 작업공간의 경로&lt;/strong&gt;는 &lt;code&gt;C:\cpp\helloworld&lt;/code&gt; 입니다.&lt;/p&gt;
@@ -1069,6 +1075,7 @@ int main()
 &lt;li&gt;2021-10-12: 최초 게시&lt;/li&gt;
 &lt;li&gt;2021-10-21: Code 실행 시 Developer PowerShell for VS 2019를 통해 실행할 필요가 없어서, 해당 내용 삭제&lt;/li&gt;
 &lt;li&gt;2021-11-10: Visual Studio 2022 버전 출시에 따른 내용 수정&lt;/li&gt;
+&lt;li&gt;2021-11-11: TL;DR 추가&lt;/li&gt;
 &lt;/ul&gt;
 &lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
@@ -1085,8 +1092,15 @@ int main()
       <link>https://evandde.github.io/praccpp-000-env_general/</link>
       <pubDate>Wed, 10 Nov 2021 20:50:10 +0900</pubDate>
       <guid>https://evandde.github.io/praccpp-000-env_general/</guid>
-      <description>&lt;p&gt;이 글에서는 MSVC + VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.&lt;/p&gt;
-&lt;p&gt;앞서 예시로 보여드린 MSVC + VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다.&lt;/p&gt;
+      <description>&lt;p&gt;이 글에서는 MSVC &amp;amp; VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.&lt;/p&gt;
+&lt;p&gt;앞서 예시로 보여드린 MSVC &amp;amp; VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Hello World 프로젝트용 파일 준비 (&lt;code&gt;main.cpp&lt;/code&gt;, &lt;code&gt;CMakeLists.txt&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;C++ 빌드 도구, CMake, IDE 사용환경 준비&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;helloworld.exe&lt;/code&gt; 실행해보기&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;예제-코드-준비&#34;&gt;예제 코드 준비&lt;/h2&gt;
 &lt;p&gt;앞서 &lt;a href=&#34;https://evandde.github.io/praccpp-002-envtest/&#34;&gt;실습환경 테스트하기&lt;/a&gt;에서 CMake: Quick Start를 통해 만든 파일들과 동일한 파일을 준비하면 됩니다.&lt;/p&gt;
@@ -1147,6 +1161,7 @@ cmake --build . --config Release
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-11-10: 최초 게시&lt;/li&gt;
+&lt;li&gt;2021-11-11: TL;DR 추가&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     
@@ -1156,6 +1171,13 @@ cmake --build . --config Release
       <pubDate>Wed, 10 Nov 2021 16:32:26 +0900</pubDate>
       <guid>https://evandde.github.io/praccpp-003-whatisbuild/</guid>
       <description>&lt;p&gt;이 글에서는 &lt;b&gt;빌드&lt;/b&gt;/&lt;b&gt;컴파일&lt;/b&gt;/&lt;b&gt;링크&lt;/b&gt;가 무엇인지 알아봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;컴파일은 번역하는 과정, 링크는 번역된 파일을 묶는 과정, 그리고 빌드는 컴파일과 링크를 합쳐서 부르는 것&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main.cpp&lt;/code&gt; 파일이 프로그램의 실질적 동작을 설명하는 C++로 된 코드&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;build&lt;/code&gt; 폴더는 빌드를 통해 나온 결과물이 담긴 폴더&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;용어-설명&#34;&gt;용어 설명&lt;/h2&gt;
 &lt;h3 id=&#34;컴파일&#34;&gt;컴파일&lt;/h3&gt;
@@ -1209,6 +1231,7 @@ cmake --build . --config Release
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-11-10: 최초 게시&lt;/li&gt;
+&lt;li&gt;2021-11-11: TL;DR 추가&lt;/li&gt;
 &lt;/ul&gt;
 &lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;

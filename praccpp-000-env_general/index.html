@@ -30,8 +30,8 @@
   
     
   
-  <meta name="description" content="이 글에서는 MSVC &#43; VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.
-앞서 예시로 보여드린 MSVC &#43; VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다." />
+  <meta name="description" content="이 글에서는 MSVC &amp; VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.
+앞서 예시로 보여드린 MSVC &amp; VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다." />
 
   
   <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/praccpp-000-env_general/" />
@@ -302,8 +302,8 @@
   <meta property="og:site_name" content="EvaNote" />
   <meta property="og:url" content="https://evandde.github.io/praccpp-000-env_general/" />
   <meta property="og:title" content="대충보는 C&#43;&#43; &amp; CMake - *. 실습환경 만들기(VSCode를 안쓰는 경우) | EvaNote" />
-  <meta property="og:description" content="이 글에서는 MSVC &#43; VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.
-앞서 예시로 보여드린 MSVC &#43; VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:description" content="이 글에서는 MSVC &amp; VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.
+앞서 예시로 보여드린 MSVC &amp; VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
   
     
@@ -807,6 +807,7 @@
 
       <nav id="TableOfContents">
   <ul>
+    <li><a href="#tldr">TL;DR</a></li>
     <li><a href="#예제-코드-준비">예제 코드 준비</a></li>
     <li><a href="#c-빌드-도구">C++ 빌드 도구</a></li>
     <li><a href="#cmake">CMake</a></li>
@@ -883,8 +884,15 @@
           <h1>대충보는 C&#43;&#43; &amp; CMake - *. 실습환경 만들기(VSCode를 안쓰는 경우)</h1>
 
           <div class="article-style">
-            <p>이 글에서는 MSVC + VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.</p>
-<p>앞서 예시로 보여드린 MSVC + VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다.</p>
+            <p>이 글에서는 MSVC &amp; VSCode 환경을 사용하지 않는 분들이 향후 수업을 따라오기 위해 어떻게 준비해야 하는지를 다룹니다.</p>
+<p>앞서 예시로 보여드린 MSVC &amp; VSCode 환경을 그대로 따라서 사용하신다면 굳이 이 글을 읽지 않아도 괜찮습니다.</p>
+<hr>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Hello World 프로젝트용 파일 준비 (<code>main.cpp</code>, <code>CMakeLists.txt</code>)</li>
+<li>C++ 빌드 도구, CMake, IDE 사용환경 준비</li>
+<li><code>helloworld.exe</code> 실행해보기</li>
+</ul>
 <hr>
 <h2 id="예제-코드-준비">예제 코드 준비</h2>
 <p>앞서 <a href="https://evandde.github.io/praccpp-002-envtest/">실습환경 테스트하기</a>에서 CMake: Quick Start를 통해 만든 파일들과 동일한 파일을 준비하면 됩니다.</p>
@@ -945,6 +953,7 @@ cmake --build . --config Release
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li>2021-11-10: 최초 게시</li>
+<li>2021-11-11: TL;DR 추가</li>
 </ul>
           </div>
 
