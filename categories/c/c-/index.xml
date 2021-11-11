@@ -1225,9 +1225,6 @@ cmake --build . --config Release
 &lt;p&gt;&lt;code&gt;.vscode&lt;/code&gt; 폴더는 &lt;b&gt;VSCode라는 IDE를 사용할 때의 설정 값 등이 저장되는 폴더&lt;/b&gt;로, CMake 기반의 프로젝트와는 아무런 관계가 없는 폴더입니다.&lt;/p&gt;
 &lt;p&gt;나중에 여러가지 설정을 조정할 때 쓰일 일이 있으니, 그 때 다시 살펴보겠습니다.&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
-&lt;p&gt;일단 이론은 간단하게 여기까지만 하도록 하죠. 다음 글에서 뵙겠습니다.&lt;/p&gt;
-&lt;hr&gt;
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-11-10: 최초 게시&lt;/li&gt;
