@@ -14302,7 +14302,7 @@ new G4PVPlacement(G4Rotate3D(phantomRot) * G4Translate3D(phantomPos),
 // ...    
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 {
-    fPrimary-&amp;gt;SetParticle(G4Gamma::Definition()); // Set primary as gamma    
+    fPrimary-&amp;gt;SetParticleDefinition(G4Gamma::Definition()); // Set primary as gamma    
 
     fPrimary-&amp;gt;GeneratePrimaryVertex(anEvent);
 }

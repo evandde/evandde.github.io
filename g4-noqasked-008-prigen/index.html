@@ -1124,7 +1124,7 @@
 // ...    
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 {
-    fPrimary-&gt;SetParticle(G4Gamma::Definition()); // Set primary as gamma    
+    fPrimary-&gt;SetParticleDefinition(G4Gamma::Definition()); // Set primary as gamma    
 
     fPrimary-&gt;GeneratePrimaryVertex(anEvent);
 }
