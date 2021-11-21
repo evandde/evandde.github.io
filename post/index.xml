@@ -13,6 +13,258 @@
     </image>
     
     <item>
+      <title>Windows용 패키지 관리자 Winget 설치 및 이용하기</title>
+      <link>https://evandde.github.io/winget/</link>
+      <pubDate>Sun, 21 Nov 2021 17:31:37 +0900</pubDate>
+      <guid>https://evandde.github.io/winget/</guid>
+      <description>&lt;p&gt;Microsoft에서 정식으로 개발한 Windows용 패키지 관리자 &lt;strong&gt;Winget&lt;/strong&gt;을 설치하고 이용하는 방법에 대해 알아봅니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/microsoft/winget-cli&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Winget&lt;/a&gt;은 Linux에서의 &lt;a href=&#34;https://salsa.debian.org/apt-team/apt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;apt(apt-get)&lt;/a&gt;, &lt;a href=&#34;http://yum.baseurl.org/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;yum&lt;/a&gt;이나 macOS에서의 &lt;a href=&#34;https://brew.sh/index_ko.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Homebrew&lt;/a&gt;처럼 패키지를 설치/업데이트/제거 등 관리하는 데에 사용하는 Windows용 프로그램입니다. 기존에도 서드파티에서 개발하여 Windows용 패키지 관리자로 사용되던 &lt;a href=&#34;https://chocolatey.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chocolatey&lt;/a&gt;나 &lt;a href=&#34;https://scoop.sh/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scoop&lt;/a&gt;등이 있었습니다만, &lt;strong&gt;Winget&lt;/strong&gt;은 MS 공식 개발한 것이라는 점에서 의의가 크다고 하겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;winget-설치하기&#34;&gt;Winget 설치하기&lt;/h2&gt;
+&lt;h3 id=&#34;요구사항&#34;&gt;요구사항&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows 10 1709(빌드 16299) 이상 / 혹은 Windows 11&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;설치-방법&#34;&gt;설치 방법&lt;/h3&gt;
+&lt;p&gt;이전에는 안정 버전이 나오지 않아 github 등에서 받는게 편했습니다만, 이제는 MS Store에서 손쉽게 설치가 가능합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;[WIN]+[S]를 눌러 검색창을 띄웁니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;microsoft store&lt;/code&gt;를 검색하여 &lt;strong&gt;Microsoft Store&lt;/strong&gt; 어플리케이션을 실행합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_msstore&#34; srcset=&#34;
+               /winget/01_msstore_hu272532b1b19756baa059d406a35b1431_68993_c95e19d31fc6d0f93697cc80bfe44171.png 400w,
+               /winget/01_msstore_hu272532b1b19756baa059d406a35b1431_68993_6475e67a19f087d82a2ecf29e7b281b3.png 760w,
+               /winget/01_msstore_hu272532b1b19756baa059d406a35b1431_68993_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/winget/01_msstore_hu272532b1b19756baa059d406a35b1431_68993_c95e19d31fc6d0f93697cc80bfe44171.png&#34;
+               width=&#34;760&#34;
+               height=&#34;621&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;검색창에 &lt;code&gt;app installer&lt;/code&gt;를 검색하여 &lt;strong&gt;앱 설치 관리자&lt;/strong&gt;를 다운로드합니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_msstore&#34; srcset=&#34;
+               /winget/02_msstore_hu8177803e43a5ebdf824d073acd036292_83645_9ddf2868ca31ffcd444b43d5c1a31848.png 400w,
+               /winget/02_msstore_hu8177803e43a5ebdf824d073acd036292_83645_d9dfe3f60f97d722f28cd7defdafa645.png 760w,
+               /winget/02_msstore_hu8177803e43a5ebdf824d073acd036292_83645_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/winget/02_msstore_hu8177803e43a5ebdf824d073acd036292_83645_9ddf2868ca31ffcd444b43d5c1a31848.png&#34;
+               width=&#34;760&#34;
+               height=&#34;590&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;winget-이용하기&#34;&gt;Winget 이용하기&lt;/h2&gt;
+&lt;h3 id=&#34;기본&#34;&gt;기본&lt;/h3&gt;
+&lt;p&gt;Winget이 설치되면, &lt;strong&gt;cmd&lt;/strong&gt;나 &lt;strong&gt;PowerShell&lt;/strong&gt;에서 &lt;code&gt;winget&lt;/code&gt; 명령어를 통해 사용할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;winget -?&lt;/code&gt;를 입력하여 winget 뒤에 연이어 사용가능한 명령어에 대한 설명을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;winget &amp;lt;command&amp;gt; -?&lt;/code&gt;를 입력하여, winget의 &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt; 뒤에 연이어 사용 가능한 옵션에 대한 설명을 확인할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;패키지-검색하기&#34;&gt;패키지 검색하기&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;winget search &amp;lt;appname&amp;gt;&lt;/code&gt;을 입력하여 패키지를 검색할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;winget search powertoys
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_winget_search&#34; srcset=&#34;
+               /winget/03_winget_search_hu4122bc7419da285169c470ea54b645b3_13353_f5d1f442994a212ae30d432401f6f031.png 400w,
+               /winget/03_winget_search_hu4122bc7419da285169c470ea54b645b3_13353_39e753476186a25ea709c4434cb04886.png 760w,
+               /winget/03_winget_search_hu4122bc7419da285169c470ea54b645b3_13353_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/winget/03_winget_search_hu4122bc7419da285169c470ea54b645b3_13353_f5d1f442994a212ae30d432401f6f031.png&#34;
+               width=&#34;314&#34;
+               height=&#34;106&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;검색할내용과 정확하게 일치하는 항목만 출력하기: &lt;code&gt;-e&lt;/code&gt; (&lt;code&gt;--exact&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;ID를 기준으로 결과 필터링: &lt;code&gt;--id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;이름을 기준으로 결과 필터링: &lt;code&gt;--name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;지정된 개수를 넘지 않는 결과 표시: &lt;code&gt;-n&lt;/code&gt; (&lt;code&gt;--count&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;패키지-설치하기&#34;&gt;패키지 설치하기&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;winget install &amp;lt;appname&amp;gt;&lt;/code&gt;을 입력하여 패키지를 설치할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;winget install powertoys
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_winget_install&#34; srcset=&#34;
+               /winget/04_winget_install_hu9dfd7777c9556d1217be099c5570b6d0_20392_abcc815be2ead7058f41e7f12f29e7b1.png 400w,
+               /winget/04_winget_install_hu9dfd7777c9556d1217be099c5570b6d0_20392_f26590474ee20e128132bb01b86294e7.png 760w,
+               /winget/04_winget_install_hu9dfd7777c9556d1217be099c5570b6d0_20392_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/winget/04_winget_install_hu9dfd7777c9556d1217be099c5570b6d0_20392_abcc815be2ead7058f41e7f12f29e7b1.png&#34;
+               width=&#34;427&#34;
+               height=&#34;143&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;검색할내용과 정확하게 일치하는 항목을 설치하기: &lt;code&gt;-e&lt;/code&gt; (&lt;code&gt;--exact&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;ID를 기준으로 결과 필터링: &lt;code&gt;--id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;이름을 기준으로 결과 필터링: &lt;code&gt;--name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;지정된 버전을 사용: &lt;code&gt;-v&lt;/code&gt; (&lt;code&gt;--version&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;설치한-패키지-목록-보기&#34;&gt;설치한 패키지 목록 보기&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;winget list&lt;/code&gt;를 입력하여 현재 컴퓨터에 설치된 패키지 목록을 확인할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;winget list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;05_winget_list&#34; srcset=&#34;
+               /winget/05_winget_list_hu14a4e76271d0b171ef6414aae12d1795_22945_5d3758acc739919f662bb345b846d734.png 400w,
+               /winget/05_winget_list_hu14a4e76271d0b171ef6414aae12d1795_22945_86ce4c4f82168d59758fe48d9ee56d7a.png 760w,
+               /winget/05_winget_list_hu14a4e76271d0b171ef6414aae12d1795_22945_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/winget/05_winget_list_hu14a4e76271d0b171ef6414aae12d1795_22945_5d3758acc739919f662bb345b846d734.png&#34;
+               width=&#34;760&#34;
+               height=&#34;161&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;여기서, 원본(source)이 &lt;strong&gt;winget&lt;/strong&gt;으로 된 것이 &lt;strong&gt;winget을 통해 설치한 항목&lt;/strong&gt;입니다.&lt;/p&gt;
+&lt;p&gt;또한, 버전(version)과 사용 가능(Available)을 확인하여, upgrade 가능한 항목을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;출력되는 목록을 원본(source) 이름으로 제한: &lt;code&gt;-s&lt;/code&gt; (&lt;code&gt;--source&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;검색할내용과 정확하게 일치하는 항목을 설치하기: &lt;code&gt;-e&lt;/code&gt; (&lt;code&gt;--exact&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;ID를 기준으로 결과 필터링: &lt;code&gt;--id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;이름을 기준으로 결과 필터링: &lt;code&gt;--name&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;패키지-업그레이드최신화-하기&#34;&gt;패키지 업그레이드(최신화) 하기&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;winget upgrade &amp;lt;appname&amp;gt;&lt;/code&gt;을 입력하여 패키지를 업그레이드(최신화)할 수 있습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;winget upgrade bandizip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;06_winget_upgrade&#34; srcset=&#34;
+               /winget/06_winget_upgrade_hu786ea34a99fc4b65146c01c930f19df9_17226_ece73b3e2fef9cccdae933b0a80d310a.png 400w,
+               /winget/06_winget_upgrade_hu786ea34a99fc4b65146c01c930f19df9_17226_0d427bd117078b576800c0f4c29973d3.png 760w,
+               /winget/06_winget_upgrade_hu786ea34a99fc4b65146c01c930f19df9_17226_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/winget/06_winget_upgrade_hu786ea34a99fc4b65146c01c930f19df9_17226_ece73b3e2fef9cccdae933b0a80d310a.png&#34;
+               width=&#34;729&#34;
+               height=&#34;194&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;검색할내용과 정확하게 일치하는 항목을 설치하기: &lt;code&gt;-e&lt;/code&gt; (&lt;code&gt;--exact&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;ID를 기준으로 결과 필터링: &lt;code&gt;--id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;이름을 기준으로 결과 필터링: &lt;code&gt;--name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;지정된 버전으로 업그레이드: &lt;code&gt;-v&lt;/code&gt; (&lt;code&gt;--version&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;사용 가능한 모든 패키지를 최신화: &lt;code&gt;--all&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/ko-kr/windows/package-manager/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Windows 패키지 관리자 | Microsoft Docs&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>BIT Hacks - 자연수 승수 계산을 비트연산으로 빠르게 하는 법</title>
       <link>https://evandde.github.io/bithacks-power/</link>
       <pubDate>Fri, 24 Sep 2021 14:21:45 +0900</pubDate>
@@ -7991,258 +8243,6 @@ Add-Content -Path $profile -Value &#39;$env:LC_ALL=&#39;&#39;C.UTF-8&#39;&#39;&#
 &lt;p&gt;&lt;a href=&#34;https://chocolatey.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://chocolatey.org/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/chocolatey/choco/wiki&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/chocolatey/choco/wiki&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://chocolatey.org/docs/commands-reference&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://chocolatey.org/docs/commands-reference&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Windows용 패키지 관리자 Winget 설치 및 이용하기</title>
-      <link>https://evandde.github.io/winget/</link>
-      <pubDate>Sun, 21 Nov 2021 17:31:37 +0900</pubDate>
-      <guid>https://evandde.github.io/winget/</guid>
-      <description>&lt;p&gt;Microsoft에서 정식으로 개발한 Windows용 패키지 관리자 &lt;strong&gt;Winget&lt;/strong&gt;을 설치하고 이용하는 방법에 대해 알아봅니다.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/microsoft/winget-cli&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Winget&lt;/a&gt;은 Linux에서의 &lt;a href=&#34;https://salsa.debian.org/apt-team/apt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;apt(apt-get)&lt;/a&gt;, &lt;a href=&#34;http://yum.baseurl.org/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;yum&lt;/a&gt;이나 macOS에서의 &lt;a href=&#34;https://brew.sh/index_ko.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Homebrew&lt;/a&gt;처럼 패키지를 설치/업데이트/제거 등 관리하는 데에 사용하는 Windows용 프로그램입니다. 기존에도 서드파티에서 개발하여 Windows용 패키지 관리자로 사용되던 &lt;a href=&#34;https://chocolatey.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chocolatey&lt;/a&gt;나 &lt;a href=&#34;https://scoop.sh/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scoop&lt;/a&gt;등이 있었습니다만, &lt;strong&gt;Winget&lt;/strong&gt;은 MS 공식 개발한 것이라는 점에서 의의가 크다고 하겠습니다.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;winget-설치하기&#34;&gt;Winget 설치하기&lt;/h2&gt;
-&lt;h3 id=&#34;요구사항&#34;&gt;요구사항&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Windows 10 1709(빌드 16299) 이상 / 혹은 Windows 11&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;설치-방법&#34;&gt;설치 방법&lt;/h3&gt;
-&lt;p&gt;이전에는 안정 버전이 나오지 않아 github 등에서 받는게 편했습니다만, 이제는 MS Store에서 손쉽게 설치가 가능합니다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;[WIN]+[S]를 눌러 검색창을 띄웁니다.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;microsoft store&lt;/code&gt;를 검색하여 &lt;strong&gt;Microsoft Store&lt;/strong&gt; 어플리케이션을 실행합니다.&lt;/p&gt;
-&lt;p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_msstore&#34; srcset=&#34;
-               /winget/01_msstore_hu272532b1b19756baa059d406a35b1431_68993_c95e19d31fc6d0f93697cc80bfe44171.png 400w,
-               /winget/01_msstore_hu272532b1b19756baa059d406a35b1431_68993_6475e67a19f087d82a2ecf29e7b281b3.png 760w,
-               /winget/01_msstore_hu272532b1b19756baa059d406a35b1431_68993_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/winget/01_msstore_hu272532b1b19756baa059d406a35b1431_68993_c95e19d31fc6d0f93697cc80bfe44171.png&#34;
-               width=&#34;760&#34;
-               height=&#34;621&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;검색창에 &lt;code&gt;app installer&lt;/code&gt;를 검색하여 &lt;strong&gt;앱 설치 관리자&lt;/strong&gt;를 다운로드합니다.&lt;/p&gt;
-&lt;p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_msstore&#34; srcset=&#34;
-               /winget/02_msstore_hu8177803e43a5ebdf824d073acd036292_83645_9ddf2868ca31ffcd444b43d5c1a31848.png 400w,
-               /winget/02_msstore_hu8177803e43a5ebdf824d073acd036292_83645_d9dfe3f60f97d722f28cd7defdafa645.png 760w,
-               /winget/02_msstore_hu8177803e43a5ebdf824d073acd036292_83645_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/winget/02_msstore_hu8177803e43a5ebdf824d073acd036292_83645_9ddf2868ca31ffcd444b43d5c1a31848.png&#34;
-               width=&#34;760&#34;
-               height=&#34;590&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;winget-이용하기&#34;&gt;Winget 이용하기&lt;/h2&gt;
-&lt;h3 id=&#34;기본&#34;&gt;기본&lt;/h3&gt;
-&lt;p&gt;Winget이 설치되면, &lt;strong&gt;cmd&lt;/strong&gt;나 &lt;strong&gt;PowerShell&lt;/strong&gt;에서 &lt;code&gt;winget&lt;/code&gt; 명령어를 통해 사용할 수 있습니다.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;winget -?&lt;/code&gt;를 입력하여 winget 뒤에 연이어 사용가능한 명령어에 대한 설명을 확인할 수 있습니다.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;winget &amp;lt;command&amp;gt; -?&lt;/code&gt;를 입력하여, winget의 &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt; 뒤에 연이어 사용 가능한 옵션에 대한 설명을 확인할 수 있습니다.&lt;/p&gt;
-&lt;h3 id=&#34;패키지-검색하기&#34;&gt;패키지 검색하기&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;winget search &amp;lt;appname&amp;gt;&lt;/code&gt;을 입력하여 패키지를 검색할 수 있습니다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;winget search powertoys
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_winget_search&#34; srcset=&#34;
-               /winget/03_winget_search_hu4122bc7419da285169c470ea54b645b3_13353_f5d1f442994a212ae30d432401f6f031.png 400w,
-               /winget/03_winget_search_hu4122bc7419da285169c470ea54b645b3_13353_39e753476186a25ea709c4434cb04886.png 760w,
-               /winget/03_winget_search_hu4122bc7419da285169c470ea54b645b3_13353_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/winget/03_winget_search_hu4122bc7419da285169c470ea54b645b3_13353_f5d1f442994a212ae30d432401f6f031.png&#34;
-               width=&#34;314&#34;
-               height=&#34;106&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/p&gt;
-&lt;p&gt;추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;검색할내용과 정확하게 일치하는 항목만 출력하기: &lt;code&gt;-e&lt;/code&gt; (&lt;code&gt;--exact&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;ID를 기준으로 결과 필터링: &lt;code&gt;--id&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;이름을 기준으로 결과 필터링: &lt;code&gt;--name&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;지정된 개수를 넘지 않는 결과 표시: &lt;code&gt;-n&lt;/code&gt; (&lt;code&gt;--count&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;패키지-설치하기&#34;&gt;패키지 설치하기&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;winget install &amp;lt;appname&amp;gt;&lt;/code&gt;을 입력하여 패키지를 설치할 수 있습니다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;winget install powertoys
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_winget_install&#34; srcset=&#34;
-               /winget/04_winget_install_hu9dfd7777c9556d1217be099c5570b6d0_20392_abcc815be2ead7058f41e7f12f29e7b1.png 400w,
-               /winget/04_winget_install_hu9dfd7777c9556d1217be099c5570b6d0_20392_f26590474ee20e128132bb01b86294e7.png 760w,
-               /winget/04_winget_install_hu9dfd7777c9556d1217be099c5570b6d0_20392_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/winget/04_winget_install_hu9dfd7777c9556d1217be099c5570b6d0_20392_abcc815be2ead7058f41e7f12f29e7b1.png&#34;
-               width=&#34;427&#34;
-               height=&#34;143&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/p&gt;
-&lt;p&gt;추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;검색할내용과 정확하게 일치하는 항목을 설치하기: &lt;code&gt;-e&lt;/code&gt; (&lt;code&gt;--exact&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;ID를 기준으로 결과 필터링: &lt;code&gt;--id&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;이름을 기준으로 결과 필터링: &lt;code&gt;--name&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;지정된 버전을 사용: &lt;code&gt;-v&lt;/code&gt; (&lt;code&gt;--version&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;설치한-패키지-목록-보기&#34;&gt;설치한 패키지 목록 보기&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;winget list&lt;/code&gt;를 입력하여 현재 컴퓨터에 설치된 패키지 목록을 확인할 수 있습니다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;winget list
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;05_winget_list&#34; srcset=&#34;
-               /winget/05_winget_list_hu14a4e76271d0b171ef6414aae12d1795_22945_5d3758acc739919f662bb345b846d734.png 400w,
-               /winget/05_winget_list_hu14a4e76271d0b171ef6414aae12d1795_22945_86ce4c4f82168d59758fe48d9ee56d7a.png 760w,
-               /winget/05_winget_list_hu14a4e76271d0b171ef6414aae12d1795_22945_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/winget/05_winget_list_hu14a4e76271d0b171ef6414aae12d1795_22945_5d3758acc739919f662bb345b846d734.png&#34;
-               width=&#34;760&#34;
-               height=&#34;161&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/p&gt;
-&lt;p&gt;여기서, 원본(source)이 &lt;strong&gt;winget&lt;/strong&gt;으로 된 것이 &lt;strong&gt;winget을 통해 설치한 항목&lt;/strong&gt;입니다.&lt;/p&gt;
-&lt;p&gt;또한, 버전(version)과 사용 가능(Available)을 확인하여, upgrade 가능한 항목을 확인할 수 있습니다.&lt;/p&gt;
-&lt;p&gt;추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;출력되는 목록을 원본(source) 이름으로 제한: &lt;code&gt;-s&lt;/code&gt; (&lt;code&gt;--source&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;검색할내용과 정확하게 일치하는 항목을 설치하기: &lt;code&gt;-e&lt;/code&gt; (&lt;code&gt;--exact&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;ID를 기준으로 결과 필터링: &lt;code&gt;--id&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;이름을 기준으로 결과 필터링: &lt;code&gt;--name&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;패키지-업그레이드최신화-하기&#34;&gt;패키지 업그레이드(최신화) 하기&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;winget upgrade &amp;lt;appname&amp;gt;&lt;/code&gt;을 입력하여 패키지를 업그레이드(최신화)할 수 있습니다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;winget upgrade bandizip
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;06_winget_upgrade&#34; srcset=&#34;
-               /winget/06_winget_upgrade_hu786ea34a99fc4b65146c01c930f19df9_17226_ece73b3e2fef9cccdae933b0a80d310a.png 400w,
-               /winget/06_winget_upgrade_hu786ea34a99fc4b65146c01c930f19df9_17226_0d427bd117078b576800c0f4c29973d3.png 760w,
-               /winget/06_winget_upgrade_hu786ea34a99fc4b65146c01c930f19df9_17226_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/winget/06_winget_upgrade_hu786ea34a99fc4b65146c01c930f19df9_17226_ece73b3e2fef9cccdae933b0a80d310a.png&#34;
-               width=&#34;729&#34;
-               height=&#34;194&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/p&gt;
-&lt;p&gt;추가적으로 다음과 같은 옵션을 사용할 수도 있습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;검색할내용과 정확하게 일치하는 항목을 설치하기: &lt;code&gt;-e&lt;/code&gt; (&lt;code&gt;--exact&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;ID를 기준으로 결과 필터링: &lt;code&gt;--id&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;이름을 기준으로 결과 필터링: &lt;code&gt;--name&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;지정된 버전으로 업그레이드: &lt;code&gt;-v&lt;/code&gt; (&lt;code&gt;--version&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;사용 가능한 모든 패키지를 최신화: &lt;code&gt;--all&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/ko-kr/windows/package-manager/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Windows 패키지 관리자 | Microsoft Docs&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>
