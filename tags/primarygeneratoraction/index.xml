@@ -737,7 +737,7 @@ G4ThreeVector G4RandomDirection(G4double cosTheta);
 &lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;최종-파일-다운받는-법&#34;&gt;최종 파일 다운받는 법&lt;/h2&gt;
-&lt;p&gt;이번 글에서 작성한 코드는 &lt;a href=&#34;https://github.com/evandde/g4_minimal/archive/a15e944fa685c9f8e11dcfa1849826fe3d959194.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;를 통해 다운받을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이번 글에서 작성한 코드는 &lt;a href=&#34;https://github.com/evandde/g4_minimal/archive/e9016a9ad32b755390ef66c16bb89557c7cc7119.zip&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;를 통해 다운받을 수 있습니다.&lt;/p&gt;
 &lt;p&gt;혹은 git repository를 clone하신 분의 경우에는, example branch의 이전 커밋 중 V2 PriGen이라는 커밋을 참고하셔도 됩니다.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;

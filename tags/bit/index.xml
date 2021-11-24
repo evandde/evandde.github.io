@@ -70,9 +70,9 @@
 &lt;p&gt;$$
 \begin{equation}
 \begin{aligned}
-a^n &amp;amp; = a^{\sum_{i=0} b_i 2^i} \\
-&amp;amp; = \prod_{i=0} {a^{b_i 2^i}} \text{ (} \because x^{m+n} = x^m x^n \text{)} \\
-&amp;amp; = \prod_{i=0} ({a^{2^i}})^{b_i} \text{ (} \because x^{mn} = (x^m)^n \text{)} \\
+a^n &amp;amp; = a^{\sum_{i=0} b_i 2^i} \\&lt;br&gt;
+&amp;amp; = \prod_{i=0} {a^{b_i 2^i}} \text{ (} \because x^{m+n} = x^m x^n \text{)} \\&lt;br&gt;
+&amp;amp; = \prod_{i=0} ({a^{2^i}})^{b_i} \text{ (} \because x^{mn} = (x^m)^n \text{)} \\&lt;br&gt;
 &amp;amp; = (b_0 \times a) \times (b_1 \times a^2) \times (b_2 \times (a^2)^2) \times (b_3 \times ((a^2)^2)^2) \times &amp;hellip;
 \end{aligned}
 \end{equation}
