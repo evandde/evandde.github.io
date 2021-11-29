@@ -1082,7 +1082,7 @@ void SetTargetVolume(G4String targetVolName, G4double margin = 0.);
 <pre><code class="language-cpp">void SetTargetVolumeMargin(G4double margin);
 </code></pre>
 <p>만약 해당 기능을 해제하여 사용하지 않고자 하는 경우에는, SetTargetVolume() 함수의 입력인자로 <code>nullptr</code>을 넣어주시면 됩니다.</p>
-<p>이 기능은 선원의 위치를 지정하므로, SetParticleMomentumDirection() 함수와 기능상 충돌합니다. 만약 SetTargetVolume() 함수를 통해 유효한 G4VPhysicalVolume 객체로 선원항이 설정된 상태라면, <b>SetParticleMomentumDirection() 함수를 무시하고 이 함수로 설정된 지오메트리를 우선</b>합니다. 이를 원치 않는다면 반드시 SetTargetVolume() 함수의 기능을 해제하셔야 합니다.</p>
+<p>이 기능은 선원의 방향을 지정하므로, SetParticleMomentumDirection() 함수와 기능상 충돌합니다. 만약 SetTargetVolume() 함수를 통해 유효한 G4VPhysicalVolume 객체로 선원항이 설정된 상태라면, <b>SetParticleMomentumDirection() 함수를 무시하고 이 함수로 설정된 지오메트리를 우선</b>합니다. 이를 원치 않는다면 반드시 SetTargetVolume() 함수의 기능을 해제하셔야 합니다.</p>
 <p>AdvancedParticleGun 클래스의 멤버함수인 GetTargetVolume() 함수를 사용하면, 현재 설정된 타겟 지오메트리의 G4VPhysicalVolume 클래스 객체의 포인터를 확인할 수 있습니다. 이 함수의 원형은 다음과 같습니다.</p>
 <pre><code class="language-cpp">G4VPhysicalVolume *GetTargetVolume() const;
 </code></pre>
