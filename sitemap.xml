@@ -128,6 +128,9 @@
     <loc>https://evandde.github.io/course/g4install/ubuntu/</loc>
     <lastmod>2021-09-04T10:14:50+09:00</lastmod>
   </url><url>
+    <loc>https://evandde.github.io/praccpp-004-whatisinclude/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
     <loc>https://evandde.github.io/g4install-106p2-ubt2004/</loc>
     <lastmod>2020-11-01T16:17:56+09:00</lastmod>
   </url><url>
@@ -245,6 +248,30 @@
     <loc>https://evandde.github.io/tags/%ED%95%B5%EC%A2%85/</loc>
     <lastmod>2021-11-25T16:03:52+09:00</lastmod>
   </url><url>
+    <loc>https://evandde.github.io/tags/c-/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/cmake/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/header/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/include/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/preprocessor/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/course/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/%EC%A0%84%EC%B2%98%EB%A6%AC%EA%B8%B0/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
+    <loc>https://evandde.github.io/tags/%ED%97%A4%EB%8D%94%ED%8C%8C%EC%9D%BC/</loc>
+    <lastmod>2021-11-21T19:15:06+09:00</lastmod>
+  </url><url>
     <loc>https://evandde.github.io/tags/howto/</loc>
     <lastmod>2021-11-21T17:31:37+09:00</lastmod>
   </url><url>
@@ -256,15 +283,6 @@
   </url><url>
     <loc>https://evandde.github.io/tags/winget/</loc>
     <lastmod>2021-11-21T17:31:37+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/c-/</loc>
-    <lastmod>2021-11-10T20:50:10+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/tags/cmake/</loc>
-    <lastmod>2021-11-10T20:50:10+09:00</lastmod>
-  </url><url>
-    <loc>https://evandde.github.io/course/</loc>
-    <lastmod>2021-11-10T20:50:10+09:00</lastmod>
   </url><url>
     <loc>https://evandde.github.io/tags/build/</loc>
     <lastmod>2021-11-10T16:32:26+09:00</lastmod>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>header | EvaNote</title>
+    <link>https://evandde.github.io/tags/header/</link>
+      <atom:link href="https://evandde.github.io/tags/header/index.xml" rel="self" type="application/rss+xml" />
+    <description>header</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2021 Evan Kim</copyright><lastBuildDate>Sun, 21 Nov 2021 19:15:06 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>header</title>
+      <link>https://evandde.github.io/tags/header/</link>
+    </image>
+    
+    <item>
+      <title>대충보는 C&#43;&#43; &amp; CMake - 4. #include</title>
+      <link>https://evandde.github.io/praccpp-004-whatisinclude/</link>
+      <pubDate>Sun, 21 Nov 2021 19:15:06 +0900</pubDate>
+      <guid>https://evandde.github.io/praccpp-004-whatisinclude/</guid>
+      <description>&lt;p&gt;이 글에서는 &lt;b&gt;include&lt;/b&gt;의 역할과 &lt;strong&gt;헤더파일&lt;/strong&gt;에 대한 간단한 개념을 알아봅니다.&lt;/p&gt;
+&lt;p&gt;지난 글에서 Helloworld 프로젝트를 구성하는 각 파일/폴더의 역할을 알아보았으니, 이제부터 당분간은 가장 핵심이되는 &lt;code&gt;main.cpp&lt;/code&gt; 파일을 뜯어보겠습니다.&lt;/p&gt;
+&lt;p&gt;이번 글에서는 그 &lt;code&gt;main.cpp&lt;/code&gt; 파일의 첫 줄인 &lt;code&gt;#include &amp;lt;iostream&amp;gt;&lt;/code&gt;에 대한 이야기를 다뤄봅시다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#include&lt;/code&gt;의 역할은 사실상 &lt;b&gt;복사-붙여넣기&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;아무파일에나 쓸 수 있는 건 아니고, &lt;strong&gt;헤더파일&lt;/strong&gt;에만 쓸 수 있음.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;iostream&lt;/code&gt;이라는 헤더파일은 &lt;b&gt;C++ 프로그램에서 기본적인 입력과 출력을 수행하기 위해 필요&lt;/b&gt;한 녀석임&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;include의-역할&#34;&gt;#include의 역할&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;#include&lt;/code&gt;은 &lt;b&gt;파일의 내용을 그대로 복사해서 그 자리에 붙여넣는 기능&lt;/b&gt;을 수행합니다.&lt;/p&gt;
+&lt;p&gt;즉, &lt;code&gt;#include &amp;lt;iostream&amp;gt;&lt;/code&gt;이 수행하는 내용은 &lt;b&gt;iostream이라는 파일의 내용&lt;/b&gt;을 그대로 복사해서, &lt;code&gt;#include &amp;lt;iostream&amp;gt;&lt;/code&gt; &lt;b&gt;줄이 있던 자리에 그대로 바꿔치기&lt;/b&gt;하는 것이지요.&lt;/p&gt;
+&lt;p&gt;아무 파일이나 다 사용할 수 있는 것은 아니고, &lt;b&gt;헤더파일&lt;/b&gt;이라는 것에만 사용할 수 있습니다. 헤더파일이 무엇인지는 나중에 자세히 살펴보겠습니다. 여기서는 일단, 헤더파일이란 &lt;b&gt;이 코드에 어떤 내용이 들어있는지 목차가 정리되어있는 파일&lt;/b&gt;이다 정도로 기억하고 넘어갑시다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;iostream&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;iostream&amp;gt;&lt;/code&gt;이라는 파일은 &lt;b&gt;C++에서 표준 입출력과 관련한 기능&lt;/b&gt;을 수행하기 위해 필요한 헤더파일입니다. 예를 들면, &lt;b&gt;어떤 내용을 컴퓨터 화면(터미널 창)에 출력&lt;/b&gt;하거나 &lt;b&gt;컴퓨터 화면(터미널 창)에서 어떤 내용을 입력&lt;/b&gt; 받는 기능을 제공하는 것이지요.&lt;/p&gt;
+&lt;p&gt;이 안에 무슨 내용이 있는지 살짝 구경해보고 싶으시다면, 코드에서 &lt;code&gt;&amp;lt;iostream&amp;gt;&lt;/code&gt; 부분을 &lt;b&gt;[CTRL] 키를 누른 상태에서 마우스 왼쪽 클릭(L-Click)&lt;/b&gt; 해보시기 바랍니다. VSCode는 물론이며, 이 외에도 대부분의 IDE가 [CTRL]+[L-Click] 기능을 제공합니다. 이는 &lt;b&gt;파일의 내용을 살펴보거나, 함수 및 변수의 원형 등을 살펴볼 때 사용&lt;/b&gt;할 수 있습니다. 앞으로도 자주 사용할 기능이니 기억해두시는 것이 좋습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_iostream&#34; srcset=&#34;
+               /praccpp-004-whatisinclude/01_iostream_huddfaca0fac5a964ff0044bdd773b584a_28855_1203280c4031feed97fe60b7e74a4243.png 400w,
+               /praccpp-004-whatisinclude/01_iostream_huddfaca0fac5a964ff0044bdd773b584a_28855_975a47bb619b9ff2c34901f80d250224.png 760w,
+               /praccpp-004-whatisinclude/01_iostream_huddfaca0fac5a964ff0044bdd773b584a_28855_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-004-whatisinclude/01_iostream_huddfaca0fac5a964ff0044bdd773b584a_28855_1203280c4031feed97fe60b7e74a4243.png&#34;
+               width=&#34;760&#34;
+               height=&#34;400&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;클릭해보면 다음과 같이 상당한 양의 내용이 담긴 파일이 새로 열리는 것을 확인할 수 있을 것입니다. 이것이 &lt;code&gt;&amp;lt;iostream&amp;gt;&lt;/code&gt; 헤더파일의 내용입니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_iostream&#34; srcset=&#34;
+               /praccpp-004-whatisinclude/02_iostream_hubc82c769d5d114a653264c6524a6284f_100119_6318d2900035f405ddc0545a615d562a.png 400w,
+               /praccpp-004-whatisinclude/02_iostream_hubc82c769d5d114a653264c6524a6284f_100119_2e6a44e5cdf7dc202d82c9c51aedec3e.png 760w,
+               /praccpp-004-whatisinclude/02_iostream_hubc82c769d5d114a653264c6524a6284f_100119_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-004-whatisinclude/02_iostream_hubc82c769d5d114a653264c6524a6284f_100119_6318d2900035f405ddc0545a615d562a.png&#34;
+               width=&#34;760&#34;
+               height=&#34;583&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;앞서 &lt;code&gt;#include&lt;/code&gt;의 역할은 이 파일의 내용을 &lt;code&gt;#include &amp;lt;iostream&amp;gt;&lt;/code&gt;이 써있던 자리에 그대로 복사-붙여넣기 하는 것이라고 했으니, 이 내용 전부를 복사-붙여넣기하여 대체하셔도 당연히 프로그램은 정상적으로 동작할 것입니다. 궁금하신 분은 직접 실습해보시면 좋겠습니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2021-12-09: 최초 게시&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
