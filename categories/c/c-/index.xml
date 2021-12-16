@@ -1427,7 +1427,7 @@ cmake --build . --config Release
 &lt;hr&gt;
 &lt;h2 id=&#34;helloworld-프로젝트의-main-함수&#34;&gt;Helloworld 프로젝트의 main 함수&lt;/h2&gt;
 &lt;p&gt;이 시리즈에서 앞서 만들었던 Helloworld 프로젝트도 하나의 C++ 프로그램입니다. 따라서, 여기에도 이 프로그램이 수행하는 내용이 담긴 &lt;b&gt;main 함수가 한 개 존재&lt;/b&gt;합니다.&lt;/p&gt;
-&lt;p&gt;main 함수는 다음 그림과 같이 main이라는 이름으로 파일의 최외곽에 적혀있으며, main 함수가 수행할 내용은 중괄호(&lt;code&gt;{&lt;/code&gt;, &lt;code&gt;}&lt;/code&gt;)로 감싸져 있습니다.&lt;/p&gt;
+&lt;p&gt;main 함수는 다음 그림과 같이 main이라는 이름으로 적혀있으며, main 함수가 수행할 내용은 중괄호(&lt;code&gt;{&lt;/code&gt;, &lt;code&gt;}&lt;/code&gt;)로 감싸져 있습니다.&lt;/p&gt;
 &lt;p&gt;
 
 
