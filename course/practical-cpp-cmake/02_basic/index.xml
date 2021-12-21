@@ -182,7 +182,6 @@
       <pubDate>Thu, 16 Dec 2021 16:37:27 +0900</pubDate>
       <guid>https://evandde.github.io/praccpp-005-whatismainfunc/</guid>
       <description>&lt;p&gt;이 글에서는 함수에 대한 기본적인 이해와 더불어 main 함수의 역할을 알아봅니다.&lt;/p&gt;
-&lt;!-- more --&gt;
 &lt;p&gt;일단 이 글에서는 함수에 관한 문법적인 요소는 다 빼고, 개념부터 잡겠습니다.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
@@ -312,8 +311,7 @@
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-12-16: 최초 게시&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
   </channel>
