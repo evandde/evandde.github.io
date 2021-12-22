@@ -1650,7 +1650,7 @@
 오탈자 방지를 위해 복사-붙여넣기를 권장합니다. 경우에 따라 경로 부분은 변경하여 사용하시기 바랍니다.
 <pre><code class="language-powershell">cmake .. -DCMAKE_INSTALL_PREFIX=&quot;$env:USERPROFILE\Geant4\geant4-v11.0.0\install&quot; -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_INSTALL_DATADIR=&quot;$env:USERPROFILE\Geant4\data&quot; -DGEANT4_BUILD_MSVC_MP=ON -DGEANT4_USE_QT=ON
 </code></pre>
-위에서 <code>-D</code> 뒤에 이어지는 항목이 추가옵션에 해당하는 인자이며, 여기서 사용된 옵션의 의미는 다음과 같습니다.
+<p>위에서 <code>-D</code> 뒤에 이어지는 항목이 추가옵션에 해당하는 인자이며, 여기서 사용된 옵션의 의미는 다음과 같습니다.</p>
 <ul>
 <li>CMAKE_INSTALL_PREFIX: Geant4가 설치될 폴더의 경로</li>
 <li>GEANT4_BUILD_MULTITHREADED: Geant4에서 MultiThreading이 가능하도록 설치할 지에 대한 여부. 기본값은 OFF</li>
@@ -1691,7 +1691,7 @@
 <li>다음 명령어를 입력하여 빌드 및 설치 작업을 수행합니다. 오탈자 방지를 위해 복사-붙여넣기를 권장합니다.
 <pre><code class="language-powershell">cmake --build . --config Release --target install
 </code></pre>
-다음 그림과 같이 <b>&ndash; Installing: &hellip;</b> 문구가 쭉 뜨는 걸 확인하였다면 성공입니다.
+<p>다음 그림과 같이 <b>&ndash; Installing: &hellip;</b> 문구가 쭉 뜨는 걸 확인하였다면 성공입니다.
 
 
 
@@ -1719,11 +1719,12 @@
                height="425"
                loading="lazy" data-zoomable /></div>
   </div></figure>
+</p>
 </li>
 </ol>
 <h3 id="환경변수-설정-1">환경변수 설정</h3>
 <p>설치가 끝났다면, 환경변수를 설정하는 과정이 필요합니다.</p>
-<p>먼저, PowerShell을 관리자 권한으로 실행합니다. <font color=red><b>방금까지 Geant4 설치에 이용하던 Developer PowerShell for VS 2019에서 하는 것이 아님에 주의</b></font>하세요. 권한이 없어서 명령어가 제대로 실행되지 않을 수 있습니다.</p>
+<p>먼저, PowerShell을 관리자 권한으로 실행합니다. <font color=red><b>방금까지 Geant4 설치에 이용하던 Developer PowerShell for VS 2022에서 하는 것이 아님에 주의</b></font>하세요. 권한이 없어서 명령어가 제대로 실행되지 않을 수 있습니다.</p>
 <ol>
 <li>
 <p><b>[WIN]+[R]</b>을 눌러 실행 창 열기</p>
