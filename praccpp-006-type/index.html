@@ -30,10 +30,10 @@
   
     
   
-  <meta name="description" content="Researcher" />
+  <meta name="description" content="이 글에서는 C&#43;&#43;의 근간이 되는 개념인 자료형에 대해 알아봅니다." />
 
   
-  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/tags/" />
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/praccpp-006-type/" />
 
   
 
@@ -313,8 +313,6 @@
   
 
   
-    <link rel="alternate" href="/tags/index.xml" type="application/rss+xml" title="EvaNote" />
-  
 
   
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -323,7 +321,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://evandde.github.io/tags/" />
+  <link rel="canonical" href="https://evandde.github.io/praccpp-006-type/" />
 
   
   
@@ -340,19 +338,25 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="EvaNote" />
-  <meta property="og:url" content="https://evandde.github.io/tags/" />
-  <meta property="og:title" content="Tags | EvaNote" />
-  <meta property="og:description" content="Researcher" /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:url" content="https://evandde.github.io/praccpp-006-type/" />
+  <meta property="og:title" content="대충보는 C&#43;&#43; &amp; CMake - 6. 자료형(type) | EvaNote" />
+  <meta property="og:description" content="이 글에서는 C&#43;&#43;의 근간이 되는 개념인 자료형에 대해 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
   
     
-      <meta property="og:updated_time" content="2021-12-30T10:28:53&#43;09:00" />
+      <meta
+        property="article:published_time"
+        content="2021-12-30T10:28:53&#43;09:00"
+      />
     
+    <meta property="article:modified_time" content="2021-12-30T10:28:53&#43;09:00">
   
 
   
 
 
+
+  
 
   
 
@@ -362,11 +366,11 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
     crossorigin="anonymous"></script>
 
-  <title>Tags | EvaNote</title>
+  <title>대충보는 C&#43;&#43; &amp; CMake - 6. 자료형(type) | EvaNote</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="b129b3f1532d9af69cb1ae320da747fb" >
 
   
   
@@ -677,836 +681,479 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-  
-  
-  
-    
-  
-<div class="universal-wrapper pt-3">
-  <h1>Tags</h1>
-
-  
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-  
-
-  
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/preprocessor/" >preprocessor</a>
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          기초 문법
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
     </div>
+  </button>
 
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
     
 
-    <div class="stream-meta article-metadata">
-
+    
       
 
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>강의시리즈</a></li>
+      </ul>
+
+      
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Nov 21, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/%EC%A0%84%EC%B2%98%EB%A6%AC%EA%B8%B0/" >전처리기</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
+          
         
+      
 
-
-<div class="article-metadata">
 
   
-  
-
-  
-  <span class="article-date">
+    
+    
     
     
       
     
-    Nov 21, 2021
-  </span>
-  
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/">대충보는 C&#43;&#43; &amp; CMake</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
 
   
+    
+    
+    
+    
+      
+    
+    
 
-  
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/01_prep/">준비</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
 
-  
-  
-  
-  
-  
-  
 
-  
-  
+  <li class=""><a href="/praccpp-001-envsetting/">실습환경 만들기</a></li>
 
-</div>
+
+
+  <li class=""><a href="/praccpp-002-envtest/">실습환경 테스트하기</a></li>
+
+
+
+  <li class=""><a href="/praccpp-000-env_general/">VSCode를 안쓰는 경우</a></li>
 
       
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/02_basic/">기본 다지기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/praccpp-003-whatisbuild/">빌드, 컴파일, 링크</a></li>
+
+
+
+  <li class=""><a href="/praccpp-004-whatisinclude/">#include</a></li>
+
+
+
+  <li class=""><a href="/praccpp-005-whatismainfunc/">main 함수</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/03_syntax/">기초 문법</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class="active"><a href="/praccpp-006-type/">자료형</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
     </div>
 
     
-
-  </div>
-  <div class="ml-3">
     
-    
-  </div>
-</div>
-
-    
-  
-    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/%ED%97%A4%EB%8D%94%ED%8C%8C%EC%9D%BC/" >헤더파일</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Nov 21, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/winget/" >Winget</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Nov 21, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/build/" >Build</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Nov 10, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/compile/" >Compile</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Nov 10, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/link/" >Link</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Nov 10, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/vscode/" >VSCode</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Oct 6, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/bit/" >Bit</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Sep 24, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/tags/hack/" >Hack</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Sep 24, 2021
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-
-  
-<nav class="mt-1">
-  <ul class="pagination justify-content-center">
-    
-    <li class="page-item"><a class="page-link" href="/tags/page/2/">&laquo;</a></li>
-    
-    
-    <li class="page-item"><a class="page-link" href="/tags/page/4/">&raquo;</a></li>
-    
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#자료형">자료형</a></li>
+    <li><a href="#기본자료형">기본자료형</a>
+      <ul>
+        <li><a href="#bool">bool</a></li>
+        <li><a href="#int">int</a></li>
+        <li><a href="#double">double</a></li>
+        <li><a href="#char">char</a></li>
+        <li><a href="#stdstring">std::string</a></li>
+      </ul>
+    </li>
+    <li><a href="#chanagelog">Chanagelog</a></li>
   </ul>
 </nav>
 
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
+     crossorigin="anonymous"></script>
 
-</div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3621798796175855"
+     data-ad-slot="2165972720"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3621798796175855"
+     data-ad-slot="5192349489"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        강의시리즈
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/">
+      
+        대충보는 C++ & CMake
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/03_syntax/">
+      
+        기초 문법
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        자료형
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>대충보는 C&#43;&#43; &amp; CMake - 6. 자료형(type)</h1>
+
+          <div class="article-style">
+            <p>이 글에서는 C++의 근간이 되는 개념인 <strong>자료형</strong>에 대해 알아봅니다.</p>
+<hr>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>C++은 자료형 기반의 언어임. C++에서 사용되는 모든 데이터는 어떤 자료형인지 명확하게 정해져 있어야만 함</li>
+<li>대표적인 기본 자료형 <code>bool</code>, <code>int</code>, <code>double</code>, <code>char</code>, <code>std::string</code>  정도는 기억할 것</li>
+<li>대부분의 경우, 숫자 형태의 데이터는 <code>int</code>나 <code>double</code>로, 문자 형태의 데이터는 <code>&quot;</code>(큰따옴표)로 묶어서 <code>std::string</code> 자료형으로 다룸</li>
+</ul>
+<hr>
+<h2 id="자료형">자료형</h2>
+<p>C++에서 <b>자료형(type)</b>이라는 개념은 매우 중요합니다. C++ 언어로 짜여진 코드를 컴파일 하기 위해서는, 코드 내의 모든 변수, 함수의 입력인자, 함수의 출력인자의 자료형이 정해져 있어야만 합니다.</p>
+<p>자료형이란 말그대로 데이터가 어떤 종류의 자료인지를 설명하는 것입니다. 예를 들어 <code>3</code>은 <strong>정수</strong>라는 종류로, <code>-1.8</code>은 <strong>실수</strong>라는 종류로, <code>'c'</code>는 <strong>문자</strong>라는 종류로 분류해볼 수 있겠네요. 이렇게 분류에 사용한 개념인 <b>정수, 실수, 문자</b>같은 것을 자료형이라고 합니다.</p>
+<p>C++에는 언어 자체적으로 제공하는 몇 가지의 기본자료형(built-in type)이 있어, 간단한 데이터에 대해서는 이 기본자료형으로 자료형을 정해줄 수 있습니다.</p>
+<p>만약 기본자료형으로 부족함을 느끼신다면, 여러분이 직접 자료형을 만들어서 사용할 수도 있습니다. 이를 클래스(class)라고 합니다. 이에 대해서는 나중에 다루겠습니다.</p>
+<hr>
+<h2 id="기본자료형">기본자료형</h2>
+<p>기본자료형에도 많은 종류가 있습니다. 예를 들면 정수를 저장하더라도, 크기가 작은 정수를 저장할 때에는 메모리 공간을 조금만 써도 되니 일종의 <b>작은 정수</b>라는 자료형도 있고, 크기가 큰 정수를 저장해야 할 때에는 <b>큰 정수</b>라는 자료형에 저장하는 식입니다.</p>
+<p>하지만 이 시리즈에서는 그렇게 세세하게 다 살펴보지는 않을 것입니다. 그냥 대중적으로 쓰이는 <b>기본자료형 5가지만 기억</b>하고 가겠습니다.</p>
+<h3 id="bool">bool</h3>
+<p><code>bool</code>은 <b>참(true)</b>과 <b>거짓(false)</b>이라는 두 가지 데이터를 담당하는 자료형입니다.</p>
+<p>예를 들어, <b>&quot;3은 5보다 작다&quot;</b>라는 내용이 있다면, 우리는 이것을 보고 참(true)이라고 생각할 것입니다. 그렇다면 <b>&quot;3은 5보다 작다&quot;</b>라는 내용은 <code>bool</code> 자료형의 데이터라고 볼 수 있는 것입니다.</p>
+<h3 id="int">int</h3>
+<p><code>int</code>는 <strong>정수</strong>를 담당하는 자료형입니다. <code>-153</code>, <code>0</code>, <code>22</code>, &hellip; 등 소수점 이하를 가지지 않는 정수를 C++에서는 <code>int</code> 자료형으로 구분합니다.</p>
+<h3 id="double">double</h3>
+<p><code>double</code>은 <strong>실수</strong>를 담당하는 자료형입니다. <code>-3.2</code>, <code>0.72351</code>, &hellip; 등 소수점 이하를 가지는 실수를 C++에서는 <code>double</code> 자료형으로 구분합니다.</p>
+<div class="alert alert-note">
+  <div>
+    <p>수학적으로는 정수 값이라고 여겨지더라도, C++에서는 소수점 이하를 가진다면 <code>int</code>가 아니라 <code>double</code>입니다.</p>
+<p>예를 들어, <code>3</code>은 <code>int</code> 자료형이지만, <code>3.0</code>은 <code>double</code> 자료형입니다.</p>
+
   </div>
+</div>
 
-  <div class="page-footer">
-    
-    
-    <div class="container">
+<h3 id="char">char</h3>
+<p><code>char</code>는 한 글자의 문자를 담당하는 자료형입니다. <code>'</code>(작은따옴표) 표시로 감싸진 한 글자의 문자만 이에 해당합니다.</p>
+<p>예를 들면, <code>'a'</code>, <code>'T'</code>, <code>'1'</code>, <code>'.'</code>, &hellip; 등과 같은 데이터가 <code>char</code> 자료형입니다.</p>
+<div class="alert alert-note">
+  <div>
+    <p><code>1</code>과 <code>1.0</code>과 <code>'1'</code>은 C++ 입장에서 전혀 다른 데이터입니다.</p>
+<p><code>1</code>은 정수 1로서, <code>int</code> 자료형입니다.</p>
+<p><code>1.0</code>은 실수 1.0으로서, <code>double</code> 자료형입니다.</p>
+<p><code>'1'</code>은 1이라는 모양을 가진 글자 한 개로서, <code>char</code> 자료형입니다.</p>
+
+  </div>
+</div>
+
+<h3 id="stdstring">std::string</h3>
+<p><code>std::string</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>은 문자들로 구성된 글 데이터를 담당하는 자료형입니다. <code>&quot;</code>(큰따옴표) 표시로 감싸진 문자들을 말합니다. 이를 프로그래밍에서는 <strong>문자열</strong>이라고 부릅니다.</p>
+<p>예를 들면, <code>&quot;ABC&quot;</code>, <code>&quot;Hi.&quot;</code>, <code>&quot;Hello, world!&quot;</code>, &hellip; 등과 같은 데이터가 <code>std::string</code> 자료형입니다.</p>
+<p>최근의 C++에서 글자로 구성된 데이터를 다룰 때에는 대부분 <code>std::string</code>을 쓰는 추세입니다. 심지어 한 글자의 문자를 저장할 때에도, <code>char</code>보다는 <code>std::string</code> 자료형을 사용하지요.
+<code>char</code>이라는 자료형은 <b>이 데이터는 무조건 한 글자의 문자</b>라는 것이 명확한 경우에 사용될 뿐, 대부분 문자 형태의 데이터를 다룰 때에는 <code>std::string</code> 자료형을 쓴다고 보시면 됩니다.</p>
+<p>다만, 최적화의 목적등을 위해 사용하는 경우도 있고, 혹은 이전부터 사용하던 함수에서 <code>char</code>을 보게 될 일도 꽤 많으므로, 둘 다 기억해두시기 바랍니다.</p>
+<div class="alert alert-note">
+  <div>
+    <p>C++에서는 <code>'</code>(작은따옴표)로 감싼 문자와 <code>&quot;</code>(큰따옴표)로 감싼 문자는 완전히 다릅니다.</p>
+<p>예를 들어, <code>'a'</code>은 <code>char</code> 자료형이지만, <code>&quot;a&quot;</code>은 <code>std::string</code> 자료형입니다.</p>
+<p>또한, <code>&quot;</code>로는 <code>&quot;abc&quot;</code>와 같이 여러 개의 문자들을 한 번에 묶어서 감쌀 수 있지만, <code>'</code>로는 <code>'abc'</code>와 같이 사용하실 수 없으며 무조건 한 개의 문자만 감싸는 형태로 사용하셔야 합니다.</p>
+
+  </div>
+</div>
+
+<h2 id="chanagelog">Chanagelog</h2>
+<ul>
+<li>2021-12-30: 최초 게시</li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>엄밀히는 <code>std</code> 부분은 namespace라고 하는 것이고, <code>std::string</code>이라는 표현은 <code>std</code>에 소속된 <code>string</code>이라는 자료형의 의미입니다. 다만, 이런 문법은 나중에 살펴보기로 하고, 여기서는 <code>std::string</code>이라는 것을 통째로 기억하시길 권해드립니다.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+          </div>
+
+          
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/c-/">C&#43;&#43;</a>
+  
+  <a class="badge badge-light" href="/tags/cmake/">CMake</a>
+  
+  <a class="badge badge-light" href="/tags/type/">Type</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Dec 30, 2021</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/praccpp-005-whatismainfunc/">대충보는 C&#43;&#43; &amp; CMake - 5. main 함수</a></li>
+      
+      <li><a href="/praccpp-004-whatisinclude/">대충보는 C&#43;&#43; &amp; CMake - 4. #include</a></li>
+      
+      <li><a href="/praccpp-000-env_general/">대충보는 C&#43;&#43; &amp; CMake - *. 실습환경 만들기(VSCode를 안쓰는 경우)</a></li>
+      
+      <li><a href="/praccpp-003-whatisbuild/">대충보는 C&#43;&#43; &amp; CMake - 3. 빌드, 컴파일, 링크</a></li>
+      
+      <li><a href="/praccpp-002-envtest/">대충보는 C&#43;&#43; &amp; CMake - 2. 실습환경 테스트하기</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
       <footer class="site-footer">
 
   
@@ -1551,7 +1198,15 @@
   </p>
 </footer>
 
-    </div>
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
     
   </div>
 
@@ -1656,6 +1311,11 @@
     
 
     
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
     
 
     
