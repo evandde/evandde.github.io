@@ -1573,6 +1573,14 @@
 <p>이 글에서는 cross-section data를 직접 다운받아 준비한 뒤 연동하도록 하겠습니다.</p>
 <p>Geant4의 cross-section data는 <a href="https://geant4.web.cern.ch/support/download" target="_blank" rel="noopener">이 링크</a>의 <strong>Data files 부분</strong>에서 다운받을 수 있습니다.
 총 10개의 필수요구 데이터와 2개의 선택사항 데이터(G4RealSurface, G4TENDL)가 있습니다. 위의 10개는 필수이므로 무조건 다 받으시고, 아래의 2개는 필요에 따라 다운받으시면 됩니다.</p>
+<div class="alert alert-warning">
+  <div>
+    <p>Geant4 cross-section data 압축파일이나 소스코드 압축파일이 크롬 등의 웹브라우저에서 <strong>안전하지 않은 파일로 인식</strong>하여 다운로드가 진행이 안되는 경우가 있는 것을 확인했습니다.</p>
+<p>해당 차단옵션을 끄거나, 다른 브라우저를 사용하셔야 할 수도 있습니다.</p>
+
+  </div>
+</div>
+
 <p>각 파일들은 <code>.tar.gz</code> 확장자를 가지고 있습니다. 이는 일종의 압축파일입니다. <a href="https://kr.bandisoft.com/bandizip/" target="_blank" rel="noopener">Bandizip</a>이나 <a href="https://www.7-zip.org/" target="_blank" rel="noopener">7-zip</a>과 같은 압축 관련 유틸리티를 통해 압축을 풀 수 있습니다.</p>
 <p>모두 다운받으셨다면, 전부 각각의 파일명이 폴더명이 되도록 압축을 해제합니다. (e.g. <code>G4ABLA3.1</code> 폴더 내에 <code>defo.dat</code>, &hellip; 등이 있도록)</p>
 <p>이렇게 압축까지 해제하셨다면, 이 <b>10~12개의 데이터 폴더들을 원하는 경로에 보관</b>해두시면 됩니다. 이 글에서는 <code>$env:USERPROFILE\Geant4\data\</code> 경로에 두도록 하겠습니다.</p>
@@ -1650,7 +1658,7 @@
 오탈자 방지를 위해 복사-붙여넣기를 권장합니다. 경우에 따라 경로 부분은 변경하여 사용하시기 바랍니다.
 <pre><code class="language-powershell">cmake .. -DCMAKE_INSTALL_PREFIX=&quot;$env:USERPROFILE\Geant4\geant4-v11.0.0\install&quot; -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_INSTALL_DATADIR=&quot;$env:USERPROFILE\Geant4\data&quot; -DGEANT4_BUILD_MSVC_MP=ON -DGEANT4_USE_QT=ON
 </code></pre>
-<p>위에서 <code>-D</code> 뒤에 이어지는 항목이 추가옵션에 해당하는 인자이며, 여기서 사용된 옵션의 의미는 다음과 같습니다.</p>
+위에서 <code>-D</code> 뒤에 이어지는 항목이 추가옵션에 해당하는 인자이며, 여기서 사용된 옵션의 의미는 다음과 같습니다.
 <ul>
 <li>CMAKE_INSTALL_PREFIX: Geant4가 설치될 폴더의 경로</li>
 <li>GEANT4_BUILD_MULTITHREADED: Geant4에서 MultiThreading이 가능하도록 설치할 지에 대한 여부. 기본값은 OFF</li>
@@ -1691,7 +1699,7 @@
 <li>다음 명령어를 입력하여 빌드 및 설치 작업을 수행합니다. 오탈자 방지를 위해 복사-붙여넣기를 권장합니다.
 <pre><code class="language-powershell">cmake --build . --config Release --target install
 </code></pre>
-<p>다음 그림과 같이 <b>&ndash; Installing: &hellip;</b> 문구가 쭉 뜨는 걸 확인하였다면 성공입니다.
+다음 그림과 같이 <b>&ndash; Installing: &hellip;</b> 문구가 쭉 뜨는 걸 확인하였다면 성공입니다.
 
 
 
@@ -1719,7 +1727,6 @@
                height="425"
                loading="lazy" data-zoomable /></div>
   </div></figure>
-</p>
 </li>
 </ol>
 <h3 id="환경변수-설정-1">환경변수 설정</h3>
@@ -1746,7 +1753,7 @@
 </code></pre>
 </li>
 <li>
-<p>크로스섹션 데이터 경로 설정을 위한 환경변수 설정 (참고: <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html#environment-variables-for-datasets" target="_blank" rel="noopener">Postinstall Setup — Geant4 Installation Guide 10.7 documentation (cern.ch)</a>)</p>
+<p>크로스섹션 데이터 경로 설정을 위한 환경변수 설정 (참고: <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html#environment-variables-for-datasets" target="_blank" rel="noopener">Postinstall Setup — Geant4 Installation Guide 11.0 documentation (cern.ch)</a>)</p>
 <pre><code class="language-powershell">[Environment]::SetEnvironmentVariable(&quot;G4ABLADATA&quot;, &quot;$env:USERPROFILE\Geant4\data\G4ABLA3.1&quot;, &quot;Machine&quot;)
 [Environment]::SetEnvironmentVariable(&quot;G4ENSDFSTATEDATA&quot;, &quot;$env:USERPROFILE\Geant4\data\G4ENSDFSTATE2.3&quot;, &quot;Machine&quot;)
 [Environment]::SetEnvironmentVariable(&quot;G4INCLDATA&quot;, &quot;$env:USERPROFILE\Geant4\data\G4INCL1.0&quot;, &quot;Machine&quot;)
@@ -1962,6 +1969,7 @@ cmake --build . --config Release
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li>2021-12-22: 최초 게시</li>
+<li>2022-01-14: 다운로드 에러 관련 설명 추가, 오탈자 수정</li>
 </ul>
           </div>
 
