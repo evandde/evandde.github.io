@@ -13,10 +13,10 @@
     </image>
     
     <item>
-      <title>대충보는 C&#43;&#43; &amp; CMake - 6. 주석(comment)</title>
-      <link>https://evandde.github.io/praccpp-006-comment/</link>
+      <title>대충보는 C&#43;&#43; &amp; CMake - 7. 주석(comment)</title>
+      <link>https://evandde.github.io/praccpp-007-comment/</link>
       <pubDate>Fri, 07 Jan 2022 16:23:33 +0900</pubDate>
-      <guid>https://evandde.github.io/praccpp-006-comment/</guid>
+      <guid>https://evandde.github.io/praccpp-007-comment/</guid>
       <description>&lt;p&gt;이 글에서는 C++ 코드에서의 주석에 대해 알아봅니다.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
@@ -71,10 +71,10 @@ int main(int, char**) {
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_linecomment&#34; srcset=&#34;
-               /praccpp-006-comment/01_linecomment_hu0dae6e31c7be37e1bd58b130fff5cb0f_17491_710e1e859819b5680fe86bf7766fc58f.png 400w,
-               /praccpp-006-comment/01_linecomment_hu0dae6e31c7be37e1bd58b130fff5cb0f_17491_36a5465a5f08e0586a47e3884a960932.png 760w,
-               /praccpp-006-comment/01_linecomment_hu0dae6e31c7be37e1bd58b130fff5cb0f_17491_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/praccpp-006-comment/01_linecomment_hu0dae6e31c7be37e1bd58b130fff5cb0f_17491_710e1e859819b5680fe86bf7766fc58f.png&#34;
+               /praccpp-007-comment/01_linecomment_hu0dae6e31c7be37e1bd58b130fff5cb0f_17491_710e1e859819b5680fe86bf7766fc58f.png 400w,
+               /praccpp-007-comment/01_linecomment_hu0dae6e31c7be37e1bd58b130fff5cb0f_17491_36a5465a5f08e0586a47e3884a960932.png 760w,
+               /praccpp-007-comment/01_linecomment_hu0dae6e31c7be37e1bd58b130fff5cb0f_17491_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-007-comment/01_linecomment_hu0dae6e31c7be37e1bd58b130fff5cb0f_17491_710e1e859819b5680fe86bf7766fc58f.png&#34;
                width=&#34;744&#34;
                height=&#34;271&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -101,10 +101,10 @@ int main(int, char**) {
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_runresult&#34; srcset=&#34;
-               /praccpp-006-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_e0ea3814e5e5bba50823e3efef8d029d.png 400w,
-               /praccpp-006-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_a036bfc9d6e36b6e528ef8706fd8eb5e.png 760w,
-               /praccpp-006-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/praccpp-006-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_e0ea3814e5e5bba50823e3efef8d029d.png&#34;
+               /praccpp-007-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_e0ea3814e5e5bba50823e3efef8d029d.png 400w,
+               /praccpp-007-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_a036bfc9d6e36b6e528ef8706fd8eb5e.png 760w,
+               /praccpp-007-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-007-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_e0ea3814e5e5bba50823e3efef8d029d.png&#34;
                width=&#34;601&#34;
                height=&#34;207&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -151,10 +151,10 @@ int main(int, char**) {
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_multilinecomment&#34; srcset=&#34;
-               /praccpp-006-comment/02_multilinecomment_hua4ceae26b126b6f82fe045fd7f397d2f_14699_7fab626627f22095aeb132322df6851c.png 400w,
-               /praccpp-006-comment/02_multilinecomment_hua4ceae26b126b6f82fe045fd7f397d2f_14699_9d331d04c1015dbd4586a113e0c72681.png 760w,
-               /praccpp-006-comment/02_multilinecomment_hua4ceae26b126b6f82fe045fd7f397d2f_14699_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/praccpp-006-comment/02_multilinecomment_hua4ceae26b126b6f82fe045fd7f397d2f_14699_7fab626627f22095aeb132322df6851c.png&#34;
+               /praccpp-007-comment/02_multilinecomment_hua4ceae26b126b6f82fe045fd7f397d2f_14699_7fab626627f22095aeb132322df6851c.png 400w,
+               /praccpp-007-comment/02_multilinecomment_hua4ceae26b126b6f82fe045fd7f397d2f_14699_9d331d04c1015dbd4586a113e0c72681.png 760w,
+               /praccpp-007-comment/02_multilinecomment_hua4ceae26b126b6f82fe045fd7f397d2f_14699_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-007-comment/02_multilinecomment_hua4ceae26b126b6f82fe045fd7f397d2f_14699_7fab626627f22095aeb132322df6851c.png&#34;
                width=&#34;462&#34;
                height=&#34;479&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -180,10 +180,10 @@ int main(int, char**) {
 &lt;figure  &gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_runresult&#34; srcset=&#34;
-               /praccpp-006-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_e0ea3814e5e5bba50823e3efef8d029d.png 400w,
-               /praccpp-006-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_a036bfc9d6e36b6e528ef8706fd8eb5e.png 760w,
-               /praccpp-006-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_1200x1200_fit_lanczos_3.png 1200w&#34;
-               src=&#34;https://evandde.github.io/praccpp-006-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_e0ea3814e5e5bba50823e3efef8d029d.png&#34;
+               /praccpp-007-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_e0ea3814e5e5bba50823e3efef8d029d.png 400w,
+               /praccpp-007-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_a036bfc9d6e36b6e528ef8706fd8eb5e.png 760w,
+               /praccpp-007-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-007-comment/03_runresult_hud82ddfc522d9f9665387429ccfb8dde0_8358_e0ea3814e5e5bba50823e3efef8d029d.png&#34;
                width=&#34;601&#34;
                height=&#34;207&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -198,9 +198,9 @@ int main(int, char**) {
     
     <item>
       <title>대충보는 C&#43;&#43; &amp; CMake - 7. 자료형(type)</title>
-      <link>https://evandde.github.io/praccpp-007-type/</link>
+      <link>https://evandde.github.io/praccpp-008-type/</link>
       <pubDate>Thu, 30 Dec 2021 10:28:53 +0900</pubDate>
-      <guid>https://evandde.github.io/praccpp-007-type/</guid>
+      <guid>https://evandde.github.io/praccpp-008-type/</guid>
       <description>&lt;p&gt;이 글에서는 C++의 근간이 되는 개념인 &lt;strong&gt;자료형&lt;/strong&gt;에 대해 알아봅니다.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
