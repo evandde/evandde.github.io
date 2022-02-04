@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>std | EvaNote</title>
+    <link>https://evandde.github.io/tags/std/</link>
+      <atom:link href="https://evandde.github.io/tags/std/index.xml" rel="self" type="application/rss+xml" />
+    <description>std</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>ko-kr</language><copyright>© 2020–2022 Evan Kim</copyright><lastBuildDate>Fri, 04 Feb 2022 14:28:16 +0900</lastBuildDate>
+    <image>
+      <url>https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png</url>
+      <title>std</title>
+      <link>https://evandde.github.io/tags/std/</link>
+    </image>
+    
+    <item>
+      <title>대충보는 C&#43;&#43; &amp; CMake - 6. std::cout</title>
+      <link>https://evandde.github.io/praccpp-006-whatiscout/</link>
+      <pubDate>Fri, 04 Feb 2022 14:28:16 +0900</pubDate>
+      <guid>https://evandde.github.io/praccpp-006-whatiscout/</guid>
+      <description>&lt;p&gt;이 글에서는 컴퓨터 화면과 소통하는 기본적인 방법 중 하나인 &lt;code&gt;std::cout&lt;/code&gt;에 대해 알아봅니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; 출력할데이터;&lt;/code&gt;의 형태로 입력하면 출력할데이터가 화면에 출력됨&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; 출력할데이터 &amp;lt;&amp;lt; 출력할데이터 &amp;lt;&amp;lt; 출력할데이터 &amp;lt;&amp;lt; ...;&lt;/code&gt;와 같은 형태로, 여러 개의 출력할데이터를 한 번에 기술할 수도 있음&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;\n&amp;quot;&lt;/code&gt;은 화면에서 &lt;strong&gt;줄바꿈&lt;/strong&gt;을 나타내는 하나의 문자이며, &lt;code&gt;&amp;quot;\t&amp;quot;&lt;/code&gt;은 화면에서 &lt;strong&gt;탭&lt;/strong&gt;을 나타내는 하나의 문자임&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;stdcout&#34;&gt;std::cout&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;std::cout&lt;/code&gt;은 화면에 글자를 출력시키기 위한 &lt;strong&gt;표준출력스트림&lt;/strong&gt;(standard output stream)입니다. 일반적으로 우리가 사용하는 컴퓨터에서는 &lt;strong&gt;콘솔 화면에 글자를 출력시켜주는 역할&lt;/strong&gt;을 수행합니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;기본사용법&#34;&gt;기본사용법&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;std::cout&lt;/code&gt;를 씀&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; 라는 연산자를 이어붙임&lt;/li&gt;
+&lt;li&gt;그 다음에 &lt;code&gt;출력할데이터&lt;/code&gt;를 적음&lt;/li&gt;
+&lt;li&gt;C++ 문장을 끝내기 위해 &lt;code&gt;;&lt;/code&gt;를 적음&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;앞서 우리의 예제코드에 적혀있던 문장을 가져와서 봅시다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;01_example&#34; srcset=&#34;
+               /praccpp-006-whatiscout/01_example_hu778e761c0acd84cf96cf9bc4f9cf30a3_10689_b500ffa83a6de07e81247f63c69e9b98.png 400w,
+               /praccpp-006-whatiscout/01_example_hu778e761c0acd84cf96cf9bc4f9cf30a3_10689_5cf9b816464e2807ccc0f70496e7d486.png 760w,
+               /praccpp-006-whatiscout/01_example_hu778e761c0acd84cf96cf9bc4f9cf30a3_10689_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-006-whatiscout/01_example_hu778e761c0acd84cf96cf9bc4f9cf30a3_10689_b500ffa83a6de07e81247f63c69e9b98.png&#34;
+               width=&#34;760&#34;
+               height=&#34;308&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이 코드에서는 &lt;code&gt;&amp;quot;Hello, world!\n&amp;quot;&lt;/code&gt;만큼이 출력할데이터가 되는 것입니다.
+실행 결과는 이미 아시다시피 다음과 같지요.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;02_examplerslt&#34; srcset=&#34;
+               /praccpp-006-whatiscout/02_examplerslt_hud0d11f089a8fb5acc32bc2acf46dc206_3608_78efb4dc77e30c3fe8fa850e9e67fecb.png 400w,
+               /praccpp-006-whatiscout/02_examplerslt_hud0d11f089a8fb5acc32bc2acf46dc206_3608_09796576a8bf2c12d37bec6dcfb6fd84.png 760w,
+               /praccpp-006-whatiscout/02_examplerslt_hud0d11f089a8fb5acc32bc2acf46dc206_3608_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-006-whatiscout/02_examplerslt_hud0d11f089a8fb5acc32bc2acf46dc206_3608_78efb4dc77e30c3fe8fa850e9e67fecb.png&#34;
+               width=&#34;542&#34;
+               height=&#34;80&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;n-t&#34;&gt;&lt;code&gt;&amp;quot;\n&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;\t&amp;quot;&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;위의 예제코드에서 출력할데이터를 보면, C++ 코드 상에는 끝에 &lt;code&gt;&amp;quot;\n&amp;quot;&lt;/code&gt;라는 문자가 적혀있는데, 실행결과에는 이 문자가 출력되지 않았다는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;C++에서 문자 &lt;code&gt;&amp;quot;\n&amp;quot;&lt;/code&gt;은 한덩어리의 문자로 보며, &lt;strong&gt;줄바꿈&lt;/strong&gt;이라는 기능을 수행하는 문자입니다. 우리가 키보드로 [ENTER] 키를 누르는 효과와 동일하다고 이해하면 됩니다. &lt;code&gt;&amp;quot;\&amp;quot;&lt;/code&gt;(역슬래시)와 &lt;code&gt;&amp;quot;n&amp;quot;&lt;/code&gt;(영소문자 n)이라는 두 개의 분리된 문자로 해석하지 않는다는 점에 주의하시기 바랍니다.&lt;/p&gt;
+&lt;p&gt;자매품으로, &lt;code&gt;&amp;quot;\t&amp;quot;&lt;/code&gt;도 알고 계시면 좋습니다. &lt;code&gt;&amp;quot;\t&amp;quot;&lt;/code&gt;는 마찬가지로 한덩어리의 문자로 &lt;strong&gt;탭&lt;/strong&gt;이라는 기능을 수행합니다. 키보드로 [TAB] 키를 누르는 효과와 동일합니다. 글 작성 시 일정 간격을 유지하며 단어를 나열하고자 할 때 유용하게 쓰입니다.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;여러-데이터-출력하기&#34;&gt;여러 데이터 출력하기&lt;/h2&gt;
+&lt;p&gt;출력할데이터가 여러 개라면, 위의 사용법에서 2번과 3번을 반복해서 쓸 수 있습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;03_example&#34; srcset=&#34;
+               /praccpp-006-whatiscout/03_example_hu6a3b8e673b322544ada4fe25df2e1081_8036_6c3361ff7a879e36807b8dd795e4a8df.png 400w,
+               /praccpp-006-whatiscout/03_example_hu6a3b8e673b322544ada4fe25df2e1081_8036_6a2e16c1aa294037e989964268d14c05.png 760w,
+               /praccpp-006-whatiscout/03_example_hu6a3b8e673b322544ada4fe25df2e1081_8036_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-006-whatiscout/03_example_hu6a3b8e673b322544ada4fe25df2e1081_8036_6c3361ff7a879e36807b8dd795e4a8df.png&#34;
+               width=&#34;557&#34;
+               height=&#34;171&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;이렇게 작성하면, &lt;code&gt;&amp;quot;AAA\n&amp;quot;&lt;/code&gt;, 숫자 &lt;code&gt;123&lt;/code&gt;, &lt;code&gt;&amp;quot;\n&amp;quot;&lt;/code&gt;, &lt;code&gt;&amp;quot;BBB\n&amp;quot;&lt;/code&gt;이라는 총 4개의 데이터가 순차적으로 출력되는 것이지요. 결과는 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;04_examplerslt&#34; srcset=&#34;
+               /praccpp-006-whatiscout/04_examplerslt_hu6f6960fb79caac55372f8e8c73b67b96_11401_8d4b187729cdd9859e91025f2e54d381.png 400w,
+               /praccpp-006-whatiscout/04_examplerslt_hu6f6960fb79caac55372f8e8c73b67b96_11401_ab599ca35dc44b44db2f2d373fed8b66.png 760w,
+               /praccpp-006-whatiscout/04_examplerslt_hu6f6960fb79caac55372f8e8c73b67b96_11401_1200x1200_fit_lanczos_3.png 1200w&#34;
+               src=&#34;https://evandde.github.io/praccpp-006-whatiscout/04_examplerslt_hu6f6960fb79caac55372f8e8c73b67b96_11401_8d4b187729cdd9859e91025f2e54d381.png&#34;
+               width=&#34;760&#34;
+               height=&#34;174&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;여기서 주의하실 부분이 있습니다. &lt;strong&gt;출력할데이터 한 칸에는 하나의 데이터만 쓸 수 있다는 점&lt;/strong&gt;입니다.&lt;/p&gt;
+&lt;p&gt;예를 들어, 숫자 &lt;code&gt;123&lt;/code&gt;과 줄바꿈(&lt;code&gt;&amp;quot;\n&amp;quot;&lt;/code&gt;)은 숫자와 문자로 총 두 개의 데이터이기 때문에, 반드시 두 덩어리로 나누어서 써야한다는 것입니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;std::cout &amp;lt;&amp;lt; 123&amp;quot;\n&amp;quot;; // WRONG!!!
+std::cout &amp;lt;&amp;lt; 123 &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; // CORRECT :D
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;나중에 자료형에 대한 개념을 알고 나면, 좀 더 명확하게 이해가 되실 것입니다.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;원래 &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; 안에 한글을 적어서 출력할 수도 있습니다만, 대부분은 한글을 입력하면 문자가 깨져서 나올 것입니다.&lt;/p&gt;
+&lt;p&gt;이는 코드 상의 문제가 아니라, PowerShell에서 한글 문자를 기본적으로 지원하지 않아 생기는 문제입니다.&lt;/p&gt;
+&lt;p&gt;이에 대한 해결책은 &lt;a href=&#34;https://evandde.github.io/powershell-encoding/&#34;&gt;PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결&lt;/a&gt; 글을 참고하시기 바랍니다.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;chanagelog&#34;&gt;Chanagelog&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2022-02-04: 최초 게시&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

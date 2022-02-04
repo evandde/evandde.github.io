@@ -1,0 +1,1511 @@
+<!DOCTYPE html><html lang="ko-kr" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Evan Kim" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="이 글에서는 컴퓨터 화면과 소통하는 기본적인 방법 중 하나인 std::cout에 대해 알아봅니다." />
+
+  
+  <link rel="alternate" hreflang="ko-kr" href="https://evandde.github.io/praccpp-006-whatiscout/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.f1ecf783c14edc00c9320c205831ad8e.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/foundation.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500&family=Noto+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.e0db7c365cd7d8ebd14e35e5b6e3b4e4.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158299018-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-158299018-4', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6CTCPW');
+</script>
+
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://evandde.github.io/praccpp-006-whatiscout/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="EvaNote" />
+  <meta property="og:url" content="https://evandde.github.io/praccpp-006-whatiscout/" />
+  <meta property="og:title" content="대충보는 C&#43;&#43; &amp; CMake - 6. std::cout | EvaNote" />
+  <meta property="og:description" content="이 글에서는 컴퓨터 화면과 소통하는 기본적인 방법 중 하나인 std::cout에 대해 알아봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-02-04T14:28:16&#43;09:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-02-04T14:28:16&#43;09:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
+    crossorigin="anonymous"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
+    crossorigin="anonymous"></script>
+
+  <title>대충보는 C&#43;&#43; &amp; CMake - 6. std::cout | EvaNote</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="510bb78313c8df771f84d5aa7908fc74" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>검색</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="검색..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="검색...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">EvaNote</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="네비게이션">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">EvaNote</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#categories"><span>카테고리</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/post"><span>포스트</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/course"><span>강의시리즈</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>태그</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>소개</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="검색"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    
+
+
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      <form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-md-3 w-100" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <div class="d-flex">
+      <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
+        
+          기본 다지기
+        
+      </span>
+      <span><i class="fas fa-chevron-down"></i></span>
+    </div>
+  </button>
+
+  
+  <button class="form-control sidebar-search js-search d-none d-md-flex">
+    <i class="fas fa-search pr-2"></i>
+    <span class="sidebar-search-text">검색...</span>
+    <span class="sidebar-search-shortcut">/</span>
+  </button>
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  
+  
+  
+  
+
+  
+  
+    
+
+    
+      
+
+      <ul class="nav docs-sidenav">
+        <li><a href="/course/"><i class="fas fa-arrow-left pr-1"></i>강의시리즈</a></li>
+      </ul>
+
+      
+      
+        
+          
+        
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/">대충보는 C&#43;&#43; &amp; CMake</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/01_prep/">준비</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/praccpp-001-envsetting/">실습환경 만들기</a></li>
+
+
+
+  <li class=""><a href="/praccpp-002-envtest/">실습환경 테스트하기</a></li>
+
+
+
+  <li class=""><a href="/praccpp-000-env_general/">VSCode를 안쓰는 경우</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/02_basic/">기본 다지기</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/praccpp-003-whatisbuild/">빌드, 컴파일, 링크</a></li>
+
+
+
+  <li class=""><a href="/praccpp-004-whatisinclude/">#include</a></li>
+
+
+
+  <li class=""><a href="/praccpp-005-whatismainfunc/">main 함수</a></li>
+
+
+
+  <li class="active"><a href="/praccpp-006-whatiscout/">std::cout</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+
+
+  
+    
+    
+    
+    
+      
+    
+    
+
+    
+      <div class="docs-toc-item">
+        <a class="docs-toc-link " href="/course/practical-cpp-cmake/03_syntax/">기초 문법</a>
+    
+      
+        <ul class="nav docs-sidenav">
+      
+
+
+  <li class=""><a href="/praccpp-007-comment/">주석</a></li>
+
+
+
+  <li class=""><a href="/praccpp-008-type/">자료형</a></li>
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+      
+        </ul>
+      
+    
+
+    
+      </div>
+    
+
+    
+  
+</nav>
+
+    </div>
+
+    
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+
+      <ul class="nav toc-top">
+        <li><a href="#" id="back_to_top" class="docs-toc-title">목차</a></li>
+      </ul>
+
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#stdcout">std::cout</a></li>
+    <li><a href="#기본사용법">기본사용법</a></li>
+    <li><a href="#n-t"><code>&quot;\n&quot;</code>, <code>&quot;\t&quot;</code></a></li>
+    <li><a href="#여러-데이터-출력하기">여러 데이터 출력하기</a></li>
+    <li><a href="#chanagelog">Chanagelog</a></li>
+  </ul>
+</nav>
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3621798796175855"
+     data-ad-slot="2165972720"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3621798796175855"
+     data-ad-slot="5192349489"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article">
+
+        <div class="docs-article-container">
+          
+            
+  <nav class="d-none d-md-flex" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      
+  
+  
+  
+  
+
+  <li class="breadcrumb-item">
+    <a href="/">
+      
+        Home
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/">
+      
+        강의시리즈
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/">
+      
+        대충보는 C++ & CMake
+      
+    </a>
+  </li>
+
+
+  <li class="breadcrumb-item">
+    <a href="/course/practical-cpp-cmake/02_basic/">
+      
+        기본 다지기
+      
+    </a>
+  </li>
+
+
+      <li class="breadcrumb-item active" aria-current="page">
+        std::cout
+      </li>
+    </ol>
+  </nav>
+
+
+          
+
+          <h1>대충보는 C&#43;&#43; &amp; CMake - 6. std::cout</h1>
+
+          <div class="article-style">
+            <p>이 글에서는 컴퓨터 화면과 소통하는 기본적인 방법 중 하나인 <code>std::cout</code>에 대해 알아봅니다.</p>
+<hr>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li><code>std::cout &lt;&lt; 출력할데이터;</code>의 형태로 입력하면 출력할데이터가 화면에 출력됨</li>
+<li><code>std::cout &lt;&lt; 출력할데이터 &lt;&lt; 출력할데이터 &lt;&lt; 출력할데이터 &lt;&lt; ...;</code>와 같은 형태로, 여러 개의 출력할데이터를 한 번에 기술할 수도 있음</li>
+<li><code>&quot;\n&quot;</code>은 화면에서 <strong>줄바꿈</strong>을 나타내는 하나의 문자이며, <code>&quot;\t&quot;</code>은 화면에서 <strong>탭</strong>을 나타내는 하나의 문자임</li>
+</ul>
+<hr>
+<h2 id="stdcout">std::cout</h2>
+<p><code>std::cout</code>은 화면에 글자를 출력시키기 위한 <strong>표준출력스트림</strong>(standard output stream)입니다. 일반적으로 우리가 사용하는 컴퓨터에서는 <strong>콘솔 화면에 글자를 출력시켜주는 역할</strong>을 수행합니다.</p>
+<hr>
+<h2 id="기본사용법">기본사용법</h2>
+<ol>
+<li><code>std::cout</code>를 씀</li>
+<li><code>&lt;&lt;</code> 라는 연산자를 이어붙임</li>
+<li>그 다음에 <code>출력할데이터</code>를 적음</li>
+<li>C++ 문장을 끝내기 위해 <code>;</code>를 적음</li>
+</ol>
+<p>앞서 우리의 예제코드에 적혀있던 문장을 가져와서 봅시다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="01_example" srcset="
+               /praccpp-006-whatiscout/01_example_hu778e761c0acd84cf96cf9bc4f9cf30a3_10689_b500ffa83a6de07e81247f63c69e9b98.png 400w,
+               /praccpp-006-whatiscout/01_example_hu778e761c0acd84cf96cf9bc4f9cf30a3_10689_5cf9b816464e2807ccc0f70496e7d486.png 760w,
+               /praccpp-006-whatiscout/01_example_hu778e761c0acd84cf96cf9bc4f9cf30a3_10689_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-006-whatiscout/01_example_hu778e761c0acd84cf96cf9bc4f9cf30a3_10689_b500ffa83a6de07e81247f63c69e9b98.png"
+               width="760"
+               height="308"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>이 코드에서는 <code>&quot;Hello, world!\n&quot;</code>만큼이 출력할데이터가 되는 것입니다.
+실행 결과는 이미 아시다시피 다음과 같지요.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="02_examplerslt" srcset="
+               /praccpp-006-whatiscout/02_examplerslt_hud0d11f089a8fb5acc32bc2acf46dc206_3608_78efb4dc77e30c3fe8fa850e9e67fecb.png 400w,
+               /praccpp-006-whatiscout/02_examplerslt_hud0d11f089a8fb5acc32bc2acf46dc206_3608_09796576a8bf2c12d37bec6dcfb6fd84.png 760w,
+               /praccpp-006-whatiscout/02_examplerslt_hud0d11f089a8fb5acc32bc2acf46dc206_3608_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-006-whatiscout/02_examplerslt_hud0d11f089a8fb5acc32bc2acf46dc206_3608_78efb4dc77e30c3fe8fa850e9e67fecb.png"
+               width="542"
+               height="80"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<hr>
+<h2 id="n-t"><code>&quot;\n&quot;</code>, <code>&quot;\t&quot;</code></h2>
+<p>위의 예제코드에서 출력할데이터를 보면, C++ 코드 상에는 끝에 <code>&quot;\n&quot;</code>라는 문자가 적혀있는데, 실행결과에는 이 문자가 출력되지 않았다는 것을 확인할 수 있습니다.</p>
+<p>C++에서 문자 <code>&quot;\n&quot;</code>은 한덩어리의 문자로 보며, <strong>줄바꿈</strong>이라는 기능을 수행하는 문자입니다. 우리가 키보드로 [ENTER] 키를 누르는 효과와 동일하다고 이해하면 됩니다. <code>&quot;\&quot;</code>(역슬래시)와 <code>&quot;n&quot;</code>(영소문자 n)이라는 두 개의 분리된 문자로 해석하지 않는다는 점에 주의하시기 바랍니다.</p>
+<p>자매품으로, <code>&quot;\t&quot;</code>도 알고 계시면 좋습니다. <code>&quot;\t&quot;</code>는 마찬가지로 한덩어리의 문자로 <strong>탭</strong>이라는 기능을 수행합니다. 키보드로 [TAB] 키를 누르는 효과와 동일합니다. 글 작성 시 일정 간격을 유지하며 단어를 나열하고자 할 때 유용하게 쓰입니다.</p>
+<hr>
+<h2 id="여러-데이터-출력하기">여러 데이터 출력하기</h2>
+<p>출력할데이터가 여러 개라면, 위의 사용법에서 2번과 3번을 반복해서 쓸 수 있습니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="03_example" srcset="
+               /praccpp-006-whatiscout/03_example_hu6a3b8e673b322544ada4fe25df2e1081_8036_6c3361ff7a879e36807b8dd795e4a8df.png 400w,
+               /praccpp-006-whatiscout/03_example_hu6a3b8e673b322544ada4fe25df2e1081_8036_6a2e16c1aa294037e989964268d14c05.png 760w,
+               /praccpp-006-whatiscout/03_example_hu6a3b8e673b322544ada4fe25df2e1081_8036_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-006-whatiscout/03_example_hu6a3b8e673b322544ada4fe25df2e1081_8036_6c3361ff7a879e36807b8dd795e4a8df.png"
+               width="557"
+               height="171"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>이렇게 작성하면, <code>&quot;AAA\n&quot;</code>, 숫자 <code>123</code>, <code>&quot;\n&quot;</code>, <code>&quot;BBB\n&quot;</code>이라는 총 4개의 데이터가 순차적으로 출력되는 것이지요. 결과는 다음과 같습니다.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="04_examplerslt" srcset="
+               /praccpp-006-whatiscout/04_examplerslt_hu6f6960fb79caac55372f8e8c73b67b96_11401_8d4b187729cdd9859e91025f2e54d381.png 400w,
+               /praccpp-006-whatiscout/04_examplerslt_hu6f6960fb79caac55372f8e8c73b67b96_11401_ab599ca35dc44b44db2f2d373fed8b66.png 760w,
+               /praccpp-006-whatiscout/04_examplerslt_hu6f6960fb79caac55372f8e8c73b67b96_11401_1200x1200_fit_lanczos_3.png 1200w"
+               src="/praccpp-006-whatiscout/04_examplerslt_hu6f6960fb79caac55372f8e8c73b67b96_11401_8d4b187729cdd9859e91025f2e54d381.png"
+               width="760"
+               height="174"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>여기서 주의하실 부분이 있습니다. <strong>출력할데이터 한 칸에는 하나의 데이터만 쓸 수 있다는 점</strong>입니다.</p>
+<p>예를 들어, 숫자 <code>123</code>과 줄바꿈(<code>&quot;\n&quot;</code>)은 숫자와 문자로 총 두 개의 데이터이기 때문에, 반드시 두 덩어리로 나누어서 써야한다는 것입니다.</p>
+<pre><code class="language-c++">std::cout &lt;&lt; 123&quot;\n&quot;; // WRONG!!!
+std::cout &lt;&lt; 123 &lt;&lt; &quot;\n&quot;; // CORRECT :D
+</code></pre>
+<p>나중에 자료형에 대한 개념을 알고 나면, 좀 더 명확하게 이해가 되실 것입니다.</p>
+<div class="alert alert-warning">
+  <div>
+    <p>원래 <code>&quot;&quot;</code> 안에 한글을 적어서 출력할 수도 있습니다만, 대부분은 한글을 입력하면 문자가 깨져서 나올 것입니다.</p>
+<p>이는 코드 상의 문제가 아니라, PowerShell에서 한글 문자를 기본적으로 지원하지 않아 생기는 문제입니다.</p>
+<p>이에 대한 해결책은 <a href="https://evandde.github.io/powershell-encoding/">PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결</a> 글을 참고하시기 바랍니다.</p>
+
+  </div>
+</div>
+
+<hr>
+<h2 id="chanagelog">Chanagelog</h2>
+<ul>
+<li>2022-02-04: 최초 게시</li>
+</ul>
+          </div>
+
+          
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/c-/">C&#43;&#43;</a>
+  
+  <a class="badge badge-light" href="/tags/cmake/">CMake</a>
+  
+  <a class="badge badge-light" href="/tags/std/">std</a>
+  
+  <a class="badge badge-light" href="/tags/cout/">cout</a>
+  
+  <a class="badge badge-light" href="/tags/">&lt;&lt;</a>
+  
+</div>
+
+
+
+          
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">이전</div>
+    <a href="/praccpp-005-whatismainfunc/" rel="next">대충보는 C&#43;&#43; &amp; CMake - 5. main 함수</a>
+  </div>
+  
+  
+</div>
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          <p>마지막 업데이트 Feb 4, 2022</p>
+
+          
+
+
+
+
+
+          
+
+
+  
+  
+  
+
+  
+  
+  
+
+  
+  <section id="comments">
+    <script src="https://utteranc.es/client.js"
+        repo="evandde/blog_comment"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+  
+
+
+
+          
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>관련문서</h3>
+    <ul>
+      
+      <li><a href="/praccpp-007-comment/">대충보는 C&#43;&#43; &amp; CMake - 7. 주석(comment)</a></li>
+      
+      <li><a href="/praccpp-008-type/">대충보는 C&#43;&#43; &amp; CMake - 8. 자료형(type)</a></li>
+      
+      <li><a href="/praccpp-005-whatismainfunc/">대충보는 C&#43;&#43; &amp; CMake - 5. main 함수</a></li>
+      
+      <li><a href="/praccpp-004-whatisinclude/">대충보는 C&#43;&#43; &amp; CMake - 4. #include</a></li>
+      
+      <li><a href="/praccpp-000-env_general/">대충보는 C&#43;&#43; &amp; CMake - *. 실습환경 만들기(VSCode를 안쓰는 경우)</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+        </div>
+
+      </article>
+
+      <footer class="site-footer">
+
+  
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
+     crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3621798796175855"
+     data-ad-slot="9773000008"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2020–2022 Evan Kim
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+  </div>
+
+  <div class="page-footer">
+    
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">인용</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 복사
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 다운로드
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/autohotkey.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/bash.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/c.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cmake.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/css.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/go.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/java.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/javascript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/json.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/makefile.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/markdown.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/matlab.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/powershell.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/scss.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/typescript.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/vbscript-html.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/xml.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.2/anchor.min.js" integrity="sha512-I7w3ZdSFzw5j3jU3ZkNikBNeIrl3i+hEuEdwNmqUJvwNcaBUNcijnP2gd9DtGlgVYDplfjGoD8vTNsID+lCjqg==" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
+
+    <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
+<script>
+    setTimeout(function () {
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+        var options = {
+            
+            
+            
+            
+            loadDelay: 0,
+
+            
+            copyIconClass: "fa fa-copy",
+            
+            checkIconClass: "fa fa-check text-success",
+
+            
+            onBeforeTextCopied: function (text, codeElement) {
+                return text;   
+            }
+        };
+        window.highlightJsBadge(options);
+    }, 10);
+</script>
+
+
+
+</body>
+</html>
