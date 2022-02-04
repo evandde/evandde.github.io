@@ -262,6 +262,7 @@ int main(int, char**) {
   &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;hr&gt;
 &lt;h2 id=&#34;chanagelog&#34;&gt;Chanagelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-12-30: 최초 게시&lt;/li&gt;
