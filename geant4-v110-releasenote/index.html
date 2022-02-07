@@ -735,19 +735,16 @@
     <li><a href="#tldr-역자-주관적">TL;DR (역자 주관적)</a></li>
     <li><a href="#역자서문">역자서문</a></li>
     <li><a href="#서문">서문</a></li>
-    <li><a href="#1-지원하는-플랫폼-및-테스트된-환경">1. 지원하는 플랫폼 및 테스트된 환경</a>
-      <ul>
-        <li><a href="#2-지원하는-clhep-및-vecgeom-버전">2. 지원하는 CLHEP 및 VecGeom 버전</a></li>
-        <li><a href="#3-사용자-코드를-새-버전으로-마이그레이션-할-때-살펴야-할-항목">3. 사용자 코드를 새 버전으로 마이그레이션 할 때 살펴야 할 항목</a></li>
-        <li><a href="#4-새로운-기능">4. 새로운 기능</a></li>
-        <li><a href="#5-physics와-성능에-관해-기대되는-효과">5. Physics와 성능에 관해 기대되는 효과</a></li>
-        <li><a href="#6-알려진-실행-상의-문제-및-한계점">6. 알려진 실행 상의 문제 및 한계점</a></li>
-        <li><a href="#7-컴파일-경고">7. 컴파일 경고</a></li>
-        <li><a href="#8-geant4-소프트웨어-라이센스">8. Geant4 소프트웨어 라이센스</a></li>
-        <li><a href="#9-변경사항-및-수정사항의-세부-목록">9. 변경사항 및 수정사항의 세부 목록</a></li>
-        <li><a href="#10-부록">10. 부록</a></li>
-      </ul>
-    </li>
+    <li><a href="#1-지원하는-플랫폼-및-테스트된-환경">1. 지원하는 플랫폼 및 테스트된 환경</a></li>
+    <li><a href="#2-지원하는-clhep-및-vecgeom-버전">2. 지원하는 CLHEP 및 VecGeom 버전</a></li>
+    <li><a href="#3-사용자-코드를-새-버전으로-마이그레이션-할-때-살펴야-할-항목">3. 사용자 코드를 새 버전으로 마이그레이션 할 때 살펴야 할 항목</a></li>
+    <li><a href="#4-새로운-기능">4. 새로운 기능</a></li>
+    <li><a href="#5-physics와-성능에-관해-기대되는-효과">5. Physics와 성능에 관해 기대되는 효과</a></li>
+    <li><a href="#6-알려진-실행-상의-문제-및-한계점">6. 알려진 실행 상의 문제 및 한계점</a></li>
+    <li><a href="#7-컴파일-경고">7. 컴파일 경고</a></li>
+    <li><a href="#8-geant4-소프트웨어-라이센스">8. Geant4 소프트웨어 라이센스</a></li>
+    <li><a href="#9-변경사항-및-수정사항의-세부-목록">9. 변경사항 및 수정사항의 세부 목록</a></li>
+    <li><a href="#10-부록">10. 부록</a></li>
     <li><a href="#reference">Reference</a></li>
     <li><a href="#changelog">Changelog</a></li>
   </ul>
@@ -914,12 +911,12 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
 <li>macOS 11.6 Big Sur, Apple LLVM/Clang-12</li>
 </ul>
 <hr>
-<h3 id="2-지원하는-clhep-및-vecgeom-버전">2. 지원하는 CLHEP 및 VecGeom 버전</h3>
+<h2 id="2-지원하는-clhep-및-vecgeom-버전">2. 지원하는 CLHEP 및 VecGeom 버전</h2>
 <p>이번 Geant4 릴리즈는 <a href="http://cern.ch/clhep/" target="_blank" rel="noopener">CLHEP</a> <b>2.4.5.1</b> 버전을 요구하며, 이 버전으로 검증이 이루어졌습니다. 다른 버전의 CLHEP을 사용하는 경우 전산모사 결과가 부정확할 수 있습니다.</p>
 <p>NOTE: Geant4에서 내부적으로 활용하는 CLHEP 클래스 모듈이 기본적으로 제공됩니다. 혹은, 사용자가 직접 CLHEP 라이브러리를 설치하여 연동할 수도 있습니다.</p>
 <p>Geant4 설치 시 옵션을 통해 <a href="https://gitlab.cern.ch/VecGeom/VecGeom/" target="_blank" rel="noopener">VecGeom</a> 라이브러리를 Geant4 솔리드보다 우선하여 사용할 지에 대해 설정할 수 있습니다. 이 설정을 사용하기 위해서는 VecGeom 버전 <b>1.1.18</b>이 요구됩니다.</p>
 <hr>
-<h3 id="3-사용자-코드를-새-버전으로-마이그레이션-할-때-살펴야-할-항목">3. 사용자 코드를 새 버전으로 마이그레이션 할 때 살펴야 할 항목</h3>
+<h2 id="3-사용자-코드를-새-버전으로-마이그레이션-할-때-살펴야-할-항목">3. 사용자 코드를 새 버전으로 마이그레이션 할 때 살펴야 할 항목</h2>
 <p>다음은 이 릴리즈의 개발사항에 관련한 몇 가지 정보입니다. 새로운 버전의 적용을 위해, 모든 사용자는 Geant4 라이브러리의 전체 재설치(전체 재컴파일)를 수행해야 하며, 사용자 코드 각각에 대해서도 재컴파일을 수행해야 합니다.</p>
 <p><strong>일반</strong></p>
 <ul>
@@ -971,7 +968,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
 </li>
 </ul>
 <hr>
-<h3 id="4-새로운-기능">4. 새로운 기능</h3>
+<h2 id="4-새로운-기능">4. 새로운 기능</h2>
 <p><strong>일반</strong></p>
 <ul>
 <li>PTL (Parallel Tasking Library) v2.0.0 기반의 작업관리 시스템이 multi-threading의 병렬연산에 있어 기본 방식으로 사용됨. 이에 상응하는 run manager 클래스 (G4TaskRunManager)와 factory 클래스 (G4RunManagerFactory)가 제공되어, 이벤트 루프에 대한 작업 제어가 가능하도록 하였음. 작업관리 시스템은 Intel TBB와도 완벽하게 호환되며, 이는 Geant4 라이브러리 설치 시 CMake 인자로서 GEANT4_USE_TBB=ON으로 설정하여 configure를 수행하면 됨. 기본적으로는 내부 쓰레드 풀과 작업 큐에 작업을 보내 수행하도록 하는 방식을 취함</li>
@@ -1070,7 +1067,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
 </ul>
 </i>
 <hr>
-<h3 id="5-physics와-성능에-관해-기대되는-효과">5. Physics와 성능에 관해 기대되는 효과</h3>
+<h2 id="5-physics와-성능에-관해-기대되는-효과">5. Physics와 성능에 관해 기대되는 효과</h2>
 <p><strong>지오메트리</strong></p>
 <ul>
 <li>복셀 최적화 구조에 대해 G4Allocator를 사용하여 노드와 프록시를 동적으로 할당. 이는 메모리 단편화(memory fragmentation)를 줄이는 데에 도움을 줄 것임</li>
@@ -1084,21 +1081,21 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
 <li>10.7 버전에 비해, 일반적으로 모든 hadronic physics의 관측가능량에 대해 (특히 calorimeter에서의 hadronic shower) 보다 안정적인 결과를 제공할 것으로 기대됨</li>
 </ul>
 <hr>
-<h3 id="6-알려진-실행-상의-문제-및-한계점">6. 알려진 실행 상의 문제 및 한계점</h3>
+<h2 id="6-알려진-실행-상의-문제-및-한계점">6. 알려진 실행 상의 문제 및 한계점</h2>
 <p>미해결된 실행 상의 문제점 목록을 확인하거나 여러분이 겪은 실행 상의 문제점을 제출하려면, <a href="http://cern.ch/geant4/problemreport" target="_blank" rel="noopener">Geant4 Problem Reporting System</a>을 이용해 주세요.</p>
 <hr>
-<h3 id="7-컴파일-경고">7. 컴파일 경고</h3>
+<h2 id="7-컴파일-경고">7. 컴파일 경고</h2>
 <p>일부 플랫폼의 경우 컴파일 시 경고가 발생할 수 있습니다. 다만, 이들이 실행 상에 문제를 야기하지는 않을 것입니다.</p>
 <hr>
-<h3 id="8-geant4-소프트웨어-라이센스">8. Geant4 소프트웨어 라이센스</h3>
+<h2 id="8-geant4-소프트웨어-라이센스">8. Geant4 소프트웨어 라이센스</h2>
 <p>A Software License applies to the Geant4 code. Users must accept this license in order to use it.
 The details and the list of copyright holders is available at <a href="http://cern.ch/geant4/license" target="_blank" rel="noopener">http://cern.ch/geant4/license</a> and also in the text file LICENSE distributed with the source code.</p>
 <p>역자 주석: 이 항목은 라이센스 내용이기에 따로 번역하지 않았습니다.</p>
 <hr>
-<h3 id="9-변경사항-및-수정사항의-세부-목록">9. 변경사항 및 수정사항의 세부 목록</h3>
+<h2 id="9-변경사항-및-수정사항의-세부-목록">9. 변경사항 및 수정사항의 세부 목록</h2>
 <p>역자 주석: 이 항목은 내용이 너무 많아 번역하지 않습니다. <a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html#9." target="_blank" rel="noopener">원문</a>을 참고하시기 바랍니다.</p>
 <hr>
-<h3 id="10-부록">10. 부록</h3>
+<h2 id="10-부록">10. 부록</h2>
 <p>역자 주석: 이 항목은 내용이 너무 많아 번역하지 않습니다. <a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html#10." target="_blank" rel="noopener">원문</a>을 참고하시기 바랍니다.</p>
 <hr>
 <h2 id="reference">Reference</h2>
