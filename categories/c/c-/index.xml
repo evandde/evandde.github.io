@@ -1482,7 +1482,7 @@ cmake --build . --config Release
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;stdcout&#34;&gt;std::cout&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;std::cout&lt;/code&gt;은 화면에 글자를 출력시키기 위한 &lt;strong&gt;표준출력스트림&lt;/strong&gt;(standard output stream)입니다. 일반적으로 우리가 사용하는 컴퓨터에서는 &lt;strong&gt;콘솔 화면에 글자를 출력시켜주는 역할&lt;/strong&gt;을 수행합니다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;std::cout&lt;/code&gt;은 화면에 글자를 출력시키기 위한 &lt;strong&gt;표준출력스트림&lt;/strong&gt;(standard output stream)입니다&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. 일반적으로 우리가 사용하는 컴퓨터에서는 &lt;strong&gt;콘솔 화면에 글자를 출력시켜주는 역할&lt;/strong&gt;을 수행합니다.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;기본사용법&#34;&gt;기본사용법&lt;/h2&gt;
 &lt;ol&gt;
@@ -1634,7 +1634,15 @@ std::cout &amp;lt;&amp;lt; 123 &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; // CORRE
 &lt;h2 id=&#34;chanagelog&#34;&gt;Chanagelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2022-02-04: 최초 게시&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/ul&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;엄밀히는 &lt;code&gt;std&lt;/code&gt; 부분은 namespace라고 하는 것이고, &lt;code&gt;std::cout&lt;/code&gt;이라는 표현은 &lt;code&gt;std&lt;/code&gt;에 소속된 &lt;code&gt;cout&lt;/code&gt;이라는 의미입니다. 일부 자료에서는 &lt;code&gt;using namespace std;&lt;/code&gt; 등을 가르치기도 합니다만, 이런 문법은 나중에 살펴보기로 하고 여기서는 &lt;code&gt;std::cout&lt;/code&gt;이라는 것을 통째로 기억하시길 권해드립니다.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;</description>
     </item>
     
     <item>
@@ -1896,7 +1904,7 @@ int main(int, char**) {
 &lt;hr&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;엄밀히는 &lt;code&gt;std&lt;/code&gt; 부분은 namespace라고 하는 것이고, &lt;code&gt;std::string&lt;/code&gt;이라는 표현은 &lt;code&gt;std&lt;/code&gt;에 소속된 &lt;code&gt;string&lt;/code&gt;이라는 자료형의 의미입니다. 다만, 이런 문법은 나중에 살펴보기로 하고, 여기서는 &lt;code&gt;std::string&lt;/code&gt;이라는 것을 통째로 기억하시길 권해드립니다.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;std::cout&lt;/code&gt;때와 유사하게, 엄밀히 말하자면 &lt;code&gt;std::string&lt;/code&gt;이라는 표현은 &lt;code&gt;std&lt;/code&gt;에 소속된 &lt;code&gt;string&lt;/code&gt;이라는 자료형의 의미입니다. 다만 여기서는 &lt;code&gt;std::string&lt;/code&gt;이라는 것을 통째로 기억하시길 권해드립니다.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;</description>
