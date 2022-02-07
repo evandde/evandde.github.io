@@ -339,7 +339,7 @@
   
   <meta property="og:site_name" content="EvaNote" />
   <meta property="og:url" content="https://evandde.github.io/geant4-v110-releasenote/" />
-  <meta property="og:title" content="Geant4 11.0 릴리즈노트 톺아보기 | EvaNote" />
+  <meta property="og:title" content="Geant4 11.0 릴리즈노트 살펴보기 | EvaNote" />
   <meta property="og:description" content="2021년 12월 10일 새로이 출시된 Geant4 11.0 버전의 릴리즈노트를 살펴봅니다." /><meta property="og:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://evandde.github.io/media/icon_hu8e7e87b14a52eedd9109bf1b224bd29e_18847_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="ko-kr" />
   
@@ -375,7 +375,7 @@
     "@type": "WebPage",
     "@id": "https://evandde.github.io/geant4-v110-releasenote/"
   },
-  "headline": "Geant4 11.0 릴리즈노트 톺아보기",
+  "headline": "Geant4 11.0 릴리즈노트 살펴보기",
   
   "datePublished": "2022-02-04T15:42:18+09:00",
   "dateModified": "2022-02-04T15:42:18+09:00",
@@ -409,7 +409,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3621798796175855"
     crossorigin="anonymous"></script>
 
-  <title>Geant4 11.0 릴리즈노트 톺아보기 | EvaNote</title>
+  <title>Geant4 11.0 릴리즈노트 살펴보기 | EvaNote</title>
 </head>
 
 
@@ -739,6 +739,13 @@
       <ul>
         <li><a href="#2-지원하는-clhep-및-vecgeom-버전">2. 지원하는 CLHEP 및 VecGeom 버전</a></li>
         <li><a href="#3-사용자-코드를-새-버전으로-마이그레이션-할-때-살펴야-할-항목">3. 사용자 코드를 새 버전으로 마이그레이션 할 때 살펴야 할 항목</a></li>
+        <li><a href="#4-새로운-기능">4. 새로운 기능</a></li>
+        <li><a href="#5-physics와-성능에-관해-기대되는-효과">5. Physics와 성능에 관해 기대되는 효과</a></li>
+        <li><a href="#6-알려진-실행-상의-문제-및-한계점">6. 알려진 실행 상의 문제 및 한계점</a></li>
+        <li><a href="#7-컴파일-경고">7. 컴파일 경고</a></li>
+        <li><a href="#8-geant4-소프트웨어-라이센스">8. Geant4 소프트웨어 라이센스</a></li>
+        <li><a href="#9-변경사항-및-수정사항의-세부-목록">9. 변경사항 및 수정사항의 세부 목록</a></li>
+        <li><a href="#10-부록">10. 부록</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -794,7 +801,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Geant4 11.0 릴리즈노트 톺아보기</h1>
+  <h1>Geant4 11.0 릴리즈노트 살펴보기</h1>
 
   
 
@@ -822,7 +829,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    7 분 길이
+    12 분 길이
   </span>
   
 
@@ -858,10 +865,10 @@
 <hr>
 <h2 id="tldr-역자-주관적">TL;DR (역자 주관적)</h2>
 <ul>
-<li>C++17 기반으로 변경됨</li>
-<li>G4String 관련 기능이 강화됨</li>
+<li>C++17 기반으로 변경</li>
+<li>G4String 관련 기능 변경</li>
 <li>G4PhysicsVector 관련 기능 변경</li>
-<li>기존의 g4csv.hh, g4root.hh 등의 분석클래스가 G4AnalysisManger 클래스로 통합됨에 따라 사용자 코드 수정이 필요함. 파일명에 확장자까지 입력하면 알아서 해당 파일형식으로 기록해줌</li>
+<li>기존의 g4csv.hh, g4root.hh 등의 분석클래스가 G4AnalysisManger(혹은 이와 동일한 G4GenericAnalysisManager) 클래스로 통합됨에 따라 사용자 코드 수정이 필요함. 파일명에 확장자까지 입력하면 알아서 해당 파일형식으로 기록해줌</li>
 <li>Optical 물질 특성 정의와 관련한 함수 개선</li>
 </ul>
 <hr>
@@ -869,8 +876,8 @@
 <p>Geant4 10.x의 버전을 뒤로하고, 새로운 메이저버전인 11.x의 시대가 열렸습니다.</p>
 <p>겸사겸사 릴리즈노트를 번역하며 살펴보고자 글을 작성하였습니다.</p>
 <p>전체 내용을 번역하기에는 너무 내용이 방대하기에, 전체적인 내용을 요약한 앞부분만 번역하였습니다.</p>
-<p>개발 내역 전부를 오롯이 이해한 상태로 번역하는 것이 아니므로, 오역이 존재할 수 있습니다. 발견하시면 댓글이나 메일(<a href="mailto:evandde@gmail.com">evandde@gmail.com</a>)로 알려주시면 감사하겠습니다.</p>
-<p>이하는 원문에 대한 번역입니다.</p>
+<p>일부 오역이 존재할 수 있습니다. 발견하시면 댓글이나 메일(<a href="mailto:evandde@gmail.com">evandde@gmail.com</a>)로 알려주시면 감사하겠습니다.</p>
+<p>이하는 원문에 대한 번역입니다. 일부 이탤릭체로 표시된 내용은, 번역이 어렵거나 마땅한 번역이 떠오르지 않아 원문을 옮겨적은 것입니다.</p>
 <hr>
 <h2 id="서문">서문</h2>
 <p>지원하는 시스템에 대한 소스코드 및 실행파일 등은 <a href="http://cern.ch/geant4/support/download" target="_blank" rel="noopener">소스 코드 웹페이지</a>를 통해 이용 가능합니다.</p>
@@ -878,16 +885,16 @@
 <p>자세한 사항은 <a href="http://cern.ch/geant4/support/user_documentation" target="_blank" rel="noopener">Geant4 User Documentation</a>을 참고하시기 바랍니다.</p>
 <p><strong>목차</strong></p>
 <ol>
-<li>지원하는 플랫폼 및 테스트된 환경 (번역완료)</li>
-<li>지원하는 CLHEP 및 VecGeom 버전 (번역완료)</li>
-<li>사용자 코드를 새 버전으로 마이그레이션 할 때 살펴야 할 항목 (번역완료)</li>
-<li>새로운 기능 (번역예정)</li>
-<li>Physics와 성능에 관해 기대되는 효과 (번역예정)</li>
-<li>알려진 실행 상의 문제 및 한계점 (번역안함)</li>
-<li>컴파일 경고 (번역안함)</li>
-<li>Geant4 소프트웨어 라이센스 (번역안함)</li>
-<li>변경사항 및 수정사항의 세부 목록 (번역안함)</li>
-<li>부록 (번역안함)</li>
+<li>지원하는 플랫폼 및 테스트된 환경</li>
+<li>지원하는 CLHEP 및 VecGeom 버전</li>
+<li>사용자 코드를 새 버전으로 마이그레이션 할 때 살펴야 할 항목</li>
+<li>새로운 기능</li>
+<li>Physics와 성능에 관해 기대되는 효과</li>
+<li>알려진 실행 상의 문제 및 한계점</li>
+<li>컴파일 경고</li>
+<li>Geant4 소프트웨어 라이센스</li>
+<li>변경사항 및 수정사항의 세부 목록</li>
+<li>부록</li>
 </ol>
 <hr>
 <h2 id="1-지원하는-플랫폼-및-테스트된-환경">1. 지원하는 플랫폼 및 테스트된 환경</h2>
@@ -908,33 +915,33 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
 </ul>
 <hr>
 <h3 id="2-지원하는-clhep-및-vecgeom-버전">2. 지원하는 CLHEP 및 VecGeom 버전</h3>
-<p>이번 Geant4 릴리즈는 <a href="http://cern.ch/clhep/" target="_blank" rel="noopener">CLHEP</a> <b>2.4.5.1</b> 버전을 요구하며, 이 버전으로 검증이 이루어졌습니다. 다른 버전의 CLHEP을 사용하는 경우 부정확한 전산모사 결과를 야기할 수 있습니다.</p>
-<p>NOTE: Geant4에서 내부적으로 활용하는 CLHEP 클래스 모듈이 기본적으로 제공됩니다. 혹은, 사용자가 직접 CLHEP 라이브러리를 설치하여 연동할 수 있습니다.</p>
+<p>이번 Geant4 릴리즈는 <a href="http://cern.ch/clhep/" target="_blank" rel="noopener">CLHEP</a> <b>2.4.5.1</b> 버전을 요구하며, 이 버전으로 검증이 이루어졌습니다. 다른 버전의 CLHEP을 사용하는 경우 전산모사 결과가 부정확할 수 있습니다.</p>
+<p>NOTE: Geant4에서 내부적으로 활용하는 CLHEP 클래스 모듈이 기본적으로 제공됩니다. 혹은, 사용자가 직접 CLHEP 라이브러리를 설치하여 연동할 수도 있습니다.</p>
 <p>Geant4 설치 시 옵션을 통해 <a href="https://gitlab.cern.ch/VecGeom/VecGeom/" target="_blank" rel="noopener">VecGeom</a> 라이브러리를 Geant4 솔리드보다 우선하여 사용할 지에 대해 설정할 수 있습니다. 이 설정을 사용하기 위해서는 VecGeom 버전 <b>1.1.18</b>이 요구됩니다.</p>
 <hr>
 <h3 id="3-사용자-코드를-새-버전으로-마이그레이션-할-때-살펴야-할-항목">3. 사용자 코드를 새 버전으로 마이그레이션 할 때 살펴야 할 항목</h3>
-<p>다음은 이 릴리즈의 개발사항에 관련한 몇 가지 정보입니다. 모든 사용자는 라이브러리의 전체 재설치(전체 재컴파일)와 사용자 코드의 재컴파일을 수행해야 합니다.</p>
+<p>다음은 이 릴리즈의 개발사항에 관련한 몇 가지 정보입니다. 새로운 버전의 적용을 위해, 모든 사용자는 Geant4 라이브러리의 전체 재설치(전체 재컴파일)를 수행해야 하며, 사용자 코드 각각에 대해서도 재컴파일을 수행해야 합니다.</p>
 <p><strong>일반</strong></p>
 <ul>
-<li>C++11/17에 맞추어 G4String 인터페이스 및 구현의 단순화. 오래되어 사용되지 않거나 std::string의 것과 동일하거나 std::string의 멤버함수가 아닌 함수를 제거하고 G4StrUtil 네임스페이스의 새로운 free 함수로 대체하였음. 사용자 코드에서 G4String의 멤버함수를 명시적으로 사용한 사항이 있다면 수정을 해야 할 수도 있음. 자세한 사항은 10. 부록을 참고</li>
-<li>G4PhysicsVector와 관련 클래스에 대한 대규모 업데이트를 수행함. 새로운 public 접근 함수를 도입하고, 기존의 미사용 method의 제거하고, 다른 Spline 기법의 사용 가능성을 도입하였음</li>
-<li>오래된 클래스인 G4LPhysicsFreeVector와 G4PhysicsLnVector를 제거하였음. G4PhysicsOrderedFreeVector는 G4PhysicsFreeVector로 리디렉션됨</li>
-<li>Physics model의 카탈로그에 관한 클래스인 G4PhysicsModelCatalog 클래스 업그레이드. physics model 각각에 대해 고유한 정수 ID에 해당하는 modelID를 도입. 이는 유사하거나 관련한 physics model에 대해 비슷한 값이 부여되도록 하였음. 또한, 모든 application이나 physics list나 향후 Geant4 버전에 대해 동일한 modelID는 동일한 physics model에 상응하도록 수정함</li>
+<li>C++11/17에 맞추어 G4String 인터페이스 및 구현의 단순화. 오래되어 사용되지 않거나 std::string의 멤버함수와 기능이 중복되거나 std::string의 멤버함수가 아닌 함수를 제거하거나 G4StrUtil 네임스페이스를 통해 새로이 제공되는 함수로 대체하였음. 사용자 코드에서 G4String의 멤버함수를 명시적으로 사용한 사항이 있다면 수정을 해야 할 수도 있음. 자세한 사항은 <a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html#string-migration-notes" target="_blank" rel="noopener">10. 부록</a>을 참고</li>
+<li>G4PhysicsVector와 관련 클래스에 대한 대규모 업데이트를 수행함. 새로운 public 접근 함수를 도입하고, 사용되지 않는 기능을 제거하였으며, 다른 Spline 기법을 사용할 수 있도록 하였음</li>
+<li>사용되지 않는 클래스인 G4LPhysicsFreeVector와 G4PhysicsLnVector를 제거하였음. G4PhysicsOrderedFreeVector는 G4PhysicsFreeVector로 리디렉션됨</li>
+<li>Physics model의 카탈로그에 관한 클래스인 G4PhysicsModelCatalog 클래스 개선. Physics model 각각에 대해 고유한 정수 ID에 해당하는 modelID를 도입하여, 유사하거나 관련성이 있는 physics model 간에 비슷한 정수 값이 부여되도록 하였음. 또한, 모든 application이나 physics list나 향후 Geant4 버전에 대해 동일한 modelID가 동일한 physics model에 상응하도록 수정함</li>
 <li>Geant4 컴파일 및 application 컴파일을 위한 최소 ISO C++ 표준을 C++17으로 설정</li>
 <li>Geant4 빌드 시 multithreading 옵션이 기본적으로 활성화됨</li>
 <li>Geant4 빌드를 위한 최소 CMake 버전을 3.16으로 설정</li>
 </ul>
-<p><strong>분석</strong></p>
+<p><strong>Analysis</strong></p>
 <ul>
-<li>Analysis 클래스에 대한 대규모 변경이 이루어짐. 모든 analysis manager 클래스와 reader 클래스의 G4ThreadLocalSingleton에 대한 마이그레이션이 이루어졌음. 이제 싱글톤 객체는 Geant4 커널에 의해 자동으로 해제(delete)됨. 따라서 사용자가 코드 상에서 명시적으로 객체의 해제를 수행했던 내용을 삭제해야 함</li>
+<li>Analysis 클래스에 대한 대규모 개편. 모든 analysis manager 클래스와 reader 클래스의 G4ThreadLocalSingleton에 대한 마이그레이션이 이루어졌음. 이제 싱글톤 객체는 Geant4 커널에 의해 자동으로 해제(delete)됨. 따라서 사용자가 코드 상에서 명시적으로 객체의 해제를 수행했던 내용이 있다면 삭제해야 함</li>
 <li>G4AnalysisManager를 G4GenericAnalysisManager로 정의함. G4GenericAnalysisManager 클래스가 모든 지원되는 파일포맷을 전부 핸들링하는 식으로 변경됨. 따라서, 파일 이름을 제공할 때 확장자(.csv, .hdf5, .root, .xml)까지 제공하거나, 새로운 멤버함수인 SetDefaultFiletype() 멤버함수를 통해 확장자를 명시해주어야 함. 이에 따라 기존의 각 확장자에 따른 헤더파일은 삭제되었음</li>
-<li>G4Analysis::MasterInstance() 팩토리메서드와 g4analysis.hh 헤더 또한 삭제되었음</li>
+<li>G4Analysis::MasterInstance() 팩토리메서드와 g4analysis.hh 헤더가 삭제되었음</li>
 <li>프로그램 종료 전이나 모든 reader의 구현 시 사용자에 의해 호출 가능한 public 함수인 CloseFiles()를 G4VAnalysisReader에 추가하였음</li>
 </ul>
 <p><strong>지오메트리, field, transportation</strong></p>
 <ul>
 <li>G4Sphere와 G4Tubs에 대한 미사용 접근자를 제거하였음</li>
-<li>G4[Partial]PhantomParameterization에서 일관성을 위해 Get/SetNoVoxel*() 접근자를 Get/SetNoVoxels()로 변경하였음. 사용자 코드에서 변경이 필요할 수 있음</li>
+<li>G4[Partial]PhantomParameterization에서 일관성을 위해 Get/SetNoVoxel*() 접근자를 Get/SetNoVoxels*()로 변경하였음. 사용자 코드에서 변경이 필요할 수 있음</li>
 </ul>
 <p><strong>EM, optical physics</strong></p>
 <ul>
@@ -945,7 +952,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
 </ul>
 <p><strong>Hadronic physics</strong></p>
 <ul>
-<li><em>Constructors for inelastic processes have changed signature, as well as for elastic and inelastic cross-sections.</em> 이는 physics-list의 내부 구성에 영향을 미칠 수 있으므로, 10. 부록을 참고하여 사용자 physics-list를 수정해야 할 수 있음</li>
+<li><em>Constructors for inelastic processes have changed signature, as well as for elastic and inelastic cross-sections.</em> 이는 physics-list의 내부 구성에 영향을 미칠 수 있으므로, <a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html#hadronic-migration-notes" target="_blank" rel="noopener">10. 부록</a>을 참고하여 사용자 physics-list를 수정해야 할 수 있음</li>
 <li>NeutronHP, ParticleHP, Radioactive Decay에서 사용되지 않는 환경변수를 제거하였음. 이는 동일한 기능을 수행하는 UI command로 대체되었음. 해당 UI command는 이전 버전에서 도입되었으므로 해당 내용 참고</li>
 </ul>
 <p><strong>가시화 및 모델링</strong></p>
@@ -956,7 +963,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
 </ul>
 <p><strong>데이터 셋</strong></p>
 <ul>
-<li>새로운 버전의 데이터 셋을 제공함. 자세한 사항은 9. 변경사항 및 수정사항의 세부 목록을 참고
+<li>새로운 버전의 데이터 셋을 제공함. 자세한 사항은 <a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html#data-notes" target="_blank" rel="noopener">9. 변경사항 및 수정사항의 세부 목록</a>을 참고
 <ul>
 <li>G4EMLOW-8.0, G4PARTICLEXS-4.0</li>
 <li>하전입자에 대해 ParticleHP를 사용하려면, 선택적 데이터 셋인 G4TENDL-1.4가 필요함</li>
@@ -964,24 +971,145 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
 </li>
 </ul>
 <hr>
-<ol start="4">
-<li>새로운 기능</li>
-</ol>
-<p>WIP</p>
+<h3 id="4-새로운-기능">4. 새로운 기능</h3>
+<p><strong>일반</strong></p>
+<ul>
+<li>PTL (Parallel Tasking Library) v2.0.0 기반의 작업관리 시스템이 multi-threading의 병렬연산에 있어 기본 방식으로 사용됨. 이에 상응하는 run manager 클래스 (G4TaskRunManager)와 factory 클래스 (G4RunManagerFactory)가 제공되어, 이벤트 루프에 대한 작업 제어가 가능하도록 하였음. 작업관리 시스템은 Intel TBB와도 완벽하게 호환되며, 이는 Geant4 라이브러리 설치 시 CMake 인자로서 GEANT4_USE_TBB=ON으로 설정하여 configure를 수행하면 됨. 기본적으로는 내부 쓰레드 풀과 작업 큐에 작업을 보내 수행하도록 하는 방식을 취함</li>
+<li>G4SteppingVerboseWithUnits 클래스를 새로이 도입하였음. 이는 기존 G4SteppingVerbose 클래스의 대체제로, verbose에 적절한 단위계가 함께 출력되도록 함. 모든 sequential, MT 등 모든 작업 방식에서 공통적으로 사용할 수 있는 간단한 방법이 될 것임.</li>
+<li>G4VTrackingManager 클래스를 신규 도입. 이는 하나 이상의 입자 유형에 특화되어 사용자가 구현 가능한 tracking manager 인터페이스임. 이러한 사용자 tracking manager는 G4VUserPhysicsList에 등록하여 사용할 수 있음. 만약 어떤 입자에 대해 사용자의 tracking manager 클래스가 등록되어 있다면, G4EventManager가 track에 관한 정보를 해당 클래스에 전달해주는 방식으로 작동함</li>
+<li>새로운 난수 엔진인 Ranlux++가 추가됨</li>
+<li>G4String이 G4StrUtil이라는 네임스페이스를 제공하며, 이에 포함된 간단한 문자열조작, 왼쪽/오른쪽 스트리핑(stripping), 대소문자 변환, 검색 등의 기능을 수행하는 함수를 사용할 수 있음</li>
+</ul>
+<p><strong>Analysis</strong></p>
+<ul>
+<li>G4VAnalysisManager 클래스의 새로운 public 멤버함수 Reset()과 Clear()가 제공되며, 이는 할당된 analysis 객체를 reset하거나 해제(delete)하도록 하며, 이들이 수집한 데이터들을 지우는 기능을 수행함. (<em>New public functions G4VAnalysisManager::Reset() and Clear() allowing resetting and deleting all allocated analysis objects and clearing their collections.</em>)</li>
+<li>String vector로 구성된 n-tuple 열에 대해, G4VAnalysisManager와 G4VAnalysisReader의 public 멤버함수를 통한 지원을 추가</li>
+<li>CSV 출력 형태에 대해, 파일시스템 디렉토리를 지원. 만약 디렉토리명이 설정되어 있고, 파일시스템에 해당 이름의 디렉토리가 존재한다면, 히스토그램과 n-tuple 파일이 해당 디렉토리 내에 저장되도록 함</li>
+</ul>
+<p><strong>Digitization, Hits &amp; Scoring</strong></p>
+<ul>
+<li>Tube 및 분할된 tube 형태의 원통형 scoring 메쉬기능 확장</li>
+</ul>
+<p><strong>지오메트리 및 field</strong></p>
+<ul>
+<li>Map을 도입하여, 이름을 기반으로한 solid, region, volume store에서의 검색 속도를 향상시킴</li>
+<li>복셀화/최적화된 지오메트리에 대한 navigation 알고리즘을 G4VoxelNavigation 클래스와 같이 대체하여 사용할 수 있게 하였음</li>
+<li>VecGeom navigator 시연에 관한 예제를 추가하였음 (beta)</li>
+</ul>
+<p><strong>매질</strong></p>
+<ul>
+<li>G4Material에서의 G4Exception을 수정하고 개편하여, 좀 더 완전한 정보를 제공하고 개선된 진단이 가능하도록 하였음</li>
+<li>G4Material 업데이트: 필요에 따라 G4Element의 const pointer를 사용하도록 함</li>
+<li>G4OpticalMaterialProperties 클래스를 신규로 도입하여, optical material property를 저장하고 이미 정의된 항목을 사용할 수 있도록 함</li>
+<li>G4MaterialPropertiesTable 클래스에서, material property나 material const property를 작성할 때 std::map 대신 std::vector를 사용하도록 함. 이를 통해 map 내 요소를 검색할 필요성을 배제시킴</li>
+</ul>
+<i>
+<p><strong>Electromagnetic physics</strong></p>
+<ul>
+<li>General code cleanup in EM modules; removed obsolete models and processes, removed G4EmProcessOptions class.</li>
+<li>Updates to G4GammaGeneralProcess: exclude gamma-nuclear from the 2nd energy area.</li>
+<li>Fixed model per region definition for all base processes G4VEmProcess, G4VMultipleScattering, G4VEnergyLossProcess; removed sub-cut facility for energy loss processes but left G4VSubCutProducer interface.</li>
+<li>Updated EM integral approach by introduction of a cross-section shape type including cross-section shape with 2 maxima.</li>
+<li>Reviewed EM part of G4PhysicsModelCatalog to adopt new numbering convention. Created new enum for low-energy electromagnetic process sub-types.</li>
+<li>Updated G4UrbanMscModel to not apply energy correction at small steps below 1% of a particle range.</li>
+<li>G4VEmFluctuationModel: changed interface; both cut value and max energy transfer are parameters of main methods.</li>
+<li>In G4UniversalFluctuation, substantially simplified sampling algorithm for faster computation.</li>
+<li>Updated Livermore models to use EPICS2017 data.</li>
+<li>Included new PIXE data libraries following ANSTO recommendations.</li>
+<li>New data structure for ICRU73 and ICRU90 ion stopping power data shared between threads and used in G4LinhardSorensenIonModel.</li>
+<li>Implement and use base material approach only if base materials are defined, this should bring a minor speedup of the code and little reduction of memory.</li>
+<li>Enable synchrotron radiation only for electrons, positrons, muons, protons, and anti-protons.</li>
+<li>Introducing quantum entanglement of e+ annihilation. Currently implemented only in G4eplusAnnihilation and G4LivermorePolarizedComptonModel.</li>
+<li>New class G4OpticalMaterialProperties, a store for optical material properties and allow use of predefined optical material properties.</li>
+<li>Added new IRT-syn model for DNA.</li>
+</ul>
+<p><strong>Hadronic physics</strong></p>
+<ul>
+<li>General code clean-up in hadronic processes and models; removed obsolete and deprecated classes; removed obsolete &ldquo;rpg&rdquo; model.</li>
+<li>Introduced a new threshold parameter in radioactive-decay for analogue mode to kill very long radioactive decays at rest of nuclides happening later than such threshold.</li>
+<li>Introduced six light hypernuclei and their corresponding antiparticles (for the time being, only electromagnetic interactions of these particles are available, but switched off by default).</li>
+<li>Extended the interface of hadronic models for projectile hypernuclei and anti-hypernuclei (but not yet hadronic physics for these particles).</li>
+<li>Added implementation of hypercluster emission in INCLXX.</li>
+<li>Extended interface of the Fritiof (FTF) string model to get the number of projectile/target spectator nucleons, number of nucleon-nucleon collisions and impact parameter (see example Hadr09).</li>
+</ul>
+</i>
+<p><strong>Physics List</strong></p>
+<ul>
+<li>버보스 관점에서 균일한 접근이 이루어지도록 physics list를 수정하였음 (<em>Updated physics lists to use a uniform approach for verbosity.</em>)</li>
+<li>Light hypernuclei에 대한 EM physics (기본적으로는 꺼져 있음)는 어떠한 physics list에도 C++ 인터페이스를 통해 실행하도록 설정할 수 있음 (G4HadronicParameters::Instance()-&gt;SetEnableHyperNuclei(true))</li>
+<li>원자의 안정화(de-excitation)에 대한 ANSTO 데이터 옵션은 C++ 인터페이스나 UI command(권장)를 통해 어떠한 physics list에도 실행하도록 설정할 수 있음</li>
+<li>Livermore 감마 반응에 대해 EPICS2017 parameterisation이 활성화될 수 있음</li>
+<li>Tau 쌍에 대한 양전자의 annihilation이 활성화될 수 있음</li>
+<li>LinhardSorensenlonModel을 G4EmStandardPhysicsWVI 생성자와 함께 사용할 수 있음</li>
+</ul>
+<i>
+<p><strong>Visualization and Interfaces</strong></p>
+<ul>
+<li>New ToolsSG (TSG) visualisation package based on g4tools, providing four new (mutually exclusive) visualisation drivers: TOOLSSG_X11_GLES, TOOLSSG_WINDOWS_GLES, TOOLSSG_XT_GLES and TOOLSSG_QT_GLE.</li>
+<li>New VtkQt and VtkNative visualisation drivers.</li>
+<li>Introducing in-app plotting with visualization and related UI command.</li>
+<li>Introducing G4Mesh, a light class that encapsulates and validates visualisation of a nested parameterisation.</li>
+<li>Extended G4UIWin32 driver with new features.</li>
+<li>Revised all visualisation models, to have G4PhysicalVolumeModel taking care of the transformation of any primitives that it generates.</li>
+<li>Removed obsolete network visualisation options for VRML driver and FukuiRenderer driver.</li>
+<li>Removed obsolete GAG/Gain/MOMO and HepRep(WIRED) modules/driver.</li>
+<li>Removed deprecated functions in visualization.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<ul>
+<li>CaTS - New application implementing a flexible and extendable framework for the simulation of calorimeter and tracking detectors. It also demonstrates how to use <a href="https://bitbucket.org/simoncblyth/opticks.git" target="_blank" rel="noopener">Opticks</a> for the creation and propagation of optical photons.</li>
+<li>pythia/py8decayer - New example demonstrating how to outfit Pythia8-based decay features to those resonances in Geant4 where decay tables are not implemented by default. In addition, it shows how to replace existing Geant4 decay tables to such resonances as tau+/- or B+/- with the Pythia8-based ones.</li>
+<li>geometry/VecGeomNavigation - New example demonstrating integration of VecGeom navigation, based on the prototype package G4VecGeomNav, being integrated in the example at build time.</li>
+<li>hadronic/Hadr05 - New example demonstrating how to collect energy deposition in a sampling calorimeter and how to survey energy flow.</li>
+<li>hadronic/Hadr10 - New hadronic example aimed to exercise the decay of tau leptons, as well as charmed and bottom hadrons.</li>
+<li>parameterisations/Par04 - New example demonstrating how to use the Machine Learning (ML) inference to create energy deposits as a fast simulation model using ONNX runtime and LWTNN libraries.</li>
+<li>runAndEvent/RE07 - New example demonstrating how to register specialized tracking managers for a particle or a set of particles.</li>
+<li>dna/AuNP - New example simulating the track-structure of electrons in microscopic gold volume. Also simulating that in liquid water medium surrounding the gold volume.</li>
+<li>dna/scavenger - New example showing how to activate the scavenging process in chemistry using the deterministic treatment of the IRT model.</li>
+<li>visualization/movies - New example illustrating how to make a movie with /vis/viewer/save and /vis/viewer/interpolate UI commands.</li>
+</ul>
+</i>
 <hr>
-<ol start="5">
-<li>Physics와 성능에 관해 기대되는 효과</li>
-</ol>
-<p>WIP</p>
+<h3 id="5-physics와-성능에-관해-기대되는-효과">5. Physics와 성능에 관해 기대되는 효과</h3>
+<p><strong>지오메트리</strong></p>
+<ul>
+<li>복셀 최적화 구조에 대해 G4Allocator를 사용하여 노드와 프록시를 동적으로 할당. 이는 메모리 단편화(memory fragmentation)를 줄이는 데에 도움을 줄 것임</li>
+</ul>
+<p><strong>EM physics</strong></p>
+<ul>
+<li>EM 전산모사에 있어 수% 수준의 속도 향상이 기대됨. 10.6이나 10.7 버전에서의 calorimeter 모사를 기반으로 비교한 결과임</li>
+</ul>
+<p><strong>Hadronic physics</strong></p>
+<ul>
+<li>10.7 버전에 비해, 일반적으로 모든 hadronic physics의 관측가능량에 대해 (특히 calorimeter에서의 hadronic shower) 보다 안정적인 결과를 제공할 것으로 기대됨</li>
+</ul>
+<hr>
+<h3 id="6-알려진-실행-상의-문제-및-한계점">6. 알려진 실행 상의 문제 및 한계점</h3>
+<p>미해결된 실행 상의 문제점 목록을 확인하거나 여러분이 겪은 실행 상의 문제점을 제출하려면, <a href="http://cern.ch/geant4/problemreport" target="_blank" rel="noopener">Geant4 Problem Reporting System</a>을 이용해 주세요.</p>
+<hr>
+<h3 id="7-컴파일-경고">7. 컴파일 경고</h3>
+<p>일부 플랫폼의 경우 컴파일 시 경고가 발생할 수 있습니다. 다만, 이들이 실행 상에 문제를 야기하지는 않을 것입니다.</p>
+<hr>
+<h3 id="8-geant4-소프트웨어-라이센스">8. Geant4 소프트웨어 라이센스</h3>
+<p>A Software License applies to the Geant4 code. Users must accept this license in order to use it.
+The details and the list of copyright holders is available at <a href="http://cern.ch/geant4/license" target="_blank" rel="noopener">http://cern.ch/geant4/license</a> and also in the text file LICENSE distributed with the source code.</p>
+<p>역자 주석: 이 항목은 라이센스 내용이기에 따로 번역하지 않았습니다.</p>
+<hr>
+<h3 id="9-변경사항-및-수정사항의-세부-목록">9. 변경사항 및 수정사항의 세부 목록</h3>
+<p>역자 주석: 이 항목은 내용이 너무 많아 번역하지 않습니다. <a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html#9." target="_blank" rel="noopener">원문</a>을 참고하시기 바랍니다.</p>
+<hr>
+<h3 id="10-부록">10. 부록</h3>
+<p>역자 주석: 이 항목은 내용이 너무 많아 번역하지 않습니다. <a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html#10." target="_blank" rel="noopener">원문</a>을 참고하시기 바랍니다.</p>
 <hr>
 <h2 id="reference">Reference</h2>
 <ul>
-<li><a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html#string-migration-notes" target="_blank" rel="noopener">Geant4 11.0 Release Notes</a></li>
+<li><a href="https://geant4-data.web.cern.ch/ReleaseNotes/ReleaseNotes.11.0.html" target="_blank" rel="noopener">Geant4 11.0 Release Notes</a></li>
 </ul>
 <hr>
 <h2 id="changelog">Changelog</h2>
 <ul>
-<li>2022-02-04: 최초 게시 (1절 ~ 3절 번역)</li>
+<li>2022-02-04: 최초 게시. 1절 ~ 3절 번역</li>
+<li>2022-02-07: 글 교정. 4절 이후 번역내용 추가</li>
 </ul>
                     </div>
                     
@@ -1014,7 +1142,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://evandde.github.io/geant4-v110-releasenote/&amp;text=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ed%86%ba%ec%95%84%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://evandde.github.io/geant4-v110-releasenote/&amp;text=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ec%82%b4%ed%8e%b4%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1027,7 +1155,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://evandde.github.io/geant4-v110-releasenote/&amp;t=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ed%86%ba%ec%95%84%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://evandde.github.io/geant4-v110-releasenote/&amp;t=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ec%82%b4%ed%8e%b4%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1040,7 +1168,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
       
       
       <li>
-        <a href="mailto:?subject=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ed%86%ba%ec%95%84%eb%b3%b4%ea%b8%b0&amp;body=https://evandde.github.io/geant4-v110-releasenote/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ec%82%b4%ed%8e%b4%eb%b3%b4%ea%b8%b0&amp;body=https://evandde.github.io/geant4-v110-releasenote/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1053,7 +1181,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://evandde.github.io/geant4-v110-releasenote/&amp;title=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ed%86%ba%ec%95%84%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://evandde.github.io/geant4-v110-releasenote/&amp;title=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ec%82%b4%ed%8e%b4%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1066,7 +1194,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
       
       
       <li>
-        <a href="whatsapp://send?text=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ed%86%ba%ec%95%84%eb%b3%b4%ea%b8%b0%20https://evandde.github.io/geant4-v110-releasenote/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ec%82%b4%ed%8e%b4%eb%b3%b4%ea%b8%b0%20https://evandde.github.io/geant4-v110-releasenote/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1079,7 +1207,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
       
       
       <li>
-        <a href="https://reddit.com/submit?url=https://evandde.github.io/geant4-v110-releasenote/&amp;title=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ed%86%ba%ec%95%84%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-reddit">
+        <a href="https://reddit.com/submit?url=https://evandde.github.io/geant4-v110-releasenote/&amp;title=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ec%82%b4%ed%8e%b4%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-reddit">
           <i class="fab fa-reddit-alien"></i>
         </a>
       </li>
@@ -1092,7 +1220,7 @@ CERN CentOS Linux 8 (CentOS Linux 8 기반), 64 bit 아키텍처(Intel, AMD) 상
       
       
       <li>
-        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://evandde.github.io/geant4-v110-releasenote/&amp;title=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ed%86%ba%ec%95%84%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-tumblr">
+        <a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://evandde.github.io/geant4-v110-releasenote/&amp;title=Geant4%2011.0%20%eb%a6%b4%eb%a6%ac%ec%a6%88%eb%85%b8%ed%8a%b8%20%ec%82%b4%ed%8e%b4%eb%b3%b4%ea%b8%b0" target="_blank" rel="noopener" class="share-btn-tumblr">
           <i class="fab fa-tumblr"></i>
         </a>
       </li>
