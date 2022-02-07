@@ -870,11 +870,11 @@ int main(int argc, char**) {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-warning&#34;&gt;
   &lt;div&gt;
-    &lt;p&gt;&lt;b&gt; 2021년 6월 28일 수정&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;2021년 1월 12일에 chocolatey repo에 등록된 mingw-w64 10.2.0 버전에서 gdb.exe가 누락된 사항이 발견되었습니다.&lt;/p&gt;
-&lt;p&gt;현 시점에서는 Chocolatey로 MinGW를 설치 시 다음과 같이 입력하여 이전 버전인 8.1.0 버전으로 설치하시기를 권장합니다.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;choco install mingw -y --version=8.1.0
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;&lt;b&gt; 2022년 2월 7일 수정&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;mingw 버전이 업데이트 되어 아래의 문제가 해결되었습니다. 이제는 기존 글대로 최신버전을 설치하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;&lt;strong&gt;2021년 6월 28일 수정&lt;/strong&gt;&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;2021년 1월 12일에 chocolatey repo에 등록된 mingw-w64 10.2.0 버전에서 gdb.exe가 누락된 사항이 발견되었습니다.&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;현 시점에서는 Chocolatey로 MinGW를 설치 시 다음과 같이 입력하여 이전 버전인 8.1.0 버전으로 설치하시기를 권장합니다.&lt;/del&gt;&lt;/p&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;
