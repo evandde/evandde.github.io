@@ -252,7 +252,7 @@
       <description>&lt;p&gt;MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 WSL 설치를 위한 &lt;strong&gt;Windows 기능 켜기&lt;/strong&gt; 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 WSL 설치를 위한 &lt;strong&gt;Windows 기능 켜기&lt;/strong&gt; 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -461,7 +461,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;&lt;a href=&#34;https://aka.ms/wslstore&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Store&lt;/a&gt;에서 WSL을 검색하고, 원하는 배포판을 설치하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -524,7 +524,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;&lt;a href=&#34;https://aka.ms/wslstore&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Store&lt;/a&gt;에서 WSL을 검색하고, 원하는 배포판을 설치하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -807,7 +807,7 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.06.p02.t
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1330,7 +1330,7 @@ sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html&#34;&gt;CLHep 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CLHep 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1505,7 +1505,7 @@ sudo wget https://geant4-data.web.cern.ch/datasets/G4ENSDFSTATE.2.3.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1531,7 +1531,7 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 

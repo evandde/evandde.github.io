@@ -77,7 +77,7 @@
 &lt;/ul&gt;
 &lt;div class=&#34;alert alert-warning&#34;&gt;
   &lt;div&gt;
-    VSCode는 컴파일러, 디버거 등을 내장하고 있지 않습니다. 사용하는 언어에 맞추어 따로 설치하고 연동하는 방식으로 사용하셔야 합니다. 이에 관한 자세한 내용은 본 블로그의 &lt;a href=&#34;https://evandde.github.io/categories/vscode/&#34;&gt;VSCode 카테고리&lt;/a&gt; 글을 참고하세요.
+    VSCode는 컴파일러, 디버거 등을 내장하고 있지 않습니다. 사용하는 언어에 맞추어 따로 설치하고 연동하는 방식으로 사용하셔야 합니다. 이에 관한 자세한 내용은 본 블로그의 &lt;a href=&#34;https://evandde.github.io/categories/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;VSCode 카테고리&lt;/a&gt; 글을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -207,7 +207,7 @@
 &lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Chocolatey를 설치하고 이용하는 방법이 궁금하다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    Chocolatey를 설치하고 이용하는 방법이 궁금하다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -502,7 +502,27 @@
   &lt;div&gt;
     &lt;p&gt;GitHub 계정으로 로그인하시는 경우에는, GitHub과 VSCode 연동을 승인하는 페이지가 뜹니다.&lt;/p&gt;
 &lt;p&gt;다음과 같은 경고창이 뜨면 &lt;strong&gt;Open&lt;/strong&gt;을 눌러 진행하시면 됩니다.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;sync_github.png&#34; alt=&#34;sync_github&#34;&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;sync_github.png&#34; alt=&#34;sync_github&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;
@@ -528,7 +548,7 @@
       <description>&lt;p&gt;MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 WSL 설치를 위한 &lt;strong&gt;Windows 기능 켜기&lt;/strong&gt; 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 WSL 설치를 위한 &lt;strong&gt;Windows 기능 켜기&lt;/strong&gt; 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -737,7 +757,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;&lt;a href=&#34;https://aka.ms/wslstore&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Store&lt;/a&gt;에서 WSL을 검색하고, 원하는 배포판을 설치하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -800,7 +820,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;&lt;a href=&#34;https://aka.ms/wslstore&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Store&lt;/a&gt;에서 WSL을 검색하고, 원하는 배포판을 설치하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 

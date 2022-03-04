@@ -55,7 +55,7 @@
 &lt;h3 id=&#34;개별-폴더마다-경로-변경을-간단하게-수행하고자-하는-경우&#34;&gt;개별 폴더마다 경로 변경을 간단하게 수행하고자 하는 경우&lt;/h3&gt;
 &lt;div class=&#34;alert alert-warning&#34;&gt;
   &lt;div&gt;
-    일부 폴더는 이 절차를 적용할 수 없거나, 적용되더라도 의도대로 동작하지 않을 수 있습니다. 자세한 사항은 아래의 &lt;a href=&#34;https://evandde.github.io/userdir-change/#%EB%AC%B8%EC%A0%9C%EC%A0%90&#34;&gt;개별 폴더 경로변경의 문제점&lt;/a&gt;을 참고하세요.
+    일부 폴더는 이 절차를 적용할 수 없거나, 적용되더라도 의도대로 동작하지 않을 수 있습니다. 자세한 사항은 아래의 &lt;a href=&#34;https://evandde.github.io/userdir-change/#%eb%ac%b8%ec%a0%9c%ec%a0%90&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;개별 폴더 경로변경의 문제점&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 

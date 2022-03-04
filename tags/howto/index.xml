@@ -591,7 +591,7 @@ static const G4String G4Version = &amp;quot;$Name: geant4-10-07-patch-02 $&amp;q
       <description>&lt;p&gt;VSCode에서 Microsoft Visual Studio 빌드 도구인 &lt;b&gt;MSVC&lt;/b&gt;를 이용하여 &lt;b&gt;C/C++ 언어&lt;/b&gt; 및 &lt;b&gt;CMake&lt;/b&gt;를 사용하기 위한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1498,7 +1498,7 @@ int main(int argc, char**) {
       <description>&lt;p&gt;VSCode에서 Python3 언어를 사용할 때, Jupyter와 plotly를 연동하여 사용하는 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode에서의 python3 환경을 구축한 상태&lt;/b&gt;라고 가정합니다. 이에 관한 내용은 &lt;a href=&#34;https://evandde.github.io/vscode-python/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode에서의 python3 환경을 구축한 상태&lt;/b&gt;라고 가정합니다. 이에 관한 내용은 &lt;a href=&#34;https://evandde.github.io/vscode-python/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -2274,7 +2274,7 @@ fig.show()
       <description>&lt;p&gt;VSCode에서 Python3의 기능 중 가상환경을 설정하는 venv를 사용하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode에서의 python3 환경을 구축한 상태&lt;/b&gt;라고 가정합니다. 이에 관한 내용은 &lt;a href=&#34;https://evandde.github.io/vscode-python/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode에서의 python3 환경을 구축한 상태&lt;/b&gt;라고 가정합니다. 이에 관한 내용은 &lt;a href=&#34;https://evandde.github.io/vscode-python/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -2437,7 +2437,7 @@ fig.show()
       <description>&lt;p&gt;VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -2455,7 +2455,7 @@ fig.show()
 &lt;p&gt;이는 chocolatey를 통해 쉽게 설치할 수 있습니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -2838,13 +2838,13 @@ fig.show()
       <description>&lt;p&gt;VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;WSL1 혹은 WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;WSL1 혹은 WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -2927,7 +2927,7 @@ sudo apt install ca-certificates -y
            src=&#34;https://evandde.github.io/vscode-wsl/wsl-open-vs-code.gif&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
-      Ref.: &lt;a href=&#34;https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode&#34;&gt;Get started using VS Code with Windows Subsystem for Linux | Microsoft Docs&lt;/a&gt;
+      Ref.: &lt;a href=&#34;https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Get started using VS Code with Windows Subsystem for Linux | Microsoft Docs&lt;/a&gt;
     &lt;/figcaption&gt;&lt;/figure&gt;
 &lt;h3 id=&#34;vscode에서-실행&#34;&gt;VSCode에서 실행&lt;/h3&gt;
 &lt;p&gt;다음 그림과 같이 진행합니다.&lt;/p&gt;
@@ -3181,7 +3181,7 @@ sudo apt install ca-certificates -y
       <description>&lt;p&gt;VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 VSCode 설치 후, &lt;b&gt;C++ 언어를 사용하기 위한 환경 구축까지 완료한 상태&lt;/b&gt;라고 가정합니다. C++ 언어 사용을 위한 환경 구축은 &lt;a href=&#34;https://evandde.github.io/vscode-cpp/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 VSCode 설치 후, &lt;b&gt;C++ 언어를 사용하기 위한 환경 구축까지 완료한 상태&lt;/b&gt;라고 가정합니다. C++ 언어 사용을 위한 환경 구축은 &lt;a href=&#34;https://evandde.github.io/vscode-cpp/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -3198,7 +3198,7 @@ sudo apt install ca-certificates -y
 &lt;p&gt;Chocolatey를 이용하면 쉽게 설치할 수 있습니다. 다만, chocolatey로 CMake를 설치하는 경우 &lt;code&gt;PATH&lt;/code&gt; 환경변수가 자동으로 잡히지 않아, 추가적인 명령어를 입력해주어야 합니다. 다음 명령어를 입력하세요.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -4005,7 +4005,7 @@ int main(int argc, char**) {
       <description>&lt;p&gt;VSCode에서 C 언어 및 C++ 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -4023,7 +4023,7 @@ int main(int argc, char**) {
 &lt;p&gt;이 글에서는 &lt;strong&gt;&lt;a href=&#34;http://www.mingw.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MinGW&lt;/a&gt;&lt;/strong&gt;&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;를 이용하도록 하겠습니다. MinGW는 chocolatey를 통해 쉽게 설치할 수 있습니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -4692,7 +4692,7 @@ int main(int argc, char **)
 &lt;/ul&gt;
 &lt;div class=&#34;alert alert-warning&#34;&gt;
   &lt;div&gt;
-    VSCode는 컴파일러, 디버거 등을 내장하고 있지 않습니다. 사용하는 언어에 맞추어 따로 설치하고 연동하는 방식으로 사용하셔야 합니다. 이에 관한 자세한 내용은 본 블로그의 &lt;a href=&#34;https://evandde.github.io/categories/vscode/&#34;&gt;VSCode 카테고리&lt;/a&gt; 글을 참고하세요.
+    VSCode는 컴파일러, 디버거 등을 내장하고 있지 않습니다. 사용하는 언어에 맞추어 따로 설치하고 연동하는 방식으로 사용하셔야 합니다. 이에 관한 자세한 내용은 본 블로그의 &lt;a href=&#34;https://evandde.github.io/categories/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;VSCode 카테고리&lt;/a&gt; 글을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -4822,7 +4822,7 @@ int main(int argc, char **)
 &lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Chocolatey를 설치하고 이용하는 방법이 궁금하다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    Chocolatey를 설치하고 이용하는 방법이 궁금하다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -5117,7 +5117,27 @@ int main(int argc, char **)
   &lt;div&gt;
     &lt;p&gt;GitHub 계정으로 로그인하시는 경우에는, GitHub과 VSCode 연동을 승인하는 페이지가 뜹니다.&lt;/p&gt;
 &lt;p&gt;다음과 같은 경고창이 뜨면 &lt;strong&gt;Open&lt;/strong&gt;을 눌러 진행하시면 됩니다.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;sync_github.png&#34; alt=&#34;sync_github&#34;&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;sync_github.png&#34; alt=&#34;sync_github&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;
@@ -5472,7 +5492,7 @@ int main(int argc, char **)
       <description>&lt;p&gt;이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -5858,7 +5878,7 @@ xclock
       <description>&lt;p&gt;이 글에서는 WSL1을 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;WSL1&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;WSL1&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -6073,7 +6093,7 @@ xclock
 &lt;h3 id=&#34;개별-폴더마다-경로-변경을-간단하게-수행하고자-하는-경우&#34;&gt;개별 폴더마다 경로 변경을 간단하게 수행하고자 하는 경우&lt;/h3&gt;
 &lt;div class=&#34;alert alert-warning&#34;&gt;
   &lt;div&gt;
-    일부 폴더는 이 절차를 적용할 수 없거나, 적용되더라도 의도대로 동작하지 않을 수 있습니다. 자세한 사항은 아래의 &lt;a href=&#34;https://evandde.github.io/userdir-change/#%EB%AC%B8%EC%A0%9C%EC%A0%90&#34;&gt;개별 폴더 경로변경의 문제점&lt;/a&gt;을 참고하세요.
+    일부 폴더는 이 절차를 적용할 수 없거나, 적용되더라도 의도대로 동작하지 않을 수 있습니다. 자세한 사항은 아래의 &lt;a href=&#34;https://evandde.github.io/userdir-change/#%eb%ac%b8%ec%a0%9c%ec%a0%90&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;개별 폴더 경로변경의 문제점&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -6570,7 +6590,7 @@ xclock
       <description>&lt;p&gt;MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 WSL 설치를 위한 &lt;strong&gt;Windows 기능 켜기&lt;/strong&gt; 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 WSL 설치를 위한 &lt;strong&gt;Windows 기능 켜기&lt;/strong&gt; 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -6779,7 +6799,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;&lt;a href=&#34;https://aka.ms/wslstore&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Store&lt;/a&gt;에서 WSL을 검색하고, 원하는 배포판을 설치하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -6842,7 +6862,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;&lt;a href=&#34;https://aka.ms/wslstore&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Store&lt;/a&gt;에서 WSL을 검색하고, 원하는 배포판을 설치하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -7258,7 +7278,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
     &lt;p&gt;Chocolatey로 프로그램의 설치/제거 등을 하실 때에는 &lt;strong&gt;관리자 권한&lt;/strong&gt;으로 작업하셔야 합니다. 관리자 권한 없이 이용하려면 설치경로의 변경 등의 작업이 요구됩니다.&lt;/p&gt;
-&lt;p&gt;(참고: &lt;a href=&#34;https://chocolatey.org/install#non-administrative-install&#34;&gt;https://chocolatey.org/install#non-administrative-install&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;(참고: &lt;a href=&#34;https://chocolatey.org/install#non-administrative-install&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://chocolatey.org/install#non-administrative-install&lt;/a&gt;)&lt;/p&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;
@@ -7577,9 +7597,9 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;이 글에서는 Geant4 설치를 위한 빌드 도구로 gcc보다는 MSVC(Microsoft Visual C++)를 이용하여 진행할 예정입니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
+&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;제 경험상으로는 Linux/Unix 환경에서 gcc를 사용했던 경험에 비해 그리 시원치 않아서, 개인적으로 Windows 10에서 설치 시에는 MSVC를 추천합니다.&lt;/p&gt;
 
@@ -7723,7 +7743,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;Qt는 Geant4에서 GUI를 띄우기 위해 필요한 라이브러리입니다. Qt는 라이센스 이슈 때문인지, 설치하려면 &lt;b&gt;Qt 계정 회원가입 및 로그인이 필요&lt;/b&gt;합니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
+    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -8552,15 +8572,15 @@ cmake --build . --config Release
 &lt;p&gt;MSVC란 Microsoft사에서 제공하는 Microsoft Visual C++이라는 C++ 컴파일러를 비롯한 개발도구입니다. 익숙하게 알고 계시는 Visual Studio라는 이름의 통합개발환경(IDE)을 설치하시면서 함께 설치할 수도 있습니다. 다만 이 글에서는 Visual Studio는 빼고, 실제로 필요한 MSVC 부분만 따로 설치하는 방식으로 진행하겠습니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html#os-software-prerequisites&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Windows의 경우 Visual Studio 2019, Community version or higher라고 되어있습니다. 다만, 위에서 말씀드린 바와 같이, 이 글에서는 Visual Studio 대신 그 안의 빌드도구만 설치하는 방식으로 진행합니다. 또한 공식 가이드에는 2019 버전만 기재되어 있습니다만, 2022로도 설치 및 실행이 정상적으로 이루어지는 것으로 판단되어, 이 글에서는 2019 버전 대신 2022 버전으로 진행합니다.
+    &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html#os-software-prerequisites&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Windows의 경우 Visual Studio 2019, Community version or higher라고 되어있습니다. 다만, 위에서 말씀드린 바와 같이, 이 글에서는 Visual Studio 대신 그 안의 빌드도구만 설치하는 방식으로 진행합니다. 또한 공식 가이드에는 2019 버전만 기재되어 있습니다만, 2022로도 설치 및 실행이 정상적으로 이루어지는 것으로 판단되어, 이 글에서는 2019 버전 대신 2022 버전으로 진행합니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
+&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;다만, 제 경험상으로는 Linux/Unix 환경에서 gcc를 사용했던 경험에 비해 그리 시원치 않아서, 개인적으로 Windows에서 설치 시에는 MSVC를 추천합니다.&lt;/p&gt;
 
@@ -8731,7 +8751,7 @@ cmake --build . --config Release
 &lt;p&gt;Qt는 Geant4에서 GUI를 띄우기 위해 필요한 라이브러리입니다. Qt는 라이센스 이슈 때문인지, 설치하려면 &lt;b&gt;Qt 계정 회원가입 및 로그인이 필요&lt;/b&gt;합니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
+    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -9620,7 +9640,7 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.06.p02.t
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -10143,7 +10163,7 @@ sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html&#34;&gt;CLHep 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CLHep 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -10318,7 +10338,7 @@ sudo wget https://geant4-data.web.cern.ch/datasets/G4ENSDFSTATE.2.3.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -10344,7 +10364,7 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 

@@ -20,13 +20,13 @@
       <description>&lt;p&gt;VSCode와 WSL을 연동하여 사용하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;WSL1 혹은 WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;WSL1 혹은 WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -109,7 +109,7 @@ sudo apt install ca-certificates -y
            src=&#34;https://evandde.github.io/vscode-wsl/wsl-open-vs-code.gif&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
-      Ref.: &lt;a href=&#34;https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode&#34;&gt;Get started using VS Code with Windows Subsystem for Linux | Microsoft Docs&lt;/a&gt;
+      Ref.: &lt;a href=&#34;https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Get started using VS Code with Windows Subsystem for Linux | Microsoft Docs&lt;/a&gt;
     &lt;/figcaption&gt;&lt;/figure&gt;
 &lt;h3 id=&#34;vscode에서-실행&#34;&gt;VSCode에서 실행&lt;/h3&gt;
 &lt;p&gt;다음 그림과 같이 진행합니다.&lt;/p&gt;
@@ -400,7 +400,7 @@ sudo apt install ca-certificates -y
       <description>&lt;p&gt;이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -786,7 +786,7 @@ xclock
       <description>&lt;p&gt;이 글에서는 WSL1을 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;WSL1&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;WSL1&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -966,7 +966,7 @@ xclock
       <description>&lt;p&gt;MS Store를 통해 WSL을 다운받아 설치하게 되면, WSL이 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 이 글에서는 Windows Subsystem for Linux를 기본 설치경로가 아닌 다른 경로에 설치하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 WSL 설치를 위한 &lt;strong&gt;Windows 기능 켜기&lt;/strong&gt; 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 WSL 설치를 위한 &lt;strong&gt;Windows 기능 켜기&lt;/strong&gt; 등의 설정이 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1175,7 +1175,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;&lt;a href=&#34;https://aka.ms/wslstore&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Store&lt;/a&gt;에서 WSL을 검색하고, 원하는 배포판을 설치하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1238,7 +1238,7 @@ Expand-Archive Ubuntu2004.zip
 &lt;p&gt;&lt;a href=&#34;https://aka.ms/wslstore&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Microsoft Store&lt;/a&gt;에서 WSL을 검색하고, 원하는 배포판을 설치하면 됩니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    MS Store에서 설치 시, 설치되는 경로는 &lt;code&gt;%LocalAppData%\Packages\[PackageName]&lt;/code&gt; 폴더 하위로 고정됩니다. 만약 별도로 원하는 경로에 설치하고자 하는 경우에는 &lt;a href=&#34;https://evandde.github.io/wsl-otherloc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 

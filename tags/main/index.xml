@@ -13,7 +13,7 @@
     </image>
     
     <item>
-      <title>대충보는 C&#43;&#43; &amp; CMake - 5. main 함수</title>
+      <title>대충보는 C&#43;&#43; &amp; CMake - 5. 함수의 기본 개념과 main 함수</title>
       <link>https://evandde.github.io/praccpp-005-whatismainfunc/</link>
       <pubDate>Thu, 16 Dec 2021 16:37:27 +0900</pubDate>
       <guid>https://evandde.github.io/praccpp-005-whatismainfunc/</guid>
@@ -147,6 +147,7 @@
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-12-16: 최초 게시&lt;/li&gt;
+&lt;li&gt;2022-03-04: 제목 수정&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     

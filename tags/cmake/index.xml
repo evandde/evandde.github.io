@@ -20,7 +20,7 @@
       <description>&lt;p&gt;VSCode에서 Microsoft Visual Studio 빌드 도구인 &lt;b&gt;MSVC&lt;/b&gt;를 이용하여 &lt;b&gt;C/C++ 언어&lt;/b&gt; 및 &lt;b&gt;CMake&lt;/b&gt;를 사용하기 위한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -927,7 +927,7 @@ int main(int argc, char**) {
       <description>&lt;p&gt;VSCode에서 CMake 기반의 프로젝트를 만들고, 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 VSCode 설치 후, &lt;b&gt;C++ 언어를 사용하기 위한 환경 구축까지 완료한 상태&lt;/b&gt;라고 가정합니다. C++ 언어 사용을 위한 환경 구축은 &lt;a href=&#34;https://evandde.github.io/vscode-cpp/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 VSCode 설치 후, &lt;b&gt;C++ 언어를 사용하기 위한 환경 구축까지 완료한 상태&lt;/b&gt;라고 가정합니다. C++ 언어 사용을 위한 환경 구축은 &lt;a href=&#34;https://evandde.github.io/vscode-cpp/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -944,7 +944,7 @@ int main(int argc, char**) {
 &lt;p&gt;Chocolatey를 이용하면 쉽게 설치할 수 있습니다. 다만, chocolatey로 CMake를 설치하는 경우 &lt;code&gt;PATH&lt;/code&gt; 환경변수가 자동으로 잡히지 않아, 추가적인 명령어를 입력해주어야 합니다. 다음 명령어를 입력하세요.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -2967,7 +2967,7 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.06.p02.t
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -3269,7 +3269,7 @@ make -f Makefile
     </item>
     
     <item>
-      <title>대충보는 C&#43;&#43; &amp; CMake - 5. main 함수</title>
+      <title>대충보는 C&#43;&#43; &amp; CMake - 5. 함수의 기본 개념과 main 함수</title>
       <link>https://evandde.github.io/praccpp-005-whatismainfunc/</link>
       <pubDate>Thu, 16 Dec 2021 16:37:27 +0900</pubDate>
       <guid>https://evandde.github.io/praccpp-005-whatismainfunc/</guid>
@@ -3403,6 +3403,7 @@ make -f Makefile
 &lt;h2 id=&#34;changelog&#34;&gt;Changelog&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;2021-12-16: 최초 게시&lt;/li&gt;
+&lt;li&gt;2022-03-04: 제목 수정&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     
@@ -3628,7 +3629,7 @@ sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html&#34;&gt;CLHep 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CLHep 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -3803,7 +3804,7 @@ sudo wget https://geant4-data.web.cern.ch/datasets/G4ENSDFSTATE.2.3.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -3829,7 +3830,7 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -4490,7 +4491,7 @@ std::cout &amp;lt;&amp;lt; 123 &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; // CORRE
   &lt;div&gt;
     &lt;p&gt;원래 &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; 안에 한글을 적어서 출력할 수도 있습니다만, 대부분은 한글을 입력하면 문자가 깨져서 나올 것입니다.&lt;/p&gt;
 &lt;p&gt;이는 코드 상의 문제가 아니라, PowerShell에서 한글 문자를 기본적으로 지원하지 않아 생기는 문제입니다.&lt;/p&gt;
-&lt;p&gt;이에 대한 해결책은 &lt;a href=&#34;https://evandde.github.io/powershell-encoding/&#34;&gt;PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결&lt;/a&gt; 글을 참고하시기 바랍니다.&lt;/p&gt;
+&lt;p&gt;이에 대한 해결책은 &lt;a href=&#34;https://evandde.github.io/powershell-encoding/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결&lt;/a&gt; 글을 참고하시기 바랍니다.&lt;/p&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;
