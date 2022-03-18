@@ -40,9 +40,9 @@
 &lt;p&gt;이 글에서는 Geant4 설치를 위한 빌드 도구로 gcc보다는 MSVC(Microsoft Visual C++)를 이용하여 진행할 예정입니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
+&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;제 경험상으로는 Linux/Unix 환경에서 gcc를 사용했던 경험에 비해 그리 시원치 않아서, 개인적으로 Windows 10에서 설치 시에는 MSVC를 추천합니다.&lt;/p&gt;
 
@@ -186,7 +186,7 @@
 &lt;p&gt;Qt는 Geant4에서 GUI를 띄우기 위해 필요한 라이브러리입니다. Qt는 라이센스 이슈 때문인지, 설치하려면 &lt;b&gt;Qt 계정 회원가입 및 로그인이 필요&lt;/b&gt;합니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
+    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1015,15 +1015,15 @@ cmake --build . --config Release
 &lt;p&gt;MSVC란 Microsoft사에서 제공하는 Microsoft Visual C++이라는 C++ 컴파일러를 비롯한 개발도구입니다. 익숙하게 알고 계시는 Visual Studio라는 이름의 통합개발환경(IDE)을 설치하시면서 함께 설치할 수도 있습니다. 다만 이 글에서는 Visual Studio는 빼고, 실제로 필요한 MSVC 부분만 따로 설치하는 방식으로 진행하겠습니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html#os-software-prerequisites&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Windows의 경우 Visual Studio 2019, Community version or higher라고 되어있습니다. 다만, 위에서 말씀드린 바와 같이, 이 글에서는 Visual Studio 대신 그 안의 빌드도구만 설치하는 방식으로 진행합니다. 또한 공식 가이드에는 2019 버전만 기재되어 있습니다만, 2022로도 설치 및 실행이 정상적으로 이루어지는 것으로 판단되어, 이 글에서는 2019 버전 대신 2022 버전으로 진행합니다.
+    &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html#os-software-prerequisites&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Windows의 경우 Visual Studio 2019, Community version or higher라고 되어있습니다. 다만, 위에서 말씀드린 바와 같이, 이 글에서는 Visual Studio 대신 그 안의 빌드도구만 설치하는 방식으로 진행합니다. 또한 공식 가이드에는 2019 버전만 기재되어 있습니다만, 2022로도 설치 및 실행이 정상적으로 이루어지는 것으로 판단되어, 이 글에서는 2019 버전 대신 2022 버전으로 진행합니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms&#34;&gt;공식 가이드&lt;/a&gt;에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
+&lt;p&gt;Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild&#34;&gt;On Unix Platforms&lt;/a&gt; can be used.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;다만, 제 경험상으로는 Linux/Unix 환경에서 gcc를 사용했던 경험에 비해 그리 시원치 않아서, 개인적으로 Windows에서 설치 시에는 MSVC를 추천합니다.&lt;/p&gt;
 
@@ -1194,7 +1194,7 @@ cmake --build . --config Release
 &lt;p&gt;Qt는 Geant4에서 GUI를 띄우기 위해 필요한 라이브러리입니다. Qt는 라이센스 이슈 때문인지, 설치하려면 &lt;b&gt;Qt 계정 회원가입 및 로그인이 필요&lt;/b&gt;합니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
+    Qt는 무료로 이용하고자 할 경우,  &lt;a href=&#34;https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en&#34;&gt;(L)GPL 라이센스 규약&lt;/a&gt;을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1713,16 +1713,6 @@ cmake --build . --config Release
 &lt;p&gt;다음 명령어 입력&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;code&gt;Path&lt;/code&gt; 환경변수에 Geant4가 설치된 경로의 &lt;code&gt;bin&lt;/code&gt; 폴더를 추가&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;[Environment]::SetEnvironmentVariable(&amp;quot;Path&amp;quot;, $env:Path+&amp;quot;;$env:USERPROFILE\Geant4\geant4-v11.0.0\install\bin&amp;quot;, &amp;quot;Machine&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;Geant4_DIR&lt;/code&gt;이라는 환경변수를 만들어 Geant4가 설치된 경로의 &lt;code&gt;lib\Geant4-11.0.0&lt;/code&gt; 폴더를 추가&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;[Environment]::SetEnvironmentVariable(&amp;quot;Geant4_DIR&amp;quot;, &amp;quot;$env:USERPROFILE\Geant4\geant4-v11.0.0\install\lib\Geant4-11.0.0&amp;quot;, &amp;quot;Machine&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;
 &lt;p&gt;크로스섹션 데이터 경로 설정을 위한 환경변수 설정 (참고: &lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html#environment-variables-for-datasets&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Postinstall Setup — Geant4 Installation Guide 11.0 documentation (cern.ch)&lt;/a&gt;)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;[Environment]::SetEnvironmentVariable(&amp;quot;G4ABLADATA&amp;quot;, &amp;quot;$env:USERPROFILE\Geant4\data\G4ABLA3.1&amp;quot;, &amp;quot;Machine&amp;quot;)
 [Environment]::SetEnvironmentVariable(&amp;quot;G4ENSDFSTATEDATA&amp;quot;, &amp;quot;$env:USERPROFILE\Geant4\data\G4ENSDFSTATE2.3&amp;quot;, &amp;quot;Machine&amp;quot;)
@@ -1940,6 +1930,7 @@ cmake --build . --config Release
 &lt;ul&gt;
 &lt;li&gt;2021-12-22: 최초 게시&lt;/li&gt;
 &lt;li&gt;2022-01-14: 다운로드 에러 관련 설명 추가, 오탈자 수정&lt;/li&gt;
+&lt;li&gt;2022-03-18: 굳이 필요하지 않은 Path 환경변수, Geant4_DIR 환경변수 관련내용 삭제&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     

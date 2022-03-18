@@ -20,7 +20,7 @@
       <description>&lt;p&gt;이 글에서는 WSL2를 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;WSL2&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -406,7 +406,7 @@ xclock
       <description>&lt;p&gt;이 글에서는 WSL1을 설치한 뒤 X window(GUI)를 사용하기 위한 세팅 방법을 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;WSL1&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;WSL1&lt;/b&gt; 설치가 완료된 상태라고 가정합니다. 이에 관한 전반적인 내용은 &lt;a href=&#34;https://evandde.github.io/wsl/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 

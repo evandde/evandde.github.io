@@ -234,7 +234,7 @@ sudo wget https://proj-clhep.web.cern.ch/proj-clhep/dist1/clhep-2.4.4.0.tgz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CLHep 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html&#34;&gt;CLHep 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -409,7 +409,7 @@ sudo wget https://geant4-data.web.cern.ch/datasets/G4ENSDFSTATE.2.3.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -435,7 +435,7 @@ sudo wget http://geant4-data.web.cern.ch/geant4-data/releases/geant4.10.07.p01.t
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
+    &lt;code&gt;wget&lt;/code&gt; 명령어를 사용하지 않고, &lt;a href=&#34;https://geant4.web.cern.ch/support/download&#34;&gt;Geant4 다운로드 페이지&lt;/a&gt;에서 직접 받아서 옮겨오셔도 괜찮습니다.
   &lt;/div&gt;
 &lt;/div&gt;
 

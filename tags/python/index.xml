@@ -20,7 +20,7 @@
       <description>&lt;p&gt;VSCode에서 Python3 언어를 사용할 때, Jupyter와 plotly를 연동하여 사용하는 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode에서의 python3 환경을 구축한 상태&lt;/b&gt;라고 가정합니다. 이에 관한 내용은 &lt;a href=&#34;https://evandde.github.io/vscode-python/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode에서의 python3 환경을 구축한 상태&lt;/b&gt;라고 가정합니다. 이에 관한 내용은 &lt;a href=&#34;https://evandde.github.io/vscode-python/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -405,7 +405,7 @@ fig.show()
       <description>&lt;p&gt;VSCode에서 Python3의 기능 중 가상환경을 설정하는 venv를 사용하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode에서의 python3 환경을 구축한 상태&lt;/b&gt;라고 가정합니다. 이에 관한 내용은 &lt;a href=&#34;https://evandde.github.io/vscode-python/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode에서의 python3 환경을 구축한 상태&lt;/b&gt;라고 가정합니다. 이에 관한 내용은 &lt;a href=&#34;https://evandde.github.io/vscode-python/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -568,7 +568,7 @@ fig.show()
       <description>&lt;p&gt;VSCode에서 Python3 언어를 사용하기 위해 실행/디버깅 등이 가능한 환경을 구축하는 방법에 대해 알아봅니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    여기서는 &lt;b&gt;VSCode 설치를 완료한 상태&lt;/b&gt;라고 가정합니다. VSCode 설치 및 기본 세팅은 &lt;a href=&#34;https://evandde.github.io/vscode/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -586,7 +586,7 @@ fig.show()
 &lt;p&gt;이는 chocolatey를 통해 쉽게 설치할 수 있습니다.&lt;/p&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
+    Chocolatey는 Windows용 패키지 관리자입니다. 아직 사용 방법을 모르신다면, &lt;a href=&#34;https://evandde.github.io/chocolatey/&#34;&gt;이 글&lt;/a&gt;을 참고하세요.
   &lt;/div&gt;
 &lt;/div&gt;
 

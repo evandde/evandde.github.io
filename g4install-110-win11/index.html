@@ -395,7 +395,7 @@
   
   
   
-  <script src="/js/wowchemy-init.min.1f72b8d01369091b0ae66fde915ee9cc.js"></script>
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
 
   
 
@@ -1089,15 +1089,15 @@
 <p>MSVC란 Microsoft사에서 제공하는 Microsoft Visual C++이라는 C++ 컴파일러를 비롯한 개발도구입니다. 익숙하게 알고 계시는 Visual Studio라는 이름의 통합개발환경(IDE)을 설치하시면서 함께 설치할 수도 있습니다. 다만 이 글에서는 Visual Studio는 빼고, 실제로 필요한 MSVC 부분만 따로 설치하는 방식으로 진행하겠습니다.</p>
 <div class="alert alert-note">
   <div>
-    <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html#os-software-prerequisites" target="_blank" rel="noopener">공식 가이드</a>에 따르면, Windows의 경우 Visual Studio 2019, Community version or higher라고 되어있습니다. 다만, 위에서 말씀드린 바와 같이, 이 글에서는 Visual Studio 대신 그 안의 빌드도구만 설치하는 방식으로 진행합니다. 또한 공식 가이드에는 2019 버전만 기재되어 있습니다만, 2022로도 설치 및 실행이 정상적으로 이루어지는 것으로 판단되어, 이 글에서는 2019 버전 대신 2022 버전으로 진행합니다.
+    <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html#os-software-prerequisites">공식 가이드</a>에 따르면, Windows의 경우 Visual Studio 2019, Community version or higher라고 되어있습니다. 다만, 위에서 말씀드린 바와 같이, 이 글에서는 Visual Studio 대신 그 안의 빌드도구만 설치하는 방식으로 진행합니다. 또한 공식 가이드에는 2019 버전만 기재되어 있습니다만, 2022로도 설치 및 실행이 정상적으로 이루어지는 것으로 판단되어, 이 글에서는 2019 버전 대신 2022 버전으로 진행합니다.
   </div>
 </div>
 
 <div class="alert alert-note">
   <div>
-    <p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms" target="_blank" rel="noopener">공식 가이드</a>에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.</p>
+    <p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#on-windows-platforms">공식 가이드</a>에 따르면, Cygwin이나 MinGW도 테스트를 해보거나 직접적인 지원을 하는건 아니지만 Unix 플랫폼에서와 유사하게 진행하면 될 것이라고 합니다.</p>
 <blockquote>
-<p>Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild" target="_blank" rel="noopener">On Unix Platforms</a> can be used.</p>
+<p>Builds of Geant4 using Cygwin or MinGW with their own compilers or the Microsoft C++ Compiler are neither supported or tested, though the CMake system is expected to work under these toolchains. If you are using these tools via their native shells and with their own versions of CMake, then the instructions for building and installing on Unix platforms <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/installguide.html#unixbuild">On Unix Platforms</a> can be used.</p>
 </blockquote>
 <p>다만, 제 경험상으로는 Linux/Unix 환경에서 gcc를 사용했던 경험에 비해 그리 시원치 않아서, 개인적으로 Windows에서 설치 시에는 MSVC를 추천합니다.</p>
 
@@ -1268,7 +1268,7 @@
 <p>Qt는 Geant4에서 GUI를 띄우기 위해 필요한 라이브러리입니다. Qt는 라이센스 이슈 때문인지, 설치하려면 <b>Qt 계정 회원가입 및 로그인이 필요</b>합니다.</p>
 <div class="alert alert-note">
   <div>
-    Qt는 무료로 이용하고자 할 경우,  <a href="https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en" target="_blank" rel="noopener">(L)GPL 라이센스 규약</a>을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
+    Qt는 무료로 이용하고자 할 경우,  <a href="https://www.qt.io/licensing/open-source-lgpl-obligations?hsLang=en">(L)GPL 라이센스 규약</a>을 따를 것을 요구하니, 라이센스에 관한 정보가 필요하신 분은 참고하시기 바랍니다.
   </div>
 </div>
 
@@ -1787,16 +1787,6 @@
 <p>다음 명령어 입력</p>
 <ul>
 <li>
-<p><code>Path</code> 환경변수에 Geant4가 설치된 경로의 <code>bin</code> 폴더를 추가</p>
-<pre><code class="language-powershell">[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path+&quot;;$env:USERPROFILE\Geant4\geant4-v11.0.0\install\bin&quot;, &quot;Machine&quot;)
-</code></pre>
-</li>
-<li>
-<p><code>Geant4_DIR</code>이라는 환경변수를 만들어 Geant4가 설치된 경로의 <code>lib\Geant4-11.0.0</code> 폴더를 추가</p>
-<pre><code class="language-powershell">[Environment]::SetEnvironmentVariable(&quot;Geant4_DIR&quot;, &quot;$env:USERPROFILE\Geant4\geant4-v11.0.0\install\lib\Geant4-11.0.0&quot;, &quot;Machine&quot;)
-</code></pre>
-</li>
-<li>
 <p>크로스섹션 데이터 경로 설정을 위한 환경변수 설정 (참고: <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html#environment-variables-for-datasets" target="_blank" rel="noopener">Postinstall Setup — Geant4 Installation Guide 11.0 documentation (cern.ch)</a>)</p>
 <pre><code class="language-powershell">[Environment]::SetEnvironmentVariable(&quot;G4ABLADATA&quot;, &quot;$env:USERPROFILE\Geant4\data\G4ABLA3.1&quot;, &quot;Machine&quot;)
 [Environment]::SetEnvironmentVariable(&quot;G4ENSDFSTATEDATA&quot;, &quot;$env:USERPROFILE\Geant4\data\G4ENSDFSTATE2.3&quot;, &quot;Machine&quot;)
@@ -2014,6 +2004,7 @@ cmake --build . --config Release
 <ul>
 <li>2021-12-22: 최초 게시</li>
 <li>2022-01-14: 다운로드 에러 관련 설명 추가, 오탈자 수정</li>
+<li>2022-03-18: 굳이 필요하지 않은 Path 환경변수, Geant4_DIR 환경변수 관련내용 삭제</li>
 </ul>
           </div>
 
@@ -2339,7 +2330,7 @@ cmake --build . --config Release
     
       
     
-    <script src="/ko/js/wowchemy.min.23a147c235e76820a139be03ed302bbb.js"></script>
+    <script src="/ko/js/wowchemy.min.c0ad5a97d2bc0d2861698a444011ffda.js"></script>
 
     <script src="https://unpkg.com/highlightjs-badge/highlightjs-badge.min.js"></script>
 <script>

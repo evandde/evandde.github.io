@@ -52,7 +52,7 @@ unzip main.zip
 &lt;div class=&#34;alert alert-warning&#34;&gt;
   &lt;div&gt;
     &lt;p&gt;이 글은 Linux 혹은 WSL에서 gcc 기반으로 Geant4를 설치한 분을 대상으로 작성되었습니다.&lt;/p&gt;
-&lt;p&gt;Windows에서 MSVC 기반으로 Geant4를 설치하신 분은 &lt;a href=&#34;https://evandde.github.io/g4install-107p2-win10basic/#geant4-%ec%98%88%ec%a0%9c-%ec%8b%a4%ed%96%89%ed%95%b4%eb%b3%b4%ea%b8%b0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;이 링크&lt;/a&gt;의 예제 실행방법과 동일하게 실행해보시면 됩니다.&lt;/p&gt;
+&lt;p&gt;Windows에서 MSVC 기반으로 Geant4를 설치하신 분은 &lt;a href=&#34;https://evandde.github.io/g4install-107p2-win10basic/#geant4-%EC%98%88%EC%A0%9C-%EC%8B%A4%ED%96%89%ED%95%B4%EB%B3%B4%EA%B8%B0&#34;&gt;이 링크&lt;/a&gt;의 예제 실행방법과 동일하게 실행해보시면 됩니다.&lt;/p&gt;
 &lt;p&gt;아래에 적은 과정과 유사합니다만, 다음의 두 과정을 지켜주시는 것이 핵심입니다.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;

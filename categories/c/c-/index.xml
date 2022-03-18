@@ -1626,7 +1626,7 @@ std::cout &amp;lt;&amp;lt; 123 &amp;lt;&amp;lt; &amp;quot;\n&amp;quot;; // CORRE
   &lt;div&gt;
     &lt;p&gt;원래 &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; 안에 한글을 적어서 출력할 수도 있습니다만, 대부분은 한글을 입력하면 문자가 깨져서 나올 것입니다.&lt;/p&gt;
 &lt;p&gt;이는 코드 상의 문제가 아니라, PowerShell에서 한글 문자를 기본적으로 지원하지 않아 생기는 문제입니다.&lt;/p&gt;
-&lt;p&gt;이에 대한 해결책은 &lt;a href=&#34;https://evandde.github.io/powershell-encoding/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결&lt;/a&gt; 글을 참고하시기 바랍니다.&lt;/p&gt;
+&lt;p&gt;이에 대한 해결책은 &lt;a href=&#34;https://evandde.github.io/powershell-encoding/&#34;&gt;PowerShell에서 git log, diff 출력 시 한글 깨지는 오류 해결&lt;/a&gt; 글을 참고하시기 바랍니다.&lt;/p&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;
