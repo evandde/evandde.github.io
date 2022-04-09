@@ -1787,6 +1787,16 @@
 <p>다음 명령어 입력</p>
 <ul>
 <li>
+<p><code>Path</code> 환경변수에 Geant4가 설치된 경로의 <code>bin</code> 폴더를 추가</p>
+<pre><code class="language-powershell">[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path+&quot;;$env:USERPROFILE\Geant4\geant4-v11.0.0\install\bin&quot;, &quot;Machine&quot;)
+</code></pre>
+</li>
+<li>
+<p><code>Geant4_DIR</code>이라는 환경변수를 만들어 Geant4가 설치된 경로의 <code>lib\Geant4-11.0.0</code> 폴더를 추가</p>
+<pre><code class="language-powershell">[Environment]::SetEnvironmentVariable(&quot;Geant4_DIR&quot;, &quot;$env:USERPROFILE\Geant4\geant4-v11.0.0\install\lib\Geant4-11.0.0&quot;, &quot;Machine&quot;)
+</code></pre>
+</li>
+<li>
 <p>크로스섹션 데이터 경로 설정을 위한 환경변수 설정 (참고: <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/postinstall.html#environment-variables-for-datasets" target="_blank" rel="noopener">Postinstall Setup — Geant4 Installation Guide 11.0 documentation (cern.ch)</a>)</p>
 <pre><code class="language-powershell">[Environment]::SetEnvironmentVariable(&quot;G4ABLADATA&quot;, &quot;$env:USERPROFILE\Geant4\data\G4ABLA3.1&quot;, &quot;Machine&quot;)
 [Environment]::SetEnvironmentVariable(&quot;G4ENSDFSTATEDATA&quot;, &quot;$env:USERPROFILE\Geant4\data\G4ENSDFSTATE2.3&quot;, &quot;Machine&quot;)
@@ -2004,7 +2014,6 @@ cmake --build . --config Release
 <ul>
 <li>2021-12-22: 최초 게시</li>
 <li>2022-01-14: 다운로드 에러 관련 설명 추가, 오탈자 수정</li>
-<li>2022-03-18: 굳이 필요하지 않은 Path 환경변수, Geant4_DIR 환경변수 관련내용 삭제</li>
 </ul>
           </div>
 
