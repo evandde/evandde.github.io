@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: /
 
 Sitemap: https://evandde.github.io/sitemap.xml
